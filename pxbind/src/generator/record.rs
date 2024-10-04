@@ -2,7 +2,7 @@ use super::{Indent, SG, UOF};
 use crate::consumer::QualType;
 
 impl<'ast> crate::consumer::RecBindingDef<'ast> {
-    pub(crate) fn emit_structgen(&self, writer: &mut String, level: u32) {
+    pub(super) fn emit_structgen(&self, writer: &mut String, level: u32) {
         if self.calc_layout {
             self.emit_structgen_calc(writer, level);
         } else {
@@ -24,7 +24,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         writesln!(w, "{indent1}static void dump_layout(PodStructGen& {SG}) {{");
         writesln!(
             w,
-            r#"{indent2}{SG}.begin_struct("physx_{name}_Pod", "physx_{name}");"#
+            r#"{indent2}{SG}.begin_struct("physx_{name}_Pod", "{name}");"#
         );
 
         for field in &self.fields {
@@ -34,24 +34,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
 
             let fname = field.name;
             let cpp_type = field.kind.cpp_type();
-            let (rust_type, rust_name) = match &field.kind {
-				QualType::Array { element, len } => {
-					if let QualType::Array {
-						element: inner,
-						len: len1,
-					} = &**element
-					{
-						(format!("{}", inner.real_ctype()), format!("{}[{}][{}]", super::RustIdent(fname), len1, len))
-					} else {
-						(format!("{}", element.real_ctype()), format!("{}[{}]", super::RustIdent(fname), len))
-					}
-				},
-				_ => {
-					(format!("{}", field.kind.real_ctype()), format!("{}", super::RustIdent(fname)))
-				}
-			};
-
-
+            let rust_type = field.kind.rust_type();
 
             writes!(w, "{indent2}{SG}.add_field(\"");
 
@@ -77,8 +60,8 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
 
             writesln!(
                 w,
-                r#"", "{rust_name}", "{rust_type}", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
-
+                r#"", "{}", "{rust_type}", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
+                super::RustIdent(fname),
             );
         }
 
@@ -188,7 +171,7 @@ impl<'ast> crate::consumer::RecBindingForward<'ast> {
 
         writes!(
             w,
-            "{indent}{SG}.pass_thru(\"struct physx_{};\\n\");",
+            "{indent}{SG}.pass_thru(\"struct physx_{}_Pod;\\n\");",
             self.name
         );
     }

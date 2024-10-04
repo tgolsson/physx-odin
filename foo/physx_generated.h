@@ -1,30 +1,111 @@
+#pragma once
 #include <stdint.h>
+#include <stddef.h>
 #include "physx_generated_enums.h"
 
-typedef struct physx_PxMat34 {
-    char _unused [0];
-} physx_PxMat34;
+// RecBindingForward::emit_c
+typedef struct physx_PxAllocatorCallback physx_PxAllocatorCallback;
 
+// RecBindingForward::emit_c
+typedef struct physx_PxErrorCallback physx_PxErrorCallback;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxAssertHandler physx_PxAssertHandler;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxInputStream physx_PxInputStream;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxInputData physx_PxInputData;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxOutputStream physx_PxOutputStream;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxVec2 physx_PxVec2;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxVec3 physx_PxVec3;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxVec4 physx_PxVec4;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxQuat physx_PxQuat;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMat33 physx_PxMat33;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMat34 physx_PxMat34;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMat44 physx_PxMat44;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTransform physx_PxTransform;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPlane physx_PxPlane;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxBounds3 physx_PxBounds3;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxAllocatorCallback physx_PxAllocatorCallback;
 struct physx_PxAllocatorCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxAssertHandler physx_PxAssertHandler;
 struct physx_PxAssertHandler {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxAllocationListener physx_PxAllocationListener;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxFoundation physx_PxFoundation;
 struct physx_PxFoundation {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxProfilerCallback physx_PxProfilerCallback;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxAllocator physx_PxAllocator;
+struct physx_PxAllocator {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRawAllocator physx_PxRawAllocator;
+struct physx_PxRawAllocator {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxVirtualAllocatorCallback physx_PxVirtualAllocatorCallback;
 struct physx_PxVirtualAllocatorCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxVirtualAllocator physx_PxVirtualAllocator;
+struct physx_PxVirtualAllocator {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxUserAllocated physx_PxUserAllocated;
+struct physx_PxUserAllocated {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef union physx_PxTempAllocatorChunk physx_PxTempAllocatorChunk;
 union physx_PxTempAllocatorChunk {
     physx_PxTempAllocatorChunk* mNext;
@@ -32,451 +113,3048 @@ union physx_PxTempAllocatorChunk {
     uint8_t mPad16;
 };
 
-typedef struct physx_PxLogTwo {
-    char _unused [0];
-} physx_PxLogTwo;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTempAllocator physx_PxTempAllocator;
+struct physx_PxTempAllocator {
+    char unused0[1];
+};
 
-typedef struct physx_PxUnConst {
-    char _unused [0];
-} physx_PxUnConst;
+// RecBindingForward::emit_c
+typedef struct physx_PxLogTwo physx_PxLogTwo;
 
+// RecBindingForward::emit_c
+typedef struct physx_PxUnConst physx_PxUnConst;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBitAndByte physx_PxBitAndByte;
+struct physx_PxBitAndByte {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBitMap physx_PxBitMap;
+struct physx_PxBitMap {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxVec3 physx_PxVec3;
+struct physx_PxVec3 {
+    float x;
+    float y;
+    float z;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxVec3Padded physx_PxVec3Padded;
+struct physx_PxVec3Padded {
+    float x;
+    float y;
+    float z;
+    uint32_t padding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxQuat physx_PxQuat;
+struct physx_PxQuat {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTransform physx_PxTransform;
+struct physx_PxTransform {
+    physx_PxQuat q;
+    physx_PxVec3 p;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTransformPadded physx_PxTransformPadded;
+struct physx_PxTransformPadded {
+    physx_PxTransform transform;
+    uint32_t padding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMat33 physx_PxMat33;
+struct physx_PxMat33 {
+    physx_PxVec3 column0;
+    physx_PxVec3 column1;
+    physx_PxVec3 column2;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBounds3 physx_PxBounds3;
+struct physx_PxBounds3 {
+    physx_PxVec3 minimum;
+    physx_PxVec3 maximum;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxErrorCallback physx_PxErrorCallback;
 struct physx_PxErrorCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxAllocationListener physx_PxAllocationListener;
 struct physx_PxAllocationListener {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadcastingAllocator physx_PxBroadcastingAllocator;
+struct physx_PxBroadcastingAllocator {
     void* _vtable;
 };
 
-typedef struct physx_PxHash {
-    char _unused [0];
-} physx_PxHash;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadcastingErrorCallback physx_PxBroadcastingErrorCallback;
+struct physx_PxBroadcastingErrorCallback {
+    void* _vtable;
+};
 
+// RecBindingForward::emit_c
+typedef struct physx_PxHash physx_PxHash;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxInputStream physx_PxInputStream;
 struct physx_PxInputStream {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxInputData physx_PxInputData;
 struct physx_PxInputData {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxOutputStream physx_PxOutputStream;
 struct physx_PxOutputStream {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxVec4 physx_PxVec4;
+struct physx_PxVec4 {
+    float x;
+    float y;
+    float z;
+    float w;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMat44 physx_PxMat44;
+struct physx_PxMat44 {
+    physx_PxVec4 column0;
+    physx_PxVec4 column1;
+    physx_PxVec4 column2;
+    physx_PxVec4 column3;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxPlane physx_PxPlane;
+struct physx_PxPlane {
+    physx_PxVec3 n;
+    float d;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_Interpolation physx_Interpolation;
+struct physx_Interpolation {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMutexImpl physx_PxMutexImpl;
+struct physx_PxMutexImpl {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxReadWriteLock physx_PxReadWriteLock;
+struct physx_PxReadWriteLock {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxProfilerCallback physx_PxProfilerCallback;
 struct physx_PxProfilerCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxProfileScoped physx_PxProfileScoped;
+struct physx_PxProfileScoped {
+    physx_PxProfilerCallback* mCallback;
+    char const* mEventName;
+    void* mProfilerData;
+    uint64_t mContextId;
+    bool mDetached;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSListEntry physx_PxSListEntry;
+struct physx_PxSListEntry {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSListImpl physx_PxSListImpl;
+struct physx_PxSListImpl {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSyncImpl physx_PxSyncImpl;
+struct physx_PxSyncImpl {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxRunnable physx_PxRunnable;
 struct physx_PxRunnable {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCounterFrequencyToTensOfNanos physx_PxCounterFrequencyToTensOfNanos;
+struct physx_PxCounterFrequencyToTensOfNanos {
+    uint64_t mNumerator;
+    uint64_t mDenominator;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTime physx_PxTime;
+struct physx_PxTime {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxVec2 physx_PxVec2;
+struct physx_PxVec2 {
+    float x;
+    float y;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxStridedData physx_PxStridedData;
+struct physx_PxStridedData {
+    uint32_t stride;
+    void const* data;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBoundedData physx_PxBoundedData;
+struct physx_PxBoundedData {
+    uint32_t stride;
+    void const* data;
+    uint32_t count;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDebugPoint physx_PxDebugPoint;
+struct physx_PxDebugPoint {
+    physx_PxVec3 pos;
+    uint32_t color;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDebugLine physx_PxDebugLine;
+struct physx_PxDebugLine {
+    physx_PxVec3 pos0;
+    uint32_t color0;
+    physx_PxVec3 pos1;
+    uint32_t color1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDebugTriangle physx_PxDebugTriangle;
+struct physx_PxDebugTriangle {
+    physx_PxVec3 pos0;
+    uint32_t color0;
+    physx_PxVec3 pos1;
+    uint32_t color1;
+    physx_PxVec3 pos2;
+    uint32_t color2;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDebugText physx_PxDebugText;
+struct physx_PxDebugText {
+    physx_PxVec3 position;
+    float size;
+    uint32_t color;
+    char const* string;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxRenderBuffer physx_PxRenderBuffer;
 struct physx_PxRenderBuffer {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxBase physx_PxBase;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSerializationContext physx_PxSerializationContext;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRepXSerializer physx_PxRepXSerializer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSerializer physx_PxSerializer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPhysics physx_PxPhysics;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxCollection physx_PxCollection;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxProcessPxBaseCallback physx_PxProcessPxBaseCallback;
 struct physx_PxProcessPxBaseCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSerializationContext physx_PxSerializationContext;
 struct physx_PxSerializationContext {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDeserializationContext physx_PxDeserializationContext;
+struct physx_PxDeserializationContext {
     void* _vtable;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSerializationRegistry physx_PxSerializationRegistry;
 struct physx_PxSerializationRegistry {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCollection physx_PxCollection;
 struct physx_PxCollection {
+    void* vtable_;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTypeInfo physx_PxTypeInfo;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMaterial physx_PxMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFEMSoftBodyMaterial physx_PxFEMSoftBodyMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFEMClothMaterial physx_PxFEMClothMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPBDMaterial physx_PxPBDMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFLIPMaterial physx_PxFLIPMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMPMMaterial physx_PxMPMMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxCustomMaterial physx_PxCustomMaterial;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxConvexMesh physx_PxConvexMesh;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTriangleMesh physx_PxTriangleMesh;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxBVH33TriangleMesh physx_PxBVH33TriangleMesh;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxBVH34TriangleMesh physx_PxBVH34TriangleMesh;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTetrahedronMesh physx_PxTetrahedronMesh;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxHeightField physx_PxHeightField;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxActor physx_PxActor;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRigidActor physx_PxRigidActor;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRigidBody physx_PxRigidBody;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRigidDynamic physx_PxRigidDynamic;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRigidStatic physx_PxRigidStatic;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxArticulationLink physx_PxArticulationLink;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxArticulationJointReducedCoordinate physx_PxArticulationJointReducedCoordinate;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxArticulationReducedCoordinate physx_PxArticulationReducedCoordinate;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxAggregate physx_PxAggregate;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxConstraint physx_PxConstraint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxShape physx_PxShape;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPruningStructure physx_PxPruningStructure;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleSystem physx_PxParticleSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPBDParticleSystem physx_PxPBDParticleSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFLIPParticleSystem physx_PxFLIPParticleSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMPMParticleSystem physx_PxMPMParticleSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxCustomParticleSystem physx_PxCustomParticleSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSoftBody physx_PxSoftBody;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFEMCloth physx_PxFEMCloth;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxHairSystem physx_PxHairSystem;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleBuffer physx_PxParticleBuffer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleAndDiffuseBuffer physx_PxParticleAndDiffuseBuffer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleClothBuffer physx_PxParticleClothBuffer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleRigidBuffer physx_PxParticleRigidBuffer;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBase physx_PxBase;
+struct physx_PxBase {
     void* _vtable;
 };
 
-typedef struct physx_PxTypeInfo {
-    char _unused [0];
-} physx_PxTypeInfo;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRefCounted physx_PxRefCounted;
+struct physx_PxRefCounted {
+    void* _vtable;
+};
 
-typedef struct physx_PxFEMSoftBodyMaterial {
-    char _unused [0];
-} physx_PxFEMSoftBodyMaterial;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTolerancesScale physx_PxTolerancesScale;
+struct physx_PxTolerancesScale {
+    float length;
+    float speed;
+};
 
-typedef struct physx_PxFEMClothMaterial {
-    char _unused [0];
-} physx_PxFEMClothMaterial;
-
-typedef struct physx_PxPBDMaterial {
-    char _unused [0];
-} physx_PxPBDMaterial;
-
-typedef struct physx_PxFLIPMaterial {
-    char _unused [0];
-} physx_PxFLIPMaterial;
-
-typedef struct physx_PxMPMMaterial {
-    char _unused [0];
-} physx_PxMPMMaterial;
-
-typedef struct physx_PxCustomMaterial {
-    char _unused [0];
-} physx_PxCustomMaterial;
-
-typedef struct physx_PxBVH33TriangleMesh {
-    char _unused [0];
-} physx_PxBVH33TriangleMesh;
-
-typedef struct physx_PxParticleSystem {
-    char _unused [0];
-} physx_PxParticleSystem;
-
-typedef struct physx_PxPBDParticleSystem {
-    char _unused [0];
-} physx_PxPBDParticleSystem;
-
-typedef struct physx_PxFLIPParticleSystem {
-    char _unused [0];
-} physx_PxFLIPParticleSystem;
-
-typedef struct physx_PxMPMParticleSystem {
-    char _unused [0];
-} physx_PxMPMParticleSystem;
-
-typedef struct physx_PxCustomParticleSystem {
-    char _unused [0];
-} physx_PxCustomParticleSystem;
-
-typedef struct physx_PxSoftBody {
-    char _unused [0];
-} physx_PxSoftBody;
-
-typedef struct physx_PxFEMCloth {
-    char _unused [0];
-} physx_PxFEMCloth;
-
-typedef struct physx_PxHairSystem {
-    char _unused [0];
-} physx_PxHairSystem;
-
-typedef struct physx_PxParticleBuffer {
-    char _unused [0];
-} physx_PxParticleBuffer;
-
-typedef struct physx_PxParticleAndDiffuseBuffer {
-    char _unused [0];
-} physx_PxParticleAndDiffuseBuffer;
-
-typedef struct physx_PxParticleClothBuffer {
-    char _unused [0];
-} physx_PxParticleClothBuffer;
-
-typedef struct physx_PxParticleRigidBuffer {
-    char _unused [0];
-} physx_PxParticleRigidBuffer;
-
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxStringTable physx_PxStringTable;
 struct physx_PxStringTable {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSerializer physx_PxSerializer;
 struct physx_PxSerializer {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMetaDataEntry physx_PxMetaDataEntry;
+struct physx_PxMetaDataEntry {
+    char const* type;
+    char const* name;
+    uint32_t offset;
+    uint32_t size;
+    uint32_t count;
+    uint32_t offsetSize;
+    uint32_t flags;
+    uint32_t alignment;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxInsertionCallback physx_PxInsertionCallback;
 struct physx_PxInsertionCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxBaseTask physx_PxBaseTask;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTask physx_PxTask;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxLightCpuTask physx_PxLightCpuTask;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxCpuDispatcher physx_PxCpuDispatcher;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxTaskManager physx_PxTaskManager;
 struct physx_PxTaskManager {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCpuDispatcher physx_PxCpuDispatcher;
 struct physx_PxCpuDispatcher {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBaseTask physx_PxBaseTask;
+struct physx_PxBaseTask {
     void* _vtable;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTask physx_PxTask;
+struct physx_PxTask {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxLightCpuTask physx_PxLightCpuTask;
+struct physx_PxLightCpuTask {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeometry physx_PxGeometry;
+struct physx_PxGeometry {
+    float mTypePadding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBoxGeometry physx_PxBoxGeometry;
+struct physx_PxBoxGeometry {
+    float mTypePadding;
+    physx_PxVec3 halfExtents;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBVHRaycastCallback physx_PxBVHRaycastCallback;
 struct physx_PxBVHRaycastCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBVHOverlapCallback physx_PxBVHOverlapCallback;
 struct physx_PxBVHOverlapCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBVHTraversalCallback physx_PxBVHTraversalCallback;
 struct physx_PxBVHTraversalCallback {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBVH physx_PxBVH;
+struct physx_PxBVH {
     void* _vtable;
 };
 
-typedef struct physx_PxContactBuffer {
-    char _unused [0];
-} physx_PxContactBuffer;
+// RecBindingForward::emit_c
+typedef struct physx_PxGeomIndexPair physx_PxGeomIndexPair;
 
-typedef struct physx_PxRenderOutput {
-    char _unused [0];
-} physx_PxRenderOutput;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCapsuleGeometry physx_PxCapsuleGeometry;
+struct physx_PxCapsuleGeometry {
+    float mTypePadding;
+    float radius;
+    float halfHeight;
+};
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHullPolygon physx_PxHullPolygon;
+struct physx_PxHullPolygon {
+    float mPlane4;
+    uint16_t mNbVerts;
+    uint16_t mIndexBase;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConvexMesh physx_PxConvexMesh;
+struct physx_PxConvexMesh {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMeshScale physx_PxMeshScale;
+struct physx_PxMeshScale {
+    physx_PxVec3 scale;
+    physx_PxQuat rotation;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConvexMeshGeometry physx_PxConvexMeshGeometry;
+struct physx_PxConvexMeshGeometry {
+    float mTypePadding;
+    physx_PxMeshScale scale;
+    physx_PxConvexMesh* convexMesh;
+    uint8_t meshFlags;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSphereGeometry physx_PxSphereGeometry;
+struct physx_PxSphereGeometry {
+    float mTypePadding;
+    float radius;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxPlaneGeometry physx_PxPlaneGeometry;
+struct physx_PxPlaneGeometry {
+    float mTypePadding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriangleMeshGeometry physx_PxTriangleMeshGeometry;
+struct physx_PxTriangleMeshGeometry {
+    float mTypePadding;
+    physx_PxMeshScale scale;
+    uint8_t meshFlags;
+    physx_PxTriangleMesh* triangleMesh;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHeightFieldGeometry physx_PxHeightFieldGeometry;
+struct physx_PxHeightFieldGeometry {
+    float mTypePadding;
+    physx_PxHeightField* heightField;
+    float heightScale;
+    float rowScale;
+    float columnScale;
+    uint8_t heightFieldFlags;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxParticleSystemGeometry physx_PxParticleSystemGeometry;
+struct physx_PxParticleSystemGeometry {
+    float mTypePadding;
+    int32_t mSolverType;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHairSystemGeometry physx_PxHairSystemGeometry;
+struct physx_PxHairSystemGeometry {
+    float mTypePadding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedronMeshGeometry physx_PxTetrahedronMeshGeometry;
+struct physx_PxTetrahedronMeshGeometry {
+    float mTypePadding;
+    physx_PxTetrahedronMesh* tetrahedronMesh;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxQueryHit physx_PxQueryHit;
+struct physx_PxQueryHit {
+    uint32_t faceIndex;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxLocationHit physx_PxLocationHit;
+struct physx_PxLocationHit {
+    uint32_t faceIndex;
+    uint16_t flags;
+    physx_PxVec3 position;
+    physx_PxVec3 normal;
+    float distance;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeomRaycastHit physx_PxGeomRaycastHit;
+struct physx_PxGeomRaycastHit {
+    uint32_t faceIndex;
+    uint16_t flags;
+    physx_PxVec3 position;
+    physx_PxVec3 normal;
+    float distance;
+    float u;
+    float v;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeomOverlapHit physx_PxGeomOverlapHit;
+struct physx_PxGeomOverlapHit {
+    uint32_t faceIndex;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeomSweepHit physx_PxGeomSweepHit;
+struct physx_PxGeomSweepHit {
+    uint32_t faceIndex;
+    uint16_t flags;
+    physx_PxVec3 position;
+    physx_PxVec3 normal;
+    float distance;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeomIndexPair physx_PxGeomIndexPair;
+struct physx_PxGeomIndexPair {
+    uint32_t id0;
+    uint32_t id1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxQueryThreadContext physx_PxQueryThreadContext;
+struct physx_PxQueryThreadContext {
+    char unused0[1];
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxContactBuffer physx_PxContactBuffer;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRenderOutput physx_PxRenderOutput;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxMassProperties physx_PxMassProperties;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCustomGeometryType physx_PxCustomGeometryType;
+struct physx_PxCustomGeometryType {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCustomGeometryCallbacks physx_PxCustomGeometryCallbacks;
 struct physx_PxCustomGeometryCallbacks {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCustomGeometry physx_PxCustomGeometry;
+struct physx_PxCustomGeometry {
+    float mTypePadding;
+    physx_PxCustomGeometryCallbacks* callbacks;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeometryHolder physx_PxGeometryHolder;
+struct physx_PxGeometryHolder {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGeometryQuery physx_PxGeometryQuery;
+struct physx_PxGeometryQuery {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHeightFieldSample physx_PxHeightFieldSample;
+struct physx_PxHeightFieldSample {
+    int16_t height;
+    physx_PxBitAndByte materialIndex0;
+    physx_PxBitAndByte materialIndex1;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxHeightFieldDesc physx_PxHeightFieldDesc;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHeightField physx_PxHeightField;
+struct physx_PxHeightField {
     void* _vtable;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxHeightFieldDesc physx_PxHeightFieldDesc;
+struct physx_PxHeightFieldDesc {
+    uint32_t nbRows;
+    uint32_t nbColumns;
+    int32_t format;
+    physx_PxStridedData samples;
+    float convexEdgeThreshold;
+    uint16_t flags;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTriangle physx_PxTriangle;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMeshQuery physx_PxMeshQuery;
+struct physx_PxMeshQuery {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSimpleTriangleMesh physx_PxSimpleTriangleMesh;
+struct physx_PxSimpleTriangleMesh {
+    physx_PxBoundedData points;
+    physx_PxBoundedData triangles;
+    uint16_t flags;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriangle physx_PxTriangle;
+struct physx_PxTriangle {
+    physx_PxVec3 verts3;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTrianglePadded physx_PxTrianglePadded;
+struct physx_PxTrianglePadded {
+    physx_PxVec3 verts3;
+    uint32_t padding;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriangleMesh physx_PxTriangleMesh;
+struct physx_PxTriangleMesh {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBVH34TriangleMesh physx_PxBVH34TriangleMesh;
+struct physx_PxBVH34TriangleMesh {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedron physx_PxTetrahedron;
+struct physx_PxTetrahedron {
+    physx_PxVec3 verts4;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSoftBodyAuxData physx_PxSoftBodyAuxData;
+struct physx_PxSoftBodyAuxData {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedronMesh physx_PxTetrahedronMesh;
+struct physx_PxTetrahedronMesh {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSoftBodyMesh physx_PxSoftBodyMesh;
+struct physx_PxSoftBodyMesh {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCollisionMeshMappingData physx_PxCollisionMeshMappingData;
+struct physx_PxCollisionMeshMappingData {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSoftBodyCollisionData physx_PxSoftBodyCollisionData;
+struct physx_PxSoftBodyCollisionData {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedronMeshData physx_PxTetrahedronMeshData;
+struct physx_PxTetrahedronMeshData {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSoftBodySimulationData physx_PxSoftBodySimulationData;
+struct physx_PxSoftBodySimulationData {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCollisionTetrahedronMeshData physx_PxCollisionTetrahedronMeshData;
+struct physx_PxCollisionTetrahedronMeshData {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSimulationTetrahedronMeshData physx_PxSimulationTetrahedronMeshData;
+struct physx_PxSimulationTetrahedronMeshData {
+    void* _vtable;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxScene physx_PxScene;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxActor physx_PxActor;
+struct physx_PxActor {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxAggregate physx_PxAggregate;
+struct physx_PxAggregate {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSpringModifiers physx_PxSpringModifiers;
+struct physx_PxSpringModifiers {
+    float stiffness;
+    float damping;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRestitutionModifiers physx_PxRestitutionModifiers;
+struct physx_PxRestitutionModifiers {
+    float restitution;
+    float velocityThreshold;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef union physx_Px1DConstraintMods physx_Px1DConstraintMods;
 union physx_Px1DConstraintMods {
     physx_PxSpringModifiers spring;
     physx_PxRestitutionModifiers bounce;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_Px1DConstraint physx_Px1DConstraint;
+struct physx_Px1DConstraint {
+    physx_PxVec3 linear0;
+    float geometricError;
+    physx_PxVec3 angular0;
+    float velocityTarget;
+    physx_PxVec3 linear1;
+    float minImpulse;
+    physx_PxVec3 angular1;
+    float maxImpulse;
+    physx_Px1DConstraintMods mods;
+    float forInternalUse;
+    uint16_t flags;
+    uint16_t solveHint;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConstraintInvMassScale physx_PxConstraintInvMassScale;
+struct physx_PxConstraintInvMassScale {
+    float linear0;
+    float angular0;
+    float linear1;
+    float angular1;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxConstraintVisualizer physx_PxConstraintVisualizer;
 struct physx_PxConstraintVisualizer {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxConstraintConnector physx_PxConstraintConnector;
 struct physx_PxConstraintConnector {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPoint physx_PxContactPoint;
+struct physx_PxContactPoint {
+    physx_PxVec3 normal;
+    float separation;
+    physx_PxVec3 point;
+    float maxImpulse;
+    physx_PxVec3 targetVel;
+    float staticFriction;
+    uint8_t materialFlags;
+    uint32_t internalFaceIndex1;
+    float dynamicFriction;
+    float restitution;
+    float damping;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxTGSSolverBodyVel physx_PxTGSSolverBodyVel;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverBody physx_PxSolverBody;
+struct physx_PxSolverBody {
+    physx_PxVec3 linearVelocity;
+    uint16_t maxSolverNormalProgress;
+    uint16_t maxSolverFrictionProgress;
+    physx_PxVec3 angularState;
+    uint32_t solverProgress;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverBodyData physx_PxSolverBodyData;
+struct physx_PxSolverBodyData {
+    physx_PxVec3 linearVelocity;
+    float invMass;
+    physx_PxVec3 angularVelocity;
+    float reportThreshold;
+    physx_PxMat33 sqrtInvInertia;
+    float penBiasClamp;
+    uint32_t nodeIndex;
+    float maxContactImpulse;
+    physx_PxTransform body2World;
+    uint16_t pad;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConstraintBatchHeader physx_PxConstraintBatchHeader;
+struct physx_PxConstraintBatchHeader {
+    uint32_t startIndex;
+    uint16_t stride;
+    uint16_t constraintType;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverConstraintDesc physx_PxSolverConstraintDesc;
+struct physx_PxSolverConstraintDesc {
+    uint32_t bodyADataIndex;
+    uint32_t bodyBDataIndex;
+    uint32_t linkIndexA;
+    uint32_t linkIndexB;
+    uint8_t* constraint;
+    void* writeBack;
+    uint16_t progressA;
+    uint16_t progressB;
+    uint16_t constraintLengthOver16;
+    uint8_t padding10;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverConstraintPrepDescBase physx_PxSolverConstraintPrepDescBase;
+struct physx_PxSolverConstraintPrepDescBase {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxSolverBody const* body0;
+    physx_PxSolverBody const* body1;
+    physx_PxSolverBodyData const* data0;
+    physx_PxSolverBodyData const* data1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverConstraintPrepDesc physx_PxSolverConstraintPrepDesc;
+struct physx_PxSolverConstraintPrepDesc {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxSolverBody const* body0;
+    physx_PxSolverBody const* body1;
+    physx_PxSolverBodyData const* data0;
+    physx_PxSolverBodyData const* data1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+    physx_Px1DConstraint* rows;
+    uint32_t numRows;
+    float linBreakForce;
+    float angBreakForce;
+    float minResponseThreshold;
+    void* writeback;
+    bool disablePreprocessing;
+    bool improvedSlerp;
+    bool driveLimitsAreForces;
+    bool extendedLimits;
+    bool disableConstraint;
+    physx_PxVec3Padded body0WorldOffset;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSolverContactDesc physx_PxSolverContactDesc;
+struct physx_PxSolverContactDesc {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxSolverBody const* body0;
+    physx_PxSolverBody const* body1;
+    physx_PxSolverBodyData const* data0;
+    physx_PxSolverBodyData const* data1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+    void* shapeInteraction;
+    physx_PxContactPoint* contacts;
+    uint32_t numContacts;
+    bool hasMaxImpulse;
+    bool disableStrongFriction;
+    bool hasForceThresholds;
+    float restDistance;
+    float maxCCDSeparation;
+    uint8_t* frictionPtr;
+    uint8_t frictionCount;
+    float* contactForces;
+    uint32_t startFrictionPatchIndex;
+    uint32_t numFrictionPatches;
+    uint32_t startContactPatchIndex;
+    uint16_t numContactPatches;
+    uint16_t axisConstraintCount;
+    float offsetSlop;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxConstraintAllocator physx_PxConstraintAllocator;
 struct physx_PxConstraintAllocator {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationLimit physx_PxArticulationLimit;
+struct physx_PxArticulationLimit {
+    float low;
+    float high;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationDrive physx_PxArticulationDrive;
+struct physx_PxArticulationDrive {
+    float stiffness;
+    float damping;
+    float maxForce;
+    int32_t driveType;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverBodyVel physx_PxTGSSolverBodyVel;
+struct physx_PxTGSSolverBodyVel {
+    physx_PxVec3 linearVelocity;
+    uint16_t nbStaticInteractions;
+    uint16_t maxDynamicPartition;
+    physx_PxVec3 angularVelocity;
+    uint32_t partitionMask;
+    physx_PxVec3 deltaAngDt;
+    float maxAngVel;
+    physx_PxVec3 deltaLinDt;
+    uint16_t lockFlags;
+    bool isKinematic;
+    uint8_t pad;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverBodyTxInertia physx_PxTGSSolverBodyTxInertia;
+struct physx_PxTGSSolverBodyTxInertia {
+    physx_PxTransform deltaBody2World;
+    physx_PxMat33 sqrtInvInertia;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverBodyData physx_PxTGSSolverBodyData;
+struct physx_PxTGSSolverBodyData {
+    physx_PxVec3 originalLinearVelocity;
+    float maxContactImpulse;
+    physx_PxVec3 originalAngularVelocity;
+    float penBiasClamp;
+    float invMass;
+    uint32_t nodeIndex;
+    float reportThreshold;
+    uint32_t pad;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverConstraintPrepDescBase physx_PxTGSSolverConstraintPrepDescBase;
+struct physx_PxTGSSolverConstraintPrepDescBase {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxTGSSolverBodyVel const* body0;
+    physx_PxTGSSolverBodyVel const* body1;
+    physx_PxTGSSolverBodyTxInertia const* body0TxI;
+    physx_PxTGSSolverBodyTxInertia const* body1TxI;
+    physx_PxTGSSolverBodyData const* bodyData0;
+    physx_PxTGSSolverBodyData const* bodyData1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverConstraintPrepDesc physx_PxTGSSolverConstraintPrepDesc;
+struct physx_PxTGSSolverConstraintPrepDesc {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxTGSSolverBodyVel const* body0;
+    physx_PxTGSSolverBodyVel const* body1;
+    physx_PxTGSSolverBodyTxInertia const* body0TxI;
+    physx_PxTGSSolverBodyTxInertia const* body1TxI;
+    physx_PxTGSSolverBodyData const* bodyData0;
+    physx_PxTGSSolverBodyData const* bodyData1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+    physx_Px1DConstraint* rows;
+    uint32_t numRows;
+    float linBreakForce;
+    float angBreakForce;
+    float minResponseThreshold;
+    void* writeback;
+    bool disablePreprocessing;
+    bool improvedSlerp;
+    bool driveLimitsAreForces;
+    bool extendedLimits;
+    bool disableConstraint;
+    physx_PxVec3Padded body0WorldOffset;
+    physx_PxVec3Padded cA2w;
+    physx_PxVec3Padded cB2w;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTGSSolverContactDesc physx_PxTGSSolverContactDesc;
+struct physx_PxTGSSolverContactDesc {
+    physx_PxConstraintInvMassScale invMassScales;
+    physx_PxSolverConstraintDesc* desc;
+    physx_PxTGSSolverBodyVel const* body0;
+    physx_PxTGSSolverBodyVel const* body1;
+    physx_PxTGSSolverBodyTxInertia const* body0TxI;
+    physx_PxTGSSolverBodyTxInertia const* body1TxI;
+    physx_PxTGSSolverBodyData const* bodyData0;
+    physx_PxTGSSolverBodyData const* bodyData1;
+    physx_PxTransform bodyFrame0;
+    physx_PxTransform bodyFrame1;
+    int32_t bodyState0;
+    int32_t bodyState1;
+    void* shapeInteraction;
+    physx_PxContactPoint* contacts;
+    uint32_t numContacts;
+    bool hasMaxImpulse;
+    bool disableStrongFriction;
+    bool hasForceThresholds;
+    float restDistance;
+    float maxCCDSeparation;
+    uint8_t* frictionPtr;
+    uint8_t frictionCount;
+    float* contactForces;
+    uint32_t startFrictionPatchIndex;
+    uint32_t numFrictionPatches;
+    uint32_t startContactPatchIndex;
+    uint16_t numContactPatches;
+    uint16_t axisConstraintCount;
+    float maxImpulse;
+    float torsionalPatchRadius;
+    float minTorsionalPatchRadius;
+    float offsetSlop;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxArticulationSpatialTendon physx_PxArticulationSpatialTendon;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxArticulationFixedTendon physx_PxArticulationFixedTendon;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationTendonLimit physx_PxArticulationTendonLimit;
+struct physx_PxArticulationTendonLimit {
+    float lowLimit;
+    float highLimit;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationAttachment physx_PxArticulationAttachment;
+struct physx_PxArticulationAttachment {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationTendonJoint physx_PxArticulationTendonJoint;
+struct physx_PxArticulationTendonJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationTendon physx_PxArticulationTendon;
+struct physx_PxArticulationTendon {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationSpatialTendon physx_PxArticulationSpatialTendon;
+struct physx_PxArticulationSpatialTendon {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationFixedTendon physx_PxArticulationFixedTendon;
+struct physx_PxArticulationFixedTendon {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSpatialForce physx_PxSpatialForce;
+struct physx_PxSpatialForce {
+    physx_PxVec3 force;
+    float pad0;
+    physx_PxVec3 torque;
+    float pad1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSpatialVelocity physx_PxSpatialVelocity;
+struct physx_PxSpatialVelocity {
+    physx_PxVec3 linear;
+    float pad0;
+    physx_PxVec3 angular;
+    float pad1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationRootLinkData physx_PxArticulationRootLinkData;
+struct physx_PxArticulationRootLinkData {
+    physx_PxTransform transform;
+    physx_PxVec3 worldLinVel;
+    physx_PxVec3 worldAngVel;
+    physx_PxVec3 worldLinAccel;
+    physx_PxVec3 worldAngAccel;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationCache physx_PxArticulationCache;
+struct physx_PxArticulationCache {
+    physx_PxSpatialForce* externalForces;
+    float* denseJacobian;
+    float* massMatrix;
+    float* jointVelocity;
+    float* jointAcceleration;
+    float* jointPosition;
+    float* jointForce;
+    float* jointSolverForces;
+    physx_PxSpatialVelocity* linkVelocity;
+    physx_PxSpatialVelocity* linkAcceleration;
+    physx_PxArticulationRootLinkData* rootLinkData;
+    physx_PxSpatialForce* sensorForces;
+    float* coefficientMatrix;
+    float* lambda;
+    void* scratchMemory;
+    void* scratchAllocator;
+    uint32_t version;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationSensor physx_PxArticulationSensor;
+struct physx_PxArticulationSensor {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationReducedCoordinate physx_PxArticulationReducedCoordinate;
+struct physx_PxArticulationReducedCoordinate {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationJointReducedCoordinate physx_PxArticulationJointReducedCoordinate;
+struct physx_PxArticulationJointReducedCoordinate {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFilterData physx_PxFilterData;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxBaseMaterial physx_PxBaseMaterial;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxShape physx_PxShape;
+struct physx_PxShape {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidActor physx_PxRigidActor;
+struct physx_PxRigidActor {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxNodeIndex physx_PxNodeIndex;
+struct physx_PxNodeIndex {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidBody physx_PxRigidBody;
+struct physx_PxRigidBody {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxArticulationLink physx_PxArticulationLink;
+struct physx_PxArticulationLink {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConeLimitedConstraint physx_PxConeLimitedConstraint;
+struct physx_PxConeLimitedConstraint {
+    physx_PxVec3 mAxis;
+    float mAngle;
+    float mLowLimit;
+    float mHighLimit;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConeLimitParams physx_PxConeLimitParams;
+struct physx_PxConeLimitParams {
+    physx_PxVec4 lowHighLimits;
+    physx_PxVec4 axisAngle;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConstraintShaderTable physx_PxConstraintShaderTable;
+struct physx_PxConstraintShaderTable {
+    void * solverPrep;
+    void * visualize;
+    int32_t flag;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConstraint physx_PxConstraint;
+struct physx_PxConstraint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMassModificationProps physx_PxMassModificationProps;
+struct physx_PxMassModificationProps {
+    float mInvMassScale0;
+    float mInvInertiaScale0;
+    float mInvMassScale1;
+    float mInvInertiaScale1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPatch physx_PxContactPatch;
+struct physx_PxContactPatch {
+    physx_PxMassModificationProps mMassModification;
+    physx_PxVec3 normal;
+    float restitution;
+    float dynamicFriction;
+    float staticFriction;
+    float damping;
+    uint16_t startContactIndex;
+    uint8_t nbContacts;
+    uint8_t materialFlags;
+    uint16_t internalFlags;
+    uint16_t materialIndex0;
+    uint16_t materialIndex1;
+    uint16_t pad5;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContact physx_PxContact;
+struct physx_PxContact {
+    physx_PxVec3 contact;
+    float separation;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxExtendedContact physx_PxExtendedContact;
+struct physx_PxExtendedContact {
+    physx_PxVec3 contact;
+    float separation;
+    physx_PxVec3 targetVelocity;
+    float maxImpulse;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxModifiableContact physx_PxModifiableContact;
+struct physx_PxModifiableContact {
+    physx_PxVec3 contact;
+    float separation;
+    physx_PxVec3 targetVelocity;
+    float maxImpulse;
+    physx_PxVec3 normal;
+    float restitution;
+    uint32_t materialFlags;
+    uint16_t materialIndex0;
+    uint16_t materialIndex1;
+    float staticFriction;
+    float dynamicFriction;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactStreamIterator physx_PxContactStreamIterator;
+struct physx_PxContactStreamIterator {
+    physx_PxVec3 zero;
+    physx_PxContactPatch const* patch;
+    physx_PxContact const* contact;
+    uint32_t const* faceIndice;
+    uint32_t totalPatches;
+    uint32_t totalContacts;
+    uint32_t nextContactIndex;
+    uint32_t nextPatchIndex;
+    uint32_t contactPatchHeaderSize;
+    uint32_t contactPointSize;
+    int32_t mStreamFormat;
+    uint32_t forceNoResponse;
+    bool pointStepped;
+    uint32_t hasFaceIndices;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGpuContactPair physx_PxGpuContactPair;
+struct physx_PxGpuContactPair {
+    uint8_t* contactPatches;
+    uint8_t* contactPoints;
+    float* contactForces;
+    uint32_t transformCacheRef0;
+    uint32_t transformCacheRef1;
+    physx_PxNodeIndex nodeIndex0;
+    physx_PxNodeIndex nodeIndex1;
+    physx_PxActor* actor0;
+    physx_PxActor* actor1;
+    uint16_t nbContacts;
+    uint16_t nbPatches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactSet physx_PxContactSet;
+struct physx_PxContactSet {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactModifyPair physx_PxContactModifyPair;
+struct physx_PxContactModifyPair {
+    physx_PxRigidActor const* actor2;
+    physx_PxShape const* shape2;
+    physx_PxTransform transform2;
+    physx_PxContactSet contacts;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxContactModifyCallback physx_PxContactModifyCallback;
 struct physx_PxContactModifyCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCCDContactModifyCallback physx_PxCCDContactModifyCallback;
 struct physx_PxCCDContactModifyCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxDeletionListener physx_PxDeletionListener;
 struct physx_PxDeletionListener {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBaseMaterial physx_PxBaseMaterial;
+struct physx_PxBaseMaterial {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxFEMMaterial physx_PxFEMMaterial;
+struct physx_PxFEMMaterial {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxFilterData physx_PxFilterData;
+struct physx_PxFilterData {
+    uint32_t word0;
+    uint32_t word1;
+    uint32_t word2;
+    uint32_t word3;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSimulationFilterCallback physx_PxSimulationFilterCallback;
 struct physx_PxSimulationFilterCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxParticleRigidFilterPair physx_PxParticleRigidFilterPair;
+struct physx_PxParticleRigidFilterPair {
+    uint64_t mID0;
+    uint64_t mID1;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxLockedData physx_PxLockedData;
 struct physx_PxLockedData {
-    void* _vtable;
+    void* vtable_;
 };
 
-typedef struct physx_PxCudaContextManager {
-    char _unused [0];
-} physx_PxCudaContextManager;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMaterial physx_PxMaterial;
+struct physx_PxMaterial {
+    void* _vtable;
+    void* userData;
+};
 
-typedef struct physx_PxParticleRigidAttachment {
-    char _unused [0];
-} physx_PxParticleRigidAttachment;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGpuParticleBufferIndexPair physx_PxGpuParticleBufferIndexPair;
+struct physx_PxGpuParticleBufferIndexPair {
+    uint32_t systemIndex;
+    uint32_t bufferIndex;
+};
 
-typedef struct physx_PxOmniPvd {
-    char _unused [0];
-} physx_PxOmniPvd;
+// RecBindingForward::emit_c
+typedef struct physx_PxCudaContextManager physx_PxCudaContextManager;
 
+// RecBindingForward::emit_c
+typedef struct physx_PxParticleRigidAttachment physx_PxParticleRigidAttachment;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxParticleVolume physx_PxParticleVolume;
+struct physx_PxParticleVolume {
+    physx_PxBounds3 bound;
+    uint32_t particleIndicesOffset;
+    uint32_t numParticles;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDiffuseParticleParams physx_PxDiffuseParticleParams;
+struct physx_PxDiffuseParticleParams {
+    float threshold;
+    float lifetime;
+    float airDrag;
+    float bubbleDrag;
+    float buoyancy;
+    float kineticEnergyWeight;
+    float pressureWeight;
+    float divergenceWeight;
+    float collisionDecay;
+    bool useAccurateVelocity;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxParticleSpring physx_PxParticleSpring;
+struct physx_PxParticleSpring {
+    uint32_t ind0;
+    uint32_t ind1;
+    float length;
+    float stiffness;
+    float damping;
+    float pad;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxParticleMaterial physx_PxParticleMaterial;
+struct physx_PxParticleMaterial {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSceneDesc physx_PxSceneDesc;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPvd physx_PxPvd;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxOmniPvd physx_PxOmniPvd;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxPhysics physx_PxPhysics;
 struct physx_PxPhysics {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxActorShape physx_PxActorShape;
+struct physx_PxActorShape {
+    physx_PxRigidActor* actor;
+    physx_PxShape* shape;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRaycastHit physx_PxRaycastHit;
+struct physx_PxRaycastHit {
+    uint32_t faceIndex;
+    uint16_t flags;
+    physx_PxVec3 position;
+    physx_PxVec3 normal;
+    float distance;
+    float u;
+    float v;
+    physx_PxRigidActor* actor;
+    physx_PxShape* shape;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxOverlapHit physx_PxOverlapHit;
+struct physx_PxOverlapHit {
+    uint32_t faceIndex;
+    physx_PxRigidActor* actor;
+    physx_PxShape* shape;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSweepHit physx_PxSweepHit;
+struct physx_PxSweepHit {
+    uint32_t faceIndex;
+    uint16_t flags;
+    physx_PxVec3 position;
+    physx_PxVec3 normal;
+    float distance;
+    physx_PxRigidActor* actor;
+    physx_PxShape* shape;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRaycastCallback physx_PxRaycastCallback;
+struct physx_PxRaycastCallback {
+    void* _vtable;
+    physx_PxRaycastHit block;
+    bool hasBlock;
+    physx_PxRaycastHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxOverlapCallback physx_PxOverlapCallback;
+struct physx_PxOverlapCallback {
+    void* _vtable;
+    physx_PxOverlapHit block;
+    bool hasBlock;
+    physx_PxOverlapHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSweepCallback physx_PxSweepCallback;
+struct physx_PxSweepCallback {
+    void* _vtable;
+    physx_PxSweepHit block;
+    bool hasBlock;
+    physx_PxSweepHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRaycastBuffer physx_PxRaycastBuffer;
+struct physx_PxRaycastBuffer {
+    void* _vtable;
+    physx_PxRaycastHit block;
+    bool hasBlock;
+    physx_PxRaycastHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxOverlapBuffer physx_PxOverlapBuffer;
+struct physx_PxOverlapBuffer {
+    void* _vtable;
+    physx_PxOverlapHit block;
+    bool hasBlock;
+    physx_PxOverlapHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSweepBuffer physx_PxSweepBuffer;
+struct physx_PxSweepBuffer {
+    void* _vtable;
+    physx_PxSweepHit block;
+    bool hasBlock;
+    physx_PxSweepHit* touches;
+    uint32_t maxNbTouches;
+    uint32_t nbTouches;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxQueryCache physx_PxQueryCache;
+struct physx_PxQueryCache {
+    physx_PxShape* shape;
+    physx_PxRigidActor* actor;
+    uint32_t faceIndex;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxQueryFilterData physx_PxQueryFilterData;
+struct physx_PxQueryFilterData {
+    physx_PxFilterData data;
+    uint16_t flags;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxQueryFilterCallback physx_PxQueryFilterCallback;
 struct physx_PxQueryFilterCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidDynamic physx_PxRigidDynamic;
+struct physx_PxRigidDynamic {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidStatic physx_PxRigidStatic;
+struct physx_PxRigidStatic {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSceneQuerySystem physx_PxSceneQuerySystem;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneQueryDesc physx_PxSceneQueryDesc;
+struct physx_PxSceneQueryDesc {
+    int32_t staticStructure;
+    int32_t dynamicStructure;
+    uint32_t dynamicTreeRebuildRateHint;
+    int32_t dynamicTreeSecondaryPruner;
+    int32_t staticBVHBuildStrategy;
+    int32_t dynamicBVHBuildStrategy;
+    uint32_t staticNbObjectsPerNode;
+    uint32_t dynamicNbObjectsPerNode;
+    int32_t sceneQueryUpdateMode;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSceneQuerySystemBase physx_PxSceneQuerySystemBase;
 struct physx_PxSceneQuerySystemBase {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSceneSQSystem physx_PxSceneSQSystem;
 struct physx_PxSceneSQSystem {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSceneQuerySystem physx_PxSceneQuerySystem;
 struct physx_PxSceneQuerySystem {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseRegion physx_PxBroadPhaseRegion;
+struct physx_PxBroadPhaseRegion {
+    physx_PxBounds3 mBounds;
+    void* mUserData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseRegionInfo physx_PxBroadPhaseRegionInfo;
+struct physx_PxBroadPhaseRegionInfo {
+    physx_PxBroadPhaseRegion mRegion;
+    uint32_t mNbStaticObjects;
+    uint32_t mNbDynamicObjects;
+    bool mActive;
+    bool mOverlap;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseCaps physx_PxBroadPhaseCaps;
+struct physx_PxBroadPhaseCaps {
+    uint32_t mMaxNbRegions;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseDesc physx_PxBroadPhaseDesc;
+struct physx_PxBroadPhaseDesc {
+    int32_t mType;
+    uint64_t mContextID;
+    uint32_t mFoundLostPairsCapacity;
+    bool mDiscardStaticVsKinematic;
+    bool mDiscardKinematicVsKinematic;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseUpdateData physx_PxBroadPhaseUpdateData;
+struct physx_PxBroadPhaseUpdateData {
+    uint32_t const* mCreated;
+    uint32_t mNbCreated;
+    uint32_t const* mUpdated;
+    uint32_t mNbUpdated;
+    uint32_t const* mRemoved;
+    uint32_t mNbRemoved;
+    physx_PxBounds3 const* mBounds;
+    uint32_t const* mGroups;
+    float const* mDistances;
+    uint32_t mCapacity;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhasePair physx_PxBroadPhasePair;
+struct physx_PxBroadPhasePair {
+    uint32_t mID0;
+    uint32_t mID1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseResults physx_PxBroadPhaseResults;
+struct physx_PxBroadPhaseResults {
+    uint32_t mNbCreatedPairs;
+    physx_PxBroadPhasePair const* mCreatedPairs;
+    uint32_t mNbDeletedPairs;
+    physx_PxBroadPhasePair const* mDeletedPairs;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBroadPhaseRegions physx_PxBroadPhaseRegions;
 struct physx_PxBroadPhaseRegions {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBroadPhase physx_PxBroadPhase;
 struct physx_PxBroadPhase {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxAABBManager physx_PxAABBManager;
 struct physx_PxAABBManager {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxBroadPhaseCallback physx_PxBroadPhaseCallback;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSimulationEventCallback physx_PxSimulationEventCallback;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneLimits physx_PxSceneLimits;
+struct physx_PxSceneLimits {
+    uint32_t maxNbActors;
+    uint32_t maxNbBodies;
+    uint32_t maxNbStaticShapes;
+    uint32_t maxNbDynamicShapes;
+    uint32_t maxNbAggregates;
+    uint32_t maxNbConstraints;
+    uint32_t maxNbRegions;
+    uint32_t maxNbBroadPhaseOverlaps;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxgDynamicsMemoryConfig physx_PxgDynamicsMemoryConfig;
+struct physx_PxgDynamicsMemoryConfig {
+    uint32_t tempBufferCapacity;
+    uint32_t maxRigidContactCount;
+    uint32_t maxRigidPatchCount;
+    uint32_t heapCapacity;
+    uint32_t foundLostPairsCapacity;
+    uint32_t foundLostAggregatePairsCapacity;
+    uint32_t totalAggregatePairsCapacity;
+    uint32_t maxSoftBodyContacts;
+    uint32_t maxFemClothContacts;
+    uint32_t maxParticleContacts;
+    uint32_t collisionStackSize;
+    uint32_t maxHairContacts;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneDesc physx_PxSceneDesc;
+struct physx_PxSceneDesc {
+    int32_t staticStructure;
+    int32_t dynamicStructure;
+    uint32_t dynamicTreeRebuildRateHint;
+    int32_t dynamicTreeSecondaryPruner;
+    int32_t staticBVHBuildStrategy;
+    int32_t dynamicBVHBuildStrategy;
+    uint32_t staticNbObjectsPerNode;
+    uint32_t dynamicNbObjectsPerNode;
+    int32_t sceneQueryUpdateMode;
+    physx_PxVec3 gravity;
+    physx_PxSimulationEventCallback* simulationEventCallback;
+    physx_PxContactModifyCallback* contactModifyCallback;
+    physx_PxCCDContactModifyCallback* ccdContactModifyCallback;
+    void const* filterShaderData;
+    uint32_t filterShaderDataSize;
+    void * filterShader;
+    physx_PxSimulationFilterCallback* filterCallback;
+    int32_t kineKineFilteringMode;
+    int32_t staticKineFilteringMode;
+    int32_t broadPhaseType;
+    physx_PxBroadPhaseCallback* broadPhaseCallback;
+    physx_PxSceneLimits limits;
+    int32_t frictionType;
+    int32_t solverType;
+    float bounceThresholdVelocity;
+    float frictionOffsetThreshold;
+    float frictionCorrelationDistance;
+    uint32_t flags;
+    physx_PxCpuDispatcher* cpuDispatcher;
+    void* userData;
+    uint32_t solverBatchSize;
+    uint32_t solverArticulationBatchSize;
+    uint32_t nbContactDataBlocks;
+    uint32_t maxNbContactDataBlocks;
+    float maxBiasCoefficient;
+    uint32_t contactReportStreamBufferSize;
+    uint32_t ccdMaxPasses;
+    float ccdThreshold;
+    float ccdMaxSeparation;
+    float wakeCounterResetValue;
+    physx_PxBounds3 sanityBounds;
+    physx_PxgDynamicsMemoryConfig gpuDynamicsConfig;
+    uint32_t gpuMaxNumPartitions;
+    uint32_t gpuMaxNumStaticPartitions;
+    uint32_t gpuComputeVersion;
+    uint32_t contactPairSlabSize;
+    physx_PxSceneQuerySystem* sceneQuerySystem;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSimulationStatistics physx_PxSimulationStatistics;
+struct physx_PxSimulationStatistics {
+    uint32_t nbActiveConstraints;
+    uint32_t nbActiveDynamicBodies;
+    uint32_t nbActiveKinematicBodies;
+    uint32_t nbStaticBodies;
+    uint32_t nbDynamicBodies;
+    uint32_t nbKinematicBodies;
+    uint32_t nbShapes11;
+    uint32_t nbAggregates;
+    uint32_t nbArticulations;
+    uint32_t nbAxisSolverConstraints;
+    uint32_t compressedContactSize;
+    uint32_t requiredContactConstraintMemory;
+    uint32_t peakConstraintMemory;
+    uint32_t nbDiscreteContactPairsTotal;
+    uint32_t nbDiscreteContactPairsWithCacheHits;
+    uint32_t nbDiscreteContactPairsWithContacts;
+    uint32_t nbNewPairs;
+    uint32_t nbLostPairs;
+    uint32_t nbNewTouches;
+    uint32_t nbLostTouches;
+    uint32_t nbPartitions;
+    uint64_t gpuMemParticles;
+    uint64_t gpuMemSoftBodies;
+    uint64_t gpuMemFEMCloths;
+    uint64_t gpuMemHairSystems;
+    uint64_t gpuMemHeap;
+    uint64_t gpuMemHeapBroadPhase;
+    uint64_t gpuMemHeapNarrowPhase;
+    uint64_t gpuMemHeapSolver;
+    uint64_t gpuMemHeapArticulation;
+    uint64_t gpuMemHeapSimulation;
+    uint64_t gpuMemHeapSimulationArticulation;
+    uint64_t gpuMemHeapSimulationParticles;
+    uint64_t gpuMemHeapSimulationSoftBody;
+    uint64_t gpuMemHeapSimulationFEMCloth;
+    uint64_t gpuMemHeapSimulationHairSystem;
+    uint64_t gpuMemHeapParticles;
+    uint64_t gpuMemHeapSoftBodies;
+    uint64_t gpuMemHeapFEMCloths;
+    uint64_t gpuMemHeapHairSystems;
+    uint64_t gpuMemHeapOther;
+    uint32_t nbBroadPhaseAdds;
+    uint32_t nbBroadPhaseRemoves;
+    uint32_t nbDiscreteContactPairs[11][11];
+    uint32_t nbCCDPairs[11][11];
+    uint32_t nbModifiedContactPairs[11][11];
+    uint32_t nbTriggerPairs[11][11];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGpuBodyData physx_PxGpuBodyData;
+struct physx_PxGpuBodyData {
+    physx_PxQuat quat;
+    physx_PxVec4 pos;
+    physx_PxVec4 linVel;
+    physx_PxVec4 angVel;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGpuActorPair physx_PxGpuActorPair;
+struct physx_PxGpuActorPair {
+    uint32_t srcIndex;
+    physx_PxNodeIndex nodeIndex;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxIndexDataPair physx_PxIndexDataPair;
+struct physx_PxIndexDataPair {
+    uint32_t index;
+    void* data;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxPvdSceneClient physx_PxPvdSceneClient;
 struct physx_PxPvdSceneClient {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxContactPairHeader physx_PxContactPairHeader;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDominanceGroupPair physx_PxDominanceGroupPair;
+struct physx_PxDominanceGroupPair {
+    uint8_t dominance0;
+    uint8_t dominance1;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBroadPhaseCallback physx_PxBroadPhaseCallback;
 struct physx_PxBroadPhaseCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxScene physx_PxScene;
+struct physx_PxScene {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneReadLock physx_PxSceneReadLock;
+struct physx_PxSceneReadLock {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneWriteLock physx_PxSceneWriteLock;
+struct physx_PxSceneWriteLock {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairExtraDataItem physx_PxContactPairExtraDataItem;
+struct physx_PxContactPairExtraDataItem {
+    uint8_t type;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairVelocity physx_PxContactPairVelocity;
+struct physx_PxContactPairVelocity {
+    uint8_t type;
+    physx_PxVec3 linearVelocity2;
+    physx_PxVec3 angularVelocity2;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairPose physx_PxContactPairPose;
+struct physx_PxContactPairPose {
+    uint8_t type;
+    physx_PxTransform globalPose2;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairIndex physx_PxContactPairIndex;
+struct physx_PxContactPairIndex {
+    uint8_t type;
+    uint16_t index;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairExtraDataIterator physx_PxContactPairExtraDataIterator;
+struct physx_PxContactPairExtraDataIterator {
+    uint8_t const* currPtr;
+    uint8_t const* endPtr;
+    physx_PxContactPairVelocity const* preSolverVelocity;
+    physx_PxContactPairVelocity const* postSolverVelocity;
+    physx_PxContactPairPose const* eventPose;
+    uint32_t contactPairIndex;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxContactPair physx_PxContactPair;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairHeader physx_PxContactPairHeader;
+struct physx_PxContactPairHeader {
+    physx_PxActor* actors2;
+    uint8_t const* extraDataStream;
+    uint16_t extraDataStreamSize;
+    uint16_t flags;
+    physx_PxContactPair const* pairs;
+    uint32_t nbPairs;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPairPoint physx_PxContactPairPoint;
+struct physx_PxContactPairPoint {
+    physx_PxVec3 position;
+    float separation;
+    physx_PxVec3 normal;
+    uint32_t internalFaceIndex0;
+    physx_PxVec3 impulse;
+    uint32_t internalFaceIndex1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactPair physx_PxContactPair;
+struct physx_PxContactPair {
+    physx_PxShape* shapes2;
+    uint8_t const* contactPatches;
+    uint8_t const* contactPoints;
+    float const* contactImpulses;
+    uint32_t requiredBufferSize;
+    uint8_t contactCount;
+    uint8_t patchCount;
+    uint16_t contactStreamSize;
+    uint16_t flags;
+    uint16_t events;
+    uint32_t internalData2;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriggerPair physx_PxTriggerPair;
+struct physx_PxTriggerPair {
+    physx_PxShape* triggerShape;
+    physx_PxActor* triggerActor;
+    physx_PxShape* otherShape;
+    physx_PxActor* otherActor;
+    int32_t status;
+    uint8_t flags;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConstraintInfo physx_PxConstraintInfo;
+struct physx_PxConstraintInfo {
+    physx_PxConstraint* constraint;
+    void* externalReference;
+    uint32_t type;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxSimulationEventCallback physx_PxSimulationEventCallback;
 struct physx_PxSimulationEventCallback {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxFEMParameters physx_PxFEMParameters;
+struct physx_PxFEMParameters {
+    float velocityDamping;
+    float settlingThreshold;
+    float sleepThreshold;
+    float sleepDamping;
+    float selfCollisionFilterDistance;
+    float selfCollisionStressTolerance;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxPruningStructure physx_PxPruningStructure;
+struct physx_PxPruningStructure {
     void* _vtable;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxExtendedVec3 physx_PxExtendedVec3;
+struct physx_PxExtendedVec3 {
+    double x;
+    double y;
+    double z;
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxControllerManager physx_PxControllerManager;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxObstacle physx_PxObstacle;
+struct physx_PxObstacle {
+    void* mUserData;
+    physx_PxExtendedVec3 mPos;
+    physx_PxQuat mRot;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBoxObstacle physx_PxBoxObstacle;
+struct physx_PxBoxObstacle {
+    void* mUserData;
+    physx_PxExtendedVec3 mPos;
+    physx_PxQuat mRot;
+    physx_PxVec3 mHalfExtents;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCapsuleObstacle physx_PxCapsuleObstacle;
+struct physx_PxCapsuleObstacle {
+    void* mUserData;
+    physx_PxExtendedVec3 mPos;
+    physx_PxQuat mRot;
+    float mHalfHeight;
+    float mRadius;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxObstacleContext physx_PxObstacleContext;
 struct physx_PxObstacleContext {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxController physx_PxController;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxControllerBehaviorCallback physx_PxControllerBehaviorCallback;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerState physx_PxControllerState;
+struct physx_PxControllerState {
+    physx_PxVec3 deltaXP;
+    physx_PxShape* touchedShape;
+    physx_PxRigidActor* touchedActor;
+    uint32_t touchedObstacleHandle;
+    uint32_t collisionFlags;
+    bool standOnAnotherCCT;
+    bool standOnObstacle;
+    bool isMovingUp;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerStats physx_PxControllerStats;
+struct physx_PxControllerStats {
+    uint16_t nbIterations;
+    uint16_t nbFullUpdates;
+    uint16_t nbPartialUpdates;
+    uint16_t nbTessellation;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerHit physx_PxControllerHit;
+struct physx_PxControllerHit {
+    physx_PxController* controller;
+    physx_PxExtendedVec3 worldPos;
+    physx_PxVec3 worldNormal;
+    physx_PxVec3 dir;
+    float length;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerShapeHit physx_PxControllerShapeHit;
+struct physx_PxControllerShapeHit {
+    physx_PxController* controller;
+    physx_PxExtendedVec3 worldPos;
+    physx_PxVec3 worldNormal;
+    physx_PxVec3 dir;
+    float length;
+    physx_PxShape* shape;
+    physx_PxRigidActor* actor;
+    uint32_t triangleIndex;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllersHit physx_PxControllersHit;
+struct physx_PxControllersHit {
+    physx_PxController* controller;
+    physx_PxExtendedVec3 worldPos;
+    physx_PxVec3 worldNormal;
+    physx_PxVec3 dir;
+    float length;
+    physx_PxController* other;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerObstacleHit physx_PxControllerObstacleHit;
+struct physx_PxControllerObstacleHit {
+    physx_PxController* controller;
+    physx_PxExtendedVec3 worldPos;
+    physx_PxVec3 worldNormal;
+    physx_PxVec3 dir;
+    float length;
+    void const* userData;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxUserControllerHitReport physx_PxUserControllerHitReport;
 struct physx_PxUserControllerHitReport {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxControllerFilterCallback physx_PxControllerFilterCallback;
 struct physx_PxControllerFilterCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerFilters physx_PxControllerFilters;
+struct physx_PxControllerFilters {
+    physx_PxFilterData const* mFilterData;
+    physx_PxQueryFilterCallback* mFilterCallback;
+    uint16_t mFilterFlags;
+    physx_PxControllerFilterCallback* mCCTFilterCallback;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxControllerDesc physx_PxControllerDesc;
+struct physx_PxControllerDesc {
+    void* _vtable;
+    physx_PxExtendedVec3 position;
+    physx_PxVec3 upDirection;
+    float slopeLimit;
+    float invisibleWallHeight;
+    float maxJumpHeight;
+    float contactOffset;
+    float stepOffset;
+    float density;
+    float scaleCoeff;
+    float volumeGrowth;
+    physx_PxUserControllerHitReport* reportCallback;
+    physx_PxControllerBehaviorCallback* behaviorCallback;
+    int32_t nonWalkableMode;
+    physx_PxMaterial* material;
+    bool registerDeletionListener;
+    uint8_t clientID;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxController physx_PxController;
 struct physx_PxController {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBoxControllerDesc physx_PxBoxControllerDesc;
+struct physx_PxBoxControllerDesc {
+    void* _vtable;
+    physx_PxExtendedVec3 position;
+    physx_PxVec3 upDirection;
+    float slopeLimit;
+    float invisibleWallHeight;
+    float maxJumpHeight;
+    float contactOffset;
+    float stepOffset;
+    float density;
+    float scaleCoeff;
+    float volumeGrowth;
+    physx_PxUserControllerHitReport* reportCallback;
+    physx_PxControllerBehaviorCallback* behaviorCallback;
+    int32_t nonWalkableMode;
+    physx_PxMaterial* material;
+    bool registerDeletionListener;
+    uint8_t clientID;
+    void* userData;
+    float halfHeight;
+    float halfSideExtent;
+    float halfForwardExtent;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBoxController physx_PxBoxController;
 struct physx_PxBoxController {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCapsuleControllerDesc physx_PxCapsuleControllerDesc;
+struct physx_PxCapsuleControllerDesc {
+    void* _vtable;
+    physx_PxExtendedVec3 position;
+    physx_PxVec3 upDirection;
+    float slopeLimit;
+    float invisibleWallHeight;
+    float maxJumpHeight;
+    float contactOffset;
+    float stepOffset;
+    float density;
+    float scaleCoeff;
+    float volumeGrowth;
+    physx_PxUserControllerHitReport* reportCallback;
+    physx_PxControllerBehaviorCallback* behaviorCallback;
+    int32_t nonWalkableMode;
+    physx_PxMaterial* material;
+    bool registerDeletionListener;
+    uint8_t clientID;
+    void* userData;
+    float radius;
+    float height;
+    int32_t climbingMode;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCapsuleController physx_PxCapsuleController;
 struct physx_PxCapsuleController {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxControllerBehaviorCallback physx_PxControllerBehaviorCallback;
 struct physx_PxControllerBehaviorCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxControllerManager physx_PxControllerManager;
 struct physx_PxControllerManager {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDim3 physx_PxDim3;
+struct physx_PxDim3 {
+    uint32_t x;
+    uint32_t y;
+    uint32_t z;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSDFDesc physx_PxSDFDesc;
+struct physx_PxSDFDesc {
+    physx_PxBoundedData sdf;
+    physx_PxDim3 dims;
+    physx_PxVec3 meshLower;
+    float spacing;
+    uint32_t subgridSize;
+    int32_t bitsPerSubgridPixel;
+    physx_PxDim3 sdfSubgrids3DTexBlockDim;
+    physx_PxBoundedData sdfSubgrids;
+    physx_PxBoundedData sdfStartSlots;
+    float subgridsMinSdfValue;
+    float subgridsMaxSdfValue;
+    physx_PxBounds3 sdfBounds;
+    float narrowBandThicknessRelativeToSdfBoundsDiagonal;
+    uint32_t numThreadsForSdfConstruction;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxConvexMeshDesc physx_PxConvexMeshDesc;
+struct physx_PxConvexMeshDesc {
+    physx_PxBoundedData points;
+    physx_PxBoundedData polygons;
+    physx_PxBoundedData indices;
+    uint16_t flags;
+    uint16_t vertexLimit;
+    uint16_t polygonLimit;
+    uint16_t quantizedCount;
+    physx_PxSDFDesc* sdfDesc;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriangleMeshDesc physx_PxTriangleMeshDesc;
+struct physx_PxTriangleMeshDesc {
+    physx_PxBoundedData points;
+    physx_PxBoundedData triangles;
+    uint16_t flags;
+    physx_PxSDFDesc* sdfDesc;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedronMeshDesc physx_PxTetrahedronMeshDesc;
+struct physx_PxTetrahedronMeshDesc {
+    physx_PxBoundedData points;
+    physx_PxBoundedData tetrahedrons;
+    uint16_t flags;
+    uint16_t tetsPerElement;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSoftBodySimulationDataDesc physx_PxSoftBodySimulationDataDesc;
+struct physx_PxSoftBodySimulationDataDesc {
+    physx_PxBoundedData vertexToTet;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBVH34MidphaseDesc physx_PxBVH34MidphaseDesc;
+struct physx_PxBVH34MidphaseDesc {
+    uint32_t numPrimsPerLeaf;
+    int32_t buildStrategy;
+    bool quantized;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMidphaseDesc physx_PxMidphaseDesc;
+struct physx_PxMidphaseDesc {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBVHDesc physx_PxBVHDesc;
+struct physx_PxBVHDesc {
+    physx_PxBoundedData bounds;
+    float enlargement;
+    uint32_t numPrimsPerLeaf;
+    int32_t buildStrategy;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxCookingParams physx_PxCookingParams;
+struct physx_PxCookingParams {
+    float areaTestEpsilon;
+    float planeTolerance;
+    int32_t convexMeshCookingType;
+    bool suppressTriangleMeshRemapTable;
+    bool buildTriangleAdjacencies;
+    bool buildGPUData;
+    physx_PxTolerancesScale scale;
+    uint32_t meshPreprocessParams;
+    float meshWeldTolerance;
+    physx_PxMidphaseDesc midphaseDesc;
+    uint32_t gaussMapLimit;
+    float maxWeightRatioInTet;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDefaultMemoryOutputStream physx_PxDefaultMemoryOutputStream;
+struct physx_PxDefaultMemoryOutputStream {
     void* _vtable;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDefaultMemoryInputData physx_PxDefaultMemoryInputData;
+struct physx_PxDefaultMemoryInputData {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDefaultFileOutputStream physx_PxDefaultFileOutputStream;
+struct physx_PxDefaultFileOutputStream {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDefaultFileInputData physx_PxDefaultFileInputData;
+struct physx_PxDefaultFileInputData {
+    void* _vtable;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxDefaultAllocator physx_PxDefaultAllocator;
 struct physx_PxDefaultAllocator {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingForward::emit_c
+typedef struct physx_PxJoint physx_PxJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRackAndPinionJoint physx_PxRackAndPinionJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxGearJoint physx_PxGearJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxD6Joint physx_PxD6Joint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxDistanceJoint physx_PxDistanceJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxContactJoint physx_PxContactJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxFixedJoint physx_PxFixedJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxPrismaticJoint physx_PxPrismaticJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxRevoluteJoint physx_PxRevoluteJoint;
+
+// RecBindingForward::emit_c
+typedef struct physx_PxSphericalJoint physx_PxSphericalJoint;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJoint physx_PxJoint;
+struct physx_PxJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSpring physx_PxSpring;
+struct physx_PxSpring {
+    float stiffness;
+    float damping;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxDistanceJoint physx_PxDistanceJoint;
+struct physx_PxDistanceJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJacobianRow physx_PxJacobianRow;
+struct physx_PxJacobianRow {
+    physx_PxVec3 linear0;
+    physx_PxVec3 linear1;
+    physx_PxVec3 angular0;
+    physx_PxVec3 angular1;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxContactJoint physx_PxContactJoint;
+struct physx_PxContactJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxFixedJoint physx_PxFixedJoint;
+struct physx_PxFixedJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointLimitParameters physx_PxJointLimitParameters;
+struct physx_PxJointLimitParameters {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointLinearLimit physx_PxJointLinearLimit;
+struct physx_PxJointLinearLimit {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+    float value;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointLinearLimitPair physx_PxJointLinearLimitPair;
+struct physx_PxJointLinearLimitPair {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+    float upper;
+    float lower;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointAngularLimitPair physx_PxJointAngularLimitPair;
+struct physx_PxJointAngularLimitPair {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+    float upper;
+    float lower;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointLimitCone physx_PxJointLimitCone;
+struct physx_PxJointLimitCone {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+    float yAngle;
+    float zAngle;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxJointLimitPyramid physx_PxJointLimitPyramid;
+struct physx_PxJointLimitPyramid {
+    float restitution;
+    float bounceThreshold;
+    float stiffness;
+    float damping;
+    float contactDistance_deprecated;
+    float yAngleMin;
+    float yAngleMax;
+    float zAngleMin;
+    float zAngleMax;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxPrismaticJoint physx_PxPrismaticJoint;
+struct physx_PxPrismaticJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRevoluteJoint physx_PxRevoluteJoint;
+struct physx_PxRevoluteJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSphericalJoint physx_PxSphericalJoint;
+struct physx_PxSphericalJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxD6JointDrive physx_PxD6JointDrive;
+struct physx_PxD6JointDrive {
+    float stiffness;
+    float damping;
+    float forceLimit;
+    uint32_t flags;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxD6Joint physx_PxD6Joint;
+struct physx_PxD6Joint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGearJoint physx_PxGearJoint;
+struct physx_PxGearJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRackAndPinionJoint physx_PxRackAndPinionJoint;
+struct physx_PxRackAndPinionJoint {
+    void* _vtable;
+    void* userData;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxGroupsMask physx_PxGroupsMask;
+struct physx_PxGroupsMask {
+    uint16_t bits0;
+    uint16_t bits1;
+    uint16_t bits2;
+    uint16_t bits3;
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxDefaultErrorCallback physx_PxDefaultErrorCallback;
 struct physx_PxDefaultErrorCallback {
-    void* _vtable;
+    void* vtable_;
 };
 
-typedef struct physx_PxBinaryConverter {
-    char _unused [0];
-} physx_PxBinaryConverter;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidActorExt physx_PxRigidActorExt;
+struct physx_PxRigidActorExt {
+    char unused0[1];
+};
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMassProperties physx_PxMassProperties;
+struct physx_PxMassProperties {
+    physx_PxMat33 inertiaTensor;
+    physx_PxVec3 centerOfMass;
+    float mass;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRigidBodyExt physx_PxRigidBodyExt;
+struct physx_PxRigidBodyExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxShapeExt physx_PxShapeExt;
+struct physx_PxShapeExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxMeshOverlapUtil physx_PxMeshOverlapUtil;
+struct physx_PxMeshOverlapUtil {
+    char unused0[1];
+};
+
+// RecBindingForward::emit_c
+typedef struct physx_PxBinaryConverter physx_PxBinaryConverter;
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxXmlMiscParameter physx_PxXmlMiscParameter;
+struct physx_PxXmlMiscParameter {
+    physx_PxVec3 upVector;
+    physx_PxTolerancesScale scale;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSerialization physx_PxSerialization;
+struct physx_PxSerialization {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxDefaultCpuDispatcher physx_PxDefaultCpuDispatcher;
 struct physx_PxDefaultCpuDispatcher {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxStringTableExt physx_PxStringTableExt;
+struct physx_PxStringTableExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxBroadPhaseExt physx_PxBroadPhaseExt;
+struct physx_PxBroadPhaseExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSceneQueryExt physx_PxSceneQueryExt;
+struct physx_PxSceneQueryExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxBatchQueryExt physx_PxBatchQueryExt;
 struct physx_PxBatchQueryExt {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCustomSceneQuerySystem physx_PxCustomSceneQuerySystem;
 struct physx_PxCustomSceneQuerySystem {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxCustomSceneQuerySystemAdapter physx_PxCustomSceneQuerySystemAdapter;
 struct physx_PxCustomSceneQuerySystemAdapter {
+    void* vtable_;
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxSamplingExt physx_PxSamplingExt;
+struct physx_PxSamplingExt {
+    char unused0[1];
+};
+
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxPoissonSampler physx_PxPoissonSampler;
+struct physx_PxPoissonSampler {
     void* _vtable;
 };
 
-typedef struct physx_PxCooking {
-    char _unused [0];
-} physx_PxCooking;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTriangleMeshPoissonSampler physx_PxTriangleMeshPoissonSampler;
+struct physx_PxTriangleMeshPoissonSampler {
+    void* _vtable;
+};
 
-typedef struct physx_XmlMemoryAllocator {
-    char _unused [0];
-} physx_XmlMemoryAllocator;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxTetrahedronMeshExt physx_PxTetrahedronMeshExt;
+struct physx_PxTetrahedronMeshExt {
+    char unused0[1];
+};
 
-typedef struct physx_XmlWriter {
-    char _unused [0];
-} physx_XmlWriter;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRepXObject physx_PxRepXObject;
+struct physx_PxRepXObject {
+    char const* typeName;
+    void const* serializable;
+    uint64_t id;
+};
 
-typedef struct physx_XmlReader {
-    char _unused [0];
-} physx_XmlReader;
+// RecBindingForward::emit_c
+typedef struct physx_PxCooking physx_PxCooking;
 
-typedef struct physx_MemoryBuffer {
-    char _unused [0];
-} physx_MemoryBuffer;
+// RecBindingDef::emit_c_definition
+typedef struct physx_PxRepXInstantiationArgs physx_PxRepXInstantiationArgs;
+struct physx_PxRepXInstantiationArgs {
+    physx_PxCooking* cooker;
+    physx_PxStringTable* stringTable;
+};
 
+// RecBindingForward::emit_c
+typedef struct physx_XmlMemoryAllocator physx_XmlMemoryAllocator;
+
+// RecBindingForward::emit_c
+typedef struct physx_XmlWriter physx_XmlWriter;
+
+// RecBindingForward::emit_c
+typedef struct physx_XmlReader physx_XmlReader;
+
+// RecBindingForward::emit_c
+typedef struct physx_MemoryBuffer physx_MemoryBuffer;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxRepXSerializer physx_PxRepXSerializer;
 struct physx_PxRepXSerializer {
-    void* _vtable;
+    void* vtable_;
 };
 
-typedef struct physx_PxVehicleWheels4SimData {
-    char _unused [0];
-} physx_PxVehicleWheels4SimData;
+// RecBindingForward::emit_c
+typedef struct physx_PxVehicleWheels4SimData physx_PxVehicleWheels4SimData;
 
-typedef struct physx_PxVehicleWheels4DynData {
-    char _unused [0];
-} physx_PxVehicleWheels4DynData;
+// RecBindingForward::emit_c
+typedef struct physx_PxVehicleWheels4DynData physx_PxVehicleWheels4DynData;
 
-typedef struct physx_PxVehicleTireForceCalculator {
-    char _unused [0];
-} physx_PxVehicleTireForceCalculator;
+// RecBindingForward::emit_c
+typedef struct physx_PxVehicleTireForceCalculator physx_PxVehicleTireForceCalculator;
 
-typedef struct physx_PxVehicleDrivableSurfaceToTireFrictionPairs {
-    char _unused [0];
-} physx_PxVehicleDrivableSurfaceToTireFrictionPairs;
+// RecBindingForward::emit_c
+typedef struct physx_PxVehicleDrivableSurfaceToTireFrictionPairs physx_PxVehicleDrivableSurfaceToTireFrictionPairs;
 
-typedef struct physx_PxVehicleTelemetryData {
-    char _unused [0];
-} physx_PxVehicleTelemetryData;
+// RecBindingForward::emit_c
+typedef struct physx_PxVehicleTelemetryData physx_PxVehicleTelemetryData;
 
+// RecBindingForward::emit_c
+typedef struct physx_PxPvdTransport physx_PxPvdTransport;
+
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxPvd physx_PxPvd;
 struct physx_PxPvd {
-    void* _vtable;
+    void* vtable_;
 };
 
+// RecBindingDef::emit_c_forward_decl
 typedef struct physx_PxPvdTransport physx_PxPvdTransport;
 struct physx_PxPvdTransport {
-    void* _vtable;
+    void* vtable_;
 };
 void      physx_PxAllocatorCallback_delete(physx_PxAllocatorCallback* self_);
 
@@ -10744,3 +13422,4 @@ physx_PxPvdTransport*      physx_phys_PxDefaultPvdSocketTransportCreate(char con
 
     /// Create a default file transport.
 physx_PxPvdTransport*      physx_phys_PxDefaultPvdFileTransportCreate(char const* name);
+

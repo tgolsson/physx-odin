@@ -1,7 +1,6 @@
 use super::{Builtin, Comment, EnumDecl, Item, Node, Typedef};
 use anyhow::Context as _;
 
-#[derive(Debug)]
 pub struct EnumVariant<'ast> {
     /// The name of the variant
     pub name: &'ast str,
@@ -11,7 +10,6 @@ pub struct EnumVariant<'ast> {
     pub comment: Option<Comment<'ast>>,
 }
 
-#[derive(Debug)]
 pub struct EnumBinding<'ast> {
     /// The repr() applied to the the Rust enum to get it the correct size
     pub repr: Builtin,

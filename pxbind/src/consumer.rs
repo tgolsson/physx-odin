@@ -173,7 +173,7 @@ impl Item {
     }
 }
 
-#[derive(Default, Debug)]
+#[derive(Default)]
 pub struct Block<'ast> {
     b: Vec<&'ast str>,
 }
@@ -227,7 +227,6 @@ pub fn search<'ast, T>(
     None
 }
 
-#[derive(Debug)]
 pub struct Comment<'ast> {
     /// This is the top line, we attempt to retrieve this if the comment is a
     /// doxygen `/brief` section
@@ -795,41 +794,6 @@ impl Builtin {
             Self::Mat44V => "physx_Mat44V_Pod",
             Self::Mat44 => "physx_PxMat44_Pod",
         }
-	}
-
-    #[inline]
-    pub fn real_ctype(self) -> &'static str {
-        match self {
-            Self::Void => "void",
-            Self::Bool => "bool",
-            Self::Float => "float",
-            Self::Double => "double",
-            Self::Char => "char",
-            Self::UChar => "uint8_t",
-            Self::Short => "int16_t",
-            Self::UShort => "uint16_t",
-            Self::Int => "int32_t",
-            Self::UInt => "uint32_t",
-            Self::Long => "int64_t",
-            Self::ULong => "uint64_t",
-            Self::USize => "size_t",
-            Self::Vec3V => "physx_Vec3V",
-            Self::Vec3 => "physx_PxVec3",
-            Self::Vec3p => "physx_Vec3p",
-            Self::Vec4V => "physx_Vec4V",
-            Self::Vec4 => "physx_PxVec4",
-            Self::QuatV => "physx_QuatV",
-            Self::Quat => "physx_PxQuat",
-            Self::BoolV => "physx_BoolV",
-            Self::U32V => "physx_VecU32V",
-            Self::I32V => "physx_VecI32V",
-            Self::Mat33V => "physx_Mat33V",
-            Self::Mat33 => "physx_PxMat33",
-            Self::Mat34V => "physx_Mat34V",
-            Self::Mat34 => "physx_Mat34",
-            Self::Mat44V => "physx_Mat44V",
-            Self::Mat44 => "physx_PxMat44",
-        }
     }
 
     #[inline]
@@ -1019,52 +983,13 @@ impl<'qt, 'ast> fmt::Display for CType<'qt, 'ast> {
             QualType::Builtin(bi) => f.write_str(bi.c_type()),
             QualType::FunctionPointer => f.write_str("void *"),
             QualType::Array { element, len } => {
-				write!(f, "{}[{len}]", element.c_type())
-				// panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.c_type());
+                panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.c_type());
             }
             QualType::Enum { repr, .. } | QualType::Flags { repr, .. } => {
                 f.write_str(repr.c_type())
             }
             QualType::Record { name } => write!(f, "physx_{name}_Pod"),
             QualType::TemplateTypedef { name } => write!(f, "physx_{name}_Pod"),
-        }
-    }
-}
-
-
-#[derive(Copy, Clone)]
-pub struct CType2<'qt, 'ast>(&'qt QualType<'ast>);
-
-impl<'qt, 'ast> fmt::Display for CType2<'qt, 'ast> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.0 {
-            QualType::Pointer {
-                is_const,
-                pointee,
-                is_pointee_const,
-            } => {
-                write!(f, "{}", pointee.real_ctype())?;
-                write!(f, "{}*", if *is_pointee_const { " const" } else { "" })?;
-                if *is_const {
-                    write!(f, "const")?;
-                }
-                Ok(())
-            }
-            QualType::Reference { is_const, pointee } => {
-                write!(f, "{}", pointee.real_ctype())?;
-                write!(f, "{}*", if *is_const { " const" } else { "" })
-            }
-            QualType::Builtin(bi) => f.write_str(bi.real_ctype()),
-            QualType::FunctionPointer => f.write_str("void *"),
-            QualType::Array { element, len } => {
-				write!(f, "{}[{len}]", element.real_ctype())
-				// panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.c_type());
-            }
-            QualType::Enum { repr, .. } | QualType::Flags { repr, .. } => {
-                f.write_str(repr.real_ctype())
-            }
-            QualType::Record { name } => write!(f, "physx_{name}"),
-            QualType::TemplateTypedef { name } => write!(f, "physx_{name}"),
         }
     }
 }
@@ -1083,12 +1008,6 @@ impl<'ast> QualType<'ast> {
     #[inline]
     pub fn c_type(&self) -> CType<'_, 'ast> {
         CType(self)
-    }
-
-
-    #[inline]
-    pub fn real_ctype(&self) -> CType2<'_, 'ast> {
-        CType2(self)
     }
 
     #[inline]

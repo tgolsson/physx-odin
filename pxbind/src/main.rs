@@ -24,11 +24,11 @@ fn main() -> anyhow::Result<()> {
 
     use std::fs::File;
 
-    let mut structgen = File::create(rr.join("physx-sys/foo/structgen.cpp"))?;
-    let mut cpp = File::create(rr.join("physx-sys/foo/physx_generated.hpp"))?;
+    let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
+    let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
 
-	let generator = pxbind::cgenerator::Generator::default();
-    generator.generate_all(&ast,rr, &mut structgen, &mut cpp)?;
+	let generator = pxbind::odin_generator::Generator::default();
+    generator.generate_all(&ast, rr, &mut structgen, &mut cpp)?;
 
     Ok(())
 }

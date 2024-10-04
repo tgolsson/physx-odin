@@ -1,4 +1,6 @@
+#pragma once
 #include <stdint.h>
+#include <stddef.h>
 /// enum for empty constructor tag
 typedef enum PxEMPTY: int32_t {
     PxEMPTY_PxEmpty = 0,

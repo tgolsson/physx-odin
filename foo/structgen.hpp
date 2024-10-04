@@ -11,64 +11,34 @@ struct RustCheck {
 struct PodStructGen {
     PodStructGen() {
         cfile = fopen("structgen_out.hpp", "w");
-        rfile = fopen("structgen_out.h", "w");
-
-		fputs( "#include <cstdint>\n", cfile);
-                fputs("#include <stdint.h>\n", rfile);
-		fputs("#include \"physx_generated_enums.h\"\n", rfile);
-
-		fputs("#define FORWARD_DECL_STRUCT(type) typedef struct physx_##type physx_##type;\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxProfilerCallback);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxTriangleMesh);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxHeightField);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxBroadPhaseCallback);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxContactModifyCallback);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxCpuDispatcher);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxCCDContactModifyCallback);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxSimulationEventCallback);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxTetrahedronMesh);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxCustomGeometryCallbacks);\n", rfile);
-		fputs("FORWARD_DECL_STRUCT(PxSimulationFilterCallback);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxSceneQuerySystem);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxContactPair);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxController);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxQueryFilterCallback);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxControllerFilterCallback);\n",
-                      rfile);
-                fputs("FORWARD_DECL_STRUCT(PxControllerBehaviorCallback);\n",
-                      rfile);
-                fputs("FORWARD_DECL_STRUCT(PxUserControllerHitReport);\n",
-                      rfile);
-                fputs("FORWARD_DECL_STRUCT(PxCooking);\n", rfile);
-                fputs("FORWARD_DECL_STRUCT(PxStringTable);\n",
-                      rfile);
-//		fputs( "#include \"physx_generated.h\"\n", rfile);
-			  }
+        rfile = fopen("structgen_out.rs", "w");
+    }
 
     void finish() {
         fclose(cfile);
 
+        fputs("#[cfg(test)]\nmod sizes {\n    use super::*;\n    use std::mem::size_of;\n    #[test]\n    fn check_sizes() {\n", rfile);
         for (const auto& rc : rust_checks) {
             fprintf(
                 rfile,
-                "        static_assert(sizeof(%s) == %u, \"assertion failed:\");\n",
+                "        assert_eq!(size_of::<%s>(), %u);\n",
                 rc.rname,
                 rc.size
             );
         }
+        fputs("    }\n}\n", rfile);
         fclose(rfile);
     }
 
-    void pass_thru(const char *code) {
-        fputs(code, cfile);
-		//        fputs(code, rfile);
-	}
+    void pass_thru(const char* code) { fputs(code, cfile); }
 
     void begin_struct(const char* cname, const char* rname) {
         fprintf(cfile, "struct %s {\n", cname);
 
-
-        fprintf(rfile, "typedef struct %s {\n", rname);
+        fprintf(rfile, "#[derive(Clone, Copy)]\n");
+        fprintf(rfile, "#[cfg_attr(feature = \"debug-structs\", derive(Debug))]\n");
+        fprintf(rfile, "#[repr(C)]\n");
+        fprintf(rfile, "pub struct %s {\n", rname);
 
         this->rname = rname;
         pos = 0;
@@ -77,7 +47,7 @@ struct PodStructGen {
 
     void emit_padding(uint32_t bytes) {
         fprintf(cfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
-        fprintf(rfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
+        fprintf(rfile, "    pub structgen_pad%u: [u8; %u],\n", padIdx, bytes);
         ++padIdx;
     }
 
@@ -93,7 +63,7 @@ struct PodStructGen {
             pos = offset;
         }
         fprintf(cfile, "    %s;\n", cppDecl);
-        fprintf(rfile, "    %s %s;\n", rustType, rustName);
+        fprintf(rfile, "    pub %s: %s,\n", rustName, rustType);
         pos += size;
     }
 
@@ -103,7 +73,7 @@ struct PodStructGen {
             emit_padding(uint32_t(size - pos));
         }
         fputs("};\n", cfile);
-        fprintf(rfile, "} %s;\n", this->rname);
+        fputs("}\n", rfile);
 
         rust_checks.emplace_back(RustCheck { rname, uint32_t(size) });
     }
@@ -115,4 +85,4 @@ struct PodStructGen {
     const char* rname;
     size_t pos;
     uint32_t padIdx;
-			  };
+};

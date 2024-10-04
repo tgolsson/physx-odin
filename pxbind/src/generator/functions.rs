@@ -69,7 +69,7 @@ impl<'ast> Param<'ast> {
 }
 
 impl<'ast> FuncBinding<'ast> {
-    pub(crate) fn emit_cpp(&self, acc: &mut String, level: u32) -> anyhow::Result<()> {
+    pub(super) fn emit_cpp(&self, acc: &mut String, level: u32) -> anyhow::Result<()> {
         // Emit the function signature, this uses the C pod types that we've
         // generated to wrap the underlying physx C++ types
         {
@@ -83,7 +83,7 @@ impl<'ast> FuncBinding<'ast> {
                 acc.push_str("void");
             }
 
-            writes!(acc, " physx_{}(", self.name);
+            writes!(acc, " {}(", self.name);
 
             for (i, param) in self.params.iter().enumerate() {
                 let sep = if i > 0 { ", " } else { "" };

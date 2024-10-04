@@ -51,10 +51,9 @@ impl Generator {
         cpp: &mut impl Write,
 
     ) -> anyhow::Result<()> {
-		let mut cc = File::create(rr.join("physx-sys/foo/physx_generated.c"))?;
-		let mut ch = File::create(rr.join("physx-sys/foo/physx_generated.h"))?;
-		let mut che = File::create(rr.join("physx-sys/foo/physx_generated_enums.h"))?;
+		let mut cc = File::create(rr.join("foo/physx_generated.odin"))?;
 
+		writesln!(ch, "package physx");
         self.generate_structgen(ast, structgen)?;
         self.generate_cpp(ast, cpp)?;
         self.generate_c(ast, &mut cc, &mut ch, &mut che)?;
@@ -170,6 +169,7 @@ impl Generator {
         let level = 0;
 
 		writesln!(ch, "#include <stdint.h>");
+		writesln!(ch, "#include <stddef.h>");
         self.generate_c_enums(ast, cc, che, level)?;
         self.generate_c_records(ast, cc, ch)?;
         self.generate_c_functions(ast,cc,ch, level)?;
@@ -187,7 +187,9 @@ impl Generator {
         let mut fiter = ast.flags.iter().peekable();
         let mut acc = String::new();
 
+		writesln!(ch, "#pragma once");
 		writesln!(ch, "#include <stdint.h>");
+		writesln!(ch, "#include <stddef.h>");
 
         const INT_ENUMS: &[(&str, Builtin, &str)] = &[
             ("PxConcreteType", Builtin::UShort, "Undefined"),
@@ -246,6 +248,7 @@ impl Generator {
         let mut acc = String::new();
 
 		writesln!(ch, "#include \"physx_generated_enums.h\"");
+
         for rec in ast.recs.iter().filter(|rb| (self.record_filter)(rb)) {
             acc.clear();
             writesln!(acc);
@@ -258,11 +261,11 @@ impl Generator {
                     }
                 }
                 RecBinding::Forward(forward) => {
-                    if matches!(ast.classes.get(forward.name), Some(None)) {
-                        forward.emit_c(&mut acc, 0);
-                        write!(ch, "{acc}")?;
-                        num += 1;
-                    }
+
+                    forward.emit_c(&mut acc, 0);
+                    write!(ch, "{acc}")?;
+                    num += 1;
+
                 }
             }
         }
