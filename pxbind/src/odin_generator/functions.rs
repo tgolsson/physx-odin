@@ -20,7 +20,7 @@ impl<'ast> FuncBinding<'ast> {
         let mut acc = String::new();
 
         if let Some(ret) = &self.ret {
-            writes!(acc, "{} ", ret.real_ctype());
+            writes!(acc, "{} ", ret.c_type());
         } else {
             writes!(acc, "void ");
         }
@@ -33,7 +33,7 @@ impl<'ast> FuncBinding<'ast> {
             writes!(
                 acc,
                 "{sep}{} {}",
-                param.kind.real_ctype(),
+                param.kind.c_type(),
                 super::CIdent(&param.name),
             );
         }

@@ -2,7 +2,7 @@ use super::{Indent, SG, UOF};
 use crate::consumer::QualType;
 
 impl<'ast> crate::consumer::RecBindingDef<'ast> {
-    pub(super) fn emit_structgen(&self, writer: &mut String, level: u32) {
+    pub(crate) fn emit_structgen(&self, writer: &mut String, level: u32) {
         if self.calc_layout {
             self.emit_structgen_calc(writer, level);
         } else {
@@ -34,9 +34,8 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
 
             let fname = field.name;
             let cpp_type = field.kind.cpp_type();
-            let rust_type = field.kind.rust_type();
 
-            writes!(w, "{indent2}{SG}.add_field(\"");
+            writes!(w, "{indent2}{SG}.add_field(");
 
             // We need to handle arrays specially since they break the pattern of literally every other
             // C type since the element and array lengths are split by the identifier. Sigh.
@@ -47,21 +46,20 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     len: len1,
                 } = &**element
                 {
-                    writes!(w, "{} {fname}[{len1}]", inner.c_type());
+                    writes!(w, "\"{}\", \"{fname}[{len1}]", inner.c_type());
                 } else {
-                    writes!(w, "{} {fname}", element.c_type());
+                    writes!(w, "\"{}\", \"{fname}", element.c_type());
                 }
 
-                writes!(w, "[{len}]");
+                writes!(w, "[{len}]\"");
             } else {
                 let c_type = field.kind.c_type();
-                writes!(w, "{c_type} {fname}");
+                writes!(w, "\"{c_type}\", \"{fname}\"");
             }
 
             writesln!(
                 w,
-                r#"", "{}", "{rust_type}", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
-                super::RustIdent(fname),
+                r#", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
             );
         }
 

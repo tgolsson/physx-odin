@@ -1,6 +1,6 @@
 set -e
 echo "building rust generator"
-(cd ../pxbind/ && cargo run)
+#(cd ../pxbind/ && cargo run)
 
 echo "building cpp -> target lang generator"
 clang++ -DNDEBUG structgen.cpp -I../physx/physx/include/ -o structgen

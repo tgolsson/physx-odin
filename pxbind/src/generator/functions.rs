@@ -69,7 +69,7 @@ impl<'ast> Param<'ast> {
 }
 
 impl<'ast> FuncBinding<'ast> {
-    pub(super) fn emit_cpp(&self, acc: &mut String, level: u32) -> anyhow::Result<()> {
+    pub(crate) fn emit_cpp(&self, acc: &mut String, level: u32) -> anyhow::Result<()> {
         // Emit the function signature, this uses the C pod types that we've
         // generated to wrap the underlying physx C++ types
         {

@@ -3,58 +3,62 @@
 #include <cstdint>
 #include <vector>
 
-struct RustCheck {
-    const char* rname;
-    uint32_t size;
-};
-
 struct PodStructGen {
     PodStructGen() {
-        cfile = fopen("structgen_out.hpp", "w");
-        rfile = fopen("structgen_out.rs", "w");
+        cppfile = fopen("structgen_out.hpp", "w");
+        definitions_file = fopen("structgen_out.json", "w");
+
+        fputs("{\n    \"structs\": [\n", definitions_file);
+        current_indent = 8;
     }
 
     void finish() {
-        fclose(cfile);
-
-        fputs("#[cfg(test)]\nmod sizes {\n    use super::*;\n    use std::mem::size_of;\n    #[test]\n    fn check_sizes() {\n", rfile);
-        for (const auto& rc : rust_checks) {
-            fprintf(
-                rfile,
-                "        assert_eq!(size_of::<%s>(), %u);\n",
-                rc.rname,
-                rc.size
-            );
-        }
-        fputs("    }\n}\n", rfile);
-        fclose(rfile);
+        fclose(cppfile);
+		if (current_indent != 8) {
+			current_indent = 8;
+		}
+		current_indent -=4 ;
+		indent();
+        fputs("]\n", definitions_file);
+		current_indent -=4 ;
+		indent();
+        fputs("}\n", definitions_file);
+        fclose(definitions_file);
     }
 
-    void pass_thru(const char* code) { fputs(code, cfile); }
+    void pass_thru(const char* code) { fputs(code, cppfile); }
 
-    void begin_struct(const char* cname, const char* rname) {
-        fprintf(cfile, "struct %s {\n", cname);
+    void indent() {
 
-        fprintf(rfile, "#[derive(Clone, Copy)]\n");
-        fprintf(rfile, "#[cfg_attr(feature = \"debug-structs\", derive(Debug))]\n");
-        fprintf(rfile, "#[repr(C)]\n");
-        fprintf(rfile, "pub struct %s {\n", rname);
+        for (int i = 0; i < current_indent; ++i) {
+			fputs(" ", definitions_file);
+        }
+    }
 
-        this->rname = rname;
+    void begin_struct(const char* cname, const char* truename) {
+        fprintf(cppfile, "struct %s {\n", cname);
+		indent();
+        fputs("{\n", definitions_file);
+		current_indent += 4;
+        indent();
+        fprintf(definitions_file, "\"name\": \"%s\",\n", truename);
+		indent();
+        fprintf(definitions_file, "\"fields\": [\n");
+		current_indent += 4;
         pos = 0;
         padIdx = 0;
     }
 
     void emit_padding(uint32_t bytes) {
-        fprintf(cfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
-        fprintf(rfile, "    pub structgen_pad%u: [u8; %u],\n", padIdx, bytes);
+        fprintf(cppfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
+		indent();
+        fprintf(definitions_file, "{\"name\": \"PAD\", \"bytes\": %u},\n", bytes);
         ++padIdx;
     }
 
     void add_field(
-        const char* cppDecl,
-        const char* rustName,
-        const char* rustType,
+        const char* cppType,
+        const char* cppName,
         size_t size,
         size_t offset) {
         assert(offset >= pos);
@@ -62,8 +66,9 @@ struct PodStructGen {
             emit_padding(uint32_t(offset - pos));
             pos = offset;
         }
-        fprintf(cfile, "    %s;\n", cppDecl);
-        fprintf(rfile, "    pub %s: %s,\n", rustName, rustType);
+        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		indent();
+        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": %s, \"offset\": %zu, \"size\": %zu},\n", cppName, cppType, offset, size);
         pos += size;
     }
 
@@ -72,17 +77,21 @@ struct PodStructGen {
         if (size > pos) {
             emit_padding(uint32_t(size - pos));
         }
-        fputs("};\n", cfile);
-        fputs("}\n", rfile);
-
-        rust_checks.emplace_back(RustCheck { rname, uint32_t(size) });
+        fputs("};\n", cppfile);
+		current_indent -=4 ;
+		indent();
+        fputs("],\n", definitions_file);
+		indent();
+		fprintf(definitions_file, "\"size\": %u\n", uint32_t(size));
+		current_indent -= 4;
+		indent();
+        fputs("},\n", definitions_file);
     }
 
   private:
-    std::vector<RustCheck> rust_checks;
-    FILE* cfile;
-    FILE* rfile;
-    const char* rname;
+    FILE* cppfile;
+    FILE* definitions_file;
     size_t pos;
     uint32_t padIdx;
+	size_t current_indent;
 };

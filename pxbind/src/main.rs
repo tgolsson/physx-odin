@@ -26,9 +26,11 @@ fn main() -> anyhow::Result<()> {
 
     let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
     let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
-
+	pxbind::generate_structgen(&ast, &mut structgen);
+//	pxbind::generate_cpp(ast, cpp);
 	let generator = pxbind::odin_generator::Generator::default();
-    generator.generate_all(&ast, rr, &mut structgen, &mut cpp)?;
+
+    generator.generate_all(&ast, rr , &mut cpp)?;
 
     Ok(())
 }

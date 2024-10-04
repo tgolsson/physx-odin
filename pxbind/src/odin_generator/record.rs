@@ -1,6 +1,13 @@
-use super::{Indent, SG, UOF};
+use super::{Indent};
 use crate::consumer::{FieldBinding, QualType};
 use crate::{writes, writesln};
+
+
+/// The variable name of `PodStructGen` in the structgen program
+const SG: &str = "sg";
+/// The name of the macro used to calculate a field's offset in the structgen program
+const UOF: &str = "unsafe_offsetof";
+
 
 impl<'ast> crate::consumer::RecBindingDef<'ast> {
     pub fn emit_c(&self, w: &mut String, level: u32) -> bool {
@@ -54,7 +61,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     writesln!(
                         w,
                         "{indent1}{} {}[{}][{}];",
-                        inner.real_ctype(),
+                        inner.c_type(),
                         field.name,
                         len1,
                         len
@@ -63,13 +70,13 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     writesln!(
                         w,
                         "{indent1}{} {}{};",
-                        element.real_ctype(),
+                        element.c_type(),
                         field.name,
                         len
                     );
                 }
             } else {
-                writesln!(w, "{indent1}{} {};", field.kind.real_ctype(), field.name);
+                writesln!(w, "{indent1}{} {};", field.kind.c_type(), field.name);
             }
         }
 
@@ -131,7 +138,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                         w,
                         "{indent1}{} {}[{}][{}];",
                         field.name,
-                        inner.real_ctype(),
+                        inner.c_type(),
                         len1,
                         len
                     );
@@ -139,13 +146,13 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     writesln!(
                         w,
                         "{indent1}{} {}{};",
-                        element.real_ctype(),
+                        element.c_type(),
                         field.name,
                         len
                     );
                 }
             } else {
-                writesln!(w, "{indent1}{} {};", field.kind.real_ctype(), field.name);
+                writesln!(w, "{indent1}{} {};", field.kind.c_type(), field.name);
             }
         }
 

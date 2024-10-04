@@ -60,7 +60,7 @@ impl<'ast> crate::consumer::FlagsBinding<'ast> {
             w,
             "{indent}typedef enum {}: {} {{",
             self.name,
-            self.storage_type.real_ctype()
+            self.storage_type.c_type()
         );
 
         for var in &enum_binding.variants {

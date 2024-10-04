@@ -8,3 +8,4 @@ Cargo.lock
 # we use this while iterating
 ast-dump.json
 foo/structgen
+/foo/structgen_out.json
