@@ -1,0 +1,4 @@
+[submodule "physx"]
+	path = physx
+	url = https://github.com/EmbarkStudios/Physx-5
+	branch = main

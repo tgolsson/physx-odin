@@ -1,0 +1,11 @@
+[
+    "FdWindowsAtomic",
+    "FdWindowsFPU",
+    "FdWindowsMutex",
+    "FdWindowsPrintString",
+    "FdWindowsSList",
+    "FdWindowsSocket",
+    "FdWindowsSync",
+    "FdWindowsThread",
+    "FdWindowsTime",
+]

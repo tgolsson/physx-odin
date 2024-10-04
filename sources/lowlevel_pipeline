@@ -1,0 +1,10 @@
+[
+    "PxcContactCache",
+    "PxcContactMethodImpl",
+    "PxcMaterialMethodImpl",
+    "PxcNpBatch",
+    "PxcNpCacheStreamPair",
+    "PxcNpContactPrepShared",
+    "PxcNpMemBlockPool",
+    "PxcNpThreadContext",
+]

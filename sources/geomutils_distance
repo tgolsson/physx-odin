@@ -1,0 +1,8 @@
+[
+    "GuDistancePointBox",
+    "GuDistancePointTetrahedron",
+    "GuDistancePointTriangle",
+    "GuDistanceSegmentBox",
+    "GuDistanceSegmentSegment",
+    "GuDistanceSegmentTriangle",
+]

@@ -1,0 +1,62 @@
+
+[workspace]
+resolver = "2"
+members = ["pxbind"]
+
+[package]
+name = "physx-sys"
+description = "Unsafe bindings for NVIDIA PhysX C++ SDK"
+version = "0.11.5"
+authors = [
+    "Embark <opensource@embark-studios.com>",
+    "Tomasz Stachowiak <h3@h3.gd>",
+]
+license = "(MIT OR Apache-2.0) AND BSD-3-Clause"
+repository = "https://github.com/EmbarkStudios/physx-rs"
+edition = "2021"
+build = "build.rs"
+readme = "README.md"
+keywords = ["physics"]
+categories = ["external-ffi-bindings", "simulation", "game-engines"]
+exclude = [
+    "PhysX/**/*.bat",
+    "PhysX/**/*.html",
+    "PhysX/**/*.sh",
+    "PhysX/*demo/**/*",
+    "PhysX/externals/cg-linux/**/*",
+    "PhysX/externals/clang-physxmetadata/**/*",
+    "PhysX/externals/glew-linux/**/*",
+    "PhysX/externals/glew/**/*",
+    "PhysX/externals/opengl-linux/**/*",
+    "PhysX/externals/targa/**/*",
+    "PhysX/externals/vswhere/**/*",
+    "PhysX/physx/bin/**/*",
+    "PhysX/physx/buildtools/**/*",
+    "PhysX/physx/documentation/**/*",
+    "PhysX/physx/samples/**/*",
+    "PhysX/physx/snippets/**/*",
+    "PhysX/physx/tools/**/*",
+]
+
+[lib]
+doctest = false
+
+[features]
+# This feature will build and run the structgen program, generating C++ and Rust
+# code to ensure the record types used in FFI match exactly and can be transparently
+# memcopied. This feature is not normally needed for tier 1 platforms and Android
+# as the crate includes pre-generated ones
+structgen = []
+profile = []
+# Enables `Debug` derivations for the FFI structures, which can be useful for
+# print debugging
+debug-structs = []
+# Enables warnings in when compiling the C++ code. This is not something you should care about
+cpp-warnings = []
+
+[dependencies]
+# The PhysX API exposes several enums used as flags
+bitflags = "1.3"
+
+[build-dependencies]
+cc = { version = "1.0", features = ["parallel"] }

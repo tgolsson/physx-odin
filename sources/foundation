@@ -1,0 +1,8 @@
+[
+    "FdAllocator",
+    "FdAssert",
+    "FdFoundation",
+    "FdMathUtils",
+    "FdString",
+    "FdTempAllocator",
+]
