@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstdint>
 #include <vector>
+#include <cerrno>
 
 struct PodStructGen {
     PodStructGen() {
@@ -17,6 +18,18 @@ struct PodStructGen {
 		if (current_indent != 8) {
 			current_indent = 8;
 		}
+
+		if (fieldsEmitted) {
+			int res = fseek(definitions_file, -2, SEEK_CUR);
+
+			if (res != 0) {
+				printf("failed seek! %d - %d\n", errno, res);
+			}
+
+			fputs("\n", definitions_file);
+		}
+
+
 		current_indent -=4 ;
 		indent();
         fputs("]\n", definitions_file);
@@ -47,12 +60,14 @@ struct PodStructGen {
 		current_indent += 4;
         pos = 0;
         padIdx = 0;
+		fieldsEmitted = 0;
     }
 
-    void emit_padding(uint32_t bytes) {
+    void emit_padding(uint32_t bytes, uint32_t offset) {
         fprintf(cppfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
 		indent();
-        fprintf(definitions_file, "{\"name\": \"PAD\", \"bytes\": %u},\n", bytes);
+        fprintf(definitions_file, "{\"name\": \"PAD\", \"size\": %u, \"offset\": %u},\n", bytes, offset);
+		fieldsEmitted += 1;
         ++padIdx;
     }
 
@@ -63,20 +78,31 @@ struct PodStructGen {
         size_t offset) {
         assert(offset >= pos);
         if (offset > pos) {
-            emit_padding(uint32_t(offset - pos));
+            emit_padding(uint32_t(offset - pos), offset);
             pos = offset;
         }
         fprintf(cppfile, "    %s %s;\n", cppType, cppName);
 		indent();
-        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": %s, \"offset\": %zu, \"size\": %zu},\n", cppName, cppType, offset, size);
+        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": %zu, \"size\": %zu},\n", cppName, cppType, offset, size);
         pos += size;
+		fieldsEmitted += 1;
     }
 
     void end_struct(size_t size) {
         assert(size >= pos);
         if (size > pos) {
-            emit_padding(uint32_t(size - pos));
+            emit_padding(uint32_t(size - pos), pos);
         }
+		if (fieldsEmitted) {
+			int res = fseek(definitions_file, -2, SEEK_CUR);
+
+			if (res != 0) {
+				printf("failed seek! %d - %d\n", errno, res);
+			}
+
+			fputs("\n", definitions_file);
+		}
+
         fputs("};\n", cppfile);
 		current_indent -=4 ;
 		indent();
@@ -94,4 +120,5 @@ struct PodStructGen {
     size_t pos;
     uint32_t padIdx;
 	size_t current_indent;
+	size_t fieldsEmitted;
 };

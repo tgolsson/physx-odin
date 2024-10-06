@@ -9,3 +9,4 @@ Cargo.lock
 ast-dump.json
 foo/structgen
 /foo/structgen_out.json
+*.a

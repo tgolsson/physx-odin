@@ -290,9 +290,9 @@ fn add_common(ctx: &mut Context) {
             );
         }
         builder.flag(&format!("--sysroot={}", &sysroot_path.to_str().unwrap()));
-        builder.cpp_link_stdlib("c++");
-    }
 
+    }
+    builder.cpp_link_stdlib("c++");
     ctx.includes.push(shared_root.join("include"));
     ctx.includes.extend(
         [

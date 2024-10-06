@@ -2,7 +2,7 @@ use super::Indent;
 use crate::{writesln, writes};
 
 impl<'ast> crate::consumer::Comment<'ast> {
-    pub(super) fn emit_c(&self, writer: &mut String, level: u32) {
+    pub(super) fn emit_odin(&self, writer: &mut String, level: u32) {
         let indent = Indent(level);
 
         let emit_lines = |w: &mut String, lines: &[&str]| {

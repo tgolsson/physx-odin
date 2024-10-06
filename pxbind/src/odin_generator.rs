@@ -1,10 +1,12 @@
-
 mod comment;
 mod enums;
 mod functions;
 mod record;
 
-use crate::{writesln, writes, consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, RecBinding}};
+use crate::{
+    consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, RecBinding},
+    writes, writesln, StructMetadataList,
+};
 use std::{fmt, fs::File, io::Write};
 
 /// It's impossible (I believe) with Rust's format strings to have the width
@@ -41,106 +43,41 @@ impl Generator {
     pub fn generate_all(
         &self,
         ast: &AstConsumer<'_>,
-		rr: std::path::PathBuf,
-        cpp: &mut impl Write,
-
+        rr: std::path::PathBuf,
+        sizes: super::StructMetadataList,
     ) -> anyhow::Result<()> {
-		let mut cc = File::create(rr.join("foo/physx_generated.odin"))?;
-		let mut ch = File::create(rr.join("foo/physx_generated.odin"))?;
-		let mut che = File::create(rr.join("foo/physx_generated.odin"))?;
-		writesln!(ch, "package physx");
-
-        self.generate_cpp(ast, cpp)?;
-        self.generate_c(ast, &mut cc, &mut ch, &mut che)?;
+        let mut odin = File::create(rr.join("foo/physx_generated.odin"))?;
+        writesln!(odin, "package physx");
+        self.generate_odin(ast, &sizes, &mut odin)?;
 
         Ok(())
     }
 
-
-    pub fn generate_cpp(&self, ast: &AstConsumer<'_>, out: &mut impl Write) -> anyhow::Result<()> {
-        self.generate_size_asserts(ast, out)?;
-        self.generate_cpp_functions(ast, out, 0)?;
-
-        Ok(())
-    }
-
-    /// Generates the static assert code used to verify that every structgen
-    /// POD type is the same size as the C++ type it is wrapping
-    pub fn generate_size_asserts(
+    pub fn generate_odin(
         &self,
         ast: &AstConsumer<'_>,
-        out: &mut impl Write,
+		metadata: &StructMetadataList,
+        odin: &mut impl Write,
     ) -> anyhow::Result<()> {
-        writeln!(
-            out,
-            "using namespace physx;\n#include \"structgen_out.hpp\"\n"
-        )?;
-
-        for rec in ast.recs.iter().filter_map(|rb| {
-            if let RecBinding::Def(def) = rb {
-                if (self.record_filter)(rb) {
-                    return Some(def);
-                }
-            }
-
-            None
-        }) {
-            let name = rec.name;
-            writeln!(out, "static_assert(sizeof(physx::{name}) == sizeof(physx_{name}_Pod), \"POD wrapper for `physx::{name}` has incorrect size\");")?;
-        }
-
-        writeln!(out)?;
-
-        Ok(())
-    }
-
-    /// Generates the C functions used to convert between the C bridge types
-    /// and calls into the C++ code
-    pub fn generate_cpp_functions(
-        &self,
-        ast: &AstConsumer<'_>,
-        out: &mut impl Write,
-        level: u32,
-    ) -> anyhow::Result<()> {
-        let indent = Indent(level);
-
-        writeln!(out, "{indent}extern \"C\" {{")?;
-        let mut acc = String::new();
-        for func in ast.funcs.iter().filter(|fb| (self.func_filter)(fb)) {
-            acc.clear();
-            func.emit_cpp(&mut acc, level + 1)?;
-            writeln!(out, "{acc}")?;
-        }
-        writeln!(out, "{indent}}}")?;
-
-        Ok(())
-    }
-
-    pub fn generate_c(&self, ast: &AstConsumer<'_>, cc: &mut impl Write, ch: &mut impl Write, che: &mut impl Write) -> anyhow::Result<()> {
         let level = 0;
 
-		writesln!(ch, "#include <stdint.h>");
-		writesln!(ch, "#include <stddef.h>");
-        self.generate_c_enums(ast, cc, che, level)?;
-        self.generate_c_records(ast, cc, ch)?;
-        self.generate_c_functions(ast,cc,ch, level)?;
+        writesln!(odin, "import _c \"core:c\"");
+
+        self.generate_odin_enums(ast, odin, level)?;
+        self.generate_odin_records(ast, metadata, odin)?;
+        self.generate_odin_functions(ast, odin, level)?;
 
         Ok(())
     }
 
-    pub fn generate_c_enums(
+    pub fn generate_odin_enums(
         &self,
         ast: &AstConsumer<'_>,
-        _cc: &mut impl Write,
-        ch: &mut impl Write,
+        odin: &mut impl Write,
         level: u32,
     ) -> anyhow::Result<u32> {
         let mut fiter = ast.flags.iter().peekable();
         let mut acc = String::new();
-
-		writesln!(ch, "#pragma once");
-		writesln!(ch, "#include <stdint.h>");
-		writesln!(ch, "#include <stddef.h>");
 
         const INT_ENUMS: &[(&str, Builtin, &str)] = &[
             ("PxConcreteType", Builtin::UShort, "Undefined"),
@@ -154,51 +91,35 @@ impl Generator {
                 None
             };
 
-            if (self.enum_filter)(eb) {
-                Some((eb, fb))
-            } else {
-                None
-            }
+            Some((eb, fb))
         }) {
             if !acc.is_empty() {
                 acc.clear();
                 writesln!(acc);
             }
 
-            enum_binding.emit_c(&mut acc, level);
-
-            if let Some((builtin, default)) = INT_ENUMS.iter().find_map(|(name, bi, def)| {
-                if *name == enum_binding.name {
-                    Some((*bi, *def))
-                } else {
-                    None
-                }
-            }) {
-                writesln!(acc);
-                enum_binding.emit_c_conversion(&mut acc, level, builtin, default);
-            }
+            let is_flags = flags_binding.is_some();
+            enum_binding.emit_odin(&mut acc, is_flags, level);
 
             if let Some(flags) = flags_binding {
                 writesln!(acc);
-                flags.emit_c(enum_binding, &mut acc, level);
+                flags.emit_odin(enum_binding, &mut acc, level);
             }
 
-            write!(ch, "{acc}")?;
+            write!(odin, "{acc}")?;
         }
 
         Ok((ast.enums.len() + ast.flags.len()) as u32)
     }
 
-    pub fn generate_c_records(
+    pub fn generate_odin_records(
         &self,
         ast: &AstConsumer<'_>,
-        cc: &mut impl Write,
-        ch: &mut impl Write,
+		metadata: &StructMetadataList,
+        odin: &mut impl Write,
     ) -> anyhow::Result<u32> {
         let mut num = 0;
         let mut acc = String::new();
-
-		writesln!(ch, "#include \"physx_generated_enums.h\"");
 
         for rec in ast.recs.iter().filter(|rb| (self.record_filter)(rb)) {
             acc.clear();
@@ -206,17 +127,19 @@ impl Generator {
 
             match rec {
                 RecBinding::Def(def) => {
-                    if def.emit_c(&mut acc, 0) {
+					let record = metadata.structs.iter().find(|s| s.name == def.name);
+                    if def.emit_odin(&mut acc, record, 0) {
+
                         num += 1;
-                        write!(ch, "{acc}")?;
+                        write!(odin, "{acc}")?;
                     }
                 }
                 RecBinding::Forward(forward) => {
-
-                    forward.emit_c(&mut acc, 0);
-                    write!(ch, "{acc}")?;
-                    num += 1;
-
+                    if matches!(ast.classes.get(forward.name), Some(None)) {
+                        forward.emit_odin(&mut acc, 0);
+                        write!(odin, "{acc}")?;
+                        num += 1;
+                    }
                 }
             }
         }
@@ -224,31 +147,32 @@ impl Generator {
         Ok(num)
     }
 
-    pub fn generate_c_functions(
+    pub fn generate_odin_functions(
         &self,
         ast: &AstConsumer<'_>,
-        _cc: &mut impl Write,
-        ch: &mut impl Write,
+        odin: &mut impl Write,
         level: u32,
     ) -> anyhow::Result<u32> {
 
+		writesln!(odin, "when ODIN_OS == .Linux do foreign import libphysx \"libphysx.a\"\n");
+		writesln!(odin, "@(default_calling_convention = \"c\")");
+		writesln!(odin, "foreign libphysx {{");
         let mut acc = String::new();
-        for func in ast.funcs.iter().filter(|fb| (self.func_filter)(fb)) {
+        for func in ast.funcs.iter() {
             acc.clear();
-            func.emit_c(&mut acc, level + 1);
-            writeln!(ch, "{acc}")?;
+            func.emit_odin(&mut acc, level + 1);
+            writeln!(odin, "{acc}")?;
         }
-
-
+		writesln!(odin, "}}");
         Ok(0)
     }
 }
 
-struct CIdent<'ast>(&'ast str);
+struct OdinIdent<'ast>(&'ast str);
 
-impl<'ast> fmt::Display for CIdent<'ast> {
+impl<'ast> fmt::Display for OdinIdent<'ast> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        static KEYWORDS: &[&str] = &["box", "type", "ref"];
+        static KEYWORDS: &[&str] = &["matrix", "context"];
 
         f.write_str(self.0)?;
 

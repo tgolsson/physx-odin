@@ -1,7 +1,21 @@
 use anyhow::Context as _;
+use std::env;
+
+use std::fs::File;
 
 fn main() -> anyhow::Result<()> {
     env_logger::init();
+
+	let mut iter = env::args();
+	let mut stage = 0;
+	while let Some(arg) = iter.next() {
+		if arg == "--stage" {
+			let value = iter.next().unwrap();
+			stage = value.parse().unwrap();
+		}
+	}
+
+
 
     // It takes clang++ around 30 seconds to dump the JSON, so just keep a file
     // around to reduce iteration times
@@ -17,20 +31,33 @@ fn main() -> anyhow::Result<()> {
         root
     };
 
+
     let mut ast = pxbind::consumer::AstConsumer::default();
     ast.consume(&root)?;
 
     let rr: std::path::PathBuf = pxbind::get_repo_root()?.into();
 
-    use std::fs::File;
+	match stage {
+		0 => {
+			let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
+			let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
+			pxbind::generate_structgen(&ast, &mut structgen);
+			pxbind::generate_cpp(&ast, &mut cpp);
+		}
+		1 => {
 
-    let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
-    let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
-	pxbind::generate_structgen(&ast, &mut structgen);
-//	pxbind::generate_cpp(ast, cpp);
-	let generator = pxbind::odin_generator::Generator::default();
+			let struct_sizes: pxbind::StructMetadataList = if let Ok(json) = std::fs::read(rr.join("foo/structgen_out.json")) {
+				serde_json::from_slice(&json).context("failed to parse structgen_out.json")?
+			} else {
+				panic!("no sizes file");
+			};
 
-    generator.generate_all(&ast, rr , &mut cpp)?;
+			let generator = pxbind::odin_generator::Generator::default();
+			generator.generate_all(&ast, rr , struct_sizes)?;
+		}
+		_ => panic!("unknown stage {}", stage)
+	}
+
 
     Ok(())
 }

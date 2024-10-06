@@ -6,8 +6,29 @@ use consumer::{AstConsumer, RecBinding};
 pub use dump::*;
 
 pub type Node = clang_ast::Node<consumer::Item>;
-use std::io::Write;
 use std::fmt;
+use std::io::Write;
+
+#[derive(serde::Deserialize, serde::Serialize)]
+pub struct StructMetadataList {
+    pub structs: Vec<StructMetadata>,
+}
+
+#[derive(serde::Deserialize, serde::Serialize)]
+pub struct StructMetadata {
+    pub name: String,
+    pub fields: Vec<FieldMetadata>,
+    pub size: usize,
+}
+
+#[derive(serde::Deserialize, serde::Serialize)]
+pub struct FieldMetadata {
+    pub name: String,
+    pub size: usize,
+    pub offset: usize,
+    #[serde(default)]
+    pub r#type: Option<String>,
+}
 
 struct Indent(u32);
 
@@ -21,7 +42,6 @@ impl fmt::Display for Indent {
     }
 }
 
-
 /// The variable name of `PodStructGen` in the structgen program
 const SG: &str = "sg";
 /// The name of the macro used to calculate a field's offset in the structgen program
@@ -30,10 +50,7 @@ const UOF: &str = "unsafe_offsetof";
 /// Generates the structgen `main` function, which is used to generate
 /// the the POD types for C and Rust and guarantee their fields are
 /// appropriately sized and aligned so they can be interchanged
-pub fn generate_structgen(
-    ast: &AstConsumer<'_>,
-    out: &mut impl Write,
-) -> anyhow::Result<()> {
+pub fn generate_structgen(ast: &AstConsumer<'_>, out: &mut impl Write) -> anyhow::Result<()> {
     // Preamble
     {
         // Get access to all of the PhysX types we're retrieving the layout for
@@ -59,7 +76,6 @@ pub fn generate_structgen(
     for rec in ast.recs.iter() {
         acc.clear();
 
-
         match rec {
             RecBinding::Def(def) => def.emit_structgen(&mut acc, 1),
             RecBinding::Forward(forward) => forward.emit_structgen(&mut acc, 1),
@@ -72,6 +88,52 @@ pub fn generate_structgen(
     Ok(())
 }
 
-pub fn generate_cpp(ast: &AstConsumer, w: &mut impl Write) {
+/// Generates the static assert code used to verify that every structgen
+/// POD type is the same size as the C++ type it is wrapping
+pub fn generate_size_asserts(ast: &AstConsumer<'_>, out: &mut impl Write) -> anyhow::Result<()> {
+    writeln!(
+        out,
+        "using namespace physx;\n#include \"structgen_out.hpp\"\n"
+    )?;
 
+    for rec in ast.recs.iter().filter_map(|rb| {
+        if let RecBinding::Def(def) = rb {
+            return Some(def);
+        }
+
+        None
+    }) {
+        let name = rec.name;
+        writeln!(out, "static_assert(sizeof(physx::{name}) == sizeof(physx_{name}_Pod), \"POD wrapper for `physx::{name}` has incorrect size\");")?;
+    }
+
+    writeln!(out)?;
+
+    Ok(())
+}
+
+/// Generates the C functions used to convert between the C bridge types
+/// and calls into the C++ code
+pub fn generate_cpp_functions(
+    ast: &AstConsumer<'_>,
+    out: &mut impl Write,
+    level: u32,
+) -> anyhow::Result<()> {
+    let indent = Indent(level);
+
+    writeln!(out, "{indent}extern \"C\" {{")?;
+    let mut acc = String::new();
+    for func in ast.funcs.iter() {
+        acc.clear();
+        func.emit_cpp(&mut acc, level + 1)?;
+        writeln!(out, "{acc}")?;
+    }
+    writeln!(out, "{indent}}}")?;
+
+    Ok(())
+}
+
+pub fn generate_cpp(ast: &AstConsumer, w: &mut impl Write) {
+    generate_size_asserts(ast, w).unwrap();
+    generate_cpp_functions(ast, w, 0).unwrap();
 }
