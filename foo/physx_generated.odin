@@ -1823,9 +1823,7 @@ PxPvdInstrumentationFlag_All :: PxPvdInstrumentationFlag.Debug | PxPvdInstrument
 PxPvdInstrumentationFlags_Set :: bit_set[PxPvdInstrumentationFlag; _c.uint8_t]
 
 
-PxMat34 :: struct {
-    _unused: [0]u8,
-}
+PxMat34 :: distinct rawptr 
 
 PxAllocatorCallback :: struct {
     vtable_: rawptr,
@@ -1841,13 +1839,13 @@ PxFoundation :: struct {
 
 PxAllocator :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxAllocator) == 1, "Wrong size for type PxAllocator, expected 1")
 
 PxRawAllocator :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxRawAllocator) == 1, "Wrong size for type PxRawAllocator, expected 1")
 
 PxVirtualAllocatorCallback :: struct {
     vtable_: rawptr,
@@ -1855,13 +1853,13 @@ PxVirtualAllocatorCallback :: struct {
 
 PxVirtualAllocator :: struct {
     _pad0: [16]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxVirtualAllocator) == 16, "Wrong size for type PxVirtualAllocator, expected 16")
 
 PxUserAllocated :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxUserAllocated) == 1, "Wrong size for type PxUserAllocated, expected 1")
 
 PxTempAllocatorChunk :: struct #raw_union {
     mNext: ^PxTempAllocatorChunk,
@@ -1871,39 +1869,35 @@ PxTempAllocatorChunk :: struct #raw_union {
 
 PxTempAllocator :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxTempAllocator) == 1, "Wrong size for type PxTempAllocator, expected 1")
 
-PxLogTwo :: struct {
-    _unused: [0]u8,
-}
+PxLogTwo :: distinct rawptr 
 
-PxUnConst :: struct {
-    _unused: [0]u8,
-}
+PxUnConst :: distinct rawptr 
 
 PxBitAndByte :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxBitAndByte) == 1, "Wrong size for type PxBitAndByte, expected 1")
 
 PxBitMap :: struct {
     _pad0: [16]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxBitMap) == 16, "Wrong size for type PxBitMap, expected 16")
 
 PxVec3 :: struct {
     x: _c.float,
     y: _c.float,
     z: _c.float,
 }
+#assert(size_of(PxVec3) == 12, "Wrong size for type PxVec3, expected 12")
 
 PxVec3Padded :: struct {
-    x: _c.float,
-    y: _c.float,
-    z: _c.float,
+    using _: PxVec3,
     padding: _c.uint32_t,
 }
+#assert(size_of(PxVec3Padded) == 16, "Wrong size for type PxVec3Padded, expected 16")
 
 PxQuat :: struct {
     x: _c.float,
@@ -1911,27 +1905,32 @@ PxQuat :: struct {
     z: _c.float,
     w: _c.float,
 }
+#assert(size_of(PxQuat) == 16, "Wrong size for type PxQuat, expected 16")
 
 PxTransform :: struct {
     q: PxQuat,
     p: PxVec3,
 }
+#assert(size_of(PxTransform) == 28, "Wrong size for type PxTransform, expected 28")
 
 PxTransformPadded :: struct {
     transform: PxTransform,
     padding: _c.uint32_t,
 }
+#assert(size_of(PxTransformPadded) == 32, "Wrong size for type PxTransformPadded, expected 32")
 
 PxMat33 :: struct {
     column0: PxVec3,
     column1: PxVec3,
     column2: PxVec3,
 }
+#assert(size_of(PxMat33) == 36, "Wrong size for type PxMat33, expected 36")
 
 PxBounds3 :: struct {
     minimum: PxVec3,
     maximum: PxVec3,
 }
+#assert(size_of(PxBounds3) == 24, "Wrong size for type PxBounds3, expected 24")
 
 PxErrorCallback :: struct {
     vtable_: rawptr,
@@ -1942,25 +1941,23 @@ PxAllocationListener :: struct {
 };
 
 PxBroadcastingAllocator :: struct {
-    _vtable: rawptr,
     _pad0: [176]u8,
 }
+#assert(size_of(PxBroadcastingAllocator) == 176, "Wrong size for type PxBroadcastingAllocator, expected 176")
 
 PxBroadcastingErrorCallback :: struct {
-    _vtable: rawptr,
     _pad0: [160]u8,
 }
+#assert(size_of(PxBroadcastingErrorCallback) == 160, "Wrong size for type PxBroadcastingErrorCallback, expected 160")
 
-PxHash :: struct {
-    _unused: [0]u8,
-}
+PxHash :: distinct rawptr 
 
 PxInputStream :: struct {
     vtable_: rawptr,
 };
 
 PxInputData :: struct {
-    vtable_: rawptr,
+    using _: PxInputStream,
 };
 
 PxOutputStream :: struct {
@@ -1973,6 +1970,7 @@ PxVec4 :: struct {
     z: _c.float,
     w: _c.float,
 }
+#assert(size_of(PxVec4) == 16, "Wrong size for type PxVec4, expected 16")
 
 PxMat44 :: struct {
     column0: PxVec4,
@@ -1980,26 +1978,28 @@ PxMat44 :: struct {
     column2: PxVec4,
     column3: PxVec4,
 }
+#assert(size_of(PxMat44) == 64, "Wrong size for type PxMat44, expected 64")
 
 PxPlane :: struct {
     n: PxVec3,
     d: _c.float,
 }
+#assert(size_of(PxPlane) == 16, "Wrong size for type PxPlane, expected 16")
 
 Interpolation :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(Interpolation) == 1, "Wrong size for type Interpolation, expected 1")
 
 PxMutexImpl :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxMutexImpl) == 1, "Wrong size for type PxMutexImpl, expected 1")
 
 PxReadWriteLock :: struct {
     _pad0: [8]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxReadWriteLock) == 8, "Wrong size for type PxReadWriteLock, expected 8")
 
 PxProfilerCallback :: struct {
     vtable_: rawptr,
@@ -2011,23 +2011,24 @@ PxProfileScoped :: struct {
     mProfilerData: rawptr,
     mContextId: _c.uint64_t,
     mDetached: _c.bool,
-    _pad0: [7]u8,
+    _pad5: [7]u8,
 }
+#assert(size_of(PxProfileScoped) == 40, "Wrong size for type PxProfileScoped, expected 40")
 
 PxSListEntry :: struct {
     _pad0: [16]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSListEntry) == 16, "Wrong size for type PxSListEntry, expected 16")
 
 PxSListImpl :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSListImpl) == 1, "Wrong size for type PxSListImpl, expected 1")
 
 PxSyncImpl :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSyncImpl) == 1, "Wrong size for type PxSyncImpl, expected 1")
 
 PxRunnable :: struct {
     vtable_: rawptr,
@@ -2037,35 +2038,38 @@ PxCounterFrequencyToTensOfNanos :: struct {
     mNumerator: _c.uint64_t,
     mDenominator: _c.uint64_t,
 }
+#assert(size_of(PxCounterFrequencyToTensOfNanos) == 16, "Wrong size for type PxCounterFrequencyToTensOfNanos, expected 16")
 
 PxTime :: struct {
     _pad0: [8]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxTime) == 8, "Wrong size for type PxTime, expected 8")
 
 PxVec2 :: struct {
     x: _c.float,
     y: _c.float,
 }
+#assert(size_of(PxVec2) == 8, "Wrong size for type PxVec2, expected 8")
 
 PxStridedData :: struct {
     stride: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     data: rawptr,
 }
+#assert(size_of(PxStridedData) == 16, "Wrong size for type PxStridedData, expected 16")
 
 PxBoundedData :: struct {
-    stride: _c.uint32_t,
-    _pad0: [4]u8,
-    data: rawptr,
+    using _: PxStridedData,
     count: _c.uint32_t,
-    _pad1: [4]u8,
+    _pad7: [4]u8,
 }
+#assert(size_of(PxBoundedData) == 24, "Wrong size for type PxBoundedData, expected 24")
 
 PxDebugPoint :: struct {
     pos: PxVec3,
     color: _c.uint32_t,
 }
+#assert(size_of(PxDebugPoint) == 16, "Wrong size for type PxDebugPoint, expected 16")
 
 PxDebugLine :: struct {
     pos0: PxVec3,
@@ -2073,6 +2077,7 @@ PxDebugLine :: struct {
     pos1: PxVec3,
     color1: _c.uint32_t,
 }
+#assert(size_of(PxDebugLine) == 32, "Wrong size for type PxDebugLine, expected 32")
 
 PxDebugTriangle :: struct {
     pos0: PxVec3,
@@ -2082,14 +2087,16 @@ PxDebugTriangle :: struct {
     pos2: PxVec3,
     color2: _c.uint32_t,
 }
+#assert(size_of(PxDebugTriangle) == 48, "Wrong size for type PxDebugTriangle, expected 48")
 
 PxDebugText :: struct {
     position: PxVec3,
     size: _c.float,
     color: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad3: [4]u8,
     string: ^_c.char,
 }
+#assert(size_of(PxDebugText) == 32, "Wrong size for type PxDebugText, expected 32")
 
 PxRenderBuffer :: struct {
     vtable_: rawptr,
@@ -2104,9 +2111,9 @@ PxSerializationContext :: struct {
 };
 
 PxDeserializationContext :: struct {
-    _vtable: rawptr,
     _pad0: [16]u8,
 }
+#assert(size_of(PxDeserializationContext) == 16, "Wrong size for type PxDeserializationContext, expected 16")
 
 PxSerializationRegistry :: struct {
     vtable_: rawptr,
@@ -2116,100 +2123,60 @@ PxCollection :: struct {
     vtable_: rawptr,
 };
 
-PxTypeInfo :: struct {
-    _unused: [0]u8,
-}
+PxTypeInfo :: distinct rawptr 
 
-PxFEMSoftBodyMaterial :: struct {
-    _unused: [0]u8,
-}
+PxFEMSoftBodyMaterial :: distinct rawptr 
 
-PxFEMClothMaterial :: struct {
-    _unused: [0]u8,
-}
+PxFEMClothMaterial :: distinct rawptr 
 
-PxPBDMaterial :: struct {
-    _unused: [0]u8,
-}
+PxPBDMaterial :: distinct rawptr 
 
-PxFLIPMaterial :: struct {
-    _unused: [0]u8,
-}
+PxFLIPMaterial :: distinct rawptr 
 
-PxMPMMaterial :: struct {
-    _unused: [0]u8,
-}
+PxMPMMaterial :: distinct rawptr 
 
-PxCustomMaterial :: struct {
-    _unused: [0]u8,
-}
+PxCustomMaterial :: distinct rawptr 
 
-PxBVH33TriangleMesh :: struct {
-    _unused: [0]u8,
-}
+PxBVH33TriangleMesh :: distinct rawptr 
 
-PxParticleSystem :: struct {
-    _unused: [0]u8,
-}
+PxParticleSystem :: distinct rawptr 
 
-PxPBDParticleSystem :: struct {
-    _unused: [0]u8,
-}
+PxPBDParticleSystem :: distinct rawptr 
 
-PxFLIPParticleSystem :: struct {
-    _unused: [0]u8,
-}
+PxFLIPParticleSystem :: distinct rawptr 
 
-PxMPMParticleSystem :: struct {
-    _unused: [0]u8,
-}
+PxMPMParticleSystem :: distinct rawptr 
 
-PxCustomParticleSystem :: struct {
-    _unused: [0]u8,
-}
+PxCustomParticleSystem :: distinct rawptr 
 
-PxSoftBody :: struct {
-    _unused: [0]u8,
-}
+PxSoftBody :: distinct rawptr 
 
-PxFEMCloth :: struct {
-    _unused: [0]u8,
-}
+PxFEMCloth :: distinct rawptr 
 
-PxHairSystem :: struct {
-    _unused: [0]u8,
-}
+PxHairSystem :: distinct rawptr 
 
-PxParticleBuffer :: struct {
-    _unused: [0]u8,
-}
+PxParticleBuffer :: distinct rawptr 
 
-PxParticleAndDiffuseBuffer :: struct {
-    _unused: [0]u8,
-}
+PxParticleAndDiffuseBuffer :: distinct rawptr 
 
-PxParticleClothBuffer :: struct {
-    _unused: [0]u8,
-}
+PxParticleClothBuffer :: distinct rawptr 
 
-PxParticleRigidBuffer :: struct {
-    _unused: [0]u8,
-}
+PxParticleRigidBuffer :: distinct rawptr 
 
 PxBase :: struct {
-    _vtable: rawptr,
     _pad0: [16]u8,
 }
+#assert(size_of(PxBase) == 16, "Wrong size for type PxBase, expected 16")
 
 PxRefCounted :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxBase,
+};
 
 PxTolerancesScale :: struct {
     length: _c.float,
     speed: _c.float,
 }
+#assert(size_of(PxTolerancesScale) == 8, "Wrong size for type PxTolerancesScale, expected 8")
 
 PxStringTable :: struct {
     vtable_: rawptr,
@@ -2229,6 +2196,7 @@ PxMetaDataEntry :: struct {
     flags: _c.uint32_t,
     alignment: _c.uint32_t,
 }
+#assert(size_of(PxMetaDataEntry) == 40, "Wrong size for type PxMetaDataEntry, expected 40")
 
 PxInsertionCallback :: struct {
     vtable_: rawptr,
@@ -2243,30 +2211,33 @@ PxCpuDispatcher :: struct {
 };
 
 PxBaseTask :: struct {
-    _vtable: rawptr,
     _pad0: [24]u8,
 }
+#assert(size_of(PxBaseTask) == 24, "Wrong size for type PxBaseTask, expected 24")
 
 PxTask :: struct {
-    _vtable: rawptr,
-    _pad0: [32]u8,
+    using _: PxBaseTask,
+    _pad1: [8]u8,
 }
+#assert(size_of(PxTask) == 32, "Wrong size for type PxTask, expected 32")
 
 PxLightCpuTask :: struct {
-    _vtable: rawptr,
-    _pad0: [40]u8,
+    using _: PxBaseTask,
+    _pad1: [16]u8,
 }
+#assert(size_of(PxLightCpuTask) == 40, "Wrong size for type PxLightCpuTask, expected 40")
 
 PxGeometry :: struct {
     _pad0: [4]u8,
     mTypePadding: _c.float,
 }
+#assert(size_of(PxGeometry) == 8, "Wrong size for type PxGeometry, expected 8")
 
 PxBoxGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     halfExtents: PxVec3,
 }
+#assert(size_of(PxBoxGeometry) == 20, "Wrong size for type PxBoxGeometry, expected 20")
 
 PxBVHRaycastCallback :: struct {
     vtable_: rawptr,
@@ -2281,296 +2252,280 @@ PxBVHTraversalCallback :: struct {
 };
 
 PxBVH :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxBase,
+};
 
 PxCapsuleGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     radius: _c.float,
     halfHeight: _c.float,
 }
+#assert(size_of(PxCapsuleGeometry) == 16, "Wrong size for type PxCapsuleGeometry, expected 16")
 
 PxHullPolygon :: struct {
     mPlane: [4]_c.float,
     mNbVerts: _c.uint16_t,
     mIndexBase: _c.uint16_t,
 }
+#assert(size_of(PxHullPolygon) == 20, "Wrong size for type PxHullPolygon, expected 20")
 
 PxConvexMesh :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxMeshScale :: struct {
     scale: PxVec3,
     rotation: PxQuat,
 }
+#assert(size_of(PxMeshScale) == 28, "Wrong size for type PxMeshScale, expected 28")
 
 PxConvexMeshGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     scale: PxMeshScale,
-    _pad1: [4]u8,
+    _pad5: [4]u8,
     convexMesh: ^PxConvexMesh,
     meshFlags: _c.uint8_t,
-    _pad2: [7]u8,
+    _pad8: [7]u8,
 }
+#assert(size_of(PxConvexMeshGeometry) == 56, "Wrong size for type PxConvexMeshGeometry, expected 56")
 
 PxSphereGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     radius: _c.float,
 }
+#assert(size_of(PxSphereGeometry) == 12, "Wrong size for type PxSphereGeometry, expected 12")
 
 PxPlaneGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
-}
+    using _: PxGeometry,
+};
 
 PxTriangleMeshGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     scale: PxMeshScale,
     meshFlags: _c.uint8_t,
-    _pad1: [3]u8,
+    _pad6: [3]u8,
     triangleMesh: ^PxTriangleMesh,
 }
+#assert(size_of(PxTriangleMeshGeometry) == 48, "Wrong size for type PxTriangleMeshGeometry, expected 48")
 
 PxHeightFieldGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     heightField: ^PxHeightField,
     heightScale: _c.float,
     rowScale: _c.float,
     columnScale: _c.float,
     heightFieldFlags: _c.uint8_t,
-    _pad1: [3]u8,
+    _pad9: [3]u8,
 }
+#assert(size_of(PxHeightFieldGeometry) == 32, "Wrong size for type PxHeightFieldGeometry, expected 32")
 
 PxParticleSystemGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     mSolverType: _c.int32_t,
 }
+#assert(size_of(PxParticleSystemGeometry) == 12, "Wrong size for type PxParticleSystemGeometry, expected 12")
 
 PxHairSystemGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
-}
+    using _: PxGeometry,
+};
 
 PxTetrahedronMeshGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     tetrahedronMesh: ^PxTetrahedronMesh,
 }
+#assert(size_of(PxTetrahedronMeshGeometry) == 16, "Wrong size for type PxTetrahedronMeshGeometry, expected 16")
 
 PxQueryHit :: struct {
     faceIndex: _c.uint32_t,
 }
+#assert(size_of(PxQueryHit) == 4, "Wrong size for type PxQueryHit, expected 4")
 
 PxLocationHit :: struct {
-    faceIndex: _c.uint32_t,
+    using _: PxQueryHit,
     flags: _c.uint16_t,
-    _pad0: [2]u8,
+    _pad3: [2]u8,
     position: PxVec3,
     normal: PxVec3,
     distance: _c.float,
 }
+#assert(size_of(PxLocationHit) == 36, "Wrong size for type PxLocationHit, expected 36")
 
 PxGeomRaycastHit :: struct {
-    faceIndex: _c.uint32_t,
-    flags: _c.uint16_t,
-    _pad0: [2]u8,
-    position: PxVec3,
-    normal: PxVec3,
-    distance: _c.float,
+    using _: PxLocationHit,
     u: _c.float,
     v: _c.float,
 }
+#assert(size_of(PxGeomRaycastHit) == 44, "Wrong size for type PxGeomRaycastHit, expected 44")
 
 PxGeomOverlapHit :: struct {
-    faceIndex: _c.uint32_t,
-}
+    using _: PxQueryHit,
+};
 
 PxGeomSweepHit :: struct {
-    faceIndex: _c.uint32_t,
-    flags: _c.uint16_t,
-    _pad0: [2]u8,
-    position: PxVec3,
-    normal: PxVec3,
-    distance: _c.float,
-}
+    using _: PxLocationHit,
+};
 
 PxGeomIndexPair :: struct {
     id0: _c.uint32_t,
     id1: _c.uint32_t,
 }
+#assert(size_of(PxGeomIndexPair) == 8, "Wrong size for type PxGeomIndexPair, expected 8")
 
 PxQueryThreadContext :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxQueryThreadContext) == 1, "Wrong size for type PxQueryThreadContext, expected 1")
 
-PxContactBuffer :: struct {
-    _unused: [0]u8,
-}
+PxContactBuffer :: distinct rawptr 
 
-PxRenderOutput :: struct {
-    _unused: [0]u8,
-}
+PxRenderOutput :: distinct rawptr 
 
 PxCustomGeometryType :: struct {
     _pad0: [4]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxCustomGeometryType) == 4, "Wrong size for type PxCustomGeometryType, expected 4")
 
 PxCustomGeometryCallbacks :: struct {
     vtable_: rawptr,
 };
 
 PxCustomGeometry :: struct {
-    _pad0: [4]u8,
-    mTypePadding: _c.float,
+    using _: PxGeometry,
     callbacks: ^PxCustomGeometryCallbacks,
 }
+#assert(size_of(PxCustomGeometry) == 16, "Wrong size for type PxCustomGeometry, expected 16")
 
 PxGeometryHolder :: struct {
     _pad0: [56]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxGeometryHolder) == 56, "Wrong size for type PxGeometryHolder, expected 56")
 
 PxGeometryQuery :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxGeometryQuery) == 1, "Wrong size for type PxGeometryQuery, expected 1")
 
 PxHeightFieldSample :: struct {
     height: _c.int16_t,
     materialIndex0: PxBitAndByte,
     materialIndex1: PxBitAndByte,
 }
+#assert(size_of(PxHeightFieldSample) == 4, "Wrong size for type PxHeightFieldSample, expected 4")
 
 PxHeightField :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxHeightFieldDesc :: struct {
     nbRows: _c.uint32_t,
     nbColumns: _c.uint32_t,
     format: _c.int32_t,
-    _pad0: [4]u8,
+    _pad3: [4]u8,
     samples: PxStridedData,
     convexEdgeThreshold: _c.float,
     flags: _c.uint16_t,
-    _pad1: [2]u8,
+    _pad7: [2]u8,
 }
+#assert(size_of(PxHeightFieldDesc) == 40, "Wrong size for type PxHeightFieldDesc, expected 40")
 
 PxMeshQuery :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxMeshQuery) == 1, "Wrong size for type PxMeshQuery, expected 1")
 
 PxSimpleTriangleMesh :: struct {
     points: PxBoundedData,
     triangles: PxBoundedData,
     flags: _c.uint16_t,
-    _pad0: [6]u8,
+    _pad3: [6]u8,
 }
+#assert(size_of(PxSimpleTriangleMesh) == 56, "Wrong size for type PxSimpleTriangleMesh, expected 56")
 
 PxTriangle :: struct {
     verts: [3]PxVec3,
 }
+#assert(size_of(PxTriangle) == 36, "Wrong size for type PxTriangle, expected 36")
 
 PxTrianglePadded :: struct {
-    verts: [3]PxVec3,
+    using _: PxTriangle,
     padding: _c.uint32_t,
 }
+#assert(size_of(PxTrianglePadded) == 40, "Wrong size for type PxTrianglePadded, expected 40")
 
 PxTriangleMesh :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxBVH34TriangleMesh :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxTriangleMesh,
+};
 
 PxTetrahedron :: struct {
     verts: [4]PxVec3,
 }
+#assert(size_of(PxTetrahedron) == 48, "Wrong size for type PxTetrahedron, expected 48")
 
 PxSoftBodyAuxData :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxTetrahedronMesh :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxSoftBodyMesh :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxRefCounted,
+};
 
 PxCollisionMeshMappingData :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxSoftBodyCollisionData :: struct {
-    _pad0: [1]u8,
-    unused0: [1]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxTetrahedronMeshData :: struct {
-    _pad0: [1]u8,
-    unused0: [1]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxSoftBodySimulationData :: struct {
-    _pad0: [1]u8,
-    unused0: [1]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxCollisionTetrahedronMeshData :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxSimulationTetrahedronMeshData :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxActor :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxActor) == 24, "Wrong size for type PxActor, expected 24")
 
 PxAggregate :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxAggregate) == 24, "Wrong size for type PxAggregate, expected 24")
 
 PxSpringModifiers :: struct {
     stiffness: _c.float,
     damping: _c.float,
-    _pad0: [8]u8,
+    _pad2: [8]u8,
 }
+#assert(size_of(PxSpringModifiers) == 16, "Wrong size for type PxSpringModifiers, expected 16")
 
 PxRestitutionModifiers :: struct {
     restitution: _c.float,
     velocityThreshold: _c.float,
-    _pad0: [8]u8,
+    _pad2: [8]u8,
 }
+#assert(size_of(PxRestitutionModifiers) == 16, "Wrong size for type PxRestitutionModifiers, expected 16")
 
 Px1DConstraintMods :: struct #raw_union {
     spring: PxSpringModifiers,
@@ -2590,8 +2545,9 @@ Px1DConstraint :: struct {
     forInternalUse: _c.float,
     flags: _c.uint16_t,
     solveHint: _c.uint16_t,
-    _pad0: [8]u8,
+    _pad12: [8]u8,
 }
+#assert(size_of(Px1DConstraint) == 96, "Wrong size for type Px1DConstraint, expected 96")
 
 PxConstraintInvMassScale :: struct {
     linear0: _c.float,
@@ -2599,6 +2555,7 @@ PxConstraintInvMassScale :: struct {
     linear1: _c.float,
     angular1: _c.float,
 }
+#assert(size_of(PxConstraintInvMassScale) == 16, "Wrong size for type PxConstraintInvMassScale, expected 16")
 
 PxConstraintVisualizer :: struct {
     vtable_: rawptr,
@@ -2616,13 +2573,14 @@ PxContactPoint :: struct {
     targetVel: PxVec3,
     staticFriction: _c.float,
     materialFlags: _c.uint8_t,
-    _pad0: [3]u8,
+    _pad7: [3]u8,
     internalFaceIndex1: _c.uint32_t,
     dynamicFriction: _c.float,
     restitution: _c.float,
     damping: _c.float,
-    _pad1: [12]u8,
+    _pad12: [12]u8,
 }
+#assert(size_of(PxContactPoint) == 80, "Wrong size for type PxContactPoint, expected 80")
 
 PxSolverBody :: struct {
     linearVelocity: PxVec3,
@@ -2631,6 +2589,7 @@ PxSolverBody :: struct {
     angularState: PxVec3,
     solverProgress: _c.uint32_t,
 }
+#assert(size_of(PxSolverBody) == 32, "Wrong size for type PxSolverBody, expected 32")
 
 PxSolverBodyData :: struct {
     linearVelocity: PxVec3,
@@ -2643,14 +2602,16 @@ PxSolverBodyData :: struct {
     maxContactImpulse: _c.float,
     body2World: PxTransform,
     pad: _c.uint16_t,
-    _pad0: [2]u8,
+    _pad10: [2]u8,
 }
+#assert(size_of(PxSolverBodyData) == 112, "Wrong size for type PxSolverBodyData, expected 112")
 
 PxConstraintBatchHeader :: struct {
     startIndex: _c.uint32_t,
     stride: _c.uint16_t,
     constraintType: _c.uint16_t,
 }
+#assert(size_of(PxConstraintBatchHeader) == 8, "Wrong size for type PxConstraintBatchHeader, expected 8")
 
 PxSolverConstraintDesc :: struct {
     _pad0: [16]u8,
@@ -2665,6 +2626,7 @@ PxSolverConstraintDesc :: struct {
     constraintLengthOver16: _c.uint16_t,
     padding: [10]_c.uint8_t,
 }
+#assert(size_of(PxSolverConstraintDesc) == 64, "Wrong size for type PxSolverConstraintDesc, expected 64")
 
 PxSolverConstraintPrepDescBase :: struct {
     invMassScales: PxConstraintInvMassScale,
@@ -2677,21 +2639,12 @@ PxSolverConstraintPrepDescBase :: struct {
     bodyFrame1: PxTransform,
     bodyState0: _c.int32_t,
     bodyState1: _c.int32_t,
-    _pad0: [8]u8,
+    _pad10: [8]u8,
 }
+#assert(size_of(PxSolverConstraintPrepDescBase) == 128, "Wrong size for type PxSolverConstraintPrepDescBase, expected 128")
 
 PxSolverConstraintPrepDesc :: struct {
-    invMassScales: PxConstraintInvMassScale,
-    desc: ^PxSolverConstraintDesc,
-    body0: ^PxSolverBody,
-    body1: ^PxSolverBody,
-    data0: ^PxSolverBodyData,
-    data1: ^PxSolverBodyData,
-    bodyFrame0: PxTransform,
-    bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-    _pad0: [8]u8,
+    using _: PxSolverConstraintPrepDescBase,
     rows: ^Px1DConstraint,
     numRows: _c.uint32_t,
     linBreakForce: _c.float,
@@ -2703,34 +2656,25 @@ PxSolverConstraintPrepDesc :: struct {
     driveLimitsAreForces: _c.bool,
     extendedLimits: _c.bool,
     disableConstraint: _c.bool,
-    _pad1: [3]u8,
+    _pad33: [3]u8,
     body0WorldOffset: PxVec3Padded,
-    _pad2: [8]u8,
+    _pad35: [8]u8,
 }
+#assert(size_of(PxSolverConstraintPrepDesc) == 192, "Wrong size for type PxSolverConstraintPrepDesc, expected 192")
 
 PxSolverContactDesc :: struct {
-    invMassScales: PxConstraintInvMassScale,
-    desc: ^PxSolverConstraintDesc,
-    body0: ^PxSolverBody,
-    body1: ^PxSolverBody,
-    data0: ^PxSolverBodyData,
-    data1: ^PxSolverBodyData,
-    bodyFrame0: PxTransform,
-    bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-    shapeInteraction: rawptr,
+    using _: PxSolverConstraintPrepDescBase,
     contacts: ^PxContactPoint,
     numContacts: _c.uint32_t,
     hasMaxImpulse: _c.bool,
     disableStrongFriction: _c.bool,
     hasForceThresholds: _c.bool,
-    _pad0: [1]u8,
+    _pad27: [1]u8,
     restDistance: _c.float,
     maxCCDSeparation: _c.float,
     frictionPtr: ^_c.uint8_t,
     frictionCount: _c.uint8_t,
-    _pad1: [7]u8,
+    _pad32: [7]u8,
     contactForces: ^_c.float,
     startFrictionPatchIndex: _c.uint32_t,
     numFrictionPatches: _c.uint32_t,
@@ -2738,8 +2682,9 @@ PxSolverContactDesc :: struct {
     numContactPatches: _c.uint16_t,
     axisConstraintCount: _c.uint16_t,
     offsetSlop: _c.float,
-    _pad2: [12]u8,
+    _pad40: [12]u8,
 }
+#assert(size_of(PxSolverContactDesc) == 208, "Wrong size for type PxSolverContactDesc, expected 208")
 
 PxConstraintAllocator :: struct {
     vtable_: rawptr,
@@ -2749,6 +2694,7 @@ PxArticulationLimit :: struct {
     low: _c.float,
     high: _c.float,
 }
+#assert(size_of(PxArticulationLimit) == 8, "Wrong size for type PxArticulationLimit, expected 8")
 
 PxArticulationDrive :: struct {
     stiffness: _c.float,
@@ -2756,6 +2702,7 @@ PxArticulationDrive :: struct {
     maxForce: _c.float,
     driveType: _c.int32_t,
 }
+#assert(size_of(PxArticulationDrive) == 16, "Wrong size for type PxArticulationDrive, expected 16")
 
 PxTGSSolverBodyVel :: struct {
     linearVelocity: PxVec3,
@@ -2770,11 +2717,13 @@ PxTGSSolverBodyVel :: struct {
     isKinematic: _c.bool,
     pad: _c.uint8_t,
 }
+#assert(size_of(PxTGSSolverBodyVel) == 64, "Wrong size for type PxTGSSolverBodyVel, expected 64")
 
 PxTGSSolverBodyTxInertia :: struct {
     deltaBody2World: PxTransform,
     sqrtInvInertia: PxMat33,
 }
+#assert(size_of(PxTGSSolverBodyTxInertia) == 64, "Wrong size for type PxTGSSolverBodyTxInertia, expected 64")
 
 PxTGSSolverBodyData :: struct {
     originalLinearVelocity: PxVec3,
@@ -2786,6 +2735,7 @@ PxTGSSolverBodyData :: struct {
     reportThreshold: _c.float,
     pad: _c.uint32_t,
 }
+#assert(size_of(PxTGSSolverBodyData) == 48, "Wrong size for type PxTGSSolverBodyData, expected 48")
 
 PxTGSSolverConstraintPrepDescBase :: struct {
     invMassScales: PxConstraintInvMassScale,
@@ -2800,23 +2750,12 @@ PxTGSSolverConstraintPrepDescBase :: struct {
     bodyFrame1: PxTransform,
     bodyState0: _c.int32_t,
     bodyState1: _c.int32_t,
-    _pad0: [8]u8,
+    _pad12: [8]u8,
 }
+#assert(size_of(PxTGSSolverConstraintPrepDescBase) == 144, "Wrong size for type PxTGSSolverConstraintPrepDescBase, expected 144")
 
 PxTGSSolverConstraintPrepDesc :: struct {
-    invMassScales: PxConstraintInvMassScale,
-    desc: ^PxSolverConstraintDesc,
-    body0: ^PxTGSSolverBodyVel,
-    body1: ^PxTGSSolverBodyVel,
-    body0TxI: ^PxTGSSolverBodyTxInertia,
-    body1TxI: ^PxTGSSolverBodyTxInertia,
-    bodyData0: ^PxTGSSolverBodyData,
-    bodyData1: ^PxTGSSolverBodyData,
-    bodyFrame0: PxTransform,
-    bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-    rows: ^Px1DConstraint,
+    using _: PxTGSSolverConstraintPrepDescBase,
     numRows: _c.uint32_t,
     linBreakForce: _c.float,
     angBreakForce: _c.float,
@@ -2827,37 +2766,26 @@ PxTGSSolverConstraintPrepDesc :: struct {
     driveLimitsAreForces: _c.bool,
     extendedLimits: _c.bool,
     disableConstraint: _c.bool,
-    _pad0: [3]u8,
+    _pad36: [3]u8,
     body0WorldOffset: PxVec3Padded,
     cA2w: PxVec3Padded,
     cB2w: PxVec3Padded,
 }
+#assert(size_of(PxTGSSolverConstraintPrepDesc) == 224, "Wrong size for type PxTGSSolverConstraintPrepDesc, expected 224")
 
 PxTGSSolverContactDesc :: struct {
-    invMassScales: PxConstraintInvMassScale,
-    desc: ^PxSolverConstraintDesc,
-    body0: ^PxTGSSolverBodyVel,
-    body1: ^PxTGSSolverBodyVel,
-    body0TxI: ^PxTGSSolverBodyTxInertia,
-    body1TxI: ^PxTGSSolverBodyTxInertia,
-    bodyData0: ^PxTGSSolverBodyData,
-    bodyData1: ^PxTGSSolverBodyData,
-    bodyFrame0: PxTransform,
-    bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-    shapeInteraction: rawptr,
+    using _: PxTGSSolverConstraintPrepDescBase,
     contacts: ^PxContactPoint,
     numContacts: _c.uint32_t,
     hasMaxImpulse: _c.bool,
     disableStrongFriction: _c.bool,
     hasForceThresholds: _c.bool,
-    _pad0: [1]u8,
+    _pad31: [1]u8,
     restDistance: _c.float,
     maxCCDSeparation: _c.float,
     frictionPtr: ^_c.uint8_t,
     frictionCount: _c.uint8_t,
-    _pad1: [7]u8,
+    _pad36: [7]u8,
     contactForces: ^_c.float,
     startFrictionPatchIndex: _c.uint32_t,
     numFrictionPatches: _c.uint32_t,
@@ -2869,41 +2797,39 @@ PxTGSSolverContactDesc :: struct {
     minTorsionalPatchRadius: _c.float,
     offsetSlop: _c.float,
 }
+#assert(size_of(PxTGSSolverContactDesc) == 224, "Wrong size for type PxTGSSolverContactDesc, expected 224")
 
 PxArticulationTendonLimit :: struct {
     lowLimit: _c.float,
     highLimit: _c.float,
 }
+#assert(size_of(PxArticulationTendonLimit) == 8, "Wrong size for type PxArticulationTendonLimit, expected 8")
 
 PxArticulationAttachment :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationAttachment) == 24, "Wrong size for type PxArticulationAttachment, expected 24")
 
 PxArticulationTendonJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationTendonJoint) == 24, "Wrong size for type PxArticulationTendonJoint, expected 24")
 
 PxArticulationTendon :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationTendon) == 24, "Wrong size for type PxArticulationTendon, expected 24")
 
 PxArticulationSpatialTendon :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxArticulationTendon,
+};
 
 PxArticulationFixedTendon :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxArticulationTendon,
+};
 
 PxSpatialForce :: struct {
     force: PxVec3,
@@ -2911,6 +2837,7 @@ PxSpatialForce :: struct {
     torque: PxVec3,
     pad1: _c.float,
 }
+#assert(size_of(PxSpatialForce) == 32, "Wrong size for type PxSpatialForce, expected 32")
 
 PxSpatialVelocity :: struct {
     linear: PxVec3,
@@ -2918,6 +2845,7 @@ PxSpatialVelocity :: struct {
     angular: PxVec3,
     pad1: _c.float,
 }
+#assert(size_of(PxSpatialVelocity) == 32, "Wrong size for type PxSpatialVelocity, expected 32")
 
 PxArticulationRootLinkData :: struct {
     transform: PxTransform,
@@ -2926,6 +2854,7 @@ PxArticulationRootLinkData :: struct {
     worldLinAccel: PxVec3,
     worldAngAccel: PxVec3,
 }
+#assert(size_of(PxArticulationRootLinkData) == 76, "Wrong size for type PxArticulationRootLinkData, expected 76")
 
 PxArticulationCache :: struct {
     externalForces: ^PxSpatialForce,
@@ -2945,55 +2874,50 @@ PxArticulationCache :: struct {
     scratchMemory: rawptr,
     scratchAllocator: rawptr,
     version: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad17: [4]u8,
 }
+#assert(size_of(PxArticulationCache) == 136, "Wrong size for type PxArticulationCache, expected 136")
 
 PxArticulationSensor :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationSensor) == 24, "Wrong size for type PxArticulationSensor, expected 24")
 
 PxArticulationReducedCoordinate :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationReducedCoordinate) == 24, "Wrong size for type PxArticulationReducedCoordinate, expected 24")
 
 PxArticulationJointReducedCoordinate :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxArticulationJointReducedCoordinate) == 24, "Wrong size for type PxArticulationJointReducedCoordinate, expected 24")
 
 PxShape :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxRefCounted,
     userData: rawptr,
 }
+#assert(size_of(PxShape) == 24, "Wrong size for type PxShape, expected 24")
 
 PxRigidActor :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxActor,
+};
 
 PxNodeIndex :: struct {
     _pad0: [8]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxNodeIndex) == 8, "Wrong size for type PxNodeIndex, expected 8")
 
 PxRigidBody :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxRigidActor,
+};
 
 PxArticulationLink :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxRigidBody,
+};
 
 PxConeLimitedConstraint :: struct {
     mAxis: PxVec3,
@@ -3001,25 +2925,28 @@ PxConeLimitedConstraint :: struct {
     mLowLimit: _c.float,
     mHighLimit: _c.float,
 }
+#assert(size_of(PxConeLimitedConstraint) == 24, "Wrong size for type PxConeLimitedConstraint, expected 24")
 
 PxConeLimitParams :: struct {
     lowHighLimits: PxVec4,
     axisAngle: PxVec4,
 }
+#assert(size_of(PxConeLimitParams) == 32, "Wrong size for type PxConeLimitParams, expected 32")
 
 PxConstraintShaderTable :: struct {
     solverPrep: rawptr,
-    _pad0: [8]u8,
+    _pad1: [8]u8,
     visualize: rawptr,
     flag: _c.int32_t,
-    _pad1: [4]u8,
+    _pad4: [4]u8,
 }
+#assert(size_of(PxConstraintShaderTable) == 32, "Wrong size for type PxConstraintShaderTable, expected 32")
 
 PxConstraint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxConstraint) == 24, "Wrong size for type PxConstraint, expected 24")
 
 PxMassModificationProps :: struct {
     mInvMassScale0: _c.float,
@@ -3027,6 +2954,7 @@ PxMassModificationProps :: struct {
     mInvMassScale1: _c.float,
     mInvInertiaScale1: _c.float,
 }
+#assert(size_of(PxMassModificationProps) == 16, "Wrong size for type PxMassModificationProps, expected 16")
 
 PxContactPatch :: struct {
     mMassModification: PxMassModificationProps,
@@ -3043,24 +2971,23 @@ PxContactPatch :: struct {
     materialIndex1: _c.uint16_t,
     pad: [5]_c.uint16_t,
 }
+#assert(size_of(PxContactPatch) == 64, "Wrong size for type PxContactPatch, expected 64")
 
 PxContact :: struct {
     contact: PxVec3,
     separation: _c.float,
 }
+#assert(size_of(PxContact) == 16, "Wrong size for type PxContact, expected 16")
 
 PxExtendedContact :: struct {
-    contact: PxVec3,
-    separation: _c.float,
+    using _: PxContact,
     targetVelocity: PxVec3,
     maxImpulse: _c.float,
 }
+#assert(size_of(PxExtendedContact) == 32, "Wrong size for type PxExtendedContact, expected 32")
 
 PxModifiableContact :: struct {
-    contact: PxVec3,
-    separation: _c.float,
-    targetVelocity: PxVec3,
-    maxImpulse: _c.float,
+    using _: PxExtendedContact,
     normal: PxVec3,
     restitution: _c.float,
     materialFlags: _c.uint32_t,
@@ -3069,10 +2996,11 @@ PxModifiableContact :: struct {
     staticFriction: _c.float,
     dynamicFriction: _c.float,
 }
+#assert(size_of(PxModifiableContact) == 64, "Wrong size for type PxModifiableContact, expected 64")
 
 PxContactStreamIterator :: struct {
     zero: PxVec3,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     patch: ^PxContactPatch,
     contact: ^PxContact,
     faceIndice: ^_c.uint32_t,
@@ -3085,9 +3013,10 @@ PxContactStreamIterator :: struct {
     mStreamFormat: _c.int32_t,
     forceNoResponse: _c.uint32_t,
     pointStepped: _c.bool,
-    _pad1: [3]u8,
+    _pad14: [3]u8,
     hasFaceIndices: _c.uint32_t,
 }
+#assert(size_of(PxContactStreamIterator) == 80, "Wrong size for type PxContactStreamIterator, expected 80")
 
 PxGpuContactPair :: struct {
     contactPatches: ^_c.uint8_t,
@@ -3101,13 +3030,14 @@ PxGpuContactPair :: struct {
     actor1: ^PxActor,
     nbContacts: _c.uint16_t,
     nbPatches: _c.uint16_t,
-    _pad0: [4]u8,
+    _pad11: [4]u8,
 }
+#assert(size_of(PxGpuContactPair) == 72, "Wrong size for type PxGpuContactPair, expected 72")
 
 PxContactSet :: struct {
     _pad0: [16]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxContactSet) == 16, "Wrong size for type PxContactSet, expected 16")
 
 PxContactModifyPair :: struct {
     actor: [2]^PxRigidActor,
@@ -3115,6 +3045,7 @@ PxContactModifyPair :: struct {
     transform: [2]PxTransform,
     contacts: PxContactSet,
 }
+#assert(size_of(PxContactModifyPair) == 104, "Wrong size for type PxContactModifyPair, expected 104")
 
 PxContactModifyCallback :: struct {
     vtable_: rawptr,
@@ -3129,16 +3060,14 @@ PxDeletionListener :: struct {
 };
 
 PxBaseMaterial :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxRefCounted,
     userData: rawptr,
 }
+#assert(size_of(PxBaseMaterial) == 24, "Wrong size for type PxBaseMaterial, expected 24")
 
 PxFEMMaterial :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxBaseMaterial,
+};
 
 PxFilterData :: struct {
     word0: _c.uint32_t,
@@ -3146,6 +3075,7 @@ PxFilterData :: struct {
     word2: _c.uint32_t,
     word3: _c.uint32_t,
 }
+#assert(size_of(PxFilterData) == 16, "Wrong size for type PxFilterData, expected 16")
 
 PxSimulationFilterCallback :: struct {
     vtable_: rawptr,
@@ -3155,35 +3085,32 @@ PxParticleRigidFilterPair :: struct {
     mID0: _c.uint64_t,
     mID1: _c.uint64_t,
 }
+#assert(size_of(PxParticleRigidFilterPair) == 16, "Wrong size for type PxParticleRigidFilterPair, expected 16")
 
 PxLockedData :: struct {
     vtable_: rawptr,
 };
 
 PxMaterial :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxBaseMaterial,
+};
 
 PxGpuParticleBufferIndexPair :: struct {
     systemIndex: _c.uint32_t,
     bufferIndex: _c.uint32_t,
 }
+#assert(size_of(PxGpuParticleBufferIndexPair) == 8, "Wrong size for type PxGpuParticleBufferIndexPair, expected 8")
 
-PxCudaContextManager :: struct {
-    _unused: [0]u8,
-}
+PxCudaContextManager :: distinct rawptr 
 
-PxParticleRigidAttachment :: struct {
-    _unused: [0]u8,
-}
+PxParticleRigidAttachment :: distinct rawptr 
 
 PxParticleVolume :: struct {
     bound: PxBounds3,
     particleIndicesOffset: _c.uint32_t,
     numParticles: _c.uint32_t,
 }
+#assert(size_of(PxParticleVolume) == 32, "Wrong size for type PxParticleVolume, expected 32")
 
 PxDiffuseParticleParams :: struct {
     threshold: _c.float,
@@ -3196,8 +3123,9 @@ PxDiffuseParticleParams :: struct {
     divergenceWeight: _c.float,
     collisionDecay: _c.float,
     useAccurateVelocity: _c.bool,
-    _pad0: [3]u8,
+    _pad10: [3]u8,
 }
+#assert(size_of(PxDiffuseParticleParams) == 40, "Wrong size for type PxDiffuseParticleParams, expected 40")
 
 PxParticleSpring :: struct {
     ind0: _c.uint32_t,
@@ -3207,16 +3135,13 @@ PxParticleSpring :: struct {
     damping: _c.float,
     pad: _c.float,
 }
+#assert(size_of(PxParticleSpring) == 24, "Wrong size for type PxParticleSpring, expected 24")
 
 PxParticleMaterial :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxBaseMaterial,
+};
 
-PxOmniPvd :: struct {
-    _unused: [0]u8,
-}
+PxOmniPvd :: distinct rawptr 
 
 PxPhysics :: struct {
     vtable_: rawptr,
@@ -3226,134 +3151,115 @@ PxActorShape :: struct {
     actor: ^PxRigidActor,
     shape: ^PxShape,
 }
+#assert(size_of(PxActorShape) == 16, "Wrong size for type PxActorShape, expected 16")
 
 PxRaycastHit :: struct {
-    faceIndex: _c.uint32_t,
-    flags: _c.uint16_t,
-    _pad0: [2]u8,
-    position: PxVec3,
-    normal: PxVec3,
-    distance: _c.float,
-    u: _c.float,
-    v: _c.float,
-    _pad1: [4]u8,
-    actor: ^PxRigidActor,
-    shape: ^PxShape,
-}
+    using _: PxGeomRaycastHit,
+    using _: PxActorShape,
+};
 
 PxOverlapHit :: struct {
-    faceIndex: _c.uint32_t,
-    _pad0: [4]u8,
-    actor: ^PxRigidActor,
-    shape: ^PxShape,
-}
+    using _: PxGeomOverlapHit,
+    using _: PxActorShape,
+};
 
 PxSweepHit :: struct {
-    faceIndex: _c.uint32_t,
-    flags: _c.uint16_t,
-    _pad0: [2]u8,
-    position: PxVec3,
-    normal: PxVec3,
-    distance: _c.float,
-    _pad1: [4]u8,
-    actor: ^PxRigidActor,
-    shape: ^PxShape,
-}
+    using _: PxGeomSweepHit,
+    using _: PxActorShape,
+};
 
 PxRaycastCallback :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxRaycastHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxRaycastHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxRaycastCallback) == 96, "Wrong size for type PxRaycastCallback, expected 96")
 
 PxOverlapCallback :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxOverlapHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxOverlapHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxOverlapCallback) == 56, "Wrong size for type PxOverlapCallback, expected 56")
 
 PxSweepCallback :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxSweepHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxSweepHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxSweepCallback) == 88, "Wrong size for type PxSweepCallback, expected 88")
 
 PxRaycastBuffer :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxRaycastHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxRaycastHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxRaycastBuffer) == 96, "Wrong size for type PxRaycastBuffer, expected 96")
 
 PxOverlapBuffer :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxOverlapHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxOverlapHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxOverlapBuffer) == 56, "Wrong size for type PxOverlapBuffer, expected 56")
 
 PxSweepBuffer :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     block: PxSweepHit,
     hasBlock: _c.bool,
-    _pad1: [7]u8,
+    _pad3: [7]u8,
     touches: ^PxSweepHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
+#assert(size_of(PxSweepBuffer) == 88, "Wrong size for type PxSweepBuffer, expected 88")
 
 PxQueryCache :: struct {
     shape: ^PxShape,
     actor: ^PxRigidActor,
     faceIndex: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad3: [4]u8,
 }
+#assert(size_of(PxQueryCache) == 24, "Wrong size for type PxQueryCache, expected 24")
 
 PxQueryFilterData :: struct {
     data: PxFilterData,
     flags: _c.uint16_t,
-    _pad0: [2]u8,
+    _pad2: [2]u8,
 }
+#assert(size_of(PxQueryFilterData) == 20, "Wrong size for type PxQueryFilterData, expected 20")
 
 PxQueryFilterCallback :: struct {
     vtable_: rawptr,
 };
 
 PxRigidDynamic :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxRigidBody,
+};
 
 PxRigidStatic :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxRigidActor,
+};
 
 PxSceneQueryDesc :: struct {
     staticStructure: _c.int32_t,
@@ -3366,23 +3272,25 @@ PxSceneQueryDesc :: struct {
     dynamicNbObjectsPerNode: _c.uint32_t,
     sceneQueryUpdateMode: _c.int32_t,
 }
+#assert(size_of(PxSceneQueryDesc) == 36, "Wrong size for type PxSceneQueryDesc, expected 36")
 
 PxSceneQuerySystemBase :: struct {
     vtable_: rawptr,
 };
 
 PxSceneSQSystem :: struct {
-    vtable_: rawptr,
+    using _: PxSceneQuerySystemBase,
 };
 
 PxSceneQuerySystem :: struct {
-    vtable_: rawptr,
+    using _: PxSceneQuerySystemBase,
 };
 
 PxBroadPhaseRegion :: struct {
     mBounds: PxBounds3,
     mUserData: rawptr,
 }
+#assert(size_of(PxBroadPhaseRegion) == 32, "Wrong size for type PxBroadPhaseRegion, expected 32")
 
 PxBroadPhaseRegionInfo :: struct {
     mRegion: PxBroadPhaseRegion,
@@ -3390,54 +3298,60 @@ PxBroadPhaseRegionInfo :: struct {
     mNbDynamicObjects: _c.uint32_t,
     mActive: _c.bool,
     mOverlap: _c.bool,
-    _pad0: [6]u8,
+    _pad5: [6]u8,
 }
+#assert(size_of(PxBroadPhaseRegionInfo) == 48, "Wrong size for type PxBroadPhaseRegionInfo, expected 48")
 
 PxBroadPhaseCaps :: struct {
     mMaxNbRegions: _c.uint32_t,
 }
+#assert(size_of(PxBroadPhaseCaps) == 4, "Wrong size for type PxBroadPhaseCaps, expected 4")
 
 PxBroadPhaseDesc :: struct {
     mType: _c.int32_t,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     mContextID: _c.uint64_t,
-    _pad1: [8]u8,
+    _pad3: [8]u8,
     mFoundLostPairsCapacity: _c.uint32_t,
     mDiscardStaticVsKinematic: _c.bool,
     mDiscardKinematicVsKinematic: _c.bool,
-    _pad2: [2]u8,
+    _pad7: [2]u8,
 }
+#assert(size_of(PxBroadPhaseDesc) == 32, "Wrong size for type PxBroadPhaseDesc, expected 32")
 
 PxBroadPhaseUpdateData :: struct {
     mCreated: ^_c.uint32_t,
     mNbCreated: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad2: [4]u8,
     mUpdated: ^_c.uint32_t,
     mNbUpdated: _c.uint32_t,
-    _pad1: [4]u8,
+    _pad5: [4]u8,
     mRemoved: ^_c.uint32_t,
     mNbRemoved: _c.uint32_t,
-    _pad2: [4]u8,
+    _pad8: [4]u8,
     mBounds: ^PxBounds3,
     mGroups: ^_c.uint32_t,
     mDistances: ^_c.float,
     mCapacity: _c.uint32_t,
-    _pad3: [4]u8,
+    _pad13: [4]u8,
 }
+#assert(size_of(PxBroadPhaseUpdateData) == 80, "Wrong size for type PxBroadPhaseUpdateData, expected 80")
 
 PxBroadPhasePair :: struct {
     mID0: _c.uint32_t,
     mID1: _c.uint32_t,
 }
+#assert(size_of(PxBroadPhasePair) == 8, "Wrong size for type PxBroadPhasePair, expected 8")
 
 PxBroadPhaseResults :: struct {
     mNbCreatedPairs: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     mCreatedPairs: ^PxBroadPhasePair,
     mNbDeletedPairs: _c.uint32_t,
-    _pad1: [4]u8,
+    _pad4: [4]u8,
     mDeletedPairs: ^PxBroadPhasePair,
 }
+#assert(size_of(PxBroadPhaseResults) == 32, "Wrong size for type PxBroadPhaseResults, expected 32")
 
 PxBroadPhaseRegions :: struct {
     vtable_: rawptr,
@@ -3461,6 +3375,7 @@ PxSceneLimits :: struct {
     maxNbRegions: _c.uint32_t,
     maxNbBroadPhaseOverlaps: _c.uint32_t,
 }
+#assert(size_of(PxSceneLimits) == 32, "Wrong size for type PxSceneLimits, expected 32")
 
 PxgDynamicsMemoryConfig :: struct {
     tempBufferCapacity: _c.uint32_t,
@@ -3476,30 +3391,23 @@ PxgDynamicsMemoryConfig :: struct {
     collisionStackSize: _c.uint32_t,
     maxHairContacts: _c.uint32_t,
 }
+#assert(size_of(PxgDynamicsMemoryConfig) == 48, "Wrong size for type PxgDynamicsMemoryConfig, expected 48")
 
 PxSceneDesc :: struct {
-    staticStructure: _c.int32_t,
-    dynamicStructure: _c.int32_t,
-    dynamicTreeRebuildRateHint: _c.uint32_t,
-    dynamicTreeSecondaryPruner: _c.int32_t,
-    staticBVHBuildStrategy: _c.int32_t,
-    dynamicBVHBuildStrategy: _c.int32_t,
-    staticNbObjectsPerNode: _c.uint32_t,
-    dynamicNbObjectsPerNode: _c.uint32_t,
-    sceneQueryUpdateMode: _c.int32_t,
+    using _: PxSceneQueryDesc,
     gravity: PxVec3,
     simulationEventCallback: ^PxSimulationEventCallback,
     contactModifyCallback: ^PxContactModifyCallback,
     ccdContactModifyCallback: ^PxCCDContactModifyCallback,
     filterShaderData: rawptr,
     filterShaderDataSize: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad24: [4]u8,
     filterShader: rawptr,
     filterCallback: ^PxSimulationFilterCallback,
     kineKineFilteringMode: _c.int32_t,
     staticKineFilteringMode: _c.int32_t,
     broadPhaseType: _c.int32_t,
-    _pad1: [4]u8,
+    _pad30: [4]u8,
     broadPhaseCallback: ^PxBroadPhaseCallback,
     limits: PxSceneLimits,
     frictionType: _c.int32_t,
@@ -3509,7 +3417,7 @@ PxSceneDesc :: struct {
     frictionCorrelationDistance: _c.float,
     flags: _c.uint32_t,
     cpuDispatcher: ^PxCpuDispatcher,
-    _pad2: [8]u8,
+    _pad40: [8]u8,
     userData: rawptr,
     solverBatchSize: _c.uint32_t,
     solverArticulationBatchSize: _c.uint32_t,
@@ -3528,8 +3436,9 @@ PxSceneDesc :: struct {
     gpuComputeVersion: _c.uint32_t,
     contactPairSlabSize: _c.uint32_t,
     sceneQuerySystem: ^PxSceneQuerySystem,
-    _pad3: [8]u8,
+    _pad59: [8]u8,
 }
+#assert(size_of(PxSceneDesc) == 352, "Wrong size for type PxSceneDesc, expected 352")
 
 PxSimulationStatistics :: struct {
     nbActiveConstraints: _c.uint32_t,
@@ -3553,7 +3462,7 @@ PxSimulationStatistics :: struct {
     nbNewTouches: _c.uint32_t,
     nbLostTouches: _c.uint32_t,
     nbPartitions: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad21: [4]u8,
     gpuMemParticles: _c.uint64_t,
     gpuMemSoftBodies: _c.uint64_t,
     gpuMemFEMCloths: _c.uint64_t,
@@ -3581,6 +3490,7 @@ PxSimulationStatistics :: struct {
     nbModifiedContactPairs: [11][11]_c.uint32_t,
     nbTriggerPairs: [11][11]_c.uint32_t,
 }
+#assert(size_of(PxSimulationStatistics) == 2232, "Wrong size for type PxSimulationStatistics, expected 2232")
 
 PxGpuBodyData :: struct {
     quat: PxQuat,
@@ -3588,18 +3498,21 @@ PxGpuBodyData :: struct {
     linVel: PxVec4,
     angVel: PxVec4,
 }
+#assert(size_of(PxGpuBodyData) == 64, "Wrong size for type PxGpuBodyData, expected 64")
 
 PxGpuActorPair :: struct {
     srcIndex: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     nodeIndex: PxNodeIndex,
 }
+#assert(size_of(PxGpuActorPair) == 16, "Wrong size for type PxGpuActorPair, expected 16")
 
 PxIndexDataPair :: struct {
     index: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     data: rawptr,
 }
+#assert(size_of(PxIndexDataPair) == 16, "Wrong size for type PxIndexDataPair, expected 16")
 
 PxPvdSceneClient :: struct {
     vtable_: rawptr,
@@ -3609,49 +3522,55 @@ PxDominanceGroupPair :: struct {
     dominance0: _c.uint8_t,
     dominance1: _c.uint8_t,
 }
+#assert(size_of(PxDominanceGroupPair) == 2, "Wrong size for type PxDominanceGroupPair, expected 2")
 
 PxBroadPhaseCallback :: struct {
     vtable_: rawptr,
 };
 
 PxScene :: struct {
-    _vtable: rawptr,
+    using _: PxSceneSQSystem,
     _pad0: [8]u8,
     userData: rawptr,
 }
+#assert(size_of(PxScene) == 16, "Wrong size for type PxScene, expected 16")
 
 PxSceneReadLock :: struct {
     _pad0: [8]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSceneReadLock) == 8, "Wrong size for type PxSceneReadLock, expected 8")
 
 PxSceneWriteLock :: struct {
     _pad0: [8]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSceneWriteLock) == 8, "Wrong size for type PxSceneWriteLock, expected 8")
 
 PxContactPairExtraDataItem :: struct {
     type: _c.uint8_t,
 }
+#assert(size_of(PxContactPairExtraDataItem) == 1, "Wrong size for type PxContactPairExtraDataItem, expected 1")
 
 PxContactPairVelocity :: struct {
-    type: _c.uint8_t,
-    _pad0: [3]u8,
+    using _: PxContactPairExtraDataItem,
+    _pad2: [3]u8,
     linearVelocity: [2]PxVec3,
     angularVelocity: [2]PxVec3,
 }
+#assert(size_of(PxContactPairVelocity) == 52, "Wrong size for type PxContactPairVelocity, expected 52")
 
 PxContactPairPose :: struct {
-    type: _c.uint8_t,
-    _pad0: [3]u8,
+    using _: PxContactPairExtraDataItem,
+    _pad2: [3]u8,
     globalPose: [2]PxTransform,
 }
+#assert(size_of(PxContactPairPose) == 60, "Wrong size for type PxContactPairPose, expected 60")
 
 PxContactPairIndex :: struct {
-    type: _c.uint8_t,
-    _pad0: [1]u8,
+    using _: PxContactPairExtraDataItem,
+    _pad2: [1]u8,
     index: _c.uint16_t,
 }
+#assert(size_of(PxContactPairIndex) == 4, "Wrong size for type PxContactPairIndex, expected 4")
 
 PxContactPairExtraDataIterator :: struct {
     currPtr: ^_c.uint8_t,
@@ -3660,19 +3579,21 @@ PxContactPairExtraDataIterator :: struct {
     postSolverVelocity: ^PxContactPairVelocity,
     eventPose: ^PxContactPairPose,
     contactPairIndex: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad6: [4]u8,
 }
+#assert(size_of(PxContactPairExtraDataIterator) == 48, "Wrong size for type PxContactPairExtraDataIterator, expected 48")
 
 PxContactPairHeader :: struct {
     actors: [2]^PxActor,
     extraDataStream: ^_c.uint8_t,
     extraDataStreamSize: _c.uint16_t,
     flags: _c.uint16_t,
-    _pad0: [4]u8,
+    _pad4: [4]u8,
     pairs: ^PxContactPair,
     nbPairs: _c.uint32_t,
-    _pad1: [4]u8,
+    _pad7: [4]u8,
 }
+#assert(size_of(PxContactPairHeader) == 48, "Wrong size for type PxContactPairHeader, expected 48")
 
 PxContactPairPoint :: struct {
     position: PxVec3,
@@ -3682,6 +3603,7 @@ PxContactPairPoint :: struct {
     impulse: PxVec3,
     internalFaceIndex1: _c.uint32_t,
 }
+#assert(size_of(PxContactPairPoint) == 48, "Wrong size for type PxContactPairPoint, expected 48")
 
 PxContactPair :: struct {
     shapes: [2]^PxShape,
@@ -3695,8 +3617,9 @@ PxContactPair :: struct {
     flags: _c.uint16_t,
     events: _c.uint16_t,
     internalData: [2]_c.uint32_t,
-    _pad0: [4]u8,
+    _pad11: [4]u8,
 }
+#assert(size_of(PxContactPair) == 64, "Wrong size for type PxContactPair, expected 64")
 
 PxTriggerPair :: struct {
     triggerShape: ^PxShape,
@@ -3705,15 +3628,17 @@ PxTriggerPair :: struct {
     otherActor: ^PxActor,
     status: _c.int32_t,
     flags: _c.uint8_t,
-    _pad0: [3]u8,
+    _pad6: [3]u8,
 }
+#assert(size_of(PxTriggerPair) == 40, "Wrong size for type PxTriggerPair, expected 40")
 
 PxConstraintInfo :: struct {
     constraint: ^PxConstraint,
     externalReference: rawptr,
     type: _c.uint32_t,
-    _pad0: [4]u8,
+    _pad3: [4]u8,
 }
+#assert(size_of(PxConstraintInfo) == 24, "Wrong size for type PxConstraintInfo, expected 24")
 
 PxSimulationEventCallback :: struct {
     vtable_: rawptr,
@@ -3727,17 +3652,18 @@ PxFEMParameters :: struct {
     selfCollisionFilterDistance: _c.float,
     selfCollisionStressTolerance: _c.float,
 }
+#assert(size_of(PxFEMParameters) == 24, "Wrong size for type PxFEMParameters, expected 24")
 
 PxPruningStructure :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-}
+    using _: PxBase,
+};
 
 PxExtendedVec3 :: struct {
     x: _c.double,
     y: _c.double,
     z: _c.double,
 }
+#assert(size_of(PxExtendedVec3) == 24, "Wrong size for type PxExtendedVec3, expected 24")
 
 PxObstacle :: struct {
     _pad0: [8]u8,
@@ -3745,24 +3671,21 @@ PxObstacle :: struct {
     mPos: PxExtendedVec3,
     mRot: PxQuat,
 }
+#assert(size_of(PxObstacle) == 56, "Wrong size for type PxObstacle, expected 56")
 
 PxBoxObstacle :: struct {
-    _pad0: [8]u8,
-    mUserData: rawptr,
-    mPos: PxExtendedVec3,
-    mRot: PxQuat,
+    using _: PxObstacle,
     mHalfExtents: PxVec3,
-    _pad1: [4]u8,
+    _pad9: [4]u8,
 }
+#assert(size_of(PxBoxObstacle) == 72, "Wrong size for type PxBoxObstacle, expected 72")
 
 PxCapsuleObstacle :: struct {
-    _pad0: [8]u8,
-    mUserData: rawptr,
-    mPos: PxExtendedVec3,
-    mRot: PxQuat,
+    using _: PxObstacle,
     mHalfHeight: _c.float,
     mRadius: _c.float,
 }
+#assert(size_of(PxCapsuleObstacle) == 64, "Wrong size for type PxCapsuleObstacle, expected 64")
 
 PxObstacleContext :: struct {
     vtable_: rawptr,
@@ -3770,7 +3693,7 @@ PxObstacleContext :: struct {
 
 PxControllerState :: struct {
     deltaXP: PxVec3,
-    _pad0: [4]u8,
+    _pad1: [4]u8,
     touchedShape: ^PxShape,
     touchedActor: ^PxRigidActor,
     touchedObstacleHandle: _c.uint32_t,
@@ -3778,8 +3701,9 @@ PxControllerState :: struct {
     standOnAnotherCCT: _c.bool,
     standOnObstacle: _c.bool,
     isMovingUp: _c.bool,
-    _pad1: [5]u8,
+    _pad9: [5]u8,
 }
+#assert(size_of(PxControllerState) == 48, "Wrong size for type PxControllerState, expected 48")
 
 PxControllerStats :: struct {
     nbIterations: _c.uint16_t,
@@ -3787,6 +3711,7 @@ PxControllerStats :: struct {
     nbPartialUpdates: _c.uint16_t,
     nbTessellation: _c.uint16_t,
 }
+#assert(size_of(PxControllerStats) == 8, "Wrong size for type PxControllerStats, expected 8")
 
 PxControllerHit :: struct {
     controller: ^PxController,
@@ -3794,41 +3719,30 @@ PxControllerHit :: struct {
     worldNormal: PxVec3,
     dir: PxVec3,
     length: _c.float,
-    _pad0: [4]u8,
+    _pad5: [4]u8,
 }
+#assert(size_of(PxControllerHit) == 64, "Wrong size for type PxControllerHit, expected 64")
 
 PxControllerShapeHit :: struct {
-    controller: ^PxController,
-    worldPos: PxExtendedVec3,
-    worldNormal: PxVec3,
-    dir: PxVec3,
-    length: _c.float,
-    _pad0: [4]u8,
+    using _: PxControllerHit,
     shape: ^PxShape,
     actor: ^PxRigidActor,
     triangleIndex: _c.uint32_t,
-    _pad1: [4]u8,
+    _pad15: [4]u8,
 }
+#assert(size_of(PxControllerShapeHit) == 88, "Wrong size for type PxControllerShapeHit, expected 88")
 
 PxControllersHit :: struct {
-    controller: ^PxController,
-    worldPos: PxExtendedVec3,
-    worldNormal: PxVec3,
-    dir: PxVec3,
-    length: _c.float,
-    _pad0: [4]u8,
+    using _: PxControllerHit,
     other: ^PxController,
 }
+#assert(size_of(PxControllersHit) == 72, "Wrong size for type PxControllersHit, expected 72")
 
 PxControllerObstacleHit :: struct {
-    controller: ^PxController,
-    worldPos: PxExtendedVec3,
-    worldNormal: PxVec3,
-    dir: PxVec3,
-    length: _c.float,
-    _pad0: [4]u8,
+    using _: PxControllerHit,
     userData: rawptr,
 }
+#assert(size_of(PxControllerObstacleHit) == 72, "Wrong size for type PxControllerObstacleHit, expected 72")
 
 PxUserControllerHitReport :: struct {
     vtable_: rawptr,
@@ -3842,12 +3756,12 @@ PxControllerFilters :: struct {
     mFilterData: ^PxFilterData,
     mFilterCallback: ^PxQueryFilterCallback,
     mFilterFlags: _c.uint16_t,
-    _pad0: [6]u8,
+    _pad3: [6]u8,
     mCCTFilterCallback: ^PxControllerFilterCallback,
 }
+#assert(size_of(PxControllerFilters) == 32, "Wrong size for type PxControllerFilters, expected 32")
 
 PxControllerDesc :: struct {
-    _vtable: rawptr,
     _pad0: [8]u8,
     position: PxExtendedVec3,
     upDirection: PxVec3,
@@ -3859,87 +3773,46 @@ PxControllerDesc :: struct {
     density: _c.float,
     scaleCoeff: _c.float,
     volumeGrowth: _c.float,
-    _pad1: [4]u8,
+    _pad11: [4]u8,
     reportCallback: ^PxUserControllerHitReport,
     behaviorCallback: ^PxControllerBehaviorCallback,
     nonWalkableMode: _c.int32_t,
-    _pad2: [4]u8,
+    _pad15: [4]u8,
     material: ^PxMaterial,
     registerDeletionListener: _c.bool,
     clientID: _c.uint8_t,
-    _pad3: [6]u8,
+    _pad19: [6]u8,
     userData: rawptr,
-    _pad4: [8]u8,
+    _pad21: [8]u8,
 }
+#assert(size_of(PxControllerDesc) == 136, "Wrong size for type PxControllerDesc, expected 136")
 
 PxController :: struct {
     vtable_: rawptr,
 };
 
 PxBoxControllerDesc :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-    position: PxExtendedVec3,
-    upDirection: PxVec3,
-    slopeLimit: _c.float,
-    invisibleWallHeight: _c.float,
-    maxJumpHeight: _c.float,
-    contactOffset: _c.float,
-    stepOffset: _c.float,
-    density: _c.float,
-    scaleCoeff: _c.float,
-    volumeGrowth: _c.float,
-    _pad1: [4]u8,
-    reportCallback: ^PxUserControllerHitReport,
-    behaviorCallback: ^PxControllerBehaviorCallback,
-    nonWalkableMode: _c.int32_t,
-    _pad2: [4]u8,
-    material: ^PxMaterial,
-    registerDeletionListener: _c.bool,
-    clientID: _c.uint8_t,
-    _pad3: [6]u8,
-    userData: rawptr,
-    _pad4: [4]u8,
+    using _: PxControllerDesc,
     halfHeight: _c.float,
     halfSideExtent: _c.float,
     halfForwardExtent: _c.float,
 }
+#assert(size_of(PxBoxControllerDesc) == 144, "Wrong size for type PxBoxControllerDesc, expected 144")
 
 PxBoxController :: struct {
-    vtable_: rawptr,
+    using _: PxController,
 };
 
 PxCapsuleControllerDesc :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-    position: PxExtendedVec3,
-    upDirection: PxVec3,
-    slopeLimit: _c.float,
-    invisibleWallHeight: _c.float,
-    maxJumpHeight: _c.float,
-    contactOffset: _c.float,
-    stepOffset: _c.float,
-    density: _c.float,
-    scaleCoeff: _c.float,
-    volumeGrowth: _c.float,
-    _pad1: [4]u8,
-    reportCallback: ^PxUserControllerHitReport,
-    behaviorCallback: ^PxControllerBehaviorCallback,
-    nonWalkableMode: _c.int32_t,
-    _pad2: [4]u8,
-    material: ^PxMaterial,
-    registerDeletionListener: _c.bool,
-    clientID: _c.uint8_t,
-    _pad3: [6]u8,
-    userData: rawptr,
-    _pad4: [4]u8,
+    using _: PxControllerDesc,
     radius: _c.float,
     height: _c.float,
     climbingMode: _c.int32_t,
 }
+#assert(size_of(PxCapsuleControllerDesc) == 144, "Wrong size for type PxCapsuleControllerDesc, expected 144")
 
 PxCapsuleController :: struct {
-    vtable_: rawptr,
+    using _: PxController,
 };
 
 PxControllerBehaviorCallback :: struct {
@@ -3955,6 +3828,7 @@ PxDim3 :: struct {
     y: _c.uint32_t,
     z: _c.uint32_t,
 }
+#assert(size_of(PxDim3) == 12, "Wrong size for type PxDim3, expected 12")
 
 PxSDFDesc :: struct {
     sdf: PxBoundedData,
@@ -3972,6 +3846,7 @@ PxSDFDesc :: struct {
     narrowBandThicknessRelativeToSdfBoundsDiagonal: _c.float,
     numThreadsForSdfConstruction: _c.uint32_t,
 }
+#assert(size_of(PxSDFDesc) == 160, "Wrong size for type PxSDFDesc, expected 160")
 
 PxConvexMeshDesc :: struct {
     points: PxBoundedData,
@@ -3983,14 +3858,14 @@ PxConvexMeshDesc :: struct {
     quantizedCount: _c.uint16_t,
     sdfDesc: ^PxSDFDesc,
 }
+#assert(size_of(PxConvexMeshDesc) == 88, "Wrong size for type PxConvexMeshDesc, expected 88")
 
 PxTriangleMeshDesc :: struct {
-    points: PxBoundedData,
-    triangles: PxBoundedData,
-    flags: _c.uint16_t,
-    _pad0: [22]u8,
+    using _: PxSimpleTriangleMesh,
+    _pad7: [16]u8,
     sdfDesc: ^PxSDFDesc,
 }
+#assert(size_of(PxTriangleMeshDesc) == 80, "Wrong size for type PxTriangleMeshDesc, expected 80")
 
 PxTetrahedronMeshDesc :: struct {
     _pad0: [16]u8,
@@ -3998,32 +3873,36 @@ PxTetrahedronMeshDesc :: struct {
     tetrahedrons: PxBoundedData,
     flags: _c.uint16_t,
     tetsPerElement: _c.uint16_t,
-    _pad1: [4]u8,
+    _pad5: [4]u8,
 }
+#assert(size_of(PxTetrahedronMeshDesc) == 72, "Wrong size for type PxTetrahedronMeshDesc, expected 72")
 
 PxSoftBodySimulationDataDesc :: struct {
     vertexToTet: PxBoundedData,
 }
+#assert(size_of(PxSoftBodySimulationDataDesc) == 24, "Wrong size for type PxSoftBodySimulationDataDesc, expected 24")
 
 PxBVH34MidphaseDesc :: struct {
     numPrimsPerLeaf: _c.uint32_t,
     buildStrategy: _c.int32_t,
     quantized: _c.bool,
-    _pad0: [3]u8,
+    _pad3: [3]u8,
 }
+#assert(size_of(PxBVH34MidphaseDesc) == 12, "Wrong size for type PxBVH34MidphaseDesc, expected 12")
 
 PxMidphaseDesc :: struct {
     _pad0: [16]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxMidphaseDesc) == 16, "Wrong size for type PxMidphaseDesc, expected 16")
 
 PxBVHDesc :: struct {
     bounds: PxBoundedData,
     enlargement: _c.float,
     numPrimsPerLeaf: _c.uint32_t,
     buildStrategy: _c.int32_t,
-    _pad0: [4]u8,
+    _pad4: [4]u8,
 }
+#assert(size_of(PxBVHDesc) == 40, "Wrong size for type PxBVHDesc, expected 40")
 
 PxCookingParams :: struct {
     areaTestEpsilon: _c.float,
@@ -4032,7 +3911,7 @@ PxCookingParams :: struct {
     suppressTriangleMeshRemapTable: _c.bool,
     buildTriangleAdjacencies: _c.bool,
     buildGPUData: _c.bool,
-    _pad0: [1]u8,
+    _pad6: [1]u8,
     scale: PxTolerancesScale,
     meshPreprocessParams: _c.uint32_t,
     meshWeldTolerance: _c.float,
@@ -4040,47 +3919,51 @@ PxCookingParams :: struct {
     gaussMapLimit: _c.uint32_t,
     maxWeightRatioInTet: _c.float,
 }
+#assert(size_of(PxCookingParams) == 56, "Wrong size for type PxCookingParams, expected 56")
 
 PxDefaultMemoryOutputStream :: struct {
-    _vtable: rawptr,
+    using _: PxOutputStream,
     _pad0: [32]u8,
 }
+#assert(size_of(PxDefaultMemoryOutputStream) == 32, "Wrong size for type PxDefaultMemoryOutputStream, expected 32")
 
 PxDefaultMemoryInputData :: struct {
-    _vtable: rawptr,
+    using _: PxInputData,
     _pad0: [32]u8,
 }
+#assert(size_of(PxDefaultMemoryInputData) == 32, "Wrong size for type PxDefaultMemoryInputData, expected 32")
 
 PxDefaultFileOutputStream :: struct {
-    _vtable: rawptr,
+    using _: PxOutputStream,
     _pad0: [16]u8,
 }
+#assert(size_of(PxDefaultFileOutputStream) == 16, "Wrong size for type PxDefaultFileOutputStream, expected 16")
 
 PxDefaultFileInputData :: struct {
-    _vtable: rawptr,
+    using _: PxInputData,
     _pad0: [24]u8,
 }
+#assert(size_of(PxDefaultFileInputData) == 24, "Wrong size for type PxDefaultFileInputData, expected 24")
 
 PxDefaultAllocator :: struct {
-    vtable_: rawptr,
+    using _: PxAllocatorCallback,
 };
 
 PxJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
+    using _: PxBase,
     userData: rawptr,
 }
+#assert(size_of(PxJoint) == 24, "Wrong size for type PxJoint, expected 24")
 
 PxSpring :: struct {
     stiffness: _c.float,
     damping: _c.float,
 }
+#assert(size_of(PxSpring) == 8, "Wrong size for type PxSpring, expected 8")
 
 PxDistanceJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxJacobianRow :: struct {
     linear0: PxVec3,
@@ -4088,18 +3971,15 @@ PxJacobianRow :: struct {
     angular0: PxVec3,
     angular1: PxVec3,
 }
+#assert(size_of(PxJacobianRow) == 48, "Wrong size for type PxJacobianRow, expected 48")
 
 PxContactJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxFixedJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxJointLimitParameters :: struct {
     restitution: _c.float,
@@ -4108,100 +3988,74 @@ PxJointLimitParameters :: struct {
     damping: _c.float,
     contactDistance_deprecated: _c.float,
 }
+#assert(size_of(PxJointLimitParameters) == 20, "Wrong size for type PxJointLimitParameters, expected 20")
 
 PxJointLinearLimit :: struct {
-    restitution: _c.float,
-    bounceThreshold: _c.float,
-    stiffness: _c.float,
-    damping: _c.float,
-    contactDistance_deprecated: _c.float,
+    using _: PxJointLimitParameters,
     value: _c.float,
 }
+#assert(size_of(PxJointLinearLimit) == 24, "Wrong size for type PxJointLinearLimit, expected 24")
 
 PxJointLinearLimitPair :: struct {
-    restitution: _c.float,
-    bounceThreshold: _c.float,
-    stiffness: _c.float,
-    damping: _c.float,
-    contactDistance_deprecated: _c.float,
+    using _: PxJointLimitParameters,
     upper: _c.float,
     lower: _c.float,
 }
+#assert(size_of(PxJointLinearLimitPair) == 28, "Wrong size for type PxJointLinearLimitPair, expected 28")
 
 PxJointAngularLimitPair :: struct {
-    restitution: _c.float,
-    bounceThreshold: _c.float,
-    stiffness: _c.float,
-    damping: _c.float,
-    contactDistance_deprecated: _c.float,
+    using _: PxJointLimitParameters,
     upper: _c.float,
     lower: _c.float,
 }
+#assert(size_of(PxJointAngularLimitPair) == 28, "Wrong size for type PxJointAngularLimitPair, expected 28")
 
 PxJointLimitCone :: struct {
-    restitution: _c.float,
-    bounceThreshold: _c.float,
-    stiffness: _c.float,
-    damping: _c.float,
-    contactDistance_deprecated: _c.float,
+    using _: PxJointLimitParameters,
     yAngle: _c.float,
     zAngle: _c.float,
 }
+#assert(size_of(PxJointLimitCone) == 28, "Wrong size for type PxJointLimitCone, expected 28")
 
 PxJointLimitPyramid :: struct {
-    restitution: _c.float,
-    bounceThreshold: _c.float,
-    stiffness: _c.float,
-    damping: _c.float,
-    contactDistance_deprecated: _c.float,
+    using _: PxJointLimitParameters,
     yAngleMin: _c.float,
     yAngleMax: _c.float,
     zAngleMin: _c.float,
     zAngleMax: _c.float,
 }
+#assert(size_of(PxJointLimitPyramid) == 36, "Wrong size for type PxJointLimitPyramid, expected 36")
 
 PxPrismaticJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxRevoluteJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxSphericalJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxD6JointDrive :: struct {
-    stiffness: _c.float,
-    damping: _c.float,
+    using _: PxSpring,
     forceLimit: _c.float,
     flags: _c.uint32_t,
 }
+#assert(size_of(PxD6JointDrive) == 16, "Wrong size for type PxD6JointDrive, expected 16")
 
 PxD6Joint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxGearJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxRackAndPinionJoint :: struct {
-    _vtable: rawptr,
-    _pad0: [16]u8,
-    userData: rawptr,
-}
+    using _: PxJoint,
+};
 
 PxGroupsMask :: struct {
     bits0: _c.uint16_t,
@@ -4209,76 +4063,77 @@ PxGroupsMask :: struct {
     bits2: _c.uint16_t,
     bits3: _c.uint16_t,
 }
+#assert(size_of(PxGroupsMask) == 8, "Wrong size for type PxGroupsMask, expected 8")
 
 PxDefaultErrorCallback :: struct {
-    vtable_: rawptr,
+    using _: PxErrorCallback,
 };
 
 PxRigidActorExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxRigidActorExt) == 1, "Wrong size for type PxRigidActorExt, expected 1")
 
 PxMassProperties :: struct {
     inertiaTensor: PxMat33,
     centerOfMass: PxVec3,
     mass: _c.float,
 }
+#assert(size_of(PxMassProperties) == 52, "Wrong size for type PxMassProperties, expected 52")
 
 PxRigidBodyExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxRigidBodyExt) == 1, "Wrong size for type PxRigidBodyExt, expected 1")
 
 PxShapeExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxShapeExt) == 1, "Wrong size for type PxShapeExt, expected 1")
 
 PxMeshOverlapUtil :: struct {
     _pad0: [1040]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxMeshOverlapUtil) == 1040, "Wrong size for type PxMeshOverlapUtil, expected 1040")
 
-PxBinaryConverter :: struct {
-    _unused: [0]u8,
-}
+PxBinaryConverter :: distinct rawptr 
 
 PxXmlMiscParameter :: struct {
     upVector: PxVec3,
     scale: PxTolerancesScale,
 }
+#assert(size_of(PxXmlMiscParameter) == 20, "Wrong size for type PxXmlMiscParameter, expected 20")
 
 PxSerialization :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSerialization) == 1, "Wrong size for type PxSerialization, expected 1")
 
 PxDefaultCpuDispatcher :: struct {
-    vtable_: rawptr,
+    using _: PxCpuDispatcher,
 };
 
 PxStringTableExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxStringTableExt) == 1, "Wrong size for type PxStringTableExt, expected 1")
 
 PxBroadPhaseExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxBroadPhaseExt) == 1, "Wrong size for type PxBroadPhaseExt, expected 1")
 
 PxSceneQueryExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSceneQueryExt) == 1, "Wrong size for type PxSceneQueryExt, expected 1")
 
 PxBatchQueryExt :: struct {
     vtable_: rawptr,
 };
 
 PxCustomSceneQuerySystem :: struct {
-    vtable_: rawptr,
+    using _: PxSceneQuerySystem,
 };
 
 PxCustomSceneQuerySystemAdapter :: struct {
@@ -4287,92 +4142,73 @@ PxCustomSceneQuerySystemAdapter :: struct {
 
 PxSamplingExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxSamplingExt) == 1, "Wrong size for type PxSamplingExt, expected 1")
 
 PxPoissonSampler :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-}
+    using _: PxUserAllocated,
+};
 
 PxTriangleMeshPoissonSampler :: struct {
-    _vtable: rawptr,
-    _pad0: [8]u8,
-}
+    using _: PxPoissonSampler,
+};
 
 PxTetrahedronMeshExt :: struct {
     _pad0: [1]u8,
-    unused0: [1]u8,
 }
+#assert(size_of(PxTetrahedronMeshExt) == 1, "Wrong size for type PxTetrahedronMeshExt, expected 1")
 
 PxRepXObject :: struct {
     typeName: ^_c.char,
     serializable: rawptr,
     id: _c.uint64_t,
 }
+#assert(size_of(PxRepXObject) == 24, "Wrong size for type PxRepXObject, expected 24")
 
-PxCooking :: struct {
-    _unused: [0]u8,
-}
+PxCooking :: distinct rawptr 
 
 PxRepXInstantiationArgs :: struct {
     _pad0: [8]u8,
     cooker: ^PxCooking,
     stringTable: ^PxStringTable,
 }
+#assert(size_of(PxRepXInstantiationArgs) == 24, "Wrong size for type PxRepXInstantiationArgs, expected 24")
 
-XmlMemoryAllocator :: struct {
-    _unused: [0]u8,
-}
+XmlMemoryAllocator :: distinct rawptr 
 
-XmlWriter :: struct {
-    _unused: [0]u8,
-}
+XmlWriter :: distinct rawptr 
 
-XmlReader :: struct {
-    _unused: [0]u8,
-}
+XmlReader :: distinct rawptr 
 
-MemoryBuffer :: struct {
-    _unused: [0]u8,
-}
+MemoryBuffer :: distinct rawptr 
 
 PxRepXSerializer :: struct {
     vtable_: rawptr,
 };
 
-PxVehicleWheels4SimData :: struct {
-    _unused: [0]u8,
-}
+PxVehicleWheels4SimData :: distinct rawptr 
 
-PxVehicleWheels4DynData :: struct {
-    _unused: [0]u8,
-}
+PxVehicleWheels4DynData :: distinct rawptr 
 
-PxVehicleTireForceCalculator :: struct {
-    _unused: [0]u8,
-}
+PxVehicleTireForceCalculator :: distinct rawptr 
 
-PxVehicleDrivableSurfaceToTireFrictionPairs :: struct {
-    _unused: [0]u8,
-}
+PxVehicleDrivableSurfaceToTireFrictionPairs :: distinct rawptr 
 
-PxVehicleTelemetryData :: struct {
-    _unused: [0]u8,
-}
+PxVehicleTelemetryData :: distinct rawptr 
 
 PxPvd :: struct {
-    vtable_: rawptr,
+    using _: PxProfilerCallback,
 };
 
 PxPvdTransport :: struct {
     vtable_: rawptr,
 };
-when ODIN_OS == .Linux do foreign import libphysx "libphysx.a"
+when ODIN_OS == .Linux do foreign import libphysx "physx.so"
 
 @(default_calling_convention = "c")
 foreign libphysx {
-    PxAllocatorCallback_delete :: proc(self_: ^PxAllocatorCallback) ---
+    @(link_name = "PxAllocatorCallback_delete")
+    allocator_callback_delete :: proc(self_: ^PxAllocatorCallback) ---
 
     /// Allocates size bytes of memory, which must be 16-byte aligned.
     ///
@@ -4384,54 +4220,70 @@ foreign libphysx {
     /// and physics processing thread(s).
     ///
     /// The allocated block of memory.
-    PxAllocatorCallback_allocate_mut :: proc(self_: ^PxAllocatorCallback, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxAllocatorCallback_allocate_mut")
+    allocator_callback_allocate_mut :: proc(self_: ^PxAllocatorCallback, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t) -> rawptr ---
 
     /// Frees memory previously allocated by allocate().
     ///
     /// Threading:
     /// This function should be thread safe as it can be called in the context of the user thread
     /// and physics processing thread(s).
-    PxAllocatorCallback_deallocate_mut :: proc(self_: ^PxAllocatorCallback, ptr: rawptr) ---
+    @(link_name = "PxAllocatorCallback_deallocate_mut")
+    allocator_callback_deallocate_mut :: proc(self_: ^PxAllocatorCallback, ptr: rawptr) ---
 
-    PxAssertHandler_delete :: proc(self_: ^PxAssertHandler) ---
+    @(link_name = "PxAssertHandler_delete")
+    assert_handler_delete :: proc(self_: ^PxAssertHandler) ---
 
-    phys_PxGetAssertHandler :: proc() -> ^PxAssertHandler ---
+    @(link_name = "phys_PxGetAssertHandler")
+    get_assert_handler :: proc() -> ^PxAssertHandler ---
 
-    phys_PxSetAssertHandler :: proc(handler: ^PxAssertHandler) ---
+    @(link_name = "phys_PxSetAssertHandler")
+    set_assert_handler :: proc(handler: ^PxAssertHandler) ---
 
     /// Destroys the instance it is called on.
     ///
     /// The operation will fail, if there are still modules referencing the foundation object. Release all dependent modules
     /// prior to calling this method.
-    PxFoundation_release_mut :: proc(self_: ^PxFoundation) ---
+    @(link_name = "PxFoundation_release_mut")
+    foundation_release_mut :: proc(self_: ^PxFoundation) ---
 
     /// retrieves error callback
-    PxFoundation_getErrorCallback_mut :: proc(self_: ^PxFoundation) -> ^PxErrorCallback ---
+    @(link_name = "PxFoundation_getErrorCallback_mut")
+    foundation_get_error_callback_mut :: proc(self_: ^PxFoundation) -> ^PxErrorCallback ---
 
     /// Sets mask of errors to report.
-    PxFoundation_setErrorLevel_mut :: proc(self_: ^PxFoundation, mask: _c.uint32_t) ---
+    @(link_name = "PxFoundation_setErrorLevel_mut")
+    foundation_set_error_level_mut :: proc(self_: ^PxFoundation, mask: _c.uint32_t) ---
 
     /// Retrieves mask of errors to be reported.
-    PxFoundation_getErrorLevel :: proc(self_: ^PxFoundation) -> _c.uint32_t ---
+    @(link_name = "PxFoundation_getErrorLevel")
+    foundation_get_error_level :: proc(self_: ^PxFoundation) -> _c.uint32_t ---
 
     /// Retrieves the allocator this object was created with.
-    PxFoundation_getAllocatorCallback_mut :: proc(self_: ^PxFoundation) -> ^PxAllocatorCallback ---
+    @(link_name = "PxFoundation_getAllocatorCallback_mut")
+    foundation_get_allocator_callback_mut :: proc(self_: ^PxFoundation) -> ^PxAllocatorCallback ---
 
     /// Retrieves if allocation names are being passed to allocator callback.
-    PxFoundation_getReportAllocationNames :: proc(self_: ^PxFoundation) -> _c.bool ---
+    @(link_name = "PxFoundation_getReportAllocationNames")
+    foundation_get_report_allocation_names :: proc(self_: ^PxFoundation) -> _c.bool ---
 
     /// Set if allocation names are being passed to allocator callback.
     ///
     /// Enabled by default in debug and checked build, disabled by default in profile and release build.
-    PxFoundation_setReportAllocationNames_mut :: proc(self_: ^PxFoundation, value: _c.bool) ---
+    @(link_name = "PxFoundation_setReportAllocationNames_mut")
+    foundation_set_report_allocation_names_mut :: proc(self_: ^PxFoundation, value: _c.bool) ---
 
-    PxFoundation_registerAllocationListener_mut :: proc(self_: ^PxFoundation, listener: ^PxAllocationListener) ---
+    @(link_name = "PxFoundation_registerAllocationListener_mut")
+    foundation_register_allocation_listener_mut :: proc(self_: ^PxFoundation, listener: ^PxAllocationListener) ---
 
-    PxFoundation_deregisterAllocationListener_mut :: proc(self_: ^PxFoundation, listener: ^PxAllocationListener) ---
+    @(link_name = "PxFoundation_deregisterAllocationListener_mut")
+    foundation_deregister_allocation_listener_mut :: proc(self_: ^PxFoundation, listener: ^PxAllocationListener) ---
 
-    PxFoundation_registerErrorCallback_mut :: proc(self_: ^PxFoundation, callback: ^PxErrorCallback) ---
+    @(link_name = "PxFoundation_registerErrorCallback_mut")
+    foundation_register_error_callback_mut :: proc(self_: ^PxFoundation, callback: ^PxErrorCallback) ---
 
-    PxFoundation_deregisterErrorCallback_mut :: proc(self_: ^PxFoundation, callback: ^PxErrorCallback) ---
+    @(link_name = "PxFoundation_deregisterErrorCallback_mut")
+    foundation_deregister_error_callback_mut :: proc(self_: ^PxFoundation, callback: ^PxErrorCallback) ---
 
     /// Creates an instance of the foundation class
     ///
@@ -4440,219 +4292,293 @@ foreign libphysx {
     /// returned.
     ///
     /// Foundation instance on success, NULL if operation failed
-    phys_PxCreateFoundation :: proc(version: _c.uint32_t, allocator: ^PxAllocatorCallback, errorCallback: ^PxErrorCallback) -> ^PxFoundation ---
+    @(link_name = "phys_PxCreateFoundation")
+    create_foundation :: proc(version: _c.uint32_t, allocator: ^PxAllocatorCallback, errorCallback: ^PxErrorCallback) -> ^PxFoundation ---
 
-    phys_PxSetFoundationInstance :: proc(foundation: ^PxFoundation) ---
+    @(link_name = "phys_PxSetFoundationInstance")
+    set_foundation_instance :: proc(foundation: ^PxFoundation) ---
 
-    phys_PxGetFoundation :: proc() -> ^PxFoundation ---
+    @(link_name = "phys_PxGetFoundation")
+    get_foundation :: proc() -> ^PxFoundation ---
 
     /// Get the callback that will be used for all profiling.
-    phys_PxGetProfilerCallback :: proc() -> ^PxProfilerCallback ---
+    @(link_name = "phys_PxGetProfilerCallback")
+    get_profiler_callback :: proc() -> ^PxProfilerCallback ---
 
     /// Set the callback that will be used for all profiling.
-    phys_PxSetProfilerCallback :: proc(profiler: ^PxProfilerCallback) ---
+    @(link_name = "phys_PxSetProfilerCallback")
+    set_profiler_callback :: proc(profiler: ^PxProfilerCallback) ---
 
     /// Get the allocator callback
-    phys_PxGetAllocatorCallback :: proc() -> ^PxAllocatorCallback ---
+    @(link_name = "phys_PxGetAllocatorCallback")
+    get_allocator_callback :: proc() -> ^PxAllocatorCallback ---
 
     /// Get the broadcasting allocator callback
-    phys_PxGetBroadcastAllocator :: proc() -> ^PxAllocatorCallback ---
+    @(link_name = "phys_PxGetBroadcastAllocator")
+    get_broadcast_allocator :: proc() -> ^PxAllocatorCallback ---
 
     /// Get the error callback
-    phys_PxGetErrorCallback :: proc() -> ^PxErrorCallback ---
+    @(link_name = "phys_PxGetErrorCallback")
+    get_error_callback :: proc() -> ^PxErrorCallback ---
 
     /// Get the broadcasting error callback
-    phys_PxGetBroadcastError :: proc() -> ^PxErrorCallback ---
+    @(link_name = "phys_PxGetBroadcastError")
+    get_broadcast_error :: proc() -> ^PxErrorCallback ---
 
     /// Get the warn once timestamp
-    phys_PxGetWarnOnceTimeStamp :: proc() -> _c.uint32_t ---
+    @(link_name = "phys_PxGetWarnOnceTimeStamp")
+    get_warn_once_time_stamp :: proc() -> _c.uint32_t ---
 
     /// Decrement the ref count of PxFoundation
-    phys_PxDecFoundationRefCount :: proc() ---
+    @(link_name = "phys_PxDecFoundationRefCount")
+    dec_foundation_ref_count :: proc() ---
 
     /// Increment the ref count of PxFoundation
-    phys_PxIncFoundationRefCount :: proc() ---
+    @(link_name = "phys_PxIncFoundationRefCount")
+    inc_foundation_ref_count :: proc() ---
 
-    PxAllocator_new :: proc(anon_param0: ^_c.char) -> PxAllocator ---
+    @(link_name = "PxAllocator_new")
+    allocator_new :: proc(anon_param0: ^_c.char) -> PxAllocator ---
 
-    PxAllocator_allocate_mut :: proc(self_: ^PxAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxAllocator_allocate_mut")
+    allocator_allocate_mut :: proc(self_: ^PxAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
 
-    PxAllocator_deallocate_mut :: proc(self_: ^PxAllocator, ptr: rawptr) ---
+    @(link_name = "PxAllocator_deallocate_mut")
+    allocator_deallocate_mut :: proc(self_: ^PxAllocator, ptr: rawptr) ---
 
-    PxRawAllocator_new :: proc(anon_param0: ^_c.char) -> PxRawAllocator ---
+    @(link_name = "PxRawAllocator_new")
+    raw_allocator_new :: proc(anon_param0: ^_c.char) -> PxRawAllocator ---
 
-    PxRawAllocator_allocate_mut :: proc(self_: ^PxRawAllocator, size: _c.size_t, anon_param1: ^_c.char, anon_param2: _c.int32_t) -> rawptr ---
+    @(link_name = "PxRawAllocator_allocate_mut")
+    raw_allocator_allocate_mut :: proc(self_: ^PxRawAllocator, size: _c.size_t, anon_param1: ^_c.char, anon_param2: _c.int32_t) -> rawptr ---
 
-    PxRawAllocator_deallocate_mut :: proc(self_: ^PxRawAllocator, ptr: rawptr) ---
+    @(link_name = "PxRawAllocator_deallocate_mut")
+    raw_allocator_deallocate_mut :: proc(self_: ^PxRawAllocator, ptr: rawptr) ---
 
-    PxVirtualAllocatorCallback_delete :: proc(self_: ^PxVirtualAllocatorCallback) ---
+    @(link_name = "PxVirtualAllocatorCallback_delete")
+    virtual_allocator_callback_delete :: proc(self_: ^PxVirtualAllocatorCallback) ---
 
-    PxVirtualAllocatorCallback_allocate_mut :: proc(self_: ^PxVirtualAllocatorCallback, size: _c.size_t, group: _c.int32_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxVirtualAllocatorCallback_allocate_mut")
+    virtual_allocator_callback_allocate_mut :: proc(self_: ^PxVirtualAllocatorCallback, size: _c.size_t, group: _c.int32_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
 
-    PxVirtualAllocatorCallback_deallocate_mut :: proc(self_: ^PxVirtualAllocatorCallback, ptr: rawptr) ---
+    @(link_name = "PxVirtualAllocatorCallback_deallocate_mut")
+    virtual_allocator_callback_deallocate_mut :: proc(self_: ^PxVirtualAllocatorCallback, ptr: rawptr) ---
 
-    PxVirtualAllocator_new :: proc(callback: ^PxVirtualAllocatorCallback, group: _c.int32_t) -> PxVirtualAllocator ---
+    @(link_name = "PxVirtualAllocator_new")
+    virtual_allocator_new :: proc(callback: ^PxVirtualAllocatorCallback, group: _c.int32_t) -> PxVirtualAllocator ---
 
-    PxVirtualAllocator_allocate_mut :: proc(self_: ^PxVirtualAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxVirtualAllocator_allocate_mut")
+    virtual_allocator_allocate_mut :: proc(self_: ^PxVirtualAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
 
-    PxVirtualAllocator_deallocate_mut :: proc(self_: ^PxVirtualAllocator, ptr: rawptr) ---
+    @(link_name = "PxVirtualAllocator_deallocate_mut")
+    virtual_allocator_deallocate_mut :: proc(self_: ^PxVirtualAllocator, ptr: rawptr) ---
 
-    PxTempAllocatorChunk_new :: proc() -> PxTempAllocatorChunk ---
+    @(link_name = "PxTempAllocatorChunk_new")
+    temp_allocator_chunk_new :: proc() -> PxTempAllocatorChunk ---
 
-    PxTempAllocator_new :: proc(anon_param0: ^_c.char) -> PxTempAllocator ---
+    @(link_name = "PxTempAllocator_new")
+    temp_allocator_new :: proc(anon_param0: ^_c.char) -> PxTempAllocator ---
 
-    PxTempAllocator_allocate_mut :: proc(self_: ^PxTempAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxTempAllocator_allocate_mut")
+    temp_allocator_allocate_mut :: proc(self_: ^PxTempAllocator, size: _c.size_t, file: ^_c.char, line: _c.int32_t) -> rawptr ---
 
-    PxTempAllocator_deallocate_mut :: proc(self_: ^PxTempAllocator, ptr: rawptr) ---
+    @(link_name = "PxTempAllocator_deallocate_mut")
+    temp_allocator_deallocate_mut :: proc(self_: ^PxTempAllocator, ptr: rawptr) ---
 
     /// Sets the bytes of the provided buffer to zero.
     ///
     /// Pointer to memory block (same as input)
-    phys_PxMemZero :: proc(dest: rawptr, count: _c.uint32_t) -> rawptr ---
+    @(link_name = "phys_PxMemZero")
+    mem_zero :: proc(dest: rawptr, count: _c.uint32_t) -> rawptr ---
 
     /// Sets the bytes of the provided buffer to the specified value.
     ///
     /// Pointer to memory block (same as input)
-    phys_PxMemSet :: proc(dest: rawptr, c: _c.int32_t, count: _c.uint32_t) -> rawptr ---
+    @(link_name = "phys_PxMemSet")
+    mem_set :: proc(dest: rawptr, c: _c.int32_t, count: _c.uint32_t) -> rawptr ---
 
     /// Copies the bytes of one memory block to another. The memory blocks must not overlap.
     ///
     /// Use [`PxMemMove`] if memory blocks overlap.
     ///
     /// Pointer to destination memory block
-    phys_PxMemCopy :: proc(dest: rawptr, src: rawptr, count: _c.uint32_t) -> rawptr ---
+    @(link_name = "phys_PxMemCopy")
+    mem_copy :: proc(dest: rawptr, src: rawptr, count: _c.uint32_t) -> rawptr ---
 
     /// Copies the bytes of one memory block to another. The memory blocks can overlap.
     ///
     /// Use [`PxMemCopy`] if memory blocks do not overlap.
     ///
     /// Pointer to destination memory block
-    phys_PxMemMove :: proc(dest: rawptr, src: rawptr, count: _c.uint32_t) -> rawptr ---
+    @(link_name = "phys_PxMemMove")
+    mem_move :: proc(dest: rawptr, src: rawptr, count: _c.uint32_t) -> rawptr ---
 
     /// Mark a specified amount of memory with 0xcd pattern. This is used to check that the meta data
     /// definition for serialized classes is complete in checked builds.
-    phys_PxMarkSerializedMemory :: proc(ptr: rawptr, byteSize: _c.uint32_t) ---
+    @(link_name = "phys_PxMarkSerializedMemory")
+    mark_serialized_memory :: proc(ptr: rawptr, byteSize: _c.uint32_t) ---
 
-    phys_PxMemoryBarrier :: proc() ---
+    @(link_name = "phys_PxMemoryBarrier")
+    memory_barrier :: proc() ---
 
     /// Return the index of the highest set bit. Undefined for zero arg.
-    phys_PxHighestSetBitUnsafe :: proc(v: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxHighestSetBitUnsafe")
+    highest_set_bit_unsafe :: proc(v: _c.uint32_t) -> _c.uint32_t ---
 
     /// Return the index of the highest set bit. Undefined for zero arg.
-    phys_PxLowestSetBitUnsafe :: proc(v: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxLowestSetBitUnsafe")
+    lowest_set_bit_unsafe :: proc(v: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the index of the highest set bit. Returns 32 for v=0.
-    phys_PxCountLeadingZeros :: proc(v: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxCountLeadingZeros")
+    count_leading_zeros :: proc(v: _c.uint32_t) -> _c.uint32_t ---
 
     /// Prefetch aligned 64B x86, 32b ARM around
-    phys_PxPrefetchLine :: proc(ptr: rawptr, offset: _c.uint32_t) ---
+    @(link_name = "phys_PxPrefetchLine")
+    prefetch_line :: proc(ptr: rawptr, offset: _c.uint32_t) ---
 
     /// Prefetch
     /// bytes starting at
-    phys_PxPrefetch :: proc(ptr: rawptr, count: _c.uint32_t) ---
+    @(link_name = "phys_PxPrefetch")
+    prefetch :: proc(ptr: rawptr, count: _c.uint32_t) ---
 
-    phys_PxBitCount :: proc(v: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxBitCount")
+    bit_count :: proc(v: _c.uint32_t) -> _c.uint32_t ---
 
-    phys_PxIsPowerOfTwo :: proc(x: _c.uint32_t) -> _c.bool ---
+    @(link_name = "phys_PxIsPowerOfTwo")
+    is_power_of_two :: proc(x: _c.uint32_t) -> _c.bool ---
 
-    phys_PxNextPowerOfTwo :: proc(x: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxNextPowerOfTwo")
+    next_power_of_two :: proc(x: _c.uint32_t) -> _c.uint32_t ---
 
     /// Return the index of the highest set bit. Not valid for zero arg.
-    phys_PxLowestSetBit :: proc(x: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxLowestSetBit")
+    lowest_set_bit :: proc(x: _c.uint32_t) -> _c.uint32_t ---
 
     /// Return the index of the highest set bit. Not valid for zero arg.
-    phys_PxHighestSetBit :: proc(x: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxHighestSetBit")
+    highest_set_bit :: proc(x: _c.uint32_t) -> _c.uint32_t ---
 
-    phys_PxILog2 :: proc(num: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxILog2")
+    i_log2 :: proc(num: _c.uint32_t) -> _c.uint32_t ---
 
     /// default constructor leaves data uninitialized.
-    PxVec3_new :: proc() -> PxVec3 ---
+    @(link_name = "PxVec3_new")
+    vec3_new :: proc() -> PxVec3 ---
 
     /// zero constructor.
-    PxVec3_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec3 ---
+    @(link_name = "PxVec3_new_1")
+    vec3_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec3 ---
 
     /// Assigns scalar parameter to all elements.
     ///
     /// Useful to initialize to zero or one.
-    PxVec3_new_2 :: proc(a: _c.float) -> PxVec3 ---
+    @(link_name = "PxVec3_new_2")
+    vec3_new_2 :: proc(a: _c.float) -> PxVec3 ---
 
     /// Initializes from 3 scalar parameters.
-    PxVec3_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float) -> PxVec3 ---
+    @(link_name = "PxVec3_new_3")
+    vec3_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float) -> PxVec3 ---
 
     /// tests for exact zero vector
-    PxVec3_isZero :: proc(self_: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxVec3_isZero")
+    vec3_is_zero :: proc(self_: ^PxVec3) -> _c.bool ---
 
     /// returns true if all 3 elems of the vector are finite (not NAN or INF, etc.)
-    PxVec3_isFinite :: proc(self_: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxVec3_isFinite")
+    vec3_is_finite :: proc(self_: ^PxVec3) -> _c.bool ---
 
     /// is normalized - used by API parameter validation
-    PxVec3_isNormalized :: proc(self_: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxVec3_isNormalized")
+    vec3_is_normalized :: proc(self_: ^PxVec3) -> _c.bool ---
 
     /// returns the squared magnitude
     ///
     /// Avoids calling PxSqrt()!
-    PxVec3_magnitudeSquared :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_magnitudeSquared")
+    vec3_magnitude_squared :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// returns the magnitude
-    PxVec3_magnitude :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_magnitude")
+    vec3_magnitude :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// returns the scalar product of this and other.
-    PxVec3_dot :: proc(self_: ^PxVec3, v: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_dot")
+    vec3_dot :: proc(self_: ^PxVec3, #by_ptr v: PxVec3) -> _c.float ---
 
     /// cross product
-    PxVec3_cross :: proc(self_: ^PxVec3, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_cross")
+    vec3_cross :: proc(self_: ^PxVec3, #by_ptr v: PxVec3) -> PxVec3 ---
 
     /// returns a unit vector
-    PxVec3_getNormalized :: proc(self_: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_getNormalized")
+    vec3_get_normalized :: proc(self_: ^PxVec3) -> PxVec3 ---
 
     /// normalizes the vector in place
-    PxVec3_normalize_mut :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_normalize_mut")
+    vec3_normalize_mut :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// normalizes the vector in place. Does nothing if vector magnitude is under PX_NORMALIZATION_EPSILON.
     /// Returns vector magnitude if >= PX_NORMALIZATION_EPSILON and 0.0f otherwise.
-    PxVec3_normalizeSafe_mut :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_normalizeSafe_mut")
+    vec3_normalize_safe_mut :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// normalizes the vector in place. Asserts if vector magnitude is under PX_NORMALIZATION_EPSILON.
     /// returns vector magnitude.
-    PxVec3_normalizeFast_mut :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_normalizeFast_mut")
+    vec3_normalize_fast_mut :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// a[i] * b[i], for all i.
-    PxVec3_multiply :: proc(self_: ^PxVec3, a: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_multiply")
+    vec3_multiply :: proc(self_: ^PxVec3, #by_ptr a: PxVec3) -> PxVec3 ---
 
     /// element-wise minimum
-    PxVec3_minimum :: proc(self_: ^PxVec3, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_minimum")
+    vec3_minimum :: proc(self_: ^PxVec3, #by_ptr v: PxVec3) -> PxVec3 ---
 
     /// returns MIN(x, y, z);
-    PxVec3_minElement :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_minElement")
+    vec3_min_element :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// element-wise maximum
-    PxVec3_maximum :: proc(self_: ^PxVec3, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_maximum")
+    vec3_maximum :: proc(self_: ^PxVec3, #by_ptr v: PxVec3) -> PxVec3 ---
 
     /// returns MAX(x, y, z);
-    PxVec3_maxElement :: proc(self_: ^PxVec3) -> _c.float ---
+    @(link_name = "PxVec3_maxElement")
+    vec3_max_element :: proc(self_: ^PxVec3) -> _c.float ---
 
     /// returns absolute values of components;
-    PxVec3_abs :: proc(self_: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxVec3_abs")
+    vec3_abs :: proc(self_: ^PxVec3) -> PxVec3 ---
 
-    PxVec3Padded_new_alloc :: proc() -> ^PxVec3Padded ---
+    @(link_name = "PxVec3Padded_new_alloc")
+    vec3_padded_new_alloc :: proc() -> ^PxVec3Padded ---
 
-    PxVec3Padded_delete :: proc(self_: ^PxVec3Padded) ---
+    @(link_name = "PxVec3Padded_delete")
+    vec3_padded_delete :: proc(self_: ^PxVec3Padded) ---
 
-    PxVec3Padded_new_alloc_1 :: proc(p: ^PxVec3) -> ^PxVec3Padded ---
+    @(link_name = "PxVec3Padded_new_alloc_1")
+    vec3_padded_new_alloc_1 :: proc(#by_ptr p: PxVec3) -> ^PxVec3Padded ---
 
-    PxVec3Padded_new_alloc_2 :: proc(f: _c.float) -> ^PxVec3Padded ---
+    @(link_name = "PxVec3Padded_new_alloc_2")
+    vec3_padded_new_alloc_2 :: proc(f: _c.float) -> ^PxVec3Padded ---
 
     /// Default constructor, does not do any initialization.
-    PxQuat_new :: proc() -> PxQuat ---
+    @(link_name = "PxQuat_new")
+    quat_new :: proc() -> PxQuat ---
 
     /// identity constructor
-    PxQuat_new_1 :: proc(anon_param0: _c.int32_t) -> PxQuat ---
+    @(link_name = "PxQuat_new_1")
+    quat_new_1 :: proc(anon_param0: _c.int32_t) -> PxQuat ---
 
     /// Constructor from a scalar: sets the real part w to the scalar value, and the imaginary parts (x,y,z) to zero
-    PxQuat_new_2 :: proc(r: _c.float) -> PxQuat ---
+    @(link_name = "PxQuat_new_2")
+    quat_new_2 :: proc(r: _c.float) -> PxQuat ---
 
     /// Constructor. Take note of the order of the elements!
-    PxQuat_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, nw: _c.float) -> PxQuat ---
+    @(link_name = "PxQuat_new_3")
+    quat_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, nw: _c.float) -> PxQuat ---
 
     /// Creates from angle-axis representation.
     ///
@@ -4662,288 +4588,380 @@ foreign libphysx {
     ///
     /// Unit:
     /// Radians
-    PxQuat_new_4 :: proc(angleRadians: _c.float, unitAxis: ^PxVec3) -> PxQuat ---
+    @(link_name = "PxQuat_new_4")
+    quat_new_4 :: proc(angleRadians: _c.float, #by_ptr unitAxis: PxVec3) -> PxQuat ---
 
     /// Creates from orientation matrix.
-    PxQuat_new_5 :: proc(m: ^PxMat33) -> PxQuat ---
+    @(link_name = "PxQuat_new_5")
+    quat_new_5 :: proc(#by_ptr m: PxMat33) -> PxQuat ---
 
     /// returns true if quat is identity
-    PxQuat_isIdentity :: proc(self_: ^PxQuat) -> _c.bool ---
+    @(link_name = "PxQuat_isIdentity")
+    quat_is_identity :: proc(self_: ^PxQuat) -> _c.bool ---
 
     /// returns true if all elements are finite (not NAN or INF, etc.)
-    PxQuat_isFinite :: proc(self_: ^PxQuat) -> _c.bool ---
+    @(link_name = "PxQuat_isFinite")
+    quat_is_finite :: proc(self_: ^PxQuat) -> _c.bool ---
 
     /// returns true if finite and magnitude is close to unit
-    PxQuat_isUnit :: proc(self_: ^PxQuat) -> _c.bool ---
+    @(link_name = "PxQuat_isUnit")
+    quat_is_unit :: proc(self_: ^PxQuat) -> _c.bool ---
 
     /// returns true if finite and magnitude is reasonably close to unit to allow for some accumulation of error vs
     /// isValid
-    PxQuat_isSane :: proc(self_: ^PxQuat) -> _c.bool ---
+    @(link_name = "PxQuat_isSane")
+    quat_is_sane :: proc(self_: ^PxQuat) -> _c.bool ---
 
     /// converts this quaternion to angle-axis representation
-    PxQuat_toRadiansAndUnitAxis :: proc(self_: ^PxQuat, angle: ^_c.float, axis: ^PxVec3) ---
+    @(link_name = "PxQuat_toRadiansAndUnitAxis")
+    quat_to_radians_and_unit_axis :: proc(self_: ^PxQuat, angle: ^_c.float, axis: ^PxVec3) ---
 
     /// Gets the angle between this quat and the identity quaternion.
     ///
     /// Unit:
     /// Radians
-    PxQuat_getAngle :: proc(self_: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_getAngle")
+    quat_get_angle :: proc(self_: ^PxQuat) -> _c.float ---
 
     /// Gets the angle between this quat and the argument
     ///
     /// Unit:
     /// Radians
-    PxQuat_getAngle_1 :: proc(self_: ^PxQuat, q: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_getAngle_1")
+    quat_get_angle_1 :: proc(self_: ^PxQuat, #by_ptr q: PxQuat) -> _c.float ---
 
     /// This is the squared 4D vector length, should be 1 for unit quaternions.
-    PxQuat_magnitudeSquared :: proc(self_: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_magnitudeSquared")
+    quat_magnitude_squared :: proc(self_: ^PxQuat) -> _c.float ---
 
     /// returns the scalar product of this and other.
-    PxQuat_dot :: proc(self_: ^PxQuat, v: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_dot")
+    quat_dot :: proc(self_: ^PxQuat, #by_ptr v: PxQuat) -> _c.float ---
 
-    PxQuat_getNormalized :: proc(self_: ^PxQuat) -> PxQuat ---
+    @(link_name = "PxQuat_getNormalized")
+    quat_get_normalized :: proc(self_: ^PxQuat) -> PxQuat ---
 
-    PxQuat_magnitude :: proc(self_: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_magnitude")
+    quat_magnitude :: proc(self_: ^PxQuat) -> _c.float ---
 
     /// maps to the closest unit quaternion.
-    PxQuat_normalize_mut :: proc(self_: ^PxQuat) -> _c.float ---
+    @(link_name = "PxQuat_normalize_mut")
+    quat_normalize_mut :: proc(self_: ^PxQuat) -> _c.float ---
 
-    PxQuat_getConjugate :: proc(self_: ^PxQuat) -> PxQuat ---
+    @(link_name = "PxQuat_getConjugate")
+    quat_get_conjugate :: proc(self_: ^PxQuat) -> PxQuat ---
 
-    PxQuat_getImaginaryPart :: proc(self_: ^PxQuat) -> PxVec3 ---
+    @(link_name = "PxQuat_getImaginaryPart")
+    quat_get_imaginary_part :: proc(self_: ^PxQuat) -> PxVec3 ---
 
     /// brief computes rotation of x-axis
-    PxQuat_getBasisVector0 :: proc(self_: ^PxQuat) -> PxVec3 ---
+    @(link_name = "PxQuat_getBasisVector0")
+    quat_get_basis_vector0 :: proc(self_: ^PxQuat) -> PxVec3 ---
 
     /// brief computes rotation of y-axis
-    PxQuat_getBasisVector1 :: proc(self_: ^PxQuat) -> PxVec3 ---
+    @(link_name = "PxQuat_getBasisVector1")
+    quat_get_basis_vector1 :: proc(self_: ^PxQuat) -> PxVec3 ---
 
     /// brief computes rotation of z-axis
-    PxQuat_getBasisVector2 :: proc(self_: ^PxQuat) -> PxVec3 ---
+    @(link_name = "PxQuat_getBasisVector2")
+    quat_get_basis_vector2 :: proc(self_: ^PxQuat) -> PxVec3 ---
 
     /// rotates passed vec by this (assumed unitary)
-    PxQuat_rotate :: proc(self_: ^PxQuat, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxQuat_rotate")
+    quat_rotate :: proc(self_: ^PxQuat, #by_ptr v: PxVec3) -> PxVec3 ---
 
     /// inverse rotates passed vec by this (assumed unitary)
-    PxQuat_rotateInv :: proc(self_: ^PxQuat, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxQuat_rotateInv")
+    quat_rotate_inv :: proc(self_: ^PxQuat, #by_ptr v: PxVec3) -> PxVec3 ---
 
-    PxTransform_new :: proc() -> PxTransform ---
+    @(link_name = "PxTransform_new")
+    transform_new :: proc() -> PxTransform ---
 
-    PxTransform_new_1 :: proc(position: ^PxVec3) -> PxTransform ---
+    @(link_name = "PxTransform_new_1")
+    transform_new_1 :: proc(#by_ptr position: PxVec3) -> PxTransform ---
 
-    PxTransform_new_2 :: proc(anon_param0: _c.int32_t) -> PxTransform ---
+    @(link_name = "PxTransform_new_2")
+    transform_new_2 :: proc(anon_param0: _c.int32_t) -> PxTransform ---
 
-    PxTransform_new_3 :: proc(orientation: ^PxQuat) -> PxTransform ---
+    @(link_name = "PxTransform_new_3")
+    transform_new_3 :: proc(#by_ptr orientation: PxQuat) -> PxTransform ---
 
-    PxTransform_new_4 :: proc(x: _c.float, y: _c.float, z: _c.float, aQ: PxQuat) -> PxTransform ---
+    @(link_name = "PxTransform_new_4")
+    transform_new_4 :: proc(x: _c.float, y: _c.float, z: _c.float, aQ: PxQuat) -> PxTransform ---
 
-    PxTransform_new_5 :: proc(p0: ^PxVec3, q0: ^PxQuat) -> PxTransform ---
+    @(link_name = "PxTransform_new_5")
+    transform_new_5 :: proc(#by_ptr p0: PxVec3, #by_ptr q0: PxQuat) -> PxTransform ---
 
-    PxTransform_new_6 :: proc(m: ^PxMat44) -> PxTransform ---
+    @(link_name = "PxTransform_new_6")
+    transform_new_6 :: proc(#by_ptr m: PxMat44) -> PxTransform ---
 
-    PxTransform_getInverse :: proc(self_: ^PxTransform) -> PxTransform ---
+    @(link_name = "PxTransform_getInverse")
+    transform_get_inverse :: proc(self_: ^PxTransform) -> PxTransform ---
 
-    PxTransform_transform :: proc(self_: ^PxTransform, input: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxTransform_transform")
+    transform_transform :: proc(self_: ^PxTransform, #by_ptr input: PxVec3) -> PxVec3 ---
 
-    PxTransform_transformInv :: proc(self_: ^PxTransform, input: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxTransform_transformInv")
+    transform_transform_inv :: proc(self_: ^PxTransform, #by_ptr input: PxVec3) -> PxVec3 ---
 
-    PxTransform_rotate :: proc(self_: ^PxTransform, input: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxTransform_rotate")
+    transform_rotate :: proc(self_: ^PxTransform, #by_ptr input: PxVec3) -> PxVec3 ---
 
-    PxTransform_rotateInv :: proc(self_: ^PxTransform, input: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxTransform_rotateInv")
+    transform_rotate_inv :: proc(self_: ^PxTransform, #by_ptr input: PxVec3) -> PxVec3 ---
 
     /// Transform transform to parent (returns compound transform: first src, then *this)
-    PxTransform_transform_1 :: proc(self_: ^PxTransform, src: ^PxTransform) -> PxTransform ---
+    @(link_name = "PxTransform_transform_1")
+    transform_transform_1 :: proc(self_: ^PxTransform, #by_ptr src: PxTransform) -> PxTransform ---
 
     /// returns true if finite and q is a unit quaternion
-    PxTransform_isValid :: proc(self_: ^PxTransform) -> _c.bool ---
+    @(link_name = "PxTransform_isValid")
+    transform_is_valid :: proc(self_: ^PxTransform) -> _c.bool ---
 
     /// returns true if finite and quat magnitude is reasonably close to unit to allow for some accumulation of error
     /// vs isValid
-    PxTransform_isSane :: proc(self_: ^PxTransform) -> _c.bool ---
+    @(link_name = "PxTransform_isSane")
+    transform_is_sane :: proc(self_: ^PxTransform) -> _c.bool ---
 
     /// returns true if all elems are finite (not NAN or INF, etc.)
-    PxTransform_isFinite :: proc(self_: ^PxTransform) -> _c.bool ---
+    @(link_name = "PxTransform_isFinite")
+    transform_is_finite :: proc(self_: ^PxTransform) -> _c.bool ---
 
     /// Transform transform from parent (returns compound transform: first src, then this->inverse)
-    PxTransform_transformInv_1 :: proc(self_: ^PxTransform, src: ^PxTransform) -> PxTransform ---
+    @(link_name = "PxTransform_transformInv_1")
+    transform_transform_inv_1 :: proc(self_: ^PxTransform, #by_ptr src: PxTransform) -> PxTransform ---
 
     /// return a normalized transform (i.e. one in which the quaternion has unit magnitude)
-    PxTransform_getNormalized :: proc(self_: ^PxTransform) -> PxTransform ---
+    @(link_name = "PxTransform_getNormalized")
+    transform_get_normalized :: proc(self_: ^PxTransform) -> PxTransform ---
 
     /// Default constructor
-    PxMat33_new :: proc() -> PxMat33 ---
+    @(link_name = "PxMat33_new")
+    mat33_new :: proc() -> PxMat33 ---
 
     /// identity constructor
-    PxMat33_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
+    @(link_name = "PxMat33_new_1")
+    mat33_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
 
     /// zero constructor
-    PxMat33_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
+    @(link_name = "PxMat33_new_2")
+    mat33_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
 
     /// Construct from three base vectors
-    PxMat33_new_3 :: proc(col0: ^PxVec3, col1: ^PxVec3, col2: ^PxVec3) -> PxMat33 ---
+    @(link_name = "PxMat33_new_3")
+    mat33_new_3 :: proc(#by_ptr col0: PxVec3, #by_ptr col1: PxVec3, #by_ptr col2: PxVec3) -> PxMat33 ---
 
     /// constructor from a scalar, which generates a multiple of the identity matrix
-    PxMat33_new_4 :: proc(r: _c.float) -> PxMat33 ---
+    @(link_name = "PxMat33_new_4")
+    mat33_new_4 :: proc(r: _c.float) -> PxMat33 ---
 
     /// Construct from float[9]
-    PxMat33_new_5 :: proc(values: ^_c.float) -> PxMat33 ---
+    @(link_name = "PxMat33_new_5")
+    mat33_new_5 :: proc(values: ^_c.float) -> PxMat33 ---
 
     /// Construct from a quaternion
-    PxMat33_new_6 :: proc(q: ^PxQuat) -> PxMat33 ---
+    @(link_name = "PxMat33_new_6")
+    mat33_new_6 :: proc(#by_ptr q: PxQuat) -> PxMat33 ---
 
     /// Construct from diagonal, off-diagonals are zero.
-    PxMat33_createDiagonal :: proc(d: ^PxVec3) -> PxMat33 ---
+    @(link_name = "PxMat33_createDiagonal")
+    mat33_create_diagonal :: proc(#by_ptr d: PxVec3) -> PxMat33 ---
 
     /// Computes the outer product of two vectors
-    PxMat33_outer :: proc(a: ^PxVec3, b: ^PxVec3) -> PxMat33 ---
+    @(link_name = "PxMat33_outer")
+    mat33_outer :: proc(#by_ptr a: PxVec3, #by_ptr b: PxVec3) -> PxMat33 ---
 
     /// Get transposed matrix
-    PxMat33_getTranspose :: proc(self_: ^PxMat33) -> PxMat33 ---
+    @(link_name = "PxMat33_getTranspose")
+    mat33_get_transpose :: proc(self_: ^PxMat33) -> PxMat33 ---
 
     /// Get the real inverse
-    PxMat33_getInverse :: proc(self_: ^PxMat33) -> PxMat33 ---
+    @(link_name = "PxMat33_getInverse")
+    mat33_get_inverse :: proc(self_: ^PxMat33) -> PxMat33 ---
 
     /// Get determinant
-    PxMat33_getDeterminant :: proc(self_: ^PxMat33) -> _c.float ---
+    @(link_name = "PxMat33_getDeterminant")
+    mat33_get_determinant :: proc(self_: ^PxMat33) -> _c.float ---
 
     /// Transform vector by matrix, equal to v' = M*v
-    PxMat33_transform :: proc(self_: ^PxMat33, other: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxMat33_transform")
+    mat33_transform :: proc(self_: ^PxMat33, #by_ptr other: PxVec3) -> PxVec3 ---
 
     /// Transform vector by matrix transpose, v' = M^t*v
-    PxMat33_transformTranspose :: proc(self_: ^PxMat33, other: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxMat33_transformTranspose")
+    mat33_transform_transpose :: proc(self_: ^PxMat33, #by_ptr other: PxVec3) -> PxVec3 ---
 
-    PxMat33_front :: proc(self_: ^PxMat33) -> ^_c.float ---
+    @(link_name = "PxMat33_front")
+    mat33_front :: proc(self_: ^PxMat33) -> ^_c.float ---
 
     /// Default constructor, not performing any initialization for performance reason.
     ///
     /// Use empty() function below to construct empty bounds.
-    PxBounds3_new :: proc() -> PxBounds3 ---
+    @(link_name = "PxBounds3_new")
+    bounds3_new :: proc() -> PxBounds3 ---
 
     /// Construct from two bounding points
-    PxBounds3_new_1 :: proc(minimum: ^PxVec3, maximum: ^PxVec3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_new_1")
+    bounds3_new_1 :: proc(#by_ptr minimum: PxVec3, #by_ptr maximum: PxVec3) -> PxBounds3 ---
 
     /// Return empty bounds.
-    PxBounds3_empty :: proc() -> PxBounds3 ---
+    @(link_name = "PxBounds3_empty")
+    bounds3_empty :: proc() -> PxBounds3 ---
 
     /// returns the AABB containing v0 and v1.
-    PxBounds3_boundsOfPoints :: proc(v0: ^PxVec3, v1: ^PxVec3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_boundsOfPoints")
+    bounds3_bounds_of_points :: proc(#by_ptr v0: PxVec3, #by_ptr v1: PxVec3) -> PxBounds3 ---
 
     /// returns the AABB from center and extents vectors.
-    PxBounds3_centerExtents :: proc(center: ^PxVec3, extent: ^PxVec3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_centerExtents")
+    bounds3_center_extents :: proc(#by_ptr center: PxVec3, #by_ptr extent: PxVec3) -> PxBounds3 ---
 
     /// Construct from center, extent, and (not necessarily orthogonal) basis
-    PxBounds3_basisExtent :: proc(center: ^PxVec3, basis: ^PxMat33, extent: ^PxVec3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_basisExtent")
+    bounds3_basis_extent :: proc(#by_ptr center: PxVec3, #by_ptr basis: PxMat33, #by_ptr extent: PxVec3) -> PxBounds3 ---
 
     /// Construct from pose and extent
-    PxBounds3_poseExtent :: proc(pose: ^PxTransform, extent: ^PxVec3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_poseExtent")
+    bounds3_pose_extent :: proc(#by_ptr pose: PxTransform, #by_ptr extent: PxVec3) -> PxBounds3 ---
 
     /// gets the transformed bounds of the passed AABB (resulting in a bigger AABB).
     ///
     /// This version is safe to call for empty bounds.
-    PxBounds3_transformSafe :: proc(matrix_: ^PxMat33, bounds: ^PxBounds3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_transformSafe")
+    bounds3_transform_safe :: proc(#by_ptr matrix_: PxMat33, #by_ptr bounds: PxBounds3) -> PxBounds3 ---
 
     /// gets the transformed bounds of the passed AABB (resulting in a bigger AABB).
     ///
     /// Calling this method for empty bounds leads to undefined behavior. Use [`transformSafe`]() instead.
-    PxBounds3_transformFast :: proc(matrix_: ^PxMat33, bounds: ^PxBounds3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_transformFast")
+    bounds3_transform_fast :: proc(#by_ptr matrix_: PxMat33, #by_ptr bounds: PxBounds3) -> PxBounds3 ---
 
     /// gets the transformed bounds of the passed AABB (resulting in a bigger AABB).
     ///
     /// This version is safe to call for empty bounds.
-    PxBounds3_transformSafe_1 :: proc(transform: ^PxTransform, bounds: ^PxBounds3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_transformSafe_1")
+    bounds3_transform_safe_1 :: proc(#by_ptr transform: PxTransform, #by_ptr bounds: PxBounds3) -> PxBounds3 ---
 
     /// gets the transformed bounds of the passed AABB (resulting in a bigger AABB).
     ///
     /// Calling this method for empty bounds leads to undefined behavior. Use [`transformSafe`]() instead.
-    PxBounds3_transformFast_1 :: proc(transform: ^PxTransform, bounds: ^PxBounds3) -> PxBounds3 ---
+    @(link_name = "PxBounds3_transformFast_1")
+    bounds3_transform_fast_1 :: proc(#by_ptr transform: PxTransform, #by_ptr bounds: PxBounds3) -> PxBounds3 ---
 
     /// Sets empty to true
-    PxBounds3_setEmpty_mut :: proc(self_: ^PxBounds3) ---
+    @(link_name = "PxBounds3_setEmpty_mut")
+    bounds3_set_empty_mut :: proc(self_: ^PxBounds3) ---
 
     /// Sets the bounds to maximum size [-PX_MAX_BOUNDS_EXTENTS, PX_MAX_BOUNDS_EXTENTS].
-    PxBounds3_setMaximal_mut :: proc(self_: ^PxBounds3) ---
+    @(link_name = "PxBounds3_setMaximal_mut")
+    bounds3_set_maximal_mut :: proc(self_: ^PxBounds3) ---
 
     /// expands the volume to include v
-    PxBounds3_include_mut :: proc(self_: ^PxBounds3, v: ^PxVec3) ---
+    @(link_name = "PxBounds3_include_mut")
+    bounds3_include_mut :: proc(self_: ^PxBounds3, #by_ptr v: PxVec3) ---
 
     /// expands the volume to include b.
-    PxBounds3_include_mut_1 :: proc(self_: ^PxBounds3, b: ^PxBounds3) ---
+    @(link_name = "PxBounds3_include_mut_1")
+    bounds3_include_mut_1 :: proc(self_: ^PxBounds3, #by_ptr b: PxBounds3) ---
 
-    PxBounds3_isEmpty :: proc(self_: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBounds3_isEmpty")
+    bounds3_is_empty :: proc(self_: ^PxBounds3) -> _c.bool ---
 
     /// indicates whether the intersection of this and b is empty or not.
-    PxBounds3_intersects :: proc(self_: ^PxBounds3, b: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBounds3_intersects")
+    bounds3_intersects :: proc(self_: ^PxBounds3, #by_ptr b: PxBounds3) -> _c.bool ---
 
     /// computes the 1D-intersection between two AABBs, on a given axis.
-    PxBounds3_intersects1D :: proc(self_: ^PxBounds3, a: ^PxBounds3, axis: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBounds3_intersects1D")
+    bounds3_intersects1_d :: proc(self_: ^PxBounds3, #by_ptr a: PxBounds3, axis: _c.uint32_t) -> _c.bool ---
 
     /// indicates if these bounds contain v.
-    PxBounds3_contains :: proc(self_: ^PxBounds3, v: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxBounds3_contains")
+    bounds3_contains :: proc(self_: ^PxBounds3, #by_ptr v: PxVec3) -> _c.bool ---
 
     /// checks a box is inside another box.
-    PxBounds3_isInside :: proc(self_: ^PxBounds3, box: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBounds3_isInside")
+    bounds3_is_inside :: proc(self_: ^PxBounds3, #by_ptr box: PxBounds3) -> _c.bool ---
 
     /// returns the center of this axis aligned box.
-    PxBounds3_getCenter :: proc(self_: ^PxBounds3) -> PxVec3 ---
+    @(link_name = "PxBounds3_getCenter")
+    bounds3_get_center :: proc(self_: ^PxBounds3) -> PxVec3 ---
 
     /// get component of the box's center along a given axis
-    PxBounds3_getCenter_1 :: proc(self_: ^PxBounds3, axis: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxBounds3_getCenter_1")
+    bounds3_get_center_1 :: proc(self_: ^PxBounds3, axis: _c.uint32_t) -> _c.float ---
 
     /// get component of the box's extents along a given axis
-    PxBounds3_getExtents :: proc(self_: ^PxBounds3, axis: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxBounds3_getExtents")
+    bounds3_get_extents :: proc(self_: ^PxBounds3, axis: _c.uint32_t) -> _c.float ---
 
     /// returns the dimensions (width/height/depth) of this axis aligned box.
-    PxBounds3_getDimensions :: proc(self_: ^PxBounds3) -> PxVec3 ---
+    @(link_name = "PxBounds3_getDimensions")
+    bounds3_get_dimensions :: proc(self_: ^PxBounds3) -> PxVec3 ---
 
     /// returns the extents, which are half of the width/height/depth.
-    PxBounds3_getExtents_1 :: proc(self_: ^PxBounds3) -> PxVec3 ---
+    @(link_name = "PxBounds3_getExtents_1")
+    bounds3_get_extents_1 :: proc(self_: ^PxBounds3) -> PxVec3 ---
 
     /// scales the AABB.
     ///
     /// This version is safe to call for empty bounds.
-    PxBounds3_scaleSafe_mut :: proc(self_: ^PxBounds3, scale: _c.float) ---
+    @(link_name = "PxBounds3_scaleSafe_mut")
+    bounds3_scale_safe_mut :: proc(self_: ^PxBounds3, scale: _c.float) ---
 
     /// scales the AABB.
     ///
     /// Calling this method for empty bounds leads to undefined behavior. Use [`scaleSafe`]() instead.
-    PxBounds3_scaleFast_mut :: proc(self_: ^PxBounds3, scale: _c.float) ---
+    @(link_name = "PxBounds3_scaleFast_mut")
+    bounds3_scale_fast_mut :: proc(self_: ^PxBounds3, scale: _c.float) ---
 
     /// fattens the AABB in all 3 dimensions by the given distance.
     ///
     /// This version is safe to call for empty bounds.
-    PxBounds3_fattenSafe_mut :: proc(self_: ^PxBounds3, distance: _c.float) ---
+    @(link_name = "PxBounds3_fattenSafe_mut")
+    bounds3_fatten_safe_mut :: proc(self_: ^PxBounds3, distance: _c.float) ---
 
     /// fattens the AABB in all 3 dimensions by the given distance.
     ///
     /// Calling this method for empty bounds leads to undefined behavior. Use [`fattenSafe`]() instead.
-    PxBounds3_fattenFast_mut :: proc(self_: ^PxBounds3, distance: _c.float) ---
+    @(link_name = "PxBounds3_fattenFast_mut")
+    bounds3_fatten_fast_mut :: proc(self_: ^PxBounds3, distance: _c.float) ---
 
     /// checks that the AABB values are not NaN
-    PxBounds3_isFinite :: proc(self_: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBounds3_isFinite")
+    bounds3_is_finite :: proc(self_: ^PxBounds3) -> _c.bool ---
 
     /// checks that the AABB values describe a valid configuration.
-    PxBounds3_isValid :: proc(self_: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBounds3_isValid")
+    bounds3_is_valid :: proc(self_: ^PxBounds3) -> _c.bool ---
 
     /// Finds the closest point in the box to the point p. If p is contained, this will be p, otherwise it
     /// will be the closest point on the surface of the box.
-    PxBounds3_closestPoint :: proc(self_: ^PxBounds3, p: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxBounds3_closestPoint")
+    bounds3_closest_point :: proc(self_: ^PxBounds3, #by_ptr p: PxVec3) -> PxVec3 ---
 
-    PxErrorCallback_delete :: proc(self_: ^PxErrorCallback) ---
+    @(link_name = "PxErrorCallback_delete")
+    error_callback_delete :: proc(self_: ^PxErrorCallback) ---
 
     /// Reports an error code.
-    PxErrorCallback_reportError_mut :: proc(self_: ^PxErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    @(link_name = "PxErrorCallback_reportError_mut")
+    error_callback_report_error_mut :: proc(self_: ^PxErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// callback when memory is allocated.
-    PxAllocationListener_onAllocation_mut :: proc(self_: ^PxAllocationListener, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t, allocatedMemory: rawptr) ---
+    @(link_name = "PxAllocationListener_onAllocation_mut")
+    allocation_listener_on_allocation_mut :: proc(self_: ^PxAllocationListener, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t, allocatedMemory: rawptr) ---
 
     /// callback when memory is deallocated.
-    PxAllocationListener_onDeallocation_mut :: proc(self_: ^PxAllocationListener, allocatedMemory: rawptr) ---
+    @(link_name = "PxAllocationListener_onDeallocation_mut")
+    allocation_listener_on_deallocation_mut :: proc(self_: ^PxAllocationListener, allocatedMemory: rawptr) ---
 
     /// The default constructor.
-    PxBroadcastingAllocator_new_alloc :: proc(allocator: ^PxAllocatorCallback, error: ^PxErrorCallback) -> ^PxBroadcastingAllocator ---
+    @(link_name = "PxBroadcastingAllocator_new_alloc")
+    broadcasting_allocator_new_alloc :: proc(allocator: ^PxAllocatorCallback, error: ^PxErrorCallback) -> ^PxBroadcastingAllocator ---
 
     /// The default constructor.
-    PxBroadcastingAllocator_delete :: proc(self_: ^PxBroadcastingAllocator) ---
+    @(link_name = "PxBroadcastingAllocator_delete")
+    broadcasting_allocator_delete :: proc(self_: ^PxBroadcastingAllocator) ---
 
     /// Allocates size bytes of memory, which must be 16-byte aligned.
     ///
@@ -4955,232 +4973,305 @@ foreign libphysx {
     /// and physics processing thread(s).
     ///
     /// The allocated block of memory.
-    PxBroadcastingAllocator_allocate_mut :: proc(self_: ^PxBroadcastingAllocator, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t) -> rawptr ---
+    @(link_name = "PxBroadcastingAllocator_allocate_mut")
+    broadcasting_allocator_allocate_mut :: proc(self_: ^PxBroadcastingAllocator, size: _c.size_t, typeName: ^_c.char, filename: ^_c.char, line: _c.int32_t) -> rawptr ---
 
     /// Frees memory previously allocated by allocate().
     ///
     /// Threading:
     /// This function should be thread safe as it can be called in the context of the user thread
     /// and physics processing thread(s).
-    PxBroadcastingAllocator_deallocate_mut :: proc(self_: ^PxBroadcastingAllocator, ptr: rawptr) ---
+    @(link_name = "PxBroadcastingAllocator_deallocate_mut")
+    broadcasting_allocator_deallocate_mut :: proc(self_: ^PxBroadcastingAllocator, ptr: rawptr) ---
 
     /// The default constructor.
-    PxBroadcastingErrorCallback_new_alloc :: proc(errorCallback: ^PxErrorCallback) -> ^PxBroadcastingErrorCallback ---
+    @(link_name = "PxBroadcastingErrorCallback_new_alloc")
+    broadcasting_error_callback_new_alloc :: proc(errorCallback: ^PxErrorCallback) -> ^PxBroadcastingErrorCallback ---
 
     /// The default destructor.
-    PxBroadcastingErrorCallback_delete :: proc(self_: ^PxBroadcastingErrorCallback) ---
+    @(link_name = "PxBroadcastingErrorCallback_delete")
+    broadcasting_error_callback_delete :: proc(self_: ^PxBroadcastingErrorCallback) ---
 
     /// Reports an error code.
-    PxBroadcastingErrorCallback_reportError_mut :: proc(self_: ^PxBroadcastingErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    @(link_name = "PxBroadcastingErrorCallback_reportError_mut")
+    broadcasting_error_callback_report_error_mut :: proc(self_: ^PxBroadcastingErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// Enables floating point exceptions for the scalar and SIMD unit
-    phys_PxEnableFPExceptions :: proc() ---
+    @(link_name = "phys_PxEnableFPExceptions")
+    enable_f_p_exceptions :: proc() ---
 
     /// Disables floating point exceptions for the scalar and SIMD unit
-    phys_PxDisableFPExceptions :: proc() ---
+    @(link_name = "phys_PxDisableFPExceptions")
+    disable_f_p_exceptions :: proc() ---
 
     /// read from the stream. The number of bytes read may be less than the number requested.
     ///
     /// the number of bytes read from the stream.
-    PxInputStream_read_mut :: proc(self_: ^PxInputStream, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxInputStream_read_mut")
+    input_stream_read_mut :: proc(self_: ^PxInputStream, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxInputStream_delete :: proc(self_: ^PxInputStream) ---
+    @(link_name = "PxInputStream_delete")
+    input_stream_delete :: proc(self_: ^PxInputStream) ---
 
     /// return the length of the input data
     ///
     /// size in bytes of the input data
-    PxInputData_getLength :: proc(self_: ^PxInputData) -> _c.uint32_t ---
+    @(link_name = "PxInputData_getLength")
+    input_data_get_length :: proc(self_: ^PxInputData) -> _c.uint32_t ---
 
     /// seek to the given offset from the start of the data.
-    PxInputData_seek_mut :: proc(self_: ^PxInputData, offset: _c.uint32_t) ---
+    @(link_name = "PxInputData_seek_mut")
+    input_data_seek_mut :: proc(self_: ^PxInputData, offset: _c.uint32_t) ---
 
     /// return the current offset from the start of the data
     ///
     /// the offset to seek to.
-    PxInputData_tell :: proc(self_: ^PxInputData) -> _c.uint32_t ---
+    @(link_name = "PxInputData_tell")
+    input_data_tell :: proc(self_: ^PxInputData) -> _c.uint32_t ---
 
-    PxInputData_delete :: proc(self_: ^PxInputData) ---
+    @(link_name = "PxInputData_delete")
+    input_data_delete :: proc(self_: ^PxInputData) ---
 
     /// write to the stream. The number of bytes written may be less than the number sent.
     ///
     /// the number of bytes written to the stream by this call.
-    PxOutputStream_write_mut :: proc(self_: ^PxOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxOutputStream_write_mut")
+    output_stream_write_mut :: proc(self_: ^PxOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxOutputStream_delete :: proc(self_: ^PxOutputStream) ---
+    @(link_name = "PxOutputStream_delete")
+    output_stream_delete :: proc(self_: ^PxOutputStream) ---
 
     /// default constructor leaves data uninitialized.
-    PxVec4_new :: proc() -> PxVec4 ---
+    @(link_name = "PxVec4_new")
+    vec4_new :: proc() -> PxVec4 ---
 
     /// zero constructor.
-    PxVec4_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec4 ---
+    @(link_name = "PxVec4_new_1")
+    vec4_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec4 ---
 
     /// Assigns scalar parameter to all elements.
     ///
     /// Useful to initialize to zero or one.
-    PxVec4_new_2 :: proc(a: _c.float) -> PxVec4 ---
+    @(link_name = "PxVec4_new_2")
+    vec4_new_2 :: proc(a: _c.float) -> PxVec4 ---
 
     /// Initializes from 3 scalar parameters.
-    PxVec4_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, nw: _c.float) -> PxVec4 ---
+    @(link_name = "PxVec4_new_3")
+    vec4_new_3 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, nw: _c.float) -> PxVec4 ---
 
     /// Initializes from 3 scalar parameters.
-    PxVec4_new_4 :: proc(v: ^PxVec3, nw: _c.float) -> PxVec4 ---
+    @(link_name = "PxVec4_new_4")
+    vec4_new_4 :: proc(#by_ptr v: PxVec3, nw: _c.float) -> PxVec4 ---
 
     /// Initializes from an array of scalar parameters.
-    PxVec4_new_5 :: proc(v: ^_c.float) -> PxVec4 ---
+    @(link_name = "PxVec4_new_5")
+    vec4_new_5 :: proc(v: ^_c.float) -> PxVec4 ---
 
     /// tests for exact zero vector
-    PxVec4_isZero :: proc(self_: ^PxVec4) -> _c.bool ---
+    @(link_name = "PxVec4_isZero")
+    vec4_is_zero :: proc(self_: ^PxVec4) -> _c.bool ---
 
     /// returns true if all 3 elems of the vector are finite (not NAN or INF, etc.)
-    PxVec4_isFinite :: proc(self_: ^PxVec4) -> _c.bool ---
+    @(link_name = "PxVec4_isFinite")
+    vec4_is_finite :: proc(self_: ^PxVec4) -> _c.bool ---
 
     /// is normalized - used by API parameter validation
-    PxVec4_isNormalized :: proc(self_: ^PxVec4) -> _c.bool ---
+    @(link_name = "PxVec4_isNormalized")
+    vec4_is_normalized :: proc(self_: ^PxVec4) -> _c.bool ---
 
     /// returns the squared magnitude
     ///
     /// Avoids calling PxSqrt()!
-    PxVec4_magnitudeSquared :: proc(self_: ^PxVec4) -> _c.float ---
+    @(link_name = "PxVec4_magnitudeSquared")
+    vec4_magnitude_squared :: proc(self_: ^PxVec4) -> _c.float ---
 
     /// returns the magnitude
-    PxVec4_magnitude :: proc(self_: ^PxVec4) -> _c.float ---
+    @(link_name = "PxVec4_magnitude")
+    vec4_magnitude :: proc(self_: ^PxVec4) -> _c.float ---
 
     /// returns the scalar product of this and other.
-    PxVec4_dot :: proc(self_: ^PxVec4, v: ^PxVec4) -> _c.float ---
+    @(link_name = "PxVec4_dot")
+    vec4_dot :: proc(self_: ^PxVec4, #by_ptr v: PxVec4) -> _c.float ---
 
     /// returns a unit vector
-    PxVec4_getNormalized :: proc(self_: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxVec4_getNormalized")
+    vec4_get_normalized :: proc(self_: ^PxVec4) -> PxVec4 ---
 
     /// normalizes the vector in place
-    PxVec4_normalize_mut :: proc(self_: ^PxVec4) -> _c.float ---
+    @(link_name = "PxVec4_normalize_mut")
+    vec4_normalize_mut :: proc(self_: ^PxVec4) -> _c.float ---
 
     /// a[i] * b[i], for all i.
-    PxVec4_multiply :: proc(self_: ^PxVec4, a: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxVec4_multiply")
+    vec4_multiply :: proc(self_: ^PxVec4, #by_ptr a: PxVec4) -> PxVec4 ---
 
     /// element-wise minimum
-    PxVec4_minimum :: proc(self_: ^PxVec4, v: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxVec4_minimum")
+    vec4_minimum :: proc(self_: ^PxVec4, #by_ptr v: PxVec4) -> PxVec4 ---
 
     /// element-wise maximum
-    PxVec4_maximum :: proc(self_: ^PxVec4, v: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxVec4_maximum")
+    vec4_maximum :: proc(self_: ^PxVec4, #by_ptr v: PxVec4) -> PxVec4 ---
 
-    PxVec4_getXYZ :: proc(self_: ^PxVec4) -> PxVec3 ---
+    @(link_name = "PxVec4_getXYZ")
+    vec4_get_x_y_z :: proc(self_: ^PxVec4) -> PxVec3 ---
 
     /// Default constructor
-    PxMat44_new :: proc() -> PxMat44 ---
+    @(link_name = "PxMat44_new")
+    mat44_new :: proc() -> PxMat44 ---
 
     /// identity constructor
-    PxMat44_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
+    @(link_name = "PxMat44_new_1")
+    mat44_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
 
     /// zero constructor
-    PxMat44_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
+    @(link_name = "PxMat44_new_2")
+    mat44_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
 
     /// Construct from four 4-vectors
-    PxMat44_new_3 :: proc(col0: ^PxVec4, col1: ^PxVec4, col2: ^PxVec4, col3: ^PxVec4) -> PxMat44 ---
+    @(link_name = "PxMat44_new_3")
+    mat44_new_3 :: proc(#by_ptr col0: PxVec4, #by_ptr col1: PxVec4, #by_ptr col2: PxVec4, #by_ptr col3: PxVec4) -> PxMat44 ---
 
     /// constructor that generates a multiple of the identity matrix
-    PxMat44_new_4 :: proc(r: _c.float) -> PxMat44 ---
+    @(link_name = "PxMat44_new_4")
+    mat44_new_4 :: proc(r: _c.float) -> PxMat44 ---
 
     /// Construct from three base vectors and a translation
-    PxMat44_new_5 :: proc(col0: ^PxVec3, col1: ^PxVec3, col2: ^PxVec3, col3: ^PxVec3) -> PxMat44 ---
+    @(link_name = "PxMat44_new_5")
+    mat44_new_5 :: proc(#by_ptr col0: PxVec3, #by_ptr col1: PxVec3, #by_ptr col2: PxVec3, #by_ptr col3: PxVec3) -> PxMat44 ---
 
     /// Construct from float[16]
-    PxMat44_new_6 :: proc(values: ^_c.float) -> PxMat44 ---
+    @(link_name = "PxMat44_new_6")
+    mat44_new_6 :: proc(values: ^_c.float) -> PxMat44 ---
 
     /// Construct from a quaternion
-    PxMat44_new_7 :: proc(q: ^PxQuat) -> PxMat44 ---
+    @(link_name = "PxMat44_new_7")
+    mat44_new_7 :: proc(#by_ptr q: PxQuat) -> PxMat44 ---
 
     /// Construct from a diagonal vector
-    PxMat44_new_8 :: proc(diagonal: ^PxVec4) -> PxMat44 ---
+    @(link_name = "PxMat44_new_8")
+    mat44_new_8 :: proc(#by_ptr diagonal: PxVec4) -> PxMat44 ---
 
     /// Construct from Mat33 and a translation
-    PxMat44_new_9 :: proc(axes: ^PxMat33, position: ^PxVec3) -> PxMat44 ---
+    @(link_name = "PxMat44_new_9")
+    mat44_new_9 :: proc(#by_ptr axes: PxMat33, #by_ptr position: PxVec3) -> PxMat44 ---
 
-    PxMat44_new_10 :: proc(t: ^PxTransform) -> PxMat44 ---
+    @(link_name = "PxMat44_new_10")
+    mat44_new_10 :: proc(#by_ptr t: PxTransform) -> PxMat44 ---
 
     /// Get transposed matrix
-    PxMat44_getTranspose :: proc(self_: ^PxMat44) -> PxMat44 ---
+    @(link_name = "PxMat44_getTranspose")
+    mat44_get_transpose :: proc(self_: ^PxMat44) -> PxMat44 ---
 
     /// Transform vector by matrix, equal to v' = M*v
-    PxMat44_transform :: proc(self_: ^PxMat44, other: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxMat44_transform")
+    mat44_transform :: proc(self_: ^PxMat44, #by_ptr other: PxVec4) -> PxVec4 ---
 
     /// Transform vector by matrix, equal to v' = M*v
-    PxMat44_transform_1 :: proc(self_: ^PxMat44, other: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxMat44_transform_1")
+    mat44_transform_1 :: proc(self_: ^PxMat44, #by_ptr other: PxVec3) -> PxVec3 ---
 
     /// Rotate vector by matrix, equal to v' = M*v
-    PxMat44_rotate :: proc(self_: ^PxMat44, other: ^PxVec4) -> PxVec4 ---
+    @(link_name = "PxMat44_rotate")
+    mat44_rotate :: proc(self_: ^PxMat44, #by_ptr other: PxVec4) -> PxVec4 ---
 
     /// Rotate vector by matrix, equal to v' = M*v
-    PxMat44_rotate_1 :: proc(self_: ^PxMat44, other: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxMat44_rotate_1")
+    mat44_rotate_1 :: proc(self_: ^PxMat44, #by_ptr other: PxVec3) -> PxVec3 ---
 
-    PxMat44_getBasis :: proc(self_: ^PxMat44, num: _c.uint32_t) -> PxVec3 ---
+    @(link_name = "PxMat44_getBasis")
+    mat44_get_basis :: proc(self_: ^PxMat44, num: _c.uint32_t) -> PxVec3 ---
 
-    PxMat44_getPosition :: proc(self_: ^PxMat44) -> PxVec3 ---
+    @(link_name = "PxMat44_getPosition")
+    mat44_get_position :: proc(self_: ^PxMat44) -> PxVec3 ---
 
-    PxMat44_setPosition_mut :: proc(self_: ^PxMat44, position: ^PxVec3) ---
+    @(link_name = "PxMat44_setPosition_mut")
+    mat44_set_position_mut :: proc(self_: ^PxMat44, #by_ptr position: PxVec3) ---
 
-    PxMat44_front :: proc(self_: ^PxMat44) -> ^_c.float ---
+    @(link_name = "PxMat44_front")
+    mat44_front :: proc(self_: ^PxMat44) -> ^_c.float ---
 
-    PxMat44_scale_mut :: proc(self_: ^PxMat44, p: ^PxVec4) ---
+    @(link_name = "PxMat44_scale_mut")
+    mat44_scale_mut :: proc(self_: ^PxMat44, #by_ptr p: PxVec4) ---
 
-    PxMat44_inverseRT :: proc(self_: ^PxMat44) -> PxMat44 ---
+    @(link_name = "PxMat44_inverseRT")
+    mat44_inverse_r_t :: proc(self_: ^PxMat44) -> PxMat44 ---
 
-    PxMat44_isFinite :: proc(self_: ^PxMat44) -> _c.bool ---
+    @(link_name = "PxMat44_isFinite")
+    mat44_is_finite :: proc(self_: ^PxMat44) -> _c.bool ---
 
     /// Constructor
-    PxPlane_new :: proc() -> PxPlane ---
+    @(link_name = "PxPlane_new")
+    plane_new :: proc() -> PxPlane ---
 
     /// Constructor from a normal and a distance
-    PxPlane_new_1 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, distance: _c.float) -> PxPlane ---
+    @(link_name = "PxPlane_new_1")
+    plane_new_1 :: proc(nx: _c.float, ny: _c.float, nz: _c.float, distance: _c.float) -> PxPlane ---
 
     /// Constructor from a normal and a distance
-    PxPlane_new_2 :: proc(normal: ^PxVec3, distance: _c.float) -> PxPlane ---
+    @(link_name = "PxPlane_new_2")
+    plane_new_2 :: proc(#by_ptr normal: PxVec3, distance: _c.float) -> PxPlane ---
 
     /// Constructor from a point on the plane and a normal
-    PxPlane_new_3 :: proc(point: ^PxVec3, normal: ^PxVec3) -> PxPlane ---
+    @(link_name = "PxPlane_new_3")
+    plane_new_3 :: proc(#by_ptr point: PxVec3, #by_ptr normal: PxVec3) -> PxPlane ---
 
     /// Constructor from three points
-    PxPlane_new_4 :: proc(p0: ^PxVec3, p1: ^PxVec3, p2: ^PxVec3) -> PxPlane ---
+    @(link_name = "PxPlane_new_4")
+    plane_new_4 :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, #by_ptr p2: PxVec3) -> PxPlane ---
 
-    PxPlane_distance :: proc(self_: ^PxPlane, p: ^PxVec3) -> _c.float ---
+    @(link_name = "PxPlane_distance")
+    plane_distance :: proc(self_: ^PxPlane, #by_ptr p: PxVec3) -> _c.float ---
 
-    PxPlane_contains :: proc(self_: ^PxPlane, p: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxPlane_contains")
+    plane_contains :: proc(self_: ^PxPlane, #by_ptr p: PxVec3) -> _c.bool ---
 
     /// projects p into the plane
-    PxPlane_project :: proc(self_: ^PxPlane, p: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxPlane_project")
+    plane_project :: proc(self_: ^PxPlane, #by_ptr p: PxVec3) -> PxVec3 ---
 
     /// find an arbitrary point in the plane
-    PxPlane_pointInPlane :: proc(self_: ^PxPlane) -> PxVec3 ---
+    @(link_name = "PxPlane_pointInPlane")
+    plane_point_in_plane :: proc(self_: ^PxPlane) -> PxVec3 ---
 
     /// equivalent plane with unit normal
-    PxPlane_normalize_mut :: proc(self_: ^PxPlane) ---
+    @(link_name = "PxPlane_normalize_mut")
+    plane_normalize_mut :: proc(self_: ^PxPlane) ---
 
     /// transform plane
-    PxPlane_transform :: proc(self_: ^PxPlane, pose: ^PxTransform) -> PxPlane ---
+    @(link_name = "PxPlane_transform")
+    plane_transform :: proc(self_: ^PxPlane, #by_ptr pose: PxTransform) -> PxPlane ---
 
     /// inverse-transform plane
-    PxPlane_inverseTransform :: proc(self_: ^PxPlane, pose: ^PxTransform) -> PxPlane ---
+    @(link_name = "PxPlane_inverseTransform")
+    plane_inverse_transform :: proc(self_: ^PxPlane, #by_ptr pose: PxTransform) -> PxPlane ---
 
     /// finds the shortest rotation between two vectors.
     ///
     /// a rotation about an axis normal to the two vectors which takes one to the other via the shortest path
-    phys_PxShortestRotation :: proc(from: ^PxVec3, target: ^PxVec3) -> PxQuat ---
+    @(link_name = "phys_PxShortestRotation")
+    shortest_rotation :: proc(#by_ptr from: PxVec3, #by_ptr target: PxVec3) -> PxQuat ---
 
-    phys_PxDiagonalize :: proc(m: ^PxMat33, axes: ^PxQuat) -> PxVec3 ---
+    @(link_name = "phys_PxDiagonalize")
+    diagonalize :: proc(#by_ptr m: PxMat33, axes: ^PxQuat) -> PxVec3 ---
 
     /// creates a transform from the endpoints of a segment, suitable for an actor transform for a PxCapsuleGeometry
     ///
     /// A PxTransform which will transform the vector (1,0,0) to the capsule axis shrunk by the halfHeight
-    phys_PxTransformFromSegment :: proc(p0: ^PxVec3, p1: ^PxVec3, halfHeight: ^_c.float) -> PxTransform ---
+    @(link_name = "phys_PxTransformFromSegment")
+    transform_from_segment :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, halfHeight: ^_c.float) -> PxTransform ---
 
     /// creates a transform from a plane equation, suitable for an actor transform for a PxPlaneGeometry
     ///
     /// a PxTransform which will transform the plane PxPlane(1,0,0,0) to the specified plane
-    phys_PxTransformFromPlaneEquation :: proc(plane: ^PxPlane) -> PxTransform ---
+    @(link_name = "phys_PxTransformFromPlaneEquation")
+    transform_from_plane_equation :: proc(#by_ptr plane: PxPlane) -> PxTransform ---
 
     /// creates a plane equation from a transform, such as the actor transform for a PxPlaneGeometry
     ///
     /// the plane
-    phys_PxPlaneEquationFromTransform :: proc(pose: ^PxTransform) -> PxPlane ---
+    @(link_name = "phys_PxPlaneEquationFromTransform")
+    plane_equation_from_transform :: proc(#by_ptr pose: PxTransform) -> PxPlane ---
 
     /// Spherical linear interpolation of two quaternions.
     ///
@@ -5190,294 +5281,406 @@ foreign libphysx {
     /// <
     /// 1.
     /// Returns angle between -PI and PI in radians
-    phys_PxSlerp :: proc(t: _c.float, left: ^PxQuat, right: ^PxQuat) -> PxQuat ---
+    @(link_name = "phys_PxSlerp")
+    slerp :: proc(t: _c.float, #by_ptr left: PxQuat, #by_ptr right: PxQuat) -> PxQuat ---
 
     /// integrate transform.
-    phys_PxIntegrateTransform :: proc(curTrans: ^PxTransform, linvel: ^PxVec3, angvel: ^PxVec3, timeStep: _c.float, result: ^PxTransform) ---
+    @(link_name = "phys_PxIntegrateTransform")
+    integrate_transform :: proc(#by_ptr curTrans: PxTransform, #by_ptr linvel: PxVec3, #by_ptr angvel: PxVec3, timeStep: _c.float, result: ^PxTransform) ---
 
     /// Compute the exponent of a PxVec3
-    phys_PxExp :: proc(v: ^PxVec3) -> PxQuat ---
+    @(link_name = "phys_PxExp")
+    exp :: proc(#by_ptr v: PxVec3) -> PxQuat ---
 
     /// computes a oriented bounding box around the scaled basis.
     ///
     /// Bounding box extent.
-    phys_PxOptimizeBoundingBox :: proc(basis: ^PxMat33) -> PxVec3 ---
+    @(link_name = "phys_PxOptimizeBoundingBox")
+    optimize_bounding_box :: proc(basis: ^PxMat33) -> PxVec3 ---
 
     /// return Returns the log of a PxQuat
-    phys_PxLog :: proc(q: ^PxQuat) -> PxVec3 ---
+    @(link_name = "phys_PxLog")
+    log :: proc(#by_ptr q: PxQuat) -> PxVec3 ---
 
     /// return Returns 0 if v.x is largest element of v, 1 if v.y is largest element, 2 if v.z is largest element.
-    phys_PxLargestAxis :: proc(v: ^PxVec3) -> _c.uint32_t ---
+    @(link_name = "phys_PxLargestAxis")
+    largest_axis :: proc(#by_ptr v: PxVec3) -> _c.uint32_t ---
 
     /// Compute tan(theta/2) given sin(theta) and cos(theta) as inputs.
     ///
     /// Returns tan(theta/2)
-    phys_PxTanHalf :: proc(sin: _c.float, cos: _c.float) -> _c.float ---
+    @(link_name = "phys_PxTanHalf")
+    tan_half :: proc(sin: _c.float, cos: _c.float) -> _c.float ---
 
     /// Compute the closest point on an 2d ellipse to a given 2d point.
     ///
     /// Returns the 2d position on the surface of the ellipse that is closest to point.
-    phys_PxEllipseClamp :: proc(point: ^PxVec3, radii: ^PxVec3) -> PxVec3 ---
+    @(link_name = "phys_PxEllipseClamp")
+    ellipse_clamp :: proc(#by_ptr point: PxVec3, #by_ptr radii: PxVec3) -> PxVec3 ---
 
     /// Compute from an input quaternion q a pair of quaternions (swing, twist) such that
     /// q = swing * twist
     /// with the caveats that swing.x = twist.y = twist.z = 0.
-    phys_PxSeparateSwingTwist :: proc(q: ^PxQuat, swing: ^PxQuat, twist: ^PxQuat) ---
+    @(link_name = "phys_PxSeparateSwingTwist")
+    separate_swing_twist :: proc(#by_ptr q: PxQuat, swing: ^PxQuat, twist: ^PxQuat) ---
 
     /// Compute the angle between two non-unit vectors
     ///
     /// Returns the angle (in radians) between the two vector v0 and v1.
-    phys_PxComputeAngle :: proc(v0: ^PxVec3, v1: ^PxVec3) -> _c.float ---
+    @(link_name = "phys_PxComputeAngle")
+    compute_angle :: proc(#by_ptr v0: PxVec3, #by_ptr v1: PxVec3) -> _c.float ---
 
     /// Compute two normalized vectors (right and up) that are perpendicular to an input normalized vector (dir).
-    phys_PxComputeBasisVectors :: proc(dir: ^PxVec3, right: ^PxVec3, up: ^PxVec3) ---
+    @(link_name = "phys_PxComputeBasisVectors")
+    compute_basis_vectors :: proc(#by_ptr dir: PxVec3, right: ^PxVec3, up: ^PxVec3) ---
 
     /// Compute three normalized vectors (dir, right and up) that are parallel to (dir) and perpendicular to (right, up) the
     /// normalized direction vector (p1 - p0)/||p1 - p0||.
-    phys_PxComputeBasisVectors_1 :: proc(p0: ^PxVec3, p1: ^PxVec3, dir: ^PxVec3, right: ^PxVec3, up: ^PxVec3) ---
+    @(link_name = "phys_PxComputeBasisVectors_1")
+    compute_basis_vectors_1 :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, dir: ^PxVec3, right: ^PxVec3, up: ^PxVec3) ---
 
     /// Compute (i+1)%3
-    phys_PxGetNextIndex3 :: proc(i: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxGetNextIndex3")
+    get_next_index3 :: proc(i: _c.uint32_t) -> _c.uint32_t ---
 
-    phys_computeBarycentric :: proc(a: ^PxVec3, b: ^PxVec3, c: ^PxVec3, d: ^PxVec3, p: ^PxVec3, bary: ^PxVec4) ---
+    @(link_name = "phys_computeBarycentric")
+    compute_barycentric :: proc(#by_ptr a: PxVec3, #by_ptr b: PxVec3, #by_ptr c: PxVec3, #by_ptr d: PxVec3, #by_ptr p: PxVec3, bary: ^PxVec4) ---
 
-    phys_computeBarycentric_1 :: proc(a: ^PxVec3, b: ^PxVec3, c: ^PxVec3, p: ^PxVec3, bary: ^PxVec4) ---
+    @(link_name = "phys_computeBarycentric_1")
+    compute_barycentric_1 :: proc(#by_ptr a: PxVec3, #by_ptr b: PxVec3, #by_ptr c: PxVec3, #by_ptr p: PxVec3, bary: ^PxVec4) ---
 
-    Interpolation_PxLerp :: proc(a: _c.float, b: _c.float, t: _c.float) -> _c.float ---
+    @(link_name = "Interpolation_PxLerp")
+    lerp :: proc(a: _c.float, b: _c.float, t: _c.float) -> _c.float ---
 
-    Interpolation_PxBiLerp :: proc(f00: _c.float, f10: _c.float, f01: _c.float, f11: _c.float, tx: _c.float, ty: _c.float) -> _c.float ---
+    @(link_name = "Interpolation_PxBiLerp")
+    bi_lerp :: proc(f00: _c.float, f10: _c.float, f01: _c.float, f11: _c.float, tx: _c.float, ty: _c.float) -> _c.float ---
 
-    Interpolation_PxTriLerp :: proc(f000: _c.float, f100: _c.float, f010: _c.float, f110: _c.float, f001: _c.float, f101: _c.float, f011: _c.float, f111: _c.float, tx: _c.float, ty: _c.float, tz: _c.float) -> _c.float ---
+    @(link_name = "Interpolation_PxTriLerp")
+    tri_lerp :: proc(f000: _c.float, f100: _c.float, f010: _c.float, f110: _c.float, f001: _c.float, f101: _c.float, f011: _c.float, f111: _c.float, tx: _c.float, ty: _c.float, tz: _c.float) -> _c.float ---
 
-    Interpolation_PxSDFIdx :: proc(i: _c.uint32_t, j: _c.uint32_t, k: _c.uint32_t, nbX: _c.uint32_t, nbY: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "Interpolation_PxSDFIdx")
+    s_d_f_idx :: proc(i: _c.uint32_t, j: _c.uint32_t, k: _c.uint32_t, nbX: _c.uint32_t, nbY: _c.uint32_t) -> _c.uint32_t ---
 
-    Interpolation_PxSDFSampleImpl :: proc(sdf: ^_c.float, localPos: ^PxVec3, sdfBoxLower: ^PxVec3, sdfBoxHigher: ^PxVec3, sdfDx: _c.float, invSdfDx: _c.float, dimX: _c.uint32_t, dimY: _c.uint32_t, dimZ: _c.uint32_t, tolerance: _c.float) -> _c.float ---
+    @(link_name = "Interpolation_PxSDFSampleImpl")
+    s_d_f_sample_impl :: proc(sdf: ^_c.float, #by_ptr localPos: PxVec3, #by_ptr sdfBoxLower: PxVec3, #by_ptr sdfBoxHigher: PxVec3, sdfDx: _c.float, invSdfDx: _c.float, dimX: _c.uint32_t, dimY: _c.uint32_t, dimZ: _c.uint32_t, tolerance: _c.float) -> _c.float ---
 
-    phys_PxSdfSample :: proc(sdf: ^_c.float, localPos: ^PxVec3, sdfBoxLower: ^PxVec3, sdfBoxHigher: ^PxVec3, sdfDx: _c.float, invSdfDx: _c.float, dimX: _c.uint32_t, dimY: _c.uint32_t, dimZ: _c.uint32_t, gradient: ^PxVec3, tolerance: _c.float) -> _c.float ---
+    @(link_name = "phys_PxSdfSample")
+    sdf_sample :: proc(sdf: ^_c.float, #by_ptr localPos: PxVec3, #by_ptr sdfBoxLower: PxVec3, #by_ptr sdfBoxHigher: PxVec3, sdfDx: _c.float, invSdfDx: _c.float, dimX: _c.uint32_t, dimY: _c.uint32_t, dimZ: _c.uint32_t, gradient: ^PxVec3, tolerance: _c.float) -> _c.float ---
 
     /// The constructor for Mutex creates a mutex. It is initially unlocked.
-    PxMutexImpl_new_alloc :: proc() -> ^PxMutexImpl ---
+    @(link_name = "PxMutexImpl_new_alloc")
+    mutex_impl_new_alloc :: proc() -> ^PxMutexImpl ---
 
     /// The destructor for Mutex deletes the mutex.
-    PxMutexImpl_delete :: proc(self_: ^PxMutexImpl) ---
+    @(link_name = "PxMutexImpl_delete")
+    mutex_impl_delete :: proc(self_: ^PxMutexImpl) ---
 
     /// Acquire (lock) the mutex. If the mutex is already locked
     /// by another thread, this method blocks until the mutex is
     /// unlocked.
-    PxMutexImpl_lock_mut :: proc(self_: ^PxMutexImpl) ---
+    @(link_name = "PxMutexImpl_lock_mut")
+    mutex_impl_lock_mut :: proc(self_: ^PxMutexImpl) ---
 
     /// Acquire (lock) the mutex. If the mutex is already locked
     /// by another thread, this method returns false without blocking.
-    PxMutexImpl_trylock_mut :: proc(self_: ^PxMutexImpl) -> _c.bool ---
+    @(link_name = "PxMutexImpl_trylock_mut")
+    mutex_impl_trylock_mut :: proc(self_: ^PxMutexImpl) -> _c.bool ---
 
     /// Release (unlock) the mutex.
-    PxMutexImpl_unlock_mut :: proc(self_: ^PxMutexImpl) ---
+    @(link_name = "PxMutexImpl_unlock_mut")
+    mutex_impl_unlock_mut :: proc(self_: ^PxMutexImpl) ---
 
     /// Size of this class.
-    PxMutexImpl_getSize :: proc() -> _c.uint32_t ---
+    @(link_name = "PxMutexImpl_getSize")
+    mutex_impl_get_size :: proc() -> _c.uint32_t ---
 
-    PxReadWriteLock_new_alloc :: proc() -> ^PxReadWriteLock ---
+    @(link_name = "PxReadWriteLock_new_alloc")
+    read_write_lock_new_alloc :: proc() -> ^PxReadWriteLock ---
 
-    PxReadWriteLock_delete :: proc(self_: ^PxReadWriteLock) ---
+    @(link_name = "PxReadWriteLock_delete")
+    read_write_lock_delete :: proc(self_: ^PxReadWriteLock) ---
 
-    PxReadWriteLock_lockReader_mut :: proc(self_: ^PxReadWriteLock, takeLock: _c.bool) ---
+    @(link_name = "PxReadWriteLock_lockReader_mut")
+    read_write_lock_lock_reader_mut :: proc(self_: ^PxReadWriteLock, takeLock: _c.bool) ---
 
-    PxReadWriteLock_lockWriter_mut :: proc(self_: ^PxReadWriteLock) ---
+    @(link_name = "PxReadWriteLock_lockWriter_mut")
+    read_write_lock_lock_writer_mut :: proc(self_: ^PxReadWriteLock) ---
 
-    PxReadWriteLock_unlockReader_mut :: proc(self_: ^PxReadWriteLock) ---
+    @(link_name = "PxReadWriteLock_unlockReader_mut")
+    read_write_lock_unlock_reader_mut :: proc(self_: ^PxReadWriteLock) ---
 
-    PxReadWriteLock_unlockWriter_mut :: proc(self_: ^PxReadWriteLock) ---
+    @(link_name = "PxReadWriteLock_unlockWriter_mut")
+    read_write_lock_unlock_writer_mut :: proc(self_: ^PxReadWriteLock) ---
 
     /// Mark the beginning of a nested profile block
     ///
     /// Returns implementation-specific profiler data for this event
-    PxProfilerCallback_zoneStart_mut :: proc(self_: ^PxProfilerCallback, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) -> rawptr ---
+    @(link_name = "PxProfilerCallback_zoneStart_mut")
+    profiler_callback_zone_start_mut :: proc(self_: ^PxProfilerCallback, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) -> rawptr ---
 
     /// Mark the end of a nested profile block
     ///
     /// eventName plus contextId can be used to uniquely match up start and end of a zone.
-    PxProfilerCallback_zoneEnd_mut :: proc(self_: ^PxProfilerCallback, profilerData: rawptr, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) ---
+    @(link_name = "PxProfilerCallback_zoneEnd_mut")
+    profiler_callback_zone_end_mut :: proc(self_: ^PxProfilerCallback, profilerData: rawptr, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) ---
 
-    PxProfileScoped_new_alloc :: proc(callback: ^PxProfilerCallback, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) -> ^PxProfileScoped ---
+    @(link_name = "PxProfileScoped_new_alloc")
+    profile_scoped_new_alloc :: proc(callback: ^PxProfilerCallback, eventName: ^_c.char, detached: _c.bool, contextId: _c.uint64_t) -> ^PxProfileScoped ---
 
-    PxProfileScoped_delete :: proc(self_: ^PxProfileScoped) ---
+    @(link_name = "PxProfileScoped_delete")
+    profile_scoped_delete :: proc(self_: ^PxProfileScoped) ---
 
-    PxSListEntry_new :: proc() -> PxSListEntry ---
+    @(link_name = "PxSListEntry_new")
+    s_list_entry_new :: proc() -> PxSListEntry ---
 
-    PxSListEntry_next_mut :: proc(self_: ^PxSListEntry) -> ^PxSListEntry ---
+    @(link_name = "PxSListEntry_next_mut")
+    s_list_entry_next_mut :: proc(self_: ^PxSListEntry) -> ^PxSListEntry ---
 
-    PxSListImpl_new_alloc :: proc() -> ^PxSListImpl ---
+    @(link_name = "PxSListImpl_new_alloc")
+    s_list_impl_new_alloc :: proc() -> ^PxSListImpl ---
 
-    PxSListImpl_delete :: proc(self_: ^PxSListImpl) ---
+    @(link_name = "PxSListImpl_delete")
+    s_list_impl_delete :: proc(self_: ^PxSListImpl) ---
 
-    PxSListImpl_push_mut :: proc(self_: ^PxSListImpl, entry: ^PxSListEntry) ---
+    @(link_name = "PxSListImpl_push_mut")
+    s_list_impl_push_mut :: proc(self_: ^PxSListImpl, entry: ^PxSListEntry) ---
 
-    PxSListImpl_pop_mut :: proc(self_: ^PxSListImpl) -> ^PxSListEntry ---
+    @(link_name = "PxSListImpl_pop_mut")
+    s_list_impl_pop_mut :: proc(self_: ^PxSListImpl) -> ^PxSListEntry ---
 
-    PxSListImpl_flush_mut :: proc(self_: ^PxSListImpl) -> ^PxSListEntry ---
+    @(link_name = "PxSListImpl_flush_mut")
+    s_list_impl_flush_mut :: proc(self_: ^PxSListImpl) -> ^PxSListEntry ---
 
-    PxSListImpl_getSize :: proc() -> _c.uint32_t ---
+    @(link_name = "PxSListImpl_getSize")
+    s_list_impl_get_size :: proc() -> _c.uint32_t ---
 
-    PxSyncImpl_new_alloc :: proc() -> ^PxSyncImpl ---
+    @(link_name = "PxSyncImpl_new_alloc")
+    sync_impl_new_alloc :: proc() -> ^PxSyncImpl ---
 
-    PxSyncImpl_delete :: proc(self_: ^PxSyncImpl) ---
+    @(link_name = "PxSyncImpl_delete")
+    sync_impl_delete :: proc(self_: ^PxSyncImpl) ---
 
     /// Wait on the object for at most the given number of ms. Returns
     /// true if the object is signaled. Sync::waitForever will block forever
     /// or until the object is signaled.
-    PxSyncImpl_wait_mut :: proc(self_: ^PxSyncImpl, milliseconds: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxSyncImpl_wait_mut")
+    sync_impl_wait_mut :: proc(self_: ^PxSyncImpl, milliseconds: _c.uint32_t) -> _c.bool ---
 
     /// Signal the synchronization object, waking all threads waiting on it
-    PxSyncImpl_set_mut :: proc(self_: ^PxSyncImpl) ---
+    @(link_name = "PxSyncImpl_set_mut")
+    sync_impl_set_mut :: proc(self_: ^PxSyncImpl) ---
 
     /// Reset the synchronization object
-    PxSyncImpl_reset_mut :: proc(self_: ^PxSyncImpl) ---
+    @(link_name = "PxSyncImpl_reset_mut")
+    sync_impl_reset_mut :: proc(self_: ^PxSyncImpl) ---
 
     /// Size of this class.
-    PxSyncImpl_getSize :: proc() -> _c.uint32_t ---
+    @(link_name = "PxSyncImpl_getSize")
+    sync_impl_get_size :: proc() -> _c.uint32_t ---
 
-    PxRunnable_new_alloc :: proc() -> ^PxRunnable ---
+    @(link_name = "PxRunnable_new_alloc")
+    runnable_new_alloc :: proc() -> ^PxRunnable ---
 
-    PxRunnable_delete :: proc(self_: ^PxRunnable) ---
+    @(link_name = "PxRunnable_delete")
+    runnable_delete :: proc(self_: ^PxRunnable) ---
 
-    PxRunnable_execute_mut :: proc(self_: ^PxRunnable) ---
+    @(link_name = "PxRunnable_execute_mut")
+    runnable_execute_mut :: proc(self_: ^PxRunnable) ---
 
-    phys_PxTlsAlloc :: proc() -> _c.uint32_t ---
+    @(link_name = "phys_PxTlsAlloc")
+    tls_alloc :: proc() -> _c.uint32_t ---
 
-    phys_PxTlsFree :: proc(index: _c.uint32_t) ---
+    @(link_name = "phys_PxTlsFree")
+    tls_free :: proc(index: _c.uint32_t) ---
 
-    phys_PxTlsGet :: proc(index: _c.uint32_t) -> rawptr ---
+    @(link_name = "phys_PxTlsGet")
+    tls_get :: proc(index: _c.uint32_t) -> rawptr ---
 
-    phys_PxTlsGetValue :: proc(index: _c.uint32_t) -> _c.size_t ---
+    @(link_name = "phys_PxTlsGetValue")
+    tls_get_value :: proc(index: _c.uint32_t) -> _c.size_t ---
 
-    phys_PxTlsSet :: proc(index: _c.uint32_t, value: rawptr) -> _c.uint32_t ---
+    @(link_name = "phys_PxTlsSet")
+    tls_set :: proc(index: _c.uint32_t, value: rawptr) -> _c.uint32_t ---
 
-    phys_PxTlsSetValue :: proc(index: _c.uint32_t, value: _c.size_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxTlsSetValue")
+    tls_set_value :: proc(index: _c.uint32_t, value: _c.size_t) -> _c.uint32_t ---
 
-    PxCounterFrequencyToTensOfNanos_new :: proc(inNum: _c.uint64_t, inDenom: _c.uint64_t) -> PxCounterFrequencyToTensOfNanos ---
+    @(link_name = "PxCounterFrequencyToTensOfNanos_new")
+    counter_frequency_to_tens_of_nanos_new :: proc(inNum: _c.uint64_t, inDenom: _c.uint64_t) -> PxCounterFrequencyToTensOfNanos ---
 
-    PxCounterFrequencyToTensOfNanos_toTensOfNanos :: proc(self_: ^PxCounterFrequencyToTensOfNanos, inCounter: _c.uint64_t) -> _c.uint64_t ---
+    @(link_name = "PxCounterFrequencyToTensOfNanos_toTensOfNanos")
+    counter_frequency_to_tens_of_nanos_to_tens_of_nanos :: proc(self_: ^PxCounterFrequencyToTensOfNanos, inCounter: _c.uint64_t) -> _c.uint64_t ---
 
-    PxTime_getBootCounterFrequency :: proc() -> ^PxCounterFrequencyToTensOfNanos ---
+    @(link_name = "PxTime_getBootCounterFrequency")
+    time_get_boot_counter_frequency :: proc() -> ^PxCounterFrequencyToTensOfNanos ---
 
-    PxTime_getCounterFrequency :: proc() -> PxCounterFrequencyToTensOfNanos ---
+    @(link_name = "PxTime_getCounterFrequency")
+    time_get_counter_frequency :: proc() -> PxCounterFrequencyToTensOfNanos ---
 
-    PxTime_getCurrentCounterValue :: proc() -> _c.uint64_t ---
+    @(link_name = "PxTime_getCurrentCounterValue")
+    time_get_current_counter_value :: proc() -> _c.uint64_t ---
 
-    PxTime_getCurrentTimeInTensOfNanoSeconds :: proc() -> _c.uint64_t ---
+    @(link_name = "PxTime_getCurrentTimeInTensOfNanoSeconds")
+    time_get_current_time_in_tens_of_nano_seconds :: proc() -> _c.uint64_t ---
 
-    PxTime_new :: proc() -> PxTime ---
+    @(link_name = "PxTime_new")
+    time_new :: proc() -> PxTime ---
 
-    PxTime_getElapsedSeconds_mut :: proc(self_: ^PxTime) -> _c.double ---
+    @(link_name = "PxTime_getElapsedSeconds_mut")
+    time_get_elapsed_seconds_mut :: proc(self_: ^PxTime) -> _c.double ---
 
-    PxTime_peekElapsedSeconds_mut :: proc(self_: ^PxTime) -> _c.double ---
+    @(link_name = "PxTime_peekElapsedSeconds_mut")
+    time_peek_elapsed_seconds_mut :: proc(self_: ^PxTime) -> _c.double ---
 
-    PxTime_getLastTime :: proc(self_: ^PxTime) -> _c.double ---
+    @(link_name = "PxTime_getLastTime")
+    time_get_last_time :: proc(self_: ^PxTime) -> _c.double ---
 
     /// default constructor leaves data uninitialized.
-    PxVec2_new :: proc() -> PxVec2 ---
+    @(link_name = "PxVec2_new")
+    vec2_new :: proc() -> PxVec2 ---
 
     /// zero constructor.
-    PxVec2_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec2 ---
+    @(link_name = "PxVec2_new_1")
+    vec2_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec2 ---
 
     /// Assigns scalar parameter to all elements.
     ///
     /// Useful to initialize to zero or one.
-    PxVec2_new_2 :: proc(a: _c.float) -> PxVec2 ---
+    @(link_name = "PxVec2_new_2")
+    vec2_new_2 :: proc(a: _c.float) -> PxVec2 ---
 
     /// Initializes from 2 scalar parameters.
-    PxVec2_new_3 :: proc(nx: _c.float, ny: _c.float) -> PxVec2 ---
+    @(link_name = "PxVec2_new_3")
+    vec2_new_3 :: proc(nx: _c.float, ny: _c.float) -> PxVec2 ---
 
     /// tests for exact zero vector
-    PxVec2_isZero :: proc(self_: ^PxVec2) -> _c.bool ---
+    @(link_name = "PxVec2_isZero")
+    vec2_is_zero :: proc(self_: ^PxVec2) -> _c.bool ---
 
     /// returns true if all 2 elems of the vector are finite (not NAN or INF, etc.)
-    PxVec2_isFinite :: proc(self_: ^PxVec2) -> _c.bool ---
+    @(link_name = "PxVec2_isFinite")
+    vec2_is_finite :: proc(self_: ^PxVec2) -> _c.bool ---
 
     /// is normalized - used by API parameter validation
-    PxVec2_isNormalized :: proc(self_: ^PxVec2) -> _c.bool ---
+    @(link_name = "PxVec2_isNormalized")
+    vec2_is_normalized :: proc(self_: ^PxVec2) -> _c.bool ---
 
     /// returns the squared magnitude
     ///
     /// Avoids calling PxSqrt()!
-    PxVec2_magnitudeSquared :: proc(self_: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_magnitudeSquared")
+    vec2_magnitude_squared :: proc(self_: ^PxVec2) -> _c.float ---
 
     /// returns the magnitude
-    PxVec2_magnitude :: proc(self_: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_magnitude")
+    vec2_magnitude :: proc(self_: ^PxVec2) -> _c.float ---
 
     /// returns the scalar product of this and other.
-    PxVec2_dot :: proc(self_: ^PxVec2, v: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_dot")
+    vec2_dot :: proc(self_: ^PxVec2, #by_ptr v: PxVec2) -> _c.float ---
 
     /// returns a unit vector
-    PxVec2_getNormalized :: proc(self_: ^PxVec2) -> PxVec2 ---
+    @(link_name = "PxVec2_getNormalized")
+    vec2_get_normalized :: proc(self_: ^PxVec2) -> PxVec2 ---
 
     /// normalizes the vector in place
-    PxVec2_normalize_mut :: proc(self_: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_normalize_mut")
+    vec2_normalize_mut :: proc(self_: ^PxVec2) -> _c.float ---
 
     /// a[i] * b[i], for all i.
-    PxVec2_multiply :: proc(self_: ^PxVec2, a: ^PxVec2) -> PxVec2 ---
+    @(link_name = "PxVec2_multiply")
+    vec2_multiply :: proc(self_: ^PxVec2, #by_ptr a: PxVec2) -> PxVec2 ---
 
     /// element-wise minimum
-    PxVec2_minimum :: proc(self_: ^PxVec2, v: ^PxVec2) -> PxVec2 ---
+    @(link_name = "PxVec2_minimum")
+    vec2_minimum :: proc(self_: ^PxVec2, #by_ptr v: PxVec2) -> PxVec2 ---
 
     /// returns MIN(x, y);
-    PxVec2_minElement :: proc(self_: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_minElement")
+    vec2_min_element :: proc(self_: ^PxVec2) -> _c.float ---
 
     /// element-wise maximum
-    PxVec2_maximum :: proc(self_: ^PxVec2, v: ^PxVec2) -> PxVec2 ---
+    @(link_name = "PxVec2_maximum")
+    vec2_maximum :: proc(self_: ^PxVec2, #by_ptr v: PxVec2) -> PxVec2 ---
 
     /// returns MAX(x, y);
-    PxVec2_maxElement :: proc(self_: ^PxVec2) -> _c.float ---
+    @(link_name = "PxVec2_maxElement")
+    vec2_max_element :: proc(self_: ^PxVec2) -> _c.float ---
 
-    PxStridedData_new :: proc() -> PxStridedData ---
+    @(link_name = "PxStridedData_new")
+    strided_data_new :: proc() -> PxStridedData ---
 
-    PxBoundedData_new :: proc() -> PxBoundedData ---
+    @(link_name = "PxBoundedData_new")
+    bounded_data_new :: proc() -> PxBoundedData ---
 
-    PxDebugPoint_new :: proc(p: ^PxVec3, c: ^_c.uint32_t) -> PxDebugPoint ---
+    @(link_name = "PxDebugPoint_new")
+    debug_point_new :: proc(#by_ptr p: PxVec3, #by_ptr c: _c.uint32_t) -> PxDebugPoint ---
 
-    PxDebugLine_new :: proc(p0: ^PxVec3, p1: ^PxVec3, c: ^_c.uint32_t) -> PxDebugLine ---
+    @(link_name = "PxDebugLine_new")
+    debug_line_new :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, #by_ptr c: _c.uint32_t) -> PxDebugLine ---
 
-    PxDebugTriangle_new :: proc(p0: ^PxVec3, p1: ^PxVec3, p2: ^PxVec3, c: ^_c.uint32_t) -> PxDebugTriangle ---
+    @(link_name = "PxDebugTriangle_new")
+    debug_triangle_new :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, #by_ptr p2: PxVec3, #by_ptr c: _c.uint32_t) -> PxDebugTriangle ---
 
-    PxDebugText_new :: proc() -> PxDebugText ---
+    @(link_name = "PxDebugText_new")
+    debug_text_new :: proc() -> PxDebugText ---
 
-    PxDebugText_new_1 :: proc(pos: ^PxVec3, sz: ^_c.float, clr: ^_c.uint32_t, str: ^_c.char) -> PxDebugText ---
+    @(link_name = "PxDebugText_new_1")
+    debug_text_new_1 :: proc(#by_ptr pos: PxVec3, #by_ptr sz: _c.float, #by_ptr clr: _c.uint32_t, str: ^_c.char) -> PxDebugText ---
 
-    PxRenderBuffer_delete :: proc(self_: ^PxRenderBuffer) ---
+    @(link_name = "PxRenderBuffer_delete")
+    render_buffer_delete :: proc(self_: ^PxRenderBuffer) ---
 
-    PxRenderBuffer_getNbPoints :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
+    @(link_name = "PxRenderBuffer_getNbPoints")
+    render_buffer_get_nb_points :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
 
-    PxRenderBuffer_getPoints :: proc(self_: ^PxRenderBuffer) -> ^PxDebugPoint ---
+    @(link_name = "PxRenderBuffer_getPoints")
+    render_buffer_get_points :: proc(self_: ^PxRenderBuffer) -> ^PxDebugPoint ---
 
-    PxRenderBuffer_addPoint_mut :: proc(self_: ^PxRenderBuffer, point: ^PxDebugPoint) ---
+    @(link_name = "PxRenderBuffer_addPoint_mut")
+    render_buffer_add_point_mut :: proc(self_: ^PxRenderBuffer, #by_ptr point: PxDebugPoint) ---
 
-    PxRenderBuffer_getNbLines :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
+    @(link_name = "PxRenderBuffer_getNbLines")
+    render_buffer_get_nb_lines :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
 
-    PxRenderBuffer_getLines :: proc(self_: ^PxRenderBuffer) -> ^PxDebugLine ---
+    @(link_name = "PxRenderBuffer_getLines")
+    render_buffer_get_lines :: proc(self_: ^PxRenderBuffer) -> ^PxDebugLine ---
 
-    PxRenderBuffer_addLine_mut :: proc(self_: ^PxRenderBuffer, line: ^PxDebugLine) ---
+    @(link_name = "PxRenderBuffer_addLine_mut")
+    render_buffer_add_line_mut :: proc(self_: ^PxRenderBuffer, #by_ptr line: PxDebugLine) ---
 
-    PxRenderBuffer_reserveLines_mut :: proc(self_: ^PxRenderBuffer, nbLines: _c.uint32_t) -> ^PxDebugLine ---
+    @(link_name = "PxRenderBuffer_reserveLines_mut")
+    render_buffer_reserve_lines_mut :: proc(self_: ^PxRenderBuffer, nbLines: _c.uint32_t) -> ^PxDebugLine ---
 
-    PxRenderBuffer_reservePoints_mut :: proc(self_: ^PxRenderBuffer, nbLines: _c.uint32_t) -> ^PxDebugPoint ---
+    @(link_name = "PxRenderBuffer_reservePoints_mut")
+    render_buffer_reserve_points_mut :: proc(self_: ^PxRenderBuffer, nbLines: _c.uint32_t) -> ^PxDebugPoint ---
 
-    PxRenderBuffer_getNbTriangles :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
+    @(link_name = "PxRenderBuffer_getNbTriangles")
+    render_buffer_get_nb_triangles :: proc(self_: ^PxRenderBuffer) -> _c.uint32_t ---
 
-    PxRenderBuffer_getTriangles :: proc(self_: ^PxRenderBuffer) -> ^PxDebugTriangle ---
+    @(link_name = "PxRenderBuffer_getTriangles")
+    render_buffer_get_triangles :: proc(self_: ^PxRenderBuffer) -> ^PxDebugTriangle ---
 
-    PxRenderBuffer_addTriangle_mut :: proc(self_: ^PxRenderBuffer, triangle: ^PxDebugTriangle) ---
+    @(link_name = "PxRenderBuffer_addTriangle_mut")
+    render_buffer_add_triangle_mut :: proc(self_: ^PxRenderBuffer, #by_ptr triangle: PxDebugTriangle) ---
 
-    PxRenderBuffer_append_mut :: proc(self_: ^PxRenderBuffer, other: ^PxRenderBuffer) ---
+    @(link_name = "PxRenderBuffer_append_mut")
+    render_buffer_append_mut :: proc(self_: ^PxRenderBuffer, #by_ptr other: PxRenderBuffer) ---
 
-    PxRenderBuffer_clear_mut :: proc(self_: ^PxRenderBuffer) ---
+    @(link_name = "PxRenderBuffer_clear_mut")
+    render_buffer_clear_mut :: proc(self_: ^PxRenderBuffer) ---
 
-    PxRenderBuffer_shift_mut :: proc(self_: ^PxRenderBuffer, delta: ^PxVec3) ---
+    @(link_name = "PxRenderBuffer_shift_mut")
+    render_buffer_shift_mut :: proc(self_: ^PxRenderBuffer, #by_ptr delta: PxVec3) ---
 
-    PxRenderBuffer_empty :: proc(self_: ^PxRenderBuffer) -> _c.bool ---
+    @(link_name = "PxRenderBuffer_empty")
+    render_buffer_empty :: proc(self_: ^PxRenderBuffer) -> _c.bool ---
 
-    PxProcessPxBaseCallback_delete :: proc(self_: ^PxProcessPxBaseCallback) ---
+    @(link_name = "PxProcessPxBaseCallback_delete")
+    process_px_base_callback_delete :: proc(self_: ^PxProcessPxBaseCallback) ---
 
-    PxProcessPxBaseCallback_process_mut :: proc(self_: ^PxProcessPxBaseCallback, anon_param0: ^PxBase) ---
+    @(link_name = "PxProcessPxBaseCallback_process_mut")
+    process_px_base_callback_process_mut :: proc(self_: ^PxProcessPxBaseCallback, anon_param0: ^PxBase) ---
 
     /// Registers a reference value corresponding to a PxBase object.
     ///
@@ -5492,25 +5695,30 @@ foreign libphysx {
     /// to the PxBase object). Integer references maybe registered as well (used for internal material
     /// indices with PX_SERIAL_REF_KIND_MATERIAL_IDX). Other kinds could be added with the restriction that
     /// for pointer types the kind value needs to be marked with the PX_SERIAL_REF_KIND_PTR_TYPE_BIT.
-    PxSerializationContext_registerReference_mut :: proc(self_: ^PxSerializationContext, base: ^PxBase, kind: _c.uint32_t, reference: _c.size_t) ---
+    @(link_name = "PxSerializationContext_registerReference_mut")
+    serialization_context_register_reference_mut :: proc(self_: ^PxSerializationContext, base: ^PxBase, kind: _c.uint32_t, reference: _c.size_t) ---
 
     /// Returns the collection that is being serialized.
-    PxSerializationContext_getCollection :: proc(self_: ^PxSerializationContext) -> ^PxCollection ---
+    @(link_name = "PxSerializationContext_getCollection")
+    serialization_context_get_collection :: proc(self_: ^PxSerializationContext) -> ^PxCollection ---
 
     /// Serializes object data and object extra data.
     ///
     /// This function is assumed to be called within the implementation of PxSerializer::exportData and PxSerializer::exportExtraData.
-    PxSerializationContext_writeData_mut :: proc(self_: ^PxSerializationContext, data: rawptr, size: _c.uint32_t) ---
+    @(link_name = "PxSerializationContext_writeData_mut")
+    serialization_context_write_data_mut :: proc(self_: ^PxSerializationContext, data: rawptr, size: _c.uint32_t) ---
 
     /// Aligns the serialized data.
     ///
     /// This function is assumed to be called within the implementation of PxSerializer::exportData and PxSerializer::exportExtraData.
-    PxSerializationContext_alignData_mut :: proc(self_: ^PxSerializationContext, alignment: _c.uint32_t) ---
+    @(link_name = "PxSerializationContext_alignData_mut")
+    serialization_context_align_data_mut :: proc(self_: ^PxSerializationContext, alignment: _c.uint32_t) ---
 
     /// Helper function to write a name to the extraData if serialization is configured to save names.
     ///
     /// This function is assumed to be called within the implementation of PxSerializer::exportExtraData.
-    PxSerializationContext_writeName_mut :: proc(self_: ^PxSerializationContext, name: ^_c.char) ---
+    @(link_name = "PxSerializationContext_writeName_mut")
+    serialization_context_write_name_mut :: proc(self_: ^PxSerializationContext, name: ^_c.char) ---
 
     /// Retrieves a pointer to a deserialized PxBase object given a corresponding deserialized reference value
     ///
@@ -5524,49 +5732,59 @@ foreign libphysx {
     /// For other kinds of references the reverence values need to be updated by deduction given the corresponding PxBase instance.
     ///
     /// PxBase object associated with the reference value
-    PxDeserializationContext_resolveReference :: proc(self_: ^PxDeserializationContext, kind: _c.uint32_t, reference: _c.size_t) -> ^PxBase ---
+    @(link_name = "PxDeserializationContext_resolveReference")
+    deserialization_context_resolve_reference :: proc(self_: ^PxDeserializationContext, kind: _c.uint32_t, reference: _c.size_t) -> ^PxBase ---
 
     /// Helper function to read a name from the extra data during deserialization.
     ///
     /// This function is assumed to be called within the implementation of PxSerializer::createObject.
-    PxDeserializationContext_readName_mut :: proc(self_: ^PxDeserializationContext, name: ^^_c.char) ---
+    @(link_name = "PxDeserializationContext_readName_mut")
+    deserialization_context_read_name_mut :: proc(self_: ^PxDeserializationContext, name: ^^_c.char) ---
 
     /// Function to align the extra data stream to a power of 2 alignment
     ///
     /// This function is assumed to be called within the implementation of PxSerializer::createObject.
-    PxDeserializationContext_alignExtraData_mut :: proc(self_: ^PxDeserializationContext, alignment: _c.uint32_t) ---
+    @(link_name = "PxDeserializationContext_alignExtraData_mut")
+    deserialization_context_align_extra_data_mut :: proc(self_: ^PxDeserializationContext, alignment: _c.uint32_t) ---
 
     /// Register a serializer for a concrete type
-    PxSerializationRegistry_registerSerializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t, serializer: ^PxSerializer) ---
+    @(link_name = "PxSerializationRegistry_registerSerializer_mut")
+    serialization_registry_register_serializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t, serializer: ^PxSerializer) ---
 
     /// Unregister a serializer for a concrete type, and retrieves the corresponding serializer object.
     ///
     /// Unregistered serializer corresponding to type, NULL for types for which no serializer has been registered.
-    PxSerializationRegistry_unregisterSerializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxSerializer ---
+    @(link_name = "PxSerializationRegistry_unregisterSerializer_mut")
+    serialization_registry_unregister_serializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxSerializer ---
 
     /// Returns PxSerializer corresponding to type
     ///
     /// Registered PxSerializer object corresponding to type
-    PxSerializationRegistry_getSerializer :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxSerializer ---
+    @(link_name = "PxSerializationRegistry_getSerializer")
+    serialization_registry_get_serializer :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxSerializer ---
 
     /// Register a RepX serializer for a concrete type
-    PxSerializationRegistry_registerRepXSerializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t, serializer: ^PxRepXSerializer) ---
+    @(link_name = "PxSerializationRegistry_registerRepXSerializer_mut")
+    serialization_registry_register_rep_x_serializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t, serializer: ^PxRepXSerializer) ---
 
     /// Unregister a RepX serializer for a concrete type, and retrieves the corresponding serializer object.
     ///
     /// Unregistered PxRepxSerializer corresponding to type, NULL for types for which no RepX serializer has been registered.
-    PxSerializationRegistry_unregisterRepXSerializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxRepXSerializer ---
+    @(link_name = "PxSerializationRegistry_unregisterRepXSerializer_mut")
+    serialization_registry_unregister_rep_x_serializer_mut :: proc(self_: ^PxSerializationRegistry, type: _c.uint16_t) -> ^PxRepXSerializer ---
 
     /// Returns RepX serializer given the corresponding type name
     ///
     /// Registered PxRepXSerializer object corresponding to type name
-    PxSerializationRegistry_getRepXSerializer :: proc(self_: ^PxSerializationRegistry, typeName: ^_c.char) -> ^PxRepXSerializer ---
+    @(link_name = "PxSerializationRegistry_getRepXSerializer")
+    serialization_registry_get_rep_x_serializer :: proc(self_: ^PxSerializationRegistry, typeName: ^_c.char) -> ^PxRepXSerializer ---
 
     /// Releases PxSerializationRegistry instance.
     ///
     /// This unregisters all PhysX and PhysXExtension serializers. Make sure to unregister all custom type
     /// serializers before releasing the PxSerializationRegistry.
-    PxSerializationRegistry_release_mut :: proc(self_: ^PxSerializationRegistry) ---
+    @(link_name = "PxSerializationRegistry_release_mut")
+    serialization_registry_release_mut :: proc(self_: ^PxSerializationRegistry) ---
 
     /// Adds a PxBase object to the collection.
     ///
@@ -5575,86 +5793,101 @@ foreign libphysx {
     /// means the object remains without id. Objects can be added regardless of other objects they require. If the object
     /// is already in the collection, the ID will be set if it was PX_SERIAL_OBJECT_ID_INVALID previously, otherwise the
     /// operation fails.
-    PxCollection_add_mut :: proc(self_: ^PxCollection, object: ^PxBase, id: _c.uint64_t) ---
+    @(link_name = "PxCollection_add_mut")
+    collection_add_mut :: proc(self_: ^PxCollection, object: ^PxBase, id: _c.uint64_t) ---
 
     /// Removes a PxBase member object from the collection.
     ///
     /// Object needs to be contained by the collection.
-    PxCollection_remove_mut :: proc(self_: ^PxCollection, object: ^PxBase) ---
+    @(link_name = "PxCollection_remove_mut")
+    collection_remove_mut :: proc(self_: ^PxCollection, object: ^PxBase) ---
 
     /// Returns whether the collection contains a certain PxBase object.
     ///
     /// Whether object is contained.
-    PxCollection_contains :: proc(self_: ^PxCollection, object: ^PxBase) -> _c.bool ---
+    @(link_name = "PxCollection_contains")
+    collection_contains :: proc(self_: ^PxCollection, object: ^PxBase) -> _c.bool ---
 
     /// Adds an id to a member PxBase object.
     ///
     /// If the object is already associated with an id within the collection, the id is replaced.
     /// May only be called for objects that are members of the collection. The id needs to be unique
     /// within the collection.
-    PxCollection_addId_mut :: proc(self_: ^PxCollection, object: ^PxBase, id: _c.uint64_t) ---
+    @(link_name = "PxCollection_addId_mut")
+    collection_add_id_mut :: proc(self_: ^PxCollection, object: ^PxBase, id: _c.uint64_t) ---
 
     /// Removes id from a contained PxBase object.
     ///
     /// May only be called for ids that are associated with an object in the collection.
-    PxCollection_removeId_mut :: proc(self_: ^PxCollection, id: _c.uint64_t) ---
+    @(link_name = "PxCollection_removeId_mut")
+    collection_remove_id_mut :: proc(self_: ^PxCollection, id: _c.uint64_t) ---
 
     /// Adds all PxBase objects and their ids of collection to this collection.
     ///
     /// PxBase objects already in this collection are ignored. Object ids need to be conflict
     /// free, i.e. the same object may not have two different ids within the two collections.
-    PxCollection_add_mut_1 :: proc(self_: ^PxCollection, collection: ^PxCollection) ---
+    @(link_name = "PxCollection_add_mut_1")
+    collection_add_mut_1 :: proc(self_: ^PxCollection, collection: ^PxCollection) ---
 
     /// Removes all PxBase objects of collection from this collection.
     ///
     /// PxBase objects not present in this collection are ignored. Ids of objects
     /// which are removed are also removed.
-    PxCollection_remove_mut_1 :: proc(self_: ^PxCollection, collection: ^PxCollection) ---
+    @(link_name = "PxCollection_remove_mut_1")
+    collection_remove_mut_1 :: proc(self_: ^PxCollection, collection: ^PxCollection) ---
 
     /// Gets number of PxBase objects in this collection.
     ///
     /// Number of objects in this collection
-    PxCollection_getNbObjects :: proc(self_: ^PxCollection) -> _c.uint32_t ---
+    @(link_name = "PxCollection_getNbObjects")
+    collection_get_nb_objects :: proc(self_: ^PxCollection) -> _c.uint32_t ---
 
     /// Gets the PxBase object of this collection given its index.
     ///
     /// PxBase object at index index
-    PxCollection_getObject :: proc(self_: ^PxCollection, index: _c.uint32_t) -> ^PxBase ---
+    @(link_name = "PxCollection_getObject")
+    collection_get_object :: proc(self_: ^PxCollection, index: _c.uint32_t) -> ^PxBase ---
 
     /// Copies member PxBase pointers to a user specified buffer.
     ///
     /// number of members PxBase objects that have been written to the userBuffer
-    PxCollection_getObjects :: proc(self_: ^PxCollection, userBuffer: ^^PxBase, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxCollection_getObjects")
+    collection_get_objects :: proc(self_: ^PxCollection, userBuffer: ^^PxBase, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Looks for a PxBase object given a PxSerialObjectId value.
     ///
     /// If there is no PxBase object in the collection with the given id, NULL is returned.
     ///
     /// PxBase object with the given id value or NULL
-    PxCollection_find :: proc(self_: ^PxCollection, id: _c.uint64_t) -> ^PxBase ---
+    @(link_name = "PxCollection_find")
+    collection_find :: proc(self_: ^PxCollection, id: _c.uint64_t) -> ^PxBase ---
 
     /// Gets number of PxSerialObjectId names in this collection.
     ///
     /// Number of PxSerialObjectId names in this collection
-    PxCollection_getNbIds :: proc(self_: ^PxCollection) -> _c.uint32_t ---
+    @(link_name = "PxCollection_getNbIds")
+    collection_get_nb_ids :: proc(self_: ^PxCollection) -> _c.uint32_t ---
 
     /// Copies member PxSerialObjectId values to a user specified buffer.
     ///
     /// number of members PxSerialObjectId values that have been written to the userBuffer
-    PxCollection_getIds :: proc(self_: ^PxCollection, userBuffer: ^_c.uint64_t, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxCollection_getIds")
+    collection_get_ids :: proc(self_: ^PxCollection, userBuffer: ^_c.uint64_t, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Gets the PxSerialObjectId name of a PxBase object within the collection.
     ///
     /// The PxBase object needs to be a member of the collection.
     ///
     /// PxSerialObjectId name of the object or PX_SERIAL_OBJECT_ID_INVALID if the object is unnamed
-    PxCollection_getId :: proc(self_: ^PxCollection, object: ^PxBase) -> _c.uint64_t ---
+    @(link_name = "PxCollection_getId")
+    collection_get_id :: proc(self_: ^PxCollection, object: ^PxBase) -> _c.uint64_t ---
 
     /// Deletes a collection object.
     ///
     /// This function only deletes the collection object, i.e. the container class. It doesn't delete objects
     /// that are part of the collection.
-    PxCollection_release_mut :: proc(self_: ^PxCollection) ---
+    @(link_name = "PxCollection_release_mut")
+    collection_release_mut :: proc(self_: ^PxCollection) ---
 
     /// Creates a collection object.
     ///
@@ -5663,41 +5896,50 @@ foreign libphysx {
     /// For deserialization, the system gives back a collection of deserialized objects to users.
     ///
     /// The new collection object.
-    phys_PxCreateCollection :: proc() -> ^PxCollection ---
+    @(link_name = "phys_PxCreateCollection")
+    create_collection :: proc() -> ^PxCollection ---
 
     /// Releases the PxBase instance, please check documentation of release in derived class.
-    PxBase_release_mut :: proc(self_: ^PxBase) ---
+    @(link_name = "PxBase_release_mut")
+    base_release_mut :: proc(self_: ^PxBase) ---
 
     /// Returns string name of dynamic type.
     ///
     /// Class name of most derived type of this object.
-    PxBase_getConcreteTypeName :: proc(self_: ^PxBase) -> ^_c.char ---
+    @(link_name = "PxBase_getConcreteTypeName")
+    base_get_concrete_type_name :: proc(self_: ^PxBase) -> ^_c.char ---
 
     /// Returns concrete type of object.
     ///
     /// PxConcreteType::Enum of serialized object
-    PxBase_getConcreteType :: proc(self_: ^PxBase) -> _c.uint16_t ---
+    @(link_name = "PxBase_getConcreteType")
+    base_get_concrete_type :: proc(self_: ^PxBase) -> _c.uint16_t ---
 
     /// Set PxBaseFlag
-    PxBase_setBaseFlag_mut :: proc(self_: ^PxBase, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxBase_setBaseFlag_mut")
+    base_set_base_flag_mut :: proc(self_: ^PxBase, flag: _c.int32_t, value: _c.bool) ---
 
     /// Set PxBaseFlags
-    PxBase_setBaseFlags_mut :: proc(self_: ^PxBase, inFlags: _c.uint16_t) ---
+    @(link_name = "PxBase_setBaseFlags_mut")
+    base_set_base_flags_mut :: proc(self_: ^PxBase, inFlags: _c.uint16_t) ---
 
     /// Returns PxBaseFlags
     ///
     /// PxBaseFlags
-    PxBase_getBaseFlags :: proc(self_: ^PxBase) -> _c.uint16_t ---
+    @(link_name = "PxBase_getBaseFlags")
+    base_get_base_flags :: proc(self_: ^PxBase) -> _c.uint16_t ---
 
     /// Whether the object is subordinate.
     ///
     /// A class is subordinate, if it can only be instantiated in the context of another class.
     ///
     /// Whether the class is subordinate
-    PxBase_isReleasable :: proc(self_: ^PxBase) -> _c.bool ---
+    @(link_name = "PxBase_isReleasable")
+    base_is_releasable :: proc(self_: ^PxBase) -> _c.bool ---
 
     /// Decrements the reference count of the object and releases it if the new reference count is zero.
-    PxRefCounted_release_mut :: proc(self_: ^PxRefCounted) ---
+    @(link_name = "PxRefCounted_release_mut")
+    ref_counted_release_mut :: proc(self_: ^PxRefCounted) ---
 
     /// Returns the reference count of the object.
     ///
@@ -5705,247 +5947,305 @@ foreign libphysx {
     /// count by 1. When the reference count reaches 0, and only then, the object gets destroyed automatically.
     ///
     /// the current reference count.
-    PxRefCounted_getReferenceCount :: proc(self_: ^PxRefCounted) -> _c.uint32_t ---
+    @(link_name = "PxRefCounted_getReferenceCount")
+    ref_counted_get_reference_count :: proc(self_: ^PxRefCounted) -> _c.uint32_t ---
 
     /// Acquires a counted reference to this object.
     ///
     /// This method increases the reference count of the object by 1. Decrement the reference count by calling release()
-    PxRefCounted_acquireReference_mut :: proc(self_: ^PxRefCounted) ---
+    @(link_name = "PxRefCounted_acquireReference_mut")
+    ref_counted_acquire_reference_mut :: proc(self_: ^PxRefCounted) ---
 
     /// constructor sets to default
-    PxTolerancesScale_new :: proc(defaultLength: _c.float, defaultSpeed: _c.float) -> PxTolerancesScale ---
+    @(link_name = "PxTolerancesScale_new")
+    tolerances_scale_new :: proc(defaultLength: _c.float, defaultSpeed: _c.float) -> PxTolerancesScale ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid (returns always true).
-    PxTolerancesScale_isValid :: proc(self_: ^PxTolerancesScale) -> _c.bool ---
+    @(link_name = "PxTolerancesScale_isValid")
+    tolerances_scale_is_valid :: proc(self_: ^PxTolerancesScale) -> _c.bool ---
 
     /// Allocate a new string.
     ///
     /// *Always* a valid null terminated string.  "" is returned if "" or null is passed in.
-    PxStringTable_allocateStr_mut :: proc(self_: ^PxStringTable, inSrc: ^_c.char) -> ^_c.char ---
+    @(link_name = "PxStringTable_allocateStr_mut")
+    string_table_allocate_str_mut :: proc(self_: ^PxStringTable, inSrc: ^_c.char) -> ^_c.char ---
 
     /// Release the string table and all the strings associated with it.
-    PxStringTable_release_mut :: proc(self_: ^PxStringTable) ---
+    @(link_name = "PxStringTable_release_mut")
+    string_table_release_mut :: proc(self_: ^PxStringTable) ---
 
     /// Returns string name of dynamic type.
     ///
     /// Class name of most derived type of this object.
-    PxSerializer_getConcreteTypeName :: proc(self_: ^PxSerializer) -> ^_c.char ---
+    @(link_name = "PxSerializer_getConcreteTypeName")
+    serializer_get_concrete_type_name :: proc(self_: ^PxSerializer) -> ^_c.char ---
 
     /// Adds required objects to the collection.
     ///
     /// This method does not add the required objects recursively, e.g. objects required by required objects.
-    PxSerializer_requiresObjects :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxProcessPxBaseCallback) ---
+    @(link_name = "PxSerializer_requiresObjects")
+    serializer_requires_objects :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxProcessPxBaseCallback) ---
 
     /// Whether the object is subordinate.
     ///
     /// A class is subordinate, if it can only be instantiated in the context of another class.
     ///
     /// Whether the class is subordinate
-    PxSerializer_isSubordinate :: proc(self_: ^PxSerializer) -> _c.bool ---
+    @(link_name = "PxSerializer_isSubordinate")
+    serializer_is_subordinate :: proc(self_: ^PxSerializer) -> _c.bool ---
 
     /// Exports object's extra data to stream.
-    PxSerializer_exportExtraData :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxSerializationContext) ---
+    @(link_name = "PxSerializer_exportExtraData")
+    serializer_export_extra_data :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxSerializationContext) ---
 
     /// Exports object's data to stream.
-    PxSerializer_exportData :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxSerializationContext) ---
+    @(link_name = "PxSerializer_exportData")
+    serializer_export_data :: proc(self_: ^PxSerializer, anon_param0: ^PxBase, anon_param1: ^PxSerializationContext) ---
 
     /// Register references that the object maintains to other objects.
-    PxSerializer_registerReferences :: proc(self_: ^PxSerializer, obj: ^PxBase, s: ^PxSerializationContext) ---
+    @(link_name = "PxSerializer_registerReferences")
+    serializer_register_references :: proc(self_: ^PxSerializer, obj: ^PxBase, s: ^PxSerializationContext) ---
 
     /// Returns size needed to create the class instance.
     ///
     /// sizeof class instance.
-    PxSerializer_getClassSize :: proc(self_: ^PxSerializer) -> _c.size_t ---
+    @(link_name = "PxSerializer_getClassSize")
+    serializer_get_class_size :: proc(self_: ^PxSerializer) -> _c.size_t ---
 
     /// Create object at a given address, resolve references and import extra data.
     ///
     /// Created PxBase pointer (needs to be identical to address before increment).
-    PxSerializer_createObject :: proc(self_: ^PxSerializer, address: ^^_c.uint8_t, context_: ^PxDeserializationContext) -> ^PxBase ---
+    @(link_name = "PxSerializer_createObject")
+    serializer_create_object :: proc(self_: ^PxSerializer, address: ^^_c.uint8_t, context_: ^PxDeserializationContext) -> ^PxBase ---
 
     /// *******************************************************************************************************************
-    PxSerializer_delete :: proc(self_: ^PxSerializer) ---
+    @(link_name = "PxSerializer_delete")
+    serializer_delete :: proc(self_: ^PxSerializer) ---
 
     /// Builds object (TriangleMesh, Heightfield, ConvexMesh or BVH) from given data in PxPhysics.
     ///
     /// PxBase Created object in PxPhysics.
-    PxInsertionCallback_buildObjectFromData_mut :: proc(self_: ^PxInsertionCallback, type: _c.int32_t, data: rawptr) -> ^PxBase ---
+    @(link_name = "PxInsertionCallback_buildObjectFromData_mut")
+    insertion_callback_build_object_from_data_mut :: proc(self_: ^PxInsertionCallback, type: _c.int32_t, data: rawptr) -> ^PxBase ---
 
     /// Set the user-provided dispatcher object for CPU tasks
-    PxTaskManager_setCpuDispatcher_mut :: proc(self_: ^PxTaskManager, ref: ^PxCpuDispatcher) ---
+    @(link_name = "PxTaskManager_setCpuDispatcher_mut")
+    task_manager_set_cpu_dispatcher_mut :: proc(self_: ^PxTaskManager, ref: ^PxCpuDispatcher) ---
 
     /// Get the user-provided dispatcher object for CPU tasks
     ///
     /// The CPU dispatcher object.
-    PxTaskManager_getCpuDispatcher :: proc(self_: ^PxTaskManager) -> ^PxCpuDispatcher ---
+    @(link_name = "PxTaskManager_getCpuDispatcher")
+    task_manager_get_cpu_dispatcher :: proc(self_: ^PxTaskManager) -> ^PxCpuDispatcher ---
 
     /// Reset any dependencies between Tasks
     ///
     /// Will be called at the start of every frame before tasks are submitted.
-    PxTaskManager_resetDependencies_mut :: proc(self_: ^PxTaskManager) ---
+    @(link_name = "PxTaskManager_resetDependencies_mut")
+    task_manager_reset_dependencies_mut :: proc(self_: ^PxTaskManager) ---
 
     /// Called by the owning scene to start the task graph.
     ///
     /// All tasks with ref count of 1 will be dispatched.
-    PxTaskManager_startSimulation_mut :: proc(self_: ^PxTaskManager) ---
+    @(link_name = "PxTaskManager_startSimulation_mut")
+    task_manager_start_simulation_mut :: proc(self_: ^PxTaskManager) ---
 
     /// Called by the owning scene at the end of a simulation step.
-    PxTaskManager_stopSimulation_mut :: proc(self_: ^PxTaskManager) ---
+    @(link_name = "PxTaskManager_stopSimulation_mut")
+    task_manager_stop_simulation_mut :: proc(self_: ^PxTaskManager) ---
 
     /// Called by the worker threads to inform the PxTaskManager that a task has completed processing.
-    PxTaskManager_taskCompleted_mut :: proc(self_: ^PxTaskManager, task: ^PxTask) ---
+    @(link_name = "PxTaskManager_taskCompleted_mut")
+    task_manager_task_completed_mut :: proc(self_: ^PxTaskManager, task: ^PxTask) ---
 
     /// Retrieve a task by name
     ///
     /// The ID of the task with that name, or eNOT_PRESENT if not found
-    PxTaskManager_getNamedTask_mut :: proc(self_: ^PxTaskManager, name: ^_c.char) -> _c.uint32_t ---
+    @(link_name = "PxTaskManager_getNamedTask_mut")
+    task_manager_get_named_task_mut :: proc(self_: ^PxTaskManager, name: ^_c.char) -> _c.uint32_t ---
 
     /// Submit a task with a unique name.
     ///
     /// The ID of the task with that name, or eNOT_PRESENT if not found
-    PxTaskManager_submitNamedTask_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, name: ^_c.char, type: _c.int32_t) -> _c.uint32_t ---
+    @(link_name = "PxTaskManager_submitNamedTask_mut")
+    task_manager_submit_named_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, name: ^_c.char, type: _c.int32_t) -> _c.uint32_t ---
 
     /// Submit an unnamed task.
     ///
     /// The ID of the task with that name, or eNOT_PRESENT if not found
-    PxTaskManager_submitUnnamedTask_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, type: _c.int32_t) -> _c.uint32_t ---
+    @(link_name = "PxTaskManager_submitUnnamedTask_mut")
+    task_manager_submit_unnamed_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, type: _c.int32_t) -> _c.uint32_t ---
 
     /// Retrieve a task given a task ID
     ///
     /// The task associated with the ID
-    PxTaskManager_getTaskFromID_mut :: proc(self_: ^PxTaskManager, id: _c.uint32_t) -> ^PxTask ---
+    @(link_name = "PxTaskManager_getTaskFromID_mut")
+    task_manager_get_task_from_i_d_mut :: proc(self_: ^PxTaskManager, id: _c.uint32_t) -> ^PxTask ---
 
     /// Release the PxTaskManager object, referenced dispatchers will not be released
-    PxTaskManager_release_mut :: proc(self_: ^PxTaskManager) ---
+    @(link_name = "PxTaskManager_release_mut")
+    task_manager_release_mut :: proc(self_: ^PxTaskManager) ---
 
     /// Construct a new PxTaskManager instance with the given [optional] dispatchers
-    PxTaskManager_createTaskManager :: proc(errorCallback: ^PxErrorCallback, anon_param1: ^PxCpuDispatcher) -> ^PxTaskManager ---
+    @(link_name = "PxTaskManager_createTaskManager")
+    task_manager_create_task_manager :: proc(errorCallback: ^PxErrorCallback, anon_param1: ^PxCpuDispatcher) -> ^PxTaskManager ---
 
     /// Called by the TaskManager when a task is to be queued for execution.
     ///
     /// Upon receiving a task, the dispatcher should schedule the task to run.
     /// After the task has been run, it should call the release() method and
     /// discard its pointer.
-    PxCpuDispatcher_submitTask_mut :: proc(self_: ^PxCpuDispatcher, task: ^PxBaseTask) ---
+    @(link_name = "PxCpuDispatcher_submitTask_mut")
+    cpu_dispatcher_submit_task_mut :: proc(self_: ^PxCpuDispatcher, task: ^PxBaseTask) ---
 
     /// Returns the number of available worker threads for this dispatcher.
     ///
     /// The SDK will use this count to control how many tasks are submitted. By
     /// matching the number of tasks with the number of execution units task
     /// overhead can be reduced.
-    PxCpuDispatcher_getWorkerCount :: proc(self_: ^PxCpuDispatcher) -> _c.uint32_t ---
+    @(link_name = "PxCpuDispatcher_getWorkerCount")
+    cpu_dispatcher_get_worker_count :: proc(self_: ^PxCpuDispatcher) -> _c.uint32_t ---
 
-    PxCpuDispatcher_delete :: proc(self_: ^PxCpuDispatcher) ---
+    @(link_name = "PxCpuDispatcher_delete")
+    cpu_dispatcher_delete :: proc(self_: ^PxCpuDispatcher) ---
 
     /// The user-implemented run method where the task's work should be performed
     ///
     /// run() methods must be thread safe, stack friendly (no alloca, etc), and
     /// must never block.
-    PxBaseTask_run_mut :: proc(self_: ^PxBaseTask) ---
+    @(link_name = "PxBaseTask_run_mut")
+    base_task_run_mut :: proc(self_: ^PxBaseTask) ---
 
     /// Return a user-provided task name for profiling purposes.
     ///
     /// It does not have to be unique, but unique names are helpful.
     ///
     /// The name of this task
-    PxBaseTask_getName :: proc(self_: ^PxBaseTask) -> ^_c.char ---
+    @(link_name = "PxBaseTask_getName")
+    base_task_get_name :: proc(self_: ^PxBaseTask) -> ^_c.char ---
 
     /// Implemented by derived implementation classes
-    PxBaseTask_addReference_mut :: proc(self_: ^PxBaseTask) ---
+    @(link_name = "PxBaseTask_addReference_mut")
+    base_task_add_reference_mut :: proc(self_: ^PxBaseTask) ---
 
     /// Implemented by derived implementation classes
-    PxBaseTask_removeReference_mut :: proc(self_: ^PxBaseTask) ---
+    @(link_name = "PxBaseTask_removeReference_mut")
+    base_task_remove_reference_mut :: proc(self_: ^PxBaseTask) ---
 
     /// Implemented by derived implementation classes
-    PxBaseTask_getReference :: proc(self_: ^PxBaseTask) -> _c.int32_t ---
+    @(link_name = "PxBaseTask_getReference")
+    base_task_get_reference :: proc(self_: ^PxBaseTask) -> _c.int32_t ---
 
     /// Implemented by derived implementation classes
     ///
     /// A task may assume in its release() method that the task system no longer holds
     /// references to it - so it may safely run its destructor, recycle itself, etc.
     /// provided no additional user references to the task exist
-    PxBaseTask_release_mut :: proc(self_: ^PxBaseTask) ---
+    @(link_name = "PxBaseTask_release_mut")
+    base_task_release_mut :: proc(self_: ^PxBaseTask) ---
 
     /// Return PxTaskManager to which this task was submitted
     ///
     /// Note, can return NULL if task was not submitted, or has been
     /// completed.
-    PxBaseTask_getTaskManager :: proc(self_: ^PxBaseTask) -> ^PxTaskManager ---
+    @(link_name = "PxBaseTask_getTaskManager")
+    base_task_get_task_manager :: proc(self_: ^PxBaseTask) -> ^PxTaskManager ---
 
-    PxBaseTask_setContextId_mut :: proc(self_: ^PxBaseTask, id: _c.uint64_t) ---
+    @(link_name = "PxBaseTask_setContextId_mut")
+    base_task_set_context_id_mut :: proc(self_: ^PxBaseTask, id: _c.uint64_t) ---
 
-    PxBaseTask_getContextId :: proc(self_: ^PxBaseTask) -> _c.uint64_t ---
+    @(link_name = "PxBaseTask_getContextId")
+    base_task_get_context_id :: proc(self_: ^PxBaseTask) -> _c.uint64_t ---
 
     /// Release method implementation
-    PxTask_release_mut :: proc(self_: ^PxTask) ---
+    @(link_name = "PxTask_release_mut")
+    task_release_mut :: proc(self_: ^PxTask) ---
 
     /// Inform the PxTaskManager this task must finish before the given
-    PxTask_finishBefore_mut :: proc(self_: ^PxTask, taskID: _c.uint32_t) ---
+    @(link_name = "PxTask_finishBefore_mut")
+    task_finish_before_mut :: proc(self_: ^PxTask, taskID: _c.uint32_t) ---
 
     /// Inform the PxTaskManager this task cannot start until the given
-    PxTask_startAfter_mut :: proc(self_: ^PxTask, taskID: _c.uint32_t) ---
+    @(link_name = "PxTask_startAfter_mut")
+    task_start_after_mut :: proc(self_: ^PxTask, taskID: _c.uint32_t) ---
 
     /// Manually increment this task's reference count. The task will
     /// not be allowed to run until removeReference() is called.
-    PxTask_addReference_mut :: proc(self_: ^PxTask) ---
+    @(link_name = "PxTask_addReference_mut")
+    task_add_reference_mut :: proc(self_: ^PxTask) ---
 
     /// Manually decrement this task's reference count. If the reference
     /// count reaches zero, the task will be dispatched.
-    PxTask_removeReference_mut :: proc(self_: ^PxTask) ---
+    @(link_name = "PxTask_removeReference_mut")
+    task_remove_reference_mut :: proc(self_: ^PxTask) ---
 
     /// Return the ref-count for this task
-    PxTask_getReference :: proc(self_: ^PxTask) -> _c.int32_t ---
+    @(link_name = "PxTask_getReference")
+    task_get_reference :: proc(self_: ^PxTask) -> _c.int32_t ---
 
     /// Return the unique ID for this task
-    PxTask_getTaskID :: proc(self_: ^PxTask) -> _c.uint32_t ---
+    @(link_name = "PxTask_getTaskID")
+    task_get_task_i_d :: proc(self_: ^PxTask) -> _c.uint32_t ---
 
     /// Called by PxTaskManager at submission time for initialization
     ///
     /// Perform simulation step initialization here.
-    PxTask_submitted_mut :: proc(self_: ^PxTask) ---
+    @(link_name = "PxTask_submitted_mut")
+    task_submitted_mut :: proc(self_: ^PxTask) ---
 
     /// Initialize this task and specify the task that will have its ref count decremented on completion.
     ///
     /// Submission is deferred until the task's mRefCount is decremented to zero.
     /// Note that we only use the PxTaskManager to query the appropriate dispatcher.
-    PxLightCpuTask_setContinuation_mut :: proc(self_: ^PxLightCpuTask, tm: ^PxTaskManager, c: ^PxBaseTask) ---
+    @(link_name = "PxLightCpuTask_setContinuation_mut")
+    light_cpu_task_set_continuation_mut :: proc(self_: ^PxLightCpuTask, tm: ^PxTaskManager, c: ^PxBaseTask) ---
 
     /// Initialize this task and specify the task that will have its ref count decremented on completion.
     ///
     /// This overload of setContinuation() queries the PxTaskManager from the continuation
     /// task, which cannot be NULL.
-    PxLightCpuTask_setContinuation_mut_1 :: proc(self_: ^PxLightCpuTask, c: ^PxBaseTask) ---
+    @(link_name = "PxLightCpuTask_setContinuation_mut_1")
+    light_cpu_task_set_continuation_mut_1 :: proc(self_: ^PxLightCpuTask, c: ^PxBaseTask) ---
 
     /// Retrieves continuation task
-    PxLightCpuTask_getContinuation :: proc(self_: ^PxLightCpuTask) -> ^PxBaseTask ---
+    @(link_name = "PxLightCpuTask_getContinuation")
+    light_cpu_task_get_continuation :: proc(self_: ^PxLightCpuTask) -> ^PxBaseTask ---
 
     /// Manually decrement this task's reference count. If the reference
     /// count reaches zero, the task will be dispatched.
-    PxLightCpuTask_removeReference_mut :: proc(self_: ^PxLightCpuTask) ---
+    @(link_name = "PxLightCpuTask_removeReference_mut")
+    light_cpu_task_remove_reference_mut :: proc(self_: ^PxLightCpuTask) ---
 
     /// Return the ref-count for this task
-    PxLightCpuTask_getReference :: proc(self_: ^PxLightCpuTask) -> _c.int32_t ---
+    @(link_name = "PxLightCpuTask_getReference")
+    light_cpu_task_get_reference :: proc(self_: ^PxLightCpuTask) -> _c.int32_t ---
 
     /// Manually increment this task's reference count. The task will
     /// not be allowed to run until removeReference() is called.
-    PxLightCpuTask_addReference_mut :: proc(self_: ^PxLightCpuTask) ---
+    @(link_name = "PxLightCpuTask_addReference_mut")
+    light_cpu_task_add_reference_mut :: proc(self_: ^PxLightCpuTask) ---
 
     /// called by CpuDispatcher after run method has completed
     ///
     /// Decrements the continuation task's reference count, if specified.
-    PxLightCpuTask_release_mut :: proc(self_: ^PxLightCpuTask) ---
+    @(link_name = "PxLightCpuTask_release_mut")
+    light_cpu_task_release_mut :: proc(self_: ^PxLightCpuTask) ---
 
     /// Returns the type of the geometry.
     ///
     /// The type of the object.
-    PxGeometry_getType :: proc(self_: ^PxGeometry) -> _c.int32_t ---
+    @(link_name = "PxGeometry_getType")
+    geometry_get_type :: proc(self_: ^PxGeometry) -> _c.int32_t ---
 
     /// Constructor to initialize half extents from scalar parameters.
-    PxBoxGeometry_new :: proc(hx: _c.float, hy: _c.float, hz: _c.float) -> PxBoxGeometry ---
+    @(link_name = "PxBoxGeometry_new")
+    box_geometry_new :: proc(hx: _c.float, hy: _c.float, hz: _c.float) -> PxBoxGeometry ---
 
     /// Constructor to initialize half extents from vector parameter.
-    PxBoxGeometry_new_1 :: proc(halfExtents_: PxVec3) -> PxBoxGeometry ---
+    @(link_name = "PxBoxGeometry_new_1")
+    box_geometry_new_1 :: proc(halfExtents_: PxVec3) -> PxBoxGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -5953,36 +6253,47 @@ foreign libphysx {
     ///
     /// A valid box has a positive extent in each direction (halfExtents.x > 0, halfExtents.y > 0, halfExtents.z > 0).
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a box that has zero extent in any direction.
-    PxBoxGeometry_isValid :: proc(self_: ^PxBoxGeometry) -> _c.bool ---
+    @(link_name = "PxBoxGeometry_isValid")
+    box_geometry_is_valid :: proc(self_: ^PxBoxGeometry) -> _c.bool ---
 
-    PxBVHRaycastCallback_delete :: proc(self_: ^PxBVHRaycastCallback) ---
+    @(link_name = "PxBVHRaycastCallback_delete")
+    b_v_h_raycast_callback_delete :: proc(self_: ^PxBVHRaycastCallback) ---
 
-    PxBVHRaycastCallback_reportHit_mut :: proc(self_: ^PxBVHRaycastCallback, boundsIndex: _c.uint32_t, distance: ^_c.float) -> _c.bool ---
+    @(link_name = "PxBVHRaycastCallback_reportHit_mut")
+    b_v_h_raycast_callback_report_hit_mut :: proc(self_: ^PxBVHRaycastCallback, boundsIndex: _c.uint32_t, distance: ^_c.float) -> _c.bool ---
 
-    PxBVHOverlapCallback_delete :: proc(self_: ^PxBVHOverlapCallback) ---
+    @(link_name = "PxBVHOverlapCallback_delete")
+    b_v_h_overlap_callback_delete :: proc(self_: ^PxBVHOverlapCallback) ---
 
-    PxBVHOverlapCallback_reportHit_mut :: proc(self_: ^PxBVHOverlapCallback, boundsIndex: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVHOverlapCallback_reportHit_mut")
+    b_v_h_overlap_callback_report_hit_mut :: proc(self_: ^PxBVHOverlapCallback, boundsIndex: _c.uint32_t) -> _c.bool ---
 
-    PxBVHTraversalCallback_delete :: proc(self_: ^PxBVHTraversalCallback) ---
+    @(link_name = "PxBVHTraversalCallback_delete")
+    b_v_h_traversal_callback_delete :: proc(self_: ^PxBVHTraversalCallback) ---
 
-    PxBVHTraversalCallback_visitNode_mut :: proc(self_: ^PxBVHTraversalCallback, bounds: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBVHTraversalCallback_visitNode_mut")
+    b_v_h_traversal_callback_visit_node_mut :: proc(self_: ^PxBVHTraversalCallback, #by_ptr bounds: PxBounds3) -> _c.bool ---
 
-    PxBVHTraversalCallback_reportLeaf_mut :: proc(self_: ^PxBVHTraversalCallback, nbPrims: _c.uint32_t, prims: ^_c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVHTraversalCallback_reportLeaf_mut")
+    b_v_h_traversal_callback_report_leaf_mut :: proc(self_: ^PxBVHTraversalCallback, nbPrims: _c.uint32_t, prims: ^_c.uint32_t) -> _c.bool ---
 
     /// Raycast test against a BVH.
     ///
     /// false if query has been aborted
-    PxBVH_raycast :: proc(self_: ^PxBVH, origin: ^PxVec3, unitDir: ^PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVH_raycast")
+    b_v_h_raycast :: proc(self_: ^PxBVH, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Sweep test against a BVH.
     ///
     /// false if query has been aborted
-    PxBVH_sweep :: proc(self_: ^PxBVH, geom: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVH_sweep")
+    b_v_h_sweep :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Overlap test against a BVH.
     ///
     /// false if query has been aborted
-    PxBVH_overlap :: proc(self_: ^PxBVH, geom: ^PxGeometry, pose: ^PxTransform, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVH_overlap")
+    b_v_h_overlap :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Frustum culling test against a BVH.
     ///
@@ -5995,7 +6306,8 @@ foreign libphysx {
     /// an ok performance trade-off when the function is used for view-frustum culling.
     ///
     /// false if query has been aborted
-    PxBVH_cull :: proc(self_: ^PxBVH, nbPlanes: _c.uint32_t, planes: ^PxPlane, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBVH_cull")
+    b_v_h_cull :: proc(self_: ^PxBVH, nbPlanes: _c.uint32_t, planes: ^PxPlane, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Returns the number of bounds in the BVH.
     ///
@@ -6004,19 +6316,22 @@ foreign libphysx {
     /// These are the user-defined bounds passed to the BVH builder, not the internal bounds around each BVH node.
     ///
     /// Number of bounds in the BVH.
-    PxBVH_getNbBounds :: proc(self_: ^PxBVH) -> _c.uint32_t ---
+    @(link_name = "PxBVH_getNbBounds")
+    b_v_h_get_nb_bounds :: proc(self_: ^PxBVH) -> _c.uint32_t ---
 
     /// Retrieve the read-only bounds in the BVH.
     ///
     /// These are the user-defined bounds passed to the BVH builder, not the internal bounds around each BVH node.
-    PxBVH_getBounds :: proc(self_: ^PxBVH) -> ^PxBounds3 ---
+    @(link_name = "PxBVH_getBounds")
+    b_v_h_get_bounds :: proc(self_: ^PxBVH) -> ^PxBounds3 ---
 
     /// Retrieve the bounds in the BVH.
     ///
     /// These bounds can be modified. Call refit() after modifications are done.
     ///
     /// These are the user-defined bounds passed to the BVH builder, not the internal bounds around each BVH node.
-    PxBVH_getBoundsForModification_mut :: proc(self_: ^PxBVH) -> ^PxBounds3 ---
+    @(link_name = "PxBVH_getBoundsForModification_mut")
+    b_v_h_get_bounds_for_modification_mut :: proc(self_: ^PxBVH) -> ^PxBounds3 ---
 
     /// Refit the BVH.
     ///
@@ -6030,7 +6345,8 @@ foreign libphysx {
     /// This function refits the whole tree after an arbitrary number of bounds have potentially been modified by
     /// users (via getBoundsForModification()). If you only have a small number of bounds to update, it might be
     /// more efficient to use setBounds() and partialRefit() instead.
-    PxBVH_refit_mut :: proc(self_: ^PxBVH) ---
+    @(link_name = "PxBVH_refit_mut")
+    b_v_h_refit_mut :: proc(self_: ^PxBVH) ---
 
     /// Update single bounds.
     ///
@@ -6042,13 +6358,15 @@ foreign libphysx {
     /// call partialRefit() to only refit the subset of marked nodes.
     ///
     /// true if success
-    PxBVH_updateBounds_mut :: proc(self_: ^PxBVH, boundsIndex: _c.uint32_t, newBounds: ^PxBounds3) -> _c.bool ---
+    @(link_name = "PxBVH_updateBounds_mut")
+    b_v_h_update_bounds_mut :: proc(self_: ^PxBVH, boundsIndex: _c.uint32_t, #by_ptr newBounds: PxBounds3) -> _c.bool ---
 
     /// Refits subset of marked nodes.
     ///
     /// This is an alternative to the refit() function, to be called after updateBounds() calls.
     /// See updateBounds() for details.
-    PxBVH_partialRefit_mut :: proc(self_: ^PxBVH) ---
+    @(link_name = "PxBVH_partialRefit_mut")
+    b_v_h_partial_refit_mut :: proc(self_: ^PxBVH) ---
 
     /// Generic BVH traversal function.
     ///
@@ -6056,12 +6374,15 @@ foreign libphysx {
     /// In particular this can be used to visualize the tree's bounds.
     ///
     /// false if query has been aborted
-    PxBVH_traverse :: proc(self_: ^PxBVH, cb: ^PxBVHTraversalCallback) -> _c.bool ---
+    @(link_name = "PxBVH_traverse")
+    b_v_h_traverse :: proc(self_: ^PxBVH, cb: ^PxBVHTraversalCallback) -> _c.bool ---
 
-    PxBVH_getConcreteTypeName :: proc(self_: ^PxBVH) -> ^_c.char ---
+    @(link_name = "PxBVH_getConcreteTypeName")
+    b_v_h_get_concrete_type_name :: proc(self_: ^PxBVH) -> ^_c.char ---
 
     /// Constructor, initializes to a capsule with passed radius and half height.
-    PxCapsuleGeometry_new :: proc(radius_: _c.float, halfHeight_: _c.float) -> PxCapsuleGeometry ---
+    @(link_name = "PxCapsuleGeometry_new")
+    capsule_geometry_new :: proc(radius_: _c.float, halfHeight_: _c.float) -> PxCapsuleGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6069,35 +6390,42 @@ foreign libphysx {
     ///
     /// A valid capsule has radius > 0, halfHeight >= 0.
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a capsule that has zero radius or height.
-    PxCapsuleGeometry_isValid :: proc(self_: ^PxCapsuleGeometry) -> _c.bool ---
+    @(link_name = "PxCapsuleGeometry_isValid")
+    capsule_geometry_is_valid :: proc(self_: ^PxCapsuleGeometry) -> _c.bool ---
 
     /// Returns the number of vertices.
     ///
     /// Number of vertices.
-    PxConvexMesh_getNbVertices :: proc(self_: ^PxConvexMesh) -> _c.uint32_t ---
+    @(link_name = "PxConvexMesh_getNbVertices")
+    convex_mesh_get_nb_vertices :: proc(self_: ^PxConvexMesh) -> _c.uint32_t ---
 
     /// Returns the vertices.
     ///
     /// Array of vertices.
-    PxConvexMesh_getVertices :: proc(self_: ^PxConvexMesh) -> ^PxVec3 ---
+    @(link_name = "PxConvexMesh_getVertices")
+    convex_mesh_get_vertices :: proc(self_: ^PxConvexMesh) -> ^PxVec3 ---
 
     /// Returns the index buffer.
     ///
     /// Index buffer.
-    PxConvexMesh_getIndexBuffer :: proc(self_: ^PxConvexMesh) -> ^_c.uint8_t ---
+    @(link_name = "PxConvexMesh_getIndexBuffer")
+    convex_mesh_get_index_buffer :: proc(self_: ^PxConvexMesh) -> ^_c.uint8_t ---
 
     /// Returns the number of polygons.
     ///
     /// Number of polygons.
-    PxConvexMesh_getNbPolygons :: proc(self_: ^PxConvexMesh) -> _c.uint32_t ---
+    @(link_name = "PxConvexMesh_getNbPolygons")
+    convex_mesh_get_nb_polygons :: proc(self_: ^PxConvexMesh) -> _c.uint32_t ---
 
     /// Returns the polygon data.
     ///
     /// True if success.
-    PxConvexMesh_getPolygonData :: proc(self_: ^PxConvexMesh, index: _c.uint32_t, data: ^PxHullPolygon) -> _c.bool ---
+    @(link_name = "PxConvexMesh_getPolygonData")
+    convex_mesh_get_polygon_data :: proc(self_: ^PxConvexMesh, index: _c.uint32_t, data: ^PxHullPolygon) -> _c.bool ---
 
     /// Decrements the reference count of a convex mesh and releases it if the new reference count is zero.
-    PxConvexMesh_release_mut :: proc(self_: ^PxConvexMesh) ---
+    @(link_name = "PxConvexMesh_release_mut")
+    convex_mesh_release_mut :: proc(self_: ^PxConvexMesh) ---
 
     /// Returns the mass properties of the mesh assuming unit density.
     ///
@@ -6109,59 +6437,76 @@ foreign libphysx {
     ///
     /// Similarly, to obtain the localInertia of an identically shaped object with a uniform density of d, simply multiply the
     /// localInertia of the unit density mesh by d.
-    PxConvexMesh_getMassInformation :: proc(self_: ^PxConvexMesh, mass: ^_c.float, localInertia: ^PxMat33, localCenterOfMass: ^PxVec3) ---
+    @(link_name = "PxConvexMesh_getMassInformation")
+    convex_mesh_get_mass_information :: proc(self_: ^PxConvexMesh, mass: ^_c.float, localInertia: ^PxMat33, localCenterOfMass: ^PxVec3) ---
 
     /// Returns the local-space (vertex space) AABB from the convex mesh.
     ///
     /// local-space bounds
-    PxConvexMesh_getLocalBounds :: proc(self_: ^PxConvexMesh) -> PxBounds3 ---
+    @(link_name = "PxConvexMesh_getLocalBounds")
+    convex_mesh_get_local_bounds :: proc(self_: ^PxConvexMesh) -> PxBounds3 ---
 
     /// Returns the local-space Signed Distance Field for this mesh if it has one.
     ///
     /// local-space SDF.
-    PxConvexMesh_getSDF :: proc(self_: ^PxConvexMesh) -> ^_c.float ---
+    @(link_name = "PxConvexMesh_getSDF")
+    convex_mesh_get_s_d_f :: proc(self_: ^PxConvexMesh) -> ^_c.float ---
 
-    PxConvexMesh_getConcreteTypeName :: proc(self_: ^PxConvexMesh) -> ^_c.char ---
+    @(link_name = "PxConvexMesh_getConcreteTypeName")
+    convex_mesh_get_concrete_type_name :: proc(self_: ^PxConvexMesh) -> ^_c.char ---
 
     /// This method decides whether a convex mesh is gpu compatible. If the total number of vertices are more than 64 or any number of vertices in a polygon is more than 32, or
     /// convex hull data was not cooked with GPU data enabled during cooking or was loaded from a serialized collection, the convex hull is incompatible with GPU collision detection. Otherwise
     /// it is compatible.
     ///
     /// True if the convex hull is gpu compatible
-    PxConvexMesh_isGpuCompatible :: proc(self_: ^PxConvexMesh) -> _c.bool ---
+    @(link_name = "PxConvexMesh_isGpuCompatible")
+    convex_mesh_is_gpu_compatible :: proc(self_: ^PxConvexMesh) -> _c.bool ---
 
     /// Constructor initializes to identity scale.
-    PxMeshScale_new :: proc() -> PxMeshScale ---
+    @(link_name = "PxMeshScale_new")
+    mesh_scale_new :: proc() -> PxMeshScale ---
 
     /// Constructor from scalar.
-    PxMeshScale_new_1 :: proc(r: _c.float) -> PxMeshScale ---
+    @(link_name = "PxMeshScale_new_1")
+    mesh_scale_new_1 :: proc(r: _c.float) -> PxMeshScale ---
 
     /// Constructor to initialize to arbitrary scale and identity scale rotation.
-    PxMeshScale_new_2 :: proc(s: ^PxVec3) -> PxMeshScale ---
+    @(link_name = "PxMeshScale_new_2")
+    mesh_scale_new_2 :: proc(#by_ptr s: PxVec3) -> PxMeshScale ---
 
     /// Constructor to initialize to arbitrary scaling.
-    PxMeshScale_new_3 :: proc(s: ^PxVec3, r: ^PxQuat) -> PxMeshScale ---
+    @(link_name = "PxMeshScale_new_3")
+    mesh_scale_new_3 :: proc(#by_ptr s: PxVec3, #by_ptr r: PxQuat) -> PxMeshScale ---
 
     /// Returns true if the scaling is an identity transformation.
-    PxMeshScale_isIdentity :: proc(self_: ^PxMeshScale) -> _c.bool ---
+    @(link_name = "PxMeshScale_isIdentity")
+    mesh_scale_is_identity :: proc(self_: ^PxMeshScale) -> _c.bool ---
 
     /// Returns the inverse of this scaling transformation.
-    PxMeshScale_getInverse :: proc(self_: ^PxMeshScale) -> PxMeshScale ---
+    @(link_name = "PxMeshScale_getInverse")
+    mesh_scale_get_inverse :: proc(self_: ^PxMeshScale) -> PxMeshScale ---
 
     /// Converts this transformation to a 3x3 matrix representation.
-    PxMeshScale_toMat33 :: proc(self_: ^PxMeshScale) -> PxMat33 ---
+    @(link_name = "PxMeshScale_toMat33")
+    mesh_scale_to_mat33 :: proc(self_: ^PxMeshScale) -> PxMat33 ---
 
     /// Returns true if combination of negative scale components will cause the triangle normal to flip. The SDK will flip the normals internally.
-    PxMeshScale_hasNegativeDeterminant :: proc(self_: ^PxMeshScale) -> _c.bool ---
+    @(link_name = "PxMeshScale_hasNegativeDeterminant")
+    mesh_scale_has_negative_determinant :: proc(self_: ^PxMeshScale) -> _c.bool ---
 
-    PxMeshScale_transform :: proc(self_: ^PxMeshScale, v: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxMeshScale_transform")
+    mesh_scale_transform :: proc(self_: ^PxMeshScale, #by_ptr v: PxVec3) -> PxVec3 ---
 
-    PxMeshScale_isValidForTriangleMesh :: proc(self_: ^PxMeshScale) -> _c.bool ---
+    @(link_name = "PxMeshScale_isValidForTriangleMesh")
+    mesh_scale_is_valid_for_triangle_mesh :: proc(self_: ^PxMeshScale) -> _c.bool ---
 
-    PxMeshScale_isValidForConvexMesh :: proc(self_: ^PxMeshScale) -> _c.bool ---
+    @(link_name = "PxMeshScale_isValidForConvexMesh")
+    mesh_scale_is_valid_for_convex_mesh :: proc(self_: ^PxMeshScale) -> _c.bool ---
 
     /// Constructor. By default creates an empty object with a NULL mesh and identity scale.
-    PxConvexMeshGeometry_new :: proc(mesh: ^PxConvexMesh, scaling: ^PxMeshScale, flags: _c.uint8_t) -> PxConvexMeshGeometry ---
+    @(link_name = "PxConvexMeshGeometry_new")
+    convex_mesh_geometry_new :: proc(mesh: ^PxConvexMesh, #by_ptr scaling: PxMeshScale, flags: _c.uint8_t) -> PxConvexMeshGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6169,10 +6514,12 @@ foreign libphysx {
     ///
     /// A valid convex mesh has a positive scale value in each direction (scale.x > 0, scale.y > 0, scale.z > 0).
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a convex that has zero extent in any direction.
-    PxConvexMeshGeometry_isValid :: proc(self_: ^PxConvexMeshGeometry) -> _c.bool ---
+    @(link_name = "PxConvexMeshGeometry_isValid")
+    convex_mesh_geometry_is_valid :: proc(self_: ^PxConvexMeshGeometry) -> _c.bool ---
 
     /// Constructor.
-    PxSphereGeometry_new :: proc(ir: _c.float) -> PxSphereGeometry ---
+    @(link_name = "PxSphereGeometry_new")
+    sphere_geometry_new :: proc(ir: _c.float) -> PxSphereGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6180,18 +6527,22 @@ foreign libphysx {
     ///
     /// A valid sphere has radius > 0.
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a sphere that has zero radius.
-    PxSphereGeometry_isValid :: proc(self_: ^PxSphereGeometry) -> _c.bool ---
+    @(link_name = "PxSphereGeometry_isValid")
+    sphere_geometry_is_valid :: proc(self_: ^PxSphereGeometry) -> _c.bool ---
 
     /// Constructor.
-    PxPlaneGeometry_new :: proc() -> PxPlaneGeometry ---
+    @(link_name = "PxPlaneGeometry_new")
+    plane_geometry_new :: proc() -> PxPlaneGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
     /// True if the current settings are valid
-    PxPlaneGeometry_isValid :: proc(self_: ^PxPlaneGeometry) -> _c.bool ---
+    @(link_name = "PxPlaneGeometry_isValid")
+    plane_geometry_is_valid :: proc(self_: ^PxPlaneGeometry) -> _c.bool ---
 
     /// Constructor. By default creates an empty object with a NULL mesh and identity scale.
-    PxTriangleMeshGeometry_new :: proc(mesh: ^PxTriangleMesh, scaling: ^PxMeshScale, flags: _c.uint8_t) -> PxTriangleMeshGeometry ---
+    @(link_name = "PxTriangleMeshGeometry_new")
+    triangle_mesh_geometry_new :: proc(mesh: ^PxTriangleMesh, #by_ptr scaling: PxMeshScale, flags: _c.uint8_t) -> PxTriangleMeshGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6199,10 +6550,12 @@ foreign libphysx {
     ///
     /// A valid triangle mesh has a positive scale value in each direction (scale.scale.x > 0, scale.scale.y > 0, scale.scale.z > 0).
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a triangle mesh that has zero extents in any direction.
-    PxTriangleMeshGeometry_isValid :: proc(self_: ^PxTriangleMeshGeometry) -> _c.bool ---
+    @(link_name = "PxTriangleMeshGeometry_isValid")
+    triangle_mesh_geometry_is_valid :: proc(self_: ^PxTriangleMeshGeometry) -> _c.bool ---
 
     /// Constructor.
-    PxHeightFieldGeometry_new :: proc(hf: ^PxHeightField, flags: _c.uint8_t, heightScale_: _c.float, rowScale_: _c.float, columnScale_: _c.float) -> PxHeightFieldGeometry ---
+    @(link_name = "PxHeightFieldGeometry_new")
+    height_field_geometry_new :: proc(hf: ^PxHeightField, flags: _c.uint8_t, heightScale_: _c.float, rowScale_: _c.float, columnScale_: _c.float) -> PxHeightFieldGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6210,28 +6563,34 @@ foreign libphysx {
     ///
     /// A valid height field has a positive scale value in each direction (heightScale > 0, rowScale > 0, columnScale > 0).
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a height field that has zero extents in any direction.
-    PxHeightFieldGeometry_isValid :: proc(self_: ^PxHeightFieldGeometry) -> _c.bool ---
+    @(link_name = "PxHeightFieldGeometry_isValid")
+    height_field_geometry_is_valid :: proc(self_: ^PxHeightFieldGeometry) -> _c.bool ---
 
     /// Default constructor.
     ///
     /// Creates an empty object with no particles.
-    PxParticleSystemGeometry_new :: proc() -> PxParticleSystemGeometry ---
+    @(link_name = "PxParticleSystemGeometry_new")
+    particle_system_geometry_new :: proc() -> PxParticleSystemGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
     /// True if the current settings are valid for shape creation.
-    PxParticleSystemGeometry_isValid :: proc(self_: ^PxParticleSystemGeometry) -> _c.bool ---
+    @(link_name = "PxParticleSystemGeometry_isValid")
+    particle_system_geometry_is_valid :: proc(self_: ^PxParticleSystemGeometry) -> _c.bool ---
 
     /// Default constructor.
-    PxHairSystemGeometry_new :: proc() -> PxHairSystemGeometry ---
+    @(link_name = "PxHairSystemGeometry_new")
+    hair_system_geometry_new :: proc() -> PxHairSystemGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
     /// True if the current settings are valid for shape creation.
-    PxHairSystemGeometry_isValid :: proc(self_: ^PxHairSystemGeometry) -> _c.bool ---
+    @(link_name = "PxHairSystemGeometry_isValid")
+    hair_system_geometry_is_valid :: proc(self_: ^PxHairSystemGeometry) -> _c.bool ---
 
     /// Constructor. By default creates an empty object with a NULL mesh and identity scale.
-    PxTetrahedronMeshGeometry_new :: proc(mesh: ^PxTetrahedronMesh) -> PxTetrahedronMeshGeometry ---
+    @(link_name = "PxTetrahedronMeshGeometry_new")
+    tetrahedron_mesh_geometry_new :: proc(mesh: ^PxTetrahedronMesh) -> PxTetrahedronMeshGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -6239,149 +6598,202 @@ foreign libphysx {
     ///
     /// A valid tetrahedron mesh has a positive scale value in each direction (scale.scale.x > 0, scale.scale.y > 0, scale.scale.z > 0).
     /// It is illegal to call PxRigidActor::createShape and PxPhysics::createShape with a tetrahedron mesh that has zero extents in any direction.
-    PxTetrahedronMeshGeometry_isValid :: proc(self_: ^PxTetrahedronMeshGeometry) -> _c.bool ---
+    @(link_name = "PxTetrahedronMeshGeometry_isValid")
+    tetrahedron_mesh_geometry_is_valid :: proc(self_: ^PxTetrahedronMeshGeometry) -> _c.bool ---
 
-    PxQueryHit_new :: proc() -> PxQueryHit ---
+    @(link_name = "PxQueryHit_new")
+    query_hit_new :: proc() -> PxQueryHit ---
 
-    PxLocationHit_new :: proc() -> PxLocationHit ---
+    @(link_name = "PxLocationHit_new")
+    location_hit_new :: proc() -> PxLocationHit ---
 
     /// For raycast hits: true for shapes overlapping with raycast origin.
     ///
     /// For sweep hits: true for shapes overlapping at zero sweep distance.
-    PxLocationHit_hadInitialOverlap :: proc(self_: ^PxLocationHit) -> _c.bool ---
+    @(link_name = "PxLocationHit_hadInitialOverlap")
+    location_hit_had_initial_overlap :: proc(self_: ^PxLocationHit) -> _c.bool ---
 
-    PxGeomRaycastHit_new :: proc() -> PxGeomRaycastHit ---
+    @(link_name = "PxGeomRaycastHit_new")
+    geom_raycast_hit_new :: proc() -> PxGeomRaycastHit ---
 
-    PxGeomOverlapHit_new :: proc() -> PxGeomOverlapHit ---
+    @(link_name = "PxGeomOverlapHit_new")
+    geom_overlap_hit_new :: proc() -> PxGeomOverlapHit ---
 
-    PxGeomSweepHit_new :: proc() -> PxGeomSweepHit ---
+    @(link_name = "PxGeomSweepHit_new")
+    geom_sweep_hit_new :: proc() -> PxGeomSweepHit ---
 
-    PxGeomIndexPair_new :: proc() -> PxGeomIndexPair ---
+    @(link_name = "PxGeomIndexPair_new")
+    geom_index_pair_new :: proc() -> PxGeomIndexPair ---
 
-    PxGeomIndexPair_new_1 :: proc(_id0: _c.uint32_t, _id1: _c.uint32_t) -> PxGeomIndexPair ---
+    @(link_name = "PxGeomIndexPair_new_1")
+    geom_index_pair_new_1 :: proc(_id0: _c.uint32_t, _id1: _c.uint32_t) -> PxGeomIndexPair ---
 
     /// For internal use
-    phys_PxCustomGeometry_getUniqueID :: proc() -> _c.uint32_t ---
+    @(link_name = "phys_PxCustomGeometry_getUniqueID")
+    custom_geometry_get_unique_i_d :: proc() -> _c.uint32_t ---
 
     /// Default constructor
-    PxCustomGeometryType_new :: proc() -> PxCustomGeometryType ---
+    @(link_name = "PxCustomGeometryType_new")
+    custom_geometry_type_new :: proc() -> PxCustomGeometryType ---
 
     /// Invalid type
-    PxCustomGeometryType_INVALID :: proc() -> PxCustomGeometryType ---
+    @(link_name = "PxCustomGeometryType_INVALID")
+    custom_geometry_type__i_n_v_a_l_i_d :: proc() -> PxCustomGeometryType ---
 
     /// Return custom type. The type purpose is for user to differentiate custom geometries. Not used by PhysX.
     ///
     /// Unique ID of a custom geometry type.
     ///
     /// User should use DECLARE_CUSTOM_GEOMETRY_TYPE and IMPLEMENT_CUSTOM_GEOMETRY_TYPE intead of overwriting this function.
-    PxCustomGeometryCallbacks_getCustomType :: proc(self_: ^PxCustomGeometryCallbacks) -> PxCustomGeometryType ---
+    @(link_name = "PxCustomGeometryCallbacks_getCustomType")
+    custom_geometry_callbacks_get_custom_type :: proc(self_: ^PxCustomGeometryCallbacks) -> PxCustomGeometryType ---
 
     /// Return local bounds.
     ///
     /// Bounding box in the geometry local space.
-    PxCustomGeometryCallbacks_getLocalBounds :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry) -> PxBounds3 ---
+    @(link_name = "PxCustomGeometryCallbacks_getLocalBounds")
+    custom_geometry_callbacks_get_local_bounds :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry) -> PxBounds3 ---
 
     /// Raycast. Cast a ray against the geometry in given pose.
     ///
     /// Number of hits.
-    PxCustomGeometryCallbacks_raycast :: proc(self_: ^PxCustomGeometryCallbacks, origin: ^PxVec3, unitDir: ^PxVec3, geom: ^PxGeometry, pose: ^PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
+    @(link_name = "PxCustomGeometryCallbacks_raycast")
+    custom_geometry_callbacks_raycast :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
 
     /// Overlap. Test if geometries overlap.
     ///
     /// True if there is overlap. False otherwise.
-    PxCustomGeometryCallbacks_overlap :: proc(self_: ^PxCustomGeometryCallbacks, geom0: ^PxGeometry, pose0: ^PxTransform, geom1: ^PxGeometry, pose1: ^PxTransform, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    @(link_name = "PxCustomGeometryCallbacks_overlap")
+    custom_geometry_callbacks_overlap :: proc(self_: ^PxCustomGeometryCallbacks, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Sweep. Sweep one geometry against the other.
     ///
     /// True if there is hit. False otherwise.
-    PxCustomGeometryCallbacks_sweep :: proc(self_: ^PxCustomGeometryCallbacks, unitDir: ^PxVec3, maxDist: _c.float, geom0: ^PxGeometry, pose0: ^PxTransform, geom1: ^PxGeometry, pose1: ^PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    @(link_name = "PxCustomGeometryCallbacks_sweep")
+    custom_geometry_callbacks_sweep :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Compute custom geometry mass properties. For geometries usable with dynamic rigidbodies.
-    PxCustomGeometryCallbacks_computeMassProperties :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry, massProperties: ^PxMassProperties) ---
+    @(link_name = "PxCustomGeometryCallbacks_computeMassProperties")
+    custom_geometry_callbacks_compute_mass_properties :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry, massProperties: ^PxMassProperties) ---
 
     /// Compatible with PhysX's PCM feature. Allows to optimize contact generation.
-    PxCustomGeometryCallbacks_usePersistentContactManifold :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry, breakingThreshold: ^_c.float) -> _c.bool ---
+    @(link_name = "PxCustomGeometryCallbacks_usePersistentContactManifold")
+    custom_geometry_callbacks_use_persistent_contact_manifold :: proc(self_: ^PxCustomGeometryCallbacks, geometry: ^PxGeometry, breakingThreshold: ^_c.float) -> _c.bool ---
 
-    PxCustomGeometryCallbacks_delete :: proc(self_: ^PxCustomGeometryCallbacks) ---
+    @(link_name = "PxCustomGeometryCallbacks_delete")
+    custom_geometry_callbacks_delete :: proc(self_: ^PxCustomGeometryCallbacks) ---
 
     /// Default constructor.
     ///
     /// Creates an empty object with a NULL callbacks pointer.
-    PxCustomGeometry_new :: proc() -> PxCustomGeometry ---
+    @(link_name = "PxCustomGeometry_new")
+    custom_geometry_new :: proc() -> PxCustomGeometry ---
 
     /// Constructor.
-    PxCustomGeometry_new_1 :: proc(_callbacks: ^PxCustomGeometryCallbacks) -> PxCustomGeometry ---
+    @(link_name = "PxCustomGeometry_new_1")
+    custom_geometry_new_1 :: proc(_callbacks: ^PxCustomGeometryCallbacks) -> PxCustomGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
     /// True if the current settings are valid for shape creation.
-    PxCustomGeometry_isValid :: proc(self_: ^PxCustomGeometry) -> _c.bool ---
+    @(link_name = "PxCustomGeometry_isValid")
+    custom_geometry_is_valid :: proc(self_: ^PxCustomGeometry) -> _c.bool ---
 
     /// Returns the custom type of the custom geometry.
-    PxCustomGeometry_getCustomType :: proc(self_: ^PxCustomGeometry) -> PxCustomGeometryType ---
+    @(link_name = "PxCustomGeometry_getCustomType")
+    custom_geometry_get_custom_type :: proc(self_: ^PxCustomGeometry) -> PxCustomGeometryType ---
 
-    PxGeometryHolder_getType :: proc(self_: ^PxGeometryHolder) -> _c.int32_t ---
+    @(link_name = "PxGeometryHolder_getType")
+    geometry_holder_get_type :: proc(self_: ^PxGeometryHolder) -> _c.int32_t ---
 
-    PxGeometryHolder_any_mut :: proc(self_: ^PxGeometryHolder) -> ^PxGeometry ---
+    @(link_name = "PxGeometryHolder_any_mut")
+    geometry_holder_any_mut :: proc(self_: ^PxGeometryHolder) -> ^PxGeometry ---
 
-    PxGeometryHolder_any :: proc(self_: ^PxGeometryHolder) -> ^PxGeometry ---
+    @(link_name = "PxGeometryHolder_any")
+    geometry_holder_any :: proc(self_: ^PxGeometryHolder) -> ^PxGeometry ---
 
-    PxGeometryHolder_sphere_mut :: proc(self_: ^PxGeometryHolder) -> ^PxSphereGeometry ---
+    @(link_name = "PxGeometryHolder_sphere_mut")
+    geometry_holder_sphere_mut :: proc(self_: ^PxGeometryHolder) -> ^PxSphereGeometry ---
 
-    PxGeometryHolder_sphere :: proc(self_: ^PxGeometryHolder) -> ^PxSphereGeometry ---
+    @(link_name = "PxGeometryHolder_sphere")
+    geometry_holder_sphere :: proc(self_: ^PxGeometryHolder) -> ^PxSphereGeometry ---
 
-    PxGeometryHolder_plane_mut :: proc(self_: ^PxGeometryHolder) -> ^PxPlaneGeometry ---
+    @(link_name = "PxGeometryHolder_plane_mut")
+    geometry_holder_plane_mut :: proc(self_: ^PxGeometryHolder) -> ^PxPlaneGeometry ---
 
-    PxGeometryHolder_plane :: proc(self_: ^PxGeometryHolder) -> ^PxPlaneGeometry ---
+    @(link_name = "PxGeometryHolder_plane")
+    geometry_holder_plane :: proc(self_: ^PxGeometryHolder) -> ^PxPlaneGeometry ---
 
-    PxGeometryHolder_capsule_mut :: proc(self_: ^PxGeometryHolder) -> ^PxCapsuleGeometry ---
+    @(link_name = "PxGeometryHolder_capsule_mut")
+    geometry_holder_capsule_mut :: proc(self_: ^PxGeometryHolder) -> ^PxCapsuleGeometry ---
 
-    PxGeometryHolder_capsule :: proc(self_: ^PxGeometryHolder) -> ^PxCapsuleGeometry ---
+    @(link_name = "PxGeometryHolder_capsule")
+    geometry_holder_capsule :: proc(self_: ^PxGeometryHolder) -> ^PxCapsuleGeometry ---
 
-    PxGeometryHolder_box_mut :: proc(self_: ^PxGeometryHolder) -> ^PxBoxGeometry ---
+    @(link_name = "PxGeometryHolder_box_mut")
+    geometry_holder_box_mut :: proc(self_: ^PxGeometryHolder) -> ^PxBoxGeometry ---
 
-    PxGeometryHolder_box :: proc(self_: ^PxGeometryHolder) -> ^PxBoxGeometry ---
+    @(link_name = "PxGeometryHolder_box")
+    geometry_holder_box :: proc(self_: ^PxGeometryHolder) -> ^PxBoxGeometry ---
 
-    PxGeometryHolder_convexMesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxConvexMeshGeometry ---
+    @(link_name = "PxGeometryHolder_convexMesh_mut")
+    geometry_holder_convex_mesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxConvexMeshGeometry ---
 
-    PxGeometryHolder_convexMesh :: proc(self_: ^PxGeometryHolder) -> ^PxConvexMeshGeometry ---
+    @(link_name = "PxGeometryHolder_convexMesh")
+    geometry_holder_convex_mesh :: proc(self_: ^PxGeometryHolder) -> ^PxConvexMeshGeometry ---
 
-    PxGeometryHolder_tetMesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxTetrahedronMeshGeometry ---
+    @(link_name = "PxGeometryHolder_tetMesh_mut")
+    geometry_holder_tet_mesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxTetrahedronMeshGeometry ---
 
-    PxGeometryHolder_tetMesh :: proc(self_: ^PxGeometryHolder) -> ^PxTetrahedronMeshGeometry ---
+    @(link_name = "PxGeometryHolder_tetMesh")
+    geometry_holder_tet_mesh :: proc(self_: ^PxGeometryHolder) -> ^PxTetrahedronMeshGeometry ---
 
-    PxGeometryHolder_triangleMesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxTriangleMeshGeometry ---
+    @(link_name = "PxGeometryHolder_triangleMesh_mut")
+    geometry_holder_triangle_mesh_mut :: proc(self_: ^PxGeometryHolder) -> ^PxTriangleMeshGeometry ---
 
-    PxGeometryHolder_triangleMesh :: proc(self_: ^PxGeometryHolder) -> ^PxTriangleMeshGeometry ---
+    @(link_name = "PxGeometryHolder_triangleMesh")
+    geometry_holder_triangle_mesh :: proc(self_: ^PxGeometryHolder) -> ^PxTriangleMeshGeometry ---
 
-    PxGeometryHolder_heightField_mut :: proc(self_: ^PxGeometryHolder) -> ^PxHeightFieldGeometry ---
+    @(link_name = "PxGeometryHolder_heightField_mut")
+    geometry_holder_height_field_mut :: proc(self_: ^PxGeometryHolder) -> ^PxHeightFieldGeometry ---
 
-    PxGeometryHolder_heightField :: proc(self_: ^PxGeometryHolder) -> ^PxHeightFieldGeometry ---
+    @(link_name = "PxGeometryHolder_heightField")
+    geometry_holder_height_field :: proc(self_: ^PxGeometryHolder) -> ^PxHeightFieldGeometry ---
 
-    PxGeometryHolder_particleSystem_mut :: proc(self_: ^PxGeometryHolder) -> ^PxParticleSystemGeometry ---
+    @(link_name = "PxGeometryHolder_particleSystem_mut")
+    geometry_holder_particle_system_mut :: proc(self_: ^PxGeometryHolder) -> ^PxParticleSystemGeometry ---
 
-    PxGeometryHolder_particleSystem :: proc(self_: ^PxGeometryHolder) -> ^PxParticleSystemGeometry ---
+    @(link_name = "PxGeometryHolder_particleSystem")
+    geometry_holder_particle_system :: proc(self_: ^PxGeometryHolder) -> ^PxParticleSystemGeometry ---
 
-    PxGeometryHolder_hairSystem_mut :: proc(self_: ^PxGeometryHolder) -> ^PxHairSystemGeometry ---
+    @(link_name = "PxGeometryHolder_hairSystem_mut")
+    geometry_holder_hair_system_mut :: proc(self_: ^PxGeometryHolder) -> ^PxHairSystemGeometry ---
 
-    PxGeometryHolder_hairSystem :: proc(self_: ^PxGeometryHolder) -> ^PxHairSystemGeometry ---
+    @(link_name = "PxGeometryHolder_hairSystem")
+    geometry_holder_hair_system :: proc(self_: ^PxGeometryHolder) -> ^PxHairSystemGeometry ---
 
-    PxGeometryHolder_custom_mut :: proc(self_: ^PxGeometryHolder) -> ^PxCustomGeometry ---
+    @(link_name = "PxGeometryHolder_custom_mut")
+    geometry_holder_custom_mut :: proc(self_: ^PxGeometryHolder) -> ^PxCustomGeometry ---
 
-    PxGeometryHolder_custom :: proc(self_: ^PxGeometryHolder) -> ^PxCustomGeometry ---
+    @(link_name = "PxGeometryHolder_custom")
+    geometry_holder_custom :: proc(self_: ^PxGeometryHolder) -> ^PxCustomGeometry ---
 
-    PxGeometryHolder_storeAny_mut :: proc(self_: ^PxGeometryHolder, geometry: ^PxGeometry) ---
+    @(link_name = "PxGeometryHolder_storeAny_mut")
+    geometry_holder_store_any_mut :: proc(self_: ^PxGeometryHolder, geometry: ^PxGeometry) ---
 
-    PxGeometryHolder_new :: proc() -> PxGeometryHolder ---
+    @(link_name = "PxGeometryHolder_new")
+    geometry_holder_new :: proc() -> PxGeometryHolder ---
 
-    PxGeometryHolder_new_1 :: proc(geometry: ^PxGeometry) -> PxGeometryHolder ---
+    @(link_name = "PxGeometryHolder_new_1")
+    geometry_holder_new_1 :: proc(geometry: ^PxGeometry) -> PxGeometryHolder ---
 
     /// Raycast test against a geometry object.
     ///
     /// All geometry types are supported except PxParticleSystemGeometry, PxTetrahedronMeshGeometry and PxHairSystemGeometry.
     ///
     /// Number of hits between the ray and the geometry object
-    PxGeometryQuery_raycast :: proc(origin: ^PxVec3, unitDir: ^PxVec3, geom: ^PxGeometry, pose: ^PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
+    @(link_name = "PxGeometryQuery_raycast")
+    geometry_query_raycast :: proc(#by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
 
     /// Overlap test for two geometry objects.
     ///
@@ -6396,7 +6808,8 @@ foreign libphysx {
     /// Anything involving PxParticleSystemGeometry, PxTetrahedronMeshGeometry or PxHairSystemGeometry.
     ///
     /// True if the two geometry objects overlap
-    PxGeometryQuery_overlap :: proc(geom0: ^PxGeometry, pose0: ^PxTransform, geom1: ^PxGeometry, pose1: ^PxTransform, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    @(link_name = "PxGeometryQuery_overlap")
+    geometry_query_overlap :: proc(geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Sweep a specified geometry object in space and test for collision with a given object.
     ///
@@ -6411,7 +6824,8 @@ foreign libphysx {
     /// PxConvexMeshGeometry vs. {PxSphereGeometry, PxPlaneGeometry, PxCapsuleGeometry, PxBoxGeometry, PxConvexMeshGeometry, PxTriangleMeshGeometry, PxHeightFieldGeometry}
     ///
     /// True if the swept geometry object geom0 hits the object geom1
-    PxGeometryQuery_sweep :: proc(unitDir: ^PxVec3, maxDist: _c.float, geom0: ^PxGeometry, pose0: ^PxTransform, geom1: ^PxGeometry, pose1: ^PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    @(link_name = "PxGeometryQuery_sweep")
+    geometry_query_sweep :: proc(#by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Compute minimum translational distance (MTD) between two geometry objects.
     ///
@@ -6434,7 +6848,8 @@ foreign libphysx {
     /// If objects do not overlap, the function can not compute the MTD and returns false.
     ///
     /// True if the MTD has successfully been computed, i.e. if objects do overlap.
-    PxGeometryQuery_computePenetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom0: ^PxGeometry, pose0: ^PxTransform, geom1: ^PxGeometry, pose1: ^PxTransform, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxGeometryQuery_computePenetration")
+    geometry_query_compute_penetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Computes distance between a point and a geometry object.
     ///
@@ -6443,24 +6858,31 @@ foreign libphysx {
     /// For meshes, only the BVH34 midphase data-structure is supported.
     ///
     /// Square distance between the point and the geom object, or 0.0 if the point is inside the object, or -1.0 if an error occured (geometry type is not supported, or invalid pose)
-    PxGeometryQuery_pointDistance :: proc(point: ^PxVec3, geom: ^PxGeometry, pose: ^PxTransform, closestPoint: ^PxVec3, closestIndex: ^_c.uint32_t, queryFlags: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxGeometryQuery_pointDistance")
+    geometry_query_point_distance :: proc(#by_ptr point: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, closestPoint: ^PxVec3, closestIndex: ^_c.uint32_t, queryFlags: _c.uint32_t) -> _c.float ---
 
     /// computes the bounds for a geometry object
-    PxGeometryQuery_computeGeomBounds :: proc(bounds: ^PxBounds3, geom: ^PxGeometry, pose: ^PxTransform, offset: _c.float, inflation: _c.float, queryFlags: _c.uint32_t) ---
+    @(link_name = "PxGeometryQuery_computeGeomBounds")
+    geometry_query_compute_geom_bounds :: proc(bounds: ^PxBounds3, geom: ^PxGeometry, #by_ptr pose: PxTransform, offset: _c.float, inflation: _c.float, queryFlags: _c.uint32_t) ---
 
     /// Checks if provided geometry is valid.
     ///
     /// True if geometry is valid.
-    PxGeometryQuery_isValid :: proc(geom: ^PxGeometry) -> _c.bool ---
+    @(link_name = "PxGeometryQuery_isValid")
+    geometry_query_is_valid :: proc(geom: ^PxGeometry) -> _c.bool ---
 
-    PxHeightFieldSample_tessFlag :: proc(self_: ^PxHeightFieldSample) -> _c.uint8_t ---
+    @(link_name = "PxHeightFieldSample_tessFlag")
+    height_field_sample_tess_flag :: proc(self_: ^PxHeightFieldSample) -> _c.uint8_t ---
 
-    PxHeightFieldSample_setTessFlag_mut :: proc(self_: ^PxHeightFieldSample) ---
+    @(link_name = "PxHeightFieldSample_setTessFlag_mut")
+    height_field_sample_set_tess_flag_mut :: proc(self_: ^PxHeightFieldSample) ---
 
-    PxHeightFieldSample_clearTessFlag_mut :: proc(self_: ^PxHeightFieldSample) ---
+    @(link_name = "PxHeightFieldSample_clearTessFlag_mut")
+    height_field_sample_clear_tess_flag_mut :: proc(self_: ^PxHeightFieldSample) ---
 
     /// Decrements the reference count of a height field and releases it if the new reference count is zero.
-    PxHeightField_release_mut :: proc(self_: ^PxHeightField) ---
+    @(link_name = "PxHeightField_release_mut")
+    height_field_release_mut :: proc(self_: ^PxHeightField) ---
 
     /// Writes out the sample data array.
     ///
@@ -6468,7 +6890,8 @@ foreign libphysx {
     /// The data is formatted and arranged as PxHeightFieldDesc.samples.
     ///
     /// The number of bytes written.
-    PxHeightField_saveCells :: proc(self_: ^PxHeightField, destBuffer: rawptr, destBufferSize: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxHeightField_saveCells")
+    height_field_save_cells :: proc(self_: ^PxHeightField, destBuffer: rawptr, destBufferSize: _c.uint32_t) -> _c.uint32_t ---
 
     /// Replaces a rectangular subfield in the sample data array.
     ///
@@ -6482,61 +6905,72 @@ foreign libphysx {
     /// PhysX does not keep a mapping from the heightfield to heightfield shapes that reference it.
     /// Call PxShape::setGeometry on each shape which references the height field, to ensure that internal data structures are updated to reflect the new geometry.
     /// Please note that PxShape::setGeometry does not guarantee correct/continuous behavior when objects are resting on top of old or new geometry.
-    PxHeightField_modifySamples_mut :: proc(self_: ^PxHeightField, startCol: _c.int32_t, startRow: _c.int32_t, subfieldDesc: ^PxHeightFieldDesc, shrinkBounds: _c.bool) -> _c.bool ---
+    @(link_name = "PxHeightField_modifySamples_mut")
+    height_field_modify_samples_mut :: proc(self_: ^PxHeightField, startCol: _c.int32_t, startRow: _c.int32_t, #by_ptr subfieldDesc: PxHeightFieldDesc, shrinkBounds: _c.bool) -> _c.bool ---
 
     /// Retrieves the number of sample rows in the samples array.
     ///
     /// The number of sample rows in the samples array.
-    PxHeightField_getNbRows :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
+    @(link_name = "PxHeightField_getNbRows")
+    height_field_get_nb_rows :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
 
     /// Retrieves the number of sample columns in the samples array.
     ///
     /// The number of sample columns in the samples array.
-    PxHeightField_getNbColumns :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
+    @(link_name = "PxHeightField_getNbColumns")
+    height_field_get_nb_columns :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
 
     /// Retrieves the format of the sample data.
     ///
     /// The format of the sample data.
-    PxHeightField_getFormat :: proc(self_: ^PxHeightField) -> _c.int32_t ---
+    @(link_name = "PxHeightField_getFormat")
+    height_field_get_format :: proc(self_: ^PxHeightField) -> _c.int32_t ---
 
     /// Retrieves the offset in bytes between consecutive samples in the array.
     ///
     /// The offset in bytes between consecutive samples in the array.
-    PxHeightField_getSampleStride :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
+    @(link_name = "PxHeightField_getSampleStride")
+    height_field_get_sample_stride :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
 
     /// Retrieves the convex edge threshold.
     ///
     /// The convex edge threshold.
-    PxHeightField_getConvexEdgeThreshold :: proc(self_: ^PxHeightField) -> _c.float ---
+    @(link_name = "PxHeightField_getConvexEdgeThreshold")
+    height_field_get_convex_edge_threshold :: proc(self_: ^PxHeightField) -> _c.float ---
 
     /// Retrieves the flags bits, combined from values of the enum ::PxHeightFieldFlag.
     ///
     /// The flags bits, combined from values of the enum ::PxHeightFieldFlag.
-    PxHeightField_getFlags :: proc(self_: ^PxHeightField) -> _c.uint16_t ---
+    @(link_name = "PxHeightField_getFlags")
+    height_field_get_flags :: proc(self_: ^PxHeightField) -> _c.uint16_t ---
 
     /// Retrieves the height at the given coordinates in grid space.
     ///
     /// The height at the given coordinates or 0 if the coordinates are out of range.
-    PxHeightField_getHeight :: proc(self_: ^PxHeightField, x: _c.float, z: _c.float) -> _c.float ---
+    @(link_name = "PxHeightField_getHeight")
+    height_field_get_height :: proc(self_: ^PxHeightField, x: _c.float, z: _c.float) -> _c.float ---
 
     /// Returns material table index of given triangle
     ///
     /// This function takes a post cooking triangle index.
     ///
     /// Material table index, or 0xffff if no per-triangle materials are used
-    PxHeightField_getTriangleMaterialIndex :: proc(self_: ^PxHeightField, triangleIndex: _c.uint32_t) -> _c.uint16_t ---
+    @(link_name = "PxHeightField_getTriangleMaterialIndex")
+    height_field_get_triangle_material_index :: proc(self_: ^PxHeightField, triangleIndex: _c.uint32_t) -> _c.uint16_t ---
 
     /// Returns a triangle face normal for a given triangle index
     ///
     /// This function takes a post cooking triangle index.
     ///
     /// Triangle normal for a given triangle index
-    PxHeightField_getTriangleNormal :: proc(self_: ^PxHeightField, triangleIndex: _c.uint32_t) -> PxVec3 ---
+    @(link_name = "PxHeightField_getTriangleNormal")
+    height_field_get_triangle_normal :: proc(self_: ^PxHeightField, triangleIndex: _c.uint32_t) -> PxVec3 ---
 
     /// Returns heightfield sample of given row and column
     ///
     /// Heightfield sample
-    PxHeightField_getSample :: proc(self_: ^PxHeightField, row: _c.uint32_t, column: _c.uint32_t) -> ^PxHeightFieldSample ---
+    @(link_name = "PxHeightField_getSample")
+    height_field_get_sample :: proc(self_: ^PxHeightField, row: _c.uint32_t, column: _c.uint32_t) -> ^PxHeightFieldSample ---
 
     /// Returns the number of times the heightfield data has been modified
     ///
@@ -6544,27 +6978,33 @@ foreign libphysx {
     /// retained state that depends on the heightfield can efficiently determine whether it has been modified.
     ///
     /// the number of times the heightfield sample data has been modified.
-    PxHeightField_getTimestamp :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
+    @(link_name = "PxHeightField_getTimestamp")
+    height_field_get_timestamp :: proc(self_: ^PxHeightField) -> _c.uint32_t ---
 
-    PxHeightField_getConcreteTypeName :: proc(self_: ^PxHeightField) -> ^_c.char ---
+    @(link_name = "PxHeightField_getConcreteTypeName")
+    height_field_get_concrete_type_name :: proc(self_: ^PxHeightField) -> ^_c.char ---
 
     /// Constructor sets to default.
-    PxHeightFieldDesc_new :: proc() -> PxHeightFieldDesc ---
+    @(link_name = "PxHeightFieldDesc_new")
+    height_field_desc_new :: proc() -> PxHeightFieldDesc ---
 
     /// (re)sets the structure to the default.
-    PxHeightFieldDesc_setToDefault_mut :: proc(self_: ^PxHeightFieldDesc) ---
+    @(link_name = "PxHeightFieldDesc_setToDefault_mut")
+    height_field_desc_set_to_default_mut :: proc(self_: ^PxHeightFieldDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// True if the current settings are valid.
-    PxHeightFieldDesc_isValid :: proc(self_: ^PxHeightFieldDesc) -> _c.bool ---
+    @(link_name = "PxHeightFieldDesc_isValid")
+    height_field_desc_is_valid :: proc(self_: ^PxHeightFieldDesc) -> _c.bool ---
 
     /// Retrieves triangle data from a triangle ID.
     ///
     /// This function can be used together with [`findOverlapTriangleMesh`]() to retrieve triangle properties.
     ///
     /// This function will flip the triangle normal whenever triGeom.scale.hasNegativeDeterminant() is true.
-    PxMeshQuery_getTriangle :: proc(triGeom: ^PxTriangleMeshGeometry, transform: ^PxTransform, triangleIndex: _c.uint32_t, triangle: ^PxTriangle, vertexIndices: ^_c.uint32_t, adjacencyIndices: ^_c.uint32_t) ---
+    @(link_name = "PxMeshQuery_getTriangle")
+    mesh_query_get_triangle :: proc(#by_ptr triGeom: PxTriangleMeshGeometry, #by_ptr transform: PxTransform, triangleIndex: _c.uint32_t, triangle: ^PxTriangle, vertexIndices: ^_c.uint32_t, adjacencyIndices: ^_c.uint32_t) ---
 
     /// Retrieves triangle data from a triangle ID.
     ///
@@ -6591,7 +7031,8 @@ foreign libphysx {
     /// }
     /// }
     /// }
-    PxMeshQuery_getTriangle_1 :: proc(hfGeom: ^PxHeightFieldGeometry, transform: ^PxTransform, triangleIndex: _c.uint32_t, triangle: ^PxTriangle, vertexIndices: ^_c.uint32_t, adjacencyIndices: ^_c.uint32_t) ---
+    @(link_name = "PxMeshQuery_getTriangle_1")
+    mesh_query_get_triangle_1 :: proc(#by_ptr hfGeom: PxHeightFieldGeometry, #by_ptr transform: PxTransform, triangleIndex: _c.uint32_t, triangle: ^PxTriangle, vertexIndices: ^_c.uint32_t, adjacencyIndices: ^_c.uint32_t) ---
 
     /// Find the mesh triangles which touch the specified geometry object.
     ///
@@ -6600,14 +7041,16 @@ foreign libphysx {
     /// Returned triangle indices can be used with [`getTriangle`]() to retrieve the triangle properties.
     ///
     /// Number of overlaps found, i.e. number of elements written to the results buffer
-    PxMeshQuery_findOverlapTriangleMesh :: proc(geom: ^PxGeometry, geomPose: ^PxTransform, meshGeom: ^PxTriangleMeshGeometry, meshPose: ^PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxMeshQuery_findOverlapTriangleMesh")
+    mesh_query_find_overlap_triangle_mesh :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr meshGeom: PxTriangleMeshGeometry, #by_ptr meshPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
 
     /// Find the height field triangles which touch the specified geometry object.
     ///
     /// Returned triangle indices can be used with [`getTriangle`]() to retrieve the triangle properties.
     ///
     /// Number of overlaps found, i.e. number of elements written to the results buffer
-    PxMeshQuery_findOverlapHeightField :: proc(geom: ^PxGeometry, geomPose: ^PxTransform, hfGeom: ^PxHeightFieldGeometry, hfPose: ^PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxMeshQuery_findOverlapHeightField")
+    mesh_query_find_overlap_height_field :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr hfGeom: PxHeightFieldGeometry, #by_ptr hfPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
 
     /// Sweep a specified geometry object in space and test for collision with a set of given triangles.
     ///
@@ -6633,53 +7076,68 @@ foreign libphysx {
     /// The returned PxGeomSweepHit::faceIndex parameter will hold the index of the hit triangle in input array, i.e. the range is [0; triangleCount). For initially overlapping sweeps, this is the index of overlapping triangle.
     ///
     /// The inflation parameter is not compatible with PxHitFlag::ePRECISE_SWEEP.
-    PxMeshQuery_sweep :: proc(unitDir: ^PxVec3, distance: _c.float, geom: ^PxGeometry, pose: ^PxTransform, triangleCount: _c.uint32_t, triangles: ^PxTriangle, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, cachedIndex: ^_c.uint32_t, inflation: _c.float, doubleSided: _c.bool, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxMeshQuery_sweep")
+    mesh_query_sweep :: proc(#by_ptr unitDir: PxVec3, distance: _c.float, geom: ^PxGeometry, #by_ptr pose: PxTransform, triangleCount: _c.uint32_t, triangles: ^PxTriangle, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, cachedIndex: ^_c.uint32_t, inflation: _c.float, doubleSided: _c.bool, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// constructor sets to default.
-    PxSimpleTriangleMesh_new :: proc() -> PxSimpleTriangleMesh ---
+    @(link_name = "PxSimpleTriangleMesh_new")
+    simple_triangle_mesh_new :: proc() -> PxSimpleTriangleMesh ---
 
     /// (re)sets the structure to the default.
-    PxSimpleTriangleMesh_setToDefault_mut :: proc(self_: ^PxSimpleTriangleMesh) ---
+    @(link_name = "PxSimpleTriangleMesh_setToDefault_mut")
+    simple_triangle_mesh_set_to_default_mut :: proc(self_: ^PxSimpleTriangleMesh) ---
 
     /// returns true if the current settings are valid
-    PxSimpleTriangleMesh_isValid :: proc(self_: ^PxSimpleTriangleMesh) -> _c.bool ---
+    @(link_name = "PxSimpleTriangleMesh_isValid")
+    simple_triangle_mesh_is_valid :: proc(self_: ^PxSimpleTriangleMesh) -> _c.bool ---
 
     /// Constructor
-    PxTriangle_new_alloc :: proc() -> ^PxTriangle ---
+    @(link_name = "PxTriangle_new_alloc")
+    triangle_new_alloc :: proc() -> ^PxTriangle ---
 
     /// Constructor
-    PxTriangle_new_alloc_1 :: proc(p0: ^PxVec3, p1: ^PxVec3, p2: ^PxVec3) -> ^PxTriangle ---
+    @(link_name = "PxTriangle_new_alloc_1")
+    triangle_new_alloc_1 :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, #by_ptr p2: PxVec3) -> ^PxTriangle ---
 
     /// Destructor
-    PxTriangle_delete :: proc(self_: ^PxTriangle) ---
+    @(link_name = "PxTriangle_delete")
+    triangle_delete :: proc(self_: ^PxTriangle) ---
 
     /// Compute the normal of the Triangle.
-    PxTriangle_normal :: proc(self_: ^PxTriangle, _normal: ^PxVec3) ---
+    @(link_name = "PxTriangle_normal")
+    triangle_normal :: proc(self_: ^PxTriangle, _normal: ^PxVec3) ---
 
     /// Compute the unnormalized normal of the triangle.
-    PxTriangle_denormalizedNormal :: proc(self_: ^PxTriangle, _normal: ^PxVec3) ---
+    @(link_name = "PxTriangle_denormalizedNormal")
+    triangle_denormalized_normal :: proc(self_: ^PxTriangle, _normal: ^PxVec3) ---
 
     /// Compute the area of the triangle.
     ///
     /// Area of the triangle.
-    PxTriangle_area :: proc(self_: ^PxTriangle) -> _c.float ---
+    @(link_name = "PxTriangle_area")
+    triangle_area :: proc(self_: ^PxTriangle) -> _c.float ---
 
     /// Computes a point on the triangle from u and v barycentric coordinates.
-    PxTriangle_pointFromUV :: proc(self_: ^PxTriangle, u: _c.float, v: _c.float) -> PxVec3 ---
+    @(link_name = "PxTriangle_pointFromUV")
+    triangle_point_from_u_v :: proc(self_: ^PxTriangle, u: _c.float, v: _c.float) -> PxVec3 ---
 
-    PxTrianglePadded_new_alloc :: proc() -> ^PxTrianglePadded ---
+    @(link_name = "PxTrianglePadded_new_alloc")
+    triangle_padded_new_alloc :: proc() -> ^PxTrianglePadded ---
 
-    PxTrianglePadded_delete :: proc(self_: ^PxTrianglePadded) ---
+    @(link_name = "PxTrianglePadded_delete")
+    triangle_padded_delete :: proc(self_: ^PxTrianglePadded) ---
 
     /// Returns the number of vertices.
     ///
     /// number of vertices
-    PxTriangleMesh_getNbVertices :: proc(self_: ^PxTriangleMesh) -> _c.uint32_t ---
+    @(link_name = "PxTriangleMesh_getNbVertices")
+    triangle_mesh_get_nb_vertices :: proc(self_: ^PxTriangleMesh) -> _c.uint32_t ---
 
     /// Returns the vertices.
     ///
     /// array of vertices
-    PxTriangleMesh_getVertices :: proc(self_: ^PxTriangleMesh) -> ^PxVec3 ---
+    @(link_name = "PxTriangleMesh_getVertices")
+    triangle_mesh_get_vertices :: proc(self_: ^PxTriangleMesh) -> ^PxVec3 ---
 
     /// Returns all mesh vertices for modification.
     ///
@@ -6702,7 +7160,8 @@ foreign libphysx {
     /// eWELD_VERTICES = 0, eDISABLE_CLEAN_MESH = 1.
     ///
     /// It is also recommended to make sure that a call to validateTriangleMesh returns true if mesh cleaning is disabled.
-    PxTriangleMesh_getVerticesForModification_mut :: proc(self_: ^PxTriangleMesh) -> ^PxVec3 ---
+    @(link_name = "PxTriangleMesh_getVerticesForModification_mut")
+    triangle_mesh_get_vertices_for_modification_mut :: proc(self_: ^PxTriangleMesh) -> ^PxVec3 ---
 
     /// Refits BVH for mesh vertices.
     ///
@@ -6722,12 +7181,14 @@ foreign libphysx {
     /// It is also recommended to make sure that a call to validateTriangleMesh returns true if mesh cleaning is disabled.
     ///
     /// Active edges information will be lost during refit, the rigid body mesh contact generation might not perform as expected.
-    PxTriangleMesh_refitBVH_mut :: proc(self_: ^PxTriangleMesh) -> PxBounds3 ---
+    @(link_name = "PxTriangleMesh_refitBVH_mut")
+    triangle_mesh_refit_b_v_h_mut :: proc(self_: ^PxTriangleMesh) -> PxBounds3 ---
 
     /// Returns the number of triangles.
     ///
     /// number of triangles
-    PxTriangleMesh_getNbTriangles :: proc(self_: ^PxTriangleMesh) -> _c.uint32_t ---
+    @(link_name = "PxTriangleMesh_getNbTriangles")
+    triangle_mesh_get_nb_triangles :: proc(self_: ^PxTriangleMesh) -> _c.uint32_t ---
 
     /// Returns the triangle indices.
     ///
@@ -6737,14 +7198,16 @@ foreign libphysx {
     /// The number of indices is the number of triangles * 3.
     ///
     /// array of triangles
-    PxTriangleMesh_getTriangles :: proc(self_: ^PxTriangleMesh) -> rawptr ---
+    @(link_name = "PxTriangleMesh_getTriangles")
+    triangle_mesh_get_triangles :: proc(self_: ^PxTriangleMesh) -> rawptr ---
 
     /// Reads the PxTriangleMesh flags.
     ///
     /// See the list of flags [`PxTriangleMeshFlag`]
     ///
     /// The values of the PxTriangleMesh flags.
-    PxTriangleMesh_getTriangleMeshFlags :: proc(self_: ^PxTriangleMesh) -> _c.uint8_t ---
+    @(link_name = "PxTriangleMesh_getTriangleMeshFlags")
+    triangle_mesh_get_triangle_mesh_flags :: proc(self_: ^PxTriangleMesh) -> _c.uint8_t ---
 
     /// Returns the triangle remapping table.
     ///
@@ -6755,30 +7218,36 @@ foreign libphysx {
     /// remapTable[ internalTriangleIndex ] = originalTriangleIndex
     ///
     /// the remapping table (or NULL if 'PxCookingParams::suppressTriangleMeshRemapTable' has been used)
-    PxTriangleMesh_getTrianglesRemap :: proc(self_: ^PxTriangleMesh) -> ^_c.uint32_t ---
+    @(link_name = "PxTriangleMesh_getTrianglesRemap")
+    triangle_mesh_get_triangles_remap :: proc(self_: ^PxTriangleMesh) -> ^_c.uint32_t ---
 
     /// Decrements the reference count of a triangle mesh and releases it if the new reference count is zero.
-    PxTriangleMesh_release_mut :: proc(self_: ^PxTriangleMesh) ---
+    @(link_name = "PxTriangleMesh_release_mut")
+    triangle_mesh_release_mut :: proc(self_: ^PxTriangleMesh) ---
 
     /// Returns material table index of given triangle
     ///
     /// This function takes a post cooking triangle index.
     ///
     /// Material table index, or 0xffff if no per-triangle materials are used
-    PxTriangleMesh_getTriangleMaterialIndex :: proc(self_: ^PxTriangleMesh, triangleIndex: _c.uint32_t) -> _c.uint16_t ---
+    @(link_name = "PxTriangleMesh_getTriangleMaterialIndex")
+    triangle_mesh_get_triangle_material_index :: proc(self_: ^PxTriangleMesh, triangleIndex: _c.uint32_t) -> _c.uint16_t ---
 
     /// Returns the local-space (vertex space) AABB from the triangle mesh.
     ///
     /// local-space bounds
-    PxTriangleMesh_getLocalBounds :: proc(self_: ^PxTriangleMesh) -> PxBounds3 ---
+    @(link_name = "PxTriangleMesh_getLocalBounds")
+    triangle_mesh_get_local_bounds :: proc(self_: ^PxTriangleMesh) -> PxBounds3 ---
 
     /// Returns the local-space Signed Distance Field for this mesh if it has one.
     ///
     /// local-space SDF.
-    PxTriangleMesh_getSDF :: proc(self_: ^PxTriangleMesh) -> ^_c.float ---
+    @(link_name = "PxTriangleMesh_getSDF")
+    triangle_mesh_get_s_d_f :: proc(self_: ^PxTriangleMesh) -> ^_c.float ---
 
     /// Returns the resolution of the local-space dense SDF.
-    PxTriangleMesh_getSDFDimensions :: proc(self_: ^PxTriangleMesh, numX: ^_c.uint32_t, numY: ^_c.uint32_t, numZ: ^_c.uint32_t) ---
+    @(link_name = "PxTriangleMesh_getSDFDimensions")
+    triangle_mesh_get_s_d_f_dimensions :: proc(self_: ^PxTriangleMesh, numX: ^_c.uint32_t, numY: ^_c.uint32_t, numZ: ^_c.uint32_t) ---
 
     /// Sets whether this mesh should be preferred for SDF projection.
     ///
@@ -6787,12 +7256,14 @@ foreign libphysx {
     /// If one of the meshes is set to prefer SDF projection (default) and the other is set to not prefer SDF projection, model flagged as
     /// preferring SDF projection will be projected onto the model flagged as not preferring, regardless of the detail of the respective meshes.
     /// Where both models are flagged as preferring no projection, the less detailed model will be projected as before.
-    PxTriangleMesh_setPreferSDFProjection_mut :: proc(self_: ^PxTriangleMesh, preferProjection: _c.bool) ---
+    @(link_name = "PxTriangleMesh_setPreferSDFProjection_mut")
+    triangle_mesh_set_prefer_s_d_f_projection_mut :: proc(self_: ^PxTriangleMesh, preferProjection: _c.bool) ---
 
     /// Returns whether this mesh prefers SDF projection.
     ///
     /// whether this mesh prefers SDF projection.
-    PxTriangleMesh_getPreferSDFProjection :: proc(self_: ^PxTriangleMesh) -> _c.bool ---
+    @(link_name = "PxTriangleMesh_getPreferSDFProjection")
+    triangle_mesh_get_prefer_s_d_f_projection :: proc(self_: ^PxTriangleMesh) -> _c.bool ---
 
     /// Returns the mass properties of the mesh assuming unit density.
     ///
@@ -6804,34 +7275,42 @@ foreign libphysx {
     ///
     /// Similarly, to obtain the localInertia of an identically shaped object with a uniform density of d, simply multiply the
     /// localInertia of the unit density mesh by d.
-    PxTriangleMesh_getMassInformation :: proc(self_: ^PxTriangleMesh, mass: ^_c.float, localInertia: ^PxMat33, localCenterOfMass: ^PxVec3) ---
+    @(link_name = "PxTriangleMesh_getMassInformation")
+    triangle_mesh_get_mass_information :: proc(self_: ^PxTriangleMesh, mass: ^_c.float, localInertia: ^PxMat33, localCenterOfMass: ^PxVec3) ---
 
     /// Constructor
-    PxTetrahedron_new_alloc :: proc() -> ^PxTetrahedron ---
+    @(link_name = "PxTetrahedron_new_alloc")
+    tetrahedron_new_alloc :: proc() -> ^PxTetrahedron ---
 
     /// Constructor
-    PxTetrahedron_new_alloc_1 :: proc(p0: ^PxVec3, p1: ^PxVec3, p2: ^PxVec3, p3: ^PxVec3) -> ^PxTetrahedron ---
+    @(link_name = "PxTetrahedron_new_alloc_1")
+    tetrahedron_new_alloc_1 :: proc(#by_ptr p0: PxVec3, #by_ptr p1: PxVec3, #by_ptr p2: PxVec3, #by_ptr p3: PxVec3) -> ^PxTetrahedron ---
 
     /// Destructor
-    PxTetrahedron_delete :: proc(self_: ^PxTetrahedron) ---
+    @(link_name = "PxTetrahedron_delete")
+    tetrahedron_delete :: proc(self_: ^PxTetrahedron) ---
 
     /// Decrements the reference count of a tetrahedron mesh and releases it if the new reference count is zero.
-    PxSoftBodyAuxData_release_mut :: proc(self_: ^PxSoftBodyAuxData) ---
+    @(link_name = "PxSoftBodyAuxData_release_mut")
+    soft_body_aux_data_release_mut :: proc(self_: ^PxSoftBodyAuxData) ---
 
     /// Returns the number of vertices.
     ///
     /// number of vertices
-    PxTetrahedronMesh_getNbVertices :: proc(self_: ^PxTetrahedronMesh) -> _c.uint32_t ---
+    @(link_name = "PxTetrahedronMesh_getNbVertices")
+    tetrahedron_mesh_get_nb_vertices :: proc(self_: ^PxTetrahedronMesh) -> _c.uint32_t ---
 
     /// Returns the vertices
     ///
     /// array of vertices
-    PxTetrahedronMesh_getVertices :: proc(self_: ^PxTetrahedronMesh) -> ^PxVec3 ---
+    @(link_name = "PxTetrahedronMesh_getVertices")
+    tetrahedron_mesh_get_vertices :: proc(self_: ^PxTetrahedronMesh) -> ^PxVec3 ---
 
     /// Returns the number of tetrahedrons.
     ///
     /// number of tetrahedrons
-    PxTetrahedronMesh_getNbTetrahedrons :: proc(self_: ^PxTetrahedronMesh) -> _c.uint32_t ---
+    @(link_name = "PxTetrahedronMesh_getNbTetrahedrons")
+    tetrahedron_mesh_get_nb_tetrahedrons :: proc(self_: ^PxTetrahedronMesh) -> _c.uint32_t ---
 
     /// Returns the tetrahedron indices.
     ///
@@ -6841,14 +7320,16 @@ foreign libphysx {
     /// The number of indices is the number of tetrahedrons * 4.
     ///
     /// array of tetrahedrons
-    PxTetrahedronMesh_getTetrahedrons :: proc(self_: ^PxTetrahedronMesh) -> rawptr ---
+    @(link_name = "PxTetrahedronMesh_getTetrahedrons")
+    tetrahedron_mesh_get_tetrahedrons :: proc(self_: ^PxTetrahedronMesh) -> rawptr ---
 
     /// Reads the PxTetrahedronMesh flags.
     ///
     /// See the list of flags [`PxTetrahedronMeshFlags`]
     ///
     /// The values of the PxTetrahedronMesh flags.
-    PxTetrahedronMesh_getTetrahedronMeshFlags :: proc(self_: ^PxTetrahedronMesh) -> _c.uint8_t ---
+    @(link_name = "PxTetrahedronMesh_getTetrahedronMeshFlags")
+    tetrahedron_mesh_get_tetrahedron_mesh_flags :: proc(self_: ^PxTetrahedronMesh) -> _c.uint8_t ---
 
     /// Returns the tetrahedra remapping table.
     ///
@@ -6859,71 +7340,93 @@ foreign libphysx {
     /// remapTable[ internalTetrahedronIndex ] = originalTetrahedronIndex
     ///
     /// the remapping table (or NULL if 'PxCookingParams::suppressTriangleMeshRemapTable' has been used)
-    PxTetrahedronMesh_getTetrahedraRemap :: proc(self_: ^PxTetrahedronMesh) -> ^_c.uint32_t ---
+    @(link_name = "PxTetrahedronMesh_getTetrahedraRemap")
+    tetrahedron_mesh_get_tetrahedra_remap :: proc(self_: ^PxTetrahedronMesh) -> ^_c.uint32_t ---
 
     /// Returns the local-space (vertex space) AABB from the tetrahedron mesh.
     ///
     /// local-space bounds
-    PxTetrahedronMesh_getLocalBounds :: proc(self_: ^PxTetrahedronMesh) -> PxBounds3 ---
+    @(link_name = "PxTetrahedronMesh_getLocalBounds")
+    tetrahedron_mesh_get_local_bounds :: proc(self_: ^PxTetrahedronMesh) -> PxBounds3 ---
 
     /// Decrements the reference count of a tetrahedron mesh and releases it if the new reference count is zero.
-    PxTetrahedronMesh_release_mut :: proc(self_: ^PxTetrahedronMesh) ---
+    @(link_name = "PxTetrahedronMesh_release_mut")
+    tetrahedron_mesh_release_mut :: proc(self_: ^PxTetrahedronMesh) ---
 
     /// Const accecssor to the softbody's collision mesh.
-    PxSoftBodyMesh_getCollisionMesh :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
+    @(link_name = "PxSoftBodyMesh_getCollisionMesh")
+    soft_body_mesh_get_collision_mesh :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
 
     /// Accecssor to the softbody's collision mesh.
-    PxSoftBodyMesh_getCollisionMesh_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
+    @(link_name = "PxSoftBodyMesh_getCollisionMesh_mut")
+    soft_body_mesh_get_collision_mesh_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
 
     /// Const accessor to the softbody's simulation mesh.
-    PxSoftBodyMesh_getSimulationMesh :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
+    @(link_name = "PxSoftBodyMesh_getSimulationMesh")
+    soft_body_mesh_get_simulation_mesh :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
 
     /// Accecssor to the softbody's simulation mesh.
-    PxSoftBodyMesh_getSimulationMesh_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
+    @(link_name = "PxSoftBodyMesh_getSimulationMesh_mut")
+    soft_body_mesh_get_simulation_mesh_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxTetrahedronMesh ---
 
     /// Const accessor to the softbodies simulation state.
-    PxSoftBodyMesh_getSoftBodyAuxData :: proc(self_: ^PxSoftBodyMesh) -> ^PxSoftBodyAuxData ---
+    @(link_name = "PxSoftBodyMesh_getSoftBodyAuxData")
+    soft_body_mesh_get_soft_body_aux_data :: proc(self_: ^PxSoftBodyMesh) -> ^PxSoftBodyAuxData ---
 
     /// Accessor to the softbody's auxilary data like mass and rest pose information
-    PxSoftBodyMesh_getSoftBodyAuxData_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxSoftBodyAuxData ---
+    @(link_name = "PxSoftBodyMesh_getSoftBodyAuxData_mut")
+    soft_body_mesh_get_soft_body_aux_data_mut :: proc(self_: ^PxSoftBodyMesh) -> ^PxSoftBodyAuxData ---
 
     /// Decrements the reference count of a tetrahedron mesh and releases it if the new reference count is zero.
-    PxSoftBodyMesh_release_mut :: proc(self_: ^PxSoftBodyMesh) ---
+    @(link_name = "PxSoftBodyMesh_release_mut")
+    soft_body_mesh_release_mut :: proc(self_: ^PxSoftBodyMesh) ---
 
-    PxCollisionMeshMappingData_release_mut :: proc(self_: ^PxCollisionMeshMappingData) ---
+    @(link_name = "PxCollisionMeshMappingData_release_mut")
+    collision_mesh_mapping_data_release_mut :: proc(self_: ^PxCollisionMeshMappingData) ---
 
-    PxCollisionTetrahedronMeshData_getMesh :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
+    @(link_name = "PxCollisionTetrahedronMeshData_getMesh")
+    collision_tetrahedron_mesh_data_get_mesh :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
 
-    PxCollisionTetrahedronMeshData_getMesh_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
+    @(link_name = "PxCollisionTetrahedronMeshData_getMesh_mut")
+    collision_tetrahedron_mesh_data_get_mesh_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
 
-    PxCollisionTetrahedronMeshData_getData :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxSoftBodyCollisionData ---
+    @(link_name = "PxCollisionTetrahedronMeshData_getData")
+    collision_tetrahedron_mesh_data_get_data :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxSoftBodyCollisionData ---
 
-    PxCollisionTetrahedronMeshData_getData_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxSoftBodyCollisionData ---
+    @(link_name = "PxCollisionTetrahedronMeshData_getData_mut")
+    collision_tetrahedron_mesh_data_get_data_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) -> ^PxSoftBodyCollisionData ---
 
-    PxCollisionTetrahedronMeshData_release_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) ---
+    @(link_name = "PxCollisionTetrahedronMeshData_release_mut")
+    collision_tetrahedron_mesh_data_release_mut :: proc(self_: ^PxCollisionTetrahedronMeshData) ---
 
-    PxSimulationTetrahedronMeshData_getMesh_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
+    @(link_name = "PxSimulationTetrahedronMeshData_getMesh_mut")
+    simulation_tetrahedron_mesh_data_get_mesh_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) -> ^PxTetrahedronMeshData ---
 
-    PxSimulationTetrahedronMeshData_getData_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) -> ^PxSoftBodySimulationData ---
+    @(link_name = "PxSimulationTetrahedronMeshData_getData_mut")
+    simulation_tetrahedron_mesh_data_get_data_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) -> ^PxSoftBodySimulationData ---
 
-    PxSimulationTetrahedronMeshData_release_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) ---
+    @(link_name = "PxSimulationTetrahedronMeshData_release_mut")
+    simulation_tetrahedron_mesh_data_release_mut :: proc(self_: ^PxSimulationTetrahedronMeshData) ---
 
     /// Deletes the actor.
     ///
     /// Do not keep a reference to the deleted instance.
     ///
     /// If the actor belongs to a [`PxAggregate`] object, it is automatically removed from the aggregate.
-    PxActor_release_mut :: proc(self_: ^PxActor) ---
+    @(link_name = "PxActor_release_mut")
+    actor_release_mut :: proc(self_: ^PxActor) ---
 
     /// Retrieves the type of actor.
     ///
     /// The actor type of the actor.
-    PxActor_getType :: proc(self_: ^PxActor) -> _c.int32_t ---
+    @(link_name = "PxActor_getType")
+    actor_get_type :: proc(self_: ^PxActor) -> _c.int32_t ---
 
     /// Retrieves the scene which this actor belongs to.
     ///
     /// Owner Scene. NULL if not part of a scene.
-    PxActor_getScene :: proc(self_: ^PxActor) -> ^PxScene ---
+    @(link_name = "PxActor_getScene")
+    actor_get_scene :: proc(self_: ^PxActor) -> ^PxScene ---
 
     /// Sets a name string for the object that can be retrieved with getName().
     ///
@@ -6932,12 +7435,14 @@ foreign libphysx {
     ///
     /// Default:
     /// NULL
-    PxActor_setName_mut :: proc(self_: ^PxActor, name: ^_c.char) ---
+    @(link_name = "PxActor_setName_mut")
+    actor_set_name_mut :: proc(self_: ^PxActor, name: ^_c.char) ---
 
     /// Retrieves the name string set with setName().
     ///
     /// Name string associated with object.
-    PxActor_getName :: proc(self_: ^PxActor) -> ^_c.char ---
+    @(link_name = "PxActor_getName")
+    actor_get_name :: proc(self_: ^PxActor) -> ^_c.char ---
 
     /// Retrieves the axis aligned bounding box enclosing the actor.
     ///
@@ -6945,7 +7450,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// The actor's bounding box.
-    PxActor_getWorldBounds :: proc(self_: ^PxActor, inflation: _c.float) -> PxBounds3 ---
+    @(link_name = "PxActor_getWorldBounds")
+    actor_get_world_bounds :: proc(self_: ^PxActor, inflation: _c.float) -> PxBounds3 ---
 
     /// Raises or clears a particular actor flag.
     ///
@@ -6955,19 +7461,22 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxActor_setActorFlag_mut :: proc(self_: ^PxActor, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxActor_setActorFlag_mut")
+    actor_set_actor_flag_mut :: proc(self_: ^PxActor, flag: _c.int32_t, value: _c.bool) ---
 
     /// Sets the actor flags.
     ///
     /// See the list of flags [`PxActorFlag`]
-    PxActor_setActorFlags_mut :: proc(self_: ^PxActor, inFlags: _c.uint8_t) ---
+    @(link_name = "PxActor_setActorFlags_mut")
+    actor_set_actor_flags_mut :: proc(self_: ^PxActor, inFlags: _c.uint8_t) ---
 
     /// Reads the PxActor flags.
     ///
     /// See the list of flags [`PxActorFlag`]
     ///
     /// The values of the PxActor flags.
-    PxActor_getActorFlags :: proc(self_: ^PxActor) -> _c.uint8_t ---
+    @(link_name = "PxActor_getActorFlags")
+    actor_get_actor_flags :: proc(self_: ^PxActor) -> _c.uint8_t ---
 
     /// Assigns dynamic actors a dominance group identifier.
     ///
@@ -6983,12 +7492,14 @@ foreign libphysx {
     /// Changing the dominance group does
     /// NOT
     /// wake the actor up automatically.
-    PxActor_setDominanceGroup_mut :: proc(self_: ^PxActor, dominanceGroup: _c.uint8_t) ---
+    @(link_name = "PxActor_setDominanceGroup_mut")
+    actor_set_dominance_group_mut :: proc(self_: ^PxActor, dominanceGroup: _c.uint8_t) ---
 
     /// Retrieves the value set with setDominanceGroup().
     ///
     /// The dominance group of this actor.
-    PxActor_getDominanceGroup :: proc(self_: ^PxActor) -> _c.uint8_t ---
+    @(link_name = "PxActor_getDominanceGroup")
+    actor_get_dominance_group :: proc(self_: ^PxActor) -> _c.uint8_t ---
 
     /// Sets the owner client of an actor.
     ///
@@ -6996,23 +7507,29 @@ foreign libphysx {
     ///
     /// Default:
     /// PX_DEFAULT_CLIENT
-    PxActor_setOwnerClient_mut :: proc(self_: ^PxActor, inClient: _c.uint8_t) ---
+    @(link_name = "PxActor_setOwnerClient_mut")
+    actor_set_owner_client_mut :: proc(self_: ^PxActor, inClient: _c.uint8_t) ---
 
     /// Returns the owner client that was specified at creation time.
     ///
     /// This value cannot be changed once the object is placed into the scene.
-    PxActor_getOwnerClient :: proc(self_: ^PxActor) -> _c.uint8_t ---
+    @(link_name = "PxActor_getOwnerClient")
+    actor_get_owner_client :: proc(self_: ^PxActor) -> _c.uint8_t ---
 
     /// Retrieves the aggregate the actor might be a part of.
     ///
     /// The aggregate the actor is a part of, or NULL if the actor does not belong to an aggregate.
-    PxActor_getAggregate :: proc(self_: ^PxActor) -> ^PxAggregate ---
+    @(link_name = "PxActor_getAggregate")
+    actor_get_aggregate :: proc(self_: ^PxActor) -> ^PxAggregate ---
 
-    phys_PxGetAggregateFilterHint :: proc(type: _c.int32_t, enableSelfCollision: _c.bool) -> _c.uint32_t ---
+    @(link_name = "phys_PxGetAggregateFilterHint")
+    get_aggregate_filter_hint :: proc(type: _c.int32_t, enableSelfCollision: _c.bool) -> _c.uint32_t ---
 
-    phys_PxGetAggregateSelfCollisionBit :: proc(hint: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxGetAggregateSelfCollisionBit")
+    get_aggregate_self_collision_bit :: proc(hint: _c.uint32_t) -> _c.uint32_t ---
 
-    phys_PxGetAggregateType :: proc(hint: _c.uint32_t) -> _c.int32_t ---
+    @(link_name = "phys_PxGetAggregateType")
+    get_aggregate_type :: proc(hint: _c.uint32_t) -> _c.int32_t ---
 
     /// Deletes the aggregate object.
     ///
@@ -7020,7 +7537,8 @@ foreign libphysx {
     /// belongs to a scene, the aggregated actors are automatically re-inserted in that scene. If you intend
     /// to delete both the PxAggregate and its actors, it is best to release the actors first, then release
     /// the PxAggregate when it is empty.
-    PxAggregate_release_mut :: proc(self_: ^PxAggregate) ---
+    @(link_name = "PxAggregate_release_mut")
+    aggregate_release_mut :: proc(self_: ^PxAggregate) ---
 
     /// Adds an actor to the aggregate object.
     ///
@@ -7036,7 +7554,8 @@ foreign libphysx {
     /// The scene query pruning structure inside PhysX SDK will store/update one
     /// bound per actor. The scene queries against such an actor will query actor
     /// bounds and then make a local space query against the provided BVH, which is in actor's local space.
-    PxAggregate_addActor_mut :: proc(self_: ^PxAggregate, actor: ^PxActor, bvh: ^PxBVH) -> _c.bool ---
+    @(link_name = "PxAggregate_addActor_mut")
+    aggregate_add_actor_mut :: proc(self_: ^PxAggregate, actor: ^PxActor, bvh: ^PxBVH) -> _c.bool ---
 
     /// Removes an actor from the aggregate object.
     ///
@@ -7044,7 +7563,8 @@ foreign libphysx {
     /// removed from the aggregate. If the aggregate belongs to a scene, the actor is reinserted in that
     /// scene. If you intend to delete the actor, it is best to call [`PxActor::release`]() directly. That way
     /// the actor will be automatically removed from its aggregate (if any) and not reinserted in a scene.
-    PxAggregate_removeActor_mut :: proc(self_: ^PxAggregate, actor: ^PxActor) -> _c.bool ---
+    @(link_name = "PxAggregate_removeActor_mut")
+    aggregate_remove_actor_mut :: proc(self_: ^PxAggregate, actor: ^PxActor) -> _c.bool ---
 
     /// Adds an articulation to the aggregate object.
     ///
@@ -7055,7 +7575,8 @@ foreign libphysx {
     ///
     /// If the articulation already belongs to a scene, a warning is output and the call is ignored. You need to remove
     /// the articulation from the scene first, before adding it to the aggregate.
-    PxAggregate_addArticulation_mut :: proc(self_: ^PxAggregate, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
+    @(link_name = "PxAggregate_addArticulation_mut")
+    aggregate_add_articulation_mut :: proc(self_: ^PxAggregate, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
 
     /// Removes an articulation from the aggregate object.
     ///
@@ -7063,65 +7584,81 @@ foreign libphysx {
     /// removed from the aggregate. If the aggregate belongs to a scene, the articulation is reinserted in that
     /// scene. If you intend to delete the articulation, it is best to call [`PxArticulationReducedCoordinate::release`]() directly. That way
     /// the articulation will be automatically removed from its aggregate (if any) and not reinserted in a scene.
-    PxAggregate_removeArticulation_mut :: proc(self_: ^PxAggregate, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
+    @(link_name = "PxAggregate_removeArticulation_mut")
+    aggregate_remove_articulation_mut :: proc(self_: ^PxAggregate, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
 
     /// Returns the number of actors contained in the aggregate.
     ///
     /// You can use [`getActors`]() to retrieve the actor pointers.
     ///
     /// Number of actors contained in the aggregate.
-    PxAggregate_getNbActors :: proc(self_: ^PxAggregate) -> _c.uint32_t ---
+    @(link_name = "PxAggregate_getNbActors")
+    aggregate_get_nb_actors :: proc(self_: ^PxAggregate) -> _c.uint32_t ---
 
     /// Retrieves max amount of shapes that can be contained in the aggregate.
     ///
     /// Max shape size.
-    PxAggregate_getMaxNbShapes :: proc(self_: ^PxAggregate) -> _c.uint32_t ---
+    @(link_name = "PxAggregate_getMaxNbShapes")
+    aggregate_get_max_nb_shapes :: proc(self_: ^PxAggregate) -> _c.uint32_t ---
 
     /// Retrieve all actors contained in the aggregate.
     ///
     /// You can retrieve the number of actor pointers by calling [`getNbActors`]()
     ///
     /// Number of actor pointers written to the buffer.
-    PxAggregate_getActors :: proc(self_: ^PxAggregate, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxAggregate_getActors")
+    aggregate_get_actors :: proc(self_: ^PxAggregate, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Retrieves the scene which this aggregate belongs to.
     ///
     /// Owner Scene. NULL if not part of a scene.
-    PxAggregate_getScene_mut :: proc(self_: ^PxAggregate) -> ^PxScene ---
+    @(link_name = "PxAggregate_getScene_mut")
+    aggregate_get_scene_mut :: proc(self_: ^PxAggregate) -> ^PxScene ---
 
     /// Retrieves aggregate's self-collision flag.
     ///
     /// self-collision flag
-    PxAggregate_getSelfCollision :: proc(self_: ^PxAggregate) -> _c.bool ---
+    @(link_name = "PxAggregate_getSelfCollision")
+    aggregate_get_self_collision :: proc(self_: ^PxAggregate) -> _c.bool ---
 
-    PxAggregate_getConcreteTypeName :: proc(self_: ^PxAggregate) -> ^_c.char ---
+    @(link_name = "PxAggregate_getConcreteTypeName")
+    aggregate_get_concrete_type_name :: proc(self_: ^PxAggregate) -> ^_c.char ---
 
-    PxConstraintInvMassScale_new :: proc() -> PxConstraintInvMassScale ---
+    @(link_name = "PxConstraintInvMassScale_new")
+    constraint_inv_mass_scale_new :: proc() -> PxConstraintInvMassScale ---
 
-    PxConstraintInvMassScale_new_1 :: proc(lin0: _c.float, ang0: _c.float, lin1: _c.float, ang1: _c.float) -> PxConstraintInvMassScale ---
+    @(link_name = "PxConstraintInvMassScale_new_1")
+    constraint_inv_mass_scale_new_1 :: proc(lin0: _c.float, ang0: _c.float, lin1: _c.float, ang1: _c.float) -> PxConstraintInvMassScale ---
 
     /// Visualize joint frames
-    PxConstraintVisualizer_visualizeJointFrames_mut :: proc(self_: ^PxConstraintVisualizer, parent: ^PxTransform, child: ^PxTransform) ---
+    @(link_name = "PxConstraintVisualizer_visualizeJointFrames_mut")
+    constraint_visualizer_visualize_joint_frames_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr parent: PxTransform, #by_ptr child: PxTransform) ---
 
     /// Visualize joint linear limit
-    PxConstraintVisualizer_visualizeLinearLimit_mut :: proc(self_: ^PxConstraintVisualizer, t0: ^PxTransform, t1: ^PxTransform, value: _c.float, active: _c.bool) ---
+    @(link_name = "PxConstraintVisualizer_visualizeLinearLimit_mut")
+    constraint_visualizer_visualize_linear_limit_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr t0: PxTransform, #by_ptr t1: PxTransform, value: _c.float, active: _c.bool) ---
 
     /// Visualize joint angular limit
-    PxConstraintVisualizer_visualizeAngularLimit_mut :: proc(self_: ^PxConstraintVisualizer, t0: ^PxTransform, lower: _c.float, upper: _c.float, active: _c.bool) ---
+    @(link_name = "PxConstraintVisualizer_visualizeAngularLimit_mut")
+    constraint_visualizer_visualize_angular_limit_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr t0: PxTransform, lower: _c.float, upper: _c.float, active: _c.bool) ---
 
     /// Visualize limit cone
-    PxConstraintVisualizer_visualizeLimitCone_mut :: proc(self_: ^PxConstraintVisualizer, t: ^PxTransform, tanQSwingY: _c.float, tanQSwingZ: _c.float, active: _c.bool) ---
+    @(link_name = "PxConstraintVisualizer_visualizeLimitCone_mut")
+    constraint_visualizer_visualize_limit_cone_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr t: PxTransform, tanQSwingY: _c.float, tanQSwingZ: _c.float, active: _c.bool) ---
 
     /// Visualize joint double cone
-    PxConstraintVisualizer_visualizeDoubleCone_mut :: proc(self_: ^PxConstraintVisualizer, t: ^PxTransform, angle: _c.float, active: _c.bool) ---
+    @(link_name = "PxConstraintVisualizer_visualizeDoubleCone_mut")
+    constraint_visualizer_visualize_double_cone_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr t: PxTransform, angle: _c.float, active: _c.bool) ---
 
     /// Visualize line
-    PxConstraintVisualizer_visualizeLine_mut :: proc(self_: ^PxConstraintVisualizer, p0: ^PxVec3, p1: ^PxVec3, color: _c.uint32_t) ---
+    @(link_name = "PxConstraintVisualizer_visualizeLine_mut")
+    constraint_visualizer_visualize_line_mut :: proc(self_: ^PxConstraintVisualizer, #by_ptr p0: PxVec3, #by_ptr p1: PxVec3, color: _c.uint32_t) ---
 
     /// Pre-simulation data preparation
     /// when the constraint is marked dirty, this function is called at the start of the simulation
     /// step for the SDK to copy the constraint data block.
-    PxConstraintConnector_prepareData_mut :: proc(self_: ^PxConstraintConnector) -> rawptr ---
+    @(link_name = "PxConstraintConnector_prepareData_mut")
+    constraint_connector_prepare_data_mut :: proc(self_: ^PxConstraintConnector) -> rawptr ---
 
     /// Constraint release callback
     ///
@@ -7132,7 +7669,8 @@ foreign libphysx {
     ///
     /// This function is also called when a PxConstraint object is deleted on cleanup due to
     /// destruction of the PxPhysics object.
-    PxConstraintConnector_onConstraintRelease_mut :: proc(self_: ^PxConstraintConnector) ---
+    @(link_name = "PxConstraintConnector_onConstraintRelease_mut")
+    constraint_connector_on_constraint_release_mut :: proc(self_: ^PxConstraintConnector) ---
 
     /// Center-of-mass shift callback
     ///
@@ -7140,7 +7678,8 @@ foreign libphysx {
     /// API specifies constraint positions relative to actors, and the constraint shader functions
     /// are supplied with coordinates relative to bodies, some synchronization is usually required
     /// when the application moves an object's center of mass.
-    PxConstraintConnector_onComShift_mut :: proc(self_: ^PxConstraintConnector, actor: _c.uint32_t) ---
+    @(link_name = "PxConstraintConnector_onComShift_mut")
+    constraint_connector_on_com_shift_mut :: proc(self_: ^PxConstraintConnector, actor: _c.uint32_t) ---
 
     /// Origin shift callback
     ///
@@ -7149,200 +7688,248 @@ foreign libphysx {
     ///
     /// If the adjustments affect constraint shader data, it is necessary to call PxConstraint::markDirty()
     /// to make sure that the data gets synced at the beginning of the next simulation step.
-    PxConstraintConnector_onOriginShift_mut :: proc(self_: ^PxConstraintConnector, shift: ^PxVec3) ---
+    @(link_name = "PxConstraintConnector_onOriginShift_mut")
+    constraint_connector_on_origin_shift_mut :: proc(self_: ^PxConstraintConnector, #by_ptr shift: PxVec3) ---
 
     /// Obtain a reference to a PxBase interface if the constraint has one.
     ///
     /// If the constraint does not implement the PxBase interface, it should return NULL.
-    PxConstraintConnector_getSerializable_mut :: proc(self_: ^PxConstraintConnector) -> ^PxBase ---
+    @(link_name = "PxConstraintConnector_getSerializable_mut")
+    constraint_connector_get_serializable_mut :: proc(self_: ^PxConstraintConnector) -> ^PxBase ---
 
     /// Obtain the pointer to the constraint's constant data
-    PxConstraintConnector_getConstantBlock :: proc(self_: ^PxConstraintConnector) -> rawptr ---
+    @(link_name = "PxConstraintConnector_getConstantBlock")
+    constraint_connector_get_constant_block :: proc(self_: ^PxConstraintConnector) -> rawptr ---
 
     /// Let the connector know it has been connected to a constraint.
-    PxConstraintConnector_connectToConstraint_mut :: proc(self_: ^PxConstraintConnector, anon_param0: ^PxConstraint) ---
+    @(link_name = "PxConstraintConnector_connectToConstraint_mut")
+    constraint_connector_connect_to_constraint_mut :: proc(self_: ^PxConstraintConnector, anon_param0: ^PxConstraint) ---
 
     /// virtual destructor
-    PxConstraintConnector_delete :: proc(self_: ^PxConstraintConnector) ---
+    @(link_name = "PxConstraintConnector_delete")
+    constraint_connector_delete :: proc(self_: ^PxConstraintConnector) ---
 
-    PxSolverBody_new :: proc() -> PxSolverBody ---
+    @(link_name = "PxSolverBody_new")
+    solver_body_new :: proc() -> PxSolverBody ---
 
-    PxSolverBodyData_projectVelocity :: proc(self_: ^PxSolverBodyData, lin: ^PxVec3, ang: ^PxVec3) -> _c.float ---
+    @(link_name = "PxSolverBodyData_projectVelocity")
+    solver_body_data_project_velocity :: proc(self_: ^PxSolverBodyData, #by_ptr lin: PxVec3, #by_ptr ang: PxVec3) -> _c.float ---
 
-    PxSolverConstraintPrepDesc_delete :: proc(self_: ^PxSolverConstraintPrepDesc) ---
+    @(link_name = "PxSolverConstraintPrepDesc_delete")
+    solver_constraint_prep_desc_delete :: proc(self_: ^PxSolverConstraintPrepDesc) ---
 
     /// Allocates constraint data. It is the application's responsibility to release this memory after PxSolveConstraints has completed.
     ///
     /// The allocated memory. This address must be 16-byte aligned.
-    PxConstraintAllocator_reserveConstraintData_mut :: proc(self_: ^PxConstraintAllocator, byteSize: _c.uint32_t) -> ^_c.uint8_t ---
+    @(link_name = "PxConstraintAllocator_reserveConstraintData_mut")
+    constraint_allocator_reserve_constraint_data_mut :: proc(self_: ^PxConstraintAllocator, byteSize: _c.uint32_t) -> ^_c.uint8_t ---
 
     /// Allocates friction data. Friction data can be retained by the application for a given pair and provided as an input to PxSolverContactDesc to improve simulation stability.
     /// It is the application's responsibility to release this memory. If this memory is released, the application should ensure it does not pass pointers to this memory to PxSolverContactDesc.
     ///
     /// The allocated memory. This address must be 4-byte aligned.
-    PxConstraintAllocator_reserveFrictionData_mut :: proc(self_: ^PxConstraintAllocator, byteSize: _c.uint32_t) -> ^_c.uint8_t ---
+    @(link_name = "PxConstraintAllocator_reserveFrictionData_mut")
+    constraint_allocator_reserve_friction_data_mut :: proc(self_: ^PxConstraintAllocator, byteSize: _c.uint32_t) -> ^_c.uint8_t ---
 
-    PxConstraintAllocator_delete :: proc(self_: ^PxConstraintAllocator) ---
+    @(link_name = "PxConstraintAllocator_delete")
+    constraint_allocator_delete :: proc(self_: ^PxConstraintAllocator) ---
 
-    PxArticulationLimit_new :: proc() -> PxArticulationLimit ---
+    @(link_name = "PxArticulationLimit_new")
+    articulation_limit_new :: proc() -> PxArticulationLimit ---
 
-    PxArticulationLimit_new_1 :: proc(low_: _c.float, high_: _c.float) -> PxArticulationLimit ---
+    @(link_name = "PxArticulationLimit_new_1")
+    articulation_limit_new_1 :: proc(low_: _c.float, high_: _c.float) -> PxArticulationLimit ---
 
-    PxArticulationDrive_new :: proc() -> PxArticulationDrive ---
+    @(link_name = "PxArticulationDrive_new")
+    articulation_drive_new :: proc() -> PxArticulationDrive ---
 
-    PxArticulationDrive_new_1 :: proc(stiffness_: _c.float, damping_: _c.float, maxForce_: _c.float, driveType_: _c.int32_t) -> PxArticulationDrive ---
+    @(link_name = "PxArticulationDrive_new_1")
+    articulation_drive_new_1 :: proc(stiffness_: _c.float, damping_: _c.float, maxForce_: _c.float, driveType_: _c.int32_t) -> PxArticulationDrive ---
 
-    PxTGSSolverBodyVel_projectVelocity :: proc(self_: ^PxTGSSolverBodyVel, lin: ^PxVec3, ang: ^PxVec3) -> _c.float ---
+    @(link_name = "PxTGSSolverBodyVel_projectVelocity")
+    t_g_s_solver_body_vel_project_velocity :: proc(self_: ^PxTGSSolverBodyVel, #by_ptr lin: PxVec3, #by_ptr ang: PxVec3) -> _c.float ---
 
-    PxTGSSolverBodyData_projectVelocity :: proc(self_: ^PxTGSSolverBodyData, linear: ^PxVec3, angular: ^PxVec3) -> _c.float ---
+    @(link_name = "PxTGSSolverBodyData_projectVelocity")
+    t_g_s_solver_body_data_project_velocity :: proc(self_: ^PxTGSSolverBodyData, #by_ptr linear: PxVec3, #by_ptr angular: PxVec3) -> _c.float ---
 
-    PxTGSSolverConstraintPrepDesc_delete :: proc(self_: ^PxTGSSolverConstraintPrepDesc) ---
+    @(link_name = "PxTGSSolverConstraintPrepDesc_delete")
+    t_g_s_solver_constraint_prep_desc_delete :: proc(self_: ^PxTGSSolverConstraintPrepDesc) ---
 
     /// Sets the spring rest length for the sub-tendon from the root to this leaf attachment.
     ///
     /// Setting this on non-leaf attachments has no effect.
-    PxArticulationAttachment_setRestLength_mut :: proc(self_: ^PxArticulationAttachment, restLength: _c.float) ---
+    @(link_name = "PxArticulationAttachment_setRestLength_mut")
+    articulation_attachment_set_rest_length_mut :: proc(self_: ^PxArticulationAttachment, restLength: _c.float) ---
 
     /// Gets the spring rest length for the sub-tendon from the root to this leaf attachment.
     ///
     /// The rest length.
-    PxArticulationAttachment_getRestLength :: proc(self_: ^PxArticulationAttachment) -> _c.float ---
+    @(link_name = "PxArticulationAttachment_getRestLength")
+    articulation_attachment_get_rest_length :: proc(self_: ^PxArticulationAttachment) -> _c.float ---
 
     /// Sets the low and high limit on the length of the sub-tendon from the root to this leaf attachment.
     ///
     /// Setting this on non-leaf attachments has no effect.
-    PxArticulationAttachment_setLimitParameters_mut :: proc(self_: ^PxArticulationAttachment, parameters: ^PxArticulationTendonLimit) ---
+    @(link_name = "PxArticulationAttachment_setLimitParameters_mut")
+    articulation_attachment_set_limit_parameters_mut :: proc(self_: ^PxArticulationAttachment, #by_ptr parameters: PxArticulationTendonLimit) ---
 
     /// Gets the low and high limit on the length of the sub-tendon from the root to this leaf attachment.
     ///
     /// Struct with the low and high limit.
-    PxArticulationAttachment_getLimitParameters :: proc(self_: ^PxArticulationAttachment) -> PxArticulationTendonLimit ---
+    @(link_name = "PxArticulationAttachment_getLimitParameters")
+    articulation_attachment_get_limit_parameters :: proc(self_: ^PxArticulationAttachment) -> PxArticulationTendonLimit ---
 
     /// Sets the attachment's relative offset in the link actor frame.
-    PxArticulationAttachment_setRelativeOffset_mut :: proc(self_: ^PxArticulationAttachment, offset: ^PxVec3) ---
+    @(link_name = "PxArticulationAttachment_setRelativeOffset_mut")
+    articulation_attachment_set_relative_offset_mut :: proc(self_: ^PxArticulationAttachment, #by_ptr offset: PxVec3) ---
 
     /// Gets the attachment's relative offset in the link actor frame.
     ///
     /// The relative offset in the link actor frame.
-    PxArticulationAttachment_getRelativeOffset :: proc(self_: ^PxArticulationAttachment) -> PxVec3 ---
+    @(link_name = "PxArticulationAttachment_getRelativeOffset")
+    articulation_attachment_get_relative_offset :: proc(self_: ^PxArticulationAttachment) -> PxVec3 ---
 
     /// Sets the attachment coefficient.
-    PxArticulationAttachment_setCoefficient_mut :: proc(self_: ^PxArticulationAttachment, coefficient: _c.float) ---
+    @(link_name = "PxArticulationAttachment_setCoefficient_mut")
+    articulation_attachment_set_coefficient_mut :: proc(self_: ^PxArticulationAttachment, coefficient: _c.float) ---
 
     /// Gets the attachment coefficient.
     ///
     /// The scale that the distance between this attachment and its parent is multiplied by when summing up the spatial tendon's length.
-    PxArticulationAttachment_getCoefficient :: proc(self_: ^PxArticulationAttachment) -> _c.float ---
+    @(link_name = "PxArticulationAttachment_getCoefficient")
+    articulation_attachment_get_coefficient :: proc(self_: ^PxArticulationAttachment) -> _c.float ---
 
     /// Gets the articulation link.
     ///
     /// The articulation link that this attachment is attached to.
-    PxArticulationAttachment_getLink :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationAttachment_getLink")
+    articulation_attachment_get_link :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationLink ---
 
     /// Gets the parent attachment.
     ///
     /// The parent attachment.
-    PxArticulationAttachment_getParent :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationAttachment ---
+    @(link_name = "PxArticulationAttachment_getParent")
+    articulation_attachment_get_parent :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationAttachment ---
 
     /// Indicates that this attachment is a leaf, and thus defines a sub-tendon from the root to this attachment.
     ///
     /// True: This attachment is a leaf and has zero children; False: Not a leaf.
-    PxArticulationAttachment_isLeaf :: proc(self_: ^PxArticulationAttachment) -> _c.bool ---
+    @(link_name = "PxArticulationAttachment_isLeaf")
+    articulation_attachment_is_leaf :: proc(self_: ^PxArticulationAttachment) -> _c.bool ---
 
     /// Gets the spatial tendon that the attachment is a part of.
     ///
     /// The tendon.
-    PxArticulationAttachment_getTendon :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationSpatialTendon ---
+    @(link_name = "PxArticulationAttachment_getTendon")
+    articulation_attachment_get_tendon :: proc(self_: ^PxArticulationAttachment) -> ^PxArticulationSpatialTendon ---
 
     /// Releases the attachment.
     ///
     /// Releasing the attachment is not allowed while the articulation is in a scene. In order to
     /// release the attachment, remove and then re-add the articulation to the scene.
-    PxArticulationAttachment_release_mut :: proc(self_: ^PxArticulationAttachment) ---
+    @(link_name = "PxArticulationAttachment_release_mut")
+    articulation_attachment_release_mut :: proc(self_: ^PxArticulationAttachment) ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationAttachment_getConcreteTypeName :: proc(self_: ^PxArticulationAttachment) -> ^_c.char ---
+    @(link_name = "PxArticulationAttachment_getConcreteTypeName")
+    articulation_attachment_get_concrete_type_name :: proc(self_: ^PxArticulationAttachment) -> ^_c.char ---
 
     /// Sets the tendon joint coefficient.
     ///
     /// RecipCoefficient is commonly expected to be 1/coefficient, but it can be set to different values to tune behavior; for example, zero can be used to
     /// have a joint axis only participate in the length computation of the tendon, but not have any tendon force applied to it.
-    PxArticulationTendonJoint_setCoefficient_mut :: proc(self_: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float) ---
+    @(link_name = "PxArticulationTendonJoint_setCoefficient_mut")
+    articulation_tendon_joint_set_coefficient_mut :: proc(self_: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float) ---
 
     /// Gets the tendon joint coefficient.
-    PxArticulationTendonJoint_getCoefficient :: proc(self_: ^PxArticulationTendonJoint, axis: ^_c.int32_t, coefficient: ^_c.float, recipCoefficient: ^_c.float) ---
+    @(link_name = "PxArticulationTendonJoint_getCoefficient")
+    articulation_tendon_joint_get_coefficient :: proc(self_: ^PxArticulationTendonJoint, axis: ^_c.int32_t, coefficient: ^_c.float, recipCoefficient: ^_c.float) ---
 
     /// Gets the articulation link.
     ///
     /// The articulation link (and its incoming joint in particular) that this tendon joint is associated with.
-    PxArticulationTendonJoint_getLink :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationTendonJoint_getLink")
+    articulation_tendon_joint_get_link :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationLink ---
 
     /// Gets the parent tendon joint.
     ///
     /// The parent tendon joint.
-    PxArticulationTendonJoint_getParent :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationTendonJoint ---
+    @(link_name = "PxArticulationTendonJoint_getParent")
+    articulation_tendon_joint_get_parent :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationTendonJoint ---
 
     /// Gets the tendon that the joint is a part of.
     ///
     /// The tendon.
-    PxArticulationTendonJoint_getTendon :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationFixedTendon ---
+    @(link_name = "PxArticulationTendonJoint_getTendon")
+    articulation_tendon_joint_get_tendon :: proc(self_: ^PxArticulationTendonJoint) -> ^PxArticulationFixedTendon ---
 
     /// Releases a tendon joint.
     ///
     /// Releasing a tendon joint is not allowed while the articulation is in a scene. In order to
     /// release the joint, remove and then re-add the articulation to the scene.
-    PxArticulationTendonJoint_release_mut :: proc(self_: ^PxArticulationTendonJoint) ---
+    @(link_name = "PxArticulationTendonJoint_release_mut")
+    articulation_tendon_joint_release_mut :: proc(self_: ^PxArticulationTendonJoint) ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationTendonJoint_getConcreteTypeName :: proc(self_: ^PxArticulationTendonJoint) -> ^_c.char ---
+    @(link_name = "PxArticulationTendonJoint_getConcreteTypeName")
+    articulation_tendon_joint_get_concrete_type_name :: proc(self_: ^PxArticulationTendonJoint) -> ^_c.char ---
 
     /// Sets the spring stiffness term acting on the tendon length.
-    PxArticulationTendon_setStiffness_mut :: proc(self_: ^PxArticulationTendon, stiffness: _c.float) ---
+    @(link_name = "PxArticulationTendon_setStiffness_mut")
+    articulation_tendon_set_stiffness_mut :: proc(self_: ^PxArticulationTendon, stiffness: _c.float) ---
 
     /// Gets the spring stiffness of the tendon.
     ///
     /// The spring stiffness.
-    PxArticulationTendon_getStiffness :: proc(self_: ^PxArticulationTendon) -> _c.float ---
+    @(link_name = "PxArticulationTendon_getStiffness")
+    articulation_tendon_get_stiffness :: proc(self_: ^PxArticulationTendon) -> _c.float ---
 
     /// Sets the damping term acting both on the tendon length and tendon-length limits.
-    PxArticulationTendon_setDamping_mut :: proc(self_: ^PxArticulationTendon, damping: _c.float) ---
+    @(link_name = "PxArticulationTendon_setDamping_mut")
+    articulation_tendon_set_damping_mut :: proc(self_: ^PxArticulationTendon, damping: _c.float) ---
 
     /// Gets the damping term acting both on the tendon length and tendon-length limits.
     ///
     /// The damping term.
-    PxArticulationTendon_getDamping :: proc(self_: ^PxArticulationTendon) -> _c.float ---
+    @(link_name = "PxArticulationTendon_getDamping")
+    articulation_tendon_get_damping :: proc(self_: ^PxArticulationTendon) -> _c.float ---
 
     /// Sets the limit stiffness term acting on the tendon's length limits.
     ///
     /// For spatial tendons, this parameter applies to all its leaf attachments / sub-tendons.
-    PxArticulationTendon_setLimitStiffness_mut :: proc(self_: ^PxArticulationTendon, stiffness: _c.float) ---
+    @(link_name = "PxArticulationTendon_setLimitStiffness_mut")
+    articulation_tendon_set_limit_stiffness_mut :: proc(self_: ^PxArticulationTendon, stiffness: _c.float) ---
 
     /// Gets the limit stiffness term acting on the tendon's length limits.
     ///
     /// For spatial tendons, this parameter applies to all its leaf attachments / sub-tendons.
     ///
     /// The limit stiffness term.
-    PxArticulationTendon_getLimitStiffness :: proc(self_: ^PxArticulationTendon) -> _c.float ---
+    @(link_name = "PxArticulationTendon_getLimitStiffness")
+    articulation_tendon_get_limit_stiffness :: proc(self_: ^PxArticulationTendon) -> _c.float ---
 
     /// Sets the length offset term for the tendon.
     ///
     /// An offset defines an amount to be added to the accumulated length computed for the tendon. It allows the
     /// application to actuate the tendon by shortening or lengthening it.
-    PxArticulationTendon_setOffset_mut :: proc(self_: ^PxArticulationTendon, offset: _c.float, autowake: _c.bool) ---
+    @(link_name = "PxArticulationTendon_setOffset_mut")
+    articulation_tendon_set_offset_mut :: proc(self_: ^PxArticulationTendon, offset: _c.float, autowake: _c.bool) ---
 
     /// Gets the length offset term for the tendon.
     ///
     /// The offset term.
-    PxArticulationTendon_getOffset :: proc(self_: ^PxArticulationTendon) -> _c.float ---
+    @(link_name = "PxArticulationTendon_getOffset")
+    articulation_tendon_get_offset :: proc(self_: ^PxArticulationTendon) -> _c.float ---
 
     /// Gets the articulation that the tendon is a part of.
     ///
     /// The articulation.
-    PxArticulationTendon_getArticulation :: proc(self_: ^PxArticulationTendon) -> ^PxArticulationReducedCoordinate ---
+    @(link_name = "PxArticulationTendon_getArticulation")
+    articulation_tendon_get_articulation :: proc(self_: ^PxArticulationTendon) -> ^PxArticulationReducedCoordinate ---
 
     /// Releases a tendon to remove it from the articulation and free its associated memory.
     ///
@@ -7350,7 +7937,8 @@ foreign libphysx {
     ///
     /// Releasing a tendon is not allowed while the articulation is in a scene. In order to
     /// release the tendon, remove and then re-add the articulation to the scene.
-    PxArticulationTendon_release_mut :: proc(self_: ^PxArticulationTendon) ---
+    @(link_name = "PxArticulationTendon_release_mut")
+    articulation_tendon_release_mut :: proc(self_: ^PxArticulationTendon) ---
 
     /// Creates an articulation attachment and adds it to the list of children in the parent attachment.
     ///
@@ -7358,22 +7946,26 @@ foreign libphysx {
     /// add the attachment, remove and then re-add the articulation to the scene.
     ///
     /// The newly-created attachment if creation was successful, otherwise a null pointer.
-    PxArticulationSpatialTendon_createAttachment_mut :: proc(self_: ^PxArticulationSpatialTendon, parent: ^PxArticulationAttachment, coefficient: _c.float, relativeOffset: PxVec3, link: ^PxArticulationLink) -> ^PxArticulationAttachment ---
+    @(link_name = "PxArticulationSpatialTendon_createAttachment_mut")
+    articulation_spatial_tendon_create_attachment_mut :: proc(self_: ^PxArticulationSpatialTendon, parent: ^PxArticulationAttachment, coefficient: _c.float, relativeOffset: PxVec3, link: ^PxArticulationLink) -> ^PxArticulationAttachment ---
 
     /// Fills a user-provided buffer of attachment pointers with the set of attachments.
     ///
     /// The number of attachments that were filled into the user buffer.
-    PxArticulationSpatialTendon_getAttachments :: proc(self_: ^PxArticulationSpatialTendon, userBuffer: ^^PxArticulationAttachment, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationSpatialTendon_getAttachments")
+    articulation_spatial_tendon_get_attachments :: proc(self_: ^PxArticulationSpatialTendon, userBuffer: ^^PxArticulationAttachment, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of attachments in the tendon.
     ///
     /// The number of attachments.
-    PxArticulationSpatialTendon_getNbAttachments :: proc(self_: ^PxArticulationSpatialTendon) -> _c.uint32_t ---
+    @(link_name = "PxArticulationSpatialTendon_getNbAttachments")
+    articulation_spatial_tendon_get_nb_attachments :: proc(self_: ^PxArticulationSpatialTendon) -> _c.uint32_t ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationSpatialTendon_getConcreteTypeName :: proc(self_: ^PxArticulationSpatialTendon) -> ^_c.char ---
+    @(link_name = "PxArticulationSpatialTendon_getConcreteTypeName")
+    articulation_spatial_tendon_get_concrete_type_name :: proc(self_: ^PxArticulationSpatialTendon) -> ^_c.char ---
 
     /// Creates an articulation tendon joint and adds it to the list of children in the parent tendon joint.
     ///
@@ -7384,17 +7976,20 @@ foreign libphysx {
     ///
     /// - The axis motion must not be configured as PxArticulationMotion::eLOCKED.
     /// - The axis cannot be part of a fixed joint, i.e. joint configured as PxArticulationJointType::eFIX.
-    PxArticulationFixedTendon_createTendonJoint_mut :: proc(self_: ^PxArticulationFixedTendon, parent: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float, link: ^PxArticulationLink) -> ^PxArticulationTendonJoint ---
+    @(link_name = "PxArticulationFixedTendon_createTendonJoint_mut")
+    articulation_fixed_tendon_create_tendon_joint_mut :: proc(self_: ^PxArticulationFixedTendon, parent: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float, link: ^PxArticulationLink) -> ^PxArticulationTendonJoint ---
 
     /// Fills a user-provided buffer of tendon-joint pointers with the set of tendon joints.
     ///
     /// The number of tendon joints filled into the user buffer.
-    PxArticulationFixedTendon_getTendonJoints :: proc(self_: ^PxArticulationFixedTendon, userBuffer: ^^PxArticulationTendonJoint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationFixedTendon_getTendonJoints")
+    articulation_fixed_tendon_get_tendon_joints :: proc(self_: ^PxArticulationFixedTendon, userBuffer: ^^PxArticulationTendonJoint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of tendon joints in the tendon.
     ///
     /// The number of tendon joints.
-    PxArticulationFixedTendon_getNbTendonJoints :: proc(self_: ^PxArticulationFixedTendon) -> _c.uint32_t ---
+    @(link_name = "PxArticulationFixedTendon_getNbTendonJoints")
+    articulation_fixed_tendon_get_nb_tendon_joints :: proc(self_: ^PxArticulationFixedTendon) -> _c.uint32_t ---
 
     /// Sets the spring rest length of the tendon.
     ///
@@ -7404,38 +7999,46 @@ foreign libphysx {
     ///
     /// The spring of the tendon is not exerting any force on the articulation when the rest length is equal to the
     /// tendon's accumulated length plus the tendon offset.
-    PxArticulationFixedTendon_setRestLength_mut :: proc(self_: ^PxArticulationFixedTendon, restLength: _c.float) ---
+    @(link_name = "PxArticulationFixedTendon_setRestLength_mut")
+    articulation_fixed_tendon_set_rest_length_mut :: proc(self_: ^PxArticulationFixedTendon, restLength: _c.float) ---
 
     /// Gets the spring rest length of the tendon.
     ///
     /// The spring rest length of the tendon.
-    PxArticulationFixedTendon_getRestLength :: proc(self_: ^PxArticulationFixedTendon) -> _c.float ---
+    @(link_name = "PxArticulationFixedTendon_getRestLength")
+    articulation_fixed_tendon_get_rest_length :: proc(self_: ^PxArticulationFixedTendon) -> _c.float ---
 
     /// Sets the low and high limit on the length of the tendon.
     ///
     /// The limits, together with the damping and limit stiffness parameters, act on the accumulated length of the tendon.
-    PxArticulationFixedTendon_setLimitParameters_mut :: proc(self_: ^PxArticulationFixedTendon, parameter: ^PxArticulationTendonLimit) ---
+    @(link_name = "PxArticulationFixedTendon_setLimitParameters_mut")
+    articulation_fixed_tendon_set_limit_parameters_mut :: proc(self_: ^PxArticulationFixedTendon, #by_ptr parameter: PxArticulationTendonLimit) ---
 
     /// Gets the low and high limit on the length of the tendon.
     ///
     /// Struct with the low and high limit.
-    PxArticulationFixedTendon_getLimitParameters :: proc(self_: ^PxArticulationFixedTendon) -> PxArticulationTendonLimit ---
+    @(link_name = "PxArticulationFixedTendon_getLimitParameters")
+    articulation_fixed_tendon_get_limit_parameters :: proc(self_: ^PxArticulationFixedTendon) -> PxArticulationTendonLimit ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationFixedTendon_getConcreteTypeName :: proc(self_: ^PxArticulationFixedTendon) -> ^_c.char ---
+    @(link_name = "PxArticulationFixedTendon_getConcreteTypeName")
+    articulation_fixed_tendon_get_concrete_type_name :: proc(self_: ^PxArticulationFixedTendon) -> ^_c.char ---
 
-    PxArticulationCache_new :: proc() -> PxArticulationCache ---
+    @(link_name = "PxArticulationCache_new")
+    articulation_cache_new :: proc() -> PxArticulationCache ---
 
     /// Releases an articulation cache.
-    PxArticulationCache_release_mut :: proc(self_: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationCache_release_mut")
+    articulation_cache_release_mut :: proc(self_: ^PxArticulationCache) ---
 
     /// Releases the sensor.
     ///
     /// Releasing a sensor is not allowed while the articulation is in a scene. In order to
     /// release a sensor, remove and then re-add the articulation to the scene.
-    PxArticulationSensor_release_mut :: proc(self_: ^PxArticulationSensor) ---
+    @(link_name = "PxArticulationSensor_release_mut")
+    articulation_sensor_release_mut :: proc(self_: ^PxArticulationSensor) ---
 
     /// Returns the spatial force in the local frame of the sensor.
     ///
@@ -7443,14 +8046,16 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationSensor_getForces :: proc(self_: ^PxArticulationSensor) -> PxSpatialForce ---
+    @(link_name = "PxArticulationSensor_getForces")
+    articulation_sensor_get_forces :: proc(self_: ^PxArticulationSensor) -> PxSpatialForce ---
 
     /// Returns the relative pose between this sensor and the body frame of the link that the sensor is attached to.
     ///
     /// The link body frame is at the center of mass and aligned with the principal axes of inertia, see PxRigidBody::getCMassLocalPose.
     ///
     /// The transform link body frame -> sensor frame.
-    PxArticulationSensor_getRelativePose :: proc(self_: ^PxArticulationSensor) -> PxTransform ---
+    @(link_name = "PxArticulationSensor_getRelativePose")
+    articulation_sensor_get_relative_pose :: proc(self_: ^PxArticulationSensor) -> PxTransform ---
 
     /// Sets the relative pose between this sensor and the body frame of the link that the sensor is attached to.
     ///
@@ -7458,45 +8063,53 @@ foreign libphysx {
     ///
     /// Setting the sensor relative pose is not allowed while the articulation is in a scene. In order to
     /// set the pose, remove and then re-add the articulation to the scene.
-    PxArticulationSensor_setRelativePose_mut :: proc(self_: ^PxArticulationSensor, pose: ^PxTransform) ---
+    @(link_name = "PxArticulationSensor_setRelativePose_mut")
+    articulation_sensor_set_relative_pose_mut :: proc(self_: ^PxArticulationSensor, #by_ptr pose: PxTransform) ---
 
     /// Returns the link that this sensor is attached to.
     ///
     /// A pointer to the link.
-    PxArticulationSensor_getLink :: proc(self_: ^PxArticulationSensor) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationSensor_getLink")
+    articulation_sensor_get_link :: proc(self_: ^PxArticulationSensor) -> ^PxArticulationLink ---
 
     /// Returns the index of this sensor inside the articulation.
     ///
     /// The return value is only valid for sensors attached to articulations that are in a scene.
     ///
     /// The low-level index, or 0xFFFFFFFF if the articulation is not in a scene.
-    PxArticulationSensor_getIndex :: proc(self_: ^PxArticulationSensor) -> _c.uint32_t ---
+    @(link_name = "PxArticulationSensor_getIndex")
+    articulation_sensor_get_index :: proc(self_: ^PxArticulationSensor) -> _c.uint32_t ---
 
     /// Returns the articulation that this sensor is part of.
     ///
     /// A pointer to the articulation.
-    PxArticulationSensor_getArticulation :: proc(self_: ^PxArticulationSensor) -> ^PxArticulationReducedCoordinate ---
+    @(link_name = "PxArticulationSensor_getArticulation")
+    articulation_sensor_get_articulation :: proc(self_: ^PxArticulationSensor) -> ^PxArticulationReducedCoordinate ---
 
     /// Returns the sensor's flags.
     ///
     /// The current set of flags of the sensor.
-    PxArticulationSensor_getFlags :: proc(self_: ^PxArticulationSensor) -> _c.uint8_t ---
+    @(link_name = "PxArticulationSensor_getFlags")
+    articulation_sensor_get_flags :: proc(self_: ^PxArticulationSensor) -> _c.uint8_t ---
 
     /// Sets a flag of the sensor.
     ///
     /// Setting the sensor flags is not allowed while the articulation is in a scene. In order to
     /// set the flags, remove and then re-add the articulation to the scene.
-    PxArticulationSensor_setFlag_mut :: proc(self_: ^PxArticulationSensor, flag: _c.int32_t, enabled: _c.bool) ---
+    @(link_name = "PxArticulationSensor_setFlag_mut")
+    articulation_sensor_set_flag_mut :: proc(self_: ^PxArticulationSensor, flag: _c.int32_t, enabled: _c.bool) ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationSensor_getConcreteTypeName :: proc(self_: ^PxArticulationSensor) -> ^_c.char ---
+    @(link_name = "PxArticulationSensor_getConcreteTypeName")
+    articulation_sensor_get_concrete_type_name :: proc(self_: ^PxArticulationSensor) -> ^_c.char ---
 
     /// Returns the scene which this articulation belongs to.
     ///
     /// Owner Scene. NULL if not part of a scene.
-    PxArticulationReducedCoordinate_getScene :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxScene ---
+    @(link_name = "PxArticulationReducedCoordinate_getScene")
+    articulation_reduced_coordinate_get_scene :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxScene ---
 
     /// Sets the solver iteration counts for the articulation.
     ///
@@ -7513,10 +8126,12 @@ foreign libphysx {
     /// objects closer to the correct value given the restitution.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setSolverIterationCounts_mut :: proc(self_: ^PxArticulationReducedCoordinate, minPositionIters: _c.uint32_t, minVelocityIters: _c.uint32_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_setSolverIterationCounts_mut")
+    articulation_reduced_coordinate_set_solver_iteration_counts_mut :: proc(self_: ^PxArticulationReducedCoordinate, minPositionIters: _c.uint32_t, minVelocityIters: _c.uint32_t) ---
 
     /// Returns the solver iteration counts.
-    PxArticulationReducedCoordinate_getSolverIterationCounts :: proc(self_: ^PxArticulationReducedCoordinate, minPositionIters: ^_c.uint32_t, minVelocityIters: ^_c.uint32_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_getSolverIterationCounts")
+    articulation_reduced_coordinate_get_solver_iteration_counts :: proc(self_: ^PxArticulationReducedCoordinate, minPositionIters: ^_c.uint32_t, minVelocityIters: ^_c.uint32_t) ---
 
     /// Returns true if this articulation is sleeping.
     ///
@@ -7551,19 +8166,22 @@ foreign libphysx {
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation,
     /// except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_isSleeping :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.bool ---
+    @(link_name = "PxArticulationReducedCoordinate_isSleeping")
+    articulation_reduced_coordinate_is_sleeping :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.bool ---
 
     /// Sets the mass-normalized energy threshold below which the articulation may go to sleep.
     ///
     /// The articulation will sleep if the energy of each link is below this threshold.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setSleepThreshold_mut :: proc(self_: ^PxArticulationReducedCoordinate, threshold: _c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_setSleepThreshold_mut")
+    articulation_reduced_coordinate_set_sleep_threshold_mut :: proc(self_: ^PxArticulationReducedCoordinate, threshold: _c.float) ---
 
     /// Returns the mass-normalized energy below which the articulation may go to sleep.
     ///
     /// The energy threshold for sleeping.
-    PxArticulationReducedCoordinate_getSleepThreshold :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationReducedCoordinate_getSleepThreshold")
+    articulation_reduced_coordinate_get_sleep_threshold :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
 
     /// Sets the mass-normalized kinetic energy threshold below which the articulation may participate in stabilization.
     ///
@@ -7575,14 +8193,16 @@ foreign libphysx {
     /// 0.01 * PxTolerancesScale::speed * PxTolerancesScale::speed
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setStabilizationThreshold_mut :: proc(self_: ^PxArticulationReducedCoordinate, threshold: _c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_setStabilizationThreshold_mut")
+    articulation_reduced_coordinate_set_stabilization_threshold_mut :: proc(self_: ^PxArticulationReducedCoordinate, threshold: _c.float) ---
 
     /// Returns the mass-normalized kinetic energy below which the articulation may participate in stabilization.
     ///
     /// Articulations whose kinetic energy divided by their mass is above this threshold will not participate in stabilization.
     ///
     /// The energy threshold for participating in stabilization.
-    PxArticulationReducedCoordinate_getStabilizationThreshold :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationReducedCoordinate_getStabilizationThreshold")
+    articulation_reduced_coordinate_get_stabilization_threshold :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
 
     /// Sets the wake counter for the articulation in seconds.
     ///
@@ -7595,14 +8215,16 @@ foreign libphysx {
     /// 0.4s (which corresponds to 20 frames for a time step of 0.02s)
     ///
     /// This call may not be made during simulation, except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_setWakeCounter_mut :: proc(self_: ^PxArticulationReducedCoordinate, wakeCounterValue: _c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_setWakeCounter_mut")
+    articulation_reduced_coordinate_set_wake_counter_mut :: proc(self_: ^PxArticulationReducedCoordinate, wakeCounterValue: _c.float) ---
 
     /// Returns the wake counter of the articulation in seconds.
     ///
     /// The wake counter of the articulation in seconds.
     ///
     /// This call may not be made during simulation, except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_getWakeCounter :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationReducedCoordinate_getWakeCounter")
+    articulation_reduced_coordinate_get_wake_counter :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
 
     /// Wakes up the articulation if it is sleeping.
     ///
@@ -7611,7 +8233,8 @@ foreign libphysx {
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation,
     /// except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_wakeUp_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
+    @(link_name = "PxArticulationReducedCoordinate_wakeUp_mut")
+    articulation_reduced_coordinate_wake_up_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
 
     /// Forces the articulation to sleep.
     ///
@@ -7619,7 +8242,8 @@ foreign libphysx {
     /// - This will set any applied force, the velocity, and the wake counter of all bodies in the articulation to zero.
     ///
     /// This call may not be made during simulation, and may only be made on articulations that are in a scene.
-    PxArticulationReducedCoordinate_putToSleep_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
+    @(link_name = "PxArticulationReducedCoordinate_putToSleep_mut")
+    articulation_reduced_coordinate_put_to_sleep_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
 
     /// Sets the limit on the magnitude of the linear velocity of the articulation's center of mass.
     ///
@@ -7631,12 +8255,14 @@ foreign libphysx {
     /// limits may still help avoid numerical issues.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setMaxCOMLinearVelocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, maxLinearVelocity: _c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_setMaxCOMLinearVelocity_mut")
+    articulation_reduced_coordinate_set_max_c_o_m_linear_velocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, maxLinearVelocity: _c.float) ---
 
     /// Gets the limit on the magnitude of the linear velocity of the articulation's center of mass.
     ///
     /// The maximal linear velocity magnitude.
-    PxArticulationReducedCoordinate_getMaxCOMLinearVelocity :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationReducedCoordinate_getMaxCOMLinearVelocity")
+    articulation_reduced_coordinate_get_max_c_o_m_linear_velocity :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
 
     /// Sets the limit on the magnitude of the angular velocity at the articulation's center of mass.
     ///
@@ -7648,12 +8274,14 @@ foreign libphysx {
     /// limits may still help avoid numerical issues.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setMaxCOMAngularVelocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, maxAngularVelocity: _c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_setMaxCOMAngularVelocity_mut")
+    articulation_reduced_coordinate_set_max_c_o_m_angular_velocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, maxAngularVelocity: _c.float) ---
 
     /// Gets the limit on the magnitude of the angular velocity at the articulation's center of mass.
     ///
     /// The maximal angular velocity magnitude.
-    PxArticulationReducedCoordinate_getMaxCOMAngularVelocity :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationReducedCoordinate_getMaxCOMAngularVelocity")
+    articulation_reduced_coordinate_get_max_c_o_m_angular_velocity :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.float ---
 
     /// Adds a link to the articulation with default attribute values.
     ///
@@ -7661,40 +8289,47 @@ foreign libphysx {
     ///
     /// Creating a link is not allowed while the articulation is in a scene. In order to add a link,
     /// remove and then re-add the articulation to the scene.
-    PxArticulationReducedCoordinate_createLink_mut :: proc(self_: ^PxArticulationReducedCoordinate, parent: ^PxArticulationLink, pose: ^PxTransform) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationReducedCoordinate_createLink_mut")
+    articulation_reduced_coordinate_create_link_mut :: proc(self_: ^PxArticulationReducedCoordinate, parent: ^PxArticulationLink, #by_ptr pose: PxTransform) -> ^PxArticulationLink ---
 
     /// Releases the articulation, and all its links and corresponding joints.
     ///
     /// Attached sensors and tendons are released automatically when the articulation is released.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_release_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
+    @(link_name = "PxArticulationReducedCoordinate_release_mut")
+    articulation_reduced_coordinate_release_mut :: proc(self_: ^PxArticulationReducedCoordinate) ---
 
     /// Returns the number of links in the articulation.
     ///
     /// The number of links.
-    PxArticulationReducedCoordinate_getNbLinks :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbLinks")
+    articulation_reduced_coordinate_get_nb_links :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Returns the set of links in the articulation in the order that they were added to the articulation using createLink.
     ///
     /// The number of links written into the buffer.
-    PxArticulationReducedCoordinate_getLinks :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getLinks")
+    articulation_reduced_coordinate_get_links :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of shapes in the articulation.
     ///
     /// The number of shapes.
-    PxArticulationReducedCoordinate_getNbShapes :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbShapes")
+    articulation_reduced_coordinate_get_nb_shapes :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Sets a name string for the articulation that can be retrieved with getName().
     ///
     /// This is for debugging and is not used by the SDK. The string is not copied by the SDK,
     /// only the pointer is stored.
-    PxArticulationReducedCoordinate_setName_mut :: proc(self_: ^PxArticulationReducedCoordinate, name: ^_c.char) ---
+    @(link_name = "PxArticulationReducedCoordinate_setName_mut")
+    articulation_reduced_coordinate_set_name_mut :: proc(self_: ^PxArticulationReducedCoordinate, name: ^_c.char) ---
 
     /// Returns the name string set with setName().
     ///
     /// Name string associated with the articulation.
-    PxArticulationReducedCoordinate_getName :: proc(self_: ^PxArticulationReducedCoordinate) -> ^_c.char ---
+    @(link_name = "PxArticulationReducedCoordinate_getName")
+    articulation_reduced_coordinate_get_name :: proc(self_: ^PxArticulationReducedCoordinate) -> ^_c.char ---
 
     /// Returns the axis-aligned bounding box enclosing the articulation.
     ///
@@ -7702,27 +8337,32 @@ foreign libphysx {
     ///
     /// It is not allowed to use this method while the simulation is running, except in a split simulation
     /// during [`PxScene::collide`]() and up to #PxScene::advance(), and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationReducedCoordinate_getWorldBounds :: proc(self_: ^PxArticulationReducedCoordinate, inflation: _c.float) -> PxBounds3 ---
+    @(link_name = "PxArticulationReducedCoordinate_getWorldBounds")
+    articulation_reduced_coordinate_get_world_bounds :: proc(self_: ^PxArticulationReducedCoordinate, inflation: _c.float) -> PxBounds3 ---
 
     /// Returns the aggregate the articulation might be a part of.
     ///
     /// The aggregate the articulation is a part of, or NULL if the articulation does not belong to an aggregate.
-    PxArticulationReducedCoordinate_getAggregate :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxAggregate ---
+    @(link_name = "PxArticulationReducedCoordinate_getAggregate")
+    articulation_reduced_coordinate_get_aggregate :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxAggregate ---
 
     /// Sets flags on the articulation.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setArticulationFlags_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_setArticulationFlags_mut")
+    articulation_reduced_coordinate_set_articulation_flags_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
 
     /// Raises or clears a flag on the articulation.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setArticulationFlag_mut :: proc(self_: ^PxArticulationReducedCoordinate, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxArticulationReducedCoordinate_setArticulationFlag_mut")
+    articulation_reduced_coordinate_set_articulation_flag_mut :: proc(self_: ^PxArticulationReducedCoordinate, flag: _c.int32_t, value: _c.bool) ---
 
     /// Returns the articulation's flags.
     ///
     /// The flags.
-    PxArticulationReducedCoordinate_getArticulationFlags :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint8_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getArticulationFlags")
+    articulation_reduced_coordinate_get_articulation_flags :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint8_t ---
 
     /// Returns the total number of joint degrees-of-freedom (DOFs) of the articulation.
     ///
@@ -7731,7 +8371,8 @@ foreign libphysx {
     /// - The return value is only valid for articulations that are in a scene.
     ///
     /// The number of joint DOFs, or 0xFFFFFFFF if the articulation is not in a scene.
-    PxArticulationReducedCoordinate_getDofs :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getDofs")
+    articulation_reduced_coordinate_get_dofs :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Creates an articulation cache that can be used to read and write internal articulation data.
     ///
@@ -7741,7 +8382,8 @@ foreign libphysx {
     /// - Caches can only be created by articulations that are in a scene.
     ///
     /// The cache, or NULL if the articulation is not in a scene.
-    PxArticulationReducedCoordinate_createCache :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationCache ---
+    @(link_name = "PxArticulationReducedCoordinate_createCache")
+    articulation_reduced_coordinate_create_cache :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationCache ---
 
     /// Returns the size of the articulation cache in bytes.
     ///
@@ -7750,12 +8392,14 @@ foreign libphysx {
     /// - The return value is only valid for articulations that are in a scene.
     ///
     /// The byte size of the cache, or 0xFFFFFFFF if the articulation is not in a scene.
-    PxArticulationReducedCoordinate_getCacheDataSize :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getCacheDataSize")
+    articulation_reduced_coordinate_get_cache_data_size :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Zeroes all data in the articulation cache, except user-provided and scratch memory, and cache version.
     ///
     /// This call may only be made on articulations that are in a scene.
-    PxArticulationReducedCoordinate_zeroCache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_zeroCache")
+    articulation_reduced_coordinate_zero_cache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Applies the data in the cache to the articulation.
     ///
@@ -7765,12 +8409,14 @@ foreign libphysx {
     /// - a nonzero root velocity is applied
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_applyCache_mut :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t, autowake: _c.bool) ---
+    @(link_name = "PxArticulationReducedCoordinate_applyCache_mut")
+    articulation_reduced_coordinate_apply_cache_mut :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t, autowake: _c.bool) ---
 
     /// Copies internal data of the articulation to the cache.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_copyInternalStateToCache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_copyInternalStateToCache")
+    articulation_reduced_coordinate_copy_internal_state_to_cache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t) ---
 
     /// Converts maximal-coordinate joint DOF data to reduced coordinates.
     ///
@@ -7778,7 +8424,8 @@ foreign libphysx {
     /// - The reduced-coordinate data follows the cache indexing convention, see PxArticulationCache::jointVelocity.
     ///
     /// The articulation must be in a scene.
-    PxArticulationReducedCoordinate_packJointData :: proc(self_: ^PxArticulationReducedCoordinate, maximum: ^_c.float, reduced: ^_c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_packJointData")
+    articulation_reduced_coordinate_pack_joint_data :: proc(self_: ^PxArticulationReducedCoordinate, maximum: ^_c.float, reduced: ^_c.float) ---
 
     /// Converts reduced-coordinate joint DOF data to maximal coordinates.
     ///
@@ -7786,7 +8433,8 @@ foreign libphysx {
     /// - The reduced-coordinate data follows the cache indexing convention, see PxArticulationCache::jointVelocity.
     ///
     /// The articulation must be in a scene.
-    PxArticulationReducedCoordinate_unpackJointData :: proc(self_: ^PxArticulationReducedCoordinate, reduced: ^_c.float, maximum: ^_c.float) ---
+    @(link_name = "PxArticulationReducedCoordinate_unpackJointData")
+    articulation_reduced_coordinate_unpack_joint_data :: proc(self_: ^PxArticulationReducedCoordinate, reduced: ^_c.float, maximum: ^_c.float) ---
 
     /// Prepares common articulation data based on articulation pose for inverse dynamics calculations.
     ///
@@ -7796,7 +8444,8 @@ foreign libphysx {
     /// 1. Call inverse dynamics computation method.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_commonInit :: proc(self_: ^PxArticulationReducedCoordinate) ---
+    @(link_name = "PxArticulationReducedCoordinate_commonInit")
+    articulation_reduced_coordinate_common_init :: proc(self_: ^PxArticulationReducedCoordinate) ---
 
     /// Computes the joint DOF forces required to counteract gravitational forces for the given articulation pose.
     ///
@@ -7808,7 +8457,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeGeneralizedGravityForce :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeGeneralizedGravityForce")
+    articulation_reduced_coordinate_compute_generalized_gravity_force :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Computes the joint DOF forces required to counteract Coriolis and centrifugal forces for the given articulation state.
     ///
@@ -7821,7 +8471,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeCoriolisAndCentrifugalForce :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeCoriolisAndCentrifugalForce")
+    articulation_reduced_coordinate_compute_coriolis_and_centrifugal_force :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Computes the joint DOF forces required to counteract external spatial forces applied to articulation links.
     ///
@@ -7833,7 +8484,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeGeneralizedExternalForce :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeGeneralizedExternalForce")
+    articulation_reduced_coordinate_compute_generalized_external_force :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Computes the joint accelerations for the given articulation state and joint forces.
     ///
@@ -7846,7 +8498,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeJointAcceleration :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeJointAcceleration")
+    articulation_reduced_coordinate_compute_joint_acceleration :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Computes the joint forces for the given articulation state and joint accelerations, not considering gravity.
     ///
@@ -7859,7 +8512,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeJointForce :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeJointForce")
+    articulation_reduced_coordinate_compute_joint_force :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Compute the dense Jacobian for the articulation in world space, including the DOFs of a potentially floating base.
     ///
@@ -7867,7 +8521,8 @@ foreign libphysx {
     /// joint space velocities to world-space linear and angular (i.e. spatial) velocities of the centers of mass of the links.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeDenseJacobian :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, nRows: ^_c.uint32_t, nCols: ^_c.uint32_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeDenseJacobian")
+    articulation_reduced_coordinate_compute_dense_jacobian :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, nRows: ^_c.uint32_t, nCols: ^_c.uint32_t) ---
 
     /// Computes the coefficient matrix for contact forces.
     ///
@@ -7877,7 +8532,8 @@ foreign libphysx {
     /// - commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeCoefficientMatrix :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeCoefficientMatrix")
+    articulation_reduced_coordinate_compute_coefficient_matrix :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Computes the lambda values when the test impulse is 1.
     ///
@@ -7887,7 +8543,8 @@ foreign libphysx {
     /// True if convergence was achieved within maxIter; False if convergence was not achieved or the operation failed otherwise.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeLambda :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, initialState: ^PxArticulationCache, jointTorque: ^_c.float, maxIter: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxArticulationReducedCoordinate_computeLambda")
+    articulation_reduced_coordinate_compute_lambda :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, initialState: ^PxArticulationCache, jointTorque: ^_c.float, maxIter: _c.uint32_t) -> _c.bool ---
 
     /// Compute the joint-space inertia matrix that maps joint accelerations to joint forces: forces = M * accelerations.
     ///
@@ -7897,34 +8554,40 @@ foreign libphysx {
     /// commonInit() must be called before the computation, and after setting the articulation pose via applyCache().
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_computeGeneralizedMassMatrix :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
+    @(link_name = "PxArticulationReducedCoordinate_computeGeneralizedMassMatrix")
+    articulation_reduced_coordinate_compute_generalized_mass_matrix :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache) ---
 
     /// Adds a loop joint to the articulation system for inverse dynamics.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_addLoopJoint_mut :: proc(self_: ^PxArticulationReducedCoordinate, joint: ^PxConstraint) ---
+    @(link_name = "PxArticulationReducedCoordinate_addLoopJoint_mut")
+    articulation_reduced_coordinate_add_loop_joint_mut :: proc(self_: ^PxArticulationReducedCoordinate, joint: ^PxConstraint) ---
 
     /// Removes a loop joint from the articulation for inverse dynamics.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_removeLoopJoint_mut :: proc(self_: ^PxArticulationReducedCoordinate, joint: ^PxConstraint) ---
+    @(link_name = "PxArticulationReducedCoordinate_removeLoopJoint_mut")
+    articulation_reduced_coordinate_remove_loop_joint_mut :: proc(self_: ^PxArticulationReducedCoordinate, joint: ^PxConstraint) ---
 
     /// Returns the number of loop joints in the articulation for inverse dynamics.
     ///
     /// The number of loop joints.
-    PxArticulationReducedCoordinate_getNbLoopJoints :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbLoopJoints")
+    articulation_reduced_coordinate_get_nb_loop_joints :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Returns the set of loop constraints (i.e. joints) in the articulation.
     ///
     /// The number of constraints written into the buffer.
-    PxArticulationReducedCoordinate_getLoopJoints :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getLoopJoints")
+    articulation_reduced_coordinate_get_loop_joints :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the required size of the coefficient matrix in the articulation.
     ///
     /// Size of the coefficient matrix (equal to getDofs() * getNbLoopJoints()).
     ///
     /// This call may only be made on articulations that are in a scene.
-    PxArticulationReducedCoordinate_getCoefficientMatrixSize :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getCoefficientMatrixSize")
+    articulation_reduced_coordinate_get_coefficient_matrix_size :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Sets the root link transform (world to actor frame).
     ///
@@ -7933,7 +8596,8 @@ foreign libphysx {
     /// in order to update link states for the next simulation frame or querying.
     ///
     /// This call may not be made during simulation.
-    PxArticulationReducedCoordinate_setRootGlobalPose_mut :: proc(self_: ^PxArticulationReducedCoordinate, pose: ^PxTransform, autowake: _c.bool) ---
+    @(link_name = "PxArticulationReducedCoordinate_setRootGlobalPose_mut")
+    articulation_reduced_coordinate_set_root_global_pose_mut :: proc(self_: ^PxArticulationReducedCoordinate, #by_ptr pose: PxTransform, autowake: _c.bool) ---
 
     /// Returns the root link transform (world to actor frame).
     ///
@@ -7943,7 +8607,8 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationReducedCoordinate_getRootGlobalPose :: proc(self_: ^PxArticulationReducedCoordinate) -> PxTransform ---
+    @(link_name = "PxArticulationReducedCoordinate_getRootGlobalPose")
+    articulation_reduced_coordinate_get_root_global_pose :: proc(self_: ^PxArticulationReducedCoordinate) -> PxTransform ---
 
     /// Sets the root link linear center-of-mass velocity.
     ///
@@ -7954,7 +8619,8 @@ foreign libphysx {
     /// in order to update link states for the next simulation frame or querying.
     ///
     /// This call may not be made during simulation, except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_setRootLinearVelocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, linearVelocity: ^PxVec3, autowake: _c.bool) ---
+    @(link_name = "PxArticulationReducedCoordinate_setRootLinearVelocity_mut")
+    articulation_reduced_coordinate_set_root_linear_velocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, #by_ptr linearVelocity: PxVec3, autowake: _c.bool) ---
 
     /// Gets the root link center-of-mass linear velocity.
     ///
@@ -7965,7 +8631,8 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationReducedCoordinate_getRootLinearVelocity :: proc(self_: ^PxArticulationReducedCoordinate) -> PxVec3 ---
+    @(link_name = "PxArticulationReducedCoordinate_getRootLinearVelocity")
+    articulation_reduced_coordinate_get_root_linear_velocity :: proc(self_: ^PxArticulationReducedCoordinate) -> PxVec3 ---
 
     /// Sets the root link angular velocity.
     ///
@@ -7975,7 +8642,8 @@ foreign libphysx {
     /// in order to update link states for the next simulation frame or querying.
     ///
     /// This call may not be made during simulation, except in a split simulation in-between [`PxScene::fetchCollision`] and #PxScene::advance.
-    PxArticulationReducedCoordinate_setRootAngularVelocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, angularVelocity: ^PxVec3, autowake: _c.bool) ---
+    @(link_name = "PxArticulationReducedCoordinate_setRootAngularVelocity_mut")
+    articulation_reduced_coordinate_set_root_angular_velocity_mut :: proc(self_: ^PxArticulationReducedCoordinate, #by_ptr angularVelocity: PxVec3, autowake: _c.bool) ---
 
     /// Gets the root link angular velocity.
     ///
@@ -7985,7 +8653,8 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationReducedCoordinate_getRootAngularVelocity :: proc(self_: ^PxArticulationReducedCoordinate) -> PxVec3 ---
+    @(link_name = "PxArticulationReducedCoordinate_getRootAngularVelocity")
+    articulation_reduced_coordinate_get_root_angular_velocity :: proc(self_: ^PxArticulationReducedCoordinate) -> PxVec3 ---
 
     /// Returns the (classical) link acceleration in world space for the given low-level link index.
     ///
@@ -7996,12 +8665,14 @@ foreign libphysx {
     ///
     /// This call may only be made on articulations that are in a scene, and it is not allowed to use this method while the simulation
     /// is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(), and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationReducedCoordinate_getLinkAcceleration_mut :: proc(self_: ^PxArticulationReducedCoordinate, linkId: _c.uint32_t) -> PxSpatialVelocity ---
+    @(link_name = "PxArticulationReducedCoordinate_getLinkAcceleration_mut")
+    articulation_reduced_coordinate_get_link_acceleration_mut :: proc(self_: ^PxArticulationReducedCoordinate, linkId: _c.uint32_t) -> PxSpatialVelocity ---
 
     /// Returns the GPU articulation index.
     ///
     /// The GPU index, or 0xFFFFFFFF if the articulation is not in a scene or PxSceneFlag::eSUPPRESS_READBACK is not set.
-    PxArticulationReducedCoordinate_getGpuArticulationIndex_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getGpuArticulationIndex_mut")
+    articulation_reduced_coordinate_get_gpu_articulation_index_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Creates a spatial tendon to attach to the articulation with default attribute values.
     ///
@@ -8009,7 +8680,8 @@ foreign libphysx {
     ///
     /// Creating a spatial tendon is not allowed while the articulation is in a scene. In order to
     /// add the tendon, remove and then re-add the articulation to the scene.
-    PxArticulationReducedCoordinate_createSpatialTendon_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationSpatialTendon ---
+    @(link_name = "PxArticulationReducedCoordinate_createSpatialTendon_mut")
+    articulation_reduced_coordinate_create_spatial_tendon_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationSpatialTendon ---
 
     /// Creates a fixed tendon to attach to the articulation with default attribute values.
     ///
@@ -8017,7 +8689,8 @@ foreign libphysx {
     ///
     /// Creating a fixed tendon is not allowed while the articulation is in a scene. In order to
     /// add the tendon, remove and then re-add the articulation to the scene.
-    PxArticulationReducedCoordinate_createFixedTendon_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationFixedTendon ---
+    @(link_name = "PxArticulationReducedCoordinate_createFixedTendon_mut")
+    articulation_reduced_coordinate_create_fixed_tendon_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> ^PxArticulationFixedTendon ---
 
     /// Creates a force sensor attached to a link of the articulation.
     ///
@@ -8025,43 +8698,50 @@ foreign libphysx {
     ///
     /// Creating a sensor is not allowed while the articulation is in a scene. In order to
     /// add the sensor, remove and then re-add the articulation to the scene.
-    PxArticulationReducedCoordinate_createSensor_mut :: proc(self_: ^PxArticulationReducedCoordinate, link: ^PxArticulationLink, relativePose: ^PxTransform) -> ^PxArticulationSensor ---
+    @(link_name = "PxArticulationReducedCoordinate_createSensor_mut")
+    articulation_reduced_coordinate_create_sensor_mut :: proc(self_: ^PxArticulationReducedCoordinate, link: ^PxArticulationLink, #by_ptr relativePose: PxTransform) -> ^PxArticulationSensor ---
 
     /// Returns the spatial tendons attached to the articulation.
     ///
     /// The order of the tendons in the buffer is not necessarily identical to the order in which the tendons were added to the articulation.
     ///
     /// The number of tendons written into the buffer.
-    PxArticulationReducedCoordinate_getSpatialTendons :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationSpatialTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getSpatialTendons")
+    articulation_reduced_coordinate_get_spatial_tendons :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationSpatialTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of spatial tendons in the articulation.
     ///
     /// The number of tendons.
-    PxArticulationReducedCoordinate_getNbSpatialTendons_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbSpatialTendons_mut")
+    articulation_reduced_coordinate_get_nb_spatial_tendons_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Returns the fixed tendons attached to the articulation.
     ///
     /// The order of the tendons in the buffer is not necessarily identical to the order in which the tendons were added to the articulation.
     ///
     /// The number of tendons written into the buffer.
-    PxArticulationReducedCoordinate_getFixedTendons :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationFixedTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getFixedTendons")
+    articulation_reduced_coordinate_get_fixed_tendons :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationFixedTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of fixed tendons in the articulation.
     ///
     /// The number of tendons.
-    PxArticulationReducedCoordinate_getNbFixedTendons_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbFixedTendons_mut")
+    articulation_reduced_coordinate_get_nb_fixed_tendons_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Returns the sensors attached to the articulation.
     ///
     /// The order of the sensors in the buffer is not necessarily identical to the order in which the sensors were added to the articulation.
     ///
     /// The number of sensors written into the buffer.
-    PxArticulationReducedCoordinate_getSensors :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationSensor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getSensors")
+    articulation_reduced_coordinate_get_sensors :: proc(self_: ^PxArticulationReducedCoordinate, userBuffer: ^^PxArticulationSensor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of sensors in the articulation.
     ///
     /// The number of sensors.
-    PxArticulationReducedCoordinate_getNbSensors_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
+    @(link_name = "PxArticulationReducedCoordinate_getNbSensors_mut")
+    articulation_reduced_coordinate_get_nb_sensors_mut :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint32_t ---
 
     /// Update link velocities and/or positions in the articulation.
     ///
@@ -8081,59 +8761,70 @@ foreign libphysx {
     /// - PxArticulationKinematicFlag::eVELOCITY after velocity-only changes to the articulation root or joints using non-cache API calls. Updates links' velocities only.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
-    PxArticulationReducedCoordinate_updateKinematic_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
+    @(link_name = "PxArticulationReducedCoordinate_updateKinematic_mut")
+    articulation_reduced_coordinate_update_kinematic_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
 
     /// Gets the parent articulation link of this joint.
     ///
     /// The parent link.
-    PxArticulationJointReducedCoordinate_getParentArticulationLink :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getParentArticulationLink")
+    articulation_joint_reduced_coordinate_get_parent_articulation_link :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^PxArticulationLink ---
 
     /// Sets the joint pose in the parent link actor frame.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setParentPose_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, pose: ^PxTransform) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setParentPose_mut")
+    articulation_joint_reduced_coordinate_set_parent_pose_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, #by_ptr pose: PxTransform) ---
 
     /// Gets the joint pose in the parent link actor frame.
     ///
     /// The joint pose.
-    PxArticulationJointReducedCoordinate_getParentPose :: proc(self_: ^PxArticulationJointReducedCoordinate) -> PxTransform ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getParentPose")
+    articulation_joint_reduced_coordinate_get_parent_pose :: proc(self_: ^PxArticulationJointReducedCoordinate) -> PxTransform ---
 
     /// Gets the child articulation link of this joint.
     ///
     /// The child link.
-    PxArticulationJointReducedCoordinate_getChildArticulationLink :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^PxArticulationLink ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getChildArticulationLink")
+    articulation_joint_reduced_coordinate_get_child_articulation_link :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^PxArticulationLink ---
 
     /// Sets the joint pose in the child link actor frame.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setChildPose_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, pose: ^PxTransform) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setChildPose_mut")
+    articulation_joint_reduced_coordinate_set_child_pose_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, #by_ptr pose: PxTransform) ---
 
     /// Gets the joint pose in the child link actor frame.
     ///
     /// The joint pose.
-    PxArticulationJointReducedCoordinate_getChildPose :: proc(self_: ^PxArticulationJointReducedCoordinate) -> PxTransform ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getChildPose")
+    articulation_joint_reduced_coordinate_get_child_pose :: proc(self_: ^PxArticulationJointReducedCoordinate) -> PxTransform ---
 
     /// Sets the joint type (e.g. revolute).
     ///
     /// Setting the joint type is not allowed while the articulation is in a scene.
     /// In order to set the joint type, remove and then re-add the articulation to the scene.
-    PxArticulationJointReducedCoordinate_setJointType_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, jointType: _c.int32_t) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setJointType_mut")
+    articulation_joint_reduced_coordinate_set_joint_type_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, jointType: _c.int32_t) ---
 
     /// Gets the joint type.
     ///
     /// The joint type.
-    PxArticulationJointReducedCoordinate_getJointType :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.int32_t ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getJointType")
+    articulation_joint_reduced_coordinate_get_joint_type :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.int32_t ---
 
     /// Sets the joint motion for a given axis.
     ///
     /// Setting the motion of joint axes is not allowed while the articulation is in a scene.
     /// In order to set the motion, remove and then re-add the articulation to the scene.
-    PxArticulationJointReducedCoordinate_setMotion_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, motion: _c.int32_t) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setMotion_mut")
+    articulation_joint_reduced_coordinate_set_motion_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, motion: _c.int32_t) ---
 
     /// Returns the joint motion for the given axis.
     ///
     /// The joint motion of the given axis.
-    PxArticulationJointReducedCoordinate_getMotion :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.int32_t ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getMotion")
+    articulation_joint_reduced_coordinate_get_motion :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.int32_t ---
 
     /// Sets the joint limits for a given axis.
     ///
@@ -8144,24 +8835,28 @@ foreign libphysx {
     /// This call is not allowed while the simulation is running.
     ///
     /// For spherical joints, limit.min and limit.max must both be in range [-Pi, Pi].
-    PxArticulationJointReducedCoordinate_setLimitParams_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, limit: ^PxArticulationLimit) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setLimitParams_mut")
+    articulation_joint_reduced_coordinate_set_limit_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, #by_ptr limit: PxArticulationLimit) ---
 
     /// Returns the joint limits for a given axis.
     ///
     /// The joint limits.
-    PxArticulationJointReducedCoordinate_getLimitParams :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationLimit ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getLimitParams")
+    articulation_joint_reduced_coordinate_get_limit_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationLimit ---
 
     /// Configures a joint drive for the given axis.
     ///
     /// See PxArticulationDrive for parameter details; and the manual for further information, and the drives' implicit spring-damper (i.e. PD control) implementation in particular.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setDriveParams_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, drive: ^PxArticulationDrive) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setDriveParams_mut")
+    articulation_joint_reduced_coordinate_set_drive_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, #by_ptr drive: PxArticulationDrive) ---
 
     /// Gets the joint drive configuration for the given axis.
     ///
     /// The drive parameters.
-    PxArticulationJointReducedCoordinate_getDriveParams :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationDrive ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getDriveParams")
+    articulation_joint_reduced_coordinate_get_drive_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationDrive ---
 
     /// Sets the joint drive position target for the given axis.
     ///
@@ -8174,24 +8869,28 @@ foreign libphysx {
     /// The target is specified in the parent frame of the joint. If Gp, Gc are the parent and child actor poses in the world frame and Lp, Lc are the parent and child joint frames expressed in the parent and child actor frames then the joint will drive the parent and child links to poses that obey Gp * Lp * J = Gc * Lc. For joints restricted to angular motion, J has the form PxTranfsorm(PxVec3(PxZero), PxExp(PxVec3(twistTarget, swing1Target, swing2Target))).  For joints restricted to linear motion, J has the form PxTransform(PxVec3(XTarget, YTarget, ZTarget), PxQuat(PxIdentity)).
     ///
     /// For spherical joints with more than 1 degree of freedom, the joint target angles taken together can collectively represent a rotation of greater than Pi around a vector. When this happens the rotation that matches the joint drive target is not the shortest path rotation.  The joint pose J that is the outcome after driving to the target pose will always be the equivalent of the shortest path rotation.
-    PxArticulationJointReducedCoordinate_setDriveTarget_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, target: _c.float, autowake: _c.bool) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setDriveTarget_mut")
+    articulation_joint_reduced_coordinate_set_drive_target_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, target: _c.float, autowake: _c.bool) ---
 
     /// Returns the joint drive position target for the given axis.
     ///
     /// The target position.
-    PxArticulationJointReducedCoordinate_getDriveTarget :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getDriveTarget")
+    articulation_joint_reduced_coordinate_get_drive_target :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
 
     /// Sets the joint drive velocity target for the given axis.
     ///
     /// The target units are linear units (equivalent to scene units) per second for a translational axis, or radians per second for a rotational axis.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setDriveVelocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, targetVel: _c.float, autowake: _c.bool) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setDriveVelocity_mut")
+    articulation_joint_reduced_coordinate_set_drive_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, targetVel: _c.float, autowake: _c.bool) ---
 
     /// Returns the joint drive velocity target for the given axis.
     ///
     /// The target velocity.
-    PxArticulationJointReducedCoordinate_getDriveVelocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getDriveVelocity")
+    articulation_joint_reduced_coordinate_get_drive_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
 
     /// Sets the joint armature for the given axis.
     ///
@@ -8199,12 +8898,14 @@ foreign libphysx {
     /// - The armature is in mass units for a prismatic (i.e. linear) joint, and in mass units * (scene linear units)^2 for a rotational joint.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setArmature_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, armature: _c.float) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setArmature_mut")
+    articulation_joint_reduced_coordinate_set_armature_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, armature: _c.float) ---
 
     /// Gets the joint armature for the given axis.
     ///
     /// The armature set on the given axis.
-    PxArticulationJointReducedCoordinate_getArmature :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getArmature")
+    articulation_joint_reduced_coordinate_get_armature :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
 
     /// Sets the joint friction coefficient, which applies to all joint axes.
     ///
@@ -8217,12 +8918,14 @@ foreign libphysx {
     /// zero stiffness and zero velocity target, and an appropriately dimensioned damping parameter.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setFrictionCoefficient_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, coefficient: _c.float) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setFrictionCoefficient_mut")
+    articulation_joint_reduced_coordinate_set_friction_coefficient_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, coefficient: _c.float) ---
 
     /// Gets the joint friction coefficient.
     ///
     /// The joint friction coefficient.
-    PxArticulationJointReducedCoordinate_getFrictionCoefficient :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getFrictionCoefficient")
+    articulation_joint_reduced_coordinate_get_friction_coefficient :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.float ---
 
     /// Sets the maximal joint velocity enforced for all axes.
     ///
@@ -8230,12 +8933,14 @@ foreign libphysx {
     /// - The velocity units are linear units (equivalent to scene units) per second for a translational axis, or radians per second for a rotational axis.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setMaxJointVelocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, maxJointV: _c.float) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setMaxJointVelocity_mut")
+    articulation_joint_reduced_coordinate_set_max_joint_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, maxJointV: _c.float) ---
 
     /// Gets the maximal joint velocity enforced for all axes.
     ///
     /// The maximal per-axis joint velocity.
-    PxArticulationJointReducedCoordinate_getMaxJointVelocity :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getMaxJointVelocity")
+    articulation_joint_reduced_coordinate_get_max_joint_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.float ---
 
     /// Sets the joint position for the given axis.
     ///
@@ -8250,7 +8955,8 @@ foreign libphysx {
     /// Joint position is specified in the parent frame of the joint. If Gp, Gc are the parent and child actor poses in the world frame and Lp, Lc are the parent and child joint frames expressed in the parent and child actor frames then the parent and child links will be given poses that obey Gp * Lp * J = Gc * Lc with J denoting the joint pose. For joints restricted to angular motion, J has the form PxTranfsorm(PxVec3(PxZero), PxExp(PxVec3(twistPos, swing1Pos, swing2Pos))).  For joints restricted to linear motion, J has the form PxTransform(PxVec3(xPos, yPos, zPos), PxQuat(PxIdentity)).
     ///
     /// For spherical joints with more than 1 degree of freedom, the input joint positions taken together can collectively represent a rotation of greater than Pi around a vector. When this happens the rotation that matches the joint positions is not the shortest path rotation.  The joint pose J that is the outcome of setting and applying the joint positions will always be the equivalent of the shortest path rotation.
-    PxArticulationJointReducedCoordinate_setJointPosition_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointPos: _c.float) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setJointPosition_mut")
+    articulation_joint_reduced_coordinate_set_joint_position_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointPos: _c.float) ---
 
     /// Gets the joint position for the given axis, i.e. joint degree of freedom (DOF).
     ///
@@ -8260,7 +8966,8 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationJointReducedCoordinate_getJointPosition :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getJointPosition")
+    articulation_joint_reduced_coordinate_get_joint_position :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
 
     /// Sets the joint velocity for the given axis.
     ///
@@ -8269,7 +8976,8 @@ foreign libphysx {
     /// in order to update link states for the next simulation frame or querying.
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationJointReducedCoordinate_setJointVelocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointVel: _c.float) ---
+    @(link_name = "PxArticulationJointReducedCoordinate_setJointVelocity_mut")
+    articulation_joint_reduced_coordinate_set_joint_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointVel: _c.float) ---
 
     /// Gets the joint velocity for the given axis.
     ///
@@ -8279,12 +8987,14 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationJointReducedCoordinate_getJointVelocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getJointVelocity")
+    articulation_joint_reduced_coordinate_get_joint_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationJointReducedCoordinate_getConcreteTypeName :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^_c.char ---
+    @(link_name = "PxArticulationJointReducedCoordinate_getConcreteTypeName")
+    articulation_joint_reduced_coordinate_get_concrete_type_name :: proc(self_: ^PxArticulationJointReducedCoordinate) -> ^_c.char ---
 
     /// Decrements the reference count of a shape and releases it if the new reference count is zero.
     ///
@@ -8292,7 +9002,8 @@ foreign libphysx {
     /// created with PxActor::createShape(). In PhysX 3.3 and above, this usage is deprecated, instead, use PxRigidActor::detachShape() to detach
     /// a shape from an actor. If the shape to be detached was created with PxActor::createShape(), the actor holds the only counted reference,
     /// and so when the shape is detached it will also be destroyed.
-    PxShape_release_mut :: proc(self_: ^PxShape) ---
+    @(link_name = "PxShape_release_mut")
+    shape_release_mut :: proc(self_: ^PxShape) ---
 
     /// Adjust the geometry of the shape.
     ///
@@ -8301,19 +9012,22 @@ foreign libphysx {
     /// It is not allowed to change the geometry type of a shape.
     ///
     /// This function does not guarantee correct/continuous behavior when objects are resting on top of old or new geometry.
-    PxShape_setGeometry_mut :: proc(self_: ^PxShape, geometry: ^PxGeometry) ---
+    @(link_name = "PxShape_setGeometry_mut")
+    shape_set_geometry_mut :: proc(self_: ^PxShape, geometry: ^PxGeometry) ---
 
     /// Retrieve a reference to the shape's geometry.
     ///
     /// The returned reference has the same lifetime as the PxShape it comes from.
     ///
     /// Reference to internal PxGeometry object.
-    PxShape_getGeometry :: proc(self_: ^PxShape) -> ^PxGeometry ---
+    @(link_name = "PxShape_getGeometry")
+    shape_get_geometry :: proc(self_: ^PxShape) -> ^PxGeometry ---
 
     /// Retrieves the actor which this shape is associated with.
     ///
     /// The actor this shape is associated with, if it is an exclusive shape, else NULL
-    PxShape_getActor :: proc(self_: ^PxShape) -> ^PxRigidActor ---
+    @(link_name = "PxShape_getActor")
+    shape_get_actor :: proc(self_: ^PxShape) -> ^PxRigidActor ---
 
     /// Sets the pose of the shape in actor space, i.e. relative to the actors to which they are attached.
     ///
@@ -8332,14 +9046,16 @@ foreign libphysx {
     ///
     /// Default:
     /// the identity transform
-    PxShape_setLocalPose_mut :: proc(self_: ^PxShape, pose: ^PxTransform) ---
+    @(link_name = "PxShape_setLocalPose_mut")
+    shape_set_local_pose_mut :: proc(self_: ^PxShape, #by_ptr pose: PxTransform) ---
 
     /// Retrieves the pose of the shape in actor space, i.e. relative to the actor they are owned by.
     ///
     /// This transformation is identity by default.
     ///
     /// Pose of shape relative to the actor's frame.
-    PxShape_getLocalPose :: proc(self_: ^PxShape) -> PxTransform ---
+    @(link_name = "PxShape_getLocalPose")
+    shape_get_local_pose :: proc(self_: ^PxShape) -> PxTransform ---
 
     /// Sets the user definable collision filter data.
     ///
@@ -8349,19 +9065,23 @@ foreign libphysx {
     ///
     /// Default:
     /// (0,0,0,0)
-    PxShape_setSimulationFilterData_mut :: proc(self_: ^PxShape, data: ^PxFilterData) ---
+    @(link_name = "PxShape_setSimulationFilterData_mut")
+    shape_set_simulation_filter_data_mut :: proc(self_: ^PxShape, #by_ptr data: PxFilterData) ---
 
     /// Retrieves the shape's collision filter data.
-    PxShape_getSimulationFilterData :: proc(self_: ^PxShape) -> PxFilterData ---
+    @(link_name = "PxShape_getSimulationFilterData")
+    shape_get_simulation_filter_data :: proc(self_: ^PxShape) -> PxFilterData ---
 
     /// Sets the user definable query filter data.
     ///
     /// Default:
     /// (0,0,0,0)
-    PxShape_setQueryFilterData_mut :: proc(self_: ^PxShape, data: ^PxFilterData) ---
+    @(link_name = "PxShape_setQueryFilterData_mut")
+    shape_set_query_filter_data_mut :: proc(self_: ^PxShape, #by_ptr data: PxFilterData) ---
 
     /// Retrieves the shape's Query filter data.
-    PxShape_getQueryFilterData :: proc(self_: ^PxShape) -> PxFilterData ---
+    @(link_name = "PxShape_getQueryFilterData")
+    shape_get_query_filter_data :: proc(self_: ^PxShape) -> PxFilterData ---
 
     /// Assigns material(s) to the shape. Will remove existing materials from the shape.
     ///
@@ -8369,14 +9089,16 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the associated actor up automatically.
-    PxShape_setMaterials_mut :: proc(self_: ^PxShape, materials: ^^PxMaterial, materialCount: _c.uint16_t) ---
+    @(link_name = "PxShape_setMaterials_mut")
+    shape_set_materials_mut :: proc(self_: ^PxShape, materials: ^^PxMaterial, materialCount: _c.uint16_t) ---
 
     /// Returns the number of materials assigned to the shape.
     ///
     /// You can use [`getMaterials`]() to retrieve the material pointers.
     ///
     /// Number of materials associated with this shape.
-    PxShape_getNbMaterials :: proc(self_: ^PxShape) -> _c.uint16_t ---
+    @(link_name = "PxShape_getNbMaterials")
+    shape_get_nb_materials :: proc(self_: ^PxShape) -> _c.uint16_t ---
 
     /// Retrieve all the material pointers associated with the shape.
     ///
@@ -8385,7 +9107,8 @@ foreign libphysx {
     /// Note: The returned data may contain invalid pointers if you release materials using [`PxMaterial::release`]().
     ///
     /// Number of material pointers written to the buffer.
-    PxShape_getMaterials :: proc(self_: ^PxShape, userBuffer: ^^PxMaterial, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxShape_getMaterials")
+    shape_get_materials :: proc(self_: ^PxShape, userBuffer: ^^PxMaterial, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Retrieve material from given triangle index.
     ///
@@ -8401,7 +9124,8 @@ foreign libphysx {
     /// If faceIndex value of 0xFFFFffff is passed as an input for mesh and heightfield shapes, this function will issue a warning and return NULL.
     ///
     /// Scene queries set the value of PxQueryHit::faceIndex to 0xFFFFffff whenever it is undefined or does not apply.
-    PxShape_getMaterialFromInternalFaceIndex :: proc(self_: ^PxShape, faceIndex: _c.uint32_t) -> ^PxBaseMaterial ---
+    @(link_name = "PxShape_getMaterialFromInternalFaceIndex")
+    shape_get_material_from_internal_face_index :: proc(self_: ^PxShape, faceIndex: _c.uint32_t) -> ^PxBaseMaterial ---
 
     /// Sets the contact offset.
     ///
@@ -8417,12 +9141,14 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the associated actor up automatically.
-    PxShape_setContactOffset_mut :: proc(self_: ^PxShape, contactOffset: _c.float) ---
+    @(link_name = "PxShape_setContactOffset_mut")
+    shape_set_contact_offset_mut :: proc(self_: ^PxShape, contactOffset: _c.float) ---
 
     /// Retrieves the contact offset.
     ///
     /// The contact offset of the shape.
-    PxShape_getContactOffset :: proc(self_: ^PxShape) -> _c.float ---
+    @(link_name = "PxShape_getContactOffset")
+    shape_get_contact_offset :: proc(self_: ^PxShape) -> _c.float ---
 
     /// Sets the rest offset.
     ///
@@ -8437,12 +9163,14 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the associated actor up automatically.
-    PxShape_setRestOffset_mut :: proc(self_: ^PxShape, restOffset: _c.float) ---
+    @(link_name = "PxShape_setRestOffset_mut")
+    shape_set_rest_offset_mut :: proc(self_: ^PxShape, restOffset: _c.float) ---
 
     /// Retrieves the rest offset.
     ///
     /// The rest offset of the shape.
-    PxShape_getRestOffset :: proc(self_: ^PxShape) -> _c.float ---
+    @(link_name = "PxShape_getRestOffset")
+    shape_get_rest_offset :: proc(self_: ^PxShape) -> _c.float ---
 
     /// Sets the density used to interact with fluids.
     ///
@@ -8452,12 +9180,14 @@ foreign libphysx {
     ///
     /// Default:
     /// 800.0f
-    PxShape_setDensityForFluid_mut :: proc(self_: ^PxShape, densityForFluid: _c.float) ---
+    @(link_name = "PxShape_setDensityForFluid_mut")
+    shape_set_density_for_fluid_mut :: proc(self_: ^PxShape, densityForFluid: _c.float) ---
 
     /// Retrieves the density used to interact with fluids.
     ///
     /// The density of the body when interacting with fluid.
-    PxShape_getDensityForFluid :: proc(self_: ^PxShape) -> _c.float ---
+    @(link_name = "PxShape_getDensityForFluid")
+    shape_get_density_for_fluid :: proc(self_: ^PxShape) -> _c.float ---
 
     /// Sets torsional patch radius.
     ///
@@ -8468,7 +9198,8 @@ foreign libphysx {
     ///
     /// Default:
     /// 0.0
-    PxShape_setTorsionalPatchRadius_mut :: proc(self_: ^PxShape, radius: _c.float) ---
+    @(link_name = "PxShape_setTorsionalPatchRadius_mut")
+    shape_set_torsional_patch_radius_mut :: proc(self_: ^PxShape, radius: _c.float) ---
 
     /// Gets torsional patch radius.
     ///
@@ -8478,7 +9209,8 @@ foreign libphysx {
     /// rotational friction introduced by the compression of contacting surfaces.
     ///
     /// The torsional patch radius of the shape.
-    PxShape_getTorsionalPatchRadius :: proc(self_: ^PxShape) -> _c.float ---
+    @(link_name = "PxShape_getTorsionalPatchRadius")
+    shape_get_torsional_patch_radius :: proc(self_: ^PxShape) -> _c.float ---
 
     /// Sets minimum torsional patch radius.
     ///
@@ -8489,7 +9221,8 @@ foreign libphysx {
     ///
     /// Default:
     /// 0.0
-    PxShape_setMinTorsionalPatchRadius_mut :: proc(self_: ^PxShape, radius: _c.float) ---
+    @(link_name = "PxShape_setMinTorsionalPatchRadius_mut")
+    shape_set_min_torsional_patch_radius_mut :: proc(self_: ^PxShape, radius: _c.float) ---
 
     /// Gets minimum torsional patch radius.
     ///
@@ -8499,7 +9232,8 @@ foreign libphysx {
     /// If the radius is > 0, some torsional friction will be applied regardless of the value of torsionalPatchRadius or the amount of penetration.
     ///
     /// The minimum torsional patch radius of the shape.
-    PxShape_getMinTorsionalPatchRadius :: proc(self_: ^PxShape) -> _c.float ---
+    @(link_name = "PxShape_getMinTorsionalPatchRadius")
+    shape_get_min_torsional_patch_radius :: proc(self_: ^PxShape) -> _c.float ---
 
     /// Sets shape flags
     ///
@@ -8510,18 +9244,22 @@ foreign libphysx {
     ///
     /// Default:
     /// PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSIMULATION_SHAPE | PxShapeFlag::eSCENE_QUERY_SHAPE
-    PxShape_setFlag_mut :: proc(self_: ^PxShape, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxShape_setFlag_mut")
+    shape_set_flag_mut :: proc(self_: ^PxShape, flag: _c.int32_t, value: _c.bool) ---
 
     /// Sets shape flags
-    PxShape_setFlags_mut :: proc(self_: ^PxShape, inFlags: _c.uint8_t) ---
+    @(link_name = "PxShape_setFlags_mut")
+    shape_set_flags_mut :: proc(self_: ^PxShape, inFlags: _c.uint8_t) ---
 
     /// Retrieves shape flags.
     ///
     /// The values of the shape flags.
-    PxShape_getFlags :: proc(self_: ^PxShape) -> _c.uint8_t ---
+    @(link_name = "PxShape_getFlags")
+    shape_get_flags :: proc(self_: ^PxShape) -> _c.uint8_t ---
 
     /// Returns true if the shape is exclusive to an actor.
-    PxShape_isExclusive :: proc(self_: ^PxShape) -> _c.bool ---
+    @(link_name = "PxShape_isExclusive")
+    shape_is_exclusive :: proc(self_: ^PxShape) -> _c.bool ---
 
     /// Sets a name string for the object that can be retrieved with [`getName`]().
     ///
@@ -8530,14 +9268,17 @@ foreign libphysx {
     ///
     /// Default:
     /// NULL
-    PxShape_setName_mut :: proc(self_: ^PxShape, name: ^_c.char) ---
+    @(link_name = "PxShape_setName_mut")
+    shape_set_name_mut :: proc(self_: ^PxShape, name: ^_c.char) ---
 
     /// retrieves the name string set with setName().
     ///
     /// The name associated with the shape.
-    PxShape_getName :: proc(self_: ^PxShape) -> ^_c.char ---
+    @(link_name = "PxShape_getName")
+    shape_get_name :: proc(self_: ^PxShape) -> ^_c.char ---
 
-    PxShape_getConcreteTypeName :: proc(self_: ^PxShape) -> ^_c.char ---
+    @(link_name = "PxShape_getConcreteTypeName")
+    shape_get_concrete_type_name :: proc(self_: ^PxShape) -> ^_c.char ---
 
     /// Deletes the rigid actor object.
     ///
@@ -8552,14 +9293,16 @@ foreign libphysx {
     /// This call will awaken any sleeping actors contacting the deleted actor (directly or indirectly).
     ///
     /// Calls [`PxActor::release`]() so you might want to check the documentation of that method as well.
-    PxRigidActor_release_mut :: proc(self_: ^PxRigidActor) ---
+    @(link_name = "PxRigidActor_release_mut")
+    rigid_actor_release_mut :: proc(self_: ^PxRigidActor) ---
 
     /// Returns the internal actor index.
     ///
     /// This is only defined for actors that have been added to a scene.
     ///
     /// The internal actor index, or 0xffffffff if the actor is not part of a scene.
-    PxRigidActor_getInternalActorIndex :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
+    @(link_name = "PxRigidActor_getInternalActorIndex")
+    rigid_actor_get_internal_actor_index :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
 
     /// Retrieves the actors world space transform.
     ///
@@ -8569,7 +9312,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// Global pose of object.
-    PxRigidActor_getGlobalPose :: proc(self_: ^PxRigidActor) -> PxTransform ---
+    @(link_name = "PxRigidActor_getGlobalPose")
+    rigid_actor_get_global_pose :: proc(self_: ^PxRigidActor) -> PxTransform ---
 
     /// Method for setting an actor's pose in the world.
     ///
@@ -8590,7 +9334,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes dynamic actors if they are sleeping and the autowake parameter is true (default).
-    PxRigidActor_setGlobalPose_mut :: proc(self_: ^PxRigidActor, pose: ^PxTransform, autowake: _c.bool) ---
+    @(link_name = "PxRigidActor_setGlobalPose_mut")
+    rigid_actor_set_global_pose_mut :: proc(self_: ^PxRigidActor, #by_ptr pose: PxTransform, autowake: _c.bool) ---
 
     /// Attach a shape to an actor
     ///
@@ -8609,7 +9354,8 @@ foreign libphysx {
     /// wake the actor up automatically.
     ///
     /// True if success.
-    PxRigidActor_attachShape_mut :: proc(self_: ^PxRigidActor, shape: ^PxShape) -> _c.bool ---
+    @(link_name = "PxRigidActor_attachShape_mut")
+    rigid_actor_attach_shape_mut :: proc(self_: ^PxRigidActor, shape: ^PxShape) -> _c.bool ---
 
     /// Detach a shape from an actor.
     ///
@@ -8619,14 +9365,16 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxRigidActor_detachShape_mut :: proc(self_: ^PxRigidActor, shape: ^PxShape, wakeOnLostTouch: _c.bool) ---
+    @(link_name = "PxRigidActor_detachShape_mut")
+    rigid_actor_detach_shape_mut :: proc(self_: ^PxRigidActor, shape: ^PxShape, wakeOnLostTouch: _c.bool) ---
 
     /// Returns the number of shapes assigned to the actor.
     ///
     /// You can use [`getShapes`]() to retrieve the shape pointers.
     ///
     /// Number of shapes associated with this actor.
-    PxRigidActor_getNbShapes :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
+    @(link_name = "PxRigidActor_getNbShapes")
+    rigid_actor_get_nb_shapes :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
 
     /// Retrieve all the shape pointers belonging to the actor.
     ///
@@ -8637,14 +9385,16 @@ foreign libphysx {
     /// Note: Removing shapes with [`PxShape::release`]() will invalidate the pointer of the released shape.
     ///
     /// Number of shape pointers written to the buffer.
-    PxRigidActor_getShapes :: proc(self_: ^PxRigidActor, userBuffer: ^^PxShape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxRigidActor_getShapes")
+    rigid_actor_get_shapes :: proc(self_: ^PxRigidActor, userBuffer: ^^PxShape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of constraint shaders attached to the actor.
     ///
     /// You can use [`getConstraints`]() to retrieve the constraint shader pointers.
     ///
     /// Number of constraint shaders attached to this actor.
-    PxRigidActor_getNbConstraints :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
+    @(link_name = "PxRigidActor_getNbConstraints")
+    rigid_actor_get_nb_constraints :: proc(self_: ^PxRigidActor) -> _c.uint32_t ---
 
     /// Retrieve all the constraint shader pointers belonging to the actor.
     ///
@@ -8653,27 +9403,38 @@ foreign libphysx {
     /// Note: Removing constraint shaders with [`PxConstraint::release`]() will invalidate the pointer of the released constraint.
     ///
     /// Number of constraint shader pointers written to the buffer.
-    PxRigidActor_getConstraints :: proc(self_: ^PxRigidActor, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxRigidActor_getConstraints")
+    rigid_actor_get_constraints :: proc(self_: ^PxRigidActor, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
-    PxNodeIndex_new :: proc(id: _c.uint32_t, articLinkId: _c.uint32_t) -> PxNodeIndex ---
+    @(link_name = "PxNodeIndex_new")
+    node_index_new :: proc(id: _c.uint32_t, articLinkId: _c.uint32_t) -> PxNodeIndex ---
 
-    PxNodeIndex_new_1 :: proc(id: _c.uint32_t) -> PxNodeIndex ---
+    @(link_name = "PxNodeIndex_new_1")
+    node_index_new_1 :: proc(id: _c.uint32_t) -> PxNodeIndex ---
 
-    PxNodeIndex_index :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
+    @(link_name = "PxNodeIndex_index")
+    node_index_index :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
 
-    PxNodeIndex_articulationLinkId :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
+    @(link_name = "PxNodeIndex_articulationLinkId")
+    node_index_articulation_link_id :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
 
-    PxNodeIndex_isArticulation :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
+    @(link_name = "PxNodeIndex_isArticulation")
+    node_index_is_articulation :: proc(self_: ^PxNodeIndex) -> _c.uint32_t ---
 
-    PxNodeIndex_isStaticBody :: proc(self_: ^PxNodeIndex) -> _c.bool ---
+    @(link_name = "PxNodeIndex_isStaticBody")
+    node_index_is_static_body :: proc(self_: ^PxNodeIndex) -> _c.bool ---
 
-    PxNodeIndex_isValid :: proc(self_: ^PxNodeIndex) -> _c.bool ---
+    @(link_name = "PxNodeIndex_isValid")
+    node_index_is_valid :: proc(self_: ^PxNodeIndex) -> _c.bool ---
 
-    PxNodeIndex_setIndices_mut :: proc(self_: ^PxNodeIndex, index: _c.uint32_t, articLinkId: _c.uint32_t) ---
+    @(link_name = "PxNodeIndex_setIndices_mut")
+    node_index_set_indices_mut :: proc(self_: ^PxNodeIndex, index: _c.uint32_t, articLinkId: _c.uint32_t) ---
 
-    PxNodeIndex_setIndices_mut_1 :: proc(self_: ^PxNodeIndex, index: _c.uint32_t) ---
+    @(link_name = "PxNodeIndex_setIndices_mut_1")
+    node_index_set_indices_mut_1 :: proc(self_: ^PxNodeIndex, index: _c.uint32_t) ---
 
-    PxNodeIndex_getInd :: proc(self_: ^PxNodeIndex) -> _c.uint64_t ---
+    @(link_name = "PxNodeIndex_getInd")
+    node_index_get_ind :: proc(self_: ^PxNodeIndex) -> _c.uint64_t ---
 
     /// Sets the pose of the center of mass relative to the actor.
     ///
@@ -8684,12 +9445,14 @@ foreign libphysx {
     ///
     /// Default:
     /// the identity transform
-    PxRigidBody_setCMassLocalPose_mut :: proc(self_: ^PxRigidBody, pose: ^PxTransform) ---
+    @(link_name = "PxRigidBody_setCMassLocalPose_mut")
+    rigid_body_set_c_mass_local_pose_mut :: proc(self_: ^PxRigidBody, #by_ptr pose: PxTransform) ---
 
     /// Retrieves the center of mass pose relative to the actor frame.
     ///
     /// The center of mass pose relative to the actor frame.
-    PxRigidBody_getCMassLocalPose :: proc(self_: ^PxRigidBody) -> PxTransform ---
+    @(link_name = "PxRigidBody_getCMassLocalPose")
+    rigid_body_get_c_mass_local_pose :: proc(self_: ^PxRigidBody) -> PxTransform ---
 
     /// Sets the mass of a dynamic actor.
     ///
@@ -8709,19 +9472,22 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxRigidBody_setMass_mut :: proc(self_: ^PxRigidBody, mass: _c.float) ---
+    @(link_name = "PxRigidBody_setMass_mut")
+    rigid_body_set_mass_mut :: proc(self_: ^PxRigidBody, mass: _c.float) ---
 
     /// Retrieves the mass of the actor.
     ///
     /// A value of 0 is interpreted as infinite mass.
     ///
     /// The mass of this actor.
-    PxRigidBody_getMass :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMass")
+    rigid_body_get_mass :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Retrieves the inverse mass of the actor.
     ///
     /// The inverse mass of this actor.
-    PxRigidBody_getInvMass :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getInvMass")
+    rigid_body_get_inv_mass :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Sets the inertia tensor, using a parameter specified in mass space coordinates.
     ///
@@ -8743,7 +9509,8 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxRigidBody_setMassSpaceInertiaTensor_mut :: proc(self_: ^PxRigidBody, m: ^PxVec3) ---
+    @(link_name = "PxRigidBody_setMassSpaceInertiaTensor_mut")
+    rigid_body_set_mass_space_inertia_tensor_mut :: proc(self_: ^PxRigidBody, #by_ptr m: PxVec3) ---
 
     /// Retrieves the diagonal inertia tensor of the actor relative to the mass coordinate frame.
     ///
@@ -8752,7 +9519,8 @@ foreign libphysx {
     /// The mass space inertia tensor of this actor.
     ///
     /// A value of 0 in an element is interpreted as infinite inertia along that axis.
-    PxRigidBody_getMassSpaceInertiaTensor :: proc(self_: ^PxRigidBody) -> PxVec3 ---
+    @(link_name = "PxRigidBody_getMassSpaceInertiaTensor")
+    rigid_body_get_mass_space_inertia_tensor :: proc(self_: ^PxRigidBody) -> PxVec3 ---
 
     /// Retrieves the diagonal inverse inertia tensor of the actor relative to the mass coordinate frame.
     ///
@@ -8761,7 +9529,8 @@ foreign libphysx {
     /// A value of 0 in an element is interpreted as infinite inertia along that axis.
     ///
     /// The mass space inverse inertia tensor of this actor.
-    PxRigidBody_getMassSpaceInvInertiaTensor :: proc(self_: ^PxRigidBody) -> PxVec3 ---
+    @(link_name = "PxRigidBody_getMassSpaceInvInertiaTensor")
+    rigid_body_get_mass_space_inv_inertia_tensor :: proc(self_: ^PxRigidBody) -> PxVec3 ---
 
     /// Sets the linear damping coefficient.
     ///
@@ -8769,12 +9538,14 @@ foreign libphysx {
     ///
     /// Default:
     /// 0.0
-    PxRigidBody_setLinearDamping_mut :: proc(self_: ^PxRigidBody, linDamp: _c.float) ---
+    @(link_name = "PxRigidBody_setLinearDamping_mut")
+    rigid_body_set_linear_damping_mut :: proc(self_: ^PxRigidBody, linDamp: _c.float) ---
 
     /// Retrieves the linear damping coefficient.
     ///
     /// The linear damping coefficient associated with this actor.
-    PxRigidBody_getLinearDamping :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getLinearDamping")
+    rigid_body_get_linear_damping :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Sets the angular damping coefficient.
     ///
@@ -8784,12 +9555,14 @@ foreign libphysx {
     ///
     /// Default:
     /// 0.05
-    PxRigidBody_setAngularDamping_mut :: proc(self_: ^PxRigidBody, angDamp: _c.float) ---
+    @(link_name = "PxRigidBody_setAngularDamping_mut")
+    rigid_body_set_angular_damping_mut :: proc(self_: ^PxRigidBody, angDamp: _c.float) ---
 
     /// Retrieves the angular damping coefficient.
     ///
     /// The angular damping coefficient associated with this actor.
-    PxRigidBody_getAngularDamping :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getAngularDamping")
+    rigid_body_get_angular_damping :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Retrieves the linear velocity of an actor.
     ///
@@ -8797,7 +9570,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// The linear velocity of the actor.
-    PxRigidBody_getLinearVelocity :: proc(self_: ^PxRigidBody) -> PxVec3 ---
+    @(link_name = "PxRigidBody_getLinearVelocity")
+    rigid_body_get_linear_velocity :: proc(self_: ^PxRigidBody) -> PxVec3 ---
 
     /// Retrieves the angular velocity of the actor.
     ///
@@ -8805,7 +9579,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// The angular velocity of the actor.
-    PxRigidBody_getAngularVelocity :: proc(self_: ^PxRigidBody) -> PxVec3 ---
+    @(link_name = "PxRigidBody_getAngularVelocity")
+    rigid_body_get_angular_velocity :: proc(self_: ^PxRigidBody) -> PxVec3 ---
 
     /// Lets you set the maximum linear velocity permitted for this actor.
     ///
@@ -8819,12 +9594,14 @@ foreign libphysx {
     ///
     /// Default:
     /// PX_MAX_F32
-    PxRigidBody_setMaxLinearVelocity_mut :: proc(self_: ^PxRigidBody, maxLinVel: _c.float) ---
+    @(link_name = "PxRigidBody_setMaxLinearVelocity_mut")
+    rigid_body_set_max_linear_velocity_mut :: proc(self_: ^PxRigidBody, maxLinVel: _c.float) ---
 
     /// Retrieves the maximum angular velocity permitted for this actor.
     ///
     /// The maximum allowed angular velocity for this actor.
-    PxRigidBody_getMaxLinearVelocity :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMaxLinearVelocity")
+    rigid_body_get_max_linear_velocity :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Lets you set the maximum angular velocity permitted for this actor.
     ///
@@ -8841,12 +9618,14 @@ foreign libphysx {
     ///
     /// Default:
     /// 100.0
-    PxRigidBody_setMaxAngularVelocity_mut :: proc(self_: ^PxRigidBody, maxAngVel: _c.float) ---
+    @(link_name = "PxRigidBody_setMaxAngularVelocity_mut")
+    rigid_body_set_max_angular_velocity_mut :: proc(self_: ^PxRigidBody, maxAngVel: _c.float) ---
 
     /// Retrieves the maximum angular velocity permitted for this actor.
     ///
     /// The maximum allowed angular velocity for this actor.
-    PxRigidBody_getMaxAngularVelocity :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMaxAngularVelocity")
+    rigid_body_get_max_angular_velocity :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Applies a force (or impulse) defined in the global coordinate frame to the actor at its center of mass.
     ///
@@ -8871,7 +9650,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping, and the autowake parameter is true (default) or the force is non-zero.
-    PxRigidBody_addForce_mut :: proc(self_: ^PxRigidBody, force: ^PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
+    @(link_name = "PxRigidBody_addForce_mut")
+    rigid_body_add_force_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
 
     /// Applies an impulsive torque defined in the global coordinate frame to the actor.
     ///
@@ -8893,7 +9673,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping, and the autowake parameter is true (default) or the torque is non-zero.
-    PxRigidBody_addTorque_mut :: proc(self_: ^PxRigidBody, torque: ^PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
+    @(link_name = "PxRigidBody_addTorque_mut")
+    rigid_body_add_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr torque: PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
 
     /// Clears the accumulated forces (sets the accumulated force back to zero).
     ///
@@ -8908,7 +9689,8 @@ foreign libphysx {
     /// The force modes PxForceMode::eIMPULSE and PxForceMode::eVELOCITY_CHANGE can not be applied to articulation links.
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
-    PxRigidBody_clearForce_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
+    @(link_name = "PxRigidBody_clearForce_mut")
+    rigid_body_clear_force_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
 
     /// Clears the impulsive torque defined in the global coordinate frame to the actor.
     ///
@@ -8923,7 +9705,8 @@ foreign libphysx {
     /// The force modes PxForceMode::eIMPULSE and PxForceMode::eVELOCITY_CHANGE can not be applied to articulation links.
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
-    PxRigidBody_clearTorque_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
+    @(link_name = "PxRigidBody_clearTorque_mut")
+    rigid_body_clear_torque_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
 
     /// Sets the impulsive force and torque defined in the global coordinate frame to the actor.
     ///
@@ -8932,7 +9715,8 @@ foreign libphysx {
     /// The force modes PxForceMode::eIMPULSE and PxForceMode::eVELOCITY_CHANGE can not be applied to articulation links.
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
-    PxRigidBody_setForceAndTorque_mut :: proc(self_: ^PxRigidBody, force: ^PxVec3, torque: ^PxVec3, mode: _c.int32_t) ---
+    @(link_name = "PxRigidBody_setForceAndTorque_mut")
+    rigid_body_set_force_and_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr torque: PxVec3, mode: _c.int32_t) ---
 
     /// Raises or clears a particular rigid body flag.
     ///
@@ -8945,16 +9729,19 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxRigidBody_setRigidBodyFlag_mut :: proc(self_: ^PxRigidBody, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxRigidBody_setRigidBodyFlag_mut")
+    rigid_body_set_rigid_body_flag_mut :: proc(self_: ^PxRigidBody, flag: _c.int32_t, value: _c.bool) ---
 
-    PxRigidBody_setRigidBodyFlags_mut :: proc(self_: ^PxRigidBody, inFlags: _c.uint16_t) ---
+    @(link_name = "PxRigidBody_setRigidBodyFlags_mut")
+    rigid_body_set_rigid_body_flags_mut :: proc(self_: ^PxRigidBody, inFlags: _c.uint16_t) ---
 
     /// Reads the PxRigidBody flags.
     ///
     /// See the list of flags [`PxRigidBodyFlag`]
     ///
     /// The values of the PxRigidBody flags.
-    PxRigidBody_getRigidBodyFlags :: proc(self_: ^PxRigidBody) -> _c.uint16_t ---
+    @(link_name = "PxRigidBody_getRigidBodyFlags")
+    rigid_body_get_rigid_body_flags :: proc(self_: ^PxRigidBody) -> _c.uint16_t ---
 
     /// Sets the CCD minimum advance coefficient.
     ///
@@ -8972,48 +9759,57 @@ foreign libphysx {
     /// such that the time-of-impact is 0, which results in no time being advanced for those objects in that CCD pass.
     ///
     /// The chances of jamming can be reduced by increasing the number of CCD mass
-    PxRigidBody_setMinCCDAdvanceCoefficient_mut :: proc(self_: ^PxRigidBody, advanceCoefficient: _c.float) ---
+    @(link_name = "PxRigidBody_setMinCCDAdvanceCoefficient_mut")
+    rigid_body_set_min_c_c_d_advance_coefficient_mut :: proc(self_: ^PxRigidBody, advanceCoefficient: _c.float) ---
 
     /// Gets the CCD minimum advance coefficient.
     ///
     /// The value of the CCD min advance coefficient.
-    PxRigidBody_getMinCCDAdvanceCoefficient :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMinCCDAdvanceCoefficient")
+    rigid_body_get_min_c_c_d_advance_coefficient :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Sets the maximum depenetration velocity permitted to be introduced by the solver.
     /// This value controls how much velocity the solver can introduce to correct for penetrations in contacts.
-    PxRigidBody_setMaxDepenetrationVelocity_mut :: proc(self_: ^PxRigidBody, biasClamp: _c.float) ---
+    @(link_name = "PxRigidBody_setMaxDepenetrationVelocity_mut")
+    rigid_body_set_max_depenetration_velocity_mut :: proc(self_: ^PxRigidBody, biasClamp: _c.float) ---
 
     /// Returns the maximum depenetration velocity the solver is permitted to introduced.
     /// This value controls how much velocity the solver can introduce to correct for penetrations in contacts.
     ///
     /// The maximum penetration bias applied by the solver.
-    PxRigidBody_getMaxDepenetrationVelocity :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMaxDepenetrationVelocity")
+    rigid_body_get_max_depenetration_velocity :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Sets a limit on the impulse that may be applied at a contact. The maximum impulse at a contact between two dynamic or kinematic
     /// bodies will be the minimum of the two limit values. For a collision between a static and a dynamic body, the impulse is limited
     /// by the value for the dynamic body.
-    PxRigidBody_setMaxContactImpulse_mut :: proc(self_: ^PxRigidBody, maxImpulse: _c.float) ---
+    @(link_name = "PxRigidBody_setMaxContactImpulse_mut")
+    rigid_body_set_max_contact_impulse_mut :: proc(self_: ^PxRigidBody, maxImpulse: _c.float) ---
 
     /// Returns the maximum impulse that may be applied at a contact.
     ///
     /// The maximum impulse that may be applied at a contact
-    PxRigidBody_getMaxContactImpulse :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getMaxContactImpulse")
+    rigid_body_get_max_contact_impulse :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Sets a distance scale whereby the angular influence of a contact on the normal constraint in a contact is
     /// zeroed if normal.cross(offset) falls below this tolerance. Rather than acting as an absolute value, this tolerance
     /// is scaled by the ratio rXn.dot(angVel)/normal.dot(linVel) such that contacts that have relatively larger angular velocity
     /// than linear normal velocity (e.g. rolling wheels) achieve larger slop values as the angular velocity increases.
-    PxRigidBody_setContactSlopCoefficient_mut :: proc(self_: ^PxRigidBody, slopCoefficient: _c.float) ---
+    @(link_name = "PxRigidBody_setContactSlopCoefficient_mut")
+    rigid_body_set_contact_slop_coefficient_mut :: proc(self_: ^PxRigidBody, slopCoefficient: _c.float) ---
 
     /// Returns the contact slop coefficient.
     ///
     /// The contact slop coefficient.
-    PxRigidBody_getContactSlopCoefficient :: proc(self_: ^PxRigidBody) -> _c.float ---
+    @(link_name = "PxRigidBody_getContactSlopCoefficient")
+    rigid_body_get_contact_slop_coefficient :: proc(self_: ^PxRigidBody) -> _c.float ---
 
     /// Returns the island node index
     ///
     /// The island node index.
-    PxRigidBody_getInternalIslandNodeIndex :: proc(self_: ^PxRigidBody) -> PxNodeIndex ---
+    @(link_name = "PxRigidBody_getInternalIslandNodeIndex")
+    rigid_body_get_internal_island_node_index :: proc(self_: ^PxRigidBody) -> PxNodeIndex ---
 
     /// Releases the link from the articulation.
     ///
@@ -9021,17 +9817,20 @@ foreign libphysx {
     ///
     /// Releasing a link is not allowed while the articulation link is in a scene. In order to release a link,
     /// remove and then re-add the corresponding articulation to the scene.
-    PxArticulationLink_release_mut :: proc(self_: ^PxArticulationLink) ---
+    @(link_name = "PxArticulationLink_release_mut")
+    articulation_link_release_mut :: proc(self_: ^PxArticulationLink) ---
 
     /// Gets the articulation that the link is a part of.
     ///
     /// The articulation.
-    PxArticulationLink_getArticulation :: proc(self_: ^PxArticulationLink) -> ^PxArticulationReducedCoordinate ---
+    @(link_name = "PxArticulationLink_getArticulation")
+    articulation_link_get_articulation :: proc(self_: ^PxArticulationLink) -> ^PxArticulationReducedCoordinate ---
 
     /// Gets the joint which connects this link to its parent.
     ///
     /// The joint connecting the link to the parent. NULL for the root link.
-    PxArticulationLink_getInboundJoint :: proc(self_: ^PxArticulationLink) -> ^PxArticulationJointReducedCoordinate ---
+    @(link_name = "PxArticulationLink_getInboundJoint")
+    articulation_link_get_inbound_joint :: proc(self_: ^PxArticulationLink) -> ^PxArticulationJointReducedCoordinate ---
 
     /// Gets the number of degrees of freedom of the joint which connects this link to its parent.
     ///
@@ -9039,24 +9838,28 @@ foreign libphysx {
     /// - The return value is only valid for articulations that are in a scene.
     ///
     /// The number of degrees of freedom, or 0xFFFFFFFF if the articulation is not in a scene.
-    PxArticulationLink_getInboundJointDof :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
+    @(link_name = "PxArticulationLink_getInboundJointDof")
+    articulation_link_get_inbound_joint_dof :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
 
     /// Gets the number of child links.
     ///
     /// The number of child links.
-    PxArticulationLink_getNbChildren :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
+    @(link_name = "PxArticulationLink_getNbChildren")
+    articulation_link_get_nb_children :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
 
     /// Gets the low-level link index that may be used to index into members of PxArticulationCache.
     ///
     /// The return value is only valid for articulations that are in a scene.
     ///
     /// The low-level index, or 0xFFFFFFFF if the articulation is not in a scene.
-    PxArticulationLink_getLinkIndex :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
+    @(link_name = "PxArticulationLink_getLinkIndex")
+    articulation_link_get_link_index :: proc(self_: ^PxArticulationLink) -> _c.uint32_t ---
 
     /// Retrieves the child links.
     ///
     /// The number of articulation links written to the buffer.
-    PxArticulationLink_getChildren :: proc(self_: ^PxArticulationLink, userBuffer: ^^PxArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxArticulationLink_getChildren")
+    articulation_link_get_children :: proc(self_: ^PxArticulationLink, userBuffer: ^^PxArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Set the constraint-force-mixing scale term.
     ///
@@ -9070,12 +9873,14 @@ foreign libphysx {
     /// [0, 1]
     ///
     /// This call is not allowed while the simulation is running.
-    PxArticulationLink_setCfmScale_mut :: proc(self_: ^PxArticulationLink, cfm: _c.float) ---
+    @(link_name = "PxArticulationLink_setCfmScale_mut")
+    articulation_link_set_cfm_scale_mut :: proc(self_: ^PxArticulationLink, cfm: _c.float) ---
 
     /// Get the constraint-force-mixing scale term.
     ///
     /// The constraint-force-mixing scale term.
-    PxArticulationLink_getCfmScale :: proc(self_: ^PxArticulationLink) -> _c.float ---
+    @(link_name = "PxArticulationLink_getCfmScale")
+    articulation_link_get_cfm_scale :: proc(self_: ^PxArticulationLink) -> _c.float ---
 
     /// Get the linear velocity of the link.
     ///
@@ -9087,7 +9892,8 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationLink_getLinearVelocity :: proc(self_: ^PxArticulationLink) -> PxVec3 ---
+    @(link_name = "PxArticulationLink_getLinearVelocity")
+    articulation_link_get_linear_velocity :: proc(self_: ^PxArticulationLink) -> PxVec3 ---
 
     /// Get the angular velocity of the link.
     ///
@@ -9098,52 +9904,64 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
-    PxArticulationLink_getAngularVelocity :: proc(self_: ^PxArticulationLink) -> PxVec3 ---
+    @(link_name = "PxArticulationLink_getAngularVelocity")
+    articulation_link_get_angular_velocity :: proc(self_: ^PxArticulationLink) -> PxVec3 ---
 
     /// Returns the string name of the dynamic type.
     ///
     /// The string name.
-    PxArticulationLink_getConcreteTypeName :: proc(self_: ^PxArticulationLink) -> ^_c.char ---
+    @(link_name = "PxArticulationLink_getConcreteTypeName")
+    articulation_link_get_concrete_type_name :: proc(self_: ^PxArticulationLink) -> ^_c.char ---
 
-    PxConeLimitedConstraint_new :: proc() -> PxConeLimitedConstraint ---
+    @(link_name = "PxConeLimitedConstraint_new")
+    cone_limited_constraint_new :: proc() -> PxConeLimitedConstraint ---
 
     /// Releases a PxConstraint instance.
     ///
     /// This call does not wake up the connected rigid bodies.
-    PxConstraint_release_mut :: proc(self_: ^PxConstraint) ---
+    @(link_name = "PxConstraint_release_mut")
+    constraint_release_mut :: proc(self_: ^PxConstraint) ---
 
     /// Retrieves the scene which this constraint belongs to.
     ///
     /// Owner Scene. NULL if not part of a scene.
-    PxConstraint_getScene :: proc(self_: ^PxConstraint) -> ^PxScene ---
+    @(link_name = "PxConstraint_getScene")
+    constraint_get_scene :: proc(self_: ^PxConstraint) -> ^PxScene ---
 
     /// Retrieves the actors for this constraint.
-    PxConstraint_getActors :: proc(self_: ^PxConstraint, actor0: ^^PxRigidActor, actor1: ^^PxRigidActor) ---
+    @(link_name = "PxConstraint_getActors")
+    constraint_get_actors :: proc(self_: ^PxConstraint, actor0: ^^PxRigidActor, actor1: ^^PxRigidActor) ---
 
     /// Sets the actors for this constraint.
-    PxConstraint_setActors_mut :: proc(self_: ^PxConstraint, actor0: ^PxRigidActor, actor1: ^PxRigidActor) ---
+    @(link_name = "PxConstraint_setActors_mut")
+    constraint_set_actors_mut :: proc(self_: ^PxConstraint, actor0: ^PxRigidActor, actor1: ^PxRigidActor) ---
 
     /// Notify the scene that the constraint shader data has been updated by the application
-    PxConstraint_markDirty_mut :: proc(self_: ^PxConstraint) ---
+    @(link_name = "PxConstraint_markDirty_mut")
+    constraint_mark_dirty_mut :: proc(self_: ^PxConstraint) ---
 
     /// Retrieve the flags for this constraint
     ///
     /// the constraint flags
-    PxConstraint_getFlags :: proc(self_: ^PxConstraint) -> _c.uint16_t ---
+    @(link_name = "PxConstraint_getFlags")
+    constraint_get_flags :: proc(self_: ^PxConstraint) -> _c.uint16_t ---
 
     /// Set the flags for this constraint
     ///
     /// default: PxConstraintFlag::eDRIVE_LIMITS_ARE_FORCES
-    PxConstraint_setFlags_mut :: proc(self_: ^PxConstraint, flags: _c.uint16_t) ---
+    @(link_name = "PxConstraint_setFlags_mut")
+    constraint_set_flags_mut :: proc(self_: ^PxConstraint, flags: _c.uint16_t) ---
 
     /// Set a flag for this constraint
-    PxConstraint_setFlag_mut :: proc(self_: ^PxConstraint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxConstraint_setFlag_mut")
+    constraint_set_flag_mut :: proc(self_: ^PxConstraint, flag: _c.int32_t, value: _c.bool) ---
 
     /// Retrieve the constraint force most recently applied to maintain this constraint.
     ///
     /// It is not allowed to use this method while the simulation is running (except during PxScene::collide(),
     /// in PxContactModifyCallback or in contact report callbacks).
-    PxConstraint_getForce :: proc(self_: ^PxConstraint, linear: ^PxVec3, angular: ^PxVec3) ---
+    @(link_name = "PxConstraint_getForce")
+    constraint_get_force :: proc(self_: ^PxConstraint, linear: ^PxVec3, angular: ^PxVec3) ---
 
     /// whether the constraint is valid.
     ///
@@ -9152,15 +9970,18 @@ foreign libphysx {
     /// is attached may not be inserted into a scene.
     ///
     /// Invalid constraints arise only when an actor to which the constraint is attached has been deleted.
-    PxConstraint_isValid :: proc(self_: ^PxConstraint) -> _c.bool ---
+    @(link_name = "PxConstraint_isValid")
+    constraint_is_valid :: proc(self_: ^PxConstraint) -> _c.bool ---
 
     /// Set the break force and torque thresholds for this constraint.
     ///
     /// If either the force or torque measured at the constraint exceed these thresholds the constraint will break.
-    PxConstraint_setBreakForce_mut :: proc(self_: ^PxConstraint, linear: _c.float, angular: _c.float) ---
+    @(link_name = "PxConstraint_setBreakForce_mut")
+    constraint_set_break_force_mut :: proc(self_: ^PxConstraint, linear: _c.float, angular: _c.float) ---
 
     /// Retrieve the constraint break force and torque thresholds
-    PxConstraint_getBreakForce :: proc(self_: ^PxConstraint, linear: ^_c.float, angular: ^_c.float) ---
+    @(link_name = "PxConstraint_getBreakForce")
+    constraint_get_break_force :: proc(self_: ^PxConstraint, linear: ^_c.float, angular: ^_c.float) ---
 
     /// Set the minimum response threshold for a constraint row
     ///
@@ -9168,238 +9989,289 @@ foreign libphysx {
     /// can destabilize simulation. Setting this value to a small positive value (e.g. 1e-8) will cause constraint rows to be ignored if very
     /// large changes in impulses will generate only small changes in velocity. When setting this value, also set
     /// PxConstraintFlag::eDISABLE_PREPROCESSING. The solver accuracy for this joint may be reduced.
-    PxConstraint_setMinResponseThreshold_mut :: proc(self_: ^PxConstraint, threshold: _c.float) ---
+    @(link_name = "PxConstraint_setMinResponseThreshold_mut")
+    constraint_set_min_response_threshold_mut :: proc(self_: ^PxConstraint, threshold: _c.float) ---
 
     /// Retrieve the constraint break force and torque thresholds
     ///
     /// the minimum response threshold for a constraint row
-    PxConstraint_getMinResponseThreshold :: proc(self_: ^PxConstraint) -> _c.float ---
+    @(link_name = "PxConstraint_getMinResponseThreshold")
+    constraint_get_min_response_threshold :: proc(self_: ^PxConstraint) -> _c.float ---
 
     /// Fetch external owner of the constraint.
     ///
     /// Provides a reference to the external owner of a constraint and a unique owner type ID.
     ///
     /// Reference to the external object which owns the constraint.
-    PxConstraint_getExternalReference_mut :: proc(self_: ^PxConstraint, typeID: ^_c.uint32_t) -> rawptr ---
+    @(link_name = "PxConstraint_getExternalReference_mut")
+    constraint_get_external_reference_mut :: proc(self_: ^PxConstraint, typeID: ^_c.uint32_t) -> rawptr ---
 
     /// Set the constraint functions for this constraint
-    PxConstraint_setConstraintFunctions_mut :: proc(self_: ^PxConstraint, connector: ^PxConstraintConnector, shaders: ^PxConstraintShaderTable) ---
+    @(link_name = "PxConstraint_setConstraintFunctions_mut")
+    constraint_set_constraint_functions_mut :: proc(self_: ^PxConstraint, connector: ^PxConstraintConnector, #by_ptr shaders: PxConstraintShaderTable) ---
 
-    PxConstraint_getConcreteTypeName :: proc(self_: ^PxConstraint) -> ^_c.char ---
+    @(link_name = "PxConstraint_getConcreteTypeName")
+    constraint_get_concrete_type_name :: proc(self_: ^PxConstraint) -> ^_c.char ---
 
     /// Constructor
-    PxContactStreamIterator_new :: proc(contactPatches: ^_c.uint8_t, contactPoints: ^_c.uint8_t, contactFaceIndices: ^_c.uint32_t, nbPatches: _c.uint32_t, nbContacts: _c.uint32_t) -> PxContactStreamIterator ---
+    @(link_name = "PxContactStreamIterator_new")
+    contact_stream_iterator_new :: proc(contactPatches: ^_c.uint8_t, contactPoints: ^_c.uint8_t, contactFaceIndices: ^_c.uint32_t, nbPatches: _c.uint32_t, nbContacts: _c.uint32_t) -> PxContactStreamIterator ---
 
     /// Returns whether there are more patches in this stream.
     ///
     /// Whether there are more patches in this stream.
-    PxContactStreamIterator_hasNextPatch :: proc(self_: ^PxContactStreamIterator) -> _c.bool ---
+    @(link_name = "PxContactStreamIterator_hasNextPatch")
+    contact_stream_iterator_has_next_patch :: proc(self_: ^PxContactStreamIterator) -> _c.bool ---
 
     /// Returns the total contact count.
     ///
     /// Total contact count.
-    PxContactStreamIterator_getTotalContactCount :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
+    @(link_name = "PxContactStreamIterator_getTotalContactCount")
+    contact_stream_iterator_get_total_contact_count :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
 
     /// Returns the total patch count.
     ///
     /// Total patch count.
-    PxContactStreamIterator_getTotalPatchCount :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
+    @(link_name = "PxContactStreamIterator_getTotalPatchCount")
+    contact_stream_iterator_get_total_patch_count :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
 
     /// Advances iterator to next contact patch.
-    PxContactStreamIterator_nextPatch_mut :: proc(self_: ^PxContactStreamIterator) ---
+    @(link_name = "PxContactStreamIterator_nextPatch_mut")
+    contact_stream_iterator_next_patch_mut :: proc(self_: ^PxContactStreamIterator) ---
 
     /// Returns if the current patch has more contacts.
     ///
     /// If there are more contacts in the current patch.
-    PxContactStreamIterator_hasNextContact :: proc(self_: ^PxContactStreamIterator) -> _c.bool ---
+    @(link_name = "PxContactStreamIterator_hasNextContact")
+    contact_stream_iterator_has_next_contact :: proc(self_: ^PxContactStreamIterator) -> _c.bool ---
 
     /// Advances to the next contact in the patch.
-    PxContactStreamIterator_nextContact_mut :: proc(self_: ^PxContactStreamIterator) ---
+    @(link_name = "PxContactStreamIterator_nextContact_mut")
+    contact_stream_iterator_next_contact_mut :: proc(self_: ^PxContactStreamIterator) ---
 
     /// Gets the current contact's normal
     ///
     /// The current contact's normal.
-    PxContactStreamIterator_getContactNormal :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
+    @(link_name = "PxContactStreamIterator_getContactNormal")
+    contact_stream_iterator_get_contact_normal :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
 
     /// Gets the inverse mass scale for body 0.
     ///
     /// The inverse mass scale for body 0.
-    PxContactStreamIterator_getInvMassScale0 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getInvMassScale0")
+    contact_stream_iterator_get_inv_mass_scale0 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the inverse mass scale for body 1.
     ///
     /// The inverse mass scale for body 1.
-    PxContactStreamIterator_getInvMassScale1 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getInvMassScale1")
+    contact_stream_iterator_get_inv_mass_scale1 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the inverse inertia scale for body 0.
     ///
     /// The inverse inertia scale for body 0.
-    PxContactStreamIterator_getInvInertiaScale0 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getInvInertiaScale0")
+    contact_stream_iterator_get_inv_inertia_scale0 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the inverse inertia scale for body 1.
     ///
     /// The inverse inertia scale for body 1.
-    PxContactStreamIterator_getInvInertiaScale1 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getInvInertiaScale1")
+    contact_stream_iterator_get_inv_inertia_scale1 :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's max impulse.
     ///
     /// The contact's max impulse.
-    PxContactStreamIterator_getMaxImpulse :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getMaxImpulse")
+    contact_stream_iterator_get_max_impulse :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's target velocity.
     ///
     /// The contact's target velocity.
-    PxContactStreamIterator_getTargetVel :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
+    @(link_name = "PxContactStreamIterator_getTargetVel")
+    contact_stream_iterator_get_target_vel :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
 
     /// Gets the contact's contact point.
     ///
     /// The contact's contact point.
-    PxContactStreamIterator_getContactPoint :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
+    @(link_name = "PxContactStreamIterator_getContactPoint")
+    contact_stream_iterator_get_contact_point :: proc(self_: ^PxContactStreamIterator) -> ^PxVec3 ---
 
     /// Gets the contact's separation.
     ///
     /// The contact's separation.
-    PxContactStreamIterator_getSeparation :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getSeparation")
+    contact_stream_iterator_get_separation :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's face index for shape 0.
     ///
     /// The contact's face index for shape 0.
-    PxContactStreamIterator_getFaceIndex0 :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
+    @(link_name = "PxContactStreamIterator_getFaceIndex0")
+    contact_stream_iterator_get_face_index0 :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
 
     /// Gets the contact's face index for shape 1.
     ///
     /// The contact's face index for shape 1.
-    PxContactStreamIterator_getFaceIndex1 :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
+    @(link_name = "PxContactStreamIterator_getFaceIndex1")
+    contact_stream_iterator_get_face_index1 :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
 
     /// Gets the contact's static friction coefficient.
     ///
     /// The contact's static friction coefficient.
-    PxContactStreamIterator_getStaticFriction :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getStaticFriction")
+    contact_stream_iterator_get_static_friction :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's dynamic friction coefficient.
     ///
     /// The contact's dynamic friction coefficient.
-    PxContactStreamIterator_getDynamicFriction :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getDynamicFriction")
+    contact_stream_iterator_get_dynamic_friction :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's restitution coefficient.
     ///
     /// The contact's restitution coefficient.
-    PxContactStreamIterator_getRestitution :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getRestitution")
+    contact_stream_iterator_get_restitution :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's damping value.
     ///
     /// The contact's damping value.
-    PxContactStreamIterator_getDamping :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
+    @(link_name = "PxContactStreamIterator_getDamping")
+    contact_stream_iterator_get_damping :: proc(self_: ^PxContactStreamIterator) -> _c.float ---
 
     /// Gets the contact's material flags.
     ///
     /// The contact's material flags.
-    PxContactStreamIterator_getMaterialFlags :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
+    @(link_name = "PxContactStreamIterator_getMaterialFlags")
+    contact_stream_iterator_get_material_flags :: proc(self_: ^PxContactStreamIterator) -> _c.uint32_t ---
 
     /// Gets the contact's material index for shape 0.
     ///
     /// The contact's material index for shape 0.
-    PxContactStreamIterator_getMaterialIndex0 :: proc(self_: ^PxContactStreamIterator) -> _c.uint16_t ---
+    @(link_name = "PxContactStreamIterator_getMaterialIndex0")
+    contact_stream_iterator_get_material_index0 :: proc(self_: ^PxContactStreamIterator) -> _c.uint16_t ---
 
     /// Gets the contact's material index for shape 1.
     ///
     /// The contact's material index for shape 1.
-    PxContactStreamIterator_getMaterialIndex1 :: proc(self_: ^PxContactStreamIterator) -> _c.uint16_t ---
+    @(link_name = "PxContactStreamIterator_getMaterialIndex1")
+    contact_stream_iterator_get_material_index1 :: proc(self_: ^PxContactStreamIterator) -> _c.uint16_t ---
 
     /// Advances the contact stream iterator to a specific contact index.
     ///
     /// True if advancing was possible
-    PxContactStreamIterator_advanceToIndex_mut :: proc(self_: ^PxContactStreamIterator, initialIndex: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxContactStreamIterator_advanceToIndex_mut")
+    contact_stream_iterator_advance_to_index_mut :: proc(self_: ^PxContactStreamIterator, initialIndex: _c.uint32_t) -> _c.bool ---
 
     /// Get the position of a specific contact point in the set.
     ///
     /// Position to the requested point in world space
-    PxContactSet_getPoint :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
+    @(link_name = "PxContactSet_getPoint")
+    contact_set_get_point :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
 
     /// Alter the position of a specific contact point in the set.
-    PxContactSet_setPoint_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, p: ^PxVec3) ---
+    @(link_name = "PxContactSet_setPoint_mut")
+    contact_set_set_point_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, #by_ptr p: PxVec3) ---
 
     /// Get the contact normal of a specific contact point in the set.
     ///
     /// The requested normal in world space
-    PxContactSet_getNormal :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
+    @(link_name = "PxContactSet_getNormal")
+    contact_set_get_normal :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
 
     /// Alter the contact normal of a specific contact point in the set.
     ///
     /// Changing the normal can cause contact points to be ignored.
-    PxContactSet_setNormal_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, n: ^PxVec3) ---
+    @(link_name = "PxContactSet_setNormal_mut")
+    contact_set_set_normal_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, #by_ptr n: PxVec3) ---
 
     /// Get the separation distance of a specific contact point in the set.
     ///
     /// The separation. Negative implies penetration.
-    PxContactSet_getSeparation :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxContactSet_getSeparation")
+    contact_set_get_separation :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
 
     /// Alter the separation of a specific contact point in the set.
-    PxContactSet_setSeparation_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, s: _c.float) ---
+    @(link_name = "PxContactSet_setSeparation_mut")
+    contact_set_set_separation_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, s: _c.float) ---
 
     /// Get the target velocity of a specific contact point in the set.
     ///
     /// The target velocity in world frame
-    PxContactSet_getTargetVelocity :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
+    @(link_name = "PxContactSet_getTargetVelocity")
+    contact_set_get_target_velocity :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> ^PxVec3 ---
 
     /// Alter the target velocity of a specific contact point in the set.
-    PxContactSet_setTargetVelocity_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, v: ^PxVec3) ---
+    @(link_name = "PxContactSet_setTargetVelocity_mut")
+    contact_set_set_target_velocity_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, #by_ptr v: PxVec3) ---
 
     /// Get the face index with respect to the first shape of the pair for a specific contact point in the set.
     ///
     /// The face index of the first shape
     ///
     /// At the moment, the first shape is never a tri-mesh, therefore this function always returns PXC_CONTACT_NO_FACE_INDEX
-    PxContactSet_getInternalFaceIndex0 :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxContactSet_getInternalFaceIndex0")
+    contact_set_get_internal_face_index0 :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.uint32_t ---
 
     /// Get the face index with respect to the second shape of the pair for a specific contact point in the set.
     ///
     /// The face index of the second shape
-    PxContactSet_getInternalFaceIndex1 :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxContactSet_getInternalFaceIndex1")
+    contact_set_get_internal_face_index1 :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.uint32_t ---
 
     /// Get the maximum impulse for a specific contact point in the set.
     ///
     /// The maximum impulse
-    PxContactSet_getMaxImpulse :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxContactSet_getMaxImpulse")
+    contact_set_get_max_impulse :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
 
     /// Alter the maximum impulse for a specific contact point in the set.
     ///
     /// Must be nonnegative. If set to zero, the contact point will be ignored
-    PxContactSet_setMaxImpulse_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, s: _c.float) ---
+    @(link_name = "PxContactSet_setMaxImpulse_mut")
+    contact_set_set_max_impulse_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, s: _c.float) ---
 
     /// Get the restitution coefficient for a specific contact point in the set.
     ///
     /// The restitution coefficient
-    PxContactSet_getRestitution :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxContactSet_getRestitution")
+    contact_set_get_restitution :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
 
     /// Alter the restitution coefficient for a specific contact point in the set.
     ///
     /// Valid ranges [0,1]
-    PxContactSet_setRestitution_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, r: _c.float) ---
+    @(link_name = "PxContactSet_setRestitution_mut")
+    contact_set_set_restitution_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, r: _c.float) ---
 
     /// Get the static friction coefficient for a specific contact point in the set.
     ///
     /// The friction coefficient (dimensionless)
-    PxContactSet_getStaticFriction :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxContactSet_getStaticFriction")
+    contact_set_get_static_friction :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
 
     /// Alter the static friction coefficient for a specific contact point in the set.
-    PxContactSet_setStaticFriction_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, f: _c.float) ---
+    @(link_name = "PxContactSet_setStaticFriction_mut")
+    contact_set_set_static_friction_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, f: _c.float) ---
 
     /// Get the static friction coefficient for a specific contact point in the set.
     ///
     /// The friction coefficient
-    PxContactSet_getDynamicFriction :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
+    @(link_name = "PxContactSet_getDynamicFriction")
+    contact_set_get_dynamic_friction :: proc(self_: ^PxContactSet, i: _c.uint32_t) -> _c.float ---
 
     /// Alter the static dynamic coefficient for a specific contact point in the set.
-    PxContactSet_setDynamicFriction_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, f: _c.float) ---
+    @(link_name = "PxContactSet_setDynamicFriction_mut")
+    contact_set_set_dynamic_friction_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t, f: _c.float) ---
 
     /// Ignore the contact point.
     ///
     /// If a contact point is ignored then no force will get applied at this point. This can be used to disable collision in certain areas of a shape, for example.
-    PxContactSet_ignore_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t) ---
+    @(link_name = "PxContactSet_ignore_mut")
+    contact_set_ignore_mut :: proc(self_: ^PxContactSet, i: _c.uint32_t) ---
 
     /// The number of contact points in the set.
-    PxContactSet_size :: proc(self_: ^PxContactSet) -> _c.uint32_t ---
+    @(link_name = "PxContactSet_size")
+    contact_set_size :: proc(self_: ^PxContactSet) -> _c.uint32_t ---
 
     /// Returns the invMassScale of body 0
     ///
@@ -9407,7 +10279,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger mass. A value of 0.f makes this contact
     /// treat the body as if it had infinite mass. Any value > 1.f makes this contact treat the body as if it had smaller mass.
-    PxContactSet_getInvMassScale0 :: proc(self_: ^PxContactSet) -> _c.float ---
+    @(link_name = "PxContactSet_getInvMassScale0")
+    contact_set_get_inv_mass_scale0 :: proc(self_: ^PxContactSet) -> _c.float ---
 
     /// Returns the invMassScale of body 1
     ///
@@ -9415,7 +10288,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger mass. A value of 0.f makes this contact
     /// treat the body as if it had infinite mass. Any value > 1.f makes this contact treat the body as if it had smaller mass.
-    PxContactSet_getInvMassScale1 :: proc(self_: ^PxContactSet) -> _c.float ---
+    @(link_name = "PxContactSet_getInvMassScale1")
+    contact_set_get_inv_mass_scale1 :: proc(self_: ^PxContactSet) -> _c.float ---
 
     /// Returns the invInertiaScale of body 0
     ///
@@ -9423,7 +10297,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger inertia. A value of 0.f makes this contact
     /// treat the body as if it had infinite inertia. Any value > 1.f makes this contact treat the body as if it had smaller inertia.
-    PxContactSet_getInvInertiaScale0 :: proc(self_: ^PxContactSet) -> _c.float ---
+    @(link_name = "PxContactSet_getInvInertiaScale0")
+    contact_set_get_inv_inertia_scale0 :: proc(self_: ^PxContactSet) -> _c.float ---
 
     /// Returns the invInertiaScale of body 1
     ///
@@ -9431,7 +10306,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger inertia. A value of 0.f makes this contact
     /// treat the body as if it had infinite inertia. Any value > 1.f makes this contact treat the body as if it had smaller inertia.
-    PxContactSet_getInvInertiaScale1 :: proc(self_: ^PxContactSet) -> _c.float ---
+    @(link_name = "PxContactSet_getInvInertiaScale1")
+    contact_set_get_inv_inertia_scale1 :: proc(self_: ^PxContactSet) -> _c.float ---
 
     /// Sets the invMassScale of body 0
     ///
@@ -9439,7 +10315,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger mass. A value of 0.f makes this contact
     /// treat the body as if it had infinite mass. Any value > 1.f makes this contact treat the body as if it had smaller mass.
-    PxContactSet_setInvMassScale0_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
+    @(link_name = "PxContactSet_setInvMassScale0_mut")
+    contact_set_set_inv_mass_scale0_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
 
     /// Sets the invMassScale of body 1
     ///
@@ -9447,7 +10324,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger mass. A value of 0.f makes this contact
     /// treat the body as if it had infinite mass. Any value > 1.f makes this contact treat the body as if it had smaller mass.
-    PxContactSet_setInvMassScale1_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
+    @(link_name = "PxContactSet_setInvMassScale1_mut")
+    contact_set_set_inv_mass_scale1_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
 
     /// Sets the invInertiaScale of body 0
     ///
@@ -9455,7 +10333,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger inertia. A value of 0.f makes this contact
     /// treat the body as if it had infinite inertia. Any value > 1.f makes this contact treat the body as if it had smaller inertia.
-    PxContactSet_setInvInertiaScale0_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
+    @(link_name = "PxContactSet_setInvInertiaScale0_mut")
+    contact_set_set_inv_inertia_scale0_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
 
     /// Sets the invInertiaScale of body 1
     ///
@@ -9463,7 +10342,8 @@ foreign libphysx {
     /// <
     /// 1.0 makes this contact treat the body as if it had larger inertia. A value of 0.f makes this contact
     /// treat the body as if it had infinite inertia. Any value > 1.f makes this contact treat the body as if it had smaller inertia.
-    PxContactSet_setInvInertiaScale1_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
+    @(link_name = "PxContactSet_setInvInertiaScale1_mut")
+    contact_set_set_inv_inertia_scale1_mut :: proc(self_: ^PxContactSet, scale: _c.float) ---
 
     /// Passes modifiable arrays of contacts to the application.
     ///
@@ -9471,7 +10351,8 @@ foreign libphysx {
     ///
     /// The number of contacts can not be changed, so you cannot add your own contacts.  You may however
     /// disable contacts using PxContactSet::ignore().
-    PxContactModifyCallback_onContactModify_mut :: proc(self_: ^PxContactModifyCallback, pairs: ^PxContactModifyPair, count: _c.uint32_t) ---
+    @(link_name = "PxContactModifyCallback_onContactModify_mut")
+    contact_modify_callback_on_contact_modify_mut :: proc(self_: ^PxContactModifyCallback, pairs: ^PxContactModifyPair, count: _c.uint32_t) ---
 
     /// Passes modifiable arrays of contacts to the application.
     ///
@@ -9479,7 +10360,8 @@ foreign libphysx {
     ///
     /// The number of contacts can not be changed, so you cannot add your own contacts.  You may however
     /// disable contacts using PxContactSet::ignore().
-    PxCCDContactModifyCallback_onCCDContactModify_mut :: proc(self_: ^PxCCDContactModifyCallback, pairs: ^PxContactModifyPair, count: _c.uint32_t) ---
+    @(link_name = "PxCCDContactModifyCallback_onCCDContactModify_mut")
+    c_c_d_contact_modify_callback_on_c_c_d_contact_modify_mut :: proc(self_: ^PxCCDContactModifyCallback, pairs: ^PxContactModifyPair, count: _c.uint32_t) ---
 
     /// Notification if an object or its memory gets released
     ///
@@ -9491,59 +10373,74 @@ foreign libphysx {
     /// be referenced by other objects or the simulation might still be running and accessing the object state. In such cases the destructor will be called
     /// as soon as it is safe to do so. After the destruction of the object and its memory, an eMEMORY_RELEASE event will get fired. In this case it is not
     /// allowed to dereference the object pointer in the callback.
-    PxDeletionListener_onRelease_mut :: proc(self_: ^PxDeletionListener, observed: ^PxBase, userData: rawptr, deletionEvent: _c.int32_t) ---
+    @(link_name = "PxDeletionListener_onRelease_mut")
+    deletion_listener_on_release_mut :: proc(self_: ^PxDeletionListener, observed: ^PxBase, userData: rawptr, deletionEvent: _c.int32_t) ---
 
-    PxBaseMaterial_isKindOf :: proc(self_: ^PxBaseMaterial, name: ^_c.char) -> _c.bool ---
+    @(link_name = "PxBaseMaterial_isKindOf")
+    base_material_is_kind_of :: proc(self_: ^PxBaseMaterial, name: ^_c.char) -> _c.bool ---
 
     /// Sets young's modulus which defines the body's stiffness
-    PxFEMMaterial_setYoungsModulus_mut :: proc(self_: ^PxFEMMaterial, young: _c.float) ---
+    @(link_name = "PxFEMMaterial_setYoungsModulus_mut")
+    f_e_m_material_set_youngs_modulus_mut :: proc(self_: ^PxFEMMaterial, young: _c.float) ---
 
     /// Retrieves the young's modulus value.
     ///
     /// The young's modulus value.
-    PxFEMMaterial_getYoungsModulus :: proc(self_: ^PxFEMMaterial) -> _c.float ---
+    @(link_name = "PxFEMMaterial_getYoungsModulus")
+    f_e_m_material_get_youngs_modulus :: proc(self_: ^PxFEMMaterial) -> _c.float ---
 
     /// Sets the Poisson's ratio which defines the body's volume preservation. Completely incompressible materials have a poisson ratio of 0.5. Its value should not be set to exactly 0.5 because this leads to numerical problems.
-    PxFEMMaterial_setPoissons_mut :: proc(self_: ^PxFEMMaterial, poisson: _c.float) ---
+    @(link_name = "PxFEMMaterial_setPoissons_mut")
+    f_e_m_material_set_poissons_mut :: proc(self_: ^PxFEMMaterial, poisson: _c.float) ---
 
     /// Retrieves the Poisson's ratio.
     ///
     /// The Poisson's ratio.
-    PxFEMMaterial_getPoissons :: proc(self_: ^PxFEMMaterial) -> _c.float ---
+    @(link_name = "PxFEMMaterial_getPoissons")
+    f_e_m_material_get_poissons :: proc(self_: ^PxFEMMaterial) -> _c.float ---
 
     /// Sets the dynamic friction value which defines the strength of resistance when two objects slide relative to each other while in contact.
-    PxFEMMaterial_setDynamicFriction_mut :: proc(self_: ^PxFEMMaterial, dynamicFriction: _c.float) ---
+    @(link_name = "PxFEMMaterial_setDynamicFriction_mut")
+    f_e_m_material_set_dynamic_friction_mut :: proc(self_: ^PxFEMMaterial, dynamicFriction: _c.float) ---
 
     /// Retrieves the dynamic friction value
     ///
     /// The dynamic friction value
-    PxFEMMaterial_getDynamicFriction :: proc(self_: ^PxFEMMaterial) -> _c.float ---
+    @(link_name = "PxFEMMaterial_getDynamicFriction")
+    f_e_m_material_get_dynamic_friction :: proc(self_: ^PxFEMMaterial) -> _c.float ---
 
-    PxFilterData_new :: proc(anon_param0: _c.int32_t) -> PxFilterData ---
+    @(link_name = "PxFilterData_new")
+    filter_data_new :: proc(anon_param0: _c.int32_t) -> PxFilterData ---
 
     /// Default constructor.
-    PxFilterData_new_1 :: proc() -> PxFilterData ---
+    @(link_name = "PxFilterData_new_1")
+    filter_data_new_1 :: proc() -> PxFilterData ---
 
     /// Constructor to set filter data initially.
-    PxFilterData_new_2 :: proc(w0: _c.uint32_t, w1: _c.uint32_t, w2: _c.uint32_t, w3: _c.uint32_t) -> PxFilterData ---
+    @(link_name = "PxFilterData_new_2")
+    filter_data_new_2 :: proc(w0: _c.uint32_t, w1: _c.uint32_t, w2: _c.uint32_t, w3: _c.uint32_t) -> PxFilterData ---
 
     /// (re)sets the structure to the default.
-    PxFilterData_setToDefault_mut :: proc(self_: ^PxFilterData) ---
+    @(link_name = "PxFilterData_setToDefault_mut")
+    filter_data_set_to_default_mut :: proc(self_: ^PxFilterData) ---
 
     /// Extract filter object type from the filter attributes of a collision pair object
     ///
     /// The type of the collision pair object.
-    phys_PxGetFilterObjectType :: proc(attr: _c.uint32_t) -> _c.int32_t ---
+    @(link_name = "phys_PxGetFilterObjectType")
+    get_filter_object_type :: proc(attr: _c.uint32_t) -> _c.int32_t ---
 
     /// Specifies whether the collision object belongs to a kinematic rigid body
     ///
     /// True if the object belongs to a kinematic rigid body, else false
-    phys_PxFilterObjectIsKinematic :: proc(attr: _c.uint32_t) -> _c.bool ---
+    @(link_name = "phys_PxFilterObjectIsKinematic")
+    filter_object_is_kinematic :: proc(attr: _c.uint32_t) -> _c.bool ---
 
     /// Specifies whether the collision object is a trigger shape
     ///
     /// True if the object is a trigger shape, else false
-    phys_PxFilterObjectIsTrigger :: proc(attr: _c.uint32_t) -> _c.bool ---
+    @(link_name = "phys_PxFilterObjectIsTrigger")
+    filter_object_is_trigger :: proc(attr: _c.uint32_t) -> _c.bool ---
 
     /// Filter method to specify how a pair of potentially colliding objects should be processed.
     ///
@@ -9554,13 +10451,15 @@ foreign libphysx {
     ///
     /// Filter flags defining whether the pair should be discarded, temporarily ignored or processed and whether the pair
     /// should be tracked and send a report on pair deletion through the filter callback
-    PxSimulationFilterCallback_pairFound_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, a0: ^PxActor, s0: ^PxShape, attributes1: _c.uint32_t, filterData1: PxFilterData, a1: ^PxActor, s1: ^PxShape, pairFlags: ^_c.uint16_t) -> _c.uint16_t ---
+    @(link_name = "PxSimulationFilterCallback_pairFound_mut")
+    simulation_filter_callback_pair_found_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, a0: ^PxActor, s0: ^PxShape, attributes1: _c.uint32_t, filterData1: PxFilterData, a1: ^PxActor, s1: ^PxShape, pairFlags: ^_c.uint16_t) -> _c.uint16_t ---
 
     /// Callback to inform that a tracked collision pair is gone.
     ///
     /// This method gets called when a collision pair disappears or gets re-filtered. Only applies to
     /// collision pairs which have been marked as filter callback pairs ([`PxFilterFlag::eNOTIFY`] set in #pairFound()).
-    PxSimulationFilterCallback_pairLost_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, objectRemoved: _c.bool) ---
+    @(link_name = "PxSimulationFilterCallback_pairLost_mut")
+    simulation_filter_callback_pair_lost_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, objectRemoved: _c.bool) ---
 
     /// Callback to give the opportunity to change the filter state of a tracked collision pair.
     ///
@@ -9577,16 +10476,20 @@ foreign libphysx {
     ///
     /// True if the changes should be applied. In this case the method will get called again. False if
     /// no more status changes should be done in the current simulation step. In that case the provided flags will be discarded.
-    PxSimulationFilterCallback_statusChange_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: ^_c.uint32_t, pairFlags: ^_c.uint16_t, filterFlags: ^_c.uint16_t) -> _c.bool ---
+    @(link_name = "PxSimulationFilterCallback_statusChange_mut")
+    simulation_filter_callback_status_change_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: ^_c.uint32_t, pairFlags: ^_c.uint16_t, filterFlags: ^_c.uint16_t) -> _c.bool ---
 
     /// Any combination of PxDataAccessFlag::eREADABLE and PxDataAccessFlag::eWRITABLE
-    PxLockedData_getDataAccessFlags_mut :: proc(self_: ^PxLockedData) -> _c.uint8_t ---
+    @(link_name = "PxLockedData_getDataAccessFlags_mut")
+    locked_data_get_data_access_flags_mut :: proc(self_: ^PxLockedData) -> _c.uint8_t ---
 
     /// Unlocks the bulk data.
-    PxLockedData_unlock_mut :: proc(self_: ^PxLockedData) ---
+    @(link_name = "PxLockedData_unlock_mut")
+    locked_data_unlock_mut :: proc(self_: ^PxLockedData) ---
 
     /// virtual destructor
-    PxLockedData_delete :: proc(self_: ^PxLockedData) ---
+    @(link_name = "PxLockedData_delete")
+    locked_data_delete :: proc(self_: ^PxLockedData) ---
 
     /// Sets the coefficient of dynamic friction.
     ///
@@ -9596,12 +10499,14 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setDynamicFriction_mut :: proc(self_: ^PxMaterial, coef: _c.float) ---
+    @(link_name = "PxMaterial_setDynamicFriction_mut")
+    material_set_dynamic_friction_mut :: proc(self_: ^PxMaterial, coef: _c.float) ---
 
     /// Retrieves the DynamicFriction value.
     ///
     /// The coefficient of dynamic friction.
-    PxMaterial_getDynamicFriction :: proc(self_: ^PxMaterial) -> _c.float ---
+    @(link_name = "PxMaterial_getDynamicFriction")
+    material_get_dynamic_friction :: proc(self_: ^PxMaterial) -> _c.float ---
 
     /// Sets the coefficient of static friction
     ///
@@ -9611,12 +10516,14 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setStaticFriction_mut :: proc(self_: ^PxMaterial, coef: _c.float) ---
+    @(link_name = "PxMaterial_setStaticFriction_mut")
+    material_set_static_friction_mut :: proc(self_: ^PxMaterial, coef: _c.float) ---
 
     /// Retrieves the coefficient of static friction.
     ///
     /// The coefficient of static friction.
-    PxMaterial_getStaticFriction :: proc(self_: ^PxMaterial) -> _c.float ---
+    @(link_name = "PxMaterial_getStaticFriction")
+    material_get_static_friction :: proc(self_: ^PxMaterial) -> _c.float ---
 
     /// Sets the coefficient of restitution
     ///
@@ -9630,14 +10537,16 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setRestitution_mut :: proc(self_: ^PxMaterial, rest: _c.float) ---
+    @(link_name = "PxMaterial_setRestitution_mut")
+    material_set_restitution_mut :: proc(self_: ^PxMaterial, rest: _c.float) ---
 
     /// Retrieves the coefficient of restitution.
     ///
     /// See [`setRestitution`].
     ///
     /// The coefficient of restitution.
-    PxMaterial_getRestitution :: proc(self_: ^PxMaterial) -> _c.float ---
+    @(link_name = "PxMaterial_getRestitution")
+    material_get_restitution :: proc(self_: ^PxMaterial) -> _c.float ---
 
     /// Sets the coefficient of damping
     ///
@@ -9649,14 +10558,16 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setDamping_mut :: proc(self_: ^PxMaterial, damping: _c.float) ---
+    @(link_name = "PxMaterial_setDamping_mut")
+    material_set_damping_mut :: proc(self_: ^PxMaterial, damping: _c.float) ---
 
     /// Retrieves the coefficient of damping.
     ///
     /// See [`setDamping`].
     ///
     /// The coefficient of damping.
-    PxMaterial_getDamping :: proc(self_: ^PxMaterial) -> _c.float ---
+    @(link_name = "PxMaterial_getDamping")
+    material_get_damping :: proc(self_: ^PxMaterial) -> _c.float ---
 
     /// Raises or clears a particular material flag.
     ///
@@ -9669,7 +10580,8 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setFlag_mut :: proc(self_: ^PxMaterial, flag: _c.int32_t, b: _c.bool) ---
+    @(link_name = "PxMaterial_setFlag_mut")
+    material_set_flag_mut :: proc(self_: ^PxMaterial, flag: _c.int32_t, b: _c.bool) ---
 
     /// sets all the material flags.
     ///
@@ -9682,12 +10594,14 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setFlags_mut :: proc(self_: ^PxMaterial, flags: _c.uint16_t) ---
+    @(link_name = "PxMaterial_setFlags_mut")
+    material_set_flags_mut :: proc(self_: ^PxMaterial, flags: _c.uint16_t) ---
 
     /// Retrieves the flags. See [`PxMaterialFlag`].
     ///
     /// The material flags.
-    PxMaterial_getFlags :: proc(self_: ^PxMaterial) -> _c.uint16_t ---
+    @(link_name = "PxMaterial_getFlags")
+    material_get_flags :: proc(self_: ^PxMaterial) -> _c.uint16_t ---
 
     /// Sets the friction combine mode.
     ///
@@ -9700,14 +10614,16 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setFrictionCombineMode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
+    @(link_name = "PxMaterial_setFrictionCombineMode_mut")
+    material_set_friction_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
 
     /// Retrieves the friction combine mode.
     ///
     /// See [`setFrictionCombineMode`].
     ///
     /// The friction combine mode for this material.
-    PxMaterial_getFrictionCombineMode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
+    @(link_name = "PxMaterial_getFrictionCombineMode")
+    material_get_friction_combine_mode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
 
     /// Sets the restitution combine mode.
     ///
@@ -9720,63 +10636,78 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake any actors which may be affected.
-    PxMaterial_setRestitutionCombineMode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
+    @(link_name = "PxMaterial_setRestitutionCombineMode_mut")
+    material_set_restitution_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
 
     /// Retrieves the restitution combine mode.
     ///
     /// See [`setRestitutionCombineMode`].
     ///
     /// The coefficient of restitution combine mode for this material.
-    PxMaterial_getRestitutionCombineMode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
+    @(link_name = "PxMaterial_getRestitutionCombineMode")
+    material_get_restitution_combine_mode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
 
-    PxMaterial_getConcreteTypeName :: proc(self_: ^PxMaterial) -> ^_c.char ---
+    @(link_name = "PxMaterial_getConcreteTypeName")
+    material_get_concrete_type_name :: proc(self_: ^PxMaterial) -> ^_c.char ---
 
     /// Construct parameters with default values.
-    PxDiffuseParticleParams_new :: proc() -> PxDiffuseParticleParams ---
+    @(link_name = "PxDiffuseParticleParams_new")
+    diffuse_particle_params_new :: proc() -> PxDiffuseParticleParams ---
 
     /// (re)sets the structure to the default.
-    PxDiffuseParticleParams_setToDefault_mut :: proc(self_: ^PxDiffuseParticleParams) ---
+    @(link_name = "PxDiffuseParticleParams_setToDefault_mut")
+    diffuse_particle_params_set_to_default_mut :: proc(self_: ^PxDiffuseParticleParams) ---
 
     /// Sets friction
-    PxParticleMaterial_setFriction_mut :: proc(self_: ^PxParticleMaterial, friction: _c.float) ---
+    @(link_name = "PxParticleMaterial_setFriction_mut")
+    particle_material_set_friction_mut :: proc(self_: ^PxParticleMaterial, friction: _c.float) ---
 
     /// Retrieves the friction value.
     ///
     /// The friction value.
-    PxParticleMaterial_getFriction :: proc(self_: ^PxParticleMaterial) -> _c.float ---
+    @(link_name = "PxParticleMaterial_getFriction")
+    particle_material_get_friction :: proc(self_: ^PxParticleMaterial) -> _c.float ---
 
     /// Sets velocity damping term
-    PxParticleMaterial_setDamping_mut :: proc(self_: ^PxParticleMaterial, damping: _c.float) ---
+    @(link_name = "PxParticleMaterial_setDamping_mut")
+    particle_material_set_damping_mut :: proc(self_: ^PxParticleMaterial, damping: _c.float) ---
 
     /// Retrieves the velocity damping term
     ///
     /// The velocity damping term.
-    PxParticleMaterial_getDamping :: proc(self_: ^PxParticleMaterial) -> _c.float ---
+    @(link_name = "PxParticleMaterial_getDamping")
+    particle_material_get_damping :: proc(self_: ^PxParticleMaterial) -> _c.float ---
 
     /// Sets adhesion term
-    PxParticleMaterial_setAdhesion_mut :: proc(self_: ^PxParticleMaterial, adhesion: _c.float) ---
+    @(link_name = "PxParticleMaterial_setAdhesion_mut")
+    particle_material_set_adhesion_mut :: proc(self_: ^PxParticleMaterial, adhesion: _c.float) ---
 
     /// Retrieves the adhesion term
     ///
     /// The adhesion term.
-    PxParticleMaterial_getAdhesion :: proc(self_: ^PxParticleMaterial) -> _c.float ---
+    @(link_name = "PxParticleMaterial_getAdhesion")
+    particle_material_get_adhesion :: proc(self_: ^PxParticleMaterial) -> _c.float ---
 
     /// Sets gravity scale term
-    PxParticleMaterial_setGravityScale_mut :: proc(self_: ^PxParticleMaterial, scale: _c.float) ---
+    @(link_name = "PxParticleMaterial_setGravityScale_mut")
+    particle_material_set_gravity_scale_mut :: proc(self_: ^PxParticleMaterial, scale: _c.float) ---
 
     /// Retrieves the gravity scale term
     ///
     /// The gravity scale term.
-    PxParticleMaterial_getGravityScale :: proc(self_: ^PxParticleMaterial) -> _c.float ---
+    @(link_name = "PxParticleMaterial_getGravityScale")
+    particle_material_get_gravity_scale :: proc(self_: ^PxParticleMaterial) -> _c.float ---
 
     /// Sets material adhesion radius scale. This is multiplied by the particle rest offset to compute the fall-off distance
     /// at which point adhesion ceases to operate.
-    PxParticleMaterial_setAdhesionRadiusScale_mut :: proc(self_: ^PxParticleMaterial, scale: _c.float) ---
+    @(link_name = "PxParticleMaterial_setAdhesionRadiusScale_mut")
+    particle_material_set_adhesion_radius_scale_mut :: proc(self_: ^PxParticleMaterial, scale: _c.float) ---
 
     /// Retrieves the adhesion radius scale.
     ///
     /// The adhesion radius scale.
-    PxParticleMaterial_getAdhesionRadiusScale :: proc(self_: ^PxParticleMaterial) -> _c.float ---
+    @(link_name = "PxParticleMaterial_getAdhesionRadiusScale")
+    particle_material_get_adhesion_radius_scale :: proc(self_: ^PxParticleMaterial) -> _c.float ---
 
     /// Destroys the instance it is called on.
     ///
@@ -9792,12 +10723,14 @@ foreign libphysx {
     /// provided the user hasn't already done so.
     ///
     /// Releasing the PxPhysics instance is a prerequisite to releasing the PxFoundation instance.
-    PxPhysics_release_mut :: proc(self_: ^PxPhysics) ---
+    @(link_name = "PxPhysics_release_mut")
+    physics_release_mut :: proc(self_: ^PxPhysics) ---
 
     /// Retrieves the Foundation instance.
     ///
     /// A reference to the Foundation object.
-    PxPhysics_getFoundation_mut :: proc(self_: ^PxPhysics) -> ^PxFoundation ---
+    @(link_name = "PxPhysics_getFoundation_mut")
+    physics_get_foundation_mut :: proc(self_: ^PxPhysics) -> ^PxFoundation ---
 
     /// Creates an aggregate with the specified maximum size and filtering hint.
     ///
@@ -9809,24 +10742,28 @@ foreign libphysx {
     /// combination with PxPairFilteringMode.
     ///
     /// The new aggregate.
-    PxPhysics_createAggregate_mut :: proc(self_: ^PxPhysics, maxActor: _c.uint32_t, maxShape: _c.uint32_t, filterHint: _c.uint32_t) -> ^PxAggregate ---
+    @(link_name = "PxPhysics_createAggregate_mut")
+    physics_create_aggregate_mut :: proc(self_: ^PxPhysics, maxActor: _c.uint32_t, maxShape: _c.uint32_t, filterHint: _c.uint32_t) -> ^PxAggregate ---
 
     /// Returns the simulation tolerance parameters.
     ///
     /// The current simulation tolerance parameters.
-    PxPhysics_getTolerancesScale :: proc(self_: ^PxPhysics) -> ^PxTolerancesScale ---
+    @(link_name = "PxPhysics_getTolerancesScale")
+    physics_get_tolerances_scale :: proc(self_: ^PxPhysics) -> ^PxTolerancesScale ---
 
     /// Creates a triangle mesh object.
     ///
     /// This can then be instanced into [`PxShape`] objects.
     ///
     /// The new triangle mesh.
-    PxPhysics_createTriangleMesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxTriangleMesh ---
+    @(link_name = "PxPhysics_createTriangleMesh_mut")
+    physics_create_triangle_mesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxTriangleMesh ---
 
     /// Return the number of triangle meshes that currently exist.
     ///
     /// Number of triangle meshes.
-    PxPhysics_getNbTriangleMeshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbTriangleMeshes")
+    physics_get_nb_triangle_meshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of triangle mesh pointers to a user buffer.
     ///
@@ -9835,24 +10772,28 @@ foreign libphysx {
     /// The ordering of the triangle meshes in the array is not specified.
     ///
     /// The number of triangle mesh pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getTriangleMeshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxTriangleMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getTriangleMeshes")
+    physics_get_triangle_meshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxTriangleMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a tetrahedron mesh object.
     ///
     /// This can then be instanced into [`PxShape`] objects.
     ///
     /// The new tetrahedron mesh.
-    PxPhysics_createTetrahedronMesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxTetrahedronMesh ---
+    @(link_name = "PxPhysics_createTetrahedronMesh_mut")
+    physics_create_tetrahedron_mesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxTetrahedronMesh ---
 
     /// Creates a softbody mesh object.
     ///
     /// The new softbody mesh.
-    PxPhysics_createSoftBodyMesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxSoftBodyMesh ---
+    @(link_name = "PxPhysics_createSoftBodyMesh_mut")
+    physics_create_soft_body_mesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxSoftBodyMesh ---
 
     /// Return the number of tetrahedron meshes that currently exist.
     ///
     /// Number of tetrahedron meshes.
-    PxPhysics_getNbTetrahedronMeshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbTetrahedronMeshes")
+    physics_get_nb_tetrahedron_meshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of tetrahedron mesh pointers to a user buffer.
     ///
@@ -9861,19 +10802,22 @@ foreign libphysx {
     /// The ordering of the tetrahedron meshes in the array is not specified.
     ///
     /// The number of tetrahedron mesh pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getTetrahedronMeshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxTetrahedronMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getTetrahedronMeshes")
+    physics_get_tetrahedron_meshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxTetrahedronMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a heightfield object from previously cooked stream.
     ///
     /// This can then be instanced into [`PxShape`] objects.
     ///
     /// The new heightfield.
-    PxPhysics_createHeightField_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxHeightField ---
+    @(link_name = "PxPhysics_createHeightField_mut")
+    physics_create_height_field_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxHeightField ---
 
     /// Return the number of heightfields that currently exist.
     ///
     /// Number of heightfields.
-    PxPhysics_getNbHeightFields :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbHeightFields")
+    physics_get_nb_height_fields :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of heightfield pointers to a user buffer.
     ///
@@ -9882,19 +10826,22 @@ foreign libphysx {
     /// The ordering of the heightfields in the array is not specified.
     ///
     /// The number of heightfield pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getHeightFields :: proc(self_: ^PxPhysics, userBuffer: ^^PxHeightField, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getHeightFields")
+    physics_get_height_fields :: proc(self_: ^PxPhysics, userBuffer: ^^PxHeightField, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a convex mesh object.
     ///
     /// This can then be instanced into [`PxShape`] objects.
     ///
     /// The new convex mesh.
-    PxPhysics_createConvexMesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxConvexMesh ---
+    @(link_name = "PxPhysics_createConvexMesh_mut")
+    physics_create_convex_mesh_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxConvexMesh ---
 
     /// Return the number of convex meshes that currently exist.
     ///
     /// Number of convex meshes.
-    PxPhysics_getNbConvexMeshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbConvexMeshes")
+    physics_get_nb_convex_meshes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of convex mesh pointers to a user buffer.
     ///
@@ -9903,17 +10850,20 @@ foreign libphysx {
     /// The ordering of the convex meshes in the array is not specified.
     ///
     /// The number of convex mesh pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getConvexMeshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxConvexMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getConvexMeshes")
+    physics_get_convex_meshes :: proc(self_: ^PxPhysics, userBuffer: ^^PxConvexMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a bounding volume hierarchy.
     ///
     /// The new BVH.
-    PxPhysics_createBVH_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxBVH ---
+    @(link_name = "PxPhysics_createBVH_mut")
+    physics_create_b_v_h_mut :: proc(self_: ^PxPhysics, stream: ^PxInputStream) -> ^PxBVH ---
 
     /// Return the number of bounding volume hierarchies that currently exist.
     ///
     /// Number of bounding volume hierarchies.
-    PxPhysics_getNbBVHs :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbBVHs")
+    physics_get_nb_b_v_hs :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of bounding volume hierarchy pointers to a user buffer.
     ///
@@ -9922,7 +10872,8 @@ foreign libphysx {
     /// The ordering of the BVHs in the array is not specified.
     ///
     /// The number of BVH pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getBVHs :: proc(self_: ^PxPhysics, userBuffer: ^^PxBVH, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getBVHs")
+    physics_get_b_v_hs :: proc(self_: ^PxPhysics, userBuffer: ^^PxBVH, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a scene.
     ///
@@ -9930,12 +10881,14 @@ foreign libphysx {
     /// number of scenes that can be created.
     ///
     /// The new scene object.
-    PxPhysics_createScene_mut :: proc(self_: ^PxPhysics, sceneDesc: ^PxSceneDesc) -> ^PxScene ---
+    @(link_name = "PxPhysics_createScene_mut")
+    physics_create_scene_mut :: proc(self_: ^PxPhysics, #by_ptr sceneDesc: PxSceneDesc) -> ^PxScene ---
 
     /// Gets number of created scenes.
     ///
     /// The number of scenes created.
-    PxPhysics_getNbScenes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbScenes")
+    physics_get_nb_scenes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of scene pointers to a user buffer.
     ///
@@ -9944,15 +10897,18 @@ foreign libphysx {
     /// The ordering of the scene pointers in the array is not specified.
     ///
     /// The number of scene pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getScenes :: proc(self_: ^PxPhysics, userBuffer: ^^PxScene, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getScenes")
+    physics_get_scenes :: proc(self_: ^PxPhysics, userBuffer: ^^PxScene, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a static rigid actor with the specified pose and all other fields initialized
     /// to their default values.
-    PxPhysics_createRigidStatic_mut :: proc(self_: ^PxPhysics, pose: ^PxTransform) -> ^PxRigidStatic ---
+    @(link_name = "PxPhysics_createRigidStatic_mut")
+    physics_create_rigid_static_mut :: proc(self_: ^PxPhysics, #by_ptr pose: PxTransform) -> ^PxRigidStatic ---
 
     /// Creates a dynamic rigid actor with the specified pose and all other fields initialized
     /// to their default values.
-    PxPhysics_createRigidDynamic_mut :: proc(self_: ^PxPhysics, pose: ^PxTransform) -> ^PxRigidDynamic ---
+    @(link_name = "PxPhysics_createRigidDynamic_mut")
+    physics_create_rigid_dynamic_mut :: proc(self_: ^PxPhysics, #by_ptr pose: PxTransform) -> ^PxRigidDynamic ---
 
     /// Creates a pruning structure from actors.
     ///
@@ -9965,7 +10921,8 @@ foreign libphysx {
     /// Articulation links cannot be provided.
     ///
     /// Pruning structure created from given actors, or NULL if any of the actors did not comply with the above requirements.
-    PxPhysics_createPruningStructure_mut :: proc(self_: ^PxPhysics, actors: ^^PxRigidActor, nbActors: _c.uint32_t) -> ^PxPruningStructure ---
+    @(link_name = "PxPhysics_createPruningStructure_mut")
+    physics_create_pruning_structure_mut :: proc(self_: ^PxPhysics, actors: ^^PxRigidActor, nbActors: _c.uint32_t) -> ^PxPruningStructure ---
 
     /// Creates a shape which may be attached to multiple actors
     ///
@@ -9974,7 +10931,8 @@ foreign libphysx {
     /// The shape
     ///
     /// Shared shapes are not mutable when they are attached to an actor
-    PxPhysics_createShape_mut :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, material: ^PxMaterial, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    @(link_name = "PxPhysics_createShape_mut")
+    physics_create_shape_mut :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, #by_ptr material: PxMaterial, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
 
     /// Creates a shape which may be attached to multiple actors
     ///
@@ -9985,12 +10943,14 @@ foreign libphysx {
     /// Shared shapes are not mutable when they are attached to an actor
     ///
     /// Shapes created from *SDF* triangle-mesh geometries do not support more than one material.
-    PxPhysics_createShape_mut_1 :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    @(link_name = "PxPhysics_createShape_mut_1")
+    physics_create_shape_mut_1 :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
 
     /// Return the number of shapes that currently exist.
     ///
     /// Number of shapes.
-    PxPhysics_getNbShapes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbShapes")
+    physics_get_nb_shapes :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of shape pointers to a user buffer.
     ///
@@ -9999,7 +10959,8 @@ foreign libphysx {
     /// The ordering of the shapes in the array is not specified.
     ///
     /// The number of shape pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getShapes :: proc(self_: ^PxPhysics, userBuffer: ^^PxShape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getShapes")
+    physics_get_shapes :: proc(self_: ^PxPhysics, userBuffer: ^^PxShape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a constraint shader.
     ///
@@ -10007,22 +10968,26 @@ foreign libphysx {
     /// be NULL to denote attachment to the world.
     ///
     /// The new constraint shader.
-    PxPhysics_createConstraint_mut :: proc(self_: ^PxPhysics, actor0: ^PxRigidActor, actor1: ^PxRigidActor, connector: ^PxConstraintConnector, shaders: ^PxConstraintShaderTable, dataSize: _c.uint32_t) -> ^PxConstraint ---
+    @(link_name = "PxPhysics_createConstraint_mut")
+    physics_create_constraint_mut :: proc(self_: ^PxPhysics, actor0: ^PxRigidActor, actor1: ^PxRigidActor, connector: ^PxConstraintConnector, #by_ptr shaders: PxConstraintShaderTable, dataSize: _c.uint32_t) -> ^PxConstraint ---
 
     /// Creates a reduced-coordinate articulation with all fields initialized to their default values.
     ///
     /// the new articulation
-    PxPhysics_createArticulationReducedCoordinate_mut :: proc(self_: ^PxPhysics) -> ^PxArticulationReducedCoordinate ---
+    @(link_name = "PxPhysics_createArticulationReducedCoordinate_mut")
+    physics_create_articulation_reduced_coordinate_mut :: proc(self_: ^PxPhysics) -> ^PxArticulationReducedCoordinate ---
 
     /// Creates a new rigid body material with certain default properties.
     ///
     /// The new rigid body material.
-    PxPhysics_createMaterial_mut :: proc(self_: ^PxPhysics, staticFriction: _c.float, dynamicFriction: _c.float, restitution: _c.float) -> ^PxMaterial ---
+    @(link_name = "PxPhysics_createMaterial_mut")
+    physics_create_material_mut :: proc(self_: ^PxPhysics, staticFriction: _c.float, dynamicFriction: _c.float, restitution: _c.float) -> ^PxMaterial ---
 
     /// Return the number of rigid body materials that currently exist.
     ///
     /// Number of rigid body materials.
-    PxPhysics_getNbMaterials :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getNbMaterials")
+    physics_get_nb_materials :: proc(self_: ^PxPhysics) -> _c.uint32_t ---
 
     /// Writes the array of rigid body material pointers to a user buffer.
     ///
@@ -10031,7 +10996,8 @@ foreign libphysx {
     /// The ordering of the materials in the array is not specified.
     ///
     /// The number of material pointers written to userBuffer, this should be less or equal to bufferSize.
-    PxPhysics_getMaterials :: proc(self_: ^PxPhysics, userBuffer: ^^PxMaterial, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPhysics_getMaterials")
+    physics_get_materials :: proc(self_: ^PxPhysics, userBuffer: ^^PxMaterial, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Register a deletion listener. Listeners will be called whenever an object is deleted.
     ///
@@ -10040,12 +11006,14 @@ foreign libphysx {
     /// By default a registered listener will receive events from all objects. Set the restrictedObjectSet parameter to true on registration and use [`registerDeletionListenerObjects`] to restrict the received events to specific objects.
     ///
     /// The deletion events are only supported on core PhysX objects. In general, objects in extension modules do not provide this functionality, however, in the case of PxJoint objects, the underlying PxConstraint will send the events.
-    PxPhysics_registerDeletionListener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, deletionEvents: ^_c.uint8_t, restrictedObjectSet: _c.bool) ---
+    @(link_name = "PxPhysics_registerDeletionListener_mut")
+    physics_register_deletion_listener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, #by_ptr deletionEvents: _c.uint8_t, restrictedObjectSet: _c.bool) ---
 
     /// Unregister a deletion listener.
     ///
     /// It is illegal to register or unregister a deletion listener while deletions are being processed.
-    PxPhysics_unregisterDeletionListener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener) ---
+    @(link_name = "PxPhysics_unregisterDeletionListener_mut")
+    physics_unregister_deletion_listener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener) ---
 
     /// Register specific objects for deletion events.
     ///
@@ -10054,7 +11022,8 @@ foreign libphysx {
     /// It is illegal to register or unregister objects while deletions are being processed.
     ///
     /// The deletion listener has to be registered through [`registerDeletionListener`]() and configured to support restricted object sets prior to this method being used.
-    PxPhysics_registerDeletionListenerObjects_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, observables: ^^PxBase, observableCount: _c.uint32_t) ---
+    @(link_name = "PxPhysics_registerDeletionListenerObjects_mut")
+    physics_register_deletion_listener_objects_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, observables: ^^PxBase, observableCount: _c.uint32_t) ---
 
     /// Unregister specific objects for deletion events.
     ///
@@ -10063,12 +11032,14 @@ foreign libphysx {
     /// It is illegal to register or unregister objects while deletions are being processed.
     ///
     /// The deletion listener has to be registered through [`registerDeletionListener`]() and configured to support restricted object sets prior to this method being used.
-    PxPhysics_unregisterDeletionListenerObjects_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, observables: ^^PxBase, observableCount: _c.uint32_t) ---
+    @(link_name = "PxPhysics_unregisterDeletionListenerObjects_mut")
+    physics_unregister_deletion_listener_objects_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, observables: ^^PxBase, observableCount: _c.uint32_t) ---
 
     /// Gets PxPhysics object insertion interface.
     ///
     /// The insertion interface is needed for PxCreateTriangleMesh, PxCooking::createTriangleMesh etc., this allows runtime mesh creation.
-    PxPhysics_getPhysicsInsertionCallback_mut :: proc(self_: ^PxPhysics) -> ^PxInsertionCallback ---
+    @(link_name = "PxPhysics_getPhysicsInsertionCallback_mut")
+    physics_get_physics_insertion_callback_mut :: proc(self_: ^PxPhysics) -> ^PxInsertionCallback ---
 
     /// Creates an instance of the physics SDK.
     ///
@@ -10082,41 +11053,53 @@ foreign libphysx {
     /// modules manually.
     ///
     /// PxPhysics instance on success, NULL if operation failed
-    phys_PxCreatePhysics :: proc(version: _c.uint32_t, foundation: ^PxFoundation, scale: ^PxTolerancesScale, trackOutstandingAllocations: _c.bool, pvd: ^PxPvd, omniPvd: ^PxOmniPvd) -> ^PxPhysics ---
+    @(link_name = "phys_PxCreatePhysics")
+    create_physics :: proc(version: _c.uint32_t, foundation: ^PxFoundation, #by_ptr scale: PxTolerancesScale, trackOutstandingAllocations: _c.bool, pvd: ^PxPvd, omniPvd: ^PxOmniPvd) -> ^PxPhysics ---
 
-    phys_PxGetPhysics :: proc() -> ^PxPhysics ---
+    @(link_name = "phys_PxGetPhysics")
+    get_physics :: proc() -> ^PxPhysics ---
 
-    PxActorShape_new :: proc() -> PxActorShape ---
+    @(link_name = "PxActorShape_new")
+    actor_shape_new :: proc() -> PxActorShape ---
 
-    PxActorShape_new_1 :: proc(a: ^PxRigidActor, s: ^PxShape) -> PxActorShape ---
+    @(link_name = "PxActorShape_new_1")
+    actor_shape_new_1 :: proc(a: ^PxRigidActor, s: ^PxShape) -> PxActorShape ---
 
     /// constructor sets to default
-    PxQueryCache_new :: proc() -> PxQueryCache ---
+    @(link_name = "PxQueryCache_new")
+    query_cache_new :: proc() -> PxQueryCache ---
 
     /// constructor to set properties
-    PxQueryCache_new_1 :: proc(s: ^PxShape, findex: _c.uint32_t) -> PxQueryCache ---
+    @(link_name = "PxQueryCache_new_1")
+    query_cache_new_1 :: proc(s: ^PxShape, findex: _c.uint32_t) -> PxQueryCache ---
 
     /// default constructor
-    PxQueryFilterData_new :: proc() -> PxQueryFilterData ---
+    @(link_name = "PxQueryFilterData_new")
+    query_filter_data_new :: proc() -> PxQueryFilterData ---
 
     /// constructor to set both filter data and filter flags
-    PxQueryFilterData_new_1 :: proc(fd: ^PxFilterData, f: _c.uint16_t) -> PxQueryFilterData ---
+    @(link_name = "PxQueryFilterData_new_1")
+    query_filter_data_new_1 :: proc(#by_ptr fd: PxFilterData, f: _c.uint16_t) -> PxQueryFilterData ---
 
     /// constructor to set filter flags only
-    PxQueryFilterData_new_2 :: proc(f: _c.uint16_t) -> PxQueryFilterData ---
+    @(link_name = "PxQueryFilterData_new_2")
+    query_filter_data_new_2 :: proc(f: _c.uint16_t) -> PxQueryFilterData ---
 
     /// This filter callback is executed before the exact intersection test if PxQueryFlag::ePREFILTER flag was set.
     ///
     /// the updated type for this hit  (see [`PxQueryHitType`])
-    PxQueryFilterCallback_preFilter_mut :: proc(self_: ^PxQueryFilterCallback, filterData: ^PxFilterData, shape: ^PxShape, actor: ^PxRigidActor, queryFlags: ^_c.uint16_t) -> _c.int32_t ---
+    @(link_name = "PxQueryFilterCallback_preFilter_mut")
+    query_filter_callback_pre_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, shape: ^PxShape, actor: ^PxRigidActor, queryFlags: ^_c.uint16_t) -> _c.int32_t ---
 
     /// This filter callback is executed if the exact intersection test returned true and PxQueryFlag::ePOSTFILTER flag was set.
     ///
     /// the updated hit type for this hit  (see [`PxQueryHitType`])
-    PxQueryFilterCallback_postFilter_mut :: proc(self_: ^PxQueryFilterCallback, filterData: ^PxFilterData, hit: ^PxQueryHit, shape: ^PxShape, actor: ^PxRigidActor) -> _c.int32_t ---
+    @(link_name = "PxQueryFilterCallback_postFilter_mut")
+    query_filter_callback_post_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, hit: ^PxQueryHit, shape: ^PxShape, actor: ^PxRigidActor) -> _c.int32_t ---
 
     /// virtual destructor
-    PxQueryFilterCallback_delete :: proc(self_: ^PxQueryFilterCallback) ---
+    @(link_name = "PxQueryFilterCallback_delete")
+    query_filter_callback_delete :: proc(self_: ^PxQueryFilterCallback) ---
 
     /// Moves kinematically controlled dynamic actors through the game world.
     ///
@@ -10137,12 +11120,14 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and will set the wake counter to [`PxSceneDesc::wakeCounterResetValue`].
-    PxRigidDynamic_setKinematicTarget_mut :: proc(self_: ^PxRigidDynamic, destination: ^PxTransform) ---
+    @(link_name = "PxRigidDynamic_setKinematicTarget_mut")
+    rigid_dynamic_set_kinematic_target_mut :: proc(self_: ^PxRigidDynamic, #by_ptr destination: PxTransform) ---
 
     /// Get target pose of a kinematically controlled dynamic actor.
     ///
     /// True if the actor is a kinematically controlled dynamic and the target has been set, else False.
-    PxRigidDynamic_getKinematicTarget :: proc(self_: ^PxRigidDynamic, target: ^PxTransform) -> _c.bool ---
+    @(link_name = "PxRigidDynamic_getKinematicTarget")
+    rigid_dynamic_get_kinematic_target :: proc(self_: ^PxRigidDynamic, target: ^PxTransform) -> _c.bool ---
 
     /// Returns true if this body is sleeping.
     ///
@@ -10180,7 +11165,8 @@ foreign libphysx {
     /// It is not allowed to use this method while the simulation is running.
     ///
     /// True if the actor is sleeping.
-    PxRigidDynamic_isSleeping :: proc(self_: ^PxRigidDynamic) -> _c.bool ---
+    @(link_name = "PxRigidDynamic_isSleeping")
+    rigid_dynamic_is_sleeping :: proc(self_: ^PxRigidDynamic) -> _c.bool ---
 
     /// Sets the mass-normalized kinetic energy threshold below which an actor may go to sleep.
     ///
@@ -10188,12 +11174,14 @@ foreign libphysx {
     ///
     /// Default:
     /// 5e-5f * PxTolerancesScale::speed * PxTolerancesScale::speed
-    PxRigidDynamic_setSleepThreshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
+    @(link_name = "PxRigidDynamic_setSleepThreshold_mut")
+    rigid_dynamic_set_sleep_threshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
 
     /// Returns the mass-normalized kinetic energy below which an actor may go to sleep.
     ///
     /// The energy threshold for sleeping.
-    PxRigidDynamic_getSleepThreshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
+    @(link_name = "PxRigidDynamic_getSleepThreshold")
+    rigid_dynamic_get_sleep_threshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
 
     /// Sets the mass-normalized kinetic energy threshold below which an actor may participate in stabilization.
     ///
@@ -10203,21 +11191,24 @@ foreign libphysx {
     ///
     /// Default:
     /// 1e-5f * PxTolerancesScale::speed * PxTolerancesScale::speed
-    PxRigidDynamic_setStabilizationThreshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
+    @(link_name = "PxRigidDynamic_setStabilizationThreshold_mut")
+    rigid_dynamic_set_stabilization_threshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
 
     /// Returns the mass-normalized kinetic energy below which an actor may participate in stabilization.
     ///
     /// Actors whose kinetic energy divided by their mass is above this threshold will not participate in stabilization.
     ///
     /// The energy threshold for participating in stabilization.
-    PxRigidDynamic_getStabilizationThreshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
+    @(link_name = "PxRigidDynamic_getStabilizationThreshold")
+    rigid_dynamic_get_stabilization_threshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
 
     /// Reads the PxRigidDynamic lock flags.
     ///
     /// See the list of flags [`PxRigidDynamicLockFlag`]
     ///
     /// The values of the PxRigidDynamicLock flags.
-    PxRigidDynamic_getRigidDynamicLockFlags :: proc(self_: ^PxRigidDynamic) -> _c.uint8_t ---
+    @(link_name = "PxRigidDynamic_getRigidDynamicLockFlags")
+    rigid_dynamic_get_rigid_dynamic_lock_flags :: proc(self_: ^PxRigidDynamic) -> _c.uint8_t ---
 
     /// Raises or clears a particular rigid dynamic lock flag.
     ///
@@ -10225,9 +11216,11 @@ foreign libphysx {
     ///
     /// Default:
     /// no flags are set
-    PxRigidDynamic_setRigidDynamicLockFlag_mut :: proc(self_: ^PxRigidDynamic, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxRigidDynamic_setRigidDynamicLockFlag_mut")
+    rigid_dynamic_set_rigid_dynamic_lock_flag_mut :: proc(self_: ^PxRigidDynamic, flag: _c.int32_t, value: _c.bool) ---
 
-    PxRigidDynamic_setRigidDynamicLockFlags_mut :: proc(self_: ^PxRigidDynamic, flags: _c.uint8_t) ---
+    @(link_name = "PxRigidDynamic_setRigidDynamicLockFlags_mut")
+    rigid_dynamic_set_rigid_dynamic_lock_flags_mut :: proc(self_: ^PxRigidDynamic, flags: _c.uint8_t) ---
 
     /// Retrieves the linear velocity of an actor.
     ///
@@ -10235,7 +11228,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// The linear velocity of the actor.
-    PxRigidDynamic_getLinearVelocity :: proc(self_: ^PxRigidDynamic) -> PxVec3 ---
+    @(link_name = "PxRigidDynamic_getLinearVelocity")
+    rigid_dynamic_get_linear_velocity :: proc(self_: ^PxRigidDynamic) -> PxVec3 ---
 
     /// Sets the linear velocity of the actor.
     ///
@@ -10251,7 +11245,8 @@ foreign libphysx {
     /// new velocity is non-zero.
     ///
     /// It is invalid to use this method if PxActorFlag::eDISABLE_SIMULATION is set.
-    PxRigidDynamic_setLinearVelocity_mut :: proc(self_: ^PxRigidDynamic, linVel: ^PxVec3, autowake: _c.bool) ---
+    @(link_name = "PxRigidDynamic_setLinearVelocity_mut")
+    rigid_dynamic_set_linear_velocity_mut :: proc(self_: ^PxRigidDynamic, #by_ptr linVel: PxVec3, autowake: _c.bool) ---
 
     /// Retrieves the angular velocity of the actor.
     ///
@@ -10259,7 +11254,8 @@ foreign libphysx {
     /// in PxContactModifyCallback or in contact report callbacks).
     ///
     /// The angular velocity of the actor.
-    PxRigidDynamic_getAngularVelocity :: proc(self_: ^PxRigidDynamic) -> PxVec3 ---
+    @(link_name = "PxRigidDynamic_getAngularVelocity")
+    rigid_dynamic_get_angular_velocity :: proc(self_: ^PxRigidDynamic) -> PxVec3 ---
 
     /// Sets the angular velocity of the actor.
     ///
@@ -10274,7 +11270,8 @@ foreign libphysx {
     /// new velocity is non-zero.
     ///
     /// It is invalid to use this method if PxActorFlag::eDISABLE_SIMULATION is set.
-    PxRigidDynamic_setAngularVelocity_mut :: proc(self_: ^PxRigidDynamic, angVel: ^PxVec3, autowake: _c.bool) ---
+    @(link_name = "PxRigidDynamic_setAngularVelocity_mut")
+    rigid_dynamic_set_angular_velocity_mut :: proc(self_: ^PxRigidDynamic, #by_ptr angVel: PxVec3, autowake: _c.bool) ---
 
     /// Sets the wake counter for the actor.
     ///
@@ -10291,14 +11288,16 @@ foreign libphysx {
     ///
     /// Default:
     /// 0.4 (which corresponds to 20 frames for a time step of 0.02)
-    PxRigidDynamic_setWakeCounter_mut :: proc(self_: ^PxRigidDynamic, wakeCounterValue: _c.float) ---
+    @(link_name = "PxRigidDynamic_setWakeCounter_mut")
+    rigid_dynamic_set_wake_counter_mut :: proc(self_: ^PxRigidDynamic, wakeCounterValue: _c.float) ---
 
     /// Returns the wake counter of the actor.
     ///
     /// It is not allowed to use this method while the simulation is running.
     ///
     /// The wake counter of the actor.
-    PxRigidDynamic_getWakeCounter :: proc(self_: ^PxRigidDynamic) -> _c.float ---
+    @(link_name = "PxRigidDynamic_getWakeCounter")
+    rigid_dynamic_get_wake_counter :: proc(self_: ^PxRigidDynamic) -> _c.float ---
 
     /// Wakes up the actor if it is sleeping.
     ///
@@ -10310,7 +11309,8 @@ foreign libphysx {
     ///
     /// It is invalid to use this method for kinematic actors since the sleep state for kinematics is defined
     /// based on whether a target pose has been set (see the comment in [`isSleeping`]()).
-    PxRigidDynamic_wakeUp_mut :: proc(self_: ^PxRigidDynamic) ---
+    @(link_name = "PxRigidDynamic_wakeUp_mut")
+    rigid_dynamic_wake_up_mut :: proc(self_: ^PxRigidDynamic) ---
 
     /// Forces the actor to sleep.
     ///
@@ -10322,7 +11322,8 @@ foreign libphysx {
     ///
     /// It is invalid to use this method for kinematic actors since the sleep state for kinematics is defined
     /// based on whether a target pose has been set (see the comment in [`isSleeping`]()).
-    PxRigidDynamic_putToSleep_mut :: proc(self_: ^PxRigidDynamic) ---
+    @(link_name = "PxRigidDynamic_putToSleep_mut")
+    rigid_dynamic_put_to_sleep_mut :: proc(self_: ^PxRigidDynamic) ---
 
     /// Sets the solver iteration counts for the body.
     ///
@@ -10336,10 +11337,12 @@ foreign libphysx {
     ///
     /// Default:
     /// 4 position iterations, 1 velocity iteration
-    PxRigidDynamic_setSolverIterationCounts_mut :: proc(self_: ^PxRigidDynamic, minPositionIters: _c.uint32_t, minVelocityIters: _c.uint32_t) ---
+    @(link_name = "PxRigidDynamic_setSolverIterationCounts_mut")
+    rigid_dynamic_set_solver_iteration_counts_mut :: proc(self_: ^PxRigidDynamic, minPositionIters: _c.uint32_t, minVelocityIters: _c.uint32_t) ---
 
     /// Retrieves the solver iteration counts.
-    PxRigidDynamic_getSolverIterationCounts :: proc(self_: ^PxRigidDynamic, minPositionIters: ^_c.uint32_t, minVelocityIters: ^_c.uint32_t) ---
+    @(link_name = "PxRigidDynamic_getSolverIterationCounts")
+    rigid_dynamic_get_solver_iteration_counts :: proc(self_: ^PxRigidDynamic, minPositionIters: ^_c.uint32_t, minVelocityIters: ^_c.uint32_t) ---
 
     /// Retrieves the force threshold for contact reports.
     ///
@@ -10357,54 +11360,67 @@ foreign libphysx {
     /// PX_MAX_F32
     ///
     /// Force threshold for contact reports.
-    PxRigidDynamic_getContactReportThreshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
+    @(link_name = "PxRigidDynamic_getContactReportThreshold")
+    rigid_dynamic_get_contact_report_threshold :: proc(self_: ^PxRigidDynamic) -> _c.float ---
 
     /// Sets the force threshold for contact reports.
     ///
     /// See [`getContactReportThreshold`]().
-    PxRigidDynamic_setContactReportThreshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
+    @(link_name = "PxRigidDynamic_setContactReportThreshold_mut")
+    rigid_dynamic_set_contact_report_threshold_mut :: proc(self_: ^PxRigidDynamic, threshold: _c.float) ---
 
-    PxRigidDynamic_getConcreteTypeName :: proc(self_: ^PxRigidDynamic) -> ^_c.char ---
+    @(link_name = "PxRigidDynamic_getConcreteTypeName")
+    rigid_dynamic_get_concrete_type_name :: proc(self_: ^PxRigidDynamic) -> ^_c.char ---
 
-    PxRigidStatic_getConcreteTypeName :: proc(self_: ^PxRigidStatic) -> ^_c.char ---
+    @(link_name = "PxRigidStatic_getConcreteTypeName")
+    rigid_static_get_concrete_type_name :: proc(self_: ^PxRigidStatic) -> ^_c.char ---
 
     /// constructor sets to default.
-    PxSceneQueryDesc_new :: proc() -> PxSceneQueryDesc ---
+    @(link_name = "PxSceneQueryDesc_new")
+    scene_query_desc_new :: proc() -> PxSceneQueryDesc ---
 
     /// (re)sets the structure to the default.
-    PxSceneQueryDesc_setToDefault_mut :: proc(self_: ^PxSceneQueryDesc) ---
+    @(link_name = "PxSceneQueryDesc_setToDefault_mut")
+    scene_query_desc_set_to_default_mut :: proc(self_: ^PxSceneQueryDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxSceneQueryDesc_isValid :: proc(self_: ^PxSceneQueryDesc) -> _c.bool ---
+    @(link_name = "PxSceneQueryDesc_isValid")
+    scene_query_desc_is_valid :: proc(self_: ^PxSceneQueryDesc) -> _c.bool ---
 
     /// Sets the rebuild rate of the dynamic tree pruning structures.
-    PxSceneQuerySystemBase_setDynamicTreeRebuildRateHint_mut :: proc(self_: ^PxSceneQuerySystemBase, dynamicTreeRebuildRateHint: _c.uint32_t) ---
+    @(link_name = "PxSceneQuerySystemBase_setDynamicTreeRebuildRateHint_mut")
+    scene_query_system_base_set_dynamic_tree_rebuild_rate_hint_mut :: proc(self_: ^PxSceneQuerySystemBase, dynamicTreeRebuildRateHint: _c.uint32_t) ---
 
     /// Retrieves the rebuild rate of the dynamic tree pruning structures.
     ///
     /// The rebuild rate of the dynamic tree pruning structures.
-    PxSceneQuerySystemBase_getDynamicTreeRebuildRateHint :: proc(self_: ^PxSceneQuerySystemBase) -> _c.uint32_t ---
+    @(link_name = "PxSceneQuerySystemBase_getDynamicTreeRebuildRateHint")
+    scene_query_system_base_get_dynamic_tree_rebuild_rate_hint :: proc(self_: ^PxSceneQuerySystemBase) -> _c.uint32_t ---
 
     /// Forces dynamic trees to be immediately rebuilt.
     ///
     /// PxScene will call this function with the PX_SCENE_PRUNER_STATIC or PX_SCENE_PRUNER_DYNAMIC value.
-    PxSceneQuerySystemBase_forceRebuildDynamicTree_mut :: proc(self_: ^PxSceneQuerySystemBase, prunerIndex: _c.uint32_t) ---
+    @(link_name = "PxSceneQuerySystemBase_forceRebuildDynamicTree_mut")
+    scene_query_system_base_force_rebuild_dynamic_tree_mut :: proc(self_: ^PxSceneQuerySystemBase, prunerIndex: _c.uint32_t) ---
 
     /// Sets scene query update mode
-    PxSceneQuerySystemBase_setUpdateMode_mut :: proc(self_: ^PxSceneQuerySystemBase, updateMode: _c.int32_t) ---
+    @(link_name = "PxSceneQuerySystemBase_setUpdateMode_mut")
+    scene_query_system_base_set_update_mode_mut :: proc(self_: ^PxSceneQuerySystemBase, updateMode: _c.int32_t) ---
 
     /// Gets scene query update mode
     ///
     /// Current scene query update mode.
-    PxSceneQuerySystemBase_getUpdateMode :: proc(self_: ^PxSceneQuerySystemBase) -> _c.int32_t ---
+    @(link_name = "PxSceneQuerySystemBase_getUpdateMode")
+    scene_query_system_base_get_update_mode :: proc(self_: ^PxSceneQuerySystemBase) -> _c.int32_t ---
 
     /// Retrieves the system's internal scene query timestamp, increased each time a change to the
     /// static scene query structure is performed.
     ///
     /// scene query static timestamp
-    PxSceneQuerySystemBase_getStaticTimestamp :: proc(self_: ^PxSceneQuerySystemBase) -> _c.uint32_t ---
+    @(link_name = "PxSceneQuerySystemBase_getStaticTimestamp")
+    scene_query_system_base_get_static_timestamp :: proc(self_: ^PxSceneQuerySystemBase) -> _c.uint32_t ---
 
     /// Flushes any changes to the scene query representation.
     ///
@@ -10417,7 +11433,8 @@ foreign libphysx {
     /// A thread performing updates will hold a write lock on the query structure, and thus stall other querying threads. In multithread
     /// scenarios it can be useful to explicitly schedule the period where this lock may be held for a significant period, so that
     /// subsequent queries issued from multiple threads will not block.
-    PxSceneQuerySystemBase_flushUpdates_mut :: proc(self_: ^PxSceneQuerySystemBase) ---
+    @(link_name = "PxSceneQuerySystemBase_flushUpdates_mut")
+    scene_query_system_base_flush_updates_mut :: proc(self_: ^PxSceneQuerySystemBase) ---
 
     /// Performs a raycast against objects in the scene, returns results in a PxRaycastBuffer object
     /// or via a custom user callback implementation inheriting from PxRaycastCallback.
@@ -10427,7 +11444,8 @@ foreign libphysx {
     /// Shooting a ray from within an object leads to different results depending on the shape type. Please check the details in user guide article SceneQuery. User can ignore such objects by employing one of the provided filter mechanisms.
     ///
     /// True if any touching or blocking hits were found or any hit was found in case PxQueryFlag::eANY_HIT was specified.
-    PxSceneQuerySystemBase_raycast :: proc(self_: ^PxSceneQuerySystemBase, origin: ^PxVec3, unitDir: ^PxVec3, distance: _c.float, hitCall: ^PxRaycastCallback, hitFlags: _c.uint16_t, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxSceneQuerySystemBase_raycast")
+    scene_query_system_base_raycast :: proc(self_: ^PxSceneQuerySystemBase, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxRaycastCallback, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Performs a sweep test against objects in the scene, returns results in a PxSweepBuffer object
     /// or via a custom user callback implementation inheriting from PxSweepCallback.
@@ -10438,7 +11456,8 @@ foreign libphysx {
     /// the hit is returned unless eASSUME_NO_INITIAL_OVERLAP was specified.
     ///
     /// True if any touching or blocking hits were found or any hit was found in case PxQueryFlag::eANY_HIT was specified.
-    PxSceneQuerySystemBase_sweep :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, distance: _c.float, hitCall: ^PxSweepCallback, hitFlags: _c.uint16_t, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxSceneQuerySystemBase_sweep")
+    scene_query_system_base_sweep :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxSweepCallback, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Performs an overlap test of a given geometry against objects in the scene, returns results in a PxOverlapBuffer object
     /// or via a custom user callback implementation inheriting from PxOverlapCallback.
@@ -10450,33 +11469,41 @@ foreign libphysx {
     /// eBLOCK should not be returned from user filters for overlap(). Doing so will result in undefined behavior, and a warning will be issued.
     ///
     /// If the PxQueryFlag::eNO_BLOCK flag is set, the eBLOCK will instead be automatically converted to an eTOUCH and the warning suppressed.
-    PxSceneQuerySystemBase_overlap :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, pose: ^PxTransform, hitCall: ^PxOverlapCallback, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxSceneQuerySystemBase_overlap")
+    scene_query_system_base_overlap :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, hitCall: ^PxOverlapCallback, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
 
     /// Sets scene query update mode
-    PxSceneSQSystem_setSceneQueryUpdateMode_mut :: proc(self_: ^PxSceneSQSystem, updateMode: _c.int32_t) ---
+    @(link_name = "PxSceneSQSystem_setSceneQueryUpdateMode_mut")
+    scene_s_q_system_set_scene_query_update_mode_mut :: proc(self_: ^PxSceneSQSystem, updateMode: _c.int32_t) ---
 
     /// Gets scene query update mode
     ///
     /// Current scene query update mode.
-    PxSceneSQSystem_getSceneQueryUpdateMode :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    @(link_name = "PxSceneSQSystem_getSceneQueryUpdateMode")
+    scene_s_q_system_get_scene_query_update_mode :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
 
     /// Retrieves the scene's internal scene query timestamp, increased each time a change to the
     /// static scene query structure is performed.
     ///
     /// scene query static timestamp
-    PxSceneSQSystem_getSceneQueryStaticTimestamp :: proc(self_: ^PxSceneSQSystem) -> _c.uint32_t ---
+    @(link_name = "PxSceneSQSystem_getSceneQueryStaticTimestamp")
+    scene_s_q_system_get_scene_query_static_timestamp :: proc(self_: ^PxSceneSQSystem) -> _c.uint32_t ---
 
     /// Flushes any changes to the scene query representation.
-    PxSceneSQSystem_flushQueryUpdates_mut :: proc(self_: ^PxSceneSQSystem) ---
+    @(link_name = "PxSceneSQSystem_flushQueryUpdates_mut")
+    scene_s_q_system_flush_query_updates_mut :: proc(self_: ^PxSceneSQSystem) ---
 
     /// Forces dynamic trees to be immediately rebuilt.
-    PxSceneSQSystem_forceDynamicTreeRebuild_mut :: proc(self_: ^PxSceneSQSystem, rebuildStaticStructure: _c.bool, rebuildDynamicStructure: _c.bool) ---
+    @(link_name = "PxSceneSQSystem_forceDynamicTreeRebuild_mut")
+    scene_s_q_system_force_dynamic_tree_rebuild_mut :: proc(self_: ^PxSceneSQSystem, rebuildStaticStructure: _c.bool, rebuildDynamicStructure: _c.bool) ---
 
     /// Return the value of PxSceneQueryDesc::staticStructure that was set when creating the scene with PxPhysics::createScene
-    PxSceneSQSystem_getStaticStructure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    @(link_name = "PxSceneSQSystem_getStaticStructure")
+    scene_s_q_system_get_static_structure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
 
     /// Return the value of PxSceneQueryDesc::dynamicStructure that was set when creating the scene with PxPhysics::createScene
-    PxSceneSQSystem_getDynamicStructure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    @(link_name = "PxSceneSQSystem_getDynamicStructure")
+    scene_s_q_system_get_dynamic_structure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
 
     /// Executes scene queries update tasks.
     ///
@@ -10499,7 +11526,8 @@ foreign libphysx {
     ///
     /// If PxSceneQueryUpdateMode::eBUILD_DISABLED_COMMIT_DISABLED is used, it is required to update the scene queries
     /// using this function.
-    PxSceneSQSystem_sceneQueriesUpdate_mut :: proc(self_: ^PxSceneSQSystem, completionTask: ^PxBaseTask, controlSimulation: _c.bool) ---
+    @(link_name = "PxSceneSQSystem_sceneQueriesUpdate_mut")
+    scene_s_q_system_scene_queries_update_mut :: proc(self_: ^PxSceneSQSystem, completionTask: ^PxBaseTask, controlSimulation: _c.bool) ---
 
     /// This checks to see if the scene queries update has completed.
     ///
@@ -10507,44 +11535,52 @@ foreign libphysx {
     /// The bool will allow it to either return immediately or block waiting for the condition to be met so that it can return true
     ///
     /// True if the results are available.
-    PxSceneSQSystem_checkQueries_mut :: proc(self_: ^PxSceneSQSystem, block: _c.bool) -> _c.bool ---
+    @(link_name = "PxSceneSQSystem_checkQueries_mut")
+    scene_s_q_system_check_queries_mut :: proc(self_: ^PxSceneSQSystem, block: _c.bool) -> _c.bool ---
 
     /// This method must be called after sceneQueriesUpdate. It will wait for the scene queries update to finish. If the user makes an illegal scene queries update call,
     /// the SDK will issue an error message.
     ///
     /// If a new AABB tree build finished, then during fetchQueries the current tree within the pruning structure is swapped with the new tree.
-    PxSceneSQSystem_fetchQueries_mut :: proc(self_: ^PxSceneSQSystem, block: _c.bool) -> _c.bool ---
+    @(link_name = "PxSceneSQSystem_fetchQueries_mut")
+    scene_s_q_system_fetch_queries_mut :: proc(self_: ^PxSceneSQSystem, block: _c.bool) -> _c.bool ---
 
     /// Decrements the reference count of the object and releases it if the new reference count is zero.
-    PxSceneQuerySystem_release_mut :: proc(self_: ^PxSceneQuerySystem) ---
+    @(link_name = "PxSceneQuerySystem_release_mut")
+    scene_query_system_release_mut :: proc(self_: ^PxSceneQuerySystem) ---
 
     /// Acquires a counted reference to this object.
     ///
     /// This method increases the reference count of the object by 1. Decrement the reference count by calling release()
-    PxSceneQuerySystem_acquireReference_mut :: proc(self_: ^PxSceneQuerySystem) ---
+    @(link_name = "PxSceneQuerySystem_acquireReference_mut")
+    scene_query_system_acquire_reference_mut :: proc(self_: ^PxSceneQuerySystem) ---
 
     /// Preallocates internal arrays to minimize the amount of reallocations.
     ///
     /// The system does not prevent more allocations than given numbers. It is legal to not call this function at all,
     /// or to add more shapes to the system than the preallocated amounts.
-    PxSceneQuerySystem_preallocate_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t, nbShapes: _c.uint32_t) ---
+    @(link_name = "PxSceneQuerySystem_preallocate_mut")
+    scene_query_system_preallocate_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t, nbShapes: _c.uint32_t) ---
 
     /// Frees internal memory that may not be in-use anymore.
     ///
     /// This is an entry point for reclaiming transient memory allocated at some point by the SQ system,
     /// but which wasn't been immediately freed for performance reason. Calling this function might free
     /// some memory, but it might also produce a new set of allocations in the next frame.
-    PxSceneQuerySystem_flushMemory_mut :: proc(self_: ^PxSceneQuerySystem) ---
+    @(link_name = "PxSceneQuerySystem_flushMemory_mut")
+    scene_query_system_flush_memory_mut :: proc(self_: ^PxSceneQuerySystem) ---
 
     /// Adds a shape to the SQ system.
     ///
     /// The same function is used to add either a regular shape, or a SQ compound shape.
-    PxSceneQuerySystem_addSQShape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shape: ^PxShape, bounds: ^PxBounds3, transform: ^PxTransform, compoundHandle: ^_c.uint32_t, hasPruningStructure: _c.bool) ---
+    @(link_name = "PxSceneQuerySystem_addSQShape_mut")
+    scene_query_system_add_s_q_shape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, #by_ptr shape: PxShape, #by_ptr bounds: PxBounds3, #by_ptr transform: PxTransform, compoundHandle: ^_c.uint32_t, hasPruningStructure: _c.bool) ---
 
     /// Removes a shape from the SQ system.
     ///
     /// The same function is used to remove either a regular shape, or a SQ compound shape.
-    PxSceneQuerySystem_removeSQShape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shape: ^PxShape) ---
+    @(link_name = "PxSceneQuerySystem_removeSQShape_mut")
+    scene_query_system_remove_s_q_shape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, #by_ptr shape: PxShape) ---
 
     /// Updates a shape in the SQ system.
     ///
@@ -10553,28 +11589,34 @@ foreign libphysx {
     /// The transforms are eager-evaluated, but the bounds are lazy-evaluated. This means that
     /// the updated transform has to be passed to the update function, while the bounds are automatically
     /// recomputed by the system whenever needed.
-    PxSceneQuerySystem_updateSQShape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shape: ^PxShape, transform: ^PxTransform) ---
+    @(link_name = "PxSceneQuerySystem_updateSQShape_mut")
+    scene_query_system_update_s_q_shape_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, #by_ptr shape: PxShape, #by_ptr transform: PxTransform) ---
 
     /// Adds a compound to the SQ system.
     ///
     /// SQ compound handle
-    PxSceneQuerySystem_addSQCompound_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shapes: ^^PxShape, bvh: ^PxBVH, transforms: ^PxTransform) -> _c.uint32_t ---
+    @(link_name = "PxSceneQuerySystem_addSQCompound_mut")
+    scene_query_system_add_s_q_compound_mut :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shapes: ^^PxShape, #by_ptr bvh: PxBVH, transforms: ^PxTransform) -> _c.uint32_t ---
 
     /// Removes a compound from the SQ system.
-    PxSceneQuerySystem_removeSQCompound_mut :: proc(self_: ^PxSceneQuerySystem, compoundHandle: _c.uint32_t) ---
+    @(link_name = "PxSceneQuerySystem_removeSQCompound_mut")
+    scene_query_system_remove_s_q_compound_mut :: proc(self_: ^PxSceneQuerySystem, compoundHandle: _c.uint32_t) ---
 
     /// Updates a compound in the SQ system.
     ///
     /// The compound structures are immediately updated when the call occurs.
-    PxSceneQuerySystem_updateSQCompound_mut :: proc(self_: ^PxSceneQuerySystem, compoundHandle: _c.uint32_t, compoundTransform: ^PxTransform) ---
+    @(link_name = "PxSceneQuerySystem_updateSQCompound_mut")
+    scene_query_system_update_s_q_compound_mut :: proc(self_: ^PxSceneQuerySystem, compoundHandle: _c.uint32_t, #by_ptr compoundTransform: PxTransform) ---
 
     /// Shift the data structures' origin by the specified vector.
     ///
     /// Please refer to the notes of the similar function in PxScene.
-    PxSceneQuerySystem_shiftOrigin_mut :: proc(self_: ^PxSceneQuerySystem, shift: ^PxVec3) ---
+    @(link_name = "PxSceneQuerySystem_shiftOrigin_mut")
+    scene_query_system_shift_origin_mut :: proc(self_: ^PxSceneQuerySystem, #by_ptr shift: PxVec3) ---
 
     /// Merges a pruning structure with the SQ system's internal pruners.
-    PxSceneQuerySystem_merge_mut :: proc(self_: ^PxSceneQuerySystem, pruningStructure: ^PxPruningStructure) ---
+    @(link_name = "PxSceneQuerySystem_merge_mut")
+    scene_query_system_merge_mut :: proc(self_: ^PxSceneQuerySystem, #by_ptr pruningStructure: PxPruningStructure) ---
 
     /// Shape to SQ-pruner-handle mapping function.
     ///
@@ -10582,7 +11624,8 @@ foreign libphysx {
     /// that was previously added to the system. This is needed for the sync function.
     ///
     /// Associated SQ pruner handle.
-    PxSceneQuerySystem_getHandle :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, shape: ^PxShape, prunerIndex: ^_c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxSceneQuerySystem_getHandle")
+    scene_query_system_get_handle :: proc(self_: ^PxSceneQuerySystem, actor: ^PxRigidActor, #by_ptr shape: PxShape, prunerIndex: ^_c.uint32_t) -> _c.uint32_t ---
 
     /// Synchronizes the scene-query system with another system that references the same objects.
     ///
@@ -10591,7 +11634,8 @@ foreign libphysx {
     /// the rigid-body simulation engine computes the new poses and transforms, and passes them to the scene-query system using this function. It is
     /// more efficient than calling updateSQShape on each object individually, since updateSQShape would end up recomputing the bounds already available
     /// in the rigid-body engine.
-    PxSceneQuerySystem_sync_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t, handles: ^_c.uint32_t, indices: ^_c.uint32_t, bounds: ^PxBounds3, transforms: ^PxTransformPadded, count: _c.uint32_t, ignoredIndices: ^PxBitMap) ---
+    @(link_name = "PxSceneQuerySystem_sync_mut")
+    scene_query_system_sync_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t, handles: ^_c.uint32_t, indices: ^_c.uint32_t, bounds: ^PxBounds3, transforms: ^PxTransformPadded, count: _c.uint32_t, #by_ptr ignoredIndices: PxBitMap) ---
 
     /// Finalizes updates made to the SQ system.
     ///
@@ -10606,7 +11650,8 @@ foreign libphysx {
     /// - incrementally rebuilds AABB-trees
     ///
     /// The amount of work performed in this function depends on PxSceneQueryUpdateMode.
-    PxSceneQuerySystem_finalizeUpdates_mut :: proc(self_: ^PxSceneQuerySystem) ---
+    @(link_name = "PxSceneQuerySystem_finalizeUpdates_mut")
+    scene_query_system_finalize_updates_mut :: proc(self_: ^PxSceneQuerySystem) ---
 
     /// Prepares asynchronous build step.
     ///
@@ -10621,7 +11666,8 @@ foreign libphysx {
     /// A pruner-specific handle that will be sent to sceneQueryBuildStep if there is any work to do, i.e. to execute the corresponding sceneQueryBuildStep() call.
     ///
     /// Null if there is no work to do, otherwise a pruner-specific handle.
-    PxSceneQuerySystem_prepareSceneQueryBuildStep_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t) -> rawptr ---
+    @(link_name = "PxSceneQuerySystem_prepareSceneQueryBuildStep_mut")
+    scene_query_system_prepare_scene_query_build_step_mut :: proc(self_: ^PxSceneQuerySystem, prunerIndex: _c.uint32_t) -> rawptr ---
 
     /// Executes asynchronous build step.
     ///
@@ -10629,11 +11675,14 @@ foreign libphysx {
     ///
     /// This function incrementally builds the internal trees/pruners. It is called asynchronously, i.e. this can be
     /// called from different threads for building multiple trees at the same time.
-    PxSceneQuerySystem_sceneQueryBuildStep_mut :: proc(self_: ^PxSceneQuerySystem, handle: rawptr) ---
+    @(link_name = "PxSceneQuerySystem_sceneQueryBuildStep_mut")
+    scene_query_system_scene_query_build_step_mut :: proc(self_: ^PxSceneQuerySystem, handle: rawptr) ---
 
-    PxBroadPhaseDesc_new :: proc(type: _c.int32_t) -> PxBroadPhaseDesc ---
+    @(link_name = "PxBroadPhaseDesc_new")
+    broad_phase_desc_new :: proc(type: _c.int32_t) -> PxBroadPhaseDesc ---
 
-    PxBroadPhaseDesc_isValid :: proc(self_: ^PxBroadPhaseDesc) -> _c.bool ---
+    @(link_name = "PxBroadPhaseDesc_isValid")
+    broad_phase_desc_is_valid :: proc(self_: ^PxBroadPhaseDesc) -> _c.bool ---
 
     /// Retrieves the filter group for static objects.
     ///
@@ -10642,7 +11691,8 @@ foreign libphysx {
     /// should have the same group.
     ///
     /// Filter group for static objects.
-    phys_PxGetBroadPhaseStaticFilterGroup :: proc() -> _c.uint32_t ---
+    @(link_name = "phys_PxGetBroadPhaseStaticFilterGroup")
+    get_broad_phase_static_filter_group :: proc() -> _c.uint32_t ---
 
     /// Retrieves a filter group for dynamic objects.
     ///
@@ -10652,7 +11702,8 @@ foreign libphysx {
     /// of the same (compound) actor directly within the broadphase.
     ///
     /// Filter group for the object.
-    phys_PxGetBroadPhaseDynamicFilterGroup :: proc(id: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxGetBroadPhaseDynamicFilterGroup")
+    get_broad_phase_dynamic_filter_group :: proc(id: _c.uint32_t) -> _c.uint32_t ---
 
     /// Retrieves a filter group for kinematic objects.
     ///
@@ -10661,21 +11712,26 @@ foreign libphysx {
     /// the same ID will not be detected.
     ///
     /// Filter group for the object.
-    phys_PxGetBroadPhaseKinematicFilterGroup :: proc(id: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "phys_PxGetBroadPhaseKinematicFilterGroup")
+    get_broad_phase_kinematic_filter_group :: proc(id: _c.uint32_t) -> _c.uint32_t ---
 
-    PxBroadPhaseUpdateData_new :: proc(created: ^_c.uint32_t, nbCreated: _c.uint32_t, updated: ^_c.uint32_t, nbUpdated: _c.uint32_t, removed: ^_c.uint32_t, nbRemoved: _c.uint32_t, bounds: ^PxBounds3, groups: ^_c.uint32_t, distances: ^_c.float, capacity: _c.uint32_t) -> PxBroadPhaseUpdateData ---
+    @(link_name = "PxBroadPhaseUpdateData_new")
+    broad_phase_update_data_new :: proc(created: ^_c.uint32_t, nbCreated: _c.uint32_t, updated: ^_c.uint32_t, nbUpdated: _c.uint32_t, removed: ^_c.uint32_t, nbRemoved: _c.uint32_t, bounds: ^PxBounds3, groups: ^_c.uint32_t, distances: ^_c.float, capacity: _c.uint32_t) -> PxBroadPhaseUpdateData ---
 
-    PxBroadPhaseResults_new :: proc() -> PxBroadPhaseResults ---
+    @(link_name = "PxBroadPhaseResults_new")
+    broad_phase_results_new :: proc() -> PxBroadPhaseResults ---
 
     /// Returns number of regions currently registered in the broad-phase.
     ///
     /// Number of regions
-    PxBroadPhaseRegions_getNbRegions :: proc(self_: ^PxBroadPhaseRegions) -> _c.uint32_t ---
+    @(link_name = "PxBroadPhaseRegions_getNbRegions")
+    broad_phase_regions_get_nb_regions :: proc(self_: ^PxBroadPhaseRegions) -> _c.uint32_t ---
 
     /// Gets broad-phase regions.
     ///
     /// Number of written out regions.
-    PxBroadPhaseRegions_getRegions :: proc(self_: ^PxBroadPhaseRegions, userBuffer: ^PxBroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxBroadPhaseRegions_getRegions")
+    broad_phase_regions_get_regions :: proc(self_: ^PxBroadPhaseRegions, userBuffer: ^PxBroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Adds a new broad-phase region.
     ///
@@ -10699,7 +11755,8 @@ foreign libphysx {
     /// are re-enabled for that object.
     ///
     /// Handle for newly created region, or 0xffffffff in case of failure.
-    PxBroadPhaseRegions_addRegion_mut :: proc(self_: ^PxBroadPhaseRegions, region: ^PxBroadPhaseRegion, populateRegion: _c.bool, bounds: ^PxBounds3, distances: ^_c.float) -> _c.uint32_t ---
+    @(link_name = "PxBroadPhaseRegions_addRegion_mut")
+    broad_phase_regions_add_region_mut :: proc(self_: ^PxBroadPhaseRegions, #by_ptr region: PxBroadPhaseRegion, populateRegion: _c.bool, bounds: ^PxBounds3, distances: ^_c.float) -> _c.uint32_t ---
 
     /// Removes a broad-phase region.
     ///
@@ -10711,28 +11768,35 @@ foreign libphysx {
     /// If the handle is invalid, or if a valid handle is removed twice, an error message is sent to the error stream.
     ///
     /// True if success
-    PxBroadPhaseRegions_removeRegion_mut :: proc(self_: ^PxBroadPhaseRegions, handle: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxBroadPhaseRegions_removeRegion_mut")
+    broad_phase_regions_remove_region_mut :: proc(self_: ^PxBroadPhaseRegions, handle: _c.uint32_t) -> _c.bool ---
 
-    PxBroadPhaseRegions_getNbOutOfBoundsObjects :: proc(self_: ^PxBroadPhaseRegions) -> _c.uint32_t ---
+    @(link_name = "PxBroadPhaseRegions_getNbOutOfBoundsObjects")
+    broad_phase_regions_get_nb_out_of_bounds_objects :: proc(self_: ^PxBroadPhaseRegions) -> _c.uint32_t ---
 
-    PxBroadPhaseRegions_getOutOfBoundsObjects :: proc(self_: ^PxBroadPhaseRegions) -> ^_c.uint32_t ---
+    @(link_name = "PxBroadPhaseRegions_getOutOfBoundsObjects")
+    broad_phase_regions_get_out_of_bounds_objects :: proc(self_: ^PxBroadPhaseRegions) -> ^_c.uint32_t ---
 
-    PxBroadPhase_release_mut :: proc(self_: ^PxBroadPhase) ---
+    @(link_name = "PxBroadPhase_release_mut")
+    broad_phase_release_mut :: proc(self_: ^PxBroadPhase) ---
 
     /// Gets the broadphase type.
     ///
     /// Broadphase type.
-    PxBroadPhase_getType :: proc(self_: ^PxBroadPhase) -> _c.int32_t ---
+    @(link_name = "PxBroadPhase_getType")
+    broad_phase_get_type :: proc(self_: ^PxBroadPhase) -> _c.int32_t ---
 
     /// Gets broad-phase caps.
-    PxBroadPhase_getCaps :: proc(self_: ^PxBroadPhase, caps: ^PxBroadPhaseCaps) ---
+    @(link_name = "PxBroadPhase_getCaps")
+    broad_phase_get_caps :: proc(self_: ^PxBroadPhase, caps: ^PxBroadPhaseCaps) ---
 
     /// Retrieves the regions API if applicable.
     ///
     /// For broadphases that do not use explicit user-defined regions, this call returns NULL.
     ///
     /// Region API, or NULL.
-    PxBroadPhase_getRegions_mut :: proc(self_: ^PxBroadPhase) -> ^PxBroadPhaseRegions ---
+    @(link_name = "PxBroadPhase_getRegions_mut")
+    broad_phase_get_regions_mut :: proc(self_: ^PxBroadPhase) -> ^PxBroadPhaseRegions ---
 
     /// Retrieves the broadphase allocator.
     ///
@@ -10741,12 +11805,14 @@ foreign libphysx {
     /// host memory.
     ///
     /// The broadphase allocator.
-    PxBroadPhase_getAllocator_mut :: proc(self_: ^PxBroadPhase) -> ^PxAllocatorCallback ---
+    @(link_name = "PxBroadPhase_getAllocator_mut")
+    broad_phase_get_allocator_mut :: proc(self_: ^PxBroadPhase) -> ^PxAllocatorCallback ---
 
     /// Retrieves the profiler's context ID.
     ///
     /// The context ID.
-    PxBroadPhase_getContextID :: proc(self_: ^PxBroadPhase) -> _c.uint64_t ---
+    @(link_name = "PxBroadPhase_getContextID")
+    broad_phase_get_context_i_d :: proc(self_: ^PxBroadPhase) -> _c.uint64_t ---
 
     /// Sets a scratch buffer
     ///
@@ -10754,7 +11820,8 @@ foreign libphysx {
     ///
     /// All broadphases still work without providing a scratch buffer, this is an optional function
     /// that can potentially reduce runtime allocations.
-    PxBroadPhase_setScratchBlock_mut :: proc(self_: ^PxBroadPhase, scratchBlock: rawptr, size: _c.uint32_t) ---
+    @(link_name = "PxBroadPhase_setScratchBlock_mut")
+    broad_phase_set_scratch_block_mut :: proc(self_: ^PxBroadPhase, scratchBlock: rawptr, size: _c.uint32_t) ---
 
     /// Updates the broadphase and computes the lists of created/deleted pairs.
     ///
@@ -10763,74 +11830,87 @@ foreign libphysx {
     /// To benefit from potentially multithreaded implementations, it is necessary to provide a continuation
     /// task to the function. It is legal to pass NULL there, but the underlying (CPU) implementations will
     /// then run single-threaded.
-    PxBroadPhase_update_mut :: proc(self_: ^PxBroadPhase, updateData: ^PxBroadPhaseUpdateData, continuation: ^PxBaseTask) ---
+    @(link_name = "PxBroadPhase_update_mut")
+    broad_phase_update_mut :: proc(self_: ^PxBroadPhase, #by_ptr updateData: PxBroadPhaseUpdateData, continuation: ^PxBaseTask) ---
 
     /// Retrieves the broadphase results after an update.
     ///
     /// This should be called once after each update call to retrieve the results of the broadphase. The
     /// results are incremental, i.e. the system only returns new and lost pairs, not all current pairs.
-    PxBroadPhase_fetchResults_mut :: proc(self_: ^PxBroadPhase, results: ^PxBroadPhaseResults) ---
+    @(link_name = "PxBroadPhase_fetchResults_mut")
+    broad_phase_fetch_results_mut :: proc(self_: ^PxBroadPhase, results: ^PxBroadPhaseResults) ---
 
     /// Helper for single-threaded updates.
     ///
     /// This short helper function performs a single-theaded update and reports the results in a single call.
-    PxBroadPhase_update_mut_1 :: proc(self_: ^PxBroadPhase, results: ^PxBroadPhaseResults, updateData: ^PxBroadPhaseUpdateData) ---
+    @(link_name = "PxBroadPhase_update_mut_1")
+    broad_phase_update_mut_1 :: proc(self_: ^PxBroadPhase, results: ^PxBroadPhaseResults, #by_ptr updateData: PxBroadPhaseUpdateData) ---
 
     /// Broadphase factory function.
     ///
     /// Use this function to create a new standalone broadphase.
     ///
     /// Newly created broadphase, or NULL
-    phys_PxCreateBroadPhase :: proc(desc: ^PxBroadPhaseDesc) -> ^PxBroadPhase ---
+    @(link_name = "phys_PxCreateBroadPhase")
+    create_broad_phase :: proc(#by_ptr desc: PxBroadPhaseDesc) -> ^PxBroadPhase ---
 
-    PxAABBManager_release_mut :: proc(self_: ^PxAABBManager) ---
+    @(link_name = "PxAABBManager_release_mut")
+    a_a_b_b_manager_release_mut :: proc(self_: ^PxAABBManager) ---
 
     /// Retrieves the underlying broadphase.
     ///
     /// The managed broadphase.
-    PxAABBManager_getBroadPhase_mut :: proc(self_: ^PxAABBManager) -> ^PxBroadPhase ---
+    @(link_name = "PxAABBManager_getBroadPhase_mut")
+    a_a_b_b_manager_get_broad_phase_mut :: proc(self_: ^PxAABBManager) -> ^PxBroadPhase ---
 
     /// Retrieves the managed bounds.
     ///
     /// This is needed as input parameters to functions like PxBroadPhaseRegions::addRegion.
     ///
     /// The managed object bounds.
-    PxAABBManager_getBounds :: proc(self_: ^PxAABBManager) -> ^PxBounds3 ---
+    @(link_name = "PxAABBManager_getBounds")
+    a_a_b_b_manager_get_bounds :: proc(self_: ^PxAABBManager) -> ^PxBounds3 ---
 
     /// Retrieves the managed distances.
     ///
     /// This is needed as input parameters to functions like PxBroadPhaseRegions::addRegion.
     ///
     /// The managed object distances.
-    PxAABBManager_getDistances :: proc(self_: ^PxAABBManager) -> ^_c.float ---
+    @(link_name = "PxAABBManager_getDistances")
+    a_a_b_b_manager_get_distances :: proc(self_: ^PxAABBManager) -> ^_c.float ---
 
     /// Retrieves the managed filter groups.
     ///
     /// The managed object groups.
-    PxAABBManager_getGroups :: proc(self_: ^PxAABBManager) -> ^_c.uint32_t ---
+    @(link_name = "PxAABBManager_getGroups")
+    a_a_b_b_manager_get_groups :: proc(self_: ^PxAABBManager) -> ^_c.uint32_t ---
 
     /// Retrieves the managed buffers' capacity.
     ///
     /// Bounds, distances and groups buffers have the same capacity.
     ///
     /// The managed buffers' capacity.
-    PxAABBManager_getCapacity :: proc(self_: ^PxAABBManager) -> _c.uint32_t ---
+    @(link_name = "PxAABBManager_getCapacity")
+    a_a_b_b_manager_get_capacity :: proc(self_: ^PxAABBManager) -> _c.uint32_t ---
 
     /// Adds an object to the manager.
     ///
     /// Objects' indices are externally managed, i.e. they must be provided by users (as opposed to handles
     /// that could be returned by this manager). The design allows users to identify an object by a single ID,
     /// and use the same ID in multiple sub-systems.
-    PxAABBManager_addObject_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t, bounds: ^PxBounds3, group: _c.uint32_t, distance: _c.float) ---
+    @(link_name = "PxAABBManager_addObject_mut")
+    a_a_b_b_manager_add_object_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t, #by_ptr bounds: PxBounds3, group: _c.uint32_t, distance: _c.float) ---
 
     /// Removes an object from the manager.
-    PxAABBManager_removeObject_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t) ---
+    @(link_name = "PxAABBManager_removeObject_mut")
+    a_a_b_b_manager_remove_object_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t) ---
 
     /// Updates an object in the manager.
     ///
     /// This call can update an object's bounds, distance, or both.
     /// It is not possible to update an object's filter group.
-    PxAABBManager_updateObject_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t, bounds: ^PxBounds3, distance: ^_c.float) ---
+    @(link_name = "PxAABBManager_updateObject_mut")
+    a_a_b_b_manager_update_object_mut :: proc(self_: ^PxAABBManager, index: _c.uint32_t, bounds: ^PxBounds3, distance: ^_c.float) ---
 
     /// Updates the broadphase and computes the lists of created/deleted pairs.
     ///
@@ -10839,63 +11919,78 @@ foreign libphysx {
     /// To benefit from potentially multithreaded implementations, it is necessary to provide a continuation
     /// task to the function. It is legal to pass NULL there, but the underlying (CPU) implementations will
     /// then run single-threaded.
-    PxAABBManager_update_mut :: proc(self_: ^PxAABBManager, continuation: ^PxBaseTask) ---
+    @(link_name = "PxAABBManager_update_mut")
+    a_a_b_b_manager_update_mut :: proc(self_: ^PxAABBManager, continuation: ^PxBaseTask) ---
 
     /// Retrieves the broadphase results after an update.
     ///
     /// This should be called once after each update call to retrieve the results of the broadphase. The
     /// results are incremental, i.e. the system only returns new and lost pairs, not all current pairs.
-    PxAABBManager_fetchResults_mut :: proc(self_: ^PxAABBManager, results: ^PxBroadPhaseResults) ---
+    @(link_name = "PxAABBManager_fetchResults_mut")
+    a_a_b_b_manager_fetch_results_mut :: proc(self_: ^PxAABBManager, results: ^PxBroadPhaseResults) ---
 
     /// Helper for single-threaded updates.
     ///
     /// This short helper function performs a single-theaded update and reports the results in a single call.
-    PxAABBManager_update_mut_1 :: proc(self_: ^PxAABBManager, results: ^PxBroadPhaseResults) ---
+    @(link_name = "PxAABBManager_update_mut_1")
+    a_a_b_b_manager_update_mut_1 :: proc(self_: ^PxAABBManager, results: ^PxBroadPhaseResults) ---
 
     /// AABB manager factory function.
     ///
     /// Use this function to create a new standalone high-level broadphase.
     ///
     /// Newly created AABB manager, or NULL
-    phys_PxCreateAABBManager :: proc(broadphase: ^PxBroadPhase) -> ^PxAABBManager ---
+    @(link_name = "phys_PxCreateAABBManager")
+    create_a_a_b_b_manager :: proc(broadphase: ^PxBroadPhase) -> ^PxAABBManager ---
 
     /// constructor sets to default
-    PxSceneLimits_new :: proc() -> PxSceneLimits ---
+    @(link_name = "PxSceneLimits_new")
+    scene_limits_new :: proc() -> PxSceneLimits ---
 
     /// (re)sets the structure to the default
-    PxSceneLimits_setToDefault_mut :: proc(self_: ^PxSceneLimits) ---
+    @(link_name = "PxSceneLimits_setToDefault_mut")
+    scene_limits_set_to_default_mut :: proc(self_: ^PxSceneLimits) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxSceneLimits_isValid :: proc(self_: ^PxSceneLimits) -> _c.bool ---
+    @(link_name = "PxSceneLimits_isValid")
+    scene_limits_is_valid :: proc(self_: ^PxSceneLimits) -> _c.bool ---
 
-    PxgDynamicsMemoryConfig_new :: proc() -> PxgDynamicsMemoryConfig ---
+    @(link_name = "PxgDynamicsMemoryConfig_new")
+    g_dynamics_memory_config_new :: proc() -> PxgDynamicsMemoryConfig ---
 
-    PxgDynamicsMemoryConfig_isValid :: proc(self_: ^PxgDynamicsMemoryConfig) -> _c.bool ---
+    @(link_name = "PxgDynamicsMemoryConfig_isValid")
+    g_dynamics_memory_config_is_valid :: proc(self_: ^PxgDynamicsMemoryConfig) -> _c.bool ---
 
     /// constructor sets to default.
-    PxSceneDesc_new :: proc(scale: ^PxTolerancesScale) -> PxSceneDesc ---
+    @(link_name = "PxSceneDesc_new")
+    scene_desc_new :: proc(#by_ptr scale: PxTolerancesScale) -> PxSceneDesc ---
 
     /// (re)sets the structure to the default.
-    PxSceneDesc_setToDefault_mut :: proc(self_: ^PxSceneDesc, scale: ^PxTolerancesScale) ---
+    @(link_name = "PxSceneDesc_setToDefault_mut")
+    scene_desc_set_to_default_mut :: proc(self_: ^PxSceneDesc, #by_ptr scale: PxTolerancesScale) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxSceneDesc_isValid :: proc(self_: ^PxSceneDesc) -> _c.bool ---
+    @(link_name = "PxSceneDesc_isValid")
+    scene_desc_is_valid :: proc(self_: ^PxSceneDesc) -> _c.bool ---
 
-    PxSceneDesc_getTolerancesScale :: proc(self_: ^PxSceneDesc) -> ^PxTolerancesScale ---
+    @(link_name = "PxSceneDesc_getTolerancesScale")
+    scene_desc_get_tolerances_scale :: proc(self_: ^PxSceneDesc) -> ^PxTolerancesScale ---
 
     /// Get number of broadphase volumes added for the current simulation step.
     ///
     /// Number of broadphase volumes added.
-    PxSimulationStatistics_getNbBroadPhaseAdds :: proc(self_: ^PxSimulationStatistics) -> _c.uint32_t ---
+    @(link_name = "PxSimulationStatistics_getNbBroadPhaseAdds")
+    simulation_statistics_get_nb_broad_phase_adds :: proc(self_: ^PxSimulationStatistics) -> _c.uint32_t ---
 
     /// Get number of broadphase volumes removed for the current simulation step.
     ///
     /// Number of broadphase volumes removed.
-    PxSimulationStatistics_getNbBroadPhaseRemoves :: proc(self_: ^PxSimulationStatistics) -> _c.uint32_t ---
+    @(link_name = "PxSimulationStatistics_getNbBroadPhaseRemoves")
+    simulation_statistics_get_nb_broad_phase_removes :: proc(self_: ^PxSimulationStatistics) -> _c.uint32_t ---
 
     /// Get number of shape collision pairs of a certain type processed for the current simulation step.
     ///
@@ -10905,47 +12000,61 @@ foreign libphysx {
     /// types, you need to discard the symmetric entries
     ///
     /// Number of processed pairs of the specified geometry types.
-    PxSimulationStatistics_getRbPairStats :: proc(self_: ^PxSimulationStatistics, pairType: _c.int32_t, g0: _c.int32_t, g1: _c.int32_t) -> _c.uint32_t ---
+    @(link_name = "PxSimulationStatistics_getRbPairStats")
+    simulation_statistics_get_rb_pair_stats :: proc(self_: ^PxSimulationStatistics, pairType: _c.int32_t, g0: _c.int32_t, g1: _c.int32_t) -> _c.uint32_t ---
 
-    PxSimulationStatistics_new :: proc() -> PxSimulationStatistics ---
+    @(link_name = "PxSimulationStatistics_new")
+    simulation_statistics_new :: proc() -> PxSimulationStatistics ---
 
     /// Sets the PVD flag. See PxPvdSceneFlag.
-    PxPvdSceneClient_setScenePvdFlag_mut :: proc(self_: ^PxPvdSceneClient, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxPvdSceneClient_setScenePvdFlag_mut")
+    pvd_scene_client_set_scene_pvd_flag_mut :: proc(self_: ^PxPvdSceneClient, flag: _c.int32_t, value: _c.bool) ---
 
     /// Sets the PVD flags. See PxPvdSceneFlags.
-    PxPvdSceneClient_setScenePvdFlags_mut :: proc(self_: ^PxPvdSceneClient, flags: _c.uint8_t) ---
+    @(link_name = "PxPvdSceneClient_setScenePvdFlags_mut")
+    pvd_scene_client_set_scene_pvd_flags_mut :: proc(self_: ^PxPvdSceneClient, flags: _c.uint8_t) ---
 
     /// Retrieves the PVD flags. See PxPvdSceneFlags.
-    PxPvdSceneClient_getScenePvdFlags :: proc(self_: ^PxPvdSceneClient) -> _c.uint8_t ---
+    @(link_name = "PxPvdSceneClient_getScenePvdFlags")
+    pvd_scene_client_get_scene_pvd_flags :: proc(self_: ^PxPvdSceneClient) -> _c.uint8_t ---
 
     /// update camera on PVD application's render window
-    PxPvdSceneClient_updateCamera_mut :: proc(self_: ^PxPvdSceneClient, name: ^_c.char, origin: ^PxVec3, up: ^PxVec3, target: ^PxVec3) ---
+    @(link_name = "PxPvdSceneClient_updateCamera_mut")
+    pvd_scene_client_update_camera_mut :: proc(self_: ^PxPvdSceneClient, name: ^_c.char, #by_ptr origin: PxVec3, #by_ptr up: PxVec3, #by_ptr target: PxVec3) ---
 
     /// draw points on PVD application's render window
-    PxPvdSceneClient_drawPoints_mut :: proc(self_: ^PxPvdSceneClient, points: ^PxDebugPoint, count: _c.uint32_t) ---
+    @(link_name = "PxPvdSceneClient_drawPoints_mut")
+    pvd_scene_client_draw_points_mut :: proc(self_: ^PxPvdSceneClient, points: ^PxDebugPoint, count: _c.uint32_t) ---
 
     /// draw lines on PVD application's render window
-    PxPvdSceneClient_drawLines_mut :: proc(self_: ^PxPvdSceneClient, lines: ^PxDebugLine, count: _c.uint32_t) ---
+    @(link_name = "PxPvdSceneClient_drawLines_mut")
+    pvd_scene_client_draw_lines_mut :: proc(self_: ^PxPvdSceneClient, lines: ^PxDebugLine, count: _c.uint32_t) ---
 
     /// draw triangles on PVD application's render window
-    PxPvdSceneClient_drawTriangles_mut :: proc(self_: ^PxPvdSceneClient, triangles: ^PxDebugTriangle, count: _c.uint32_t) ---
+    @(link_name = "PxPvdSceneClient_drawTriangles_mut")
+    pvd_scene_client_draw_triangles_mut :: proc(self_: ^PxPvdSceneClient, triangles: ^PxDebugTriangle, count: _c.uint32_t) ---
 
     /// draw text on PVD application's render window
-    PxPvdSceneClient_drawText_mut :: proc(self_: ^PxPvdSceneClient, text: ^PxDebugText) ---
+    @(link_name = "PxPvdSceneClient_drawText_mut")
+    pvd_scene_client_draw_text_mut :: proc(self_: ^PxPvdSceneClient, #by_ptr text: PxDebugText) ---
 
-    PxDominanceGroupPair_new :: proc(a: _c.uint8_t, b: _c.uint8_t) -> PxDominanceGroupPair ---
+    @(link_name = "PxDominanceGroupPair_new")
+    dominance_group_pair_new :: proc(a: _c.uint8_t, b: _c.uint8_t) -> PxDominanceGroupPair ---
 
-    PxBroadPhaseCallback_delete :: proc(self_: ^PxBroadPhaseCallback) ---
+    @(link_name = "PxBroadPhaseCallback_delete")
+    broad_phase_callback_delete :: proc(self_: ^PxBroadPhaseCallback) ---
 
     /// Out-of-bounds notification.
     ///
     /// This function is called when an object leaves the broad-phase.
-    PxBroadPhaseCallback_onObjectOutOfBounds_mut :: proc(self_: ^PxBroadPhaseCallback, shape: ^PxShape, actor: ^PxActor) ---
+    @(link_name = "PxBroadPhaseCallback_onObjectOutOfBounds_mut")
+    broad_phase_callback_on_object_out_of_bounds_mut :: proc(self_: ^PxBroadPhaseCallback, shape: ^PxShape, actor: ^PxActor) ---
 
     /// Out-of-bounds notification.
     ///
     /// This function is called when an aggregate leaves the broad-phase.
-    PxBroadPhaseCallback_onObjectOutOfBounds_mut_1 :: proc(self_: ^PxBroadPhaseCallback, aggregate: ^PxAggregate) ---
+    @(link_name = "PxBroadPhaseCallback_onObjectOutOfBounds_mut_1")
+    broad_phase_callback_on_object_out_of_bounds_mut_1 :: proc(self_: ^PxBroadPhaseCallback, aggregate: ^PxAggregate) ---
 
     /// Deletes the scene.
     ///
@@ -10954,53 +12063,62 @@ foreign libphysx {
     ///
     /// Be sure to not keep a reference to this object after calling release.
     /// Avoid release calls while the scene is simulating (in between simulate() and fetchResults() calls).
-    PxScene_release_mut :: proc(self_: ^PxScene) ---
+    @(link_name = "PxScene_release_mut")
+    scene_release_mut :: proc(self_: ^PxScene) ---
 
     /// Sets a scene flag. You can only set one flag at a time.
     ///
     /// Not all flags are mutable and changing some will result in an error. Please check [`PxSceneFlag`] to see which flags can be changed.
-    PxScene_setFlag_mut :: proc(self_: ^PxScene, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxScene_setFlag_mut")
+    scene_set_flag_mut :: proc(self_: ^PxScene, flag: _c.int32_t, value: _c.bool) ---
 
     /// Get the scene flags.
     ///
     /// The scene flags. See [`PxSceneFlag`]
-    PxScene_getFlags :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getFlags")
+    scene_get_flags :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Set new scene limits.
     ///
     /// Increase the maximum capacity of various data structures in the scene. The new capacities will be
     /// at least as large as required to deal with the objects currently in the scene. Further, these values
     /// are for preallocation and do not represent hard limits.
-    PxScene_setLimits_mut :: proc(self_: ^PxScene, limits: ^PxSceneLimits) ---
+    @(link_name = "PxScene_setLimits_mut")
+    scene_set_limits_mut :: proc(self_: ^PxScene, #by_ptr limits: PxSceneLimits) ---
 
     /// Get current scene limits.
     ///
     /// Current scene limits.
-    PxScene_getLimits :: proc(self_: ^PxScene) -> PxSceneLimits ---
+    @(link_name = "PxScene_getLimits")
+    scene_get_limits :: proc(self_: ^PxScene) -> PxSceneLimits ---
 
     /// Call this method to retrieve the Physics SDK.
     ///
     /// The physics SDK this scene is associated with.
-    PxScene_getPhysics_mut :: proc(self_: ^PxScene) -> ^PxPhysics ---
+    @(link_name = "PxScene_getPhysics_mut")
+    scene_get_physics_mut :: proc(self_: ^PxScene) -> ^PxPhysics ---
 
     /// Retrieves the scene's internal timestamp, increased each time a simulation step is completed.
     ///
     /// scene timestamp
-    PxScene_getTimestamp :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getTimestamp")
+    scene_get_timestamp :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Adds an articulation to this scene.
     ///
     /// If the articulation is already assigned to a scene (see [`PxArticulationReducedCoordinate::getScene`]), the call is ignored and an error is issued.
     ///
     /// True if success
-    PxScene_addArticulation_mut :: proc(self_: ^PxScene, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
+    @(link_name = "PxScene_addArticulation_mut")
+    scene_add_articulation_mut :: proc(self_: ^PxScene, articulation: ^PxArticulationReducedCoordinate) -> _c.bool ---
 
     /// Removes an articulation from this scene.
     ///
     /// If the articulation is not part of this scene (see [`PxArticulationReducedCoordinate::getScene`]), the call is ignored and an error is issued.
     ///
     /// If the articulation is in an aggregate it will be removed from the aggregate.
-    PxScene_removeArticulation_mut :: proc(self_: ^PxScene, articulation: ^PxArticulationReducedCoordinate, wakeOnLostTouch: _c.bool) ---
+    @(link_name = "PxScene_removeArticulation_mut")
+    scene_remove_articulation_mut :: proc(self_: ^PxScene, articulation: ^PxArticulationReducedCoordinate, wakeOnLostTouch: _c.bool) ---
 
     /// Adds an actor to this scene.
     ///
@@ -11019,7 +12137,8 @@ foreign libphysx {
     /// bounds and then make a local space query against the provided BVH, which is in actor's local space.
     ///
     /// True if success
-    PxScene_addActor_mut :: proc(self_: ^PxScene, actor: ^PxActor, bvh: ^PxBVH) -> _c.bool ---
+    @(link_name = "PxScene_addActor_mut")
+    scene_add_actor_mut :: proc(self_: ^PxScene, actor: ^PxActor, bvh: ^PxBVH) -> _c.bool ---
 
     /// Adds actors to this scene. Only supports actors of type PxRigidStatic and PxRigidDynamic.
     ///
@@ -11036,7 +12155,8 @@ foreign libphysx {
     /// this method is optimized for high performance.
     ///
     /// True if success
-    PxScene_addActors_mut :: proc(self_: ^PxScene, actors: ^^PxActor, nbActors: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxScene_addActors_mut")
+    scene_add_actors_mut :: proc(self_: ^PxScene, actors: ^^PxActor, nbActors: _c.uint32_t) -> _c.bool ---
 
     /// Adds a pruning structure together with its actors to this scene. Only supports actors of type PxRigidStatic and PxRigidDynamic.
     ///
@@ -11056,7 +12176,8 @@ foreign libphysx {
     /// for actors scattered throughout the world will result in an unbalanced tree.
     ///
     /// True if success
-    PxScene_addActors_mut_1 :: proc(self_: ^PxScene, pruningStructure: ^PxPruningStructure) -> _c.bool ---
+    @(link_name = "PxScene_addActors_mut_1")
+    scene_add_actors_mut_1 :: proc(self_: ^PxScene, #by_ptr pruningStructure: PxPruningStructure) -> _c.bool ---
 
     /// Removes an actor from this scene.
     ///
@@ -11067,7 +12188,8 @@ foreign libphysx {
     /// If the actor is a PxRigidActor then all assigned PxConstraint objects will get removed from the scene automatically.
     ///
     /// If the actor is in an aggregate it will be removed from the aggregate.
-    PxScene_removeActor_mut :: proc(self_: ^PxScene, actor: ^PxActor, wakeOnLostTouch: _c.bool) ---
+    @(link_name = "PxScene_removeActor_mut")
+    scene_remove_actor_mut :: proc(self_: ^PxScene, actor: ^PxActor, wakeOnLostTouch: _c.bool) ---
 
     /// Removes actors from this scene. Only supports actors of type PxRigidStatic and PxRigidDynamic.
     ///
@@ -11079,7 +12201,8 @@ foreign libphysx {
     /// You can not remove individual articulation links (see [`PxArticulationLink`]) from the scene. Use #removeArticulation() instead.
     ///
     /// If the actor is a PxRigidActor then all assigned PxConstraint objects will get removed from the scene automatically.
-    PxScene_removeActors_mut :: proc(self_: ^PxScene, actors: ^^PxActor, nbActors: _c.uint32_t, wakeOnLostTouch: _c.bool) ---
+    @(link_name = "PxScene_removeActors_mut")
+    scene_remove_actors_mut :: proc(self_: ^PxScene, actors: ^^PxActor, nbActors: _c.uint32_t, wakeOnLostTouch: _c.bool) ---
 
     /// Adds an aggregate to this scene.
     ///
@@ -11090,14 +12213,16 @@ foreign libphysx {
     /// If the aggregate already contains actors, those actors are added to the scene as well.
     ///
     /// True if success
-    PxScene_addAggregate_mut :: proc(self_: ^PxScene, aggregate: ^PxAggregate) -> _c.bool ---
+    @(link_name = "PxScene_addAggregate_mut")
+    scene_add_aggregate_mut :: proc(self_: ^PxScene, aggregate: ^PxAggregate) -> _c.bool ---
 
     /// Removes an aggregate from this scene.
     ///
     /// If the aggregate is not part of this scene (see [`PxAggregate::getScene`]), the call is ignored and an error is issued.
     ///
     /// If the aggregate contains actors, those actors are removed from the scene as well.
-    PxScene_removeAggregate_mut :: proc(self_: ^PxScene, aggregate: ^PxAggregate, wakeOnLostTouch: _c.bool) ---
+    @(link_name = "PxScene_removeAggregate_mut")
+    scene_remove_aggregate_mut :: proc(self_: ^PxScene, aggregate: ^PxAggregate, wakeOnLostTouch: _c.bool) ---
 
     /// Adds objects in the collection to this scene.
     ///
@@ -11107,17 +12232,20 @@ foreign libphysx {
     /// If the collection contains an actor with an invalid constraint, in checked builds the call is ignored and an error is issued.
     ///
     /// True if success
-    PxScene_addCollection_mut :: proc(self_: ^PxScene, collection: ^PxCollection) -> _c.bool ---
+    @(link_name = "PxScene_addCollection_mut")
+    scene_add_collection_mut :: proc(self_: ^PxScene, #by_ptr collection: PxCollection) -> _c.bool ---
 
     /// Retrieve the number of actors of certain types in the scene. For supported types, see PxActorTypeFlags.
     ///
     /// the number of actors.
-    PxScene_getNbActors :: proc(self_: ^PxScene, types: _c.uint16_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbActors")
+    scene_get_nb_actors :: proc(self_: ^PxScene, types: _c.uint16_t) -> _c.uint32_t ---
 
     /// Retrieve an array of all the actors of certain types in the scene. For supported types, see PxActorTypeFlags.
     ///
     /// Number of actors written to the buffer.
-    PxScene_getActors :: proc(self_: ^PxScene, types: _c.uint16_t, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getActors")
+    scene_get_actors :: proc(self_: ^PxScene, types: _c.uint16_t, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Queries the PxScene for a list of the PxActors whose transforms have been
     /// updated during the previous simulation step. Only includes actors of type PxRigidDynamic and PxArticulationLink.
@@ -11127,37 +12255,44 @@ foreign libphysx {
     /// Do not use this method while the simulation is running. Calls to this method while the simulation is running will be ignored and NULL will be returned.
     ///
     /// A pointer to the list of active PxActors generated during the last call to fetchResults().
-    PxScene_getActiveActors_mut :: proc(self_: ^PxScene, nbActorsOut: ^_c.uint32_t) -> ^^PxActor ---
+    @(link_name = "PxScene_getActiveActors_mut")
+    scene_get_active_actors_mut :: proc(self_: ^PxScene, nbActorsOut: ^_c.uint32_t) -> ^^PxActor ---
 
     /// Returns the number of articulations in the scene.
     ///
     /// the number of articulations in this scene.
-    PxScene_getNbArticulations :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbArticulations")
+    scene_get_nb_articulations :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Retrieve all the articulations in the scene.
     ///
     /// Number of articulations written to the buffer.
-    PxScene_getArticulations :: proc(self_: ^PxScene, userBuffer: ^^PxArticulationReducedCoordinate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getArticulations")
+    scene_get_articulations :: proc(self_: ^PxScene, userBuffer: ^^PxArticulationReducedCoordinate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of constraint shaders in the scene.
     ///
     /// the number of constraint shaders in this scene.
-    PxScene_getNbConstraints :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbConstraints")
+    scene_get_nb_constraints :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Retrieve all the constraint shaders in the scene.
     ///
     /// Number of constraint shaders written to the buffer.
-    PxScene_getConstraints :: proc(self_: ^PxScene, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getConstraints")
+    scene_get_constraints :: proc(self_: ^PxScene, userBuffer: ^^PxConstraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of aggregates in the scene.
     ///
     /// the number of aggregates in this scene.
-    PxScene_getNbAggregates :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbAggregates")
+    scene_get_nb_aggregates :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Retrieve all the aggregates in the scene.
     ///
     /// Number of aggregates written to the buffer.
-    PxScene_getAggregates :: proc(self_: ^PxScene, userBuffer: ^^PxAggregate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getAggregates")
+    scene_get_aggregates :: proc(self_: ^PxScene, userBuffer: ^^PxAggregate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Specifies the dominance behavior of contacts between two actors with two certain dominance groups.
     ///
@@ -11209,60 +12344,72 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake actors up automatically.
-    PxScene_setDominanceGroupPair_mut :: proc(self_: ^PxScene, group1: _c.uint8_t, group2: _c.uint8_t, dominance: ^PxDominanceGroupPair) ---
+    @(link_name = "PxScene_setDominanceGroupPair_mut")
+    scene_set_dominance_group_pair_mut :: proc(self_: ^PxScene, group1: _c.uint8_t, group2: _c.uint8_t, #by_ptr dominance: PxDominanceGroupPair) ---
 
     /// Samples the dominance matrix.
-    PxScene_getDominanceGroupPair :: proc(self_: ^PxScene, group1: _c.uint8_t, group2: _c.uint8_t) -> PxDominanceGroupPair ---
+    @(link_name = "PxScene_getDominanceGroupPair")
+    scene_get_dominance_group_pair :: proc(self_: ^PxScene, group1: _c.uint8_t, group2: _c.uint8_t) -> PxDominanceGroupPair ---
 
     /// Return the cpu dispatcher that was set in PxSceneDesc::cpuDispatcher when creating the scene with PxPhysics::createScene
-    PxScene_getCpuDispatcher :: proc(self_: ^PxScene) -> ^PxCpuDispatcher ---
+    @(link_name = "PxScene_getCpuDispatcher")
+    scene_get_cpu_dispatcher :: proc(self_: ^PxScene) -> ^PxCpuDispatcher ---
 
     /// Reserves a new client ID.
     ///
     /// PX_DEFAULT_CLIENT is always available as the default clientID.
     /// Additional clients are returned by this function. Clients cannot be released once created.
     /// An error is reported when more than a supported number of clients (currently 128) are created.
-    PxScene_createClient_mut :: proc(self_: ^PxScene) -> _c.uint8_t ---
+    @(link_name = "PxScene_createClient_mut")
+    scene_create_client_mut :: proc(self_: ^PxScene) -> _c.uint8_t ---
 
     /// Sets a user notify object which receives special simulation events when they occur.
     ///
     /// Do not set the callback while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_setSimulationEventCallback_mut :: proc(self_: ^PxScene, callback: ^PxSimulationEventCallback) ---
+    @(link_name = "PxScene_setSimulationEventCallback_mut")
+    scene_set_simulation_event_callback_mut :: proc(self_: ^PxScene, callback: ^PxSimulationEventCallback) ---
 
     /// Retrieves the simulationEventCallback pointer set with setSimulationEventCallback().
     ///
     /// The current user notify pointer. See [`PxSimulationEventCallback`].
-    PxScene_getSimulationEventCallback :: proc(self_: ^PxScene) -> ^PxSimulationEventCallback ---
+    @(link_name = "PxScene_getSimulationEventCallback")
+    scene_get_simulation_event_callback :: proc(self_: ^PxScene) -> ^PxSimulationEventCallback ---
 
     /// Sets a user callback object, which receives callbacks on all contacts generated for specified actors.
     ///
     /// Do not set the callback while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_setContactModifyCallback_mut :: proc(self_: ^PxScene, callback: ^PxContactModifyCallback) ---
+    @(link_name = "PxScene_setContactModifyCallback_mut")
+    scene_set_contact_modify_callback_mut :: proc(self_: ^PxScene, callback: ^PxContactModifyCallback) ---
 
     /// Sets a user callback object, which receives callbacks on all CCD contacts generated for specified actors.
     ///
     /// Do not set the callback while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_setCCDContactModifyCallback_mut :: proc(self_: ^PxScene, callback: ^PxCCDContactModifyCallback) ---
+    @(link_name = "PxScene_setCCDContactModifyCallback_mut")
+    scene_set_c_c_d_contact_modify_callback_mut :: proc(self_: ^PxScene, callback: ^PxCCDContactModifyCallback) ---
 
     /// Retrieves the PxContactModifyCallback pointer set with setContactModifyCallback().
     ///
     /// The current user contact modify callback pointer. See [`PxContactModifyCallback`].
-    PxScene_getContactModifyCallback :: proc(self_: ^PxScene) -> ^PxContactModifyCallback ---
+    @(link_name = "PxScene_getContactModifyCallback")
+    scene_get_contact_modify_callback :: proc(self_: ^PxScene) -> ^PxContactModifyCallback ---
 
     /// Retrieves the PxCCDContactModifyCallback pointer set with setContactModifyCallback().
     ///
     /// The current user contact modify callback pointer. See [`PxContactModifyCallback`].
-    PxScene_getCCDContactModifyCallback :: proc(self_: ^PxScene) -> ^PxCCDContactModifyCallback ---
+    @(link_name = "PxScene_getCCDContactModifyCallback")
+    scene_get_c_c_d_contact_modify_callback :: proc(self_: ^PxScene) -> ^PxCCDContactModifyCallback ---
 
     /// Sets a broad-phase user callback object.
     ///
     /// Do not set the callback while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_setBroadPhaseCallback_mut :: proc(self_: ^PxScene, callback: ^PxBroadPhaseCallback) ---
+    @(link_name = "PxScene_setBroadPhaseCallback_mut")
+    scene_set_broad_phase_callback_mut :: proc(self_: ^PxScene, callback: ^PxBroadPhaseCallback) ---
 
     /// Retrieves the PxBroadPhaseCallback pointer set with setBroadPhaseCallback().
     ///
     /// The current broad-phase callback pointer. See [`PxBroadPhaseCallback`].
-    PxScene_getBroadPhaseCallback :: proc(self_: ^PxScene) -> ^PxBroadPhaseCallback ---
+    @(link_name = "PxScene_getBroadPhaseCallback")
+    scene_get_broad_phase_callback :: proc(self_: ^PxScene) -> ^PxBroadPhaseCallback ---
 
     /// Sets the shared global filter data which will get passed into the filter shader.
     ///
@@ -11273,19 +12420,22 @@ foreign libphysx {
     /// The provided data will get copied to internal buffers and this copy will be used for filtering calls.
     ///
     /// Do not use this method while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_setFilterShaderData_mut :: proc(self_: ^PxScene, data: rawptr, dataSize: _c.uint32_t) ---
+    @(link_name = "PxScene_setFilterShaderData_mut")
+    scene_set_filter_shader_data_mut :: proc(self_: ^PxScene, data: rawptr, dataSize: _c.uint32_t) ---
 
     /// Gets the shared global filter data in use for this scene.
     ///
     /// The reference points to a copy of the original filter data specified in [`PxSceneDesc`].filterShaderData or provided by #setFilterShaderData().
     ///
     /// Shared filter data for filter shader.
-    PxScene_getFilterShaderData :: proc(self_: ^PxScene) -> rawptr ---
+    @(link_name = "PxScene_getFilterShaderData")
+    scene_get_filter_shader_data :: proc(self_: ^PxScene) -> rawptr ---
 
     /// Gets the size of the shared global filter data ([`PxSceneDesc`].filterShaderData)
     ///
     /// Size of shared filter data [bytes].
-    PxScene_getFilterShaderDataSize :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getFilterShaderDataSize")
+    scene_get_filter_shader_data_size :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Marks the object to reset interactions and re-run collision filters in the next simulation step.
     ///
@@ -11315,7 +12465,8 @@ foreign libphysx {
     /// Does wake up the actor.
     ///
     /// True if success
-    PxScene_resetFiltering_mut :: proc(self_: ^PxScene, actor: ^PxActor) -> _c.bool ---
+    @(link_name = "PxScene_resetFiltering_mut")
+    scene_reset_filtering_mut :: proc(self_: ^PxScene, actor: ^PxActor) -> _c.bool ---
 
     /// Marks the object to reset interactions and re-run collision filters for specified shapes in the next simulation step.
     ///
@@ -11328,17 +12479,20 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// Does wake up the actor.
-    PxScene_resetFiltering_mut_1 :: proc(self_: ^PxScene, actor: ^PxRigidActor, shapes: ^^PxShape, shapeCount: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxScene_resetFiltering_mut_1")
+    scene_reset_filtering_mut_1 :: proc(self_: ^PxScene, actor: ^PxRigidActor, shapes: ^^PxShape, shapeCount: _c.uint32_t) -> _c.bool ---
 
     /// Gets the pair filtering mode for kinematic-kinematic pairs.
     ///
     /// Filtering mode for kinematic-kinematic pairs.
-    PxScene_getKinematicKinematicFilteringMode :: proc(self_: ^PxScene) -> _c.int32_t ---
+    @(link_name = "PxScene_getKinematicKinematicFilteringMode")
+    scene_get_kinematic_kinematic_filtering_mode :: proc(self_: ^PxScene) -> _c.int32_t ---
 
     /// Gets the pair filtering mode for static-kinematic pairs.
     ///
     /// Filtering mode for static-kinematic pairs.
-    PxScene_getStaticKinematicFilteringMode :: proc(self_: ^PxScene) -> _c.int32_t ---
+    @(link_name = "PxScene_getStaticKinematicFilteringMode")
+    scene_get_static_kinematic_filtering_mode :: proc(self_: ^PxScene) -> _c.int32_t ---
 
     /// Advances the simulation by an elapsedTime time.
     ///
@@ -11358,21 +12512,24 @@ foreign libphysx {
     /// ...now results of run may be retrieved.
     ///
     /// True if success
-    PxScene_simulate_mut :: proc(self_: ^PxScene, elapsedTime: _c.float, completionTask: ^PxBaseTask, scratchMemBlock: rawptr, scratchMemBlockSize: _c.uint32_t, controlSimulation: _c.bool) -> _c.bool ---
+    @(link_name = "PxScene_simulate_mut")
+    scene_simulate_mut :: proc(self_: ^PxScene, elapsedTime: _c.float, completionTask: ^PxBaseTask, scratchMemBlock: rawptr, scratchMemBlockSize: _c.uint32_t, controlSimulation: _c.bool) -> _c.bool ---
 
     /// Performs dynamics phase of the simulation pipeline.
     ///
     /// Calls to advance() should follow calls to fetchCollision(). An error message will be issued if this sequence is not followed.
     ///
     /// True if success
-    PxScene_advance_mut :: proc(self_: ^PxScene, completionTask: ^PxBaseTask) -> _c.bool ---
+    @(link_name = "PxScene_advance_mut")
+    scene_advance_mut :: proc(self_: ^PxScene, completionTask: ^PxBaseTask) -> _c.bool ---
 
     /// Performs collision detection for the scene over elapsedTime
     ///
     /// Calls to collide() should be the first method called to simulate a frame.
     ///
     /// True if success
-    PxScene_collide_mut :: proc(self_: ^PxScene, elapsedTime: _c.float, completionTask: ^PxBaseTask, scratchMemBlock: rawptr, scratchMemBlockSize: _c.uint32_t, controlSimulation: _c.bool) -> _c.bool ---
+    @(link_name = "PxScene_collide_mut")
+    scene_collide_mut :: proc(self_: ^PxScene, elapsedTime: _c.float, completionTask: ^PxBaseTask, scratchMemBlock: rawptr, scratchMemBlockSize: _c.uint32_t, controlSimulation: _c.bool) -> _c.bool ---
 
     /// This checks to see if the simulation run has completed.
     ///
@@ -11380,16 +12537,19 @@ foreign libphysx {
     /// The bool will allow it to either return immediately or block waiting for the condition to be met so that it can return true
     ///
     /// True if the results are available.
-    PxScene_checkResults_mut :: proc(self_: ^PxScene, block: _c.bool) -> _c.bool ---
+    @(link_name = "PxScene_checkResults_mut")
+    scene_check_results_mut :: proc(self_: ^PxScene, block: _c.bool) -> _c.bool ---
 
     /// This method must be called after collide() and before advance(). It will wait for the collision phase to finish. If the user makes an illegal simulation call, the SDK will issue an error
     /// message.
-    PxScene_fetchCollision_mut :: proc(self_: ^PxScene, block: _c.bool) -> _c.bool ---
+    @(link_name = "PxScene_fetchCollision_mut")
+    scene_fetch_collision_mut :: proc(self_: ^PxScene, block: _c.bool) -> _c.bool ---
 
     /// This is the big brother to checkResults() it basically does the following:
     ///
     /// True if the results have been fetched.
-    PxScene_fetchResults_mut :: proc(self_: ^PxScene, block: _c.bool, errorState: ^_c.uint32_t) -> _c.bool ---
+    @(link_name = "PxScene_fetchResults_mut")
+    scene_fetch_results_mut :: proc(self_: ^PxScene, block: _c.bool, errorState: ^_c.uint32_t) -> _c.bool ---
 
     /// This call performs the first section of fetchResults, and returns a pointer to the contact streams output by the simulation. It can be used to process contact pairs in parallel, which is often a limiting factor
     /// for fetchResults() performance.
@@ -11398,23 +12558,27 @@ foreign libphysx {
     /// permitted between the start of fetchResultsStart() and the end of fetchResultsFinish().
     ///
     /// True if the results have been fetched.
-    PxScene_fetchResultsStart_mut :: proc(self_: ^PxScene, contactPairs: ^^PxContactPairHeader, nbContactPairs: ^_c.uint32_t, block: _c.bool) -> _c.bool ---
+    @(link_name = "PxScene_fetchResultsStart_mut")
+    scene_fetch_results_start_mut :: proc(self_: ^PxScene, contactPairs: ^^PxContactPairHeader, nbContactPairs: ^_c.uint32_t, block: _c.bool) -> _c.bool ---
 
     /// This call processes all event callbacks in parallel. It takes a continuation task, which will be executed once all callbacks have been processed.
     ///
     /// This is a utility function to make it easier to process callbacks in parallel using the PhysX task system. It can only be used in conjunction with
     /// fetchResultsStart(...) and fetchResultsFinish(...)
-    PxScene_processCallbacks_mut :: proc(self_: ^PxScene, continuation: ^PxBaseTask) ---
+    @(link_name = "PxScene_processCallbacks_mut")
+    scene_process_callbacks_mut :: proc(self_: ^PxScene, continuation: ^PxBaseTask) ---
 
     /// This call performs the second section of fetchResults.
     ///
     /// It must be called after fetchResultsStart() returns and contact reports have been processed.
     ///
     /// Note that once fetchResultsFinish() has been called, the contact streams returned in fetchResultsStart() will be invalid.
-    PxScene_fetchResultsFinish_mut :: proc(self_: ^PxScene, errorState: ^_c.uint32_t) ---
+    @(link_name = "PxScene_fetchResultsFinish_mut")
+    scene_fetch_results_finish_mut :: proc(self_: ^PxScene, errorState: ^_c.uint32_t) ---
 
     /// This call performs the synchronization of particle system data copies.
-    PxScene_fetchResultsParticleSystem_mut :: proc(self_: ^PxScene) ---
+    @(link_name = "PxScene_fetchResultsParticleSystem_mut")
+    scene_fetch_results_particle_system_mut :: proc(self_: ^PxScene) ---
 
     /// Clear internal buffers and free memory.
     ///
@@ -11422,7 +12586,8 @@ foreign libphysx {
     /// the physics data gets streamed in and a checkpoint with a clean state should be created.
     ///
     /// It is not allowed to call this method while the simulation is running. The call will fail.
-    PxScene_flushSimulation_mut :: proc(self_: ^PxScene, sendPendingReports: _c.bool) ---
+    @(link_name = "PxScene_flushSimulation_mut")
+    scene_flush_simulation_mut :: proc(self_: ^PxScene, sendPendingReports: _c.bool) ---
 
     /// Sets a constant gravity for the entire scene.
     ///
@@ -11432,82 +12597,100 @@ foreign libphysx {
     /// Does
     /// NOT
     /// wake the actor up automatically.
-    PxScene_setGravity_mut :: proc(self_: ^PxScene, vec: ^PxVec3) ---
+    @(link_name = "PxScene_setGravity_mut")
+    scene_set_gravity_mut :: proc(self_: ^PxScene, #by_ptr vec: PxVec3) ---
 
     /// Retrieves the current gravity setting.
     ///
     /// The current gravity for the scene.
-    PxScene_getGravity :: proc(self_: ^PxScene) -> PxVec3 ---
+    @(link_name = "PxScene_getGravity")
+    scene_get_gravity :: proc(self_: ^PxScene) -> PxVec3 ---
 
     /// Set the bounce threshold velocity.  Collision speeds below this threshold will not cause a bounce.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setBounceThresholdVelocity_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setBounceThresholdVelocity_mut")
+    scene_set_bounce_threshold_velocity_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Return the bounce threshold velocity.
-    PxScene_getBounceThresholdVelocity :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getBounceThresholdVelocity")
+    scene_get_bounce_threshold_velocity :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Sets the maximum number of CCD passes
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setCCDMaxPasses_mut :: proc(self_: ^PxScene, ccdMaxPasses: _c.uint32_t) ---
+    @(link_name = "PxScene_setCCDMaxPasses_mut")
+    scene_set_c_c_d_max_passes_mut :: proc(self_: ^PxScene, ccdMaxPasses: _c.uint32_t) ---
 
     /// Gets the maximum number of CCD passes.
     ///
     /// The maximum number of CCD passes.
-    PxScene_getCCDMaxPasses :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getCCDMaxPasses")
+    scene_get_c_c_d_max_passes :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Set the maximum CCD separation.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setCCDMaxSeparation_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setCCDMaxSeparation_mut")
+    scene_set_c_c_d_max_separation_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Gets the maximum CCD separation.
     ///
     /// The maximum CCD separation.
-    PxScene_getCCDMaxSeparation :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getCCDMaxSeparation")
+    scene_get_c_c_d_max_separation :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Set the CCD threshold.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setCCDThreshold_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setCCDThreshold_mut")
+    scene_set_c_c_d_threshold_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Gets the CCD threshold.
     ///
     /// The CCD threshold.
-    PxScene_getCCDThreshold :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getCCDThreshold")
+    scene_get_c_c_d_threshold :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Set the max bias coefficient.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setMaxBiasCoefficient_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setMaxBiasCoefficient_mut")
+    scene_set_max_bias_coefficient_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Gets the max bias coefficient.
     ///
     /// The max bias coefficient.
-    PxScene_getMaxBiasCoefficient :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getMaxBiasCoefficient")
+    scene_get_max_bias_coefficient :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Set the friction offset threshold.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setFrictionOffsetThreshold_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setFrictionOffsetThreshold_mut")
+    scene_set_friction_offset_threshold_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Gets the friction offset threshold.
-    PxScene_getFrictionOffsetThreshold :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getFrictionOffsetThreshold")
+    scene_get_friction_offset_threshold :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Set the friction correlation distance.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setFrictionCorrelationDistance_mut :: proc(self_: ^PxScene, t: _c.float) ---
+    @(link_name = "PxScene_setFrictionCorrelationDistance_mut")
+    scene_set_friction_correlation_distance_mut :: proc(self_: ^PxScene, t: _c.float) ---
 
     /// Gets the friction correlation distance.
-    PxScene_getFrictionCorrelationDistance :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getFrictionCorrelationDistance")
+    scene_get_friction_correlation_distance :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Return the friction model.
-    PxScene_getFrictionType :: proc(self_: ^PxScene) -> _c.int32_t ---
+    @(link_name = "PxScene_getFrictionType")
+    scene_get_friction_type :: proc(self_: ^PxScene) -> _c.int32_t ---
 
     /// Return the solver model.
-    PxScene_getSolverType :: proc(self_: ^PxScene) -> _c.int32_t ---
+    @(link_name = "PxScene_getSolverType")
+    scene_get_solver_type :: proc(self_: ^PxScene) -> _c.int32_t ---
 
     /// Function that lets you set debug visualization parameters.
     ///
@@ -11516,22 +12699,26 @@ foreign libphysx {
     /// Do not use this method while the simulation is running.
     ///
     /// False if the parameter is out of range.
-    PxScene_setVisualizationParameter_mut :: proc(self_: ^PxScene, param: _c.int32_t, value: _c.float) -> _c.bool ---
+    @(link_name = "PxScene_setVisualizationParameter_mut")
+    scene_set_visualization_parameter_mut :: proc(self_: ^PxScene, param: _c.int32_t, value: _c.float) -> _c.bool ---
 
     /// Function that lets you query debug visualization parameters.
     ///
     /// The value of the parameter.
-    PxScene_getVisualizationParameter :: proc(self_: ^PxScene, paramEnum: _c.int32_t) -> _c.float ---
+    @(link_name = "PxScene_getVisualizationParameter")
+    scene_get_visualization_parameter :: proc(self_: ^PxScene, paramEnum: _c.int32_t) -> _c.float ---
 
     /// Defines a box in world space to which visualization geometry will be (conservatively) culled. Use a non-empty culling box to enable the feature, and an empty culling box to disable it.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setVisualizationCullingBox_mut :: proc(self_: ^PxScene, box: ^PxBounds3) ---
+    @(link_name = "PxScene_setVisualizationCullingBox_mut")
+    scene_set_visualization_culling_box_mut :: proc(self_: ^PxScene, #by_ptr box: PxBounds3) ---
 
     /// Retrieves the visualization culling box.
     ///
     /// the box to which the geometry will be culled.
-    PxScene_getVisualizationCullingBox :: proc(self_: ^PxScene) -> PxBounds3 ---
+    @(link_name = "PxScene_getVisualizationCullingBox")
+    scene_get_visualization_culling_box :: proc(self_: ^PxScene) -> PxBounds3 ---
 
     /// Retrieves the render buffer.
     ///
@@ -11540,32 +12727,38 @@ foreign libphysx {
     /// Do not use this method while the simulation is running. Calls to this method while the simulation is running will result in undefined behaviour.
     ///
     /// The render buffer.
-    PxScene_getRenderBuffer_mut :: proc(self_: ^PxScene) -> ^PxRenderBuffer ---
+    @(link_name = "PxScene_getRenderBuffer_mut")
+    scene_get_render_buffer_mut :: proc(self_: ^PxScene) -> ^PxRenderBuffer ---
 
     /// Call this method to retrieve statistics for the current simulation step.
     ///
     /// Do not use this method while the simulation is running. Calls to this method while the simulation is running will be ignored.
-    PxScene_getSimulationStatistics :: proc(self_: ^PxScene, stats: ^PxSimulationStatistics) ---
+    @(link_name = "PxScene_getSimulationStatistics")
+    scene_get_simulation_statistics :: proc(self_: ^PxScene, stats: ^PxSimulationStatistics) ---
 
     /// Returns broad-phase type.
     ///
     /// Broad-phase type
-    PxScene_getBroadPhaseType :: proc(self_: ^PxScene) -> _c.int32_t ---
+    @(link_name = "PxScene_getBroadPhaseType")
+    scene_get_broad_phase_type :: proc(self_: ^PxScene) -> _c.int32_t ---
 
     /// Gets broad-phase caps.
     ///
     /// True if success
-    PxScene_getBroadPhaseCaps :: proc(self_: ^PxScene, caps: ^PxBroadPhaseCaps) -> _c.bool ---
+    @(link_name = "PxScene_getBroadPhaseCaps")
+    scene_get_broad_phase_caps :: proc(self_: ^PxScene, caps: ^PxBroadPhaseCaps) -> _c.bool ---
 
     /// Returns number of regions currently registered in the broad-phase.
     ///
     /// Number of regions
-    PxScene_getNbBroadPhaseRegions :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbBroadPhaseRegions")
+    scene_get_nb_broad_phase_regions :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Gets broad-phase regions.
     ///
     /// Number of written out regions
-    PxScene_getBroadPhaseRegions :: proc(self_: ^PxScene, userBuffer: ^PxBroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxScene_getBroadPhaseRegions")
+    scene_get_broad_phase_regions :: proc(self_: ^PxScene, userBuffer: ^PxBroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Adds a new broad-phase region.
     ///
@@ -11591,7 +12784,8 @@ foreign libphysx {
     /// error message is generated.
     ///
     /// Handle for newly created region, or 0xffffffff in case of failure.
-    PxScene_addBroadPhaseRegion_mut :: proc(self_: ^PxScene, region: ^PxBroadPhaseRegion, populateRegion: _c.bool) -> _c.uint32_t ---
+    @(link_name = "PxScene_addBroadPhaseRegion_mut")
+    scene_add_broad_phase_region_mut :: proc(self_: ^PxScene, #by_ptr region: PxBroadPhaseRegion, populateRegion: _c.bool) -> _c.uint32_t ---
 
     /// Removes a new broad-phase region.
     ///
@@ -11603,12 +12797,14 @@ foreign libphysx {
     /// If the handle is invalid, or if a valid handle is removed twice, an error message is sent to the error stream.
     ///
     /// True if success
-    PxScene_removeBroadPhaseRegion_mut :: proc(self_: ^PxScene, handle: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxScene_removeBroadPhaseRegion_mut")
+    scene_remove_broad_phase_region_mut :: proc(self_: ^PxScene, handle: _c.uint32_t) -> _c.bool ---
 
     /// Get the task manager associated with this scene
     ///
     /// the task manager associated with the scene
-    PxScene_getTaskManager :: proc(self_: ^PxScene) -> ^PxTaskManager ---
+    @(link_name = "PxScene_getTaskManager")
+    scene_get_task_manager :: proc(self_: ^PxScene) -> ^PxTaskManager ---
 
     /// Lock the scene for reading from the calling thread.
     ///
@@ -11623,12 +12819,14 @@ foreign libphysx {
     /// call lockRead() followed by lockWrite().
     ///
     /// Recursive locking is supported but each lockRead() call must be paired with an unlockRead().
-    PxScene_lockRead_mut :: proc(self_: ^PxScene, file: ^_c.char, line: _c.uint32_t) ---
+    @(link_name = "PxScene_lockRead_mut")
+    scene_lock_read_mut :: proc(self_: ^PxScene, file: ^_c.char, line: _c.uint32_t) ---
 
     /// Unlock the scene from reading.
     ///
     /// Each unlockRead() must be paired with a lockRead() from the same thread.
-    PxScene_unlockRead_mut :: proc(self_: ^PxScene) ---
+    @(link_name = "PxScene_unlockRead_mut")
+    scene_unlock_read_mut :: proc(self_: ^PxScene) ---
 
     /// Lock the scene for writing from this thread.
     ///
@@ -11650,12 +12848,14 @@ foreign libphysx {
     ///
     /// If a thread has already locked the scene for writing then it may call
     /// lockRead().
-    PxScene_lockWrite_mut :: proc(self_: ^PxScene, file: ^_c.char, line: _c.uint32_t) ---
+    @(link_name = "PxScene_lockWrite_mut")
+    scene_lock_write_mut :: proc(self_: ^PxScene, file: ^_c.char, line: _c.uint32_t) ---
 
     /// Unlock the scene from writing.
     ///
     /// Each unlockWrite() must be paired with a lockWrite() from the same thread.
-    PxScene_unlockWrite_mut :: proc(self_: ^PxScene) ---
+    @(link_name = "PxScene_unlockWrite_mut")
+    scene_unlock_write_mut :: proc(self_: ^PxScene) ---
 
     /// set the cache blocks that can be used during simulate().
     ///
@@ -11666,49 +12866,58 @@ foreign libphysx {
     /// of blocks, and less than the max16KContactDataBlocks parameter specified at scene creation time.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setNbContactDataBlocks_mut :: proc(self_: ^PxScene, numBlocks: _c.uint32_t) ---
+    @(link_name = "PxScene_setNbContactDataBlocks_mut")
+    scene_set_nb_contact_data_blocks_mut :: proc(self_: ^PxScene, numBlocks: _c.uint32_t) ---
 
     /// get the number of cache blocks currently used by the scene
     ///
     /// This function may not be called while the scene is simulating
     ///
     /// the number of cache blocks currently used by the scene
-    PxScene_getNbContactDataBlocksUsed :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getNbContactDataBlocksUsed")
+    scene_get_nb_contact_data_blocks_used :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// get the maximum number of cache blocks used by the scene
     ///
     /// This function may not be called while the scene is simulating
     ///
     /// the maximum number of cache blocks everused by the scene
-    PxScene_getMaxNbContactDataBlocksUsed :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getMaxNbContactDataBlocksUsed")
+    scene_get_max_nb_contact_data_blocks_used :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Return the value of PxSceneDesc::contactReportStreamBufferSize that was set when creating the scene with PxPhysics::createScene
-    PxScene_getContactReportStreamBufferSize :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getContactReportStreamBufferSize")
+    scene_get_contact_report_stream_buffer_size :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Sets the number of actors required to spawn a separate rigid body solver thread.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setSolverBatchSize_mut :: proc(self_: ^PxScene, solverBatchSize: _c.uint32_t) ---
+    @(link_name = "PxScene_setSolverBatchSize_mut")
+    scene_set_solver_batch_size_mut :: proc(self_: ^PxScene, solverBatchSize: _c.uint32_t) ---
 
     /// Retrieves the number of actors required to spawn a separate rigid body solver thread.
     ///
     /// Current number of actors required to spawn a separate rigid body solver thread.
-    PxScene_getSolverBatchSize :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getSolverBatchSize")
+    scene_get_solver_batch_size :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Sets the number of articulations required to spawn a separate rigid body solver thread.
     ///
     /// Do not use this method while the simulation is running.
-    PxScene_setSolverArticulationBatchSize_mut :: proc(self_: ^PxScene, solverBatchSize: _c.uint32_t) ---
+    @(link_name = "PxScene_setSolverArticulationBatchSize_mut")
+    scene_set_solver_articulation_batch_size_mut :: proc(self_: ^PxScene, solverBatchSize: _c.uint32_t) ---
 
     /// Retrieves the number of articulations required to spawn a separate rigid body solver thread.
     ///
     /// Current number of articulations required to spawn a separate rigid body solver thread.
-    PxScene_getSolverArticulationBatchSize :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    @(link_name = "PxScene_getSolverArticulationBatchSize")
+    scene_get_solver_articulation_batch_size :: proc(self_: ^PxScene) -> _c.uint32_t ---
 
     /// Returns the wake counter reset value.
     ///
     /// Wake counter reset value
-    PxScene_getWakeCounterResetValue :: proc(self_: ^PxScene) -> _c.float ---
+    @(link_name = "PxScene_getWakeCounterResetValue")
+    scene_get_wake_counter_reset_value :: proc(self_: ^PxScene) -> _c.float ---
 
     /// Shift the scene origin by the specified vector.
     ///
@@ -11722,35 +12931,44 @@ foreign libphysx {
     /// Make sure to propagate the origin shift to other dependent modules (for example, the character controller module etc.).
     ///
     /// This is an expensive operation and we recommend to use it only in the case where distance related precision issues may arise in areas far from the origin.
-    PxScene_shiftOrigin_mut :: proc(self_: ^PxScene, shift: ^PxVec3) ---
+    @(link_name = "PxScene_shiftOrigin_mut")
+    scene_shift_origin_mut :: proc(self_: ^PxScene, #by_ptr shift: PxVec3) ---
 
     /// Returns the Pvd client associated with the scene.
     ///
     /// the client, NULL if no PVD supported.
-    PxScene_getScenePvdClient_mut :: proc(self_: ^PxScene) -> ^PxPvdSceneClient ---
+    @(link_name = "PxScene_getScenePvdClient_mut")
+    scene_get_scene_pvd_client_mut :: proc(self_: ^PxScene) -> ^PxPvdSceneClient ---
 
     /// Copy GPU articulation data from the internal GPU buffer to a user-provided device buffer.
-    PxScene_copyArticulationData_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbCopyArticulations: _c.uint32_t, copyEvent: rawptr) ---
+    @(link_name = "PxScene_copyArticulationData_mut")
+    scene_copy_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbCopyArticulations: _c.uint32_t, copyEvent: rawptr) ---
 
     /// Apply GPU articulation data from a user-provided device buffer to the internal GPU buffer.
-    PxScene_applyArticulationData_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbUpdatedArticulations: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    @(link_name = "PxScene_applyArticulationData_mut")
+    scene_apply_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbUpdatedArticulations: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Copy GPU softbody data from the internal GPU buffer to a user-provided device buffer.
-    PxScene_copySoftBodyData_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbCopySoftBodies: _c.uint32_t, maxSize: _c.uint32_t, copyEvent: rawptr) ---
+    @(link_name = "PxScene_copySoftBodyData_mut")
+    scene_copy_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbCopySoftBodies: _c.uint32_t, maxSize: _c.uint32_t, copyEvent: rawptr) ---
 
     /// Apply user-provided data to the internal softbody system.
-    PxScene_applySoftBodyData_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbUpdatedSoftBodies: _c.uint32_t, maxSize: _c.uint32_t, applyEvent: rawptr) ---
+    @(link_name = "PxScene_applySoftBodyData_mut")
+    scene_apply_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbUpdatedSoftBodies: _c.uint32_t, maxSize: _c.uint32_t, applyEvent: rawptr) ---
 
     /// Copy contact data from the internal GPU buffer to a user-provided device buffer.
     ///
     /// The contact data contains pointers to internal state and is only valid until the next call to simulate().
-    PxScene_copyContactData_mut :: proc(self_: ^PxScene, data: rawptr, maxContactPairs: _c.uint32_t, numContactPairs: rawptr, copyEvent: rawptr) ---
+    @(link_name = "PxScene_copyContactData_mut")
+    scene_copy_contact_data_mut :: proc(self_: ^PxScene, data: rawptr, maxContactPairs: _c.uint32_t, numContactPairs: rawptr, copyEvent: rawptr) ---
 
     /// Copy GPU rigid body data from the internal GPU buffer to a user-provided device buffer.
-    PxScene_copyBodyData_mut :: proc(self_: ^PxScene, data: ^PxGpuBodyData, index: ^PxGpuActorPair, nbCopyActors: _c.uint32_t, copyEvent: rawptr) ---
+    @(link_name = "PxScene_copyBodyData_mut")
+    scene_copy_body_data_mut :: proc(self_: ^PxScene, data: ^PxGpuBodyData, index: ^PxGpuActorPair, nbCopyActors: _c.uint32_t, copyEvent: rawptr) ---
 
     /// Apply user-provided data to rigid body.
-    PxScene_applyActorData_mut :: proc(self_: ^PxScene, data: rawptr, index: ^PxGpuActorPair, flag: _c.int32_t, nbUpdatedActors: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    @(link_name = "PxScene_applyActorData_mut")
+    scene_apply_actor_data_mut :: proc(self_: ^PxScene, data: rawptr, index: ^PxGpuActorPair, flag: _c.int32_t, nbUpdatedActors: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Compute dense Jacobian matrices for specified articulations on the GPU.
     ///
@@ -11761,7 +12979,8 @@ foreign libphysx {
     /// nRows = (fixedBase ? 0 : 6) + (linkCount - 1) * 6;
     ///
     /// The user must ensure that adequate space is provided for each Jacobian matrix.
-    PxScene_computeDenseJacobians_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
+    @(link_name = "PxScene_computeDenseJacobians_mut")
+    scene_compute_dense_jacobians_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
 
     /// Compute the joint-space inertia matrices that maps joint accelerations to joint forces: forces = M * accelerations on the GPU.
     ///
@@ -11771,7 +12990,8 @@ foreign libphysx {
     /// sizeof(float) * dofCount * dofCount
     ///
     /// The user must ensure that adequate space is provided for each mass matrix.
-    PxScene_computeGeneralizedMassMatrices_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
+    @(link_name = "PxScene_computeGeneralizedMassMatrices_mut")
+    scene_compute_generalized_mass_matrices_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
 
     /// Computes the joint DOF forces required to counteract gravitational forces for the given articulation pose.
     ///
@@ -11781,7 +13001,8 @@ foreign libphysx {
     /// sizeof(float) * dofCount
     ///
     /// The user must ensure that adequate space is provided for each articulation.
-    PxScene_computeGeneralizedGravityForces_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
+    @(link_name = "PxScene_computeGeneralizedGravityForces_mut")
+    scene_compute_generalized_gravity_forces_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
 
     /// Computes the joint DOF forces required to counteract coriolis and centrifugal forces for the given articulation pose.
     ///
@@ -11791,9 +13012,11 @@ foreign libphysx {
     /// sizeof(float) * dofCount
     ///
     /// The user must ensure that adequate space is provided for each articulation.
-    PxScene_computeCoriolisAndCentrifugalForces_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
+    @(link_name = "PxScene_computeCoriolisAndCentrifugalForces_mut")
+    scene_compute_coriolis_and_centrifugal_forces_mut :: proc(self_: ^PxScene, indices: ^PxIndexDataPair, nbIndices: _c.uint32_t, computeEvent: rawptr) ---
 
-    PxScene_getGpuDynamicsConfig :: proc(self_: ^PxScene) -> PxgDynamicsMemoryConfig ---
+    @(link_name = "PxScene_getGpuDynamicsConfig")
+    scene_get_gpu_dynamics_config :: proc(self_: ^PxScene) -> PxgDynamicsMemoryConfig ---
 
     /// Apply user-provided data to particle buffers.
     ///
@@ -11801,28 +13024,38 @@ foreign libphysx {
     /// from the CPU.
     ///
     /// This assumes the data has been changed directly in the PxParticleBuffer.
-    PxScene_applyParticleBufferData_mut :: proc(self_: ^PxScene, indices: ^_c.uint32_t, bufferIndexPair: ^PxGpuParticleBufferIndexPair, flags: ^_c.uint32_t, nbUpdatedBuffers: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    @(link_name = "PxScene_applyParticleBufferData_mut")
+    scene_apply_particle_buffer_data_mut :: proc(self_: ^PxScene, indices: ^_c.uint32_t, bufferIndexPair: ^PxGpuParticleBufferIndexPair, flags: ^_c.uint32_t, nbUpdatedBuffers: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Constructor
-    PxSceneReadLock_new_alloc :: proc(scene: ^PxScene, file: ^_c.char, line: _c.uint32_t) -> ^PxSceneReadLock ---
+    @(link_name = "PxSceneReadLock_new_alloc")
+    scene_read_lock_new_alloc :: proc(scene: ^PxScene, file: ^_c.char, line: _c.uint32_t) -> ^PxSceneReadLock ---
 
-    PxSceneReadLock_delete :: proc(self_: ^PxSceneReadLock) ---
-
-    /// Constructor
-    PxSceneWriteLock_new_alloc :: proc(scene: ^PxScene, file: ^_c.char, line: _c.uint32_t) -> ^PxSceneWriteLock ---
-
-    PxSceneWriteLock_delete :: proc(self_: ^PxSceneWriteLock) ---
-
-    PxContactPairExtraDataItem_new :: proc() -> PxContactPairExtraDataItem ---
-
-    PxContactPairVelocity_new :: proc() -> PxContactPairVelocity ---
-
-    PxContactPairPose_new :: proc() -> PxContactPairPose ---
-
-    PxContactPairIndex_new :: proc() -> PxContactPairIndex ---
+    @(link_name = "PxSceneReadLock_delete")
+    scene_read_lock_delete :: proc(self_: ^PxSceneReadLock) ---
 
     /// Constructor
-    PxContactPairExtraDataIterator_new :: proc(stream: ^_c.uint8_t, size: _c.uint32_t) -> PxContactPairExtraDataIterator ---
+    @(link_name = "PxSceneWriteLock_new_alloc")
+    scene_write_lock_new_alloc :: proc(scene: ^PxScene, file: ^_c.char, line: _c.uint32_t) -> ^PxSceneWriteLock ---
+
+    @(link_name = "PxSceneWriteLock_delete")
+    scene_write_lock_delete :: proc(self_: ^PxSceneWriteLock) ---
+
+    @(link_name = "PxContactPairExtraDataItem_new")
+    contact_pair_extra_data_item_new :: proc() -> PxContactPairExtraDataItem ---
+
+    @(link_name = "PxContactPairVelocity_new")
+    contact_pair_velocity_new :: proc() -> PxContactPairVelocity ---
+
+    @(link_name = "PxContactPairPose_new")
+    contact_pair_pose_new :: proc() -> PxContactPairPose ---
+
+    @(link_name = "PxContactPairIndex_new")
+    contact_pair_index_new :: proc() -> PxContactPairIndex ---
+
+    /// Constructor
+    @(link_name = "PxContactPairExtraDataIterator_new")
+    contact_pair_extra_data_iterator_new :: proc(stream: ^_c.uint8_t, size: _c.uint32_t) -> PxContactPairExtraDataIterator ---
 
     /// Advances the iterator to next set of extra data items.
     ///
@@ -11838,37 +13071,47 @@ foreign libphysx {
     /// there will only be one item set (since it applies to both shape pairs).
     ///
     /// True if there was another set of extra data items in the stream, else false.
-    PxContactPairExtraDataIterator_nextItemSet_mut :: proc(self_: ^PxContactPairExtraDataIterator) -> _c.bool ---
+    @(link_name = "PxContactPairExtraDataIterator_nextItemSet_mut")
+    contact_pair_extra_data_iterator_next_item_set_mut :: proc(self_: ^PxContactPairExtraDataIterator) -> _c.bool ---
 
-    PxContactPairHeader_new :: proc() -> PxContactPairHeader ---
+    @(link_name = "PxContactPairHeader_new")
+    contact_pair_header_new :: proc() -> PxContactPairHeader ---
 
-    PxContactPair_new :: proc() -> PxContactPair ---
+    @(link_name = "PxContactPair_new")
+    contact_pair_new :: proc() -> PxContactPair ---
 
     /// Extracts the contact points from the stream and stores them in a convenient format.
     ///
     /// Number of contact points written to the buffer.
-    PxContactPair_extractContacts :: proc(self_: ^PxContactPair, userBuffer: ^PxContactPairPoint, bufferSize: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxContactPair_extractContacts")
+    contact_pair_extract_contacts :: proc(self_: ^PxContactPair, userBuffer: ^PxContactPairPoint, bufferSize: _c.uint32_t) -> _c.uint32_t ---
 
     /// Helper method to clone the contact pair and copy the contact data stream into a user buffer.
     ///
     /// The contact data stream is only accessible during the contact report callback. This helper function provides copy functionality
     /// to buffer the contact stream information such that it can get accessed at a later stage.
-    PxContactPair_bufferContacts :: proc(self_: ^PxContactPair, newPair: ^PxContactPair, bufferMemory: ^_c.uint8_t) ---
+    @(link_name = "PxContactPair_bufferContacts")
+    contact_pair_buffer_contacts :: proc(self_: ^PxContactPair, newPair: ^PxContactPair, bufferMemory: ^_c.uint8_t) ---
 
-    PxContactPair_getInternalFaceIndices :: proc(self_: ^PxContactPair) -> ^_c.uint32_t ---
+    @(link_name = "PxContactPair_getInternalFaceIndices")
+    contact_pair_get_internal_face_indices :: proc(self_: ^PxContactPair) -> ^_c.uint32_t ---
 
-    PxTriggerPair_new :: proc() -> PxTriggerPair ---
+    @(link_name = "PxTriggerPair_new")
+    trigger_pair_new :: proc() -> PxTriggerPair ---
 
-    PxConstraintInfo_new :: proc() -> PxConstraintInfo ---
+    @(link_name = "PxConstraintInfo_new")
+    constraint_info_new :: proc() -> PxConstraintInfo ---
 
-    PxConstraintInfo_new_1 :: proc(c: ^PxConstraint, extRef: rawptr, t: _c.uint32_t) -> PxConstraintInfo ---
+    @(link_name = "PxConstraintInfo_new_1")
+    constraint_info_new_1 :: proc(c: ^PxConstraint, extRef: rawptr, t: _c.uint32_t) -> PxConstraintInfo ---
 
     /// This is called when a breakable constraint breaks.
     ///
     /// The user should not release the constraint shader inside this call!
     ///
     /// No event will get reported if the constraint breaks but gets deleted while the time step is still being simulated.
-    PxSimulationEventCallback_onConstraintBreak_mut :: proc(self_: ^PxSimulationEventCallback, constraints: ^PxConstraintInfo, count: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onConstraintBreak_mut")
+    simulation_event_callback_on_constraint_break_mut :: proc(self_: ^PxSimulationEventCallback, constraints: ^PxConstraintInfo, count: _c.uint32_t) ---
 
     /// This is called with the actors which have just been woken up.
     ///
@@ -11882,7 +13125,8 @@ foreign libphysx {
     ///
     /// If an actor gets newly added to a scene with properties such that it is awake and the sleep state does not get changed by
     /// the user or simulation, then an onWake() event will get sent at the next simulate/fetchResults() step.
-    PxSimulationEventCallback_onWake_mut :: proc(self_: ^PxSimulationEventCallback, actors: ^^PxActor, count: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onWake_mut")
+    simulation_event_callback_on_wake_mut :: proc(self_: ^PxSimulationEventCallback, actors: ^^PxActor, count: _c.uint32_t) ---
 
     /// This is called with the actors which have just been put to sleep.
     ///
@@ -11897,7 +13141,8 @@ foreign libphysx {
     ///
     /// If an actor gets newly added to a scene with properties such that it is asleep and the sleep state does not get changed by
     /// the user or simulation, then an onSleep() event will get sent at the next simulate/fetchResults() step.
-    PxSimulationEventCallback_onSleep_mut :: proc(self_: ^PxSimulationEventCallback, actors: ^^PxActor, count: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onSleep_mut")
+    simulation_event_callback_on_sleep_mut :: proc(self_: ^PxSimulationEventCallback, actors: ^^PxActor, count: _c.uint32_t) ---
 
     /// This is called when certain contact events occur.
     ///
@@ -11907,7 +13152,8 @@ foreign libphysx {
     ///
     /// Do not keep references to the passed objects, as they will be
     /// invalid after this function returns.
-    PxSimulationEventCallback_onContact_mut :: proc(self_: ^PxSimulationEventCallback, pairHeader: ^PxContactPairHeader, pairs: ^PxContactPair, nbPairs: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onContact_mut")
+    simulation_event_callback_on_contact_mut :: proc(self_: ^PxSimulationEventCallback, #by_ptr pairHeader: PxContactPairHeader, pairs: ^PxContactPair, nbPairs: _c.uint32_t) ---
 
     /// This is called with the current trigger pair events.
     ///
@@ -11915,7 +13161,8 @@ foreign libphysx {
     /// according to the pair flag specification in the filter shader (see [`PxPairFlag`], #PxSimulationFilterShader).
     ///
     /// Trigger shapes will no longer send notification events for interactions with other trigger shapes.
-    PxSimulationEventCallback_onTrigger_mut :: proc(self_: ^PxSimulationEventCallback, pairs: ^PxTriggerPair, count: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onTrigger_mut")
+    simulation_event_callback_on_trigger_mut :: proc(self_: ^PxSimulationEventCallback, pairs: ^PxTriggerPair, count: _c.uint32_t) ---
 
     /// Provides early access to the new pose of moving rigid bodies.
     ///
@@ -11930,28 +13177,34 @@ foreign libphysx {
     ///
     /// The code in this callback should be lightweight as it can block the simulation, that is, the
     /// [`PxScene::fetchResults`]() call.
-    PxSimulationEventCallback_onAdvance_mut :: proc(self_: ^PxSimulationEventCallback, bodyBuffer: ^^PxRigidBody, poseBuffer: ^PxTransform, count: _c.uint32_t) ---
+    @(link_name = "PxSimulationEventCallback_onAdvance_mut")
+    simulation_event_callback_on_advance_mut :: proc(self_: ^PxSimulationEventCallback, bodyBuffer: ^^PxRigidBody, poseBuffer: ^PxTransform, count: _c.uint32_t) ---
 
-    PxSimulationEventCallback_delete :: proc(self_: ^PxSimulationEventCallback) ---
+    @(link_name = "PxSimulationEventCallback_delete")
+    simulation_event_callback_delete :: proc(self_: ^PxSimulationEventCallback) ---
 
-    PxFEMParameters_new :: proc() -> PxFEMParameters ---
+    @(link_name = "PxFEMParameters_new")
+    f_e_m_parameters_new :: proc() -> PxFEMParameters ---
 
     /// Release this object.
-    PxPruningStructure_release_mut :: proc(self_: ^PxPruningStructure) ---
+    @(link_name = "PxPruningStructure_release_mut")
+    pruning_structure_release_mut :: proc(self_: ^PxPruningStructure) ---
 
     /// Retrieve rigid actors in the pruning structure.
     ///
     /// You can retrieve the number of rigid actor pointers by calling [`getNbRigidActors`]()
     ///
     /// Number of rigid actor pointers written to the buffer.
-    PxPruningStructure_getRigidActors :: proc(self_: ^PxPruningStructure, userBuffer: ^^PxRigidActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxPruningStructure_getRigidActors")
+    pruning_structure_get_rigid_actors :: proc(self_: ^PxPruningStructure, userBuffer: ^^PxRigidActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of rigid actors in the pruning structure.
     ///
     /// You can use [`getRigidActors`]() to retrieve the rigid actor pointers.
     ///
     /// Number of rigid actors in the pruning structure.
-    PxPruningStructure_getNbRigidActors :: proc(self_: ^PxPruningStructure) -> _c.uint32_t ---
+    @(link_name = "PxPruningStructure_getNbRigidActors")
+    pruning_structure_get_nb_rigid_actors :: proc(self_: ^PxPruningStructure) -> _c.uint32_t ---
 
     /// Gets the merge data for static actors
     ///
@@ -11959,7 +13212,8 @@ foreign libphysx {
     /// with the internal data-structures of the scene-query system.
     ///
     /// Implementation-dependent merge data for static actors.
-    PxPruningStructure_getStaticMergeData :: proc(self_: ^PxPruningStructure) -> rawptr ---
+    @(link_name = "PxPruningStructure_getStaticMergeData")
+    pruning_structure_get_static_merge_data :: proc(self_: ^PxPruningStructure) -> rawptr ---
 
     /// Gets the merge data for dynamic actors
     ///
@@ -11967,132 +13221,175 @@ foreign libphysx {
     /// with the internal data-structures of the scene-query system.
     ///
     /// Implementation-dependent merge data for dynamic actors.
-    PxPruningStructure_getDynamicMergeData :: proc(self_: ^PxPruningStructure) -> rawptr ---
+    @(link_name = "PxPruningStructure_getDynamicMergeData")
+    pruning_structure_get_dynamic_merge_data :: proc(self_: ^PxPruningStructure) -> rawptr ---
 
-    PxPruningStructure_getConcreteTypeName :: proc(self_: ^PxPruningStructure) -> ^_c.char ---
+    @(link_name = "PxPruningStructure_getConcreteTypeName")
+    pruning_structure_get_concrete_type_name :: proc(self_: ^PxPruningStructure) -> ^_c.char ---
 
-    PxExtendedVec3_new :: proc() -> PxExtendedVec3 ---
+    @(link_name = "PxExtendedVec3_new")
+    extended_vec3_new :: proc() -> PxExtendedVec3 ---
 
-    PxExtendedVec3_new_1 :: proc(_x: _c.double, _y: _c.double, _z: _c.double) -> PxExtendedVec3 ---
+    @(link_name = "PxExtendedVec3_new_1")
+    extended_vec3_new_1 :: proc(_x: _c.double, _y: _c.double, _z: _c.double) -> PxExtendedVec3 ---
 
-    PxExtendedVec3_isZero :: proc(self_: ^PxExtendedVec3) -> _c.bool ---
+    @(link_name = "PxExtendedVec3_isZero")
+    extended_vec3_is_zero :: proc(self_: ^PxExtendedVec3) -> _c.bool ---
 
-    PxExtendedVec3_dot :: proc(self_: ^PxExtendedVec3, v: ^PxVec3) -> _c.double ---
+    @(link_name = "PxExtendedVec3_dot")
+    extended_vec3_dot :: proc(self_: ^PxExtendedVec3, #by_ptr v: PxVec3) -> _c.double ---
 
-    PxExtendedVec3_distanceSquared :: proc(self_: ^PxExtendedVec3, v: ^PxExtendedVec3) -> _c.double ---
+    @(link_name = "PxExtendedVec3_distanceSquared")
+    extended_vec3_distance_squared :: proc(self_: ^PxExtendedVec3, #by_ptr v: PxExtendedVec3) -> _c.double ---
 
-    PxExtendedVec3_magnitudeSquared :: proc(self_: ^PxExtendedVec3) -> _c.double ---
+    @(link_name = "PxExtendedVec3_magnitudeSquared")
+    extended_vec3_magnitude_squared :: proc(self_: ^PxExtendedVec3) -> _c.double ---
 
-    PxExtendedVec3_magnitude :: proc(self_: ^PxExtendedVec3) -> _c.double ---
+    @(link_name = "PxExtendedVec3_magnitude")
+    extended_vec3_magnitude :: proc(self_: ^PxExtendedVec3) -> _c.double ---
 
-    PxExtendedVec3_normalize_mut :: proc(self_: ^PxExtendedVec3) -> _c.double ---
+    @(link_name = "PxExtendedVec3_normalize_mut")
+    extended_vec3_normalize_mut :: proc(self_: ^PxExtendedVec3) -> _c.double ---
 
-    PxExtendedVec3_isFinite :: proc(self_: ^PxExtendedVec3) -> _c.bool ---
+    @(link_name = "PxExtendedVec3_isFinite")
+    extended_vec3_is_finite :: proc(self_: ^PxExtendedVec3) -> _c.bool ---
 
-    PxExtendedVec3_maximum_mut :: proc(self_: ^PxExtendedVec3, v: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_maximum_mut")
+    extended_vec3_maximum_mut :: proc(self_: ^PxExtendedVec3, #by_ptr v: PxExtendedVec3) ---
 
-    PxExtendedVec3_minimum_mut :: proc(self_: ^PxExtendedVec3, v: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_minimum_mut")
+    extended_vec3_minimum_mut :: proc(self_: ^PxExtendedVec3, #by_ptr v: PxExtendedVec3) ---
 
-    PxExtendedVec3_set_mut :: proc(self_: ^PxExtendedVec3, x_: _c.double, y_: _c.double, z_: _c.double) ---
+    @(link_name = "PxExtendedVec3_set_mut")
+    extended_vec3_set_mut :: proc(self_: ^PxExtendedVec3, x_: _c.double, y_: _c.double, z_: _c.double) ---
 
-    PxExtendedVec3_setPlusInfinity_mut :: proc(self_: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_setPlusInfinity_mut")
+    extended_vec3_set_plus_infinity_mut :: proc(self_: ^PxExtendedVec3) ---
 
-    PxExtendedVec3_setMinusInfinity_mut :: proc(self_: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_setMinusInfinity_mut")
+    extended_vec3_set_minus_infinity_mut :: proc(self_: ^PxExtendedVec3) ---
 
-    PxExtendedVec3_cross_mut :: proc(self_: ^PxExtendedVec3, left: ^PxExtendedVec3, right: ^PxVec3) ---
+    @(link_name = "PxExtendedVec3_cross_mut")
+    extended_vec3_cross_mut :: proc(self_: ^PxExtendedVec3, #by_ptr left: PxExtendedVec3, #by_ptr right: PxVec3) ---
 
-    PxExtendedVec3_cross_mut_1 :: proc(self_: ^PxExtendedVec3, left: ^PxExtendedVec3, right: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_cross_mut_1")
+    extended_vec3_cross_mut_1 :: proc(self_: ^PxExtendedVec3, #by_ptr left: PxExtendedVec3, #by_ptr right: PxExtendedVec3) ---
 
-    PxExtendedVec3_cross :: proc(self_: ^PxExtendedVec3, v: ^PxExtendedVec3) -> PxExtendedVec3 ---
+    @(link_name = "PxExtendedVec3_cross")
+    extended_vec3_cross :: proc(self_: ^PxExtendedVec3, #by_ptr v: PxExtendedVec3) -> PxExtendedVec3 ---
 
-    PxExtendedVec3_cross_mut_2 :: proc(self_: ^PxExtendedVec3, left: ^PxVec3, right: ^PxExtendedVec3) ---
+    @(link_name = "PxExtendedVec3_cross_mut_2")
+    extended_vec3_cross_mut_2 :: proc(self_: ^PxExtendedVec3, #by_ptr left: PxVec3, #by_ptr right: PxExtendedVec3) ---
 
-    phys_toVec3 :: proc(v: ^PxExtendedVec3) -> PxVec3 ---
+    @(link_name = "phys_toVec3")
+    to_vec3 :: proc(#by_ptr v: PxExtendedVec3) -> PxVec3 ---
 
-    PxObstacle_getType :: proc(self_: ^PxObstacle) -> _c.int32_t ---
+    @(link_name = "PxObstacle_getType")
+    obstacle_get_type :: proc(self_: ^PxObstacle) -> _c.int32_t ---
 
-    PxBoxObstacle_new :: proc() -> PxBoxObstacle ---
+    @(link_name = "PxBoxObstacle_new")
+    box_obstacle_new :: proc() -> PxBoxObstacle ---
 
-    PxCapsuleObstacle_new :: proc() -> PxCapsuleObstacle ---
+    @(link_name = "PxCapsuleObstacle_new")
+    capsule_obstacle_new :: proc() -> PxCapsuleObstacle ---
 
     /// Releases the context.
-    PxObstacleContext_release_mut :: proc(self_: ^PxObstacleContext) ---
+    @(link_name = "PxObstacleContext_release_mut")
+    obstacle_context_release_mut :: proc(self_: ^PxObstacleContext) ---
 
     /// Retrieves the controller manager associated with this context.
     ///
     /// The associated controller manager
-    PxObstacleContext_getControllerManager :: proc(self_: ^PxObstacleContext) -> ^PxControllerManager ---
+    @(link_name = "PxObstacleContext_getControllerManager")
+    obstacle_context_get_controller_manager :: proc(self_: ^PxObstacleContext) -> ^PxControllerManager ---
 
     /// Adds an obstacle to the context.
     ///
     /// Handle for newly-added obstacle
-    PxObstacleContext_addObstacle_mut :: proc(self_: ^PxObstacleContext, obstacle: ^PxObstacle) -> _c.uint32_t ---
+    @(link_name = "PxObstacleContext_addObstacle_mut")
+    obstacle_context_add_obstacle_mut :: proc(self_: ^PxObstacleContext, obstacle: ^PxObstacle) -> _c.uint32_t ---
 
     /// Removes an obstacle from the context.
     ///
     /// True if success
-    PxObstacleContext_removeObstacle_mut :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxObstacleContext_removeObstacle_mut")
+    obstacle_context_remove_obstacle_mut :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t) -> _c.bool ---
 
     /// Updates data for an existing obstacle.
     ///
     /// True if success
-    PxObstacleContext_updateObstacle_mut :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t, obstacle: ^PxObstacle) -> _c.bool ---
+    @(link_name = "PxObstacleContext_updateObstacle_mut")
+    obstacle_context_update_obstacle_mut :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t, obstacle: ^PxObstacle) -> _c.bool ---
 
     /// Retrieves number of obstacles in the context.
     ///
     /// Number of obstacles in the context
-    PxObstacleContext_getNbObstacles :: proc(self_: ^PxObstacleContext) -> _c.uint32_t ---
+    @(link_name = "PxObstacleContext_getNbObstacles")
+    obstacle_context_get_nb_obstacles :: proc(self_: ^PxObstacleContext) -> _c.uint32_t ---
 
     /// Retrieves desired obstacle.
     ///
     /// Desired obstacle
-    PxObstacleContext_getObstacle :: proc(self_: ^PxObstacleContext, i: _c.uint32_t) -> ^PxObstacle ---
+    @(link_name = "PxObstacleContext_getObstacle")
+    obstacle_context_get_obstacle :: proc(self_: ^PxObstacleContext, i: _c.uint32_t) -> ^PxObstacle ---
 
     /// Retrieves desired obstacle by given handle.
     ///
     /// Desired obstacle
-    PxObstacleContext_getObstacleByHandle :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t) -> ^PxObstacle ---
+    @(link_name = "PxObstacleContext_getObstacleByHandle")
+    obstacle_context_get_obstacle_by_handle :: proc(self_: ^PxObstacleContext, handle: _c.uint32_t) -> ^PxObstacle ---
 
     /// Called when current controller hits a shape.
     ///
     /// This is called when the CCT moves and hits a shape. This will not be called when a moving shape hits a non-moving CCT.
-    PxUserControllerHitReport_onShapeHit_mut :: proc(self_: ^PxUserControllerHitReport, hit: ^PxControllerShapeHit) ---
+    @(link_name = "PxUserControllerHitReport_onShapeHit_mut")
+    user_controller_hit_report_on_shape_hit_mut :: proc(self_: ^PxUserControllerHitReport, #by_ptr hit: PxControllerShapeHit) ---
 
     /// Called when current controller hits another controller.
-    PxUserControllerHitReport_onControllerHit_mut :: proc(self_: ^PxUserControllerHitReport, hit: ^PxControllersHit) ---
+    @(link_name = "PxUserControllerHitReport_onControllerHit_mut")
+    user_controller_hit_report_on_controller_hit_mut :: proc(self_: ^PxUserControllerHitReport, #by_ptr hit: PxControllersHit) ---
 
     /// Called when current controller hits a user-defined obstacle.
-    PxUserControllerHitReport_onObstacleHit_mut :: proc(self_: ^PxUserControllerHitReport, hit: ^PxControllerObstacleHit) ---
+    @(link_name = "PxUserControllerHitReport_onObstacleHit_mut")
+    user_controller_hit_report_on_obstacle_hit_mut :: proc(self_: ^PxUserControllerHitReport, #by_ptr hit: PxControllerObstacleHit) ---
 
-    PxControllerFilterCallback_delete :: proc(self_: ^PxControllerFilterCallback) ---
+    @(link_name = "PxControllerFilterCallback_delete")
+    controller_filter_callback_delete :: proc(self_: ^PxControllerFilterCallback) ---
 
     /// Filtering method for CCT-vs-CCT.
     ///
     /// true to keep the pair, false to filter it out
-    PxControllerFilterCallback_filter_mut :: proc(self_: ^PxControllerFilterCallback, a: ^PxController, b: ^PxController) -> _c.bool ---
+    @(link_name = "PxControllerFilterCallback_filter_mut")
+    controller_filter_callback_filter_mut :: proc(self_: ^PxControllerFilterCallback, a: ^PxController, b: ^PxController) -> _c.bool ---
 
-    PxControllerFilters_new :: proc(filterData: ^PxFilterData, cb: ^PxQueryFilterCallback, cctFilterCb: ^PxControllerFilterCallback) -> PxControllerFilters ---
+    @(link_name = "PxControllerFilters_new")
+    controller_filters_new :: proc(filterData: ^PxFilterData, cb: ^PxQueryFilterCallback, cctFilterCb: ^PxControllerFilterCallback) -> PxControllerFilters ---
 
     /// returns true if the current settings are valid
     ///
     /// True if the descriptor is valid.
-    PxControllerDesc_isValid :: proc(self_: ^PxControllerDesc) -> _c.bool ---
+    @(link_name = "PxControllerDesc_isValid")
+    controller_desc_is_valid :: proc(self_: ^PxControllerDesc) -> _c.bool ---
 
     /// Returns the character controller type
     ///
     /// The controllers type.
-    PxControllerDesc_getType :: proc(self_: ^PxControllerDesc) -> _c.int32_t ---
+    @(link_name = "PxControllerDesc_getType")
+    controller_desc_get_type :: proc(self_: ^PxControllerDesc) -> _c.int32_t ---
 
     /// Return the type of controller
-    PxController_getType :: proc(self_: ^PxController) -> _c.int32_t ---
+    @(link_name = "PxController_getType")
+    controller_get_type :: proc(self_: ^PxController) -> _c.int32_t ---
 
     /// Releases the controller.
-    PxController_release_mut :: proc(self_: ^PxController) ---
+    @(link_name = "PxController_release_mut")
+    controller_release_mut :: proc(self_: ^PxController) ---
 
     /// Moves the character using a "collide-and-slide" algorithm.
     ///
     /// Collision flags, collection of ::PxControllerCollisionFlags
-    PxController_move_mut :: proc(self_: ^PxController, disp: ^PxVec3, minDist: _c.float, elapsedTime: _c.float, filters: ^PxControllerFilters, obstacles: ^PxObstacleContext) -> _c.uint8_t ---
+    @(link_name = "PxController_move_mut")
+    controller_move_mut :: proc(self_: ^PxController, #by_ptr disp: PxVec3, minDist: _c.float, elapsedTime: _c.float, #by_ptr filters: PxControllerFilters, obstacles: ^PxObstacleContext) -> _c.uint8_t ---
 
     /// Sets controller's position.
     ///
@@ -12105,7 +13402,8 @@ foreign libphysx {
     /// To move the character under normal conditions use the [`move`]() function.
     ///
     /// Currently always returns true.
-    PxController_setPosition_mut :: proc(self_: ^PxController, position: ^PxExtendedVec3) -> _c.bool ---
+    @(link_name = "PxController_setPosition_mut")
+    controller_set_position_mut :: proc(self_: ^PxController, #by_ptr position: PxExtendedVec3) -> _c.bool ---
 
     /// Retrieve the raw position of the controller.
     ///
@@ -12116,7 +13414,8 @@ foreign libphysx {
     /// move() will return the last position or the initial position of the controller.
     ///
     /// The controller's center position
-    PxController_getPosition :: proc(self_: ^PxController) -> ^PxExtendedVec3 ---
+    @(link_name = "PxController_getPosition")
+    controller_get_position :: proc(self_: ^PxController) -> ^PxExtendedVec3 ---
 
     /// Set controller's foot position.
     ///
@@ -12129,65 +13428,78 @@ foreign libphysx {
     /// To move the character under normal conditions use the [`move`]() function.
     ///
     /// Currently always returns true.
-    PxController_setFootPosition_mut :: proc(self_: ^PxController, position: ^PxExtendedVec3) -> _c.bool ---
+    @(link_name = "PxController_setFootPosition_mut")
+    controller_set_foot_position_mut :: proc(self_: ^PxController, #by_ptr position: PxExtendedVec3) -> _c.bool ---
 
     /// Retrieve the "foot" position of the controller, i.e. the position of the bottom of the CCT's shape.
     ///
     /// The foot position takes the contact offset into account
     ///
     /// The controller's foot position
-    PxController_getFootPosition :: proc(self_: ^PxController) -> PxExtendedVec3 ---
+    @(link_name = "PxController_getFootPosition")
+    controller_get_foot_position :: proc(self_: ^PxController) -> PxExtendedVec3 ---
 
     /// Get the rigid body actor associated with this controller (see PhysX documentation).
     /// The behavior upon manually altering this actor is undefined, you should primarily
     /// use it for reading const properties.
     ///
     /// the actor associated with the controller.
-    PxController_getActor :: proc(self_: ^PxController) -> ^PxRigidDynamic ---
+    @(link_name = "PxController_getActor")
+    controller_get_actor :: proc(self_: ^PxController) -> ^PxRigidDynamic ---
 
     /// The step height.
-    PxController_setStepOffset_mut :: proc(self_: ^PxController, offset: _c.float) ---
+    @(link_name = "PxController_setStepOffset_mut")
+    controller_set_step_offset_mut :: proc(self_: ^PxController, offset: _c.float) ---
 
     /// Retrieve the step height.
     ///
     /// The step offset for the controller.
-    PxController_getStepOffset :: proc(self_: ^PxController) -> _c.float ---
+    @(link_name = "PxController_getStepOffset")
+    controller_get_step_offset :: proc(self_: ^PxController) -> _c.float ---
 
     /// Sets the non-walkable mode for the CCT.
-    PxController_setNonWalkableMode_mut :: proc(self_: ^PxController, flag: _c.int32_t) ---
+    @(link_name = "PxController_setNonWalkableMode_mut")
+    controller_set_non_walkable_mode_mut :: proc(self_: ^PxController, flag: _c.int32_t) ---
 
     /// Retrieves the non-walkable mode for the CCT.
     ///
     /// The current non-walkable mode.
-    PxController_getNonWalkableMode :: proc(self_: ^PxController) -> _c.int32_t ---
+    @(link_name = "PxController_getNonWalkableMode")
+    controller_get_non_walkable_mode :: proc(self_: ^PxController) -> _c.int32_t ---
 
     /// Retrieve the contact offset.
     ///
     /// The contact offset for the controller.
-    PxController_getContactOffset :: proc(self_: ^PxController) -> _c.float ---
+    @(link_name = "PxController_getContactOffset")
+    controller_get_contact_offset :: proc(self_: ^PxController) -> _c.float ---
 
     /// Sets the contact offset.
-    PxController_setContactOffset_mut :: proc(self_: ^PxController, offset: _c.float) ---
+    @(link_name = "PxController_setContactOffset_mut")
+    controller_set_contact_offset_mut :: proc(self_: ^PxController, offset: _c.float) ---
 
     /// Retrieve the 'up' direction.
     ///
     /// The up direction for the controller.
-    PxController_getUpDirection :: proc(self_: ^PxController) -> PxVec3 ---
+    @(link_name = "PxController_getUpDirection")
+    controller_get_up_direction :: proc(self_: ^PxController) -> PxVec3 ---
 
     /// Sets the 'up' direction.
-    PxController_setUpDirection_mut :: proc(self_: ^PxController, up: ^PxVec3) ---
+    @(link_name = "PxController_setUpDirection_mut")
+    controller_set_up_direction_mut :: proc(self_: ^PxController, #by_ptr up: PxVec3) ---
 
     /// Retrieve the slope limit.
     ///
     /// The slope limit for the controller.
-    PxController_getSlopeLimit :: proc(self_: ^PxController) -> _c.float ---
+    @(link_name = "PxController_getSlopeLimit")
+    controller_get_slope_limit :: proc(self_: ^PxController) -> _c.float ---
 
     /// Sets the slope limit.
     ///
     /// This feature can not be enabled at runtime, i.e. if the slope limit is zero when creating the CCT
     /// (which disables the feature) then changing the slope limit at runtime will not have any effect, and the call
     /// will be ignored.
-    PxController_setSlopeLimit_mut :: proc(self_: ^PxController, slopeLimit: _c.float) ---
+    @(link_name = "PxController_setSlopeLimit_mut")
+    controller_set_slope_limit_mut :: proc(self_: ^PxController, slopeLimit: _c.float) ---
 
     /// Flushes internal geometry cache.
     ///
@@ -12200,26 +13512,32 @@ foreign libphysx {
     /// PxControllerFilters parameter of the PxController::move call).  While the controller in principle
     /// could detect a change in these parameters, it cannot detect a change in the behavior of the filtering
     /// function.
-    PxController_invalidateCache_mut :: proc(self_: ^PxController) ---
+    @(link_name = "PxController_invalidateCache_mut")
+    controller_invalidate_cache_mut :: proc(self_: ^PxController) ---
 
     /// Retrieve the scene associated with the controller.
     ///
     /// The physics scene
-    PxController_getScene_mut :: proc(self_: ^PxController) -> ^PxScene ---
+    @(link_name = "PxController_getScene_mut")
+    controller_get_scene_mut :: proc(self_: ^PxController) -> ^PxScene ---
 
     /// Returns the user data associated with this controller.
     ///
     /// The user pointer associated with the controller.
-    PxController_getUserData :: proc(self_: ^PxController) -> rawptr ---
+    @(link_name = "PxController_getUserData")
+    controller_get_user_data :: proc(self_: ^PxController) -> rawptr ---
 
     /// Sets the user data associated with this controller.
-    PxController_setUserData_mut :: proc(self_: ^PxController, userData: rawptr) ---
+    @(link_name = "PxController_setUserData_mut")
+    controller_set_user_data_mut :: proc(self_: ^PxController, userData: rawptr) ---
 
     /// Returns information about the controller's internal state.
-    PxController_getState :: proc(self_: ^PxController, state: ^PxControllerState) ---
+    @(link_name = "PxController_getState")
+    controller_get_state :: proc(self_: ^PxController, state: ^PxControllerState) ---
 
     /// Returns the controller's internal statistics.
-    PxController_getStats :: proc(self_: ^PxController, stats: ^PxControllerStats) ---
+    @(link_name = "PxController_getStats")
+    controller_get_stats :: proc(self_: ^PxController, stats: ^PxControllerStats) ---
 
     /// Resizes the controller.
     ///
@@ -12227,101 +13545,122 @@ foreign libphysx {
     /// position of the controller remains constant. In other words the function modifies both the
     /// height and the (center) position of the controller. This is a helper function that can be used
     /// to implement a 'crouch' functionality for example.
-    PxController_resize_mut :: proc(self_: ^PxController, height: _c.float) ---
+    @(link_name = "PxController_resize_mut")
+    controller_resize_mut :: proc(self_: ^PxController, height: _c.float) ---
 
     /// constructor sets to default.
-    PxBoxControllerDesc_new_alloc :: proc() -> ^PxBoxControllerDesc ---
+    @(link_name = "PxBoxControllerDesc_new_alloc")
+    box_controller_desc_new_alloc :: proc() -> ^PxBoxControllerDesc ---
 
-    PxBoxControllerDesc_delete :: proc(self_: ^PxBoxControllerDesc) ---
+    @(link_name = "PxBoxControllerDesc_delete")
+    box_controller_desc_delete :: proc(self_: ^PxBoxControllerDesc) ---
 
     /// (re)sets the structure to the default.
-    PxBoxControllerDesc_setToDefault_mut :: proc(self_: ^PxBoxControllerDesc) ---
+    @(link_name = "PxBoxControllerDesc_setToDefault_mut")
+    box_controller_desc_set_to_default_mut :: proc(self_: ^PxBoxControllerDesc) ---
 
     /// returns true if the current settings are valid
     ///
     /// True if the descriptor is valid.
-    PxBoxControllerDesc_isValid :: proc(self_: ^PxBoxControllerDesc) -> _c.bool ---
+    @(link_name = "PxBoxControllerDesc_isValid")
+    box_controller_desc_is_valid :: proc(self_: ^PxBoxControllerDesc) -> _c.bool ---
 
     /// Gets controller's half height.
     ///
     /// The half height of the controller.
-    PxBoxController_getHalfHeight :: proc(self_: ^PxBoxController) -> _c.float ---
+    @(link_name = "PxBoxController_getHalfHeight")
+    box_controller_get_half_height :: proc(self_: ^PxBoxController) -> _c.float ---
 
     /// Gets controller's half side extent.
     ///
     /// The half side extent of the controller.
-    PxBoxController_getHalfSideExtent :: proc(self_: ^PxBoxController) -> _c.float ---
+    @(link_name = "PxBoxController_getHalfSideExtent")
+    box_controller_get_half_side_extent :: proc(self_: ^PxBoxController) -> _c.float ---
 
     /// Gets controller's half forward extent.
     ///
     /// The half forward extent of the controller.
-    PxBoxController_getHalfForwardExtent :: proc(self_: ^PxBoxController) -> _c.float ---
+    @(link_name = "PxBoxController_getHalfForwardExtent")
+    box_controller_get_half_forward_extent :: proc(self_: ^PxBoxController) -> _c.float ---
 
     /// Sets controller's half height.
     ///
     /// this doesn't check for collisions.
     ///
     /// Currently always true.
-    PxBoxController_setHalfHeight_mut :: proc(self_: ^PxBoxController, halfHeight: _c.float) -> _c.bool ---
+    @(link_name = "PxBoxController_setHalfHeight_mut")
+    box_controller_set_half_height_mut :: proc(self_: ^PxBoxController, halfHeight: _c.float) -> _c.bool ---
 
     /// Sets controller's half side extent.
     ///
     /// this doesn't check for collisions.
     ///
     /// Currently always true.
-    PxBoxController_setHalfSideExtent_mut :: proc(self_: ^PxBoxController, halfSideExtent: _c.float) -> _c.bool ---
+    @(link_name = "PxBoxController_setHalfSideExtent_mut")
+    box_controller_set_half_side_extent_mut :: proc(self_: ^PxBoxController, halfSideExtent: _c.float) -> _c.bool ---
 
     /// Sets controller's half forward extent.
     ///
     /// this doesn't check for collisions.
     ///
     /// Currently always true.
-    PxBoxController_setHalfForwardExtent_mut :: proc(self_: ^PxBoxController, halfForwardExtent: _c.float) -> _c.bool ---
+    @(link_name = "PxBoxController_setHalfForwardExtent_mut")
+    box_controller_set_half_forward_extent_mut :: proc(self_: ^PxBoxController, halfForwardExtent: _c.float) -> _c.bool ---
 
     /// constructor sets to default.
-    PxCapsuleControllerDesc_new_alloc :: proc() -> ^PxCapsuleControllerDesc ---
+    @(link_name = "PxCapsuleControllerDesc_new_alloc")
+    capsule_controller_desc_new_alloc :: proc() -> ^PxCapsuleControllerDesc ---
 
-    PxCapsuleControllerDesc_delete :: proc(self_: ^PxCapsuleControllerDesc) ---
+    @(link_name = "PxCapsuleControllerDesc_delete")
+    capsule_controller_desc_delete :: proc(self_: ^PxCapsuleControllerDesc) ---
 
     /// (re)sets the structure to the default.
-    PxCapsuleControllerDesc_setToDefault_mut :: proc(self_: ^PxCapsuleControllerDesc) ---
+    @(link_name = "PxCapsuleControllerDesc_setToDefault_mut")
+    capsule_controller_desc_set_to_default_mut :: proc(self_: ^PxCapsuleControllerDesc) ---
 
     /// returns true if the current settings are valid
     ///
     /// True if the descriptor is valid.
-    PxCapsuleControllerDesc_isValid :: proc(self_: ^PxCapsuleControllerDesc) -> _c.bool ---
+    @(link_name = "PxCapsuleControllerDesc_isValid")
+    capsule_controller_desc_is_valid :: proc(self_: ^PxCapsuleControllerDesc) -> _c.bool ---
 
     /// Gets controller's radius.
     ///
     /// The radius of the controller.
-    PxCapsuleController_getRadius :: proc(self_: ^PxCapsuleController) -> _c.float ---
+    @(link_name = "PxCapsuleController_getRadius")
+    capsule_controller_get_radius :: proc(self_: ^PxCapsuleController) -> _c.float ---
 
     /// Sets controller's radius.
     ///
     /// this doesn't check for collisions.
     ///
     /// Currently always true.
-    PxCapsuleController_setRadius_mut :: proc(self_: ^PxCapsuleController, radius: _c.float) -> _c.bool ---
+    @(link_name = "PxCapsuleController_setRadius_mut")
+    capsule_controller_set_radius_mut :: proc(self_: ^PxCapsuleController, radius: _c.float) -> _c.bool ---
 
     /// Gets controller's height.
     ///
     /// The height of the capsule controller.
-    PxCapsuleController_getHeight :: proc(self_: ^PxCapsuleController) -> _c.float ---
+    @(link_name = "PxCapsuleController_getHeight")
+    capsule_controller_get_height :: proc(self_: ^PxCapsuleController) -> _c.float ---
 
     /// Resets controller's height.
     ///
     /// this doesn't check for collisions.
     ///
     /// Currently always true.
-    PxCapsuleController_setHeight_mut :: proc(self_: ^PxCapsuleController, height: _c.float) -> _c.bool ---
+    @(link_name = "PxCapsuleController_setHeight_mut")
+    capsule_controller_set_height_mut :: proc(self_: ^PxCapsuleController, height: _c.float) -> _c.bool ---
 
     /// Gets controller's climbing mode.
     ///
     /// The capsule controller's climbing mode.
-    PxCapsuleController_getClimbingMode :: proc(self_: ^PxCapsuleController) -> _c.int32_t ---
+    @(link_name = "PxCapsuleController_getClimbingMode")
+    capsule_controller_get_climbing_mode :: proc(self_: ^PxCapsuleController) -> _c.int32_t ---
 
     /// Sets controller's climbing mode.
-    PxCapsuleController_setClimbingMode_mut :: proc(self_: ^PxCapsuleController, mode: _c.int32_t) -> _c.bool ---
+    @(link_name = "PxCapsuleController_setClimbingMode_mut")
+    capsule_controller_set_climbing_mode_mut :: proc(self_: ^PxCapsuleController, mode: _c.int32_t) -> _c.bool ---
 
     /// Retrieve behavior flags for a shape.
     ///
@@ -12331,7 +13670,8 @@ foreign libphysx {
     /// See comments about deprecated functions at the start of this class
     ///
     /// Desired behavior flags for the given shape
-    PxControllerBehaviorCallback_getBehaviorFlags_mut :: proc(self_: ^PxControllerBehaviorCallback, shape: ^PxShape, actor: ^PxActor) -> _c.uint8_t ---
+    @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut")
+    controller_behavior_callback_get_behavior_flags_mut :: proc(self_: ^PxControllerBehaviorCallback, #by_ptr shape: PxShape, actor: ^PxActor) -> _c.uint8_t ---
 
     /// Retrieve behavior flags for a controller.
     ///
@@ -12343,7 +13683,8 @@ foreign libphysx {
     /// See comments about deprecated functions at the start of this class
     ///
     /// Desired behavior flags for the given controller
-    PxControllerBehaviorCallback_getBehaviorFlags_mut_1 :: proc(self_: ^PxControllerBehaviorCallback, controller: ^PxController) -> _c.uint8_t ---
+    @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut_1")
+    controller_behavior_callback_get_behavior_flags_mut_1 :: proc(self_: ^PxControllerBehaviorCallback, controller: ^PxController) -> _c.uint8_t ---
 
     /// Retrieve behavior flags for an obstacle.
     ///
@@ -12353,60 +13694,72 @@ foreign libphysx {
     /// See comments about deprecated functions at the start of this class
     ///
     /// Desired behavior flags for the given obstacle
-    PxControllerBehaviorCallback_getBehaviorFlags_mut_2 :: proc(self_: ^PxControllerBehaviorCallback, obstacle: ^PxObstacle) -> _c.uint8_t ---
+    @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut_2")
+    controller_behavior_callback_get_behavior_flags_mut_2 :: proc(self_: ^PxControllerBehaviorCallback, obstacle: ^PxObstacle) -> _c.uint8_t ---
 
     /// Releases the controller manager.
     ///
     /// This will release all associated controllers and obstacle contexts.
     ///
     /// This function is required to be called to release foundation usage.
-    PxControllerManager_release_mut :: proc(self_: ^PxControllerManager) ---
+    @(link_name = "PxControllerManager_release_mut")
+    controller_manager_release_mut :: proc(self_: ^PxControllerManager) ---
 
     /// Returns the scene the manager is adding the controllers to.
     ///
     /// The associated physics scene.
-    PxControllerManager_getScene :: proc(self_: ^PxControllerManager) -> ^PxScene ---
+    @(link_name = "PxControllerManager_getScene")
+    controller_manager_get_scene :: proc(self_: ^PxControllerManager) -> ^PxScene ---
 
     /// Returns the number of controllers that are being managed.
     ///
     /// The number of controllers.
-    PxControllerManager_getNbControllers :: proc(self_: ^PxControllerManager) -> _c.uint32_t ---
+    @(link_name = "PxControllerManager_getNbControllers")
+    controller_manager_get_nb_controllers :: proc(self_: ^PxControllerManager) -> _c.uint32_t ---
 
     /// Retrieve one of the controllers in the manager.
     ///
     /// The controller with the specified index.
-    PxControllerManager_getController_mut :: proc(self_: ^PxControllerManager, index: _c.uint32_t) -> ^PxController ---
+    @(link_name = "PxControllerManager_getController_mut")
+    controller_manager_get_controller_mut :: proc(self_: ^PxControllerManager, index: _c.uint32_t) -> ^PxController ---
 
     /// Creates a new character controller.
     ///
     /// The new controller
-    PxControllerManager_createController_mut :: proc(self_: ^PxControllerManager, desc: ^PxControllerDesc) -> ^PxController ---
+    @(link_name = "PxControllerManager_createController_mut")
+    controller_manager_create_controller_mut :: proc(self_: ^PxControllerManager, desc: ^PxControllerDesc) -> ^PxController ---
 
     /// Releases all the controllers that are being managed.
-    PxControllerManager_purgeControllers_mut :: proc(self_: ^PxControllerManager) ---
+    @(link_name = "PxControllerManager_purgeControllers_mut")
+    controller_manager_purge_controllers_mut :: proc(self_: ^PxControllerManager) ---
 
     /// Retrieves debug data.
     ///
     /// The render buffer filled with debug-render data
-    PxControllerManager_getRenderBuffer_mut :: proc(self_: ^PxControllerManager) -> ^PxRenderBuffer ---
+    @(link_name = "PxControllerManager_getRenderBuffer_mut")
+    controller_manager_get_render_buffer_mut :: proc(self_: ^PxControllerManager) -> ^PxRenderBuffer ---
 
     /// Sets debug rendering flags
-    PxControllerManager_setDebugRenderingFlags_mut :: proc(self_: ^PxControllerManager, flags: _c.uint32_t) ---
+    @(link_name = "PxControllerManager_setDebugRenderingFlags_mut")
+    controller_manager_set_debug_rendering_flags_mut :: proc(self_: ^PxControllerManager, flags: _c.uint32_t) ---
 
     /// Returns the number of obstacle contexts that are being managed.
     ///
     /// The number of obstacle contexts.
-    PxControllerManager_getNbObstacleContexts :: proc(self_: ^PxControllerManager) -> _c.uint32_t ---
+    @(link_name = "PxControllerManager_getNbObstacleContexts")
+    controller_manager_get_nb_obstacle_contexts :: proc(self_: ^PxControllerManager) -> _c.uint32_t ---
 
     /// Retrieve one of the obstacle contexts in the manager.
     ///
     /// The obstacle context with the specified index.
-    PxControllerManager_getObstacleContext_mut :: proc(self_: ^PxControllerManager, index: _c.uint32_t) -> ^PxObstacleContext ---
+    @(link_name = "PxControllerManager_getObstacleContext_mut")
+    controller_manager_get_obstacle_context_mut :: proc(self_: ^PxControllerManager, index: _c.uint32_t) -> ^PxObstacleContext ---
 
     /// Creates an obstacle context.
     ///
     /// New obstacle context
-    PxControllerManager_createObstacleContext_mut :: proc(self_: ^PxControllerManager) -> ^PxObstacleContext ---
+    @(link_name = "PxControllerManager_createObstacleContext_mut")
+    controller_manager_create_obstacle_context_mut :: proc(self_: ^PxControllerManager) -> ^PxObstacleContext ---
 
     /// Computes character-character interactions.
     ///
@@ -12420,7 +13773,8 @@ foreign libphysx {
     /// If you only have one character in the scene, or if you can guarantee your characters will never overlap, then you do not need to call this function.
     ///
     /// Releasing the manager will automatically release all the associated obstacle contexts.
-    PxControllerManager_computeInteractions_mut :: proc(self_: ^PxControllerManager, elapsedTime: _c.float, cctFilterCb: ^PxControllerFilterCallback) ---
+    @(link_name = "PxControllerManager_computeInteractions_mut")
+    controller_manager_compute_interactions_mut :: proc(self_: ^PxControllerManager, elapsedTime: _c.float, cctFilterCb: ^PxControllerFilterCallback) ---
 
     /// Enables or disables runtime tessellation.
     ///
@@ -12430,7 +13784,8 @@ foreign libphysx {
     /// Any triangle with at least one edge length greater than the maxEdgeLength will get recursively tessellated, until resulting triangles are small enough.
     ///
     /// This features only applies to triangle meshes, convex meshes, heightfields and boxes.
-    PxControllerManager_setTessellation_mut :: proc(self_: ^PxControllerManager, flag: _c.bool, maxEdgeLength: _c.float) ---
+    @(link_name = "PxControllerManager_setTessellation_mut")
+    controller_manager_set_tessellation_mut :: proc(self_: ^PxControllerManager, flag: _c.bool, maxEdgeLength: _c.float) ---
 
     /// Enables or disables the overlap recovery module.
     ///
@@ -12447,14 +13802,16 @@ foreign libphysx {
     /// module is enabled.
     ///
     /// The recovery module currently works with all geometries except heightfields.
-    PxControllerManager_setOverlapRecoveryModule_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
+    @(link_name = "PxControllerManager_setOverlapRecoveryModule_mut")
+    controller_manager_set_overlap_recovery_module_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
 
     /// Enables or disables the precise sweeps.
     ///
     /// Precise sweeps are more accurate, but also potentially slower than regular sweeps.
     ///
     /// By default, precise sweeps are enabled.
-    PxControllerManager_setPreciseSweeps_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
+    @(link_name = "PxControllerManager_setPreciseSweeps_mut")
+    controller_manager_set_precise_sweeps_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
 
     /// Enables or disables vertical sliding against ceilings.
     ///
@@ -12467,7 +13824,8 @@ foreign libphysx {
     /// This flag controls whether characters should slide vertically along the geometry in that case.
     ///
     /// By default, sliding is allowed.
-    PxControllerManager_setPreventVerticalSlidingAgainstCeiling_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
+    @(link_name = "PxControllerManager_setPreventVerticalSlidingAgainstCeiling_mut")
+    controller_manager_set_prevent_vertical_sliding_against_ceiling_mut :: proc(self_: ^PxControllerManager, flag: _c.bool) ---
 
     /// Shift the origin of the character controllers and obstacle objects by the specified vector.
     ///
@@ -12477,7 +13835,8 @@ foreign libphysx {
     /// It is the user's responsibility to keep track of the summed total origin shift and adjust all input/output to/from PhysXCharacterKinematic accordingly.
     ///
     /// This call will not automatically shift the PhysX scene and its objects. You need to call PxScene::shiftOrigin() seperately to keep the systems in sync.
-    PxControllerManager_shiftOrigin_mut :: proc(self_: ^PxControllerManager, shift: ^PxVec3) ---
+    @(link_name = "PxControllerManager_shiftOrigin_mut")
+    controller_manager_shift_origin_mut :: proc(self_: ^PxControllerManager, #by_ptr shift: PxVec3) ---
 
     /// Creates the controller manager.
     ///
@@ -12490,86 +13849,111 @@ foreign libphysx {
     /// locking may result in significant slowdown for release of actors or shapes.
     ///
     /// By default, locking is disabled.
-    phys_PxCreateControllerManager :: proc(scene: ^PxScene, lockingEnabled: _c.bool) -> ^PxControllerManager ---
+    @(link_name = "phys_PxCreateControllerManager")
+    create_controller_manager :: proc(scene: ^PxScene, lockingEnabled: _c.bool) -> ^PxControllerManager ---
 
-    PxDim3_new :: proc() -> PxDim3 ---
+    @(link_name = "PxDim3_new")
+    dim3_new :: proc() -> PxDim3 ---
 
     /// Constructor
-    PxSDFDesc_new :: proc() -> PxSDFDesc ---
+    @(link_name = "PxSDFDesc_new")
+    s_d_f_desc_new :: proc() -> PxSDFDesc ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid
-    PxSDFDesc_isValid :: proc(self_: ^PxSDFDesc) -> _c.bool ---
+    @(link_name = "PxSDFDesc_isValid")
+    s_d_f_desc_is_valid :: proc(self_: ^PxSDFDesc) -> _c.bool ---
 
     /// constructor sets to default.
-    PxConvexMeshDesc_new :: proc() -> PxConvexMeshDesc ---
+    @(link_name = "PxConvexMeshDesc_new")
+    convex_mesh_desc_new :: proc() -> PxConvexMeshDesc ---
 
     /// (re)sets the structure to the default.
-    PxConvexMeshDesc_setToDefault_mut :: proc(self_: ^PxConvexMeshDesc) ---
+    @(link_name = "PxConvexMeshDesc_setToDefault_mut")
+    convex_mesh_desc_set_to_default_mut :: proc(self_: ^PxConvexMeshDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// True if the current settings are valid
-    PxConvexMeshDesc_isValid :: proc(self_: ^PxConvexMeshDesc) -> _c.bool ---
+    @(link_name = "PxConvexMeshDesc_isValid")
+    convex_mesh_desc_is_valid :: proc(self_: ^PxConvexMeshDesc) -> _c.bool ---
 
     /// Constructor sets to default.
-    PxTriangleMeshDesc_new :: proc() -> PxTriangleMeshDesc ---
+    @(link_name = "PxTriangleMeshDesc_new")
+    triangle_mesh_desc_new :: proc() -> PxTriangleMeshDesc ---
 
     /// (re)sets the structure to the default.
-    PxTriangleMeshDesc_setToDefault_mut :: proc(self_: ^PxTriangleMeshDesc) ---
+    @(link_name = "PxTriangleMeshDesc_setToDefault_mut")
+    triangle_mesh_desc_set_to_default_mut :: proc(self_: ^PxTriangleMeshDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid
-    PxTriangleMeshDesc_isValid :: proc(self_: ^PxTriangleMeshDesc) -> _c.bool ---
+    @(link_name = "PxTriangleMeshDesc_isValid")
+    triangle_mesh_desc_is_valid :: proc(self_: ^PxTriangleMeshDesc) -> _c.bool ---
 
     /// Constructor to build an empty tetmesh description
-    PxTetrahedronMeshDesc_new :: proc() -> PxTetrahedronMeshDesc ---
+    @(link_name = "PxTetrahedronMeshDesc_new")
+    tetrahedron_mesh_desc_new :: proc() -> PxTetrahedronMeshDesc ---
 
-    PxTetrahedronMeshDesc_isValid :: proc(self_: ^PxTetrahedronMeshDesc) -> _c.bool ---
+    @(link_name = "PxTetrahedronMeshDesc_isValid")
+    tetrahedron_mesh_desc_is_valid :: proc(self_: ^PxTetrahedronMeshDesc) -> _c.bool ---
 
     /// Constructor to build an empty simulation description
-    PxSoftBodySimulationDataDesc_new :: proc() -> PxSoftBodySimulationDataDesc ---
+    @(link_name = "PxSoftBodySimulationDataDesc_new")
+    soft_body_simulation_data_desc_new :: proc() -> PxSoftBodySimulationDataDesc ---
 
-    PxSoftBodySimulationDataDesc_isValid :: proc(self_: ^PxSoftBodySimulationDataDesc) -> _c.bool ---
+    @(link_name = "PxSoftBodySimulationDataDesc_isValid")
+    soft_body_simulation_data_desc_is_valid :: proc(self_: ^PxSoftBodySimulationDataDesc) -> _c.bool ---
 
     /// Desc initialization to default value.
-    PxBVH34MidphaseDesc_setToDefault_mut :: proc(self_: ^PxBVH34MidphaseDesc) ---
+    @(link_name = "PxBVH34MidphaseDesc_setToDefault_mut")
+    b_v_h34_midphase_desc_set_to_default_mut :: proc(self_: ^PxBVH34MidphaseDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxBVH34MidphaseDesc_isValid :: proc(self_: ^PxBVH34MidphaseDesc) -> _c.bool ---
+    @(link_name = "PxBVH34MidphaseDesc_isValid")
+    b_v_h34_midphase_desc_is_valid :: proc(self_: ^PxBVH34MidphaseDesc) -> _c.bool ---
 
-    PxMidphaseDesc_new :: proc() -> PxMidphaseDesc ---
+    @(link_name = "PxMidphaseDesc_new")
+    midphase_desc_new :: proc() -> PxMidphaseDesc ---
 
     /// Returns type of midphase mesh structure.
     ///
     /// PxMeshMidPhase::Enum
-    PxMidphaseDesc_getType :: proc(self_: ^PxMidphaseDesc) -> _c.int32_t ---
+    @(link_name = "PxMidphaseDesc_getType")
+    midphase_desc_get_type :: proc(self_: ^PxMidphaseDesc) -> _c.int32_t ---
 
     /// Initialize the midphase mesh structure descriptor
-    PxMidphaseDesc_setToDefault_mut :: proc(self_: ^PxMidphaseDesc, type: _c.int32_t) ---
+    @(link_name = "PxMidphaseDesc_setToDefault_mut")
+    midphase_desc_set_to_default_mut :: proc(self_: ^PxMidphaseDesc, type: _c.int32_t) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxMidphaseDesc_isValid :: proc(self_: ^PxMidphaseDesc) -> _c.bool ---
+    @(link_name = "PxMidphaseDesc_isValid")
+    midphase_desc_is_valid :: proc(self_: ^PxMidphaseDesc) -> _c.bool ---
 
-    PxBVHDesc_new :: proc() -> PxBVHDesc ---
+    @(link_name = "PxBVHDesc_new")
+    b_v_h_desc_new :: proc() -> PxBVHDesc ---
 
     /// Initialize the BVH descriptor
-    PxBVHDesc_setToDefault_mut :: proc(self_: ^PxBVHDesc) ---
+    @(link_name = "PxBVHDesc_setToDefault_mut")
+    b_v_h_desc_set_to_default_mut :: proc(self_: ^PxBVHDesc) ---
 
     /// Returns true if the descriptor is valid.
     ///
     /// true if the current settings are valid.
-    PxBVHDesc_isValid :: proc(self_: ^PxBVHDesc) -> _c.bool ---
+    @(link_name = "PxBVHDesc_isValid")
+    b_v_h_desc_is_valid :: proc(self_: ^PxBVHDesc) -> _c.bool ---
 
-    PxCookingParams_new :: proc(sc: ^PxTolerancesScale) -> PxCookingParams ---
+    @(link_name = "PxCookingParams_new")
+    cooking_params_new :: proc(#by_ptr sc: PxTolerancesScale) -> PxCookingParams ---
 
-    phys_PxGetStandaloneInsertionCallback :: proc() -> ^PxInsertionCallback ---
+    @(link_name = "phys_PxGetStandaloneInsertionCallback")
+    get_standalone_insertion_callback :: proc() -> ^PxInsertionCallback ---
 
     /// Cooks a bounding volume hierarchy. The results are written to the stream.
     ///
@@ -12577,7 +13961,8 @@ foreign libphysx {
     /// suitable for loading and performing BVH detection at runtime.
     ///
     /// true on success.
-    phys_PxCookBVH :: proc(desc: ^PxBVHDesc, stream: ^PxOutputStream) -> _c.bool ---
+    @(link_name = "phys_PxCookBVH")
+    cook_b_v_h :: proc(#by_ptr desc: PxBVHDesc, stream: ^PxOutputStream) -> _c.bool ---
 
     /// Cooks and creates a bounding volume hierarchy without going through a stream.
     ///
@@ -12589,7 +13974,8 @@ foreign libphysx {
     /// or PxCooking::getStandaloneInsertionCallback().
     ///
     /// PxBVH pointer on success
-    phys_PxCreateBVH :: proc(desc: ^PxBVHDesc, insertionCallback: ^PxInsertionCallback) -> ^PxBVH ---
+    @(link_name = "phys_PxCreateBVH")
+    create_b_v_h :: proc(#by_ptr desc: PxBVHDesc, insertionCallback: ^PxInsertionCallback) -> ^PxBVH ---
 
     /// Cooks a heightfield. The results are written to the stream.
     ///
@@ -12599,12 +13985,14 @@ foreign libphysx {
     /// suitable for loading and performing collision detection at runtime.
     ///
     /// true on success
-    phys_PxCookHeightField :: proc(desc: ^PxHeightFieldDesc, stream: ^PxOutputStream) -> _c.bool ---
+    @(link_name = "phys_PxCookHeightField")
+    cook_height_field :: proc(#by_ptr desc: PxHeightFieldDesc, stream: ^PxOutputStream) -> _c.bool ---
 
     /// Cooks and creates a heightfield mesh and inserts it into PxPhysics.
     ///
     /// PxHeightField pointer on success
-    phys_PxCreateHeightField :: proc(desc: ^PxHeightFieldDesc, insertionCallback: ^PxInsertionCallback) -> ^PxHeightField ---
+    @(link_name = "phys_PxCreateHeightField")
+    create_height_field :: proc(#by_ptr desc: PxHeightFieldDesc, insertionCallback: ^PxInsertionCallback) -> ^PxHeightField ---
 
     /// Cooks a convex mesh. The results are written to the stream.
     ///
@@ -12619,7 +14007,8 @@ foreign libphysx {
     /// If those limits are exceeded in either the user-provided data or the final cooked mesh, an error is reported.
     ///
     /// true on success.
-    phys_PxCookConvexMesh :: proc(params: ^PxCookingParams, desc: ^PxConvexMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
+    @(link_name = "phys_PxCookConvexMesh")
+    cook_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
 
     /// Cooks and creates a convex mesh without going through a stream.
     ///
@@ -12631,7 +14020,8 @@ foreign libphysx {
     /// or PxCooking::getStandaloneInsertionCallback().
     ///
     /// PxConvexMesh pointer on success
-    phys_PxCreateConvexMesh :: proc(params: ^PxCookingParams, desc: ^PxConvexMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxConvexMesh ---
+    @(link_name = "phys_PxCreateConvexMesh")
+    create_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxConvexMesh ---
 
     /// Verifies if the convex mesh is valid. Prints an error message for each inconsistency found.
     ///
@@ -12640,7 +14030,8 @@ foreign libphysx {
     /// This function should be used if PxConvexFlag::eDISABLE_MESH_VALIDATION is planned to be used in release builds.
     ///
     /// true if all the validity conditions hold, false otherwise.
-    phys_PxValidateConvexMesh :: proc(params: ^PxCookingParams, desc: ^PxConvexMeshDesc) -> _c.bool ---
+    @(link_name = "phys_PxValidateConvexMesh")
+    validate_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc) -> _c.bool ---
 
     /// Computed hull polygons from given vertices and triangles. Polygons are needed for PxConvexMeshDesc rather than triangles.
     ///
@@ -12651,7 +14042,8 @@ foreign libphysx {
     /// array's.
     ///
     /// true on success
-    phys_PxComputeHullPolygons :: proc(params: ^PxCookingParams, mesh: ^PxSimpleTriangleMesh, inCallback: ^PxAllocatorCallback, nbVerts: ^_c.uint32_t, vertices: ^^PxVec3, nbIndices: ^_c.uint32_t, indices: ^^_c.uint32_t, nbPolygons: ^_c.uint32_t, hullPolygons: ^^PxHullPolygon) -> _c.bool ---
+    @(link_name = "phys_PxComputeHullPolygons")
+    compute_hull_polygons :: proc(#by_ptr params: PxCookingParams, mesh: ^PxSimpleTriangleMesh, inCallback: ^PxAllocatorCallback, nbVerts: ^_c.uint32_t, vertices: ^^PxVec3, nbIndices: ^_c.uint32_t, indices: ^^_c.uint32_t, nbPolygons: ^_c.uint32_t, hullPolygons: ^^PxHullPolygon) -> _c.bool ---
 
     /// Verifies if the triangle mesh is valid. Prints an error message for each inconsistency found.
     ///
@@ -12660,7 +14052,8 @@ foreign libphysx {
     /// 2. There are no large triangles (within specified PxTolerancesScale.)
     ///
     /// true if all the validity conditions hold, false otherwise.
-    phys_PxValidateTriangleMesh :: proc(params: ^PxCookingParams, desc: ^PxTriangleMeshDesc) -> _c.bool ---
+    @(link_name = "phys_PxValidateTriangleMesh")
+    validate_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc) -> _c.bool ---
 
     /// Cooks and creates a triangle mesh without going through a stream.
     ///
@@ -12672,7 +14065,8 @@ foreign libphysx {
     /// or PxCooking::getStandaloneInsertionCallback().
     ///
     /// PxTriangleMesh pointer on success.
-    phys_PxCreateTriangleMesh :: proc(params: ^PxCookingParams, desc: ^PxTriangleMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxTriangleMesh ---
+    @(link_name = "phys_PxCreateTriangleMesh")
+    create_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxTriangleMesh ---
 
     /// Cooks a triangle mesh. The results are written to the stream.
     ///
@@ -12683,179 +14077,233 @@ foreign libphysx {
     /// suitable for loading and performing collision detection at runtime.
     ///
     /// true on success
-    phys_PxCookTriangleMesh :: proc(params: ^PxCookingParams, desc: ^PxTriangleMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
+    @(link_name = "phys_PxCookTriangleMesh")
+    cook_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
 
-    PxDefaultMemoryOutputStream_new_alloc :: proc(allocator: ^PxAllocatorCallback) -> ^PxDefaultMemoryOutputStream ---
+    @(link_name = "PxDefaultMemoryOutputStream_new_alloc")
+    default_memory_output_stream_new_alloc :: proc(allocator: ^PxAllocatorCallback) -> ^PxDefaultMemoryOutputStream ---
 
-    PxDefaultMemoryOutputStream_delete :: proc(self_: ^PxDefaultMemoryOutputStream) ---
+    @(link_name = "PxDefaultMemoryOutputStream_delete")
+    default_memory_output_stream_delete :: proc(self_: ^PxDefaultMemoryOutputStream) ---
 
-    PxDefaultMemoryOutputStream_write_mut :: proc(self_: ^PxDefaultMemoryOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxDefaultMemoryOutputStream_write_mut")
+    default_memory_output_stream_write_mut :: proc(self_: ^PxDefaultMemoryOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxDefaultMemoryOutputStream_getSize :: proc(self_: ^PxDefaultMemoryOutputStream) -> _c.uint32_t ---
+    @(link_name = "PxDefaultMemoryOutputStream_getSize")
+    default_memory_output_stream_get_size :: proc(self_: ^PxDefaultMemoryOutputStream) -> _c.uint32_t ---
 
-    PxDefaultMemoryOutputStream_getData :: proc(self_: ^PxDefaultMemoryOutputStream) -> ^_c.uint8_t ---
+    @(link_name = "PxDefaultMemoryOutputStream_getData")
+    default_memory_output_stream_get_data :: proc(self_: ^PxDefaultMemoryOutputStream) -> ^_c.uint8_t ---
 
-    PxDefaultMemoryInputData_new_alloc :: proc(data: ^_c.uint8_t, length: _c.uint32_t) -> ^PxDefaultMemoryInputData ---
+    @(link_name = "PxDefaultMemoryInputData_new_alloc")
+    default_memory_input_data_new_alloc :: proc(data: ^_c.uint8_t, length: _c.uint32_t) -> ^PxDefaultMemoryInputData ---
 
-    PxDefaultMemoryInputData_read_mut :: proc(self_: ^PxDefaultMemoryInputData, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxDefaultMemoryInputData_read_mut")
+    default_memory_input_data_read_mut :: proc(self_: ^PxDefaultMemoryInputData, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxDefaultMemoryInputData_getLength :: proc(self_: ^PxDefaultMemoryInputData) -> _c.uint32_t ---
+    @(link_name = "PxDefaultMemoryInputData_getLength")
+    default_memory_input_data_get_length :: proc(self_: ^PxDefaultMemoryInputData) -> _c.uint32_t ---
 
-    PxDefaultMemoryInputData_seek_mut :: proc(self_: ^PxDefaultMemoryInputData, pos: _c.uint32_t) ---
+    @(link_name = "PxDefaultMemoryInputData_seek_mut")
+    default_memory_input_data_seek_mut :: proc(self_: ^PxDefaultMemoryInputData, pos: _c.uint32_t) ---
 
-    PxDefaultMemoryInputData_tell :: proc(self_: ^PxDefaultMemoryInputData) -> _c.uint32_t ---
+    @(link_name = "PxDefaultMemoryInputData_tell")
+    default_memory_input_data_tell :: proc(self_: ^PxDefaultMemoryInputData) -> _c.uint32_t ---
 
-    PxDefaultFileOutputStream_new_alloc :: proc(name: ^_c.char) -> ^PxDefaultFileOutputStream ---
+    @(link_name = "PxDefaultFileOutputStream_new_alloc")
+    default_file_output_stream_new_alloc :: proc(name: ^_c.char) -> ^PxDefaultFileOutputStream ---
 
-    PxDefaultFileOutputStream_delete :: proc(self_: ^PxDefaultFileOutputStream) ---
+    @(link_name = "PxDefaultFileOutputStream_delete")
+    default_file_output_stream_delete :: proc(self_: ^PxDefaultFileOutputStream) ---
 
-    PxDefaultFileOutputStream_write_mut :: proc(self_: ^PxDefaultFileOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxDefaultFileOutputStream_write_mut")
+    default_file_output_stream_write_mut :: proc(self_: ^PxDefaultFileOutputStream, src: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxDefaultFileOutputStream_isValid_mut :: proc(self_: ^PxDefaultFileOutputStream) -> _c.bool ---
+    @(link_name = "PxDefaultFileOutputStream_isValid_mut")
+    default_file_output_stream_is_valid_mut :: proc(self_: ^PxDefaultFileOutputStream) -> _c.bool ---
 
-    PxDefaultFileInputData_new_alloc :: proc(name: ^_c.char) -> ^PxDefaultFileInputData ---
+    @(link_name = "PxDefaultFileInputData_new_alloc")
+    default_file_input_data_new_alloc :: proc(name: ^_c.char) -> ^PxDefaultFileInputData ---
 
-    PxDefaultFileInputData_delete :: proc(self_: ^PxDefaultFileInputData) ---
+    @(link_name = "PxDefaultFileInputData_delete")
+    default_file_input_data_delete :: proc(self_: ^PxDefaultFileInputData) ---
 
-    PxDefaultFileInputData_read_mut :: proc(self_: ^PxDefaultFileInputData, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxDefaultFileInputData_read_mut")
+    default_file_input_data_read_mut :: proc(self_: ^PxDefaultFileInputData, dest: rawptr, count: _c.uint32_t) -> _c.uint32_t ---
 
-    PxDefaultFileInputData_seek_mut :: proc(self_: ^PxDefaultFileInputData, pos: _c.uint32_t) ---
+    @(link_name = "PxDefaultFileInputData_seek_mut")
+    default_file_input_data_seek_mut :: proc(self_: ^PxDefaultFileInputData, pos: _c.uint32_t) ---
 
-    PxDefaultFileInputData_tell :: proc(self_: ^PxDefaultFileInputData) -> _c.uint32_t ---
+    @(link_name = "PxDefaultFileInputData_tell")
+    default_file_input_data_tell :: proc(self_: ^PxDefaultFileInputData) -> _c.uint32_t ---
 
-    PxDefaultFileInputData_getLength :: proc(self_: ^PxDefaultFileInputData) -> _c.uint32_t ---
+    @(link_name = "PxDefaultFileInputData_getLength")
+    default_file_input_data_get_length :: proc(self_: ^PxDefaultFileInputData) -> _c.uint32_t ---
 
-    PxDefaultFileInputData_isValid :: proc(self_: ^PxDefaultFileInputData) -> _c.bool ---
+    @(link_name = "PxDefaultFileInputData_isValid")
+    default_file_input_data_is_valid :: proc(self_: ^PxDefaultFileInputData) -> _c.bool ---
 
-    phys_platformAlignedAlloc :: proc(size: _c.size_t) -> rawptr ---
+    @(link_name = "phys_platformAlignedAlloc")
+    platform_aligned_alloc :: proc(size: _c.size_t) -> rawptr ---
 
-    phys_platformAlignedFree :: proc(ptr: rawptr) ---
+    @(link_name = "phys_platformAlignedFree")
+    platform_aligned_free :: proc(ptr: rawptr) ---
 
-    PxDefaultAllocator_allocate_mut :: proc(self_: ^PxDefaultAllocator, size: _c.size_t, anon_param1: ^_c.char, anon_param2: ^_c.char, anon_param3: _c.int32_t) -> rawptr ---
+    @(link_name = "PxDefaultAllocator_allocate_mut")
+    default_allocator_allocate_mut :: proc(self_: ^PxDefaultAllocator, size: _c.size_t, anon_param1: ^_c.char, anon_param2: ^_c.char, anon_param3: _c.int32_t) -> rawptr ---
 
-    PxDefaultAllocator_deallocate_mut :: proc(self_: ^PxDefaultAllocator, ptr: rawptr) ---
+    @(link_name = "PxDefaultAllocator_deallocate_mut")
+    default_allocator_deallocate_mut :: proc(self_: ^PxDefaultAllocator, ptr: rawptr) ---
 
-    PxDefaultAllocator_delete :: proc(self_: ^PxDefaultAllocator) ---
+    @(link_name = "PxDefaultAllocator_delete")
+    default_allocator_delete :: proc(self_: ^PxDefaultAllocator) ---
 
     /// Set the actors for this joint.
     ///
     /// An actor may be NULL to indicate the world frame. At most one of the actors may be NULL.
-    PxJoint_setActors_mut :: proc(self_: ^PxJoint, actor0: ^PxRigidActor, actor1: ^PxRigidActor) ---
+    @(link_name = "PxJoint_setActors_mut")
+    joint_set_actors_mut :: proc(self_: ^PxJoint, actor0: ^PxRigidActor, actor1: ^PxRigidActor) ---
 
     /// Get the actors for this joint.
-    PxJoint_getActors :: proc(self_: ^PxJoint, actor0: ^^PxRigidActor, actor1: ^^PxRigidActor) ---
+    @(link_name = "PxJoint_getActors")
+    joint_get_actors :: proc(self_: ^PxJoint, actor0: ^^PxRigidActor, actor1: ^^PxRigidActor) ---
 
     /// Set the joint local pose for an actor.
     ///
     /// This is the relative pose which locates the joint frame relative to the actor.
-    PxJoint_setLocalPose_mut :: proc(self_: ^PxJoint, actor: _c.int32_t, localPose: ^PxTransform) ---
+    @(link_name = "PxJoint_setLocalPose_mut")
+    joint_set_local_pose_mut :: proc(self_: ^PxJoint, actor: _c.int32_t, #by_ptr localPose: PxTransform) ---
 
     /// get the joint local pose for an actor.
     ///
     /// return the local pose for this joint
-    PxJoint_getLocalPose :: proc(self_: ^PxJoint, actor: _c.int32_t) -> PxTransform ---
+    @(link_name = "PxJoint_getLocalPose")
+    joint_get_local_pose :: proc(self_: ^PxJoint, actor: _c.int32_t) -> PxTransform ---
 
     /// get the relative pose for this joint
     ///
     /// This function returns the pose of the joint frame of actor1 relative to actor0
-    PxJoint_getRelativeTransform :: proc(self_: ^PxJoint) -> PxTransform ---
+    @(link_name = "PxJoint_getRelativeTransform")
+    joint_get_relative_transform :: proc(self_: ^PxJoint) -> PxTransform ---
 
     /// get the relative linear velocity of the joint
     ///
     /// This function returns the linear velocity of the origin of the constraint frame of actor1, relative to the origin of the constraint
     /// frame of actor0. The value is returned in the constraint frame of actor0
-    PxJoint_getRelativeLinearVelocity :: proc(self_: ^PxJoint) -> PxVec3 ---
+    @(link_name = "PxJoint_getRelativeLinearVelocity")
+    joint_get_relative_linear_velocity :: proc(self_: ^PxJoint) -> PxVec3 ---
 
     /// get the relative angular velocity of the joint
     ///
     /// This function returns the angular velocity of  actor1 relative to actor0. The value is returned in the constraint frame of actor0
-    PxJoint_getRelativeAngularVelocity :: proc(self_: ^PxJoint) -> PxVec3 ---
+    @(link_name = "PxJoint_getRelativeAngularVelocity")
+    joint_get_relative_angular_velocity :: proc(self_: ^PxJoint) -> PxVec3 ---
 
     /// set the break force for this joint.
     ///
     /// if the constraint force or torque on the joint exceeds the specified values, the joint will break,
     /// at which point it will not constrain the two actors and the flag PxConstraintFlag::eBROKEN will be set. The
     /// force and torque are measured in the joint frame of the first actor
-    PxJoint_setBreakForce_mut :: proc(self_: ^PxJoint, force: _c.float, torque: _c.float) ---
+    @(link_name = "PxJoint_setBreakForce_mut")
+    joint_set_break_force_mut :: proc(self_: ^PxJoint, force: _c.float, torque: _c.float) ---
 
     /// get the break force for this joint.
-    PxJoint_getBreakForce :: proc(self_: ^PxJoint, force: ^_c.float, torque: ^_c.float) ---
+    @(link_name = "PxJoint_getBreakForce")
+    joint_get_break_force :: proc(self_: ^PxJoint, force: ^_c.float, torque: ^_c.float) ---
 
     /// set the constraint flags for this joint.
-    PxJoint_setConstraintFlags_mut :: proc(self_: ^PxJoint, flags: _c.uint16_t) ---
+    @(link_name = "PxJoint_setConstraintFlags_mut")
+    joint_set_constraint_flags_mut :: proc(self_: ^PxJoint, flags: _c.uint16_t) ---
 
     /// set a constraint flags for this joint to a specified value.
-    PxJoint_setConstraintFlag_mut :: proc(self_: ^PxJoint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxJoint_setConstraintFlag_mut")
+    joint_set_constraint_flag_mut :: proc(self_: ^PxJoint, flag: _c.int32_t, value: _c.bool) ---
 
     /// get the constraint flags for this joint.
     ///
     /// the constraint flags
-    PxJoint_getConstraintFlags :: proc(self_: ^PxJoint) -> _c.uint16_t ---
+    @(link_name = "PxJoint_getConstraintFlags")
+    joint_get_constraint_flags :: proc(self_: ^PxJoint) -> _c.uint16_t ---
 
     /// set the inverse mass scale for actor0.
-    PxJoint_setInvMassScale0_mut :: proc(self_: ^PxJoint, invMassScale: _c.float) ---
+    @(link_name = "PxJoint_setInvMassScale0_mut")
+    joint_set_inv_mass_scale0_mut :: proc(self_: ^PxJoint, invMassScale: _c.float) ---
 
     /// get the inverse mass scale for actor0.
     ///
     /// inverse mass scale for actor0
-    PxJoint_getInvMassScale0 :: proc(self_: ^PxJoint) -> _c.float ---
+    @(link_name = "PxJoint_getInvMassScale0")
+    joint_get_inv_mass_scale0 :: proc(self_: ^PxJoint) -> _c.float ---
 
     /// set the inverse inertia scale for actor0.
-    PxJoint_setInvInertiaScale0_mut :: proc(self_: ^PxJoint, invInertiaScale: _c.float) ---
+    @(link_name = "PxJoint_setInvInertiaScale0_mut")
+    joint_set_inv_inertia_scale0_mut :: proc(self_: ^PxJoint, invInertiaScale: _c.float) ---
 
     /// get the inverse inertia scale for actor0.
     ///
     /// inverse inertia scale for actor0
-    PxJoint_getInvInertiaScale0 :: proc(self_: ^PxJoint) -> _c.float ---
+    @(link_name = "PxJoint_getInvInertiaScale0")
+    joint_get_inv_inertia_scale0 :: proc(self_: ^PxJoint) -> _c.float ---
 
     /// set the inverse mass scale for actor1.
-    PxJoint_setInvMassScale1_mut :: proc(self_: ^PxJoint, invMassScale: _c.float) ---
+    @(link_name = "PxJoint_setInvMassScale1_mut")
+    joint_set_inv_mass_scale1_mut :: proc(self_: ^PxJoint, invMassScale: _c.float) ---
 
     /// get the inverse mass scale for actor1.
     ///
     /// inverse mass scale for actor1
-    PxJoint_getInvMassScale1 :: proc(self_: ^PxJoint) -> _c.float ---
+    @(link_name = "PxJoint_getInvMassScale1")
+    joint_get_inv_mass_scale1 :: proc(self_: ^PxJoint) -> _c.float ---
 
     /// set the inverse inertia scale for actor1.
-    PxJoint_setInvInertiaScale1_mut :: proc(self_: ^PxJoint, invInertiaScale: _c.float) ---
+    @(link_name = "PxJoint_setInvInertiaScale1_mut")
+    joint_set_inv_inertia_scale1_mut :: proc(self_: ^PxJoint, invInertiaScale: _c.float) ---
 
     /// get the inverse inertia scale for actor1.
     ///
     /// inverse inertia scale for actor1
-    PxJoint_getInvInertiaScale1 :: proc(self_: ^PxJoint) -> _c.float ---
+    @(link_name = "PxJoint_getInvInertiaScale1")
+    joint_get_inv_inertia_scale1 :: proc(self_: ^PxJoint) -> _c.float ---
 
     /// Retrieves the PxConstraint corresponding to this joint.
     ///
     /// This can be used to determine, among other things, the force applied at the joint.
     ///
     /// the constraint
-    PxJoint_getConstraint :: proc(self_: ^PxJoint) -> ^PxConstraint ---
+    @(link_name = "PxJoint_getConstraint")
+    joint_get_constraint :: proc(self_: ^PxJoint) -> ^PxConstraint ---
 
     /// Sets a name string for the object that can be retrieved with getName().
     ///
     /// This is for debugging and is not used by the SDK. The string is not copied by the SDK,
     /// only the pointer is stored.
-    PxJoint_setName_mut :: proc(self_: ^PxJoint, name: ^_c.char) ---
+    @(link_name = "PxJoint_setName_mut")
+    joint_set_name_mut :: proc(self_: ^PxJoint, name: ^_c.char) ---
 
     /// Retrieves the name string set with setName().
     ///
     /// Name string associated with object.
-    PxJoint_getName :: proc(self_: ^PxJoint) -> ^_c.char ---
+    @(link_name = "PxJoint_getName")
+    joint_get_name :: proc(self_: ^PxJoint) -> ^_c.char ---
 
     /// Deletes the joint.
     ///
     /// This call does not wake up the connected rigid bodies.
-    PxJoint_release_mut :: proc(self_: ^PxJoint) ---
+    @(link_name = "PxJoint_release_mut")
+    joint_release_mut :: proc(self_: ^PxJoint) ---
 
     /// Retrieves the scene which this joint belongs to.
     ///
     /// Owner Scene. NULL if not part of a scene.
-    PxJoint_getScene :: proc(self_: ^PxJoint) -> ^PxScene ---
+    @(link_name = "PxJoint_getScene")
+    joint_get_scene :: proc(self_: ^PxJoint) -> ^PxScene ---
 
     /// Put class meta data in stream, used for serialization
-    PxJoint_getBinaryMetaData :: proc(stream: ^PxOutputStream) ---
+    @(link_name = "PxJoint_getBinaryMetaData")
+    joint_get_binary_meta_data :: proc(stream: ^PxOutputStream) ---
 
-    PxSpring_new :: proc(stiffness_: _c.float, damping_: _c.float) -> PxSpring ---
+    @(link_name = "PxSpring_new")
+    spring_new :: proc(stiffness_: _c.float, damping_: _c.float) -> PxSpring ---
 
     /// Helper function to setup a joint's global frame
     ///
@@ -12869,13 +14317,16 @@ foreign libphysx {
     /// wsAxis);
     ///
     /// The function sets the joint's localPose using world-space input parameters.
-    phys_PxSetJointGlobalFrame :: proc(joint: ^PxJoint, wsAnchor: ^PxVec3, wsAxis: ^PxVec3) ---
+    @(link_name = "phys_PxSetJointGlobalFrame")
+    set_joint_global_frame :: proc(joint: ^PxJoint, wsAnchor: ^PxVec3, wsAxis: ^PxVec3) ---
 
     /// Create a distance Joint.
-    phys_PxDistanceJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxDistanceJoint ---
+    @(link_name = "phys_PxDistanceJointCreate")
+    distance_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxDistanceJoint ---
 
     /// Return the current distance of the joint
-    PxDistanceJoint_getDistance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getDistance")
+    distance_joint_get_distance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the allowed minimum distance for the joint.
     ///
@@ -12885,12 +14336,14 @@ foreign libphysx {
     /// 0.0f
     /// Range
     /// [0, PX_MAX_F32)
-    PxDistanceJoint_setMinDistance_mut :: proc(self_: ^PxDistanceJoint, distance: _c.float) ---
+    @(link_name = "PxDistanceJoint_setMinDistance_mut")
+    distance_joint_set_min_distance_mut :: proc(self_: ^PxDistanceJoint, distance: _c.float) ---
 
     /// Get the allowed minimum distance for the joint.
     ///
     /// the allowed minimum distance
-    PxDistanceJoint_getMinDistance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getMinDistance")
+    distance_joint_get_min_distance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the allowed maximum distance for the joint.
     ///
@@ -12900,15 +14353,18 @@ foreign libphysx {
     /// 0.0f
     /// Range
     /// [0, PX_MAX_F32)
-    PxDistanceJoint_setMaxDistance_mut :: proc(self_: ^PxDistanceJoint, distance: _c.float) ---
+    @(link_name = "PxDistanceJoint_setMaxDistance_mut")
+    distance_joint_set_max_distance_mut :: proc(self_: ^PxDistanceJoint, distance: _c.float) ---
 
     /// Get the allowed maximum distance for the joint.
     ///
     /// the allowed maximum distance
-    PxDistanceJoint_getMaxDistance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getMaxDistance")
+    distance_joint_get_max_distance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the error tolerance of the joint.
-    PxDistanceJoint_setTolerance_mut :: proc(self_: ^PxDistanceJoint, tolerance: _c.float) ---
+    @(link_name = "PxDistanceJoint_setTolerance_mut")
+    distance_joint_set_tolerance_mut :: proc(self_: ^PxDistanceJoint, tolerance: _c.float) ---
 
     /// Get the error tolerance of the joint.
     ///
@@ -12921,7 +14377,8 @@ foreign libphysx {
     ///
     /// This value should be used to ensure that if the minimum distance is zero and the
     /// spring function is in use, the rest length of the spring is non-zero.
-    PxDistanceJoint_getTolerance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getTolerance")
+    distance_joint_get_tolerance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the strength of the joint spring.
     ///
@@ -12931,12 +14388,14 @@ foreign libphysx {
     /// 0.0f
     /// Range
     /// [0, PX_MAX_F32)
-    PxDistanceJoint_setStiffness_mut :: proc(self_: ^PxDistanceJoint, stiffness: _c.float) ---
+    @(link_name = "PxDistanceJoint_setStiffness_mut")
+    distance_joint_set_stiffness_mut :: proc(self_: ^PxDistanceJoint, stiffness: _c.float) ---
 
     /// Get the strength of the joint spring.
     ///
     /// stiffness the spring strength of the joint
-    PxDistanceJoint_getStiffness :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getStiffness")
+    distance_joint_get_stiffness :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the damping of the joint spring.
     ///
@@ -12946,12 +14405,14 @@ foreign libphysx {
     /// 0.0f
     /// Range
     /// [0, PX_MAX_F32)
-    PxDistanceJoint_setDamping_mut :: proc(self_: ^PxDistanceJoint, damping: _c.float) ---
+    @(link_name = "PxDistanceJoint_setDamping_mut")
+    distance_joint_set_damping_mut :: proc(self_: ^PxDistanceJoint, damping: _c.float) ---
 
     /// Get the damping of the joint spring.
     ///
     /// the degree of damping of the joint spring of the joint
-    PxDistanceJoint_getDamping :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getDamping")
+    distance_joint_get_damping :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the contact distance for the min
     /// &
@@ -12968,209 +14429,270 @@ foreign libphysx {
     /// 0.0f
     /// Range
     /// [0, PX_MAX_F32)
-    PxDistanceJoint_setContactDistance_mut :: proc(self_: ^PxDistanceJoint, contactDistance: _c.float) ---
+    @(link_name = "PxDistanceJoint_setContactDistance_mut")
+    distance_joint_set_contact_distance_mut :: proc(self_: ^PxDistanceJoint, contactDistance: _c.float) ---
 
     /// Get the contact distance.
     ///
     /// the contact distance
-    PxDistanceJoint_getContactDistance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
+    @(link_name = "PxDistanceJoint_getContactDistance")
+    distance_joint_get_contact_distance :: proc(self_: ^PxDistanceJoint) -> _c.float ---
 
     /// Set the flags specific to the Distance Joint.
     ///
     /// Default
     /// PxDistanceJointFlag::eMAX_DISTANCE_ENABLED
-    PxDistanceJoint_setDistanceJointFlags_mut :: proc(self_: ^PxDistanceJoint, flags: _c.uint16_t) ---
+    @(link_name = "PxDistanceJoint_setDistanceJointFlags_mut")
+    distance_joint_set_distance_joint_flags_mut :: proc(self_: ^PxDistanceJoint, flags: _c.uint16_t) ---
 
     /// Set a single flag specific to a Distance Joint to true or false.
-    PxDistanceJoint_setDistanceJointFlag_mut :: proc(self_: ^PxDistanceJoint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxDistanceJoint_setDistanceJointFlag_mut")
+    distance_joint_set_distance_joint_flag_mut :: proc(self_: ^PxDistanceJoint, flag: _c.int32_t, value: _c.bool) ---
 
     /// Get the flags specific to the Distance Joint.
     ///
     /// the joint flags
-    PxDistanceJoint_getDistanceJointFlags :: proc(self_: ^PxDistanceJoint) -> _c.uint16_t ---
+    @(link_name = "PxDistanceJoint_getDistanceJointFlags")
+    distance_joint_get_distance_joint_flags :: proc(self_: ^PxDistanceJoint) -> _c.uint16_t ---
 
     /// Returns string name of PxDistanceJoint, used for serialization
-    PxDistanceJoint_getConcreteTypeName :: proc(self_: ^PxDistanceJoint) -> ^_c.char ---
+    @(link_name = "PxDistanceJoint_getConcreteTypeName")
+    distance_joint_get_concrete_type_name :: proc(self_: ^PxDistanceJoint) -> ^_c.char ---
 
     /// Create a distance Joint.
-    phys_PxContactJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxContactJoint ---
+    @(link_name = "phys_PxContactJointCreate")
+    contact_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxContactJoint ---
 
-    PxJacobianRow_new :: proc() -> PxJacobianRow ---
+    @(link_name = "PxJacobianRow_new")
+    jacobian_row_new :: proc() -> PxJacobianRow ---
 
-    PxJacobianRow_new_1 :: proc(lin0: ^PxVec3, lin1: ^PxVec3, ang0: ^PxVec3, ang1: ^PxVec3) -> PxJacobianRow ---
+    @(link_name = "PxJacobianRow_new_1")
+    jacobian_row_new_1 :: proc(#by_ptr lin0: PxVec3, #by_ptr lin1: PxVec3, #by_ptr ang0: PxVec3, #by_ptr ang1: PxVec3) -> PxJacobianRow ---
 
     /// Set the current contact of the joint
-    PxContactJoint_setContact_mut :: proc(self_: ^PxContactJoint, contact: ^PxVec3) ---
+    @(link_name = "PxContactJoint_setContact_mut")
+    contact_joint_set_contact_mut :: proc(self_: ^PxContactJoint, #by_ptr contact: PxVec3) ---
 
     /// Set the current contact normal of the joint
-    PxContactJoint_setContactNormal_mut :: proc(self_: ^PxContactJoint, contactNormal: ^PxVec3) ---
+    @(link_name = "PxContactJoint_setContactNormal_mut")
+    contact_joint_set_contact_normal_mut :: proc(self_: ^PxContactJoint, #by_ptr contactNormal: PxVec3) ---
 
     /// Set the current penetration of the joint
-    PxContactJoint_setPenetration_mut :: proc(self_: ^PxContactJoint, penetration: _c.float) ---
+    @(link_name = "PxContactJoint_setPenetration_mut")
+    contact_joint_set_penetration_mut :: proc(self_: ^PxContactJoint, penetration: _c.float) ---
 
     /// Return the current contact of the joint
-    PxContactJoint_getContact :: proc(self_: ^PxContactJoint) -> PxVec3 ---
+    @(link_name = "PxContactJoint_getContact")
+    contact_joint_get_contact :: proc(self_: ^PxContactJoint) -> PxVec3 ---
 
     /// Return the current contact normal of the joint
-    PxContactJoint_getContactNormal :: proc(self_: ^PxContactJoint) -> PxVec3 ---
+    @(link_name = "PxContactJoint_getContactNormal")
+    contact_joint_get_contact_normal :: proc(self_: ^PxContactJoint) -> PxVec3 ---
 
     /// Return the current penetration value of the joint
-    PxContactJoint_getPenetration :: proc(self_: ^PxContactJoint) -> _c.float ---
+    @(link_name = "PxContactJoint_getPenetration")
+    contact_joint_get_penetration :: proc(self_: ^PxContactJoint) -> _c.float ---
 
-    PxContactJoint_getRestitution :: proc(self_: ^PxContactJoint) -> _c.float ---
+    @(link_name = "PxContactJoint_getRestitution")
+    contact_joint_get_restitution :: proc(self_: ^PxContactJoint) -> _c.float ---
 
-    PxContactJoint_setRestitution_mut :: proc(self_: ^PxContactJoint, restitution: _c.float) ---
+    @(link_name = "PxContactJoint_setRestitution_mut")
+    contact_joint_set_restitution_mut :: proc(self_: ^PxContactJoint, restitution: _c.float) ---
 
-    PxContactJoint_getBounceThreshold :: proc(self_: ^PxContactJoint) -> _c.float ---
+    @(link_name = "PxContactJoint_getBounceThreshold")
+    contact_joint_get_bounce_threshold :: proc(self_: ^PxContactJoint) -> _c.float ---
 
-    PxContactJoint_setBounceThreshold_mut :: proc(self_: ^PxContactJoint, bounceThreshold: _c.float) ---
+    @(link_name = "PxContactJoint_setBounceThreshold_mut")
+    contact_joint_set_bounce_threshold_mut :: proc(self_: ^PxContactJoint, bounceThreshold: _c.float) ---
 
     /// Returns string name of PxContactJoint, used for serialization
-    PxContactJoint_getConcreteTypeName :: proc(self_: ^PxContactJoint) -> ^_c.char ---
+    @(link_name = "PxContactJoint_getConcreteTypeName")
+    contact_joint_get_concrete_type_name :: proc(self_: ^PxContactJoint) -> ^_c.char ---
 
-    PxContactJoint_computeJacobians :: proc(self_: ^PxContactJoint, jacobian: ^PxJacobianRow) ---
+    @(link_name = "PxContactJoint_computeJacobians")
+    contact_joint_compute_jacobians :: proc(self_: ^PxContactJoint, jacobian: ^PxJacobianRow) ---
 
-    PxContactJoint_getNbJacobianRows :: proc(self_: ^PxContactJoint) -> _c.uint32_t ---
+    @(link_name = "PxContactJoint_getNbJacobianRows")
+    contact_joint_get_nb_jacobian_rows :: proc(self_: ^PxContactJoint) -> _c.uint32_t ---
 
     /// Create a fixed joint.
-    phys_PxFixedJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxFixedJoint ---
+    @(link_name = "phys_PxFixedJointCreate")
+    fixed_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxFixedJoint ---
 
     /// Returns string name of PxFixedJoint, used for serialization
-    PxFixedJoint_getConcreteTypeName :: proc(self_: ^PxFixedJoint) -> ^_c.char ---
+    @(link_name = "PxFixedJoint_getConcreteTypeName")
+    fixed_joint_get_concrete_type_name :: proc(self_: ^PxFixedJoint) -> ^_c.char ---
 
-    PxJointLimitParameters_new_alloc :: proc() -> ^PxJointLimitParameters ---
+    @(link_name = "PxJointLimitParameters_new_alloc")
+    joint_limit_parameters_new_alloc :: proc() -> ^PxJointLimitParameters ---
 
     /// Returns true if the current settings are valid.
     ///
     /// true if the current settings are valid
-    PxJointLimitParameters_isValid :: proc(self_: ^PxJointLimitParameters) -> _c.bool ---
+    @(link_name = "PxJointLimitParameters_isValid")
+    joint_limit_parameters_is_valid :: proc(self_: ^PxJointLimitParameters) -> _c.bool ---
 
-    PxJointLimitParameters_isSoft :: proc(self_: ^PxJointLimitParameters) -> _c.bool ---
+    @(link_name = "PxJointLimitParameters_isSoft")
+    joint_limit_parameters_is_soft :: proc(self_: ^PxJointLimitParameters) -> _c.bool ---
 
     /// construct a linear hard limit
-    PxJointLinearLimit_new :: proc(scale: ^PxTolerancesScale, extent: _c.float, contactDist_deprecated: _c.float) -> PxJointLinearLimit ---
+    @(link_name = "PxJointLinearLimit_new")
+    joint_linear_limit_new :: proc(#by_ptr scale: PxTolerancesScale, extent: _c.float, contactDist_deprecated: _c.float) -> PxJointLinearLimit ---
 
     /// construct a linear soft limit
-    PxJointLinearLimit_new_1 :: proc(extent: _c.float, spring: ^PxSpring) -> PxJointLinearLimit ---
+    @(link_name = "PxJointLinearLimit_new_1")
+    joint_linear_limit_new_1 :: proc(extent: _c.float, spring: ^PxSpring) -> PxJointLinearLimit ---
 
     /// Returns true if the limit is valid
     ///
     /// true if the current settings are valid
-    PxJointLinearLimit_isValid :: proc(self_: ^PxJointLinearLimit) -> _c.bool ---
+    @(link_name = "PxJointLinearLimit_isValid")
+    joint_linear_limit_is_valid :: proc(self_: ^PxJointLinearLimit) -> _c.bool ---
 
-    PxJointLinearLimit_delete :: proc(self_: ^PxJointLinearLimit) ---
+    @(link_name = "PxJointLinearLimit_delete")
+    joint_linear_limit_delete :: proc(self_: ^PxJointLinearLimit) ---
 
     /// Construct a linear hard limit pair. The lower distance value must be less than the upper distance value.
-    PxJointLinearLimitPair_new :: proc(scale: ^PxTolerancesScale, lowerLimit: _c.float, upperLimit: _c.float, contactDist_deprecated: _c.float) -> PxJointLinearLimitPair ---
+    @(link_name = "PxJointLinearLimitPair_new")
+    joint_linear_limit_pair_new :: proc(#by_ptr scale: PxTolerancesScale, lowerLimit: _c.float, upperLimit: _c.float, contactDist_deprecated: _c.float) -> PxJointLinearLimitPair ---
 
     /// construct a linear soft limit pair
-    PxJointLinearLimitPair_new_1 :: proc(lowerLimit: _c.float, upperLimit: _c.float, spring: ^PxSpring) -> PxJointLinearLimitPair ---
+    @(link_name = "PxJointLinearLimitPair_new_1")
+    joint_linear_limit_pair_new_1 :: proc(lowerLimit: _c.float, upperLimit: _c.float, spring: ^PxSpring) -> PxJointLinearLimitPair ---
 
     /// Returns true if the limit is valid.
     ///
     /// true if the current settings are valid
-    PxJointLinearLimitPair_isValid :: proc(self_: ^PxJointLinearLimitPair) -> _c.bool ---
+    @(link_name = "PxJointLinearLimitPair_isValid")
+    joint_linear_limit_pair_is_valid :: proc(self_: ^PxJointLinearLimitPair) -> _c.bool ---
 
-    PxJointLinearLimitPair_delete :: proc(self_: ^PxJointLinearLimitPair) ---
+    @(link_name = "PxJointLinearLimitPair_delete")
+    joint_linear_limit_pair_delete :: proc(self_: ^PxJointLinearLimitPair) ---
 
     /// construct an angular hard limit pair.
     ///
     /// The lower value must be less than the upper value.
-    PxJointAngularLimitPair_new :: proc(lowerLimit: _c.float, upperLimit: _c.float, contactDist_deprecated: _c.float) -> PxJointAngularLimitPair ---
+    @(link_name = "PxJointAngularLimitPair_new")
+    joint_angular_limit_pair_new :: proc(lowerLimit: _c.float, upperLimit: _c.float, contactDist_deprecated: _c.float) -> PxJointAngularLimitPair ---
 
     /// construct an angular soft limit pair.
     ///
     /// The lower value must be less than the upper value.
-    PxJointAngularLimitPair_new_1 :: proc(lowerLimit: _c.float, upperLimit: _c.float, spring: ^PxSpring) -> PxJointAngularLimitPair ---
+    @(link_name = "PxJointAngularLimitPair_new_1")
+    joint_angular_limit_pair_new_1 :: proc(lowerLimit: _c.float, upperLimit: _c.float, spring: ^PxSpring) -> PxJointAngularLimitPair ---
 
     /// Returns true if the limit is valid.
     ///
     /// true if the current settings are valid
-    PxJointAngularLimitPair_isValid :: proc(self_: ^PxJointAngularLimitPair) -> _c.bool ---
+    @(link_name = "PxJointAngularLimitPair_isValid")
+    joint_angular_limit_pair_is_valid :: proc(self_: ^PxJointAngularLimitPair) -> _c.bool ---
 
-    PxJointAngularLimitPair_delete :: proc(self_: ^PxJointAngularLimitPair) ---
+    @(link_name = "PxJointAngularLimitPair_delete")
+    joint_angular_limit_pair_delete :: proc(self_: ^PxJointAngularLimitPair) ---
 
     /// Construct a cone hard limit.
-    PxJointLimitCone_new :: proc(yLimitAngle: _c.float, zLimitAngle: _c.float, contactDist_deprecated: _c.float) -> PxJointLimitCone ---
+    @(link_name = "PxJointLimitCone_new")
+    joint_limit_cone_new :: proc(yLimitAngle: _c.float, zLimitAngle: _c.float, contactDist_deprecated: _c.float) -> PxJointLimitCone ---
 
     /// Construct a cone soft limit.
-    PxJointLimitCone_new_1 :: proc(yLimitAngle: _c.float, zLimitAngle: _c.float, spring: ^PxSpring) -> PxJointLimitCone ---
+    @(link_name = "PxJointLimitCone_new_1")
+    joint_limit_cone_new_1 :: proc(yLimitAngle: _c.float, zLimitAngle: _c.float, spring: ^PxSpring) -> PxJointLimitCone ---
 
     /// Returns true if the limit is valid.
     ///
     /// true if the current settings are valid
-    PxJointLimitCone_isValid :: proc(self_: ^PxJointLimitCone) -> _c.bool ---
+    @(link_name = "PxJointLimitCone_isValid")
+    joint_limit_cone_is_valid :: proc(self_: ^PxJointLimitCone) -> _c.bool ---
 
-    PxJointLimitCone_delete :: proc(self_: ^PxJointLimitCone) ---
+    @(link_name = "PxJointLimitCone_delete")
+    joint_limit_cone_delete :: proc(self_: ^PxJointLimitCone) ---
 
     /// Construct a pyramid hard limit.
-    PxJointLimitPyramid_new :: proc(yLimitAngleMin: _c.float, yLimitAngleMax: _c.float, zLimitAngleMin: _c.float, zLimitAngleMax: _c.float, contactDist_deprecated: _c.float) -> PxJointLimitPyramid ---
+    @(link_name = "PxJointLimitPyramid_new")
+    joint_limit_pyramid_new :: proc(yLimitAngleMin: _c.float, yLimitAngleMax: _c.float, zLimitAngleMin: _c.float, zLimitAngleMax: _c.float, contactDist_deprecated: _c.float) -> PxJointLimitPyramid ---
 
     /// Construct a pyramid soft limit.
-    PxJointLimitPyramid_new_1 :: proc(yLimitAngleMin: _c.float, yLimitAngleMax: _c.float, zLimitAngleMin: _c.float, zLimitAngleMax: _c.float, spring: ^PxSpring) -> PxJointLimitPyramid ---
+    @(link_name = "PxJointLimitPyramid_new_1")
+    joint_limit_pyramid_new_1 :: proc(yLimitAngleMin: _c.float, yLimitAngleMax: _c.float, zLimitAngleMin: _c.float, zLimitAngleMax: _c.float, spring: ^PxSpring) -> PxJointLimitPyramid ---
 
     /// Returns true if the limit is valid.
     ///
     /// true if the current settings are valid
-    PxJointLimitPyramid_isValid :: proc(self_: ^PxJointLimitPyramid) -> _c.bool ---
+    @(link_name = "PxJointLimitPyramid_isValid")
+    joint_limit_pyramid_is_valid :: proc(self_: ^PxJointLimitPyramid) -> _c.bool ---
 
-    PxJointLimitPyramid_delete :: proc(self_: ^PxJointLimitPyramid) ---
+    @(link_name = "PxJointLimitPyramid_delete")
+    joint_limit_pyramid_delete :: proc(self_: ^PxJointLimitPyramid) ---
 
     /// Create a prismatic joint.
-    phys_PxPrismaticJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxPrismaticJoint ---
+    @(link_name = "phys_PxPrismaticJointCreate")
+    prismatic_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxPrismaticJoint ---
 
     /// returns the displacement of the joint along its axis.
-    PxPrismaticJoint_getPosition :: proc(self_: ^PxPrismaticJoint) -> _c.float ---
+    @(link_name = "PxPrismaticJoint_getPosition")
+    prismatic_joint_get_position :: proc(self_: ^PxPrismaticJoint) -> _c.float ---
 
     /// returns the velocity of the joint along its axis
-    PxPrismaticJoint_getVelocity :: proc(self_: ^PxPrismaticJoint) -> _c.float ---
+    @(link_name = "PxPrismaticJoint_getVelocity")
+    prismatic_joint_get_velocity :: proc(self_: ^PxPrismaticJoint) -> _c.float ---
 
     /// sets the joint limit  parameters.
     ///
     /// The limit range is [-PX_MAX_F32, PX_MAX_F32], but note that the width of the limit (upper-lower) must also be
     /// a valid float.
-    PxPrismaticJoint_setLimit_mut :: proc(self_: ^PxPrismaticJoint, anon_param0: ^PxJointLinearLimitPair) ---
+    @(link_name = "PxPrismaticJoint_setLimit_mut")
+    prismatic_joint_set_limit_mut :: proc(self_: ^PxPrismaticJoint, #by_ptr anon_param0: PxJointLinearLimitPair) ---
 
     /// gets the joint limit  parameters.
-    PxPrismaticJoint_getLimit :: proc(self_: ^PxPrismaticJoint) -> PxJointLinearLimitPair ---
+    @(link_name = "PxPrismaticJoint_getLimit")
+    prismatic_joint_get_limit :: proc(self_: ^PxPrismaticJoint) -> PxJointLinearLimitPair ---
 
     /// Set the flags specific to the Prismatic Joint.
     ///
     /// Default
     /// PxPrismaticJointFlags(0)
-    PxPrismaticJoint_setPrismaticJointFlags_mut :: proc(self_: ^PxPrismaticJoint, flags: _c.uint16_t) ---
+    @(link_name = "PxPrismaticJoint_setPrismaticJointFlags_mut")
+    prismatic_joint_set_prismatic_joint_flags_mut :: proc(self_: ^PxPrismaticJoint, flags: _c.uint16_t) ---
 
     /// Set a single flag specific to a Prismatic Joint to true or false.
-    PxPrismaticJoint_setPrismaticJointFlag_mut :: proc(self_: ^PxPrismaticJoint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxPrismaticJoint_setPrismaticJointFlag_mut")
+    prismatic_joint_set_prismatic_joint_flag_mut :: proc(self_: ^PxPrismaticJoint, flag: _c.int32_t, value: _c.bool) ---
 
     /// Get the flags specific to the Prismatic Joint.
     ///
     /// the joint flags
-    PxPrismaticJoint_getPrismaticJointFlags :: proc(self_: ^PxPrismaticJoint) -> _c.uint16_t ---
+    @(link_name = "PxPrismaticJoint_getPrismaticJointFlags")
+    prismatic_joint_get_prismatic_joint_flags :: proc(self_: ^PxPrismaticJoint) -> _c.uint16_t ---
 
     /// Returns string name of PxPrismaticJoint, used for serialization
-    PxPrismaticJoint_getConcreteTypeName :: proc(self_: ^PxPrismaticJoint) -> ^_c.char ---
+    @(link_name = "PxPrismaticJoint_getConcreteTypeName")
+    prismatic_joint_get_concrete_type_name :: proc(self_: ^PxPrismaticJoint) -> ^_c.char ---
 
     /// Create a revolute joint.
-    phys_PxRevoluteJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxRevoluteJoint ---
+    @(link_name = "phys_PxRevoluteJointCreate")
+    revolute_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxRevoluteJoint ---
 
     /// return the angle of the joint, in the range (-2*Pi, 2*Pi]
-    PxRevoluteJoint_getAngle :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
+    @(link_name = "PxRevoluteJoint_getAngle")
+    revolute_joint_get_angle :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
 
     /// return the velocity of the joint
-    PxRevoluteJoint_getVelocity :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
+    @(link_name = "PxRevoluteJoint_getVelocity")
+    revolute_joint_get_velocity :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
 
     /// set the joint limit parameters.
     ///
     /// The limit is activated using the flag PxRevoluteJointFlag::eLIMIT_ENABLED
     ///
     /// The limit angle range is (-2*Pi, 2*Pi).
-    PxRevoluteJoint_setLimit_mut :: proc(self_: ^PxRevoluteJoint, limits: ^PxJointAngularLimitPair) ---
+    @(link_name = "PxRevoluteJoint_setLimit_mut")
+    revolute_joint_set_limit_mut :: proc(self_: ^PxRevoluteJoint, #by_ptr limits: PxJointAngularLimitPair) ---
 
     /// get the joint limit parameters.
     ///
     /// the joint limit parameters
-    PxRevoluteJoint_getLimit :: proc(self_: ^PxRevoluteJoint) -> PxJointAngularLimitPair ---
+    @(link_name = "PxRevoluteJoint_getLimit")
+    revolute_joint_get_limit :: proc(self_: ^PxRevoluteJoint) -> PxJointAngularLimitPair ---
 
     /// set the target velocity for the drive model.
     ///
@@ -13186,12 +14708,14 @@ foreign libphysx {
     /// (-PX_MAX_F32, PX_MAX_F32)
     /// Default:
     /// 0.0
-    PxRevoluteJoint_setDriveVelocity_mut :: proc(self_: ^PxRevoluteJoint, velocity: _c.float, autowake: _c.bool) ---
+    @(link_name = "PxRevoluteJoint_setDriveVelocity_mut")
+    revolute_joint_set_drive_velocity_mut :: proc(self_: ^PxRevoluteJoint, velocity: _c.float, autowake: _c.bool) ---
 
     /// gets the target velocity for the drive model.
     ///
     /// the drive target velocity
-    PxRevoluteJoint_getDriveVelocity :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
+    @(link_name = "PxRevoluteJoint_getDriveVelocity")
+    revolute_joint_get_drive_velocity :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
 
     /// sets the maximum torque the drive can exert.
     ///
@@ -13201,12 +14725,14 @@ foreign libphysx {
     /// [0, PX_MAX_F32)
     /// Default:
     /// PX_MAX_F32
-    PxRevoluteJoint_setDriveForceLimit_mut :: proc(self_: ^PxRevoluteJoint, limit: _c.float) ---
+    @(link_name = "PxRevoluteJoint_setDriveForceLimit_mut")
+    revolute_joint_set_drive_force_limit_mut :: proc(self_: ^PxRevoluteJoint, limit: _c.float) ---
 
     /// gets the maximum torque the drive can exert.
     ///
     /// the torque limit
-    PxRevoluteJoint_getDriveForceLimit :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
+    @(link_name = "PxRevoluteJoint_getDriveForceLimit")
+    revolute_joint_get_drive_force_limit :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
 
     /// sets the gear ratio for the drive.
     ///
@@ -13217,32 +14743,39 @@ foreign libphysx {
     /// [0, PX_MAX_F32)
     /// Default:
     /// 1.0
-    PxRevoluteJoint_setDriveGearRatio_mut :: proc(self_: ^PxRevoluteJoint, ratio: _c.float) ---
+    @(link_name = "PxRevoluteJoint_setDriveGearRatio_mut")
+    revolute_joint_set_drive_gear_ratio_mut :: proc(self_: ^PxRevoluteJoint, ratio: _c.float) ---
 
     /// gets the gear ratio.
     ///
     /// the drive gear ratio
-    PxRevoluteJoint_getDriveGearRatio :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
+    @(link_name = "PxRevoluteJoint_getDriveGearRatio")
+    revolute_joint_get_drive_gear_ratio :: proc(self_: ^PxRevoluteJoint) -> _c.float ---
 
     /// sets the flags specific to the Revolute Joint.
     ///
     /// Default
     /// PxRevoluteJointFlags(0)
-    PxRevoluteJoint_setRevoluteJointFlags_mut :: proc(self_: ^PxRevoluteJoint, flags: _c.uint16_t) ---
+    @(link_name = "PxRevoluteJoint_setRevoluteJointFlags_mut")
+    revolute_joint_set_revolute_joint_flags_mut :: proc(self_: ^PxRevoluteJoint, flags: _c.uint16_t) ---
 
     /// sets a single flag specific to a Revolute Joint.
-    PxRevoluteJoint_setRevoluteJointFlag_mut :: proc(self_: ^PxRevoluteJoint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxRevoluteJoint_setRevoluteJointFlag_mut")
+    revolute_joint_set_revolute_joint_flag_mut :: proc(self_: ^PxRevoluteJoint, flag: _c.int32_t, value: _c.bool) ---
 
     /// gets the flags specific to the Revolute Joint.
     ///
     /// the joint flags
-    PxRevoluteJoint_getRevoluteJointFlags :: proc(self_: ^PxRevoluteJoint) -> _c.uint16_t ---
+    @(link_name = "PxRevoluteJoint_getRevoluteJointFlags")
+    revolute_joint_get_revolute_joint_flags :: proc(self_: ^PxRevoluteJoint) -> _c.uint16_t ---
 
     /// Returns string name of PxRevoluteJoint, used for serialization
-    PxRevoluteJoint_getConcreteTypeName :: proc(self_: ^PxRevoluteJoint) -> ^_c.char ---
+    @(link_name = "PxRevoluteJoint_getConcreteTypeName")
+    revolute_joint_get_concrete_type_name :: proc(self_: ^PxRevoluteJoint) -> ^_c.char ---
 
     /// Create a spherical joint.
-    phys_PxSphericalJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxSphericalJoint ---
+    @(link_name = "phys_PxSphericalJointCreate")
+    spherical_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxSphericalJoint ---
 
     /// Set the limit cone.
     ///
@@ -13250,45 +14783,57 @@ foreign libphysx {
     /// within an elliptical cone.
     ///
     /// the limit cone
-    PxSphericalJoint_getLimitCone :: proc(self_: ^PxSphericalJoint) -> PxJointLimitCone ---
+    @(link_name = "PxSphericalJoint_getLimitCone")
+    spherical_joint_get_limit_cone :: proc(self_: ^PxSphericalJoint) -> PxJointLimitCone ---
 
     /// Get the limit cone.
-    PxSphericalJoint_setLimitCone_mut :: proc(self_: ^PxSphericalJoint, limit: ^PxJointLimitCone) ---
+    @(link_name = "PxSphericalJoint_setLimitCone_mut")
+    spherical_joint_set_limit_cone_mut :: proc(self_: ^PxSphericalJoint, #by_ptr limit: PxJointLimitCone) ---
 
     /// get the swing angle of the joint from the Y axis
-    PxSphericalJoint_getSwingYAngle :: proc(self_: ^PxSphericalJoint) -> _c.float ---
+    @(link_name = "PxSphericalJoint_getSwingYAngle")
+    spherical_joint_get_swing_y_angle :: proc(self_: ^PxSphericalJoint) -> _c.float ---
 
     /// get the swing angle of the joint from the Z axis
-    PxSphericalJoint_getSwingZAngle :: proc(self_: ^PxSphericalJoint) -> _c.float ---
+    @(link_name = "PxSphericalJoint_getSwingZAngle")
+    spherical_joint_get_swing_z_angle :: proc(self_: ^PxSphericalJoint) -> _c.float ---
 
     /// Set the flags specific to the Spherical Joint.
     ///
     /// Default
     /// PxSphericalJointFlags(0)
-    PxSphericalJoint_setSphericalJointFlags_mut :: proc(self_: ^PxSphericalJoint, flags: _c.uint16_t) ---
+    @(link_name = "PxSphericalJoint_setSphericalJointFlags_mut")
+    spherical_joint_set_spherical_joint_flags_mut :: proc(self_: ^PxSphericalJoint, flags: _c.uint16_t) ---
 
     /// Set a single flag specific to a Spherical Joint to true or false.
-    PxSphericalJoint_setSphericalJointFlag_mut :: proc(self_: ^PxSphericalJoint, flag: _c.int32_t, value: _c.bool) ---
+    @(link_name = "PxSphericalJoint_setSphericalJointFlag_mut")
+    spherical_joint_set_spherical_joint_flag_mut :: proc(self_: ^PxSphericalJoint, flag: _c.int32_t, value: _c.bool) ---
 
     /// Get the flags specific to the Spherical Joint.
     ///
     /// the joint flags
-    PxSphericalJoint_getSphericalJointFlags :: proc(self_: ^PxSphericalJoint) -> _c.uint16_t ---
+    @(link_name = "PxSphericalJoint_getSphericalJointFlags")
+    spherical_joint_get_spherical_joint_flags :: proc(self_: ^PxSphericalJoint) -> _c.uint16_t ---
 
     /// Returns string name of PxSphericalJoint, used for serialization
-    PxSphericalJoint_getConcreteTypeName :: proc(self_: ^PxSphericalJoint) -> ^_c.char ---
+    @(link_name = "PxSphericalJoint_getConcreteTypeName")
+    spherical_joint_get_concrete_type_name :: proc(self_: ^PxSphericalJoint) -> ^_c.char ---
 
     /// Create a D6 joint.
-    phys_PxD6JointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxD6Joint ---
+    @(link_name = "phys_PxD6JointCreate")
+    d6_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxD6Joint ---
 
     /// default constructor for PxD6JointDrive.
-    PxD6JointDrive_new :: proc() -> PxD6JointDrive ---
+    @(link_name = "PxD6JointDrive_new")
+    d6_joint_drive_new :: proc() -> PxD6JointDrive ---
 
     /// constructor a PxD6JointDrive.
-    PxD6JointDrive_new_1 :: proc(driveStiffness: _c.float, driveDamping: _c.float, driveForceLimit: _c.float, isAcceleration: _c.bool) -> PxD6JointDrive ---
+    @(link_name = "PxD6JointDrive_new_1")
+    d6_joint_drive_new_1 :: proc(driveStiffness: _c.float, driveDamping: _c.float, driveForceLimit: _c.float, isAcceleration: _c.bool) -> PxD6JointDrive ---
 
     /// returns true if the drive is valid
-    PxD6JointDrive_isValid :: proc(self_: ^PxD6JointDrive) -> _c.bool ---
+    @(link_name = "PxD6JointDrive_isValid")
+    d6_joint_drive_is_valid :: proc(self_: ^PxD6JointDrive) -> _c.bool ---
 
     /// Set the motion type around the specified axis.
     ///
@@ -13297,33 +14842,40 @@ foreign libphysx {
     ///
     /// Default:
     /// all degrees of freedom are locked
-    PxD6Joint_setMotion_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, type: _c.int32_t) ---
+    @(link_name = "PxD6Joint_setMotion_mut")
+    d6_joint_set_motion_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, type: _c.int32_t) ---
 
     /// Get the motion type around the specified axis.
     ///
     /// the motion type around the specified axis
-    PxD6Joint_getMotion :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> _c.int32_t ---
+    @(link_name = "PxD6Joint_getMotion")
+    d6_joint_get_motion :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> _c.int32_t ---
 
     /// get the twist angle of the joint, in the range (-2*Pi, 2*Pi]
-    PxD6Joint_getTwistAngle :: proc(self_: ^PxD6Joint) -> _c.float ---
+    @(link_name = "PxD6Joint_getTwistAngle")
+    d6_joint_get_twist_angle :: proc(self_: ^PxD6Joint) -> _c.float ---
 
     /// get the swing angle of the joint from the Y axis
-    PxD6Joint_getSwingYAngle :: proc(self_: ^PxD6Joint) -> _c.float ---
+    @(link_name = "PxD6Joint_getSwingYAngle")
+    d6_joint_get_swing_y_angle :: proc(self_: ^PxD6Joint) -> _c.float ---
 
     /// get the swing angle of the joint from the Z axis
-    PxD6Joint_getSwingZAngle :: proc(self_: ^PxD6Joint) -> _c.float ---
+    @(link_name = "PxD6Joint_getSwingZAngle")
+    d6_joint_get_swing_z_angle :: proc(self_: ^PxD6Joint) -> _c.float ---
 
     /// Set the distance limit for the joint.
     ///
     /// A single limit constraints all linear limited degrees of freedom, forming a linear, circular
     /// or spherical constraint on motion depending on the number of limited degrees. This is similar
     /// to a distance limit.
-    PxD6Joint_setDistanceLimit_mut :: proc(self_: ^PxD6Joint, limit: ^PxJointLinearLimit) ---
+    @(link_name = "PxD6Joint_setDistanceLimit_mut")
+    d6_joint_set_distance_limit_mut :: proc(self_: ^PxD6Joint, #by_ptr limit: PxJointLinearLimit) ---
 
     /// Get the distance limit for the joint.
     ///
     /// the distance limit structure
-    PxD6Joint_getDistanceLimit :: proc(self_: ^PxD6Joint) -> PxJointLinearLimit ---
+    @(link_name = "PxD6Joint_getDistanceLimit")
+    d6_joint_get_distance_limit :: proc(self_: ^PxD6Joint) -> PxJointLinearLimit ---
 
     /// Set the linear limit for a given linear axis.
     ///
@@ -13333,36 +14885,42 @@ foreign libphysx {
     ///
     /// This can be used to create prismatic joints similar to PxPrismaticJoint, or point-in-quad joints,
     /// or point-in-box joints.
-    PxD6Joint_setLinearLimit_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, limit: ^PxJointLinearLimitPair) ---
+    @(link_name = "PxD6Joint_setLinearLimit_mut")
+    d6_joint_set_linear_limit_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, #by_ptr limit: PxJointLinearLimitPair) ---
 
     /// Get the linear limit for a given linear axis.
     ///
     /// the linear limit pair structure from desired axis
-    PxD6Joint_getLinearLimit :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> PxJointLinearLimitPair ---
+    @(link_name = "PxD6Joint_getLinearLimit")
+    d6_joint_get_linear_limit :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> PxJointLinearLimitPair ---
 
     /// Set the twist limit for the joint.
     ///
     /// The twist limit controls the range of motion around the twist axis.
     ///
     /// The limit angle range is (-2*Pi, 2*Pi).
-    PxD6Joint_setTwistLimit_mut :: proc(self_: ^PxD6Joint, limit: ^PxJointAngularLimitPair) ---
+    @(link_name = "PxD6Joint_setTwistLimit_mut")
+    d6_joint_set_twist_limit_mut :: proc(self_: ^PxD6Joint, #by_ptr limit: PxJointAngularLimitPair) ---
 
     /// Get the twist limit for the joint.
     ///
     /// the twist limit structure
-    PxD6Joint_getTwistLimit :: proc(self_: ^PxD6Joint) -> PxJointAngularLimitPair ---
+    @(link_name = "PxD6Joint_getTwistLimit")
+    d6_joint_get_twist_limit :: proc(self_: ^PxD6Joint) -> PxJointAngularLimitPair ---
 
     /// Set the swing cone limit for the joint.
     ///
     /// The cone limit is used if either or both swing axes are limited. The extents are
     /// symmetrical and measured in the frame of the parent. If only one swing degree of freedom
     /// is limited, the corresponding value from the cone limit defines the limit range.
-    PxD6Joint_setSwingLimit_mut :: proc(self_: ^PxD6Joint, limit: ^PxJointLimitCone) ---
+    @(link_name = "PxD6Joint_setSwingLimit_mut")
+    d6_joint_set_swing_limit_mut :: proc(self_: ^PxD6Joint, #by_ptr limit: PxJointLimitCone) ---
 
     /// Get the cone limit for the joint.
     ///
     /// the swing limit structure
-    PxD6Joint_getSwingLimit :: proc(self_: ^PxD6Joint) -> PxJointLimitCone ---
+    @(link_name = "PxD6Joint_getSwingLimit")
+    d6_joint_get_swing_limit :: proc(self_: ^PxD6Joint) -> PxJointLimitCone ---
 
     /// Set a pyramidal swing limit for the joint.
     ///
@@ -13371,21 +14929,25 @@ foreign libphysx {
     /// - Y is limited and Z is locked, or vice versa. The limit shape is an asymmetric angular section, similar to
     /// what is supported for the twist axis.
     /// The remaining cases (Y limited and Z is free, or vice versa) are not supported.
-    PxD6Joint_setPyramidSwingLimit_mut :: proc(self_: ^PxD6Joint, limit: ^PxJointLimitPyramid) ---
+    @(link_name = "PxD6Joint_setPyramidSwingLimit_mut")
+    d6_joint_set_pyramid_swing_limit_mut :: proc(self_: ^PxD6Joint, #by_ptr limit: PxJointLimitPyramid) ---
 
     /// Get the pyramidal swing limit for the joint.
     ///
     /// the swing limit structure
-    PxD6Joint_getPyramidSwingLimit :: proc(self_: ^PxD6Joint) -> PxJointLimitPyramid ---
+    @(link_name = "PxD6Joint_getPyramidSwingLimit")
+    d6_joint_get_pyramid_swing_limit :: proc(self_: ^PxD6Joint) -> PxJointLimitPyramid ---
 
     /// Set the drive parameters for the specified drive type.
     ///
     /// Default
     /// The default drive spring and damping values are zero, the force limit is zero, and no flags are set.
-    PxD6Joint_setDrive_mut :: proc(self_: ^PxD6Joint, index: _c.int32_t, drive: ^PxD6JointDrive) ---
+    @(link_name = "PxD6Joint_setDrive_mut")
+    d6_joint_set_drive_mut :: proc(self_: ^PxD6Joint, index: _c.int32_t, #by_ptr drive: PxD6JointDrive) ---
 
     /// Get the drive parameters for the specified drive type.
-    PxD6Joint_getDrive :: proc(self_: ^PxD6Joint, index: _c.int32_t) -> PxD6JointDrive ---
+    @(link_name = "PxD6Joint_getDrive")
+    d6_joint_get_drive :: proc(self_: ^PxD6Joint, index: _c.int32_t) -> PxD6JointDrive ---
 
     /// Set the drive goal pose
     ///
@@ -13393,18 +14955,22 @@ foreign libphysx {
     ///
     /// Default
     /// the identity transform
-    PxD6Joint_setDrivePosition_mut :: proc(self_: ^PxD6Joint, pose: ^PxTransform, autowake: _c.bool) ---
+    @(link_name = "PxD6Joint_setDrivePosition_mut")
+    d6_joint_set_drive_position_mut :: proc(self_: ^PxD6Joint, #by_ptr pose: PxTransform, autowake: _c.bool) ---
 
     /// Get the drive goal pose.
-    PxD6Joint_getDrivePosition :: proc(self_: ^PxD6Joint) -> PxTransform ---
+    @(link_name = "PxD6Joint_getDrivePosition")
+    d6_joint_get_drive_position :: proc(self_: ^PxD6Joint) -> PxTransform ---
 
     /// Set the target goal velocity for drive.
     ///
     /// The velocity is measured in the constraint frame of actor[0]
-    PxD6Joint_setDriveVelocity_mut :: proc(self_: ^PxD6Joint, linear: ^PxVec3, angular: ^PxVec3, autowake: _c.bool) ---
+    @(link_name = "PxD6Joint_setDriveVelocity_mut")
+    d6_joint_set_drive_velocity_mut :: proc(self_: ^PxD6Joint, #by_ptr linear: PxVec3, #by_ptr angular: PxVec3, autowake: _c.bool) ---
 
     /// Get the target goal velocity for joint drive.
-    PxD6Joint_getDriveVelocity :: proc(self_: ^PxD6Joint, linear: ^PxVec3, angular: ^PxVec3) ---
+    @(link_name = "PxD6Joint_getDriveVelocity")
+    d6_joint_get_drive_velocity :: proc(self_: ^PxD6Joint, linear: ^PxVec3, angular: ^PxVec3) ---
 
     /// Set the linear tolerance threshold for projection. Projection is enabled if PxConstraintFlag::ePROJECTION
     /// is set for the joint.
@@ -13420,12 +14986,14 @@ foreign libphysx {
     /// [0, PX_MAX_F32)
     /// Default:
     /// 1e10f
-    PxD6Joint_setProjectionLinearTolerance_mut :: proc(self_: ^PxD6Joint, tolerance: _c.float) ---
+    @(link_name = "PxD6Joint_setProjectionLinearTolerance_mut")
+    d6_joint_set_projection_linear_tolerance_mut :: proc(self_: ^PxD6Joint, tolerance: _c.float) ---
 
     /// Get the linear tolerance threshold for projection.
     ///
     /// the linear tolerance threshold
-    PxD6Joint_getProjectionLinearTolerance :: proc(self_: ^PxD6Joint) -> _c.float ---
+    @(link_name = "PxD6Joint_getProjectionLinearTolerance")
+    d6_joint_get_projection_linear_tolerance :: proc(self_: ^PxD6Joint) -> _c.float ---
 
     /// Set the angular tolerance threshold for projection. Projection is enabled if
     /// PxConstraintFlag::ePROJECTION is set for the joint.
@@ -13443,18 +15011,22 @@ foreign libphysx {
     /// Pi
     ///
     /// Angular projection is implemented only for the case of two or three locked angular degrees of freedom.
-    PxD6Joint_setProjectionAngularTolerance_mut :: proc(self_: ^PxD6Joint, tolerance: _c.float) ---
+    @(link_name = "PxD6Joint_setProjectionAngularTolerance_mut")
+    d6_joint_set_projection_angular_tolerance_mut :: proc(self_: ^PxD6Joint, tolerance: _c.float) ---
 
     /// Get the angular tolerance threshold for projection.
     ///
     /// tolerance the angular tolerance threshold in radians
-    PxD6Joint_getProjectionAngularTolerance :: proc(self_: ^PxD6Joint) -> _c.float ---
+    @(link_name = "PxD6Joint_getProjectionAngularTolerance")
+    d6_joint_get_projection_angular_tolerance :: proc(self_: ^PxD6Joint) -> _c.float ---
 
     /// Returns string name of PxD6Joint, used for serialization
-    PxD6Joint_getConcreteTypeName :: proc(self_: ^PxD6Joint) -> ^_c.char ---
+    @(link_name = "PxD6Joint_getConcreteTypeName")
+    d6_joint_get_concrete_type_name :: proc(self_: ^PxD6Joint) -> ^_c.char ---
 
     /// Create a gear Joint.
-    phys_PxGearJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxGearJoint ---
+    @(link_name = "phys_PxGearJointCreate")
+    gear_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxGearJoint ---
 
     /// Set the hinge/revolute joints connected by the gear joint.
     ///
@@ -13469,7 +15041,8 @@ foreign libphysx {
     /// Calling this function resets the internal positional error correction term.
     ///
     /// true if success
-    PxGearJoint_setHinges_mut :: proc(self_: ^PxGearJoint, hinge0: ^PxBase, hinge1: ^PxBase) -> _c.bool ---
+    @(link_name = "PxGearJoint_setHinges_mut")
+    gear_joint_set_hinges_mut :: proc(self_: ^PxGearJoint, hinge0: ^PxBase, hinge1: ^PxBase) -> _c.bool ---
 
     /// Set the desired gear ratio.
     ///
@@ -13478,19 +15051,23 @@ foreign libphysx {
     /// You may need to use a negative gear ratio if the joint frames of involved actors are not oriented in the same direction.
     ///
     /// Calling this function resets the internal positional error correction term.
-    PxGearJoint_setGearRatio_mut :: proc(self_: ^PxGearJoint, ratio: _c.float) ---
+    @(link_name = "PxGearJoint_setGearRatio_mut")
+    gear_joint_set_gear_ratio_mut :: proc(self_: ^PxGearJoint, ratio: _c.float) ---
 
     /// Get the gear ratio.
     ///
     /// Current ratio
-    PxGearJoint_getGearRatio :: proc(self_: ^PxGearJoint) -> _c.float ---
+    @(link_name = "PxGearJoint_getGearRatio")
+    gear_joint_get_gear_ratio :: proc(self_: ^PxGearJoint) -> _c.float ---
 
-    PxGearJoint_getConcreteTypeName :: proc(self_: ^PxGearJoint) -> ^_c.char ---
+    @(link_name = "PxGearJoint_getConcreteTypeName")
+    gear_joint_get_concrete_type_name :: proc(self_: ^PxGearJoint) -> ^_c.char ---
 
     /// Create a rack
     /// &
     /// pinion Joint.
-    phys_PxRackAndPinionJointCreate :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, localFrame0: ^PxTransform, actor1: ^PxRigidActor, localFrame1: ^PxTransform) -> ^PxRackAndPinionJoint ---
+    @(link_name = "phys_PxRackAndPinionJointCreate")
+    rack_and_pinion_joint_create :: proc(physics: ^PxPhysics, actor0: ^PxRigidActor, #by_ptr localFrame0: PxTransform, actor1: ^PxRigidActor, #by_ptr localFrame1: PxTransform) -> ^PxRackAndPinionJoint ---
 
     /// Set the hinge
     /// &
@@ -13513,19 +15090,22 @@ foreign libphysx {
     /// Calling this function resets the internal positional error correction term.
     ///
     /// true if success
-    PxRackAndPinionJoint_setJoints_mut :: proc(self_: ^PxRackAndPinionJoint, hinge: ^PxBase, prismatic: ^PxBase) -> _c.bool ---
+    @(link_name = "PxRackAndPinionJoint_setJoints_mut")
+    rack_and_pinion_joint_set_joints_mut :: proc(self_: ^PxRackAndPinionJoint, hinge: ^PxBase, prismatic: ^PxBase) -> _c.bool ---
 
     /// Set the desired ratio directly.
     ///
     /// You may need to use a negative gear ratio if the joint frames of involved actors are not oriented in the same direction.
     ///
     /// Calling this function resets the internal positional error correction term.
-    PxRackAndPinionJoint_setRatio_mut :: proc(self_: ^PxRackAndPinionJoint, ratio: _c.float) ---
+    @(link_name = "PxRackAndPinionJoint_setRatio_mut")
+    rack_and_pinion_joint_set_ratio_mut :: proc(self_: ^PxRackAndPinionJoint, ratio: _c.float) ---
 
     /// Get the ratio.
     ///
     /// Current ratio
-    PxRackAndPinionJoint_getRatio :: proc(self_: ^PxRackAndPinionJoint) -> _c.float ---
+    @(link_name = "PxRackAndPinionJoint_getRatio")
+    rack_and_pinion_joint_get_ratio :: proc(self_: ^PxRackAndPinionJoint) -> _c.float ---
 
     /// Set the desired ratio indirectly.
     ///
@@ -13536,13 +15116,17 @@ foreign libphysx {
     /// Calling this function resets the internal positional error correction term.
     ///
     /// true if success
-    PxRackAndPinionJoint_setData_mut :: proc(self_: ^PxRackAndPinionJoint, nbRackTeeth: _c.uint32_t, nbPinionTeeth: _c.uint32_t, rackLength: _c.float) -> _c.bool ---
+    @(link_name = "PxRackAndPinionJoint_setData_mut")
+    rack_and_pinion_joint_set_data_mut :: proc(self_: ^PxRackAndPinionJoint, nbRackTeeth: _c.uint32_t, nbPinionTeeth: _c.uint32_t, rackLength: _c.float) -> _c.bool ---
 
-    PxRackAndPinionJoint_getConcreteTypeName :: proc(self_: ^PxRackAndPinionJoint) -> ^_c.char ---
+    @(link_name = "PxRackAndPinionJoint_getConcreteTypeName")
+    rack_and_pinion_joint_get_concrete_type_name :: proc(self_: ^PxRackAndPinionJoint) -> ^_c.char ---
 
-    PxGroupsMask_new_alloc :: proc() -> ^PxGroupsMask ---
+    @(link_name = "PxGroupsMask_new_alloc")
+    groups_mask_new_alloc :: proc() -> ^PxGroupsMask ---
 
-    PxGroupsMask_delete :: proc(self_: ^PxGroupsMask) ---
+    @(link_name = "PxGroupsMask_delete")
+    groups_mask_delete :: proc(self_: ^PxGroupsMask) ---
 
     /// Implementation of a simple filter shader that emulates PhysX 2.8.x filtering
     ///
@@ -13560,65 +15144,81 @@ foreign libphysx {
     ///
     /// 1) Collision groups of the pair are enabled
     /// 2) Collision filtering equation is satisfied
-    phys_PxDefaultSimulationFilterShader :: proc(attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, pairFlags: ^_c.uint16_t, constantBlock: rawptr, constantBlockSize: _c.uint32_t) -> _c.uint16_t ---
+    @(link_name = "phys_PxDefaultSimulationFilterShader")
+    default_simulation_filter_shader :: proc(attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, pairFlags: ^_c.uint16_t, constantBlock: rawptr, constantBlockSize: _c.uint32_t) -> _c.uint16_t ---
 
     /// Determines if collision detection is performed between a pair of groups
     ///
     /// Collision group is an integer between 0 and 31.
     ///
     /// True if the groups could collide
-    phys_PxGetGroupCollisionFlag :: proc(group1: _c.uint16_t, group2: _c.uint16_t) -> _c.bool ---
+    @(link_name = "phys_PxGetGroupCollisionFlag")
+    get_group_collision_flag :: proc(group1: _c.uint16_t, group2: _c.uint16_t) -> _c.bool ---
 
     /// Specifies if collision should be performed by a pair of groups
     ///
     /// Collision group is an integer between 0 and 31.
-    phys_PxSetGroupCollisionFlag :: proc(group1: _c.uint16_t, group2: _c.uint16_t, enable: _c.bool) ---
+    @(link_name = "phys_PxSetGroupCollisionFlag")
+    set_group_collision_flag :: proc(group1: _c.uint16_t, group2: _c.uint16_t, enable: _c.bool) ---
 
     /// Retrieves the value set with PxSetGroup()
     ///
     /// Collision group is an integer between 0 and 31.
     ///
     /// The collision group this actor belongs to
-    phys_PxGetGroup :: proc(actor: ^PxActor) -> _c.uint16_t ---
+    @(link_name = "phys_PxGetGroup")
+    get_group :: proc(actor: ^PxActor) -> _c.uint16_t ---
 
     /// Sets which collision group this actor is part of
     ///
     /// Collision group is an integer between 0 and 31.
-    phys_PxSetGroup :: proc(actor: ^PxActor, collisionGroup: _c.uint16_t) ---
+    @(link_name = "phys_PxSetGroup")
+    set_group :: proc(actor: ^PxActor, collisionGroup: _c.uint16_t) ---
 
     /// Retrieves filtering operation. See comments for PxGroupsMask
-    phys_PxGetFilterOps :: proc(op0: ^_c.int32_t, op1: ^_c.int32_t, op2: ^_c.int32_t) ---
+    @(link_name = "phys_PxGetFilterOps")
+    get_filter_ops :: proc(op0: ^_c.int32_t, op1: ^_c.int32_t, op2: ^_c.int32_t) ---
 
     /// Setups filtering operations. See comments for PxGroupsMask
-    phys_PxSetFilterOps :: proc(op0: ^_c.int32_t, op1: ^_c.int32_t, op2: ^_c.int32_t) ---
+    @(link_name = "phys_PxSetFilterOps")
+    set_filter_ops :: proc(#by_ptr op0: _c.int32_t, #by_ptr op1: _c.int32_t, #by_ptr op2: _c.int32_t) ---
 
     /// Retrieves filtering's boolean value. See comments for PxGroupsMask
     ///
     /// flag Boolean value for filter.
-    phys_PxGetFilterBool :: proc() -> _c.bool ---
+    @(link_name = "phys_PxGetFilterBool")
+    get_filter_bool :: proc() -> _c.bool ---
 
     /// Setups filtering's boolean value. See comments for PxGroupsMask
-    phys_PxSetFilterBool :: proc(enable: _c.bool) ---
+    @(link_name = "phys_PxSetFilterBool")
+    set_filter_bool :: proc(enable: _c.bool) ---
 
     /// Gets filtering constant K0 and K1. See comments for PxGroupsMask
-    phys_PxGetFilterConstants :: proc(c0: ^PxGroupsMask, c1: ^PxGroupsMask) ---
+    @(link_name = "phys_PxGetFilterConstants")
+    get_filter_constants :: proc(c0: ^PxGroupsMask, c1: ^PxGroupsMask) ---
 
     /// Setups filtering's K0 and K1 value. See comments for PxGroupsMask
-    phys_PxSetFilterConstants :: proc(c0: ^PxGroupsMask, c1: ^PxGroupsMask) ---
+    @(link_name = "phys_PxSetFilterConstants")
+    set_filter_constants :: proc(#by_ptr c0: PxGroupsMask, #by_ptr c1: PxGroupsMask) ---
 
     /// Gets 64-bit mask used for collision filtering. See comments for PxGroupsMask
     ///
     /// The group mask for the actor.
-    phys_PxGetGroupsMask :: proc(actor: ^PxActor) -> PxGroupsMask ---
+    @(link_name = "phys_PxGetGroupsMask")
+    get_groups_mask :: proc(actor: ^PxActor) -> PxGroupsMask ---
 
     /// Sets 64-bit mask used for collision filtering. See comments for PxGroupsMask
-    phys_PxSetGroupsMask :: proc(actor: ^PxActor, mask: ^PxGroupsMask) ---
+    @(link_name = "phys_PxSetGroupsMask")
+    set_groups_mask :: proc(actor: ^PxActor, #by_ptr mask: PxGroupsMask) ---
 
-    PxDefaultErrorCallback_new_alloc :: proc() -> ^PxDefaultErrorCallback ---
+    @(link_name = "PxDefaultErrorCallback_new_alloc")
+    default_error_callback_new_alloc :: proc() -> ^PxDefaultErrorCallback ---
 
-    PxDefaultErrorCallback_delete :: proc(self_: ^PxDefaultErrorCallback) ---
+    @(link_name = "PxDefaultErrorCallback_delete")
+    default_error_callback_delete :: proc(self_: ^PxDefaultErrorCallback) ---
 
-    PxDefaultErrorCallback_reportError_mut :: proc(self_: ^PxDefaultErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    @(link_name = "PxDefaultErrorCallback_reportError_mut")
+    default_error_callback_report_error_mut :: proc(self_: ^PxDefaultErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// Creates a new shape with default properties and a list of materials and adds it to the list of shapes of this actor.
     ///
@@ -13647,7 +15247,8 @@ foreign libphysx {
     /// wake the actor up automatically.
     ///
     /// The newly created shape.
-    PxRigidActorExt_createExclusiveShape :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    @(link_name = "PxRigidActorExt_createExclusiveShape")
+    rigid_actor_ext_create_exclusive_shape :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, shapeFlags: _c.uint8_t) -> ^PxShape ---
 
     /// Creates a new shape with default properties and a single material adds it to the list of shapes of this actor.
     ///
@@ -13676,11 +15277,13 @@ foreign libphysx {
     /// wake the actor up automatically.
     ///
     /// The newly created shape.
-    PxRigidActorExt_createExclusiveShape_1 :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, material: ^PxMaterial, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    @(link_name = "PxRigidActorExt_createExclusiveShape_1")
+    rigid_actor_ext_create_exclusive_shape_1 :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, #by_ptr material: PxMaterial, shapeFlags: _c.uint8_t) -> ^PxShape ---
 
     /// Gets a list of bounds based on shapes in rigid actor. This list can be used to cook/create
     /// bounding volume hierarchy though PxCooking API.
-    PxRigidActorExt_getRigidActorShapeLocalBoundsList :: proc(actor: ^PxRigidActor, numBounds: ^_c.uint32_t) -> ^PxBounds3 ---
+    @(link_name = "PxRigidActorExt_getRigidActorShapeLocalBoundsList")
+    rigid_actor_ext_get_rigid_actor_shape_local_bounds_list :: proc(actor: ^PxRigidActor, numBounds: ^_c.uint32_t) -> ^PxBounds3 ---
 
     /// Convenience function to create a PxBVH object from a PxRigidActor.
     ///
@@ -13690,46 +15293,56 @@ foreign libphysx {
     /// BVH to the scene/aggregate, release the PxBVH object by calling PxBVH::release().
     ///
     /// The PxBVH for this actor.
-    PxRigidActorExt_createBVHFromActor :: proc(physics: ^PxPhysics, actor: ^PxRigidActor) -> ^PxBVH ---
+    @(link_name = "PxRigidActorExt_createBVHFromActor")
+    rigid_actor_ext_create_b_v_h_from_actor :: proc(physics: ^PxPhysics, actor: ^PxRigidActor) -> ^PxBVH ---
 
     /// Default constructor.
-    PxMassProperties_new :: proc() -> PxMassProperties ---
+    @(link_name = "PxMassProperties_new")
+    mass_properties_new :: proc() -> PxMassProperties ---
 
     /// Construct from individual elements.
-    PxMassProperties_new_1 :: proc(m: _c.float, inertiaT: ^PxMat33, com: ^PxVec3) -> PxMassProperties ---
+    @(link_name = "PxMassProperties_new_1")
+    mass_properties_new_1 :: proc(m: _c.float, #by_ptr inertiaT: PxMat33, #by_ptr com: PxVec3) -> PxMassProperties ---
 
     /// Compute mass properties based on a provided geometry structure.
     ///
     /// This constructor assumes the geometry has a density of 1. Mass and inertia tensor scale linearly with density.
-    PxMassProperties_new_2 :: proc(geometry: ^PxGeometry) -> PxMassProperties ---
+    @(link_name = "PxMassProperties_new_2")
+    mass_properties_new_2 :: proc(geometry: ^PxGeometry) -> PxMassProperties ---
 
     /// Translate the center of mass by a given vector and adjust the inertia tensor accordingly.
-    PxMassProperties_translate_mut :: proc(self_: ^PxMassProperties, t: ^PxVec3) ---
+    @(link_name = "PxMassProperties_translate_mut")
+    mass_properties_translate_mut :: proc(self_: ^PxMassProperties, #by_ptr t: PxVec3) ---
 
     /// Get the entries of the diagonalized inertia tensor and the corresponding reference rotation.
     ///
     /// The entries of the diagonalized inertia tensor.
-    PxMassProperties_getMassSpaceInertia :: proc(inertia: ^PxMat33, massFrame: ^PxQuat) -> PxVec3 ---
+    @(link_name = "PxMassProperties_getMassSpaceInertia")
+    mass_properties_get_mass_space_inertia :: proc(#by_ptr inertia: PxMat33, massFrame: ^PxQuat) -> PxVec3 ---
 
     /// Translate an inertia tensor using the parallel axis theorem
     ///
     /// The translated inertia tensor.
-    PxMassProperties_translateInertia :: proc(inertia: ^PxMat33, mass: _c.float, t: ^PxVec3) -> PxMat33 ---
+    @(link_name = "PxMassProperties_translateInertia")
+    mass_properties_translate_inertia :: proc(#by_ptr inertia: PxMat33, mass: _c.float, #by_ptr t: PxVec3) -> PxMat33 ---
 
     /// Rotate an inertia tensor around the center of mass
     ///
     /// The rotated inertia tensor.
-    PxMassProperties_rotateInertia :: proc(inertia: ^PxMat33, q: ^PxQuat) -> PxMat33 ---
+    @(link_name = "PxMassProperties_rotateInertia")
+    mass_properties_rotate_inertia :: proc(#by_ptr inertia: PxMat33, #by_ptr q: PxQuat) -> PxMat33 ---
 
     /// Non-uniform scaling of the inertia tensor
     ///
     /// The scaled inertia tensor.
-    PxMassProperties_scaleInertia :: proc(inertia: ^PxMat33, scaleRotation: ^PxQuat, scale: ^PxVec3) -> PxMat33 ---
+    @(link_name = "PxMassProperties_scaleInertia")
+    mass_properties_scale_inertia :: proc(#by_ptr inertia: PxMat33, #by_ptr scaleRotation: PxQuat, #by_ptr scale: PxVec3) -> PxMat33 ---
 
     /// Sum up individual mass properties.
     ///
     /// The summed up mass properties.
-    PxMassProperties_sum :: proc(props: ^PxMassProperties, transforms: ^PxTransform, count: _c.uint32_t) -> PxMassProperties ---
+    @(link_name = "PxMassProperties_sum")
+    mass_properties_sum :: proc(props: ^PxMassProperties, transforms: ^PxTransform, count: _c.uint32_t) -> PxMassProperties ---
 
     /// Computation of mass properties for a rigid body actor
     ///
@@ -13753,14 +15366,16 @@ foreign libphysx {
     /// If all shapes of the actor have the same density then the overloaded method updateMassAndInertia() with a single density parameter can be used instead.
     ///
     /// Boolean. True on success else false.
-    PxRigidBodyExt_updateMassAndInertia :: proc(body: ^PxRigidBody, shapeDensities: ^_c.float, shapeDensityCount: _c.uint32_t, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
+    @(link_name = "PxRigidBodyExt_updateMassAndInertia")
+    rigid_body_ext_update_mass_and_inertia :: proc(body: ^PxRigidBody, shapeDensities: ^_c.float, shapeDensityCount: _c.uint32_t, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
 
     /// Computation of mass properties for a rigid body actor
     ///
     /// See previous method for details.
     ///
     /// Boolean. True on success else false.
-    PxRigidBodyExt_updateMassAndInertia_1 :: proc(body: ^PxRigidBody, density: _c.float, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
+    @(link_name = "PxRigidBodyExt_updateMassAndInertia_1")
+    rigid_body_ext_update_mass_and_inertia_1 :: proc(body: ^PxRigidBody, density: _c.float, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
 
     /// Computation of mass properties for a rigid body actor
     ///
@@ -13772,7 +15387,8 @@ foreign libphysx {
     /// If a single mass value should be used for the actor as a whole then the overloaded method setMassAndUpdateInertia() with a single mass parameter can be used instead.
     ///
     /// Boolean. True on success else false.
-    PxRigidBodyExt_setMassAndUpdateInertia :: proc(body: ^PxRigidBody, shapeMasses: ^_c.float, shapeMassCount: _c.uint32_t, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
+    @(link_name = "PxRigidBodyExt_setMassAndUpdateInertia")
+    rigid_body_ext_set_mass_and_update_inertia :: proc(body: ^PxRigidBody, shapeMasses: ^_c.float, shapeMassCount: _c.uint32_t, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
 
     /// Computation of mass properties for a rigid body actor
     ///
@@ -13782,12 +15398,14 @@ foreign libphysx {
     /// If no collision shapes are found, the inertia tensor is set to (1,1,1)
     ///
     /// Boolean. True on success else false.
-    PxRigidBodyExt_setMassAndUpdateInertia_1 :: proc(body: ^PxRigidBody, mass: _c.float, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
+    @(link_name = "PxRigidBodyExt_setMassAndUpdateInertia_1")
+    rigid_body_ext_set_mass_and_update_inertia_1 :: proc(body: ^PxRigidBody, mass: _c.float, massLocalPose: ^PxVec3, includeNonSimShapes: _c.bool) -> _c.bool ---
 
     /// Compute the mass, inertia tensor and center of mass from a list of shapes.
     ///
     /// The mass properties from the combined shapes.
-    PxRigidBodyExt_computeMassPropertiesFromShapes :: proc(shapes: ^^PxShape, shapeCount: _c.uint32_t) -> PxMassProperties ---
+    @(link_name = "PxRigidBodyExt_computeMassPropertiesFromShapes")
+    rigid_body_ext_compute_mass_properties_from_shapes :: proc(shapes: ^^PxShape, shapeCount: _c.uint32_t) -> PxMassProperties ---
 
     /// Applies a force (or impulse) defined in the global coordinate frame, acting at a particular
     /// point in global coordinates, to the actor.
@@ -13805,7 +15423,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
-    PxRigidBodyExt_addForceAtPos :: proc(body: ^PxRigidBody, force: ^PxVec3, pos: ^PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    @(link_name = "PxRigidBodyExt_addForceAtPos")
+    rigid_body_ext_add_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the global coordinate frame, acting at a particular
     /// point in local coordinates, to the actor.
@@ -13823,7 +15442,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
-    PxRigidBodyExt_addForceAtLocalPos :: proc(body: ^PxRigidBody, force: ^PxVec3, pos: ^PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    @(link_name = "PxRigidBodyExt_addForceAtLocalPos")
+    rigid_body_ext_add_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the actor local coordinate frame, acting at a
     /// particular point in global coordinates, to the actor.
@@ -13841,7 +15461,8 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
-    PxRigidBodyExt_addLocalForceAtPos :: proc(body: ^PxRigidBody, force: ^PxVec3, pos: ^PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    @(link_name = "PxRigidBodyExt_addLocalForceAtPos")
+    rigid_body_ext_add_local_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the actor local coordinate frame, acting at a
     /// particular point in local coordinates, to the actor.
@@ -13859,44 +15480,51 @@ foreign libphysx {
     ///
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
-    PxRigidBodyExt_addLocalForceAtLocalPos :: proc(body: ^PxRigidBody, force: ^PxVec3, pos: ^PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    @(link_name = "PxRigidBodyExt_addLocalForceAtLocalPos")
+    rigid_body_ext_add_local_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
 
     /// Computes the velocity of a point given in world coordinates if it were attached to the
     /// specified body and moving with it.
     ///
     /// The velocity of point in the global frame.
-    PxRigidBodyExt_getVelocityAtPos :: proc(body: ^PxRigidBody, pos: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxRigidBodyExt_getVelocityAtPos")
+    rigid_body_ext_get_velocity_at_pos :: proc(body: ^PxRigidBody, #by_ptr pos: PxVec3) -> PxVec3 ---
 
     /// Computes the velocity of a point given in local coordinates if it were attached to the
     /// specified body and moving with it.
     ///
     /// The velocity of point in the local frame.
-    PxRigidBodyExt_getLocalVelocityAtLocalPos :: proc(body: ^PxRigidBody, pos: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxRigidBodyExt_getLocalVelocityAtLocalPos")
+    rigid_body_ext_get_local_velocity_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr pos: PxVec3) -> PxVec3 ---
 
     /// Computes the velocity of a point (offset from the origin of the body) given in world coordinates if it were attached to the
     /// specified body and moving with it.
     ///
     /// The velocity of point (offset from the origin of the body) in the global frame.
-    PxRigidBodyExt_getVelocityAtOffset :: proc(body: ^PxRigidBody, pos: ^PxVec3) -> PxVec3 ---
+    @(link_name = "PxRigidBodyExt_getVelocityAtOffset")
+    rigid_body_ext_get_velocity_at_offset :: proc(body: ^PxRigidBody, #by_ptr pos: PxVec3) -> PxVec3 ---
 
     /// Compute the change to linear and angular velocity that would occur if an impulsive force and torque were to be applied to a specified rigid body.
     ///
     /// The rigid body is left unaffected unless a subsequent independent call is executed that actually applies the computed changes to velocity and angular velocity.
     ///
     /// if this call is used to determine the velocity delta for an articulation link, only the mass properties of the link are taken into account.
-    PxRigidBodyExt_computeVelocityDeltaFromImpulse :: proc(body: ^PxRigidBody, impulsiveForce: ^PxVec3, impulsiveTorque: ^PxVec3, deltaLinearVelocity: ^PxVec3, deltaAngularVelocity: ^PxVec3) ---
+    @(link_name = "PxRigidBodyExt_computeVelocityDeltaFromImpulse")
+    rigid_body_ext_compute_velocity_delta_from_impulse :: proc(body: ^PxRigidBody, #by_ptr impulsiveForce: PxVec3, #by_ptr impulsiveTorque: PxVec3, deltaLinearVelocity: ^PxVec3, deltaAngularVelocity: ^PxVec3) ---
 
     /// Computes the linear and angular velocity change vectors for a given impulse at a world space position taking a mass and inertia scale into account
     ///
     /// This function is useful for extracting the respective linear and angular velocity changes from a contact or joint when the mass/inertia ratios have been adjusted.
     ///
     /// if this call is used to determine the velocity delta for an articulation link, only the mass properties of the link are taken into account.
-    PxRigidBodyExt_computeVelocityDeltaFromImpulse_1 :: proc(body: ^PxRigidBody, globalPose: ^PxTransform, point: ^PxVec3, impulse: ^PxVec3, invMassScale: _c.float, invInertiaScale: _c.float, deltaLinearVelocity: ^PxVec3, deltaAngularVelocity: ^PxVec3) ---
+    @(link_name = "PxRigidBodyExt_computeVelocityDeltaFromImpulse_1")
+    rigid_body_ext_compute_velocity_delta_from_impulse_1 :: proc(body: ^PxRigidBody, #by_ptr globalPose: PxTransform, #by_ptr point: PxVec3, #by_ptr impulse: PxVec3, invMassScale: _c.float, invInertiaScale: _c.float, deltaLinearVelocity: ^PxVec3, deltaAngularVelocity: ^PxVec3) ---
 
     /// Computes the linear and angular impulse vectors for a given impulse at a world space position taking a mass and inertia scale into account
     ///
     /// This function is useful for extracting the respective linear and angular impulses from a contact or joint when the mass/inertia ratios have been adjusted.
-    PxRigidBodyExt_computeLinearAngularImpulse :: proc(body: ^PxRigidBody, globalPose: ^PxTransform, point: ^PxVec3, impulse: ^PxVec3, invMassScale: _c.float, invInertiaScale: _c.float, linearImpulse: ^PxVec3, angularImpulse: ^PxVec3) ---
+    @(link_name = "PxRigidBodyExt_computeLinearAngularImpulse")
+    rigid_body_ext_compute_linear_angular_impulse :: proc(body: ^PxRigidBody, #by_ptr globalPose: PxTransform, #by_ptr point: PxVec3, #by_ptr impulse: PxVec3, invMassScale: _c.float, invInertiaScale: _c.float, linearImpulse: ^PxVec3, angularImpulse: ^PxVec3) ---
 
     /// Performs a linear sweep through space with the body's geometry objects.
     ///
@@ -13909,7 +15537,8 @@ foreign libphysx {
     /// Information about the closest intersection is written to a [`PxSweepHit`] structure.
     ///
     /// True if a blocking hit was found.
-    PxRigidBodyExt_linearSweepSingle :: proc(body: ^PxRigidBody, scene: ^PxScene, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, closestHit: ^PxSweepHit, shapeIndex: ^_c.uint32_t, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    @(link_name = "PxRigidBodyExt_linearSweepSingle")
+    rigid_body_ext_linear_sweep_single :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, closestHit: ^PxSweepHit, shapeIndex: ^_c.uint32_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Performs a linear sweep through space with the body's geometry objects, returning all overlaps.
     ///
@@ -13920,58 +15549,70 @@ foreign libphysx {
     /// or a blocking hit is encountered.
     ///
     /// the number of touching hits. If overflow is set to true, the results are incomplete. In case of overflow there are also no guarantees that all touching hits returned are closer than the blocking hit.
-    PxRigidBodyExt_linearSweepMultiple :: proc(body: ^PxRigidBody, scene: ^PxScene, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, touchHitBuffer: ^PxSweepHit, touchHitShapeIndices: ^_c.uint32_t, touchHitBufferSize: _c.uint32_t, block: ^PxSweepHit, blockingShapeIndex: ^_c.int32_t, overflow: ^_c.bool, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.uint32_t ---
+    @(link_name = "PxRigidBodyExt_linearSweepMultiple")
+    rigid_body_ext_linear_sweep_multiple :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, touchHitBuffer: ^PxSweepHit, touchHitShapeIndices: ^_c.uint32_t, touchHitBufferSize: _c.uint32_t, block: ^PxSweepHit, blockingShapeIndex: ^_c.int32_t, overflow: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.uint32_t ---
 
     /// Retrieves the world space pose of the shape.
     ///
     /// Global pose of shape.
-    PxShapeExt_getGlobalPose :: proc(shape: ^PxShape, actor: ^PxRigidActor) -> PxTransform ---
+    @(link_name = "PxShapeExt_getGlobalPose")
+    shape_ext_get_global_pose :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor) -> PxTransform ---
 
     /// Raycast test against the shape.
     ///
     /// Number of hits between the ray and the shape
-    PxShapeExt_raycast :: proc(shape: ^PxShape, actor: ^PxRigidActor, rayOrigin: ^PxVec3, rayDir: ^PxVec3, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxRaycastHit) -> _c.uint32_t ---
+    @(link_name = "PxShapeExt_raycast")
+    shape_ext_raycast :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr rayOrigin: PxVec3, #by_ptr rayDir: PxVec3, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxRaycastHit) -> _c.uint32_t ---
 
     /// Test overlap between the shape and a geometry object
     ///
     /// True if the shape overlaps the geometry object
-    PxShapeExt_overlap :: proc(shape: ^PxShape, actor: ^PxRigidActor, otherGeom: ^PxGeometry, otherGeomPose: ^PxTransform) -> _c.bool ---
+    @(link_name = "PxShapeExt_overlap")
+    shape_ext_overlap :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, otherGeom: ^PxGeometry, #by_ptr otherGeomPose: PxTransform) -> _c.bool ---
 
     /// Sweep a geometry object against the shape.
     ///
     /// Currently only box, sphere, capsule and convex mesh shapes are supported, i.e. the swept geometry object must be one of those types.
     ///
     /// True if the swept geometry object hits the shape
-    PxShapeExt_sweep :: proc(shape: ^PxShape, actor: ^PxRigidActor, unitDir: ^PxVec3, distance: _c.float, otherGeom: ^PxGeometry, otherGeomPose: ^PxTransform, sweepHit: ^PxSweepHit, hitFlags: _c.uint16_t) -> _c.bool ---
+    @(link_name = "PxShapeExt_sweep")
+    shape_ext_sweep :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr unitDir: PxVec3, distance: _c.float, otherGeom: ^PxGeometry, #by_ptr otherGeomPose: PxTransform, sweepHit: ^PxSweepHit, hitFlags: _c.uint16_t) -> _c.bool ---
 
     /// Retrieves the axis aligned bounding box enclosing the shape.
     ///
     /// The shape's bounding box.
-    PxShapeExt_getWorldBounds :: proc(shape: ^PxShape, actor: ^PxRigidActor, inflation: _c.float) -> PxBounds3 ---
+    @(link_name = "PxShapeExt_getWorldBounds")
+    shape_ext_get_world_bounds :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, inflation: _c.float) -> PxBounds3 ---
 
-    PxMeshOverlapUtil_new_alloc :: proc() -> ^PxMeshOverlapUtil ---
+    @(link_name = "PxMeshOverlapUtil_new_alloc")
+    mesh_overlap_util_new_alloc :: proc() -> ^PxMeshOverlapUtil ---
 
-    PxMeshOverlapUtil_delete :: proc(self_: ^PxMeshOverlapUtil) ---
+    @(link_name = "PxMeshOverlapUtil_delete")
+    mesh_overlap_util_delete :: proc(self_: ^PxMeshOverlapUtil) ---
 
     /// Find the mesh triangles which touch the specified geometry object.
     ///
     /// Number of overlaps found. Triangle indices can then be accessed through the [`getResults`]() function.
-    PxMeshOverlapUtil_findOverlap_mut :: proc(self_: ^PxMeshOverlapUtil, geom: ^PxGeometry, geomPose: ^PxTransform, meshGeom: ^PxTriangleMeshGeometry, meshPose: ^PxTransform) -> _c.uint32_t ---
+    @(link_name = "PxMeshOverlapUtil_findOverlap_mut")
+    mesh_overlap_util_find_overlap_mut :: proc(self_: ^PxMeshOverlapUtil, geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr meshGeom: PxTriangleMeshGeometry, #by_ptr meshPose: PxTransform) -> _c.uint32_t ---
 
     /// Find the height field triangles which touch the specified geometry object.
     ///
     /// Number of overlaps found. Triangle indices can then be accessed through the [`getResults`]() function.
-    PxMeshOverlapUtil_findOverlap_mut_1 :: proc(self_: ^PxMeshOverlapUtil, geom: ^PxGeometry, geomPose: ^PxTransform, hfGeom: ^PxHeightFieldGeometry, hfPose: ^PxTransform) -> _c.uint32_t ---
+    @(link_name = "PxMeshOverlapUtil_findOverlap_mut_1")
+    mesh_overlap_util_find_overlap_mut_1 :: proc(self_: ^PxMeshOverlapUtil, geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr hfGeom: PxHeightFieldGeometry, #by_ptr hfPose: PxTransform) -> _c.uint32_t ---
 
     /// Retrieves array of triangle indices after a findOverlap call.
     ///
     /// Indices of touched triangles
-    PxMeshOverlapUtil_getResults :: proc(self_: ^PxMeshOverlapUtil) -> ^_c.uint32_t ---
+    @(link_name = "PxMeshOverlapUtil_getResults")
+    mesh_overlap_util_get_results :: proc(self_: ^PxMeshOverlapUtil) -> ^_c.uint32_t ---
 
     /// Retrieves number of triangle indices after a findOverlap call.
     ///
     /// Number of touched triangles
-    PxMeshOverlapUtil_getNbResults :: proc(self_: ^PxMeshOverlapUtil) -> _c.uint32_t ---
+    @(link_name = "PxMeshOverlapUtil_getNbResults")
+    mesh_overlap_util_get_nb_results :: proc(self_: ^PxMeshOverlapUtil) -> _c.uint32_t ---
 
     /// Computes an approximate minimum translational distance (MTD) between a geometry object and a mesh.
     ///
@@ -13987,7 +15628,8 @@ foreign libphysx {
     /// been successful. Usually N = 4 gives good results.
     ///
     /// True if the MTD has successfully been computed, i.e. if objects do overlap.
-    phys_PxComputeTriangleMeshPenetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom: ^PxGeometry, geomPose: ^PxTransform, meshGeom: ^PxTriangleMeshGeometry, meshPose: ^PxTransform, maxIter: _c.uint32_t, usedIter: ^_c.uint32_t) -> _c.bool ---
+    @(link_name = "phys_PxComputeTriangleMeshPenetration")
+    compute_triangle_mesh_penetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr meshGeom: PxTriangleMeshGeometry, #by_ptr meshPose: PxTransform, maxIter: _c.uint32_t, usedIter: ^_c.uint32_t) -> _c.bool ---
 
     /// Computes an approximate minimum translational distance (MTD) between a geometry object and a heightfield.
     ///
@@ -14003,11 +15645,14 @@ foreign libphysx {
     /// been successful. Usually N = 4 gives good results.
     ///
     /// True if the MTD has successfully been computed, i.e. if objects do overlap.
-    phys_PxComputeHeightFieldPenetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom: ^PxGeometry, geomPose: ^PxTransform, heightFieldGeom: ^PxHeightFieldGeometry, heightFieldPose: ^PxTransform, maxIter: _c.uint32_t, usedIter: ^_c.uint32_t) -> _c.bool ---
+    @(link_name = "phys_PxComputeHeightFieldPenetration")
+    compute_height_field_penetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr heightFieldGeom: PxHeightFieldGeometry, #by_ptr heightFieldPose: PxTransform, maxIter: _c.uint32_t, usedIter: ^_c.uint32_t) -> _c.bool ---
 
-    PxXmlMiscParameter_new :: proc() -> PxXmlMiscParameter ---
+    @(link_name = "PxXmlMiscParameter_new")
+    xml_misc_parameter_new :: proc() -> PxXmlMiscParameter ---
 
-    PxXmlMiscParameter_new_1 :: proc(inUpVector: ^PxVec3, inScale: PxTolerancesScale) -> PxXmlMiscParameter ---
+    @(link_name = "PxXmlMiscParameter_new_1")
+    xml_misc_parameter_new_1 :: proc(inUpVector: ^PxVec3, inScale: PxTolerancesScale) -> PxXmlMiscParameter ---
 
     /// Returns whether the collection is serializable with the externalReferences collection.
     ///
@@ -14033,7 +15678,8 @@ foreign libphysx {
     /// - Every subordinate object in C is required by another object in C (no orphans)
     ///
     /// Whether the collection is serializable
-    PxSerialization_isSerializable :: proc(collection: ^PxCollection, sr: ^PxSerializationRegistry, externalReferences: ^PxCollection) -> _c.bool ---
+    @(link_name = "PxSerialization_isSerializable")
+    serialization_is_serializable :: proc(collection: ^PxCollection, sr: ^PxSerializationRegistry, externalReferences: ^PxCollection) -> _c.bool ---
 
     /// Adds to a collection all objects such that it can be successfully serialized.
     ///
@@ -14054,18 +15700,21 @@ foreign libphysx {
     ///
     /// Specifying followJoints will make whole jointed actor chains being added to the collection. Following chains
     /// is interrupted whenever a object in exceptFor is encountered.
-    PxSerialization_complete :: proc(collection: ^PxCollection, sr: ^PxSerializationRegistry, exceptFor: ^PxCollection, followJoints: _c.bool) ---
+    @(link_name = "PxSerialization_complete")
+    serialization_complete :: proc(collection: ^PxCollection, sr: ^PxSerializationRegistry, exceptFor: ^PxCollection, followJoints: _c.bool) ---
 
     /// Creates PxSerialObjectId values for unnamed objects in a collection.
     ///
     /// Creates PxSerialObjectId names for unnamed objects in a collection starting at a base value and incrementing,
     /// skipping values that are already assigned to objects in the collection.
-    PxSerialization_createSerialObjectIds :: proc(collection: ^PxCollection, base: _c.uint64_t) ---
+    @(link_name = "PxSerialization_createSerialObjectIds")
+    serialization_create_serial_object_ids :: proc(collection: ^PxCollection, base: _c.uint64_t) ---
 
     /// Creates a PxCollection from XML data.
     ///
     /// a pointer to a PxCollection if successful or NULL if it failed.
-    PxSerialization_createCollectionFromXml :: proc(inputData: ^PxInputData, cooking: ^PxCooking, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection, stringTable: ^PxStringTable, outArgs: ^PxXmlMiscParameter) -> ^PxCollection ---
+    @(link_name = "PxSerialization_createCollectionFromXml")
+    serialization_create_collection_from_xml :: proc(inputData: ^PxInputData, cooking: ^PxCooking, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection, stringTable: ^PxStringTable, outArgs: ^PxXmlMiscParameter) -> ^PxCollection ---
 
     /// Deserializes a PxCollection from memory.
     ///
@@ -14076,7 +15725,8 @@ foreign libphysx {
     /// by PxSerialization::serializeCollectionToBinary. The contained binary data needs to be compatible with the current binary format version
     /// which is defined by "PX_PHYSICS_VERSION_MAJOR.PX_PHYSICS_VERSION_MINOR.PX_PHYSICS_VERSION_BUGFIX-PX_BINARY_SERIAL_VERSION".
     /// For a list of compatible sdk releases refer to the documentation of PX_BINARY_SERIAL_VERSION.
-    PxSerialization_createCollectionFromBinary :: proc(memBlock: rawptr, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection) -> ^PxCollection ---
+    @(link_name = "PxSerialization_createCollectionFromBinary")
+    serialization_create_collection_from_binary :: proc(memBlock: rawptr, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection) -> ^PxCollection ---
 
     /// Serializes a physics collection to an XML output stream.
     ///
@@ -14085,7 +15735,8 @@ foreign libphysx {
     /// Serialization of objects in a scene that is simultaneously being simulated is not supported and leads to undefined behavior.
     ///
     /// true if the collection is successfully serialized.
-    PxSerialization_serializeCollectionToXml :: proc(outputStream: ^PxOutputStream, collection: ^PxCollection, sr: ^PxSerializationRegistry, cooking: ^PxCooking, externalRefs: ^PxCollection, inArgs: ^PxXmlMiscParameter) -> _c.bool ---
+    @(link_name = "PxSerialization_serializeCollectionToXml")
+    serialization_serialize_collection_to_xml :: proc(outputStream: ^PxOutputStream, collection: ^PxCollection, sr: ^PxSerializationRegistry, cooking: ^PxCooking, externalRefs: ^PxCollection, inArgs: ^PxXmlMiscParameter) -> _c.bool ---
 
     /// Serializes a collection to a binary stream.
     ///
@@ -14100,27 +15751,32 @@ foreign libphysx {
     /// Serialization of objects in a scene that is simultaneously being simulated is not supported and leads to undefined behavior.
     ///
     /// Whether serialization was successful
-    PxSerialization_serializeCollectionToBinary :: proc(outputStream: ^PxOutputStream, collection: ^PxCollection, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection, exportNames: _c.bool) -> _c.bool ---
+    @(link_name = "PxSerialization_serializeCollectionToBinary")
+    serialization_serialize_collection_to_binary :: proc(outputStream: ^PxOutputStream, collection: ^PxCollection, sr: ^PxSerializationRegistry, externalRefs: ^PxCollection, exportNames: _c.bool) -> _c.bool ---
 
     /// Creates an application managed registry for serialization.
     ///
     /// PxSerializationRegistry instance.
-    PxSerialization_createSerializationRegistry :: proc(physics: ^PxPhysics) -> ^PxSerializationRegistry ---
+    @(link_name = "PxSerialization_createSerializationRegistry")
+    serialization_create_serialization_registry :: proc(physics: ^PxPhysics) -> ^PxSerializationRegistry ---
 
     /// Deletes the dispatcher.
     ///
     /// Do not keep a reference to the deleted instance.
-    PxDefaultCpuDispatcher_release_mut :: proc(self_: ^PxDefaultCpuDispatcher) ---
+    @(link_name = "PxDefaultCpuDispatcher_release_mut")
+    default_cpu_dispatcher_release_mut :: proc(self_: ^PxDefaultCpuDispatcher) ---
 
     /// Enables profiling at task level.
     ///
     /// By default enabled only in profiling builds.
-    PxDefaultCpuDispatcher_setRunProfiled_mut :: proc(self_: ^PxDefaultCpuDispatcher, runProfiled: _c.bool) ---
+    @(link_name = "PxDefaultCpuDispatcher_setRunProfiled_mut")
+    default_cpu_dispatcher_set_run_profiled_mut :: proc(self_: ^PxDefaultCpuDispatcher, runProfiled: _c.bool) ---
 
     /// Checks if profiling is enabled at task level.
     ///
     /// True if tasks should be profiled.
-    PxDefaultCpuDispatcher_getRunProfiled :: proc(self_: ^PxDefaultCpuDispatcher) -> _c.bool ---
+    @(link_name = "PxDefaultCpuDispatcher_getRunProfiled")
+    default_cpu_dispatcher_get_run_profiled :: proc(self_: ^PxDefaultCpuDispatcher) -> _c.bool ---
 
     /// Create default dispatcher, extensions SDK needs to be initialized first.
     ///
@@ -14131,7 +15787,8 @@ foreign libphysx {
     ///
     /// eYIELD_THREAD and eYIELD_PROCESSOR modes will use compute resources even if the simulation is not running.
     /// It is left to users to keep threads inactive, if so desired, when no simulation is running.
-    phys_PxDefaultCpuDispatcherCreate :: proc(numThreads: _c.uint32_t, affinityMasks: ^_c.uint32_t, mode: _c.int32_t, yieldProcessorCount: _c.uint32_t) -> ^PxDefaultCpuDispatcher ---
+    @(link_name = "phys_PxDefaultCpuDispatcherCreate")
+    default_cpu_dispatcher_create :: proc(numThreads: _c.uint32_t, affinityMasks: ^_c.uint32_t, mode: _c.int32_t, yieldProcessorCount: _c.uint32_t) -> ^PxDefaultCpuDispatcher ---
 
     /// Builds smooth vertex normals over a mesh.
     ///
@@ -14142,19 +15799,22 @@ foreign libphysx {
     /// wFaces and set dFaces to zero.
     ///
     /// True on success.
-    phys_PxBuildSmoothNormals :: proc(nbTris: _c.uint32_t, nbVerts: _c.uint32_t, verts: ^PxVec3, dFaces: ^_c.uint32_t, wFaces: ^_c.uint16_t, normals: ^PxVec3, flip: _c.bool) -> _c.bool ---
+    @(link_name = "phys_PxBuildSmoothNormals")
+    build_smooth_normals :: proc(nbTris: _c.uint32_t, nbVerts: _c.uint32_t, verts: ^PxVec3, dFaces: ^_c.uint32_t, wFaces: ^_c.uint16_t, normals: ^PxVec3, flip: _c.bool) -> _c.bool ---
 
     /// simple method to create a PxRigidDynamic actor with a single PxShape.
     ///
     /// a new dynamic actor with the PxRigidBodyFlag, or NULL if it could
     /// not be constructed
-    phys_PxCreateDynamic :: proc(sdk: ^PxPhysics, transform: ^PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, density: _c.float, shapeOffset: ^PxTransform) -> ^PxRigidDynamic ---
+    @(link_name = "phys_PxCreateDynamic")
+    create_dynamic :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, density: _c.float, #by_ptr shapeOffset: PxTransform) -> ^PxRigidDynamic ---
 
     /// simple method to create a PxRigidDynamic actor with a single PxShape.
     ///
     /// a new dynamic actor with the PxRigidBodyFlag, or NULL if it could
     /// not be constructed
-    phys_PxCreateDynamic_1 :: proc(sdk: ^PxPhysics, transform: ^PxTransform, shape: ^PxShape, density: _c.float) -> ^PxRigidDynamic ---
+    @(link_name = "phys_PxCreateDynamic_1")
+    create_dynamic_1 :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, shape: ^PxShape, density: _c.float) -> ^PxRigidDynamic ---
 
     /// simple method to create a kinematic PxRigidDynamic actor with a single PxShape.
     ///
@@ -14165,7 +15825,8 @@ foreign libphysx {
     ///
     /// a new dynamic actor with the PxRigidBodyFlag::eKINEMATIC set, or NULL if it could
     /// not be constructed
-    phys_PxCreateKinematic :: proc(sdk: ^PxPhysics, transform: ^PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, density: _c.float, shapeOffset: ^PxTransform) -> ^PxRigidDynamic ---
+    @(link_name = "phys_PxCreateKinematic")
+    create_kinematic :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, density: _c.float, #by_ptr shapeOffset: PxTransform) -> ^PxRigidDynamic ---
 
     /// simple method to create a kinematic PxRigidDynamic actor with a single PxShape.
     ///
@@ -14176,17 +15837,20 @@ foreign libphysx {
     ///
     /// a new dynamic actor with the PxRigidBodyFlag::eKINEMATIC set, or NULL if it could
     /// not be constructed
-    phys_PxCreateKinematic_1 :: proc(sdk: ^PxPhysics, transform: ^PxTransform, shape: ^PxShape, density: _c.float) -> ^PxRigidDynamic ---
+    @(link_name = "phys_PxCreateKinematic_1")
+    create_kinematic_1 :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, shape: ^PxShape, density: _c.float) -> ^PxRigidDynamic ---
 
     /// simple method to create a PxRigidStatic actor with a single PxShape.
     ///
     /// a new static actor, or NULL if it could not be constructed
-    phys_PxCreateStatic :: proc(sdk: ^PxPhysics, transform: ^PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, shapeOffset: ^PxTransform) -> ^PxRigidStatic ---
+    @(link_name = "phys_PxCreateStatic")
+    create_static :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, geometry: ^PxGeometry, material: ^PxMaterial, #by_ptr shapeOffset: PxTransform) -> ^PxRigidStatic ---
 
     /// simple method to create a PxRigidStatic actor with a single PxShape.
     ///
     /// a new static actor, or NULL if it could not be constructed
-    phys_PxCreateStatic_1 :: proc(sdk: ^PxPhysics, transform: ^PxTransform, shape: ^PxShape) -> ^PxRigidStatic ---
+    @(link_name = "phys_PxCreateStatic_1")
+    create_static_1 :: proc(sdk: ^PxPhysics, #by_ptr transform: PxTransform, shape: ^PxShape) -> ^PxRigidStatic ---
 
     /// create a shape by copying attributes from another shape
     ///
@@ -14207,7 +15871,8 @@ foreign libphysx {
     /// - user data
     ///
     /// the newly-created rigid static
-    phys_PxCloneShape :: proc(physicsSDK: ^PxPhysics, shape: ^PxShape, isExclusive: _c.bool) -> ^PxShape ---
+    @(link_name = "phys_PxCloneShape")
+    clone_shape :: proc(physicsSDK: ^PxPhysics, #by_ptr shape: PxShape, isExclusive: _c.bool) -> ^PxShape ---
 
     /// create a static body by copying attributes from another rigid actor
     ///
@@ -14226,7 +15891,8 @@ foreign libphysx {
     /// Transforms are not copied with bit-exact accuracy.
     ///
     /// the newly-created rigid static
-    phys_PxCloneStatic :: proc(physicsSDK: ^PxPhysics, transform: ^PxTransform, actor: ^PxRigidActor) -> ^PxRigidStatic ---
+    @(link_name = "phys_PxCloneStatic")
+    clone_static :: proc(physicsSDK: ^PxPhysics, #by_ptr transform: PxTransform, actor: ^PxRigidActor) -> ^PxRigidStatic ---
 
     /// create a dynamic body by copying attributes from an existing body
     ///
@@ -14257,21 +15923,25 @@ foreign libphysx {
     /// Transforms are not copied with bit-exact accuracy.
     ///
     /// the newly-created rigid static
-    phys_PxCloneDynamic :: proc(physicsSDK: ^PxPhysics, transform: ^PxTransform, body: ^PxRigidDynamic) -> ^PxRigidDynamic ---
+    @(link_name = "phys_PxCloneDynamic")
+    clone_dynamic :: proc(physicsSDK: ^PxPhysics, #by_ptr transform: PxTransform, #by_ptr body: PxRigidDynamic) -> ^PxRigidDynamic ---
 
     /// create a plane actor. The plane equation is n.x + d = 0
     ///
     /// a new static actor, or NULL if it could not be constructed
-    phys_PxCreatePlane :: proc(sdk: ^PxPhysics, plane: ^PxPlane, material: ^PxMaterial) -> ^PxRigidStatic ---
+    @(link_name = "phys_PxCreatePlane")
+    create_plane :: proc(sdk: ^PxPhysics, #by_ptr plane: PxPlane, material: ^PxMaterial) -> ^PxRigidStatic ---
 
     /// scale a rigid actor by a uniform scale
     ///
     /// The geometry and relative positions of the actor are multiplied by the given scale value. If the actor is a rigid body or an
     /// articulation link and the scaleMassProps value is true, the mass properties are scaled assuming the density is constant: the
     /// center of mass is linearly scaled, the mass is multiplied by the cube of the scale, and the inertia tensor by the fifth power of the scale.
-    phys_PxScaleRigidActor :: proc(actor: ^PxRigidActor, scale: _c.float, scaleMassProps: _c.bool) ---
+    @(link_name = "phys_PxScaleRigidActor")
+    scale_rigid_actor :: proc(actor: ^PxRigidActor, scale: _c.float, scaleMassProps: _c.bool) ---
 
-    PxStringTableExt_createStringTable :: proc(inAllocator: ^PxAllocatorCallback) -> ^PxStringTable ---
+    @(link_name = "PxStringTableExt_createStringTable")
+    string_table_ext_create_string_table :: proc(inAllocator: ^PxAllocatorCallback) -> ^PxStringTable ---
 
     /// Creates regions for PxSceneDesc, from a global box.
     ///
@@ -14283,7 +15953,8 @@ foreign libphysx {
     /// the game world with a non-uniform set of regions (i.e. not just a grid).
     ///
     /// number of regions written out to the 'regions' array
-    PxBroadPhaseExt_createRegionsFromWorldBounds :: proc(regions: ^PxBounds3, globalBounds: ^PxBounds3, nbSubdiv: _c.uint32_t, upAxis: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxBroadPhaseExt_createRegionsFromWorldBounds")
+    broad_phase_ext_create_regions_from_world_bounds :: proc(regions: ^PxBounds3, #by_ptr globalBounds: PxBounds3, nbSubdiv: _c.uint32_t, upAxis: _c.uint32_t) -> _c.uint32_t ---
 
     /// Raycast returning any blocking hit, not necessarily the closest.
     ///
@@ -14292,7 +15963,8 @@ foreign libphysx {
     /// Shooting a ray from within an object leads to different results depending on the shape type. Please check the details in article SceneQuery. User can ignore such objects by using one of the provided filter mechanisms.
     ///
     /// True if a blocking hit was found.
-    PxSceneQueryExt_raycastAny :: proc(scene: ^PxScene, origin: ^PxVec3, unitDir: ^PxVec3, distance: _c.float, hit: ^PxQueryHit, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
+    @(link_name = "PxSceneQueryExt_raycastAny")
+    scene_query_ext_raycast_any :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, hit: ^PxQueryHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
 
     /// Raycast returning a single result.
     ///
@@ -14301,7 +15973,8 @@ foreign libphysx {
     /// Shooting a ray from within an object leads to different results depending on the shape type. Please check the details in article SceneQuery. User can ignore such objects by using one of the provided filter mechanisms.
     ///
     /// True if a blocking hit was found.
-    PxSceneQueryExt_raycastSingle :: proc(scene: ^PxScene, origin: ^PxVec3, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxRaycastHit, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
+    @(link_name = "PxSceneQueryExt_raycastSingle")
+    scene_query_ext_raycast_single :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxRaycastHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
 
     /// Raycast returning multiple results.
     ///
@@ -14312,7 +15985,8 @@ foreign libphysx {
     /// Shooting a ray from within an object leads to different results depending on the shape type. Please check the details in article SceneQuery. User can ignore such objects by using one of the provided filter mechanisms.
     ///
     /// Number of hits in the buffer, or -1 if the buffer overflowed.
-    PxSceneQueryExt_raycastMultiple :: proc(scene: ^PxScene, origin: ^PxVec3, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxRaycastHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.int32_t ---
+    @(link_name = "PxSceneQueryExt_raycastMultiple")
+    scene_query_ext_raycast_multiple :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxRaycastHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.int32_t ---
 
     /// Sweep returning any blocking hit, not necessarily the closest.
     ///
@@ -14321,7 +15995,8 @@ foreign libphysx {
     /// If a shape from the scene is already overlapping with the query shape in its starting position, behavior is controlled by the PxSceneQueryFlag::eINITIAL_OVERLAP flag.
     ///
     /// True if a blocking hit was found.
-    PxSceneQueryExt_sweepAny :: proc(scene: ^PxScene, geometry: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, distance: _c.float, queryFlags: _c.uint16_t, hit: ^PxQueryHit, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    @(link_name = "PxSceneQueryExt_sweepAny")
+    scene_query_ext_sweep_any :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, queryFlags: _c.uint16_t, hit: ^PxQueryHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Sweep returning a single result.
     ///
@@ -14330,7 +16005,8 @@ foreign libphysx {
     /// If a shape from the scene is already overlapping with the query shape in its starting position, behavior is controlled by the PxSceneQueryFlag::eINITIAL_OVERLAP flag.
     ///
     /// True if a blocking hit was found.
-    PxSceneQueryExt_sweepSingle :: proc(scene: ^PxScene, geometry: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxSweepHit, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    @(link_name = "PxSceneQueryExt_sweepSingle")
+    scene_query_ext_sweep_single :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxSweepHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Sweep returning multiple results.
     ///
@@ -14341,7 +16017,8 @@ foreign libphysx {
     /// If a shape from the scene is already overlapping with the query shape in its starting position, behavior is controlled by the PxSceneQueryFlag::eINITIAL_OVERLAP flag.
     ///
     /// Number of hits in the buffer, or -1 if the buffer overflowed.
-    PxSceneQueryExt_sweepMultiple :: proc(scene: ^PxScene, geometry: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxSweepHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.int32_t ---
+    @(link_name = "PxSceneQueryExt_sweepMultiple")
+    scene_query_ext_sweep_multiple :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxSweepHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.int32_t ---
 
     /// Test overlap between a geometry and objects in the scene.
     ///
@@ -14350,7 +16027,8 @@ foreign libphysx {
     /// PxHitFlag::eMESH_MULTIPLE and PxHitFlag::eMESH_BOTH_SIDES have no effect in this case
     ///
     /// Number of hits in the buffer, or -1 if the buffer overflowed.
-    PxSceneQueryExt_overlapMultiple :: proc(scene: ^PxScene, geometry: ^PxGeometry, pose: ^PxTransform, hitBuffer: ^PxOverlapHit, hitBufferSize: _c.uint32_t, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.int32_t ---
+    @(link_name = "PxSceneQueryExt_overlapMultiple")
+    scene_query_ext_overlap_multiple :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, hitBuffer: ^PxOverlapHit, hitBufferSize: _c.uint32_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.int32_t ---
 
     /// Test returning, for a given geometry, any overlapping object in the scene.
     ///
@@ -14359,9 +16037,11 @@ foreign libphysx {
     /// PxHitFlag::eMESH_MULTIPLE and PxHitFlag::eMESH_BOTH_SIDES have no effect in this case
     ///
     /// True if an overlap was found.
-    PxSceneQueryExt_overlapAny :: proc(scene: ^PxScene, geometry: ^PxGeometry, pose: ^PxTransform, hit: ^PxOverlapHit, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.bool ---
+    @(link_name = "PxSceneQueryExt_overlapAny")
+    scene_query_ext_overlap_any :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, hit: ^PxOverlapHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.bool ---
 
-    PxBatchQueryExt_release_mut :: proc(self_: ^PxBatchQueryExt) ---
+    @(link_name = "PxBatchQueryExt_release_mut")
+    batch_query_ext_release_mut :: proc(self_: ^PxBatchQueryExt) ---
 
     /// Performs a raycast against objects in the scene.
     ///
@@ -14374,7 +16054,8 @@ foreign libphysx {
     ///
     /// Returns a PxRaycastBuffer pointer that will store the result of the query after execute() is completed.
     /// This will point either to an element of the buffer allocated on construction or to a user buffer passed to the constructor.
-    PxBatchQueryExt_raycast_mut :: proc(self_: ^PxBatchQueryExt, origin: ^PxVec3, unitDir: ^PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, filterData: ^PxQueryFilterData, cache: ^PxQueryCache) -> ^PxRaycastBuffer ---
+    @(link_name = "PxBatchQueryExt_raycast_mut")
+    batch_query_ext_raycast_mut :: proc(self_: ^PxBatchQueryExt, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache) -> ^PxRaycastBuffer ---
 
     /// Performs a sweep test against objects in the scene.
     ///
@@ -14388,7 +16069,8 @@ foreign libphysx {
     ///
     /// Returns a PxSweepBuffer pointer that will store the result of the query after execute() is completed.
     /// This will point either to an element of the buffer allocated on construction or to a user buffer passed to the constructor.
-    PxBatchQueryExt_sweep_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, pose: ^PxTransform, unitDir: ^PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, filterData: ^PxQueryFilterData, cache: ^PxQueryCache, inflation: _c.float) -> ^PxSweepBuffer ---
+    @(link_name = "PxBatchQueryExt_sweep_mut")
+    batch_query_ext_sweep_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache, inflation: _c.float) -> ^PxSweepBuffer ---
 
     /// Performs an overlap test of a given geometry against objects in the scene.
     ///
@@ -14403,21 +16085,25 @@ foreign libphysx {
     ///
     /// Returns a PxOverlapBuffer pointer that will store the result of the query after execute() is completed.
     /// This will point either to an element of the buffer allocated on construction or to a user buffer passed to the constructor.
-    PxBatchQueryExt_overlap_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, pose: ^PxTransform, maxNbTouches: _c.uint16_t, filterData: ^PxQueryFilterData, cache: ^PxQueryCache) -> ^PxOverlapBuffer ---
+    @(link_name = "PxBatchQueryExt_overlap_mut")
+    batch_query_ext_overlap_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, #by_ptr pose: PxTransform, maxNbTouches: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache) -> ^PxOverlapBuffer ---
 
-    PxBatchQueryExt_execute_mut :: proc(self_: ^PxBatchQueryExt) ---
+    @(link_name = "PxBatchQueryExt_execute_mut")
+    batch_query_ext_execute_mut :: proc(self_: ^PxBatchQueryExt) ---
 
     /// Create a PxBatchQueryExt without the need for pre-allocated result or touch buffers.
     ///
     /// Returns a PxBatchQueryExt instance. A NULL pointer will be returned if the subsequent allocations fail or if any of the arguments are illegal.
     /// In the event that a NULL pointer is returned a corresponding error will be issued to the error stream.
-    phys_PxCreateBatchQueryExt :: proc(scene: ^PxScene, queryFilterCallback: ^PxQueryFilterCallback, maxNbRaycasts: _c.uint32_t, maxNbRaycastTouches: _c.uint32_t, maxNbSweeps: _c.uint32_t, maxNbSweepTouches: _c.uint32_t, maxNbOverlaps: _c.uint32_t, maxNbOverlapTouches: _c.uint32_t) -> ^PxBatchQueryExt ---
+    @(link_name = "phys_PxCreateBatchQueryExt")
+    create_batch_query_ext :: proc(#by_ptr scene: PxScene, queryFilterCallback: ^PxQueryFilterCallback, maxNbRaycasts: _c.uint32_t, maxNbRaycastTouches: _c.uint32_t, maxNbSweeps: _c.uint32_t, maxNbSweepTouches: _c.uint32_t, maxNbOverlaps: _c.uint32_t, maxNbOverlapTouches: _c.uint32_t) -> ^PxBatchQueryExt ---
 
     /// Create a PxBatchQueryExt with user-supplied result and touch buffers.
     ///
     /// Returns a PxBatchQueryExt instance. A NULL pointer will be returned if the subsequent allocations fail or if any of the arguments are illegal.
     /// In the event that a NULL pointer is returned a corresponding error will be issued to the error stream.
-    phys_PxCreateBatchQueryExt_1 :: proc(scene: ^PxScene, queryFilterCallback: ^PxQueryFilterCallback, raycastBuffers: ^PxRaycastBuffer, maxNbRaycasts: _c.uint32_t, raycastTouches: ^PxRaycastHit, maxNbRaycastTouches: _c.uint32_t, sweepBuffers: ^PxSweepBuffer, maxNbSweeps: _c.uint32_t, sweepTouches: ^PxSweepHit, maxNbSweepTouches: _c.uint32_t, overlapBuffers: ^PxOverlapBuffer, maxNbOverlaps: _c.uint32_t, overlapTouches: ^PxOverlapHit, maxNbOverlapTouches: _c.uint32_t) -> ^PxBatchQueryExt ---
+    @(link_name = "phys_PxCreateBatchQueryExt_1")
+    create_batch_query_ext_1 :: proc(#by_ptr scene: PxScene, queryFilterCallback: ^PxQueryFilterCallback, raycastBuffers: ^PxRaycastBuffer, maxNbRaycasts: _c.uint32_t, raycastTouches: ^PxRaycastHit, maxNbRaycastTouches: _c.uint32_t, sweepBuffers: ^PxSweepBuffer, maxNbSweeps: _c.uint32_t, sweepTouches: ^PxSweepHit, maxNbSweepTouches: _c.uint32_t, overlapBuffers: ^PxOverlapBuffer, maxNbOverlaps: _c.uint32_t, overlapTouches: ^PxOverlapHit, maxNbOverlapTouches: _c.uint32_t) -> ^PxBatchQueryExt ---
 
     /// Creates an external scene query system.
     ///
@@ -14430,7 +16116,8 @@ foreign libphysx {
     /// specific needs.
     ///
     /// An external SQ system instance
-    phys_PxCreateExternalSceneQuerySystem :: proc(desc: ^PxSceneQueryDesc, contextID: _c.uint64_t) -> ^PxSceneQuerySystem ---
+    @(link_name = "phys_PxCreateExternalSceneQuerySystem")
+    create_external_scene_query_system :: proc(desc: ^PxSceneQueryDesc, contextID: _c.uint64_t) -> ^PxSceneQuerySystem ---
 
     /// Adds a pruner to the system.
     ///
@@ -14444,7 +16131,8 @@ foreign libphysx {
     /// In any case this serves as an example of how the PxSceneQuerySystem API can be used to customize scene queries.
     ///
     /// A pruner index
-    PxCustomSceneQuerySystem_addPruner_mut :: proc(self_: ^PxCustomSceneQuerySystem, primaryType: _c.int32_t, secondaryType: _c.int32_t, preallocated: _c.uint32_t) -> _c.uint32_t ---
+    @(link_name = "PxCustomSceneQuerySystem_addPruner_mut")
+    custom_scene_query_system_add_pruner_mut :: proc(self_: ^PxCustomSceneQuerySystem, primaryType: _c.int32_t, secondaryType: _c.int32_t, preallocated: _c.uint32_t) -> _c.uint32_t ---
 
     /// Start custom build-steps for all pruners
     ///
@@ -14467,17 +16155,21 @@ foreign libphysx {
     /// one should not add new objects to the SQ system or perform queries while these calls are happening.
     ///
     /// The number of pruners in the system.
-    PxCustomSceneQuerySystem_startCustomBuildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem) -> _c.uint32_t ---
+    @(link_name = "PxCustomSceneQuerySystem_startCustomBuildstep_mut")
+    custom_scene_query_system_start_custom_buildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem) -> _c.uint32_t ---
 
     /// Perform a custom build-step for a given pruner.
-    PxCustomSceneQuerySystem_customBuildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem, index: _c.uint32_t) ---
+    @(link_name = "PxCustomSceneQuerySystem_customBuildstep_mut")
+    custom_scene_query_system_custom_buildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem, index: _c.uint32_t) ---
 
     /// Finish custom build-steps
     ///
     /// Call this function once after all the customBuildstep() calls are done.
-    PxCustomSceneQuerySystem_finishCustomBuildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem) ---
+    @(link_name = "PxCustomSceneQuerySystem_finishCustomBuildstep_mut")
+    custom_scene_query_system_finish_custom_buildstep_mut :: proc(self_: ^PxCustomSceneQuerySystem) ---
 
-    PxCustomSceneQuerySystemAdapter_delete :: proc(self_: ^PxCustomSceneQuerySystemAdapter) ---
+    @(link_name = "PxCustomSceneQuerySystemAdapter_delete")
+    custom_scene_query_system_adapter_delete :: proc(self_: ^PxCustomSceneQuerySystemAdapter) ---
 
     /// Gets a pruner index for an actor/shape.
     ///
@@ -14486,14 +16178,16 @@ foreign libphysx {
     /// The returned index must be valid, i.e. it must have been previously returned to users by PxCustomSceneQuerySystem::addPruner.
     ///
     /// A pruner index for this actor/shape.
-    PxCustomSceneQuerySystemAdapter_getPrunerIndex :: proc(self_: ^PxCustomSceneQuerySystemAdapter, actor: ^PxRigidActor, shape: ^PxShape) -> _c.uint32_t ---
+    @(link_name = "PxCustomSceneQuerySystemAdapter_getPrunerIndex")
+    custom_scene_query_system_adapter_get_pruner_index :: proc(self_: ^PxCustomSceneQuerySystemAdapter, actor: ^PxRigidActor, #by_ptr shape: PxShape) -> _c.uint32_t ---
 
     /// Pruner filtering callback.
     ///
     /// This will be called for each query to validate whether it should process a given pruner.
     ///
     /// True to process the pruner, false to skip it entirely
-    PxCustomSceneQuerySystemAdapter_processPruner :: proc(self_: ^PxCustomSceneQuerySystemAdapter, prunerIndex: _c.uint32_t, context_: ^PxQueryThreadContext, filterData: ^PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.bool ---
+    @(link_name = "PxCustomSceneQuerySystemAdapter_processPruner")
+    custom_scene_query_system_adapter_process_pruner :: proc(self_: ^PxCustomSceneQuerySystemAdapter, prunerIndex: _c.uint32_t, context_: ^PxQueryThreadContext, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback) -> _c.bool ---
 
     /// Creates a custom scene query system.
     ///
@@ -14501,7 +16195,8 @@ foreign libphysx {
     /// It can be plugged to PxScene the same way, via PxSceneDesc::sceneQuerySystem.
     ///
     /// A custom SQ system instance
-    phys_PxCreateCustomSceneQuerySystem :: proc(sceneQueryUpdateMode: _c.int32_t, contextID: _c.uint64_t, adapter: ^PxCustomSceneQuerySystemAdapter, usesTreeOfPruners: _c.bool) -> ^PxCustomSceneQuerySystem ---
+    @(link_name = "phys_PxCreateCustomSceneQuerySystem")
+    create_custom_scene_query_system :: proc(sceneQueryUpdateMode: _c.int32_t, contextID: _c.uint64_t, #by_ptr adapter: PxCustomSceneQuerySystemAdapter, usesTreeOfPruners: _c.bool) -> ^PxCustomSceneQuerySystem ---
 
     /// Computes closest polygon of the convex hull geometry for a given impact point
     /// and impact direction. When doing sweeps against a scene, one might want to delay
@@ -14510,133 +16205,170 @@ foreign libphysx {
     /// face index.
     ///
     /// Closest face index of the convex geometry.
-    phys_PxFindFaceIndex :: proc(convexGeom: ^PxConvexMeshGeometry, geomPose: ^PxTransform, impactPos: ^PxVec3, unitDir: ^PxVec3) -> _c.uint32_t ---
+    @(link_name = "phys_PxFindFaceIndex")
+    find_face_index :: proc(#by_ptr convexGeom: PxConvexMeshGeometry, #by_ptr geomPose: PxTransform, #by_ptr impactPos: PxVec3, #by_ptr unitDir: PxVec3) -> _c.uint32_t ---
 
     /// Sets the sampling radius
     ///
     /// Returns true if the sampling was successful and false if there was a problem. Usually an internal overflow is the problem for very big meshes or very small sampling radii.
-    PxPoissonSampler_setSamplingRadius_mut :: proc(self_: ^PxPoissonSampler, samplingRadius: _c.float) -> _c.bool ---
+    @(link_name = "PxPoissonSampler_setSamplingRadius_mut")
+    poisson_sampler_set_sampling_radius_mut :: proc(self_: ^PxPoissonSampler, samplingRadius: _c.float) -> _c.bool ---
 
     /// Adds new Poisson Samples inside the sphere specified
-    PxPoissonSampler_addSamplesInSphere_mut :: proc(self_: ^PxPoissonSampler, sphereCenter: ^PxVec3, sphereRadius: _c.float, createVolumeSamples: _c.bool) ---
+    @(link_name = "PxPoissonSampler_addSamplesInSphere_mut")
+    poisson_sampler_add_samples_in_sphere_mut :: proc(self_: ^PxPoissonSampler, #by_ptr sphereCenter: PxVec3, sphereRadius: _c.float, createVolumeSamples: _c.bool) ---
 
     /// Adds new Poisson Samples inside the box specified
-    PxPoissonSampler_addSamplesInBox_mut :: proc(self_: ^PxPoissonSampler, axisAlignedBox: ^PxBounds3, boxOrientation: ^PxQuat, createVolumeSamples: _c.bool) ---
+    @(link_name = "PxPoissonSampler_addSamplesInBox_mut")
+    poisson_sampler_add_samples_in_box_mut :: proc(self_: ^PxPoissonSampler, #by_ptr axisAlignedBox: PxBounds3, #by_ptr boxOrientation: PxQuat, createVolumeSamples: _c.bool) ---
 
-    PxPoissonSampler_delete :: proc(self_: ^PxPoissonSampler) ---
+    @(link_name = "PxPoissonSampler_delete")
+    poisson_sampler_delete :: proc(self_: ^PxPoissonSampler) ---
 
     /// Creates a shape sampler
     ///
     /// Returns the sampler
-    phys_PxCreateShapeSampler :: proc(geometry: ^PxGeometry, transform: ^PxTransform, worldBounds: ^PxBounds3, initialSamplingRadius: _c.float, numSampleAttemptsAroundPoint: _c.int32_t) -> ^PxPoissonSampler ---
+    @(link_name = "phys_PxCreateShapeSampler")
+    create_shape_sampler :: proc(geometry: ^PxGeometry, #by_ptr transform: PxTransform, #by_ptr worldBounds: PxBounds3, initialSamplingRadius: _c.float, numSampleAttemptsAroundPoint: _c.int32_t) -> ^PxPoissonSampler ---
 
     /// Checks whether a point is inside the triangle mesh
     ///
     /// Returns true if the point is inside the triangle mesh
-    PxTriangleMeshPoissonSampler_isPointInTriangleMesh_mut :: proc(self_: ^PxTriangleMeshPoissonSampler, p: ^PxVec3) -> _c.bool ---
+    @(link_name = "PxTriangleMeshPoissonSampler_isPointInTriangleMesh_mut")
+    triangle_mesh_poisson_sampler_is_point_in_triangle_mesh_mut :: proc(self_: ^PxTriangleMeshPoissonSampler, #by_ptr p: PxVec3) -> _c.bool ---
 
-    PxTriangleMeshPoissonSampler_delete :: proc(self_: ^PxTriangleMeshPoissonSampler) ---
+    @(link_name = "PxTriangleMeshPoissonSampler_delete")
+    triangle_mesh_poisson_sampler_delete :: proc(self_: ^PxTriangleMeshPoissonSampler) ---
 
     /// Creates a triangle mesh sampler
     ///
     /// Returns the sampler
-    phys_PxCreateTriangleMeshSampler :: proc(triangles: ^_c.uint32_t, numTriangles: _c.uint32_t, vertices: ^PxVec3, numVertices: _c.uint32_t, initialSamplingRadius: _c.float, numSampleAttemptsAroundPoint: _c.int32_t) -> ^PxTriangleMeshPoissonSampler ---
+    @(link_name = "phys_PxCreateTriangleMeshSampler")
+    create_triangle_mesh_sampler :: proc(triangles: ^_c.uint32_t, numTriangles: _c.uint32_t, vertices: ^PxVec3, numVertices: _c.uint32_t, initialSamplingRadius: _c.float, numSampleAttemptsAroundPoint: _c.int32_t) -> ^PxTriangleMeshPoissonSampler ---
 
     /// Returns the index of the tetrahedron that contains a point
     ///
     /// The index of the tetrahedon containing the point, -1 if not tetrahedron contains the opoint
-    PxTetrahedronMeshExt_findTetrahedronContainingPoint :: proc(mesh: ^PxTetrahedronMesh, point: ^PxVec3, bary: ^PxVec4, tolerance: _c.float) -> _c.int32_t ---
+    @(link_name = "PxTetrahedronMeshExt_findTetrahedronContainingPoint")
+    tetrahedron_mesh_ext_find_tetrahedron_containing_point :: proc(mesh: ^PxTetrahedronMesh, #by_ptr point: PxVec3, bary: ^PxVec4, tolerance: _c.float) -> _c.int32_t ---
 
     /// Returns the index of the tetrahedron closest to a point
     ///
     /// The index of the tetrahedon closest to the point
-    PxTetrahedronMeshExt_findTetrahedronClosestToPoint :: proc(mesh: ^PxTetrahedronMesh, point: ^PxVec3, bary: ^PxVec4) -> _c.int32_t ---
+    @(link_name = "PxTetrahedronMeshExt_findTetrahedronClosestToPoint")
+    tetrahedron_mesh_ext_find_tetrahedron_closest_to_point :: proc(mesh: ^PxTetrahedronMesh, #by_ptr point: PxVec3, bary: ^PxVec4) -> _c.int32_t ---
 
     /// Initialize the PhysXExtensions library.
     ///
     /// This should be called before calling any functions or methods in extensions which may require allocation.
     ///
     /// This function does not need to be called before creating a PxDefaultAllocator object.
-    phys_PxInitExtensions :: proc(physics: ^PxPhysics, pvd: ^PxPvd) -> _c.bool ---
+    @(link_name = "phys_PxInitExtensions")
+    init_extensions :: proc(physics: ^PxPhysics, pvd: ^PxPvd) -> _c.bool ---
 
     /// Shut down the PhysXExtensions library.
     ///
     /// This function should be called to cleanly shut down the PhysXExtensions library before application exit.
     ///
     /// This function is required to be called to release foundation usage.
-    phys_PxCloseExtensions :: proc() ---
+    @(link_name = "phys_PxCloseExtensions")
+    close_extensions :: proc() ---
 
-    PxRepXObject_new :: proc(inTypeName: ^_c.char, inSerializable: rawptr, inId: _c.uint64_t) -> PxRepXObject ---
+    @(link_name = "PxRepXObject_new")
+    rep_x_object_new :: proc(inTypeName: ^_c.char, inSerializable: rawptr, inId: _c.uint64_t) -> PxRepXObject ---
 
-    PxRepXObject_isValid :: proc(self_: ^PxRepXObject) -> _c.bool ---
+    @(link_name = "PxRepXObject_isValid")
+    rep_x_object_is_valid :: proc(self_: ^PxRepXObject) -> _c.bool ---
 
-    PxRepXInstantiationArgs_new :: proc(inPhysics: ^PxPhysics, inCooking: ^PxCooking, inStringTable: ^PxStringTable) -> PxRepXInstantiationArgs ---
+    @(link_name = "PxRepXInstantiationArgs_new")
+    rep_x_instantiation_args_new :: proc(inPhysics: ^PxPhysics, inCooking: ^PxCooking, inStringTable: ^PxStringTable) -> PxRepXInstantiationArgs ---
 
     /// The type this Serializer is meant to operate on.
-    PxRepXSerializer_getTypeName_mut :: proc(self_: ^PxRepXSerializer) -> ^_c.char ---
+    @(link_name = "PxRepXSerializer_getTypeName_mut")
+    rep_x_serializer_get_type_name_mut :: proc(self_: ^PxRepXSerializer) -> ^_c.char ---
 
     /// Convert from a RepX object to a key-value pair hierarchy
-    PxRepXSerializer_objectToFile_mut :: proc(self_: ^PxRepXSerializer, inLiveObject: ^PxRepXObject, inCollection: ^PxCollection, inWriter: ^XmlWriter, inTempBuffer: ^MemoryBuffer, inArgs: ^PxRepXInstantiationArgs) ---
+    @(link_name = "PxRepXSerializer_objectToFile_mut")
+    rep_x_serializer_object_to_file_mut :: proc(self_: ^PxRepXSerializer, #by_ptr inLiveObject: PxRepXObject, inCollection: ^PxCollection, inWriter: ^XmlWriter, inTempBuffer: ^MemoryBuffer, inArgs: ^PxRepXInstantiationArgs) ---
 
     /// Convert from a descriptor to a live object.  Must be an object of this Serializer type.
     ///
     /// The new live object.  It can be an invalid object if the instantiation cannot take place.
-    PxRepXSerializer_fileToObject_mut :: proc(self_: ^PxRepXSerializer, inReader: ^XmlReader, inAllocator: ^XmlMemoryAllocator, inArgs: ^PxRepXInstantiationArgs, inCollection: ^PxCollection) -> PxRepXObject ---
+    @(link_name = "PxRepXSerializer_fileToObject_mut")
+    rep_x_serializer_file_to_object_mut :: proc(self_: ^PxRepXSerializer, inReader: ^XmlReader, inAllocator: ^XmlMemoryAllocator, inArgs: ^PxRepXInstantiationArgs, inCollection: ^PxCollection) -> PxRepXObject ---
 
     /// Connects the SDK to the PhysX Visual Debugger application.
-    PxPvd_connect_mut :: proc(self_: ^PxPvd, transport: ^PxPvdTransport, flags: _c.uint8_t) -> _c.bool ---
+    @(link_name = "PxPvd_connect_mut")
+    pvd_connect_mut :: proc(self_: ^PxPvd, transport: ^PxPvdTransport, flags: _c.uint8_t) -> _c.bool ---
 
     /// Disconnects the SDK from the PhysX Visual Debugger application.
     /// If we are still connected, this will kill the entire debugger connection.
-    PxPvd_disconnect_mut :: proc(self_: ^PxPvd) ---
+    @(link_name = "PxPvd_disconnect_mut")
+    pvd_disconnect_mut :: proc(self_: ^PxPvd) ---
 
     /// Return if connection to PVD is created.
-    PxPvd_isConnected_mut :: proc(self_: ^PxPvd, useCachedStatus: _c.bool) -> _c.bool ---
+    @(link_name = "PxPvd_isConnected_mut")
+    pvd_is_connected_mut :: proc(self_: ^PxPvd, useCachedStatus: _c.bool) -> _c.bool ---
 
     /// returns the PVD data transport
     /// returns NULL if no transport is present.
-    PxPvd_getTransport_mut :: proc(self_: ^PxPvd) -> ^PxPvdTransport ---
+    @(link_name = "PxPvd_getTransport_mut")
+    pvd_get_transport_mut :: proc(self_: ^PxPvd) -> ^PxPvdTransport ---
 
     /// Retrieves the PVD flags. See PxPvdInstrumentationFlags.
-    PxPvd_getInstrumentationFlags_mut :: proc(self_: ^PxPvd) -> _c.uint8_t ---
+    @(link_name = "PxPvd_getInstrumentationFlags_mut")
+    pvd_get_instrumentation_flags_mut :: proc(self_: ^PxPvd) -> _c.uint8_t ---
 
     /// Releases the pvd instance.
-    PxPvd_release_mut :: proc(self_: ^PxPvd) ---
+    @(link_name = "PxPvd_release_mut")
+    pvd_release_mut :: proc(self_: ^PxPvd) ---
 
     /// Create a pvd instance.
-    phys_PxCreatePvd :: proc(foundation: ^PxFoundation) -> ^PxPvd ---
+    @(link_name = "phys_PxCreatePvd")
+    create_pvd :: proc(foundation: ^PxFoundation) -> ^PxPvd ---
 
     /// Connects to the Visual Debugger application.
     /// return True if success
-    PxPvdTransport_connect_mut :: proc(self_: ^PxPvdTransport) -> _c.bool ---
+    @(link_name = "PxPvdTransport_connect_mut")
+    pvd_transport_connect_mut :: proc(self_: ^PxPvdTransport) -> _c.bool ---
 
     /// Disconnects from the Visual Debugger application.
     /// If we are still connected, this will kill the entire debugger connection.
-    PxPvdTransport_disconnect_mut :: proc(self_: ^PxPvdTransport) ---
+    @(link_name = "PxPvdTransport_disconnect_mut")
+    pvd_transport_disconnect_mut :: proc(self_: ^PxPvdTransport) ---
 
     /// Return if connection to PVD is created.
-    PxPvdTransport_isConnected_mut :: proc(self_: ^PxPvdTransport) -> _c.bool ---
+    @(link_name = "PxPvdTransport_isConnected_mut")
+    pvd_transport_is_connected_mut :: proc(self_: ^PxPvdTransport) -> _c.bool ---
 
     /// write bytes to the other endpoint of the connection. should lock before witre. If an error occurs
     /// this connection will assume to be dead.
-    PxPvdTransport_write_mut :: proc(self_: ^PxPvdTransport, inBytes: ^_c.uint8_t, inLength: _c.uint32_t) -> _c.bool ---
+    @(link_name = "PxPvdTransport_write_mut")
+    pvd_transport_write_mut :: proc(self_: ^PxPvdTransport, inBytes: ^_c.uint8_t, inLength: _c.uint32_t) -> _c.bool ---
 
-    PxPvdTransport_lock_mut :: proc(self_: ^PxPvdTransport) -> ^PxPvdTransport ---
+    @(link_name = "PxPvdTransport_lock_mut")
+    pvd_transport_lock_mut :: proc(self_: ^PxPvdTransport) -> ^PxPvdTransport ---
 
-    PxPvdTransport_unlock_mut :: proc(self_: ^PxPvdTransport) ---
+    @(link_name = "PxPvdTransport_unlock_mut")
+    pvd_transport_unlock_mut :: proc(self_: ^PxPvdTransport) ---
 
     /// send any data and block until we know it is at least on the wire.
-    PxPvdTransport_flush_mut :: proc(self_: ^PxPvdTransport) ---
+    @(link_name = "PxPvdTransport_flush_mut")
+    pvd_transport_flush_mut :: proc(self_: ^PxPvdTransport) ---
 
     /// Return size of written data.
-    PxPvdTransport_getWrittenDataSize_mut :: proc(self_: ^PxPvdTransport) -> _c.uint64_t ---
+    @(link_name = "PxPvdTransport_getWrittenDataSize_mut")
+    pvd_transport_get_written_data_size_mut :: proc(self_: ^PxPvdTransport) -> _c.uint64_t ---
 
-    PxPvdTransport_release_mut :: proc(self_: ^PxPvdTransport) ---
+    @(link_name = "PxPvdTransport_release_mut")
+    pvd_transport_release_mut :: proc(self_: ^PxPvdTransport) ---
 
     /// Create a default socket transport.
-    phys_PxDefaultPvdSocketTransportCreate :: proc(host: ^_c.char, port: _c.int32_t, timeoutInMilliseconds: _c.uint32_t) -> ^PxPvdTransport ---
+    @(link_name = "phys_PxDefaultPvdSocketTransportCreate")
+    default_pvd_socket_transport_create :: proc(host: ^_c.char, port: _c.int32_t, timeoutInMilliseconds: _c.uint32_t) -> ^PxPvdTransport ---
 
     /// Create a default file transport.
-    phys_PxDefaultPvdFileTransportCreate :: proc(name: ^_c.char) -> ^PxPvdTransport ---
+    @(link_name = "phys_PxDefaultPvdFileTransportCreate")
+    default_pvd_file_transport_create :: proc(name: ^_c.char) -> ^PxPvdTransport ---
 
 }

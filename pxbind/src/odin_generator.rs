@@ -56,7 +56,7 @@ impl Generator {
     pub fn generate_odin(
         &self,
         ast: &AstConsumer<'_>,
-		metadata: &StructMetadataList,
+        metadata: &StructMetadataList,
         odin: &mut impl Write,
     ) -> anyhow::Result<()> {
         let level = 0;
@@ -115,7 +115,7 @@ impl Generator {
     pub fn generate_odin_records(
         &self,
         ast: &AstConsumer<'_>,
-		metadata: &StructMetadataList,
+        metadata: &StructMetadataList,
         odin: &mut impl Write,
     ) -> anyhow::Result<u32> {
         let mut num = 0;
@@ -127,9 +127,7 @@ impl Generator {
 
             match rec {
                 RecBinding::Def(def) => {
-					let record = metadata.structs.iter().find(|s| s.name == def.name);
-                    if def.emit_odin(&mut acc, record, 0) {
-
+                    if def.emit_odin(&mut acc, metadata, 0) {
                         num += 1;
                         write!(odin, "{acc}")?;
                     }
@@ -153,17 +151,19 @@ impl Generator {
         odin: &mut impl Write,
         level: u32,
     ) -> anyhow::Result<u32> {
-
-		writesln!(odin, "when ODIN_OS == .Linux do foreign import libphysx \"libphysx.a\"\n");
-		writesln!(odin, "@(default_calling_convention = \"c\")");
-		writesln!(odin, "foreign libphysx {{");
+        writesln!(
+            odin,
+            "when ODIN_OS == .Linux do foreign import libphysx \"physx.so\"\n"
+        );
+        writesln!(odin, "@(default_calling_convention = \"c\")");
+        writesln!(odin, "foreign libphysx {{");
         let mut acc = String::new();
         for func in ast.funcs.iter() {
             acc.clear();
-            func.emit_odin(&mut acc, level + 1);
+            func.emit_odin(&mut acc, ast, level + 1);
             writeln!(odin, "{acc}")?;
         }
-		writesln!(odin, "}}");
+        writesln!(odin, "}}");
         Ok(0)
     }
 }

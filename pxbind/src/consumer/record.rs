@@ -163,12 +163,14 @@ impl Record {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct RecBindingDef<'ast> {
     pub name: &'ast str,
     pub has_vtable: bool,
     pub ast: &'ast Record,
     pub fields: Vec<FieldBinding<'ast>>,
+    pub bases: Vec<RecBindingDef<'ast>>,
+    pub base_fields: Vec<FieldBinding<'ast>>,
     pub calc_layout: bool,
 }
 
@@ -372,6 +374,8 @@ impl<'ast> super::AstConsumer<'ast> {
             fields,
             ast,
             calc_layout: true,
+			base_fields: vec![],
+			bases: vec![],
         }));
 
         Ok(())
@@ -457,12 +461,13 @@ impl<'ast> super::AstConsumer<'ast> {
 
         let mut is_public = !matches!(rec.tag_used, Some(Tag::Class));
 
-        let mut fields = Vec::new();
+        let mut base_fields = Vec::new();
         for base_binding in self.iter_bases(rec) {
             let (_, base_binding) = base_binding?;
-            fields.extend(base_binding.fields.iter().cloned());
+            base_fields.extend(base_binding.fields.iter().cloned());
+            base_fields.extend(base_binding.base_fields.iter().cloned());
         }
-
+        let mut fields = Vec::new();
         self.get_fields(node, rec, &[], &mut fields)?;
 
         // Keep a record of each method that we are binding, to account for
@@ -609,7 +614,7 @@ impl<'ast> super::AstConsumer<'ast> {
         // Check the fields to see if any records need to be forward declared
         // Note this doesn't apply to function parameters since functions are
         // emitted after all Pod types
-        for field in &fields {
+        for field in base_fields.iter().chain(&fields) {
             if let QualType::Pointer { pointee, .. } | QualType::Reference { pointee, .. } =
                 &field.kind
             {
@@ -628,7 +633,7 @@ impl<'ast> super::AstConsumer<'ast> {
         // If there are no fields, we need to add a dummy field since C++ doesn't have
         // zero-sized types. This is fine in practice since these types are only
         // ever passed by pointer
-        let is_empty = fields.is_empty() && !has_vtable;
+        let is_empty = fields.is_empty() && base_fields.is_empty() && !has_vtable;
         if is_empty {
             fields.push(FieldBinding {
                 name: "pxbind_dummy",
@@ -651,12 +656,20 @@ impl<'ast> super::AstConsumer<'ast> {
             && !fields.is_empty())
             || rname == "PxBroadcastingErrorCallback";
 
+        let bases = self
+            .iter_bases(rec)
+            .map(|p| (*p.unwrap().1).clone())
+            .collect::<Vec<_>>();
+
+		let name = rname.clone();
         let record = RecBindingDef {
             name: rname,
             has_vtable,
             fields,
+            base_fields,
             ast: rec,
             calc_layout,
+            bases: bases.clone(),
         };
 
         self.classes.insert(
@@ -667,7 +680,14 @@ impl<'ast> super::AstConsumer<'ast> {
                 rec,
             }),
         );
+
+
+		for base in bases {
+			self.derived.entry(base.name).or_default().push(name.to_owned());
+		}
         self.recs.push(RecBinding::Def(record));
+
+
         Ok(())
     }
 

@@ -1,6 +1,6 @@
 use super::Indent;
 use crate::consumer::{FieldBinding, QualType};
-use crate::{writes, writesln, StructMetadata};
+use crate::{writes, writesln, FieldMetadata, StructMetadata, StructMetadataList};
 
 /// The variable name of `PodStructGen` in the structgen program
 const SG: &str = "sg";
@@ -8,7 +8,7 @@ const SG: &str = "sg";
 const UOF: &str = "unsafe_offsetof";
 
 impl<'ast> crate::consumer::RecBindingDef<'ast> {
-    pub fn emit_odin(&self, w: &mut String, meta: Option<&StructMetadata>, level: u32) -> bool {
+    pub fn emit_odin(&self, w: &mut String, meta: &StructMetadataList, level: u32) -> bool {
         if self.calc_layout {
             self.emit_odin_calc_layout(w, meta, level)
         } else {
@@ -19,14 +19,27 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
     pub fn emit_odin_calc_layout(
         &self,
         w: &mut String,
-        meta: Option<&StructMetadata>,
+        metalist: &StructMetadataList,
         level: u32,
     ) -> bool {
-        let meta = meta.unwrap();
+        let meta = metalist
+            .structs
+            .iter()
+            .find(|s| s.name == self.name)
+            .unwrap();
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
 
         let is_union = matches!(self.ast.tag_used, Some(crate::consumer::Tag::Union));
+        let base_fields = if let Some(base) = self.bases.get(0) {
+            if let Some(base) = metalist.structs.iter().find(|s| s.name == base.name) {
+                &base.fields
+            } else {
+                &[] as &[FieldMetadata]
+            }
+        } else {
+            &[]
+        };
 
         writesln!(
             w,
@@ -35,28 +48,64 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             if is_union { "#raw_union " } else { "" },
         );
 
-        let mut count_fields = if self.has_vtable {
-            writesln!(w, "{indent1}_vtable: rawptr,");
-            1
-        } else {
-            0
-        };
+        for base in &self.bases {
+            writesln!(w, "{indent1}using _: {},", base.name);
+        }
 
-		let mut pad_index = 0;
-        for emitted_field in &meta.fields {
-			if emitted_field.name == "PAD"{
+        let mut count_fields = 0;
+        let mut pad_index = 0;
 
-                writesln!(w, "{indent1}_pad{}: [{}]u8,", pad_index, emitted_field.size);
+        for (idx, emitted_field) in meta.fields.iter().enumerate() {
+            if base_fields.len() > idx {
+                let base_field = &base_fields[idx];
+                if base_field.name != "PAD" {
+                    assert_eq!(
+                        base_field.name, emitted_field.name,
+                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
+                        self.name, self.bases
+                    );
+                    assert_eq!(
+                        base_field.size, emitted_field.size,
+                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
+                        self.name, self.bases
+                    );
+                    assert_eq!(
+                        base_field.offset, emitted_field.offset,
+                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
+                        self.name, self.bases
+                    );
+                } else {
+					if emitted_field.name == "PAD" {
+						dbg!(emitted_field, base_field);
+						if emitted_field.size > base_field.size {
+							writesln!(w, "{indent1}_pad{}: [{}]u8,", base_fields.len() + idx, emitted_field.size - base_field.size);
+						}
+					}
+				}
+
+                continue;
+            }
+            if emitted_field.name == "PAD"  {
+				 writesln!(w, "{indent1}_pad{}: [{}]u8,", base_fields.len() + idx, emitted_field.size);
+
+				count_fields += 1;
 				pad_index += 1;
-				continue;
-			}
-			let name = if emitted_field.name.ends_with(']') {
-				emitted_field.name[..emitted_field.name.find('[').unwrap()].to_owned()
-			} else {
-				emitted_field.name.clone()
-			};
-			dbg!(&name);
-			let field = self.fields.iter().find(|f| f.name == name).unwrap();
+
+                continue;
+            }
+            let name = if emitted_field.name.ends_with(']') {
+                emitted_field.name[..emitted_field.name.find('[').unwrap()].to_owned()
+            } else {
+                emitted_field.name.clone()
+            };
+
+            let field = self
+                .fields
+                .iter()
+                .chain(&self.base_fields)
+                .find(|f| f.name == name)
+                .unwrap();
+
             if !field.is_public || field.is_reference {
                 continue;
             }
@@ -90,11 +139,20 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             }
         }
 
-        if count_fields == 0 {
+        if count_fields == 0 && self.bases.is_empty() {
             writesln!(w, "{indent1}unused0: [1]u8,");
         }
 
         writesln!(w, "{indent}}}");
+
+        writesln!(
+            w,
+            "#assert(size_of({}) == {}, \"Wrong size for type {}, expected {}\")",
+            self.name,
+            meta.size,
+            self.name,
+            meta.size
+        );
         true
     }
 
@@ -114,7 +172,11 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             return true;
         }
 
-        let mut count_fields = if self.has_vtable {
+        for base in &self.bases {
+            writesln!(w, "{indent1}using _: {},", base.name);
+        }
+
+        let mut count_fields = if self.has_vtable && self.bases.is_empty() {
             writes!(w, "{indent1}vtable_: rawptr,\n");
             1
         } else {
@@ -155,7 +217,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             }
         }
 
-        if count_fields == 0 {
+        if count_fields == 0 && self.bases.is_empty() {
             writesln!(w, "{indent1}_unused0: [1]u8,");
         }
 
@@ -167,10 +229,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
 impl<'ast> crate::consumer::RecBindingForward<'ast> {
     pub fn emit_odin(&self, w: &mut String, level: u32) {
         let indent = Indent(level);
-        let indent1 = Indent(level + 1);
 
-        writesln!(w, "{indent}{} :: struct {{", self.name);
-        writesln!(w, "{indent1}_unused: [0]u8,");
-        writesln!(w, "}}");
+        writesln!(w, "{indent}{} :: distinct rawptr ", self.name);
     }
 }

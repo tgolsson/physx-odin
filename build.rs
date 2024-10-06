@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use std::{env, path::PathBuf};
+use std::{env, os::unix::process::CommandExt, path::PathBuf, process::Command};
 
 struct Environment {
     host: String,
@@ -290,7 +290,6 @@ fn add_common(ctx: &mut Context) {
             );
         }
         builder.flag(&format!("--sysroot={}", &sysroot_path.to_str().unwrap()));
-
     }
     builder.cpp_link_stdlib("c++");
     ctx.includes.push(shared_root.join("include"));
@@ -443,7 +442,19 @@ fn cc_compile(target_env: Environment) {
         ctx.builder.include(dir);
     }
 
-    ctx.builder.compile("physx");
+    let files = ctx.builder.compile_intermediates();
+
+    let compiler = ctx.builder.get_compiler();
+    let compiler = compiler.path();
+
+    let mut command = Command::new(compiler);
+    command.arg("-shared").arg("-fpic").arg("-ophysx.so");
+
+    for path in files {
+        command.arg(path);
+    }
+
+    command.output().unwrap();
 }
 
 fn main() {
@@ -505,12 +516,10 @@ fn main() {
         .opt_level(3)
         .debug(false)
         .use_plt(false)
-
-		.warnings(false)
+        .warnings(false)
         .extra_warnings(false)
         .define("NDEBUG", None)
         .define("PX_PHYSX_STATIC_LIB", None)
-
         .include("physx/physx/include")
         .include("physx/pxshared/include")
         .include("physx/physx/source/foundation/include");
@@ -636,10 +645,22 @@ fn main() {
         physx_cc.flag(dw);
     }
 
-    physx_cc
+    let files = physx_cc
         .include(include_path)
         .file("src/physx_api.cpp")
-        .compile("physx_api");
+        .compile_intermediates();
+
+    let compiler = physx_cc.get_compiler();
+    let compiler = compiler.path();
+
+    let mut command = Command::new(compiler);
+    command.arg("-shared").arg("-fpic").arg("-ophysx_api.so");
+
+    for path in files {
+        command.arg(path);
+    }
+
+    command.output().unwrap();
 
     println!("cargo:rerun-if-changed=src/physx_generated.hpp");
     println!("cargo:rerun-if-changed=src/physx_generated.rs");

@@ -131,9 +131,9 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             self.name
         );
 
-        if self.has_vtable {
+		if self.has_vtable && self.bases.is_empty() {
             writesln!(w, "{indent1}vtable_: *const std::ffi::c_void,");
-        }
+		}
 
         for field in &self.fields {
             if field.is_public {

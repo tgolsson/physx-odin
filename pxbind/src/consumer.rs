@@ -261,6 +261,7 @@ pub struct AstConsumer<'ast> {
     /// for `release` methods, or whether something is a record at all
     pub classes: HashMap<&'ast str, Option<ClassDef<'ast>>>,
     pub back_refs: HashMap<Id, &'ast Node>,
+	pub derived: HashMap<&'ast str, Vec<String>>
 }
 
 impl<'ast> AstConsumer<'ast> {
@@ -1030,6 +1031,27 @@ impl<'qt, 'ast> fmt::Display for CType<'qt, 'ast> {
 
 #[derive(Copy, Clone)]
 pub struct OdinType<'qt, 'ast>(&'qt QualType<'ast>);
+
+
+impl<'qt, 'ast>  OdinType<'qt, 'ast> {
+	pub fn is_const_ref(&self)-> bool {
+		match self.0 {
+			QualType::Reference { is_const, .. } => {
+				*is_const
+			}
+			_ => false,
+		}
+	}
+
+	pub fn const_ref_type(&self) -> OdinType<'qt, 'ast> {
+		match self.0 {
+			QualType::Reference { pointee, .. } => {
+				pointee.odin_type()
+			}
+			_ => panic!("ooh"),
+		}
+	}
+}
 
 impl<'qt, 'ast> fmt::Display for OdinType<'qt, 'ast> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {

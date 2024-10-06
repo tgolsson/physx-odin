@@ -41,7 +41,7 @@ fn main() -> anyhow::Result<()> {
 		0 => {
 			let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
 			let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
-			pxbind::generate_structgen(&ast, &mut structgen);
+			pxbind::generate_structgen(&ast, &mut structgen).unwrap();
 			pxbind::generate_cpp(&ast, &mut cpp);
 		}
 		1 => {
