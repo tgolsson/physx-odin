@@ -39,14 +39,14 @@ fn main() -> anyhow::Result<()> {
 
 	match stage {
 		0 => {
-			let mut structgen = File::create(rr.join("foo/structgen.cpp"))?;
-			let mut cpp = File::create(rr.join("foo/physx_generated.hpp"))?;
+			let mut structgen = File::create(rr.join("codegen/structgen.cpp"))?;
+			let mut cpp = File::create(rr.join("codegen/physx_generated.hpp"))?;
 			pxbind::generate_structgen(&ast, &mut structgen).unwrap();
 			pxbind::generate_cpp(&ast, &mut cpp);
 		}
 		1 => {
 
-			let struct_sizes: pxbind::StructMetadataList = if let Ok(json) = std::fs::read(rr.join("foo/structgen_out.json")) {
+			let struct_sizes: pxbind::StructMetadataList = if let Ok(json) = std::fs::read(rr.join("codegen/structgen_out.json")) {
 				serde_json::from_slice(&json).context("failed to parse structgen_out.json")?
 			} else {
 				panic!("no sizes file");

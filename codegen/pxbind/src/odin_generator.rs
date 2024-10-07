@@ -46,7 +46,7 @@ impl Generator {
         rr: std::path::PathBuf,
         sizes: super::StructMetadataList,
     ) -> anyhow::Result<()> {
-        let mut odin = File::create(rr.join("src/physx_generated.odin"))?;
+        let mut odin = File::create(rr.join("physx_generated.odin"))?;
         writesln!(odin, "package physx");
         self.generate_odin(ast, &sizes, &mut odin)?;
 

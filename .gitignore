@@ -10,3 +10,4 @@ ast-dump.json
 foo/structgen
 /foo/structgen_out.json
 *.a
+/codegen/structgen
