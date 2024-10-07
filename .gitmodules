@@ -1,4 +1,4 @@
 [submodule "physx"]
-	path = physx
+	path = codegen/physx
 	url = https://github.com/EmbarkStudios/Physx-5
 	branch = main
