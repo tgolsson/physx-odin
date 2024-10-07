@@ -88,11 +88,35 @@ struct PodStructGen {
 		fieldsEmitted += 1;
     }
 
+    void add_reference(
+        const char* cppType,
+        const char* cppName,
+        size_t size) {
+        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		indent();
+        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
+        pos += size;
+		fieldsEmitted += 1;
+    }
+
+
+
+    void add_private_field(
+        const char* cppType,
+        const char* cppName,
+        size_t size) {
+        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		indent();
+        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
+        pos += size;
+		fieldsEmitted += 1;
+    }
+
     void end_struct(size_t size) {
         assert(size >= pos);
-        if (size > pos) {
-            emit_padding(uint32_t(size - pos), pos);
-        }
+        // if (size > pos) {
+        //     emit_padding(uint32_t(size - pos), pos);
+        // }
 		if (fieldsEmitted) {
 			int res = fseek(definitions_file, -2, SEEK_CUR);
 

@@ -17,6 +17,7 @@ macro_rules! writesln {
         writeln!($s).unwrap();
     }};
     ($s:expr, $f:expr $(,)?) => {{
+		#[allow(unused)]
         use std::fmt::Write;
         writeln!($s, $f).unwrap();
     }};

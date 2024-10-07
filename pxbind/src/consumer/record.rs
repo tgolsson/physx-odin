@@ -211,6 +211,12 @@ pub struct FieldBinding<'ast> {
     pub is_reference: bool,
 }
 
+const SHOULD_FLATTEN: &[&str] = &[
+    "PxTGSSolverConstraintPrepDesc",
+    "PxSolverContactDesc",
+    "PxTGSSolverContactDesc",
+];
+
 impl<'ast> super::AstConsumer<'ast> {
     fn has_release_method(&self, node: &'ast Node, rec: &'ast Record) -> anyhow::Result<bool> {
         if node.inner.iter().any(|inn| {
@@ -247,6 +253,7 @@ impl<'ast> super::AstConsumer<'ast> {
             "PxOverlapBuffer",
             "PxSweepBuffer",
             "PxBitMap",
+            "PxBroadcastingAllocator",
         ];
 
         if !tds.contains(&td.name.as_str()) {
@@ -345,6 +352,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     is_reference: false,
                 });
             }
+
             _ => {
                 self.consume_template_instance(&td.kind.qual_type, Some(&td.name))?;
             }
@@ -374,8 +382,8 @@ impl<'ast> super::AstConsumer<'ast> {
             fields,
             ast,
             calc_layout: true,
-			base_fields: vec![],
-			bases: vec![],
+            base_fields: vec![],
+            bases: vec![],
         }));
 
         Ok(())
@@ -386,9 +394,22 @@ impl<'ast> super::AstConsumer<'ast> {
         rec: &'ast Record,
     ) -> impl Iterator<Item = anyhow::Result<(&ClassDef<'ast>, &RecBindingDef<'ast>)>> {
         rec.bases.iter().filter_map(|base| {
-            let Some(base_name) = base.kind.qual_type.strip_prefix("physx::") else {
-                log::debug!("skipping non-physx base class '{}'", base.kind.qual_type);
-                return None;
+            let base_name = if base.kind.qual_type.contains("PxBroadcast") {
+                let args = &base.kind.qual_type[12..base.kind.qual_type.len() - 1];
+                let (_listener, base_) = args.split_once(", ").unwrap();
+                let Some(base_name) = base_.strip_prefix("physx::") else {
+                    println!("skipping non-physx base class '{}'", base.kind.qual_type);
+                    return None;
+                };
+
+                base_name
+            } else {
+                let Some(base_name) = base.kind.qual_type.strip_prefix("physx::") else {
+                    println!("skipping non-physx base class '{}'", base.kind.qual_type);
+                    return None;
+                };
+
+                base_name
             };
 
             let get = || {
@@ -467,8 +488,130 @@ impl<'ast> super::AstConsumer<'ast> {
             base_fields.extend(base_binding.fields.iter().cloned());
             base_fields.extend(base_binding.base_fields.iter().cloned());
         }
+
         let mut fields = Vec::new();
         self.get_fields(node, rec, &[], &mut fields)?;
+
+        if rname == "PxBroadcastingAllocator" || rname == "PxBroadcastingErrorCallback" {
+            let inner_type = if rname == "PxBroadcastingAllocator" {
+                "PxAllocationListener"
+            } else {
+                "PxErrorCallback"
+            };
+            fields.push(FieldBinding {
+                name: "mListeners",
+                kind: QualType::Array {
+                    element: Box::new(QualType::Pointer {
+                        pointee: Box::new(QualType::Record { name: inner_type }),
+                        is_const: false,
+                        is_pointee_const: false,
+                    }),
+                    len: 16,
+                },
+                is_public: false,
+                is_reference: false,
+            });
+
+            fields.push(FieldBinding {
+                name: "mBufferUsed",
+                kind: QualType::Builtin(Builtin::Bool),
+                is_public: false,
+                is_reference: false,
+            });
+
+            fields.push(FieldBinding {
+                name: "mData",
+                kind: QualType::Pointer {
+                    pointee: Box::new(QualType::Record { name: inner_type }),
+                    is_const: false,
+                    is_pointee_const: false,
+                },
+                is_public: false,
+                is_reference: false,
+            });
+
+            fields.push(FieldBinding {
+                name: "mSize",
+                kind: QualType::Builtin(Builtin::UInt),
+                is_public: false,
+                is_reference: false,
+            });
+
+            fields.push(FieldBinding {
+                name: "mCapacity",
+                kind: QualType::Builtin(Builtin::UInt),
+                is_public: false,
+                is_reference: false,
+            });
+        } else if rname == "PxGeometryHolder" {
+            fields.clear();
+            fields.push(FieldBinding {
+                name: "bytes",
+                kind: QualType::Array {
+                    element: Box::new(QualType::Builtin(Builtin::Char)),
+                    len: 56,
+                },
+                is_public: false,
+                is_reference: false,
+            });
+        } else if rname == "PxMidphaseDesc" {
+            fields.insert(
+                0,
+                FieldBinding {
+                    name: "mBVH34Desc",
+                    kind: QualType::Array {
+                        element: Box::new(QualType::Builtin(Builtin::Char)),
+                        len: 12,
+                    },
+                    is_public: true,
+                    is_reference: false,
+                },
+            );
+        } else if rname == "PxSolverConstraintDesc" || rname == "PxSolverConstraintDesc" {
+            fields.insert(
+                0,
+                FieldBinding {
+                    name: "bodyA",
+                    kind: QualType::Pointer {
+                        is_const: false,
+                        is_pointee_const: false,
+                        pointee: Box::new(QualType::Record {
+                            name: "PxSolverBody",
+                        }),
+                    },
+                    is_public: true,
+                    is_reference: false,
+                },
+            );
+            fields.insert(
+                1,
+                FieldBinding {
+                    name: "bodyB",
+                    kind: QualType::Pointer {
+                        is_const: false,
+                        is_pointee_const: false,
+                        pointee: Box::new(QualType::Record {
+                            name: "PxSolverBody",
+                        }),
+                    },
+                    is_public: true,
+                    is_reference: false,
+                },
+            );
+        } else if rname == "PxTriangleMeshDesc" || rname == "PxTetrahedronMeshDesc" {
+            fields.insert(
+                0,
+                FieldBinding {
+                    name: "materialIndices",
+                    kind: QualType::Array {
+                        element: Box::new(QualType::Builtin(Builtin::Char)),
+                        len: 16,
+                    },
+                    is_public: true,
+                    is_reference: false,
+                },
+            );
+        }
 
         // Keep a record of each method that we are binding, to account for
         // overloading, particularly constructors, we need to append a counter
@@ -634,14 +777,6 @@ impl<'ast> super::AstConsumer<'ast> {
         // zero-sized types. This is fine in practice since these types are only
         // ever passed by pointer
         let is_empty = fields.is_empty() && base_fields.is_empty() && !has_vtable;
-        if is_empty {
-            fields.push(FieldBinding {
-                name: "pxbind_dummy",
-                kind: QualType::Builtin(super::Builtin::Char),
-                is_public: false,
-                is_reference: false,
-            });
-        }
 
         // Decide whether we should use "structgen" to calculate the exact layout of
         // this C++ struct.
@@ -653,15 +788,21 @@ impl<'ast> super::AstConsumer<'ast> {
         // Note that empty types are only refered to by pointers and references in
         // PhysX, so we can generate dummy contents for them.
         let calc_layout = (!matches!(rec.tag_used, Some(crate::consumer::Tag::Union))
-            && !fields.is_empty())
+            && (!fields.is_empty())
+            || is_empty)
             || rname == "PxBroadcastingErrorCallback";
 
-        let bases = self
+        let mut bases = self
             .iter_bases(rec)
             .map(|p| (*p.unwrap().1).clone())
             .collect::<Vec<_>>();
 
-		let name = rname.clone();
+        if SHOULD_FLATTEN.contains(&rname) {
+            fields = base_fields.drain(..).chain(fields.drain(..)).collect();
+            bases.clear();
+        }
+
+        let name = rname;
         let record = RecBindingDef {
             name: rname,
             has_vtable,
@@ -681,12 +822,13 @@ impl<'ast> super::AstConsumer<'ast> {
             }),
         );
 
-
-		for base in bases {
-			self.derived.entry(base.name).or_default().push(name.to_owned());
-		}
+        for base in bases {
+            self.derived
+                .entry(base.name)
+                .or_default()
+                .push(name.to_owned());
+        }
         self.recs.push(RecBinding::Def(record));
-
 
         Ok(())
     }
@@ -701,6 +843,7 @@ impl<'ast> super::AstConsumer<'ast> {
         let Some(rname) = rec.name.as_deref() else {
             return Ok(());
         };
+
         let mut is_public = !matches!(rec.tag_used, Some(Tag::Class));
 
         for inn in &node.inner {

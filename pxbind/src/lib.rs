@@ -21,7 +21,7 @@ pub struct StructMetadata {
     pub size: usize,
 }
 
-#[derive(serde::Deserialize, serde::Serialize, Debug)]
+#[derive(serde::Deserialize, serde::Serialize, Debug, Clone)]
 pub struct FieldMetadata {
     pub name: String,
     pub size: usize,

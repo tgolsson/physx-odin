@@ -28,14 +28,26 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         );
 
         for field in &self.fields {
-            if !field.is_public || field.is_reference {
-                continue;
-            }
-
             let fname = field.name;
             let cpp_type = field.kind.cpp_type();
 
-            writes!(w, "{indent2}{SG}.add_field(");
+
+			let fmted = format!("{cpp_type}");
+			if fmted.contains("unnamed") {
+				continue;
+			}
+
+
+            let emit_offset = if !field.is_public {
+                writes!(w, "{indent2}{SG}.add_private_field(");
+                false
+            } else if field.is_reference {
+                writes!(w, "{indent2}{SG}.add_reference(");
+                false
+            } else {
+                writes!(w, "{indent2}{SG}.add_field(");
+                true
+            };
 
             // We need to handle arrays specially since they break the pattern of literally every other
             // C type since the element and array lengths are split by the identifier. Sigh.
@@ -57,10 +69,17 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 writes!(w, "\"{c_type}\", \"{fname}\"");
             }
 
-            writesln!(
-                w,
-                r#", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
-            );
+            if emit_offset {
+                writesln!(
+                    w,
+                    r#", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
+                );
+            } else {
+                writesln!(
+                    w,
+                    r#", sizeof({cpp_type}));"#,
+                );
+            }
         }
 
         writesln!(w, "{indent2}{SG}.end_struct(sizeof(physx::{name}));");
@@ -131,9 +150,9 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             self.name
         );
 
-		if self.has_vtable && self.bases.is_empty() {
+        if self.has_vtable && self.bases.is_empty() {
             writesln!(w, "{indent1}vtable_: *const std::ffi::c_void,");
-		}
+        }
 
         for field in &self.fields {
             if field.is_public {

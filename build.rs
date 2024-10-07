@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use std::{env, os::unix::process::CommandExt, path::PathBuf, process::Command};
+use std::{env, path::PathBuf};
 
 struct Environment {
     host: String,
@@ -290,8 +290,9 @@ fn add_common(ctx: &mut Context) {
             );
         }
         builder.flag(&format!("--sysroot={}", &sysroot_path.to_str().unwrap()));
+        builder.cpp_link_stdlib("c++");
     }
-    builder.cpp_link_stdlib("c++");
+
     ctx.includes.push(shared_root.join("include"));
     ctx.includes.extend(
         [
@@ -442,19 +443,7 @@ fn cc_compile(target_env: Environment) {
         ctx.builder.include(dir);
     }
 
-    let files = ctx.builder.compile_intermediates();
-
-    let compiler = ctx.builder.get_compiler();
-    let compiler = compiler.path();
-
-    let mut command = Command::new(compiler);
-    command.arg("-shared").arg("-fpic").arg("-ophysx.so");
-
-    for path in files {
-        command.arg(path);
-    }
-
-    command.output().unwrap();
+    ctx.builder.compile("physx");
 }
 
 fn main() {
@@ -645,22 +634,10 @@ fn main() {
         physx_cc.flag(dw);
     }
 
-    let files = physx_cc
+    physx_cc
         .include(include_path)
         .file("src/physx_api.cpp")
-        .compile_intermediates();
-
-    let compiler = physx_cc.get_compiler();
-    let compiler = compiler.path();
-
-    let mut command = Command::new(compiler);
-    command.arg("-shared").arg("-fpic").arg("-ophysx_api.so");
-
-    for path in files {
-        command.arg(path);
-    }
-
-    command.output().unwrap();
+        .compile("physx_api");
 
     println!("cargo:rerun-if-changed=src/physx_generated.hpp");
     println!("cargo:rerun-if-changed=src/physx_generated.rs");

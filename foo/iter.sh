@@ -1,9 +1,9 @@
 set -e
 #echo "building rust generator"
-#(cd ../pxbind/ && cargo run -- --stage 0)
+(cd ../pxbind/ && cargo run -- --stage 0)
 
 echo "building cpp -> target lang generator"
-clang++ -DNDEBUG structgen.cpp -I../physx/physx/include/ -o structgen
+clang++ -DNDEBUG -g structgen.cpp -I../physx/physx/include/ -o structgen
 
 
 echo "generating size metadata"

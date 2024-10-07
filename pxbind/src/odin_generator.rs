@@ -5,7 +5,7 @@ mod record;
 
 use crate::{
     consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, RecBinding},
-    writes, writesln, StructMetadataList,
+	writesln, StructMetadataList,
 };
 use std::{fmt, fs::File, io::Write};
 
@@ -46,7 +46,7 @@ impl Generator {
         rr: std::path::PathBuf,
         sizes: super::StructMetadataList,
     ) -> anyhow::Result<()> {
-        let mut odin = File::create(rr.join("foo/physx_generated.odin"))?;
+        let mut odin = File::create(rr.join("src/physx_generated.odin"))?;
         writesln!(odin, "package physx");
         self.generate_odin(ast, &sizes, &mut odin)?;
 
@@ -62,7 +62,7 @@ impl Generator {
         let level = 0;
 
         writesln!(odin, "import _c \"core:c\"");
-
+        writesln!(odin, "import  \"core:testing\"");
         self.generate_odin_enums(ast, odin, level)?;
         self.generate_odin_records(ast, metadata, odin)?;
         self.generate_odin_functions(ast, odin, level)?;
@@ -127,7 +127,7 @@ impl Generator {
 
             match rec {
                 RecBinding::Def(def) => {
-                    if def.emit_odin(&mut acc, metadata, 0) {
+                    if def.emit_odin(&mut acc, ast, metadata, 0) {
                         num += 1;
                         write!(odin, "{acc}")?;
                     }

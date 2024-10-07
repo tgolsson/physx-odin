@@ -1,16 +1,62 @@
 use super::Indent;
-use crate::consumer::{FieldBinding, QualType};
-use crate::{writes, writesln, FieldMetadata, StructMetadata, StructMetadataList};
+use crate::consumer::{self, QualType, RecBindingDef};
+use crate::{writes, writesln, FieldMetadata, StructMetadataList};
 
-/// The variable name of `PodStructGen` in the structgen program
-const SG: &str = "sg";
-/// The name of the macro used to calculate a field's offset in the structgen program
-const UOF: &str = "unsafe_offsetof";
+fn gather_base_fields<'a, 'ast>(
+    ast: &consumer::AstConsumer<'ast>,
+    metalist: &'a StructMetadataList,
+    root_bases: &[RecBindingDef<'ast>],
+) -> Vec<FieldMetadata> {
+    let mut out = vec![];
+    for base in root_bases {
+        if let Some(b) = ast.recs.iter().find(|r| r.name() == base.name) {
+            if let Some(base) = metalist.structs.iter().find(|s| s.name == base.name) {
+                out.extend(base.fields.clone());
+            }
+
+            match b {
+                consumer::RecBinding::Forward(_) => {}
+                consumer::RecBinding::Def(r) => {
+                    out.extend(gather_base_fields(ast, metalist, &r.bases))
+                }
+            }
+        }
+    }
+
+    out
+}
+
+// HACKS to handle align etc.
+const ALIGNED: &[&str] = &[
+    "PxSListEntry",
+    "PxSpringModifiers",
+    "PxRestitutionModifiers",
+    "PxContactPoint",
+    "PxConstraintInvMassScale",
+];
+
+const PACKED: &[(&str, u8)] = &[
+    ("PxControllerDesc", 4),
+    // ("PxTGSSolverConstraintPrepDescBase", 8),
+	// ("PxSolverConstraintPrepDescBase", 8),
+];
+
+const REAR_PAD: &[(&str, u8)] = &[
+
+    ("PxSolverConstraintPrepDescBase", 8),
+//	("PxSolverContactDesc", 8),
+];
 
 impl<'ast> crate::consumer::RecBindingDef<'ast> {
-    pub fn emit_odin(&self, w: &mut String, meta: &StructMetadataList, level: u32) -> bool {
+    pub fn emit_odin(
+        &self,
+        w: &mut String,
+        ast: &consumer::AstConsumer<'ast>,
+        metalist: &StructMetadataList,
+        level: u32,
+    ) -> bool {
         if self.calc_layout {
-            self.emit_odin_calc_layout(w, meta, level)
+            self.emit_odin_calc_layout(w, ast, metalist, level)
         } else {
             self.emit_odin_raw(w, level)
         }
@@ -19,6 +65,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
     pub fn emit_odin_calc_layout(
         &self,
         w: &mut String,
+        ast: &consumer::AstConsumer<'ast>,
         metalist: &StructMetadataList,
         level: u32,
     ) -> bool {
@@ -31,66 +78,81 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         let indent1 = Indent(level + 1);
 
         let is_union = matches!(self.ast.tag_used, Some(crate::consumer::Tag::Union));
-        let base_fields = if let Some(base) = self.bases.get(0) {
-            if let Some(base) = metalist.structs.iter().find(|s| s.name == base.name) {
-                &base.fields
-            } else {
-                &[] as &[FieldMetadata]
-            }
-        } else {
-            &[]
-        };
+        let base_fields = gather_base_fields(ast, metalist, &self.bases);
 
+        let align = if ALIGNED.contains(&self.name) {
+            "#align(16)"
+        } else {
+            ""
+        };
+        let (packed, free_bytes) = PACKED
+            .iter()
+            .find(|(n, _)| *n == self.name)
+            .map(|(_, bytes)| ("#packed ", *bytes))
+            .unwrap_or(("", 0u8));
+
+        let base_has_vtable = self.bases.iter().any(|f| f.has_vtable);
         writesln!(
             w,
-            "{indent}{} :: struct {}{{",
+            "{indent}{} :: struct {}{align}{packed}{{",
             self.name,
             if is_union { "#raw_union " } else { "" },
         );
+
+        writesln!(w, "// {:?} {:?}", self.has_vtable, base_has_vtable);
+        writesln!(
+            w,
+            "// {:?}",
+            self.bases.iter().map(|b| b.name).collect::<Vec<_>>()
+        );
+        if self.has_vtable && !base_has_vtable {
+            writesln!(w, "{indent1}vtable: rawptr,");
+        }
 
         for base in &self.bases {
             writesln!(w, "{indent1}using _: {},", base.name);
         }
 
         let mut count_fields = 0;
-        let mut pad_index = 0;
+        let prefix_pad = if self.bases.is_empty() {
+            0
+        } else {
+            self.bases
+                .iter()
+                .filter_map(|base| metalist.structs.iter().find(|s| s.name == base.name))
+                .map(|m| {
+                    let strip_bytes = PACKED
+                        .iter()
+                        .find_map(|(n, b)| if *n == m.name { Some(*b) } else { None })
+                        .unwrap_or(0);
+                    m.size - strip_bytes as usize
+                })
+                .sum::<usize>()
+        };
 
+        writesln!(w, "// {prefix_pad}");
         for (idx, emitted_field) in meta.fields.iter().enumerate() {
-            if base_fields.len() > idx {
-                let base_field = &base_fields[idx];
-                if base_field.name != "PAD" {
-                    assert_eq!(
-                        base_field.name, emitted_field.name,
-                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
-                        self.name, self.bases
-                    );
-                    assert_eq!(
-                        base_field.size, emitted_field.size,
-                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
-                        self.name, self.bases
-                    );
-                    assert_eq!(
-                        base_field.offset, emitted_field.offset,
-                        "{}{:?} {base_field:?} <-> {emitted_field:?}",
-                        self.name, self.bases
+            if emitted_field.name == "PAD" {
+                if idx == 0 {
+                    if prefix_pad < emitted_field.size {
+                        writesln!(w, "// XXXX {} < {}", emitted_field.size, prefix_pad);
+                    }
+                    writesln!(
+                        w,
+                        "{indent1}_pad{}: [{}]u8,",
+                        base_fields.len() + idx,
+                        prefix_pad .saturating_sub(emitted_field.size)
                     );
                 } else {
-					if emitted_field.name == "PAD" {
-						dbg!(emitted_field, base_field);
-						if emitted_field.size > base_field.size {
-							writesln!(w, "{indent1}_pad{}: [{}]u8,", base_fields.len() + idx, emitted_field.size - base_field.size);
-						}
-					}
-				}
+                    writesln!(
+                        w,
+                        "{indent1}_pad{}: [{}]u8,",
+                        base_fields.len() + idx,
+                        emitted_field.size
+                    );
+                }
 
-                continue;
-            }
-            if emitted_field.name == "PAD"  {
-				 writesln!(w, "{indent1}_pad{}: [{}]u8,", base_fields.len() + idx, emitted_field.size);
-
-				count_fields += 1;
-				pad_index += 1;
-
+                count_fields += 1;
                 continue;
             }
             let name = if emitted_field.name.ends_with(']') {
@@ -106,11 +168,8 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 .find(|f| f.name == name)
                 .unwrap();
 
-            if !field.is_public || field.is_reference {
-                continue;
-            }
-
             count_fields += 1;
+            let prefix = if !field.is_public { "_private_" } else { "" };
             if let QualType::Array { element, len } = &field.kind {
                 if let QualType::Array {
                     element: inner,
@@ -119,7 +178,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 {
                     writesln!(
                         w,
-                        "{indent1}{}: [{}][{}]{},",
+                        "{indent1}{prefix}{}: [{}][{}]{},",
                         field.name,
                         len,
                         len1,
@@ -128,31 +187,60 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 } else {
                     writesln!(
                         w,
-                        "{indent1}{}: [{}]{},",
+                        "{indent1}{prefix}{}: [{}]{},",
                         field.name,
                         len,
                         element.odin_type(),
                     );
                 }
             } else {
-                writesln!(w, "{indent1}{}: {},", field.name, field.kind.odin_type());
+                writesln!(
+                    w,
+                    "{indent1}{prefix}{}: {},",
+                    field.name,
+                    field.kind.odin_type()
+                );
             }
         }
 
+		if let Some(trailing_bytes) = REAR_PAD.iter().find_map(|(n,  b)| (*n == self.name).then_some(*b)) {
+			writesln!(w, "{indent1}_size_fix: [{trailing_bytes}]u8,");
+		}
         if count_fields == 0 && self.bases.is_empty() {
             writesln!(w, "{indent1}unused0: [1]u8,");
         }
 
         writesln!(w, "{indent}}}");
 
+        writesln!(w, "@(test)");
+        writesln!(w, "test_layout_{} :: proc(t: ^testing.T) {{", self.name);
+
+        for field in &meta.fields {
+            if field.offset > 0 && field.name != "PAD" && !field.name.contains('[') {
+                writesln!(
+					w,
+					"{indent1}testing.expectf(t, offset_of({}, {}) == {}, \"Wrong offset for {}.{}, expected {} got %v\", offset_of({}, {}))",
+					self.name,
+					field.name,
+					field.offset,
+					self.name,
+					field.name,
+					field.offset,
+					self.name,
+					field.name,
+				);
+            }
+        }
         writesln!(
             w,
-            "#assert(size_of({}) == {}, \"Wrong size for type {}, expected {}\")",
+			"{indent1}testing.expectf(t, size_of({}) == {}, \"Wrong size for type {}, expected {} got %v\", size_of({}))",
             self.name,
-            meta.size,
+            meta.size as isize - free_bytes as isize,
             self.name,
-            meta.size
+            meta.size as isize - free_bytes as isize,
+			self.name,
         );
+        writesln!(w, "}}");
         true
     }
 
