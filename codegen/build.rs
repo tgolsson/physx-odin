@@ -443,19 +443,24 @@ fn cc_compile(target_env: Environment) {
         ctx.builder.include(dir);
     }
 
-    let files = ctx.builder.compile_intermediates();
+    if ctx.builder.get_compiler().is_like_msvc() {
+        ctx.builder.compile("physx");
+    } else {
+        let files = ctx.builder.compile_intermediates();
+        let compiler = ctx.builder.get_compiler();
+        let mut command = Command::new(&compiler.path());
+        for path in files {
+            command.arg(path);
+        }
 
-    let compiler = ctx.builder.get_compiler();
-    let compiler = compiler.path();
-
-    let mut command = Command::new(compiler);
-    command.arg("-shared").arg("-fpic").arg("-olibphysx.so");
-
-    for path in files {
-        command.arg(path);
+        command.arg("-shared").arg("-fpic").arg("-olibphysx.so");
+        let output = command.output().unwrap();
+        if !output.status.success() {
+            println!("{:?}", String::from_utf8_lossy(&output.stdout));
+            println!("{:?}", String::from_utf8_lossy(&output.stderr));
+            panic!("failed executing link: {:?}", output.status);
+        }
     }
-
-    command.output().unwrap();
 }
 
 fn main() {
@@ -618,7 +623,7 @@ fn main() {
         let mut include = PathBuf::from("src/generated");
 
         if target == "x86_64-pc-windows-msvc" {
-            include.push(target);
+            include.push(target.clone());
         } else if target.contains("-linux-") || target.ends_with("apple-darwin") {
             // Note that (currently) the x86_64 and aarch64 structures we bind
             // are the exact same for linux/android and MacOS (unsure about iOS, but also don't care)
@@ -646,22 +651,31 @@ fn main() {
         physx_cc.flag(dw);
     }
 
-    let files = physx_cc
-        .include(include_path)
-        .file("src/physx_api.cpp")
-        .compile_intermediates();
+    if target.contains("-windows-") {
+        physx_cc
+            .include(include_path)
+            .file("src/physx_api.cpp")
+            .compile("physx_api");
+    } else {
+        let files = physx_cc
+            .include(include_path)
+            .file("src/physx_api.cpp")
+            .compile_intermediates();
+        let compiler = physx_cc.get_compiler();
 
-    let compiler = physx_cc.get_compiler();
-    let compiler = compiler.path();
+        let mut command = Command::new(&compiler.path());
+        for path in files {
+            command.arg(path);
+        }
 
-    let mut command = Command::new(compiler);
-    command.arg("-shared").arg("-fpic").arg("-olibphysx_api.so");
-
-    for path in files {
-        command.arg(path);
+        command.arg("-shared").arg("-fpic").arg("-olibphysx_api.so");
+        let output = command.output().unwrap();
+        if !output.status.success() {
+            println!("{:?}", String::from_utf8_lossy(&output.stdout));
+            println!("{:?}", String::from_utf8_lossy(&output.stderr));
+            panic!("failed executing link: {:?}", output.status);
+        }
     }
-
-    command.output().unwrap();
 
     println!("cargo:rerun-if-changed=physx_generated.hpp");
     println!("cargo:rerun-if-changed=src/physx_api.cpp");

@@ -7,7 +7,7 @@
 struct PodStructGen {
     PodStructGen() {
         cppfile = fopen("structgen_out.hpp", "w");
-        definitions_file = fopen("structgen_out.json", "w");
+        definitions_file = fopen("structgen_out.json", "wb");
         fputs("#include <cstdint>\n", cppfile);
         fputs("#include <cstddef>\n", cppfile);
         fputs("{\n    \"structs\": [\n", definitions_file);

@@ -1,6 +1,3 @@
-default:
-    echo 'Hello, world!'
-
 prepare:
     cd codegen/pxbind/ && cargo run -- --stage 0
 
@@ -18,6 +15,7 @@ build:  bindgen
     cp codegen/*.so .
 
 gen:
+    cd codegen && clang++ -DNDEBUG -g structgen.cpp -Iphysx/physx/include/ -o structgen && ./structgen
     cd codegen/pxbind && cargo run -- --stage 1
 
 gentest: gen

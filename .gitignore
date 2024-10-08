@@ -11,3 +11,9 @@ foo/structgen
 /foo/structgen_out.json
 *.a
 /codegen/structgen
+/codegen/structgen.pdb
+/codegen/structgen.ilk
+*.gch
+*.exe
+*.dll
+*.lib
