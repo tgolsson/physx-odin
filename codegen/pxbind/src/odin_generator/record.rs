@@ -1,5 +1,6 @@
 use super::Indent;
 use crate::consumer::{self, QualType, RecBindingDef};
+use crate::odin_generator::OdinIdent;
 use crate::{writes, writesln, FieldMetadata, StructMetadataList};
 
 fn gather_base_fields<'a, 'ast>(
@@ -89,12 +90,12 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         writesln!(
             w,
             "{indent}{} :: struct {}{align}{packed}{{",
-            self.name,
+            OdinIdent(self.name),
             if is_union { "#raw_union " } else { "" },
         );
 
         for base in &self.bases {
-            writesln!(w, "{indent1}using _: {},", base.name);
+            writesln!(w, "{indent1}using _: {},", OdinIdent(base.name));
         }
 
         let prefix_pad = if self.bases.is_empty() {
@@ -220,7 +221,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 .unwrap_or(0u8);
 
             writesln!(w, "@(test)");
-            writesln!(w, "test_layout_{} :: proc(t: ^testing.T) {{", self.name);
+            writesln!(w, "test_layout_{} :: proc(t: ^testing.T) {{", OdinIdent(self.name));
             writesln!(w, "{indent1}using physx");
 
             for field in &meta.fields {
@@ -228,13 +229,13 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     writesln!(
 						w,
 						"{indent1}testing.expectf(t, offset_of({}, {}) == {}, \"Wrong offset for {}.{}, expected {} got %v\", offset_of({}, {}))",
-						self.name,
+						OdinIdent(self.name),
 						field.name,
 						field.offset,
-						self.name,
+						OdinIdent(self.name),
 						field.name,
 						field.offset,
-						self.name,
+						OdinIdent(self.name),
 						field.name,
 					);
                 }
@@ -242,11 +243,11 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             writesln!(
 				w,
 				"{indent1}testing.expectf(t, size_of({}) == {}, \"Wrong size for type {}, expected {} got %v\", size_of({}))",
-				self.name,
+				OdinIdent(self.name),
 				meta.size as isize - free_bytes as isize,
-				self.name,
+				OdinIdent(self.name),
 				meta.size as isize - free_bytes as isize,
-				self.name,
+				OdinIdent(self.name),
 			);
             writesln!(w, "}}");
         }
@@ -260,7 +261,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         writesln!(
             w,
             "{indent}{} :: struct {}{{",
-            self.name,
+            OdinIdent(self.name),
             if is_union { "#raw_union " } else { "" },
         );
 
@@ -269,7 +270,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         }
 
         for base in &self.bases {
-            writesln!(w, "{indent1}using _: {},", base.name);
+            writesln!(w, "{indent1}using _: {},", OdinIdent(base.name));
         }
 
         for field in &self.fields {
@@ -314,6 +315,6 @@ impl<'ast> crate::consumer::RecBindingForward<'ast> {
     pub fn emit_odin(&self, w: &mut String, level: u32) {
         let indent = Indent(level);
 
-        writesln!(w, "{indent}{} :: distinct rawptr ", self.name);
+        writesln!(w, "{indent}{} :: distinct rawptr ", OdinIdent(self.name));
     }
 }

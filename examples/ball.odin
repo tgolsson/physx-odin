@@ -2,31 +2,31 @@ package ball
 
 import physx "../"
 import "core:fmt"
-import corelog "core:log"
+import "core:log"
 import "core:strings"
 import "core:time"
 
 
-run :: proc(physics: ^physx.PxPhysics, scene: ^physx.PxScene) {
+run :: proc(physics: ^physx.Physics, scene: ^physx.Scene) {
 	using physx
 	// create a ground plane to the scene
 	material := physics_create_material_mut(physics, 0.5, 0.5, 0.6)
 	ground_plane := create_plane(physics, plane_new_1(0.0, 1.0, 0.0, 0.0), material)
 	scene_add_actor_mut(scene, ground_plane, nil)
-	corelog.info("Succesfully created ground plane")
+	log.info("Succesfully created ground plane")
 
 	sphere_geo := sphere_geometry_new(10.0)
 	sphere := create_dynamic(
 		physics,
-		transform_new_1(PxVec3{0.0, 40.0, 100.0}),
+		transform_new_1(Vec3{0.0, 40.0, 100.0}),
 		&sphere_geo,
 		material,
 		10.0,
-		transform_new_2(PxIDENTITY.PxIdentity),
+		transform_new_2(IDENTITY.Identity),
 	)
 	rigid_body_set_angular_damping_mut(sphere, 0.5)
 	scene_add_actor_mut(scene, sphere, nil)
-	corelog.info("Succesfully added ball to scene")
+	log.info("Succesfully added ball to scene")
 
 	heights: [100]i32
 
@@ -72,36 +72,36 @@ run :: proc(physics: ^physx.PxPhysics, scene: ^physx.PxScene) {
 main :: proc() {
     using physx
 
-	cls := corelog.create_console_logger(
-		corelog.Level.Debug,
+	cls := log.create_console_logger(
+		log.Level.Debug,
 		{
-			corelog.Option.Level,
-			corelog.Option.Short_File_Path,
-			corelog.Option.Line,
-			corelog.Option.Procedure,
-			corelog.Option.Terminal_Color,
+			log.Option.Level,
+			log.Option.Short_File_Path,
+			log.Option.Line,
+			log.Option.Procedure,
+			log.Option.Terminal_Color,
 		},
 		"System API",
 	)
 
 	context.logger = cls
 
-	foundation := physx_create_foundation()
+	foundation := create_foundation_ext()
 	defer foundation_release_mut(foundation)
-	corelog.info("Succesfully created PxFoundation")
+	log.info("Succesfully created PxFoundation")
 
 	dispatcher := default_cpu_dispatcher_create(
 		1,
 		nil,
-		physx.PxDefaultCpuDispatcherWaitForWorkMode.WaitForWork,
+		physx.DefaultCpuDispatcherWaitForWorkMode.WaitForWork,
 		0,
 	)
 	defer default_cpu_dispatcher_release_mut(dispatcher)
-	corelog.debug("Created dispatcher with 1 thread")
+	log.debug("Created dispatcher with 1 thread")
 
-	physics := physx_create_physics(foundation)
+	physics := create_physics_ext(foundation)
 	defer physics_release_mut(physics)
-	corelog.info("Succesfully created PxPhysics")
+	log.info("Succesfully created PxPhysics")
 
 	scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
 	scene_desc.gravity = vec3_new_3(0.0, -9.81, 0.0)
@@ -109,7 +109,7 @@ main :: proc() {
 	scene_desc.filterShader = get_default_simulation_filter_shader()
 	scene := physics_create_scene_mut(physics, scene_desc)
 	defer scene_release_mut(scene)
-	corelog.info("Succesfully created PxScene")
+	log.info("Succesfully created PxScene")
 
 	run(physics, scene)
 }

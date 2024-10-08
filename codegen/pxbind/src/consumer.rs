@@ -813,21 +813,21 @@ impl Builtin {
             Self::ULong => "_c.uint64_t",
             Self::USize => "_c.size_t",
             Self::Vec3V => "Vec3V",
-            Self::Vec3 => "PxVec3",
+            Self::Vec3 => "Vec3",
             Self::Vec3p => "Vec3p",
             Self::Vec4V => "Vec4V",
-            Self::Vec4 => "PxVec4",
+            Self::Vec4 => "Vec4",
             Self::QuatV => "QuatV",
-            Self::Quat => "PxQuat",
+            Self::Quat => "Quat",
             Self::BoolV => "BoolV",
             Self::U32V => "VecU32V",
             Self::I32V => "VecI32V",
             Self::Mat33V => "Mat33V",
-            Self::Mat33 => "PxMat33",
+            Self::Mat33 => "Mat33",
             Self::Mat34V => "Mat34V",
             Self::Mat34 => "Mat34",
             Self::Mat44V => "Mat44V",
-            Self::Mat44 => "PxMat44",
+            Self::Mat44 => "Mat44",
         }
     }
 
@@ -1030,7 +1030,7 @@ impl<'qt, 'ast> fmt::Display for CType<'qt, 'ast> {
 }
 
 #[derive(Copy, Clone)]
-pub struct OdinType<'qt, 'ast>(&'qt QualType<'ast>);
+pub struct OdinType<'qt, 'ast>(pub &'qt QualType<'ast>);
 
 
 impl<'qt, 'ast>  OdinType<'qt, 'ast> {
@@ -1051,42 +1051,6 @@ impl<'qt, 'ast>  OdinType<'qt, 'ast> {
 			_ => panic!("ooh"),
 		}
 	}
-}
-
-impl<'qt, 'ast> fmt::Display for OdinType<'qt, 'ast> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.0 {
-            QualType::Pointer { pointee, .. } => {
-               match pointee.odin_type().0 {
-                    QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
-                    _ => write!(f, "^{}", pointee.odin_type())?,
-                }
-
-                Ok(())
-            }
-            QualType::Reference { pointee, .. } => {
-                match pointee.odin_type().0 {
-                    QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
-                    _ => write!(f, "^{}", pointee.odin_type())?,
-                }
-
-                Ok(())
-            }
-            QualType::Builtin(bi) => f.write_str(bi.odin_type()),
-            QualType::FunctionPointer => f.write_str("rawptr"),
-            QualType::Array { element, len } => {
-                panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.odin_type());
-            }
-            QualType::Enum { name, .. } => {
-				f.write_str(name)
-			},
-			QualType::Flags { name, .. } => {
-				write!(f, "{}_Set", name)
-            }
-            QualType::Record { name } => write!(f, "{name}"),
-            QualType::TemplateTypedef { name } => write!(f, "{name}"),
-        }
-    }
 }
 
 impl<'ast> QualType<'ast> {

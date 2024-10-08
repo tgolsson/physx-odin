@@ -4,12 +4,12 @@ mod functions;
 mod record;
 
 use crate::{
-    consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, RecBinding},
+    consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, OdinType, QualType, RecBinding},
     writesln, StructMetadataList,
 };
 use std::{
     fmt,
-    fs::{create_dir, create_dir_all, exists, File},
+    fs::{create_dir_all, exists, File},
     io::Write,
 };
 
@@ -92,11 +92,6 @@ impl Generator {
     ) -> anyhow::Result<u32> {
         let mut fiter = ast.flags.iter().peekable();
         let mut acc = String::new();
-
-        const INT_ENUMS: &[(&str, Builtin, &str)] = &[
-            ("PxConcreteType", Builtin::UShort, "Undefined"),
-            ("PxD6Drive", Builtin::USize, "Count"),
-        ];
 
         for (enum_binding, flags_binding) in ast.enums.iter().enumerate().filter_map(|(i, eb)| {
             let fb = if fiter.peek().map_or(false, |f| f.enums_index == i) {
@@ -214,12 +209,56 @@ impl<'ast> fmt::Display for OdinIdent<'ast> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         static KEYWORDS: &[&str] = &["matrix", "context"];
 
-        f.write_str(self.0)?;
+		let stripped = self.0.strip_prefix("Px").unwrap_or(self.0);
+
+		if stripped.starts_with("1D") {
+			f.write_str(&stripped.replace("1D", "OneD"))?;
+		} else {
+			f.write_str(stripped)?;
+		}
 
         if KEYWORDS.contains(&self.0) {
             f.write_str("_")?;
-        }
+		}
 
         Ok(())
+    }
+}
+
+
+impl<'qt, 'ast> fmt::Display for OdinType<'qt, 'ast> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self.0 {
+
+            QualType::Pointer { pointee, .. } => {
+               match pointee.odin_type().0 {
+                   QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
+                    _ => write!(f, "^{}", pointee.odin_type())?,
+                }
+
+                Ok(())
+            }
+            QualType::Reference { pointee, .. } => {
+                match pointee.odin_type().0 {
+                    QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
+                    _ => write!(f, "^{}", pointee.odin_type())?,
+                }
+
+                Ok(())
+            }
+            QualType::Builtin(bi) => f.write_str(bi.odin_type()),
+            QualType::FunctionPointer => f.write_str("rawptr"),
+            QualType::Array { element, len } => {
+                panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.odin_type());
+            }
+            QualType::Enum { name, .. } => {
+				write!(f, "{}", OdinIdent(name))
+			},
+			QualType::Flags { name, .. } => {
+				write!(f, "{}_Set", OdinIdent(name))
+            }
+            QualType::Record { name } => write!(f, "{}", OdinIdent(name)),
+            QualType::TemplateTypedef { name } => write!(f, "{}", OdinIdent(name)),
+        }
     }
 }

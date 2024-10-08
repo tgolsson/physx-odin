@@ -2,11 +2,6 @@ use super::Indent;
 use crate::consumer::{functions::*, AstConsumer, QualType};
 use crate::{writes, writesln};
 
-const RET: &str = "return_val";
-const RET_POD: &str = "return_val_pod";
-
-impl<'ast> Param<'ast> {}
-
 fn cleanup_name(name: &str) -> String {
     let type_name = if name.starts_with("phys_Px") {
         name.strip_prefix("phys_Px")
@@ -33,6 +28,14 @@ fn cleanup_name(name: &str) -> String {
             out.push(c);
         }
     }
+
+	if out.contains("c_c_d")  {
+		out = out.replace("c_c_d", "ccd");
+	}
+
+	if out == "log" {
+		out = "quat_log".to_owned();
+	}
 
     out
 }
