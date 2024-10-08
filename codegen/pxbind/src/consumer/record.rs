@@ -498,6 +498,7 @@ impl<'ast> super::AstConsumer<'ast> {
             } else {
                 "PxErrorCallback"
             };
+
             fields.push(FieldBinding {
                 name: "mListeners",
                 kind: QualType::Array {
@@ -787,9 +788,9 @@ impl<'ast> super::AstConsumer<'ast> {
         //
         // Note that empty types are only refered to by pointers and references in
         // PhysX, so we can generate dummy contents for them.
+
         let calc_layout = (!matches!(rec.tag_used, Some(crate::consumer::Tag::Union))
-            && (!fields.is_empty())
-            || is_empty)
+            && (!fields.is_empty() || !is_empty))
             || rname == "PxBroadcastingErrorCallback";
 
         let mut bases = self

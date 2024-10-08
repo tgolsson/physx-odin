@@ -1,49 +1,51 @@
 {
     "structs": [
         {
-            "name": "PxAllocator",
+            "name": "PxAllocatorCallback",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxRawAllocator",
+            "name": "PxAssertHandler",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
+        },
+        {
+            "name": "PxFoundation",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxVirtualAllocatorCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxVirtualAllocator",
             "fields": [
-                {"name": "mCallback", "type": "physx_PxVirtualAllocatorCallback_Pod*", "offset": 0, "size": 8},
-                {"name": "mGroup", "type": "int32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
         {
-            "name": "PxUserAllocated",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
-            "name": "PxTempAllocator",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
             "name": "PxBitAndByte",
             "fields": [
-                {"name": "mData", "type": "uint8_t", "offset": 0, "size": 1}
+                {"name": "PAD", "size": 1, "offset": 0}
             ],
             "size": 1
         },
         {
             "name": "PxBitMap",
             "fields": [
-                {"name": "mMap", "type": "uint32_t*", "offset": 0, "size": 8},
-                {"name": "mWordCount", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
@@ -108,28 +110,53 @@
             "size": 24
         },
         {
+            "name": "PxErrorCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxAllocationListener",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxBroadcastingAllocator",
             "fields": [
-                {"name": "mAllocator", "type": "physx_PxAllocatorCallback_Pod*", "offset": 0, "size": 8},
-                {"name": "mError", "type": "physx_PxErrorCallback_Pod*", "offset": 0, "size": 8},
-                {"name": "mListeners[16]", "type": "physx_PxAllocationListener_Pod*", "offset": 0, "size": 128},
-                {"name": "mBufferUsed", "type": "", "offset": 0, "size": 1},
-                {"name": "mData", "type": "physx_PxAllocationListener_Pod*", "offset": 0, "size": 8},
-                {"name": "mSize", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mCapacity", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 176, "offset": 0}
             ],
             "size": 176
         },
         {
             "name": "PxBroadcastingErrorCallback",
             "fields": [
-                {"name": "mListeners[16]", "type": "physx_PxErrorCallback_Pod*", "offset": 0, "size": 128},
-                {"name": "mBufferUsed", "type": "", "offset": 0, "size": 1},
-                {"name": "mData", "type": "physx_PxErrorCallback_Pod*", "offset": 0, "size": 8},
-                {"name": "mSize", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mCapacity", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 160, "offset": 0}
             ],
             "size": 160
+        },
+        {
+            "name": "PxInputStream",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxInputData",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxOutputStream",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxVec4",
@@ -160,21 +187,16 @@
             "size": 16
         },
         {
-            "name": "Interpolation",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
-            "name": "PxMutexImpl",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
             "name": "PxReadWriteLock",
             "fields": [
-                {"name": "mImpl", "type": "void*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxProfilerCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
         },
@@ -185,28 +207,24 @@
                 {"name": "mEventName", "type": "char const*", "offset": 8, "size": 8},
                 {"name": "mProfilerData", "type": "void*", "offset": 16, "size": 8},
                 {"name": "mContextId", "type": "uint64_t", "offset": 24, "size": 8},
-                {"name": "mDetached", "type": "", "offset": 32, "size": 1}
+                {"name": "mDetached", "type": "bool", "offset": 32, "size": 1},
+                {"name": "PAD", "size": 7, "offset": 33}
             ],
             "size": 40
         },
         {
             "name": "PxSListEntry",
             "fields": [
-                {"name": "mNext", "type": "physx_PxSListEntry_Pod*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
         {
-            "name": "PxSListImpl",
+            "name": "PxRunnable",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
-        },
-        {
-            "name": "PxSyncImpl",
-            "fields": [
-            ],
-            "size": 1
+            "size": 8
         },
         {
             "name": "PxCounterFrequencyToTensOfNanos",
@@ -219,7 +237,7 @@
         {
             "name": "PxTime",
             "fields": [
-                {"name": "mLastTime", "type": "double", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
         },
@@ -244,7 +262,8 @@
             "name": "PxBoundedData",
             "fields": [
                 {"name": "PAD", "size": 16, "offset": 16},
-                {"name": "count", "type": "uint32_t", "offset": 16, "size": 4}
+                {"name": "count", "type": "uint32_t", "offset": 16, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 20}
             ],
             "size": 24
         },
@@ -290,18 +309,58 @@
             "size": 32
         },
         {
+            "name": "PxRenderBuffer",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxProcessPxBaseCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxSerializationContext",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxDeserializationContext",
             "fields": [
-                {"name": "mExtraDataAddress", "type": "uint8_t*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
         {
+            "name": "PxSerializationRegistry",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxCollection",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxBase",
             "fields": [
-                {"name": "mConcreteType", "type": "uint16_t", "offset": 0, "size": 2},
-                {"name": "mBaseFlags", "type": "uint16_t", "offset": 0, "size": 2},
-                {"name": "mBuiltInRefCount", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
+            "name": "PxRefCounted",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
@@ -310,6 +369,20 @@
             "fields": [
                 {"name": "length", "type": "float", "offset": 0, "size": 4},
                 {"name": "speed", "type": "float", "offset": 4, "size": 4}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxStringTable",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxSerializer",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
         },
@@ -328,32 +401,51 @@
             "size": 40
         },
         {
+            "name": "PxInsertionCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxTaskManager",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxCpuDispatcher",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxBaseTask",
             "fields": [
-                {"name": "mContextID", "type": "uint64_t", "offset": 0, "size": 8},
-                {"name": "mTm", "type": "physx_PxTaskManager_Pod*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 24, "offset": 0}
             ],
             "size": 24
         },
         {
             "name": "PxTask",
             "fields": [
-                {"name": "mTaskID", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 32, "offset": 0}
             ],
             "size": 32
         },
         {
             "name": "PxLightCpuTask",
             "fields": [
-                {"name": "mCont", "type": "physx_PxBaseTask_Pod*", "offset": 0, "size": 8},
-                {"name": "mRefCount", "type": "int32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 40, "offset": 0}
             ],
             "size": 40
         },
         {
             "name": "PxGeometry",
             "fields": [
-                {"name": "mType", "type": "int32_t", "offset": 0, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 4},
                 {"name": "mTypePadding", "type": "float", "offset": 4, "size": 4}
             ],
             "size": 8
@@ -365,6 +457,34 @@
                 {"name": "halfExtents", "type": "physx_PxVec3_Pod", "offset": 8, "size": 12}
             ],
             "size": 20
+        },
+        {
+            "name": "PxBVHRaycastCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxBVHOverlapCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxBVHTraversalCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxBVH",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
         },
         {
             "name": "PxCapsuleGeometry",
@@ -385,6 +505,13 @@
             "size": 20
         },
         {
+            "name": "PxConvexMesh",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
             "name": "PxMeshScale",
             "fields": [
                 {"name": "scale", "type": "physx_PxVec3_Pod", "offset": 0, "size": 12},
@@ -399,7 +526,8 @@
                 {"name": "scale", "type": "physx_PxMeshScale_Pod", "offset": 8, "size": 28},
                 {"name": "PAD", "size": 4, "offset": 40},
                 {"name": "convexMesh", "type": "physx_PxConvexMesh_Pod*", "offset": 40, "size": 8},
-                {"name": "meshFlags", "type": "uint8_t", "offset": 48, "size": 1}
+                {"name": "meshFlags", "type": "uint8_t", "offset": 48, "size": 1},
+                {"name": "PAD", "size": 7, "offset": 49}
             ],
             "size": 56
         },
@@ -410,6 +538,13 @@
                 {"name": "radius", "type": "float", "offset": 8, "size": 4}
             ],
             "size": 12
+        },
+        {
+            "name": "PxPlaneGeometry",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxTriangleMeshGeometry",
@@ -430,7 +565,8 @@
                 {"name": "heightScale", "type": "float", "offset": 16, "size": 4},
                 {"name": "rowScale", "type": "float", "offset": 20, "size": 4},
                 {"name": "columnScale", "type": "float", "offset": 24, "size": 4},
-                {"name": "heightFieldFlags", "type": "uint8_t", "offset": 28, "size": 1}
+                {"name": "heightFieldFlags", "type": "uint8_t", "offset": 28, "size": 1},
+                {"name": "PAD", "size": 3, "offset": 29}
             ],
             "size": 32
         },
@@ -441,6 +577,13 @@
                 {"name": "mSolverType", "type": "int32_t", "offset": 8, "size": 4}
             ],
             "size": 12
+        },
+        {
+            "name": "PxHairSystemGeometry",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxTetrahedronMeshGeometry",
@@ -479,6 +622,20 @@
             "size": 44
         },
         {
+            "name": "PxGeomOverlapHit",
+            "fields": [
+                {"name": "PAD", "size": 4, "offset": 0}
+            ],
+            "size": 4
+        },
+        {
+            "name": "PxGeomSweepHit",
+            "fields": [
+                {"name": "PAD", "size": 36, "offset": 0}
+            ],
+            "size": 36
+        },
+        {
             "name": "PxGeomIndexPair",
             "fields": [
                 {"name": "id0", "type": "uint32_t", "offset": 0, "size": 4},
@@ -487,17 +644,18 @@
             "size": 8
         },
         {
-            "name": "PxQueryThreadContext",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
             "name": "PxCustomGeometryType",
             "fields": [
-                {"name": "mID", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 4, "offset": 0}
             ],
             "size": 4
+        },
+        {
+            "name": "PxCustomGeometryCallbacks",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxCustomGeometry",
@@ -510,15 +668,9 @@
         {
             "name": "PxGeometryHolder",
             "fields": [
-                {"name": "bytes[56]", "type": "char", "offset": 0, "size": 56}
+                {"name": "PAD", "size": 56, "offset": 0}
             ],
             "size": 56
-        },
-        {
-            "name": "PxGeometryQuery",
-            "fields": [
-            ],
-            "size": 1
         },
         {
             "name": "PxHeightFieldSample",
@@ -530,6 +682,13 @@
             "size": 4
         },
         {
+            "name": "PxHeightField",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
             "name": "PxHeightFieldDesc",
             "fields": [
                 {"name": "nbRows", "type": "uint32_t", "offset": 0, "size": 4},
@@ -538,22 +697,18 @@
                 {"name": "PAD", "size": 4, "offset": 16},
                 {"name": "samples", "type": "physx_PxStridedData_Pod", "offset": 16, "size": 16},
                 {"name": "convexEdgeThreshold", "type": "float", "offset": 32, "size": 4},
-                {"name": "flags", "type": "uint16_t", "offset": 36, "size": 2}
+                {"name": "flags", "type": "uint16_t", "offset": 36, "size": 2},
+                {"name": "PAD", "size": 2, "offset": 38}
             ],
             "size": 40
-        },
-        {
-            "name": "PxMeshQuery",
-            "fields": [
-            ],
-            "size": 1
         },
         {
             "name": "PxSimpleTriangleMesh",
             "fields": [
                 {"name": "points", "type": "physx_PxBoundedData_Pod", "offset": 0, "size": 24},
                 {"name": "triangles", "type": "physx_PxBoundedData_Pod", "offset": 24, "size": 24},
-                {"name": "flags", "type": "uint16_t", "offset": 48, "size": 2}
+                {"name": "flags", "type": "uint16_t", "offset": 48, "size": 2},
+                {"name": "PAD", "size": 6, "offset": 50}
             ],
             "size": 56
         },
@@ -573,6 +728,20 @@
             "size": 40
         },
         {
+            "name": "PxTriangleMesh",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
+            "name": "PxBVH34TriangleMesh",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
             "name": "PxTetrahedron",
             "fields": [
                 {"name": "verts[4]", "type": "physx_PxVec3_Pod", "offset": 0, "size": 48}
@@ -580,22 +749,46 @@
             "size": 48
         },
         {
-            "name": "PxSoftBodyCollisionData",
+            "name": "PxSoftBodyAuxData",
             "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
-            "size": 1
+            "size": 16
         },
         {
-            "name": "PxTetrahedronMeshData",
+            "name": "PxTetrahedronMesh",
             "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
-            "size": 1
+            "size": 16
         },
         {
-            "name": "PxSoftBodySimulationData",
+            "name": "PxSoftBodyMesh",
             "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
-            "size": 1
+            "size": 16
+        },
+        {
+            "name": "PxCollisionMeshMappingData",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxCollisionTetrahedronMeshData",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxSimulationTetrahedronMeshData",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxActor",
@@ -617,7 +810,8 @@
             "name": "PxSpringModifiers",
             "fields": [
                 {"name": "stiffness", "type": "float", "offset": 0, "size": 4},
-                {"name": "damping", "type": "float", "offset": 4, "size": 4}
+                {"name": "damping", "type": "float", "offset": 4, "size": 4},
+                {"name": "PAD", "size": 8, "offset": 8}
             ],
             "size": 16
         },
@@ -625,7 +819,8 @@
             "name": "PxRestitutionModifiers",
             "fields": [
                 {"name": "restitution", "type": "float", "offset": 0, "size": 4},
-                {"name": "velocityThreshold", "type": "float", "offset": 4, "size": 4}
+                {"name": "velocityThreshold", "type": "float", "offset": 4, "size": 4},
+                {"name": "PAD", "size": 8, "offset": 8}
             ],
             "size": 16
         },
@@ -643,7 +838,8 @@
                 {"name": "mods", "type": "physx_Px1DConstraintMods_Pod", "offset": 64, "size": 16},
                 {"name": "forInternalUse", "type": "float", "offset": 80, "size": 4},
                 {"name": "flags", "type": "uint16_t", "offset": 84, "size": 2},
-                {"name": "solveHint", "type": "uint16_t", "offset": 86, "size": 2}
+                {"name": "solveHint", "type": "uint16_t", "offset": 86, "size": 2},
+                {"name": "PAD", "size": 8, "offset": 88}
             ],
             "size": 96
         },
@@ -656,6 +852,20 @@
                 {"name": "angular1", "type": "float", "offset": 12, "size": 4}
             ],
             "size": 16
+        },
+        {
+            "name": "PxConstraintVisualizer",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxConstraintConnector",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxContactPoint",
@@ -671,7 +881,8 @@
                 {"name": "internalFaceIndex1", "type": "uint32_t", "offset": 52, "size": 4},
                 {"name": "dynamicFriction", "type": "float", "offset": 56, "size": 4},
                 {"name": "restitution", "type": "float", "offset": 60, "size": 4},
-                {"name": "damping", "type": "float", "offset": 64, "size": 4}
+                {"name": "damping", "type": "float", "offset": 64, "size": 4},
+                {"name": "PAD", "size": 12, "offset": 68}
             ],
             "size": 80
         },
@@ -698,7 +909,8 @@
                 {"name": "nodeIndex", "type": "uint32_t", "offset": 72, "size": 4},
                 {"name": "maxContactImpulse", "type": "float", "offset": 76, "size": 4},
                 {"name": "body2World", "type": "physx_PxTransform_Pod", "offset": 80, "size": 28},
-                {"name": "pad", "type": "uint16_t", "offset": 108, "size": 2}
+                {"name": "pad", "type": "uint16_t", "offset": 108, "size": 2},
+                {"name": "PAD", "size": 2, "offset": 110}
             ],
             "size": 112
         },
@@ -741,7 +953,8 @@
                 {"name": "bodyFrame0", "type": "physx_PxTransform_Pod", "offset": 56, "size": 28},
                 {"name": "bodyFrame1", "type": "physx_PxTransform_Pod", "offset": 84, "size": 28},
                 {"name": "bodyState0", "type": "int32_t", "offset": 112, "size": 4},
-                {"name": "bodyState1", "type": "int32_t", "offset": 116, "size": 4}
+                {"name": "bodyState1", "type": "int32_t", "offset": 116, "size": 4},
+                {"name": "PAD", "size": 8, "offset": 120}
             ],
             "size": 128
         },
@@ -755,13 +968,14 @@
                 {"name": "angBreakForce", "type": "float", "offset": 144, "size": 4},
                 {"name": "minResponseThreshold", "type": "float", "offset": 148, "size": 4},
                 {"name": "writeback", "type": "void*", "offset": 152, "size": 8},
-                {"name": "disablePreprocessing", "type": "", "offset": 160, "size": 1},
-                {"name": "improvedSlerp", "type": "", "offset": 161, "size": 1},
-                {"name": "driveLimitsAreForces", "type": "", "offset": 162, "size": 1},
-                {"name": "extendedLimits", "type": "", "offset": 163, "size": 1},
-                {"name": "disableConstraint", "type": "", "offset": 164, "size": 1},
+                {"name": "disablePreprocessing", "type": "bool", "offset": 160, "size": 1},
+                {"name": "improvedSlerp", "type": "bool", "offset": 161, "size": 1},
+                {"name": "driveLimitsAreForces", "type": "bool", "offset": 162, "size": 1},
+                {"name": "extendedLimits", "type": "bool", "offset": 163, "size": 1},
+                {"name": "disableConstraint", "type": "bool", "offset": 164, "size": 1},
                 {"name": "PAD", "size": 3, "offset": 168},
-                {"name": "body0WorldOffset", "type": "physx_PxVec3Padded_Pod", "offset": 168, "size": 16}
+                {"name": "body0WorldOffset", "type": "physx_PxVec3Padded_Pod", "offset": 168, "size": 16},
+                {"name": "PAD", "size": 8, "offset": 184}
             ],
             "size": 192
         },
@@ -781,9 +995,9 @@
                 {"name": "shapeInteraction", "type": "void*", "offset": 120, "size": 8},
                 {"name": "contacts", "type": "physx_PxContactPoint_Pod*", "offset": 128, "size": 8},
                 {"name": "numContacts", "type": "uint32_t", "offset": 136, "size": 4},
-                {"name": "hasMaxImpulse", "type": "", "offset": 140, "size": 1},
-                {"name": "disableStrongFriction", "type": "", "offset": 141, "size": 1},
-                {"name": "hasForceThresholds", "type": "", "offset": 142, "size": 1},
+                {"name": "hasMaxImpulse", "type": "bool", "offset": 140, "size": 1},
+                {"name": "disableStrongFriction", "type": "bool", "offset": 141, "size": 1},
+                {"name": "hasForceThresholds", "type": "bool", "offset": 142, "size": 1},
                 {"name": "PAD", "size": 1, "offset": 144},
                 {"name": "restDistance", "type": "float", "offset": 144, "size": 4},
                 {"name": "maxCCDSeparation", "type": "float", "offset": 148, "size": 4},
@@ -796,9 +1010,17 @@
                 {"name": "startContactPatchIndex", "type": "uint32_t", "offset": 184, "size": 4},
                 {"name": "numContactPatches", "type": "uint16_t", "offset": 188, "size": 2},
                 {"name": "axisConstraintCount", "type": "uint16_t", "offset": 190, "size": 2},
-                {"name": "offsetSlop", "type": "float", "offset": 192, "size": 4}
+                {"name": "offsetSlop", "type": "float", "offset": 192, "size": 4},
+                {"name": "PAD", "size": 12, "offset": 196}
             ],
             "size": 208
+        },
+        {
+            "name": "PxConstraintAllocator",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxArticulationLimit",
@@ -830,7 +1052,7 @@
                 {"name": "maxAngVel", "type": "float", "offset": 44, "size": 4},
                 {"name": "deltaLinDt", "type": "physx_PxVec3_Pod", "offset": 48, "size": 12},
                 {"name": "lockFlags", "type": "uint16_t", "offset": 60, "size": 2},
-                {"name": "isKinematic", "type": "", "offset": 62, "size": 1},
+                {"name": "isKinematic", "type": "bool", "offset": 62, "size": 1},
                 {"name": "pad", "type": "uint8_t", "offset": 63, "size": 1}
             ],
             "size": 64
@@ -871,7 +1093,8 @@
                 {"name": "bodyFrame0", "type": "physx_PxTransform_Pod", "offset": 72, "size": 28},
                 {"name": "bodyFrame1", "type": "physx_PxTransform_Pod", "offset": 100, "size": 28},
                 {"name": "bodyState0", "type": "int32_t", "offset": 128, "size": 4},
-                {"name": "bodyState1", "type": "int32_t", "offset": 132, "size": 4}
+                {"name": "bodyState1", "type": "int32_t", "offset": 132, "size": 4},
+                {"name": "PAD", "size": 8, "offset": 136}
             ],
             "size": 144
         },
@@ -896,11 +1119,11 @@
                 {"name": "angBreakForce", "type": "float", "offset": 152, "size": 4},
                 {"name": "minResponseThreshold", "type": "float", "offset": 156, "size": 4},
                 {"name": "writeback", "type": "void*", "offset": 160, "size": 8},
-                {"name": "disablePreprocessing", "type": "", "offset": 168, "size": 1},
-                {"name": "improvedSlerp", "type": "", "offset": 169, "size": 1},
-                {"name": "driveLimitsAreForces", "type": "", "offset": 170, "size": 1},
-                {"name": "extendedLimits", "type": "", "offset": 171, "size": 1},
-                {"name": "disableConstraint", "type": "", "offset": 172, "size": 1},
+                {"name": "disablePreprocessing", "type": "bool", "offset": 168, "size": 1},
+                {"name": "improvedSlerp", "type": "bool", "offset": 169, "size": 1},
+                {"name": "driveLimitsAreForces", "type": "bool", "offset": 170, "size": 1},
+                {"name": "extendedLimits", "type": "bool", "offset": 171, "size": 1},
+                {"name": "disableConstraint", "type": "bool", "offset": 172, "size": 1},
                 {"name": "PAD", "size": 3, "offset": 176},
                 {"name": "body0WorldOffset", "type": "physx_PxVec3Padded_Pod", "offset": 176, "size": 16},
                 {"name": "cA2w", "type": "physx_PxVec3Padded_Pod", "offset": 192, "size": 16},
@@ -926,9 +1149,9 @@
                 {"name": "shapeInteraction", "type": "void*", "offset": 136, "size": 8},
                 {"name": "contacts", "type": "physx_PxContactPoint_Pod*", "offset": 144, "size": 8},
                 {"name": "numContacts", "type": "uint32_t", "offset": 152, "size": 4},
-                {"name": "hasMaxImpulse", "type": "", "offset": 156, "size": 1},
-                {"name": "disableStrongFriction", "type": "", "offset": 157, "size": 1},
-                {"name": "hasForceThresholds", "type": "", "offset": 158, "size": 1},
+                {"name": "hasMaxImpulse", "type": "bool", "offset": 156, "size": 1},
+                {"name": "disableStrongFriction", "type": "bool", "offset": 157, "size": 1},
+                {"name": "hasForceThresholds", "type": "bool", "offset": 158, "size": 1},
                 {"name": "PAD", "size": 1, "offset": 160},
                 {"name": "restDistance", "type": "float", "offset": 160, "size": 4},
                 {"name": "maxCCDSeparation", "type": "float", "offset": 164, "size": 4},
@@ -977,6 +1200,20 @@
             "fields": [
                 {"name": "PAD", "size": 16, "offset": 16},
                 {"name": "userData", "type": "void*", "offset": 16, "size": 8}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxArticulationSpatialTendon",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxArticulationFixedTendon",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
             ],
             "size": 24
         },
@@ -1030,7 +1267,8 @@
                 {"name": "lambda", "type": "float*", "offset": 104, "size": 8},
                 {"name": "scratchMemory", "type": "void*", "offset": 112, "size": 8},
                 {"name": "scratchAllocator", "type": "void*", "offset": 120, "size": 8},
-                {"name": "version", "type": "uint32_t", "offset": 128, "size": 4}
+                {"name": "version", "type": "uint32_t", "offset": 128, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 132}
             ],
             "size": 136
         },
@@ -1067,11 +1305,32 @@
             "size": 24
         },
         {
+            "name": "PxRigidActor",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
             "name": "PxNodeIndex",
             "fields": [
-                {"name": "ind", "type": "uint64_t", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
+        },
+        {
+            "name": "PxRigidBody",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxArticulationLink",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
         },
         {
             "name": "PxConeLimitedConstraint",
@@ -1097,7 +1356,8 @@
                 {"name": "solverPrep", "type": "void *", "offset": 0, "size": 8},
                 {"name": "PAD", "size": 8, "offset": 16},
                 {"name": "visualize", "type": "void *", "offset": 16, "size": 8},
-                {"name": "flag", "type": "int32_t", "offset": 24, "size": 4}
+                {"name": "flag", "type": "int32_t", "offset": 24, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 28}
             ],
             "size": 32
         },
@@ -1185,7 +1445,7 @@
                 {"name": "contactPointSize", "type": "uint32_t", "offset": 60, "size": 4},
                 {"name": "mStreamFormat", "type": "int32_t", "offset": 64, "size": 4},
                 {"name": "forceNoResponse", "type": "uint32_t", "offset": 68, "size": 4},
-                {"name": "pointStepped", "type": "", "offset": 72, "size": 1},
+                {"name": "pointStepped", "type": "bool", "offset": 72, "size": 1},
                 {"name": "PAD", "size": 3, "offset": 76},
                 {"name": "hasFaceIndices", "type": "uint32_t", "offset": 76, "size": 4}
             ],
@@ -1204,15 +1464,15 @@
                 {"name": "actor0", "type": "physx_PxActor_Pod*", "offset": 48, "size": 8},
                 {"name": "actor1", "type": "physx_PxActor_Pod*", "offset": 56, "size": 8},
                 {"name": "nbContacts", "type": "uint16_t", "offset": 64, "size": 2},
-                {"name": "nbPatches", "type": "uint16_t", "offset": 66, "size": 2}
+                {"name": "nbPatches", "type": "uint16_t", "offset": 66, "size": 2},
+                {"name": "PAD", "size": 4, "offset": 68}
             ],
             "size": 72
         },
         {
             "name": "PxContactSet",
             "fields": [
-                {"name": "mCount", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mContacts", "type": "physx_PxModifiableContact_Pod*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
@@ -1227,10 +1487,38 @@
             "size": 104
         },
         {
+            "name": "PxContactModifyCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxCCDContactModifyCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxDeletionListener",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxBaseMaterial",
             "fields": [
                 {"name": "PAD", "size": 16, "offset": 16},
                 {"name": "userData", "type": "void*", "offset": 16, "size": 8}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxFEMMaterial",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
             ],
             "size": 24
         },
@@ -1245,12 +1533,33 @@
             "size": 16
         },
         {
+            "name": "PxSimulationFilterCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxParticleRigidFilterPair",
             "fields": [
                 {"name": "mID0", "type": "uint64_t", "offset": 0, "size": 8},
                 {"name": "mID1", "type": "uint64_t", "offset": 8, "size": 8}
             ],
             "size": 16
+        },
+        {
+            "name": "PxLockedData",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxMaterial",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
         },
         {
             "name": "PxGpuParticleBufferIndexPair",
@@ -1281,7 +1590,8 @@
                 {"name": "pressureWeight", "type": "float", "offset": 24, "size": 4},
                 {"name": "divergenceWeight", "type": "float", "offset": 28, "size": 4},
                 {"name": "collisionDecay", "type": "float", "offset": 32, "size": 4},
-                {"name": "useAccurateVelocity", "type": "", "offset": 36, "size": 1}
+                {"name": "useAccurateVelocity", "type": "bool", "offset": 36, "size": 1},
+                {"name": "PAD", "size": 3, "offset": 37}
             ],
             "size": 40
         },
@@ -1298,6 +1608,20 @@
             "size": 24
         },
         {
+            "name": "PxParticleMaterial",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxPhysics",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxActorShape",
             "fields": [
                 {"name": "actor", "type": "physx_PxRigidActor_Pod*", "offset": 0, "size": 8},
@@ -1306,11 +1630,32 @@
             "size": 16
         },
         {
+            "name": "PxRaycastHit",
+            "fields": [
+                {"name": "PAD", "size": 64, "offset": 0}
+            ],
+            "size": 64
+        },
+        {
+            "name": "PxOverlapHit",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxSweepHit",
+            "fields": [
+                {"name": "PAD", "size": 56, "offset": 0}
+            ],
+            "size": 56
+        },
+        {
             "name": "PxRaycastCallback",
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxRaycastHit_Pod", "offset": 8, "size": 64},
-                {"name": "hasBlock", "type": "", "offset": 72, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 72, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 80},
                 {"name": "touches", "type": "physx_PxRaycastHit_Pod*", "offset": 80, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 88, "size": 4},
@@ -1323,7 +1668,7 @@
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxOverlapHit_Pod", "offset": 8, "size": 24},
-                {"name": "hasBlock", "type": "", "offset": 32, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 32, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 40},
                 {"name": "touches", "type": "physx_PxOverlapHit_Pod*", "offset": 40, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 48, "size": 4},
@@ -1336,7 +1681,7 @@
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxSweepHit_Pod", "offset": 8, "size": 56},
-                {"name": "hasBlock", "type": "", "offset": 64, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 64, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 72},
                 {"name": "touches", "type": "physx_PxSweepHit_Pod*", "offset": 72, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 80, "size": 4},
@@ -1349,7 +1694,7 @@
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxRaycastHit_Pod", "offset": 8, "size": 64},
-                {"name": "hasBlock", "type": "", "offset": 72, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 72, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 80},
                 {"name": "touches", "type": "physx_PxRaycastHit_Pod*", "offset": 80, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 88, "size": 4},
@@ -1362,7 +1707,7 @@
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxOverlapHit_Pod", "offset": 8, "size": 24},
-                {"name": "hasBlock", "type": "", "offset": 32, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 32, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 40},
                 {"name": "touches", "type": "physx_PxOverlapHit_Pod*", "offset": 40, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 48, "size": 4},
@@ -1375,7 +1720,7 @@
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "block", "type": "physx_PxSweepHit_Pod", "offset": 8, "size": 56},
-                {"name": "hasBlock", "type": "", "offset": 64, "size": 1},
+                {"name": "hasBlock", "type": "bool", "offset": 64, "size": 1},
                 {"name": "PAD", "size": 7, "offset": 72},
                 {"name": "touches", "type": "physx_PxSweepHit_Pod*", "offset": 72, "size": 8},
                 {"name": "maxNbTouches", "type": "uint32_t", "offset": 80, "size": 4},
@@ -1388,7 +1733,8 @@
             "fields": [
                 {"name": "shape", "type": "physx_PxShape_Pod*", "offset": 0, "size": 8},
                 {"name": "actor", "type": "physx_PxRigidActor_Pod*", "offset": 8, "size": 8},
-                {"name": "faceIndex", "type": "uint32_t", "offset": 16, "size": 4}
+                {"name": "faceIndex", "type": "uint32_t", "offset": 16, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 20}
             ],
             "size": 24
         },
@@ -1396,9 +1742,31 @@
             "name": "PxQueryFilterData",
             "fields": [
                 {"name": "data", "type": "physx_PxFilterData_Pod", "offset": 0, "size": 16},
-                {"name": "flags", "type": "uint16_t", "offset": 16, "size": 2}
+                {"name": "flags", "type": "uint16_t", "offset": 16, "size": 2},
+                {"name": "PAD", "size": 2, "offset": 18}
             ],
             "size": 20
+        },
+        {
+            "name": "PxQueryFilterCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxRigidDynamic",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxRigidStatic",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
         },
         {
             "name": "PxSceneQueryDesc",
@@ -1416,6 +1784,27 @@
             "size": 36
         },
         {
+            "name": "PxSceneQuerySystemBase",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxSceneSQSystem",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxSceneQuerySystem",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxBroadPhaseRegion",
             "fields": [
                 {"name": "mBounds", "type": "physx_PxBounds3_Pod", "offset": 0, "size": 24},
@@ -1429,8 +1818,9 @@
                 {"name": "mRegion", "type": "physx_PxBroadPhaseRegion_Pod", "offset": 0, "size": 32},
                 {"name": "mNbStaticObjects", "type": "uint32_t", "offset": 32, "size": 4},
                 {"name": "mNbDynamicObjects", "type": "uint32_t", "offset": 36, "size": 4},
-                {"name": "mActive", "type": "", "offset": 40, "size": 1},
-                {"name": "mOverlap", "type": "", "offset": 41, "size": 1}
+                {"name": "mActive", "type": "bool", "offset": 40, "size": 1},
+                {"name": "mOverlap", "type": "bool", "offset": 41, "size": 1},
+                {"name": "PAD", "size": 6, "offset": 42}
             ],
             "size": 48
         },
@@ -1449,8 +1839,9 @@
                 {"name": "mContextID", "type": "uint64_t", "offset": 8, "size": 8},
                 {"name": "PAD", "size": 8, "offset": 24},
                 {"name": "mFoundLostPairsCapacity", "type": "uint32_t", "offset": 24, "size": 4},
-                {"name": "mDiscardStaticVsKinematic", "type": "", "offset": 28, "size": 1},
-                {"name": "mDiscardKinematicVsKinematic", "type": "", "offset": 29, "size": 1}
+                {"name": "mDiscardStaticVsKinematic", "type": "bool", "offset": 28, "size": 1},
+                {"name": "mDiscardKinematicVsKinematic", "type": "bool", "offset": 29, "size": 1},
+                {"name": "PAD", "size": 2, "offset": 30}
             ],
             "size": 32
         },
@@ -1469,7 +1860,8 @@
                 {"name": "mBounds", "type": "physx_PxBounds3_Pod const*", "offset": 48, "size": 8},
                 {"name": "mGroups", "type": "uint32_t const*", "offset": 56, "size": 8},
                 {"name": "mDistances", "type": "float const*", "offset": 64, "size": 8},
-                {"name": "mCapacity", "type": "uint32_t", "offset": 72, "size": 4}
+                {"name": "mCapacity", "type": "uint32_t", "offset": 72, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 76}
             ],
             "size": 80
         },
@@ -1492,6 +1884,27 @@
                 {"name": "mDeletedPairs", "type": "physx_PxBroadPhasePair_Pod const*", "offset": 24, "size": 8}
             ],
             "size": 32
+        },
+        {
+            "name": "PxBroadPhaseRegions",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxBroadPhase",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxAABBManager",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxSceneLimits",
@@ -1570,7 +1983,7 @@
                 {"name": "gpuComputeVersion", "type": "uint32_t", "offset": 328, "size": 4},
                 {"name": "contactPairSlabSize", "type": "uint32_t", "offset": 332, "size": 4},
                 {"name": "sceneQuerySystem", "type": "physx_PxSceneQuerySystem_Pod*", "offset": 336, "size": 8},
-                {"name": "tolerancesScale", "type": "physx_PxTolerancesScale_Pod", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 8, "offset": 344}
             ],
             "size": 352
         },
@@ -1657,12 +2070,26 @@
             "size": 16
         },
         {
+            "name": "PxPvdSceneClient",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxDominanceGroupPair",
             "fields": [
                 {"name": "dominance0", "type": "uint8_t", "offset": 0, "size": 1},
                 {"name": "dominance1", "type": "uint8_t", "offset": 1, "size": 1}
             ],
             "size": 2
+        },
+        {
+            "name": "PxBroadPhaseCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxScene",
@@ -1675,14 +2102,14 @@
         {
             "name": "PxSceneReadLock",
             "fields": [
-                {"name": "mScene", "type": "physx_PxScene_Pod*", "offset": 0, "size": 16}
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
         },
         {
             "name": "PxSceneWriteLock",
             "fields": [
-                {"name": "mScene", "type": "physx_PxScene_Pod*", "offset": 0, "size": 16}
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
             "size": 8
         },
@@ -1726,7 +2153,8 @@
                 {"name": "preSolverVelocity", "type": "physx_PxContactPairVelocity_Pod const*", "offset": 16, "size": 8},
                 {"name": "postSolverVelocity", "type": "physx_PxContactPairVelocity_Pod const*", "offset": 24, "size": 8},
                 {"name": "eventPose", "type": "physx_PxContactPairPose_Pod const*", "offset": 32, "size": 8},
-                {"name": "contactPairIndex", "type": "uint32_t", "offset": 40, "size": 4}
+                {"name": "contactPairIndex", "type": "uint32_t", "offset": 40, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 44}
             ],
             "size": 48
         },
@@ -1739,7 +2167,8 @@
                 {"name": "flags", "type": "uint16_t", "offset": 26, "size": 2},
                 {"name": "PAD", "size": 4, "offset": 32},
                 {"name": "pairs", "type": "physx_PxContactPair_Pod const*", "offset": 32, "size": 8},
-                {"name": "nbPairs", "type": "uint32_t", "offset": 40, "size": 4}
+                {"name": "nbPairs", "type": "uint32_t", "offset": 40, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 44}
             ],
             "size": 48
         },
@@ -1768,7 +2197,8 @@
                 {"name": "contactStreamSize", "type": "uint16_t", "offset": 46, "size": 2},
                 {"name": "flags", "type": "uint16_t", "offset": 48, "size": 2},
                 {"name": "events", "type": "uint16_t", "offset": 50, "size": 2},
-                {"name": "internalData[2]", "type": "uint32_t", "offset": 52, "size": 8}
+                {"name": "internalData[2]", "type": "uint32_t", "offset": 52, "size": 8},
+                {"name": "PAD", "size": 4, "offset": 60}
             ],
             "size": 64
         },
@@ -1780,7 +2210,8 @@
                 {"name": "otherShape", "type": "physx_PxShape_Pod*", "offset": 16, "size": 8},
                 {"name": "otherActor", "type": "physx_PxActor_Pod*", "offset": 24, "size": 8},
                 {"name": "status", "type": "int32_t", "offset": 32, "size": 4},
-                {"name": "flags", "type": "uint8_t", "offset": 36, "size": 1}
+                {"name": "flags", "type": "uint8_t", "offset": 36, "size": 1},
+                {"name": "PAD", "size": 3, "offset": 37}
             ],
             "size": 40
         },
@@ -1789,9 +2220,17 @@
             "fields": [
                 {"name": "constraint", "type": "physx_PxConstraint_Pod*", "offset": 0, "size": 8},
                 {"name": "externalReference", "type": "void*", "offset": 8, "size": 8},
-                {"name": "type", "type": "uint32_t", "offset": 16, "size": 4}
+                {"name": "type", "type": "uint32_t", "offset": 16, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 20}
             ],
             "size": 24
+        },
+        {
+            "name": "PxSimulationEventCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxFEMParameters",
@@ -1806,6 +2245,13 @@
             "size": 24
         },
         {
+            "name": "PxPruningStructure",
+            "fields": [
+                {"name": "PAD", "size": 16, "offset": 0}
+            ],
+            "size": 16
+        },
+        {
             "name": "PxExtendedVec3",
             "fields": [
                 {"name": "x", "type": "double", "offset": 0, "size": 8},
@@ -1817,8 +2263,7 @@
         {
             "name": "PxObstacle",
             "fields": [
-                {"name": "mType", "type": "int32_t", "offset": 0, "size": 4},
-                {"name": "PAD", "size": 4, "offset": 8},
+                {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "mUserData", "type": "void*", "offset": 8, "size": 8},
                 {"name": "mPos", "type": "physx_PxExtendedVec3_Pod", "offset": 16, "size": 24},
                 {"name": "mRot", "type": "physx_PxQuat_Pod", "offset": 40, "size": 16}
@@ -1829,7 +2274,8 @@
             "name": "PxBoxObstacle",
             "fields": [
                 {"name": "PAD", "size": 56, "offset": 56},
-                {"name": "mHalfExtents", "type": "physx_PxVec3_Pod", "offset": 56, "size": 12}
+                {"name": "mHalfExtents", "type": "physx_PxVec3_Pod", "offset": 56, "size": 12},
+                {"name": "PAD", "size": 4, "offset": 68}
             ],
             "size": 72
         },
@@ -1843,6 +2289,13 @@
             "size": 64
         },
         {
+            "name": "PxObstacleContext",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxControllerState",
             "fields": [
                 {"name": "deltaXP", "type": "physx_PxVec3_Pod", "offset": 0, "size": 12},
@@ -1851,9 +2304,10 @@
                 {"name": "touchedActor", "type": "physx_PxRigidActor_Pod*", "offset": 24, "size": 8},
                 {"name": "touchedObstacleHandle", "type": "uint32_t", "offset": 32, "size": 4},
                 {"name": "collisionFlags", "type": "uint32_t", "offset": 36, "size": 4},
-                {"name": "standOnAnotherCCT", "type": "", "offset": 40, "size": 1},
-                {"name": "standOnObstacle", "type": "", "offset": 41, "size": 1},
-                {"name": "isMovingUp", "type": "", "offset": 42, "size": 1}
+                {"name": "standOnAnotherCCT", "type": "bool", "offset": 40, "size": 1},
+                {"name": "standOnObstacle", "type": "bool", "offset": 41, "size": 1},
+                {"name": "isMovingUp", "type": "bool", "offset": 42, "size": 1},
+                {"name": "PAD", "size": 5, "offset": 43}
             ],
             "size": 48
         },
@@ -1874,7 +2328,8 @@
                 {"name": "worldPos", "type": "physx_PxExtendedVec3_Pod", "offset": 8, "size": 24},
                 {"name": "worldNormal", "type": "physx_PxVec3_Pod", "offset": 32, "size": 12},
                 {"name": "dir", "type": "physx_PxVec3_Pod", "offset": 44, "size": 12},
-                {"name": "length", "type": "float", "offset": 56, "size": 4}
+                {"name": "length", "type": "float", "offset": 56, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 60}
             ],
             "size": 64
         },
@@ -1884,7 +2339,8 @@
                 {"name": "PAD", "size": 64, "offset": 64},
                 {"name": "shape", "type": "physx_PxShape_Pod*", "offset": 64, "size": 8},
                 {"name": "actor", "type": "physx_PxRigidActor_Pod*", "offset": 72, "size": 8},
-                {"name": "triangleIndex", "type": "uint32_t", "offset": 80, "size": 4}
+                {"name": "triangleIndex", "type": "uint32_t", "offset": 80, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 84}
             ],
             "size": 88
         },
@@ -1903,6 +2359,20 @@
                 {"name": "userData", "type": "void const*", "offset": 64, "size": 8}
             ],
             "size": 72
+        },
+        {
+            "name": "PxUserControllerHitReport",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxControllerFilterCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxControllerFilters",
@@ -1935,13 +2405,20 @@
                 {"name": "nonWalkableMode", "type": "int32_t", "offset": 96, "size": 4},
                 {"name": "PAD", "size": 4, "offset": 104},
                 {"name": "material", "type": "physx_PxMaterial_Pod*", "offset": 104, "size": 8},
-                {"name": "registerDeletionListener", "type": "", "offset": 112, "size": 1},
+                {"name": "registerDeletionListener", "type": "bool", "offset": 112, "size": 1},
                 {"name": "clientID", "type": "uint8_t", "offset": 113, "size": 1},
                 {"name": "PAD", "size": 6, "offset": 120},
                 {"name": "userData", "type": "void*", "offset": 120, "size": 8},
-                {"name": "mType", "type": "int32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 8, "offset": 128}
             ],
             "size": 136
+        },
+        {
+            "name": "PxController",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxBoxControllerDesc",
@@ -1954,6 +2431,13 @@
             "size": 144
         },
         {
+            "name": "PxBoxController",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
             "name": "PxCapsuleControllerDesc",
             "fields": [
                 {"name": "PAD", "size": 132, "offset": 132},
@@ -1962,6 +2446,27 @@
                 {"name": "climbingMode", "type": "int32_t", "offset": 140, "size": 4}
             ],
             "size": 144
+        },
+        {
+            "name": "PxCapsuleController",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxControllerBehaviorCallback",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxControllerManager",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxDim3",
@@ -2022,7 +2527,8 @@
                 {"name": "points", "type": "physx_PxBoundedData_Pod", "offset": 16, "size": 24},
                 {"name": "tetrahedrons", "type": "physx_PxBoundedData_Pod", "offset": 40, "size": 24},
                 {"name": "flags", "type": "uint16_t", "offset": 64, "size": 2},
-                {"name": "tetsPerElement", "type": "uint16_t", "offset": 66, "size": 2}
+                {"name": "tetsPerElement", "type": "uint16_t", "offset": 66, "size": 2},
+                {"name": "PAD", "size": 4, "offset": 68}
             ],
             "size": 72
         },
@@ -2038,7 +2544,8 @@
             "fields": [
                 {"name": "numPrimsPerLeaf", "type": "uint32_t", "offset": 0, "size": 4},
                 {"name": "buildStrategy", "type": "int32_t", "offset": 4, "size": 4},
-                {"name": "quantized", "type": "", "offset": 8, "size": 1}
+                {"name": "quantized", "type": "bool", "offset": 8, "size": 1},
+                {"name": "PAD", "size": 3, "offset": 9}
             ],
             "size": 12
         },
@@ -2046,7 +2553,7 @@
             "name": "PxMidphaseDesc",
             "fields": [
                 {"name": "mBVH34Desc[12]", "type": "char", "offset": 0, "size": 12},
-                {"name": "mType", "type": "int32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 4, "offset": 12}
             ],
             "size": 16
         },
@@ -2056,7 +2563,8 @@
                 {"name": "bounds", "type": "physx_PxBoundedData_Pod", "offset": 0, "size": 24},
                 {"name": "enlargement", "type": "float", "offset": 24, "size": 4},
                 {"name": "numPrimsPerLeaf", "type": "uint32_t", "offset": 28, "size": 4},
-                {"name": "buildStrategy", "type": "int32_t", "offset": 32, "size": 4}
+                {"name": "buildStrategy", "type": "int32_t", "offset": 32, "size": 4},
+                {"name": "PAD", "size": 4, "offset": 36}
             ],
             "size": 40
         },
@@ -2066,9 +2574,9 @@
                 {"name": "areaTestEpsilon", "type": "float", "offset": 0, "size": 4},
                 {"name": "planeTolerance", "type": "float", "offset": 4, "size": 4},
                 {"name": "convexMeshCookingType", "type": "int32_t", "offset": 8, "size": 4},
-                {"name": "suppressTriangleMeshRemapTable", "type": "", "offset": 12, "size": 1},
-                {"name": "buildTriangleAdjacencies", "type": "", "offset": 13, "size": 1},
-                {"name": "buildGPUData", "type": "", "offset": 14, "size": 1},
+                {"name": "suppressTriangleMeshRemapTable", "type": "bool", "offset": 12, "size": 1},
+                {"name": "buildTriangleAdjacencies", "type": "bool", "offset": 13, "size": 1},
+                {"name": "buildGPUData", "type": "bool", "offset": 14, "size": 1},
                 {"name": "PAD", "size": 1, "offset": 16},
                 {"name": "scale", "type": "physx_PxTolerancesScale_Pod", "offset": 16, "size": 8},
                 {"name": "meshPreprocessParams", "type": "uint32_t", "offset": 24, "size": 4},
@@ -2082,36 +2590,37 @@
         {
             "name": "PxDefaultMemoryOutputStream",
             "fields": [
-                {"name": "mAllocator", "type": "physx_PxAllocatorCallback_Pod*", "offset": 0, "size": 8},
-                {"name": "mData", "type": "uint8_t*", "offset": 0, "size": 8},
-                {"name": "mSize", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mCapacity", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 32, "offset": 0}
             ],
             "size": 32
         },
         {
             "name": "PxDefaultMemoryInputData",
             "fields": [
-                {"name": "mSize", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mData", "type": "uint8_t const*", "offset": 0, "size": 8},
-                {"name": "mPos", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 32, "offset": 0}
             ],
             "size": 32
         },
         {
             "name": "PxDefaultFileOutputStream",
             "fields": [
-                {"name": "mFile", "type": "void*", "offset": 0, "size": 8}
+                {"name": "PAD", "size": 16, "offset": 0}
             ],
             "size": 16
         },
         {
             "name": "PxDefaultFileInputData",
             "fields": [
-                {"name": "mFile", "type": "void*", "offset": 0, "size": 8},
-                {"name": "mLength", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 24, "offset": 0}
             ],
             "size": 24
+        },
+        {
+            "name": "PxDefaultAllocator",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         },
         {
             "name": "PxJoint",
@@ -2130,6 +2639,13 @@
             "size": 8
         },
         {
+            "name": "PxDistanceJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
             "name": "PxJacobianRow",
             "fields": [
                 {"name": "linear0", "type": "physx_PxVec3_Pod", "offset": 0, "size": 12},
@@ -2138,6 +2654,20 @@
                 {"name": "angular1", "type": "physx_PxVec3_Pod", "offset": 36, "size": 12}
             ],
             "size": 48
+        },
+        {
+            "name": "PxContactJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxFixedJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
         },
         {
             "name": "PxJointLimitParameters",
@@ -2197,6 +2727,27 @@
             "size": 36
         },
         {
+            "name": "PxPrismaticJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxRevoluteJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxSphericalJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
             "name": "PxD6JointDrive",
             "fields": [
                 {"name": "PAD", "size": 8, "offset": 8},
@@ -2204,6 +2755,27 @@
                 {"name": "flags", "type": "uint32_t", "offset": 12, "size": 4}
             ],
             "size": 16
+        },
+        {
+            "name": "PxD6Joint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxGearJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
+        },
+        {
+            "name": "PxRackAndPinionJoint",
+            "fields": [
+                {"name": "PAD", "size": 24, "offset": 0}
+            ],
+            "size": 24
         },
         {
             "name": "PxGroupsMask",
@@ -2216,10 +2788,11 @@
             "size": 8
         },
         {
-            "name": "PxRigidActorExt",
+            "name": "PxDefaultErrorCallback",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
             "name": "PxMassProperties",
@@ -2231,24 +2804,9 @@
             "size": 52
         },
         {
-            "name": "PxRigidBodyExt",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
-            "name": "PxShapeExt",
-            "fields": [
-            ],
-            "size": 1
-        },
-        {
             "name": "PxMeshOverlapUtil",
             "fields": [
-                {"name": "mResultsMemory", "type": "uint32_t*", "offset": 0, "size": 8},
-                {"name": "mResults[256]", "type": "uint32_t", "offset": 0, "size": 1024},
-                {"name": "mNbResults", "type": "uint32_t", "offset": 0, "size": 4},
-                {"name": "mMaxNbResults", "type": "uint32_t", "offset": 0, "size": 4}
+                {"name": "PAD", "size": 1040, "offset": 0}
             ],
             "size": 1040
         },
@@ -2261,40 +2819,46 @@
             "size": 20
         },
         {
-            "name": "PxSerialization",
+            "name": "PxDefaultCpuDispatcher",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxStringTableExt",
+            "name": "PxBatchQueryExt",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxBroadPhaseExt",
+            "name": "PxCustomSceneQuerySystem",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxSceneQueryExt",
+            "name": "PxCustomSceneQuerySystemAdapter",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxSamplingExt",
+            "name": "PxPoissonSampler",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
-            "name": "PxTetrahedronMeshExt",
+            "name": "PxTriangleMeshPoissonSampler",
             "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
             ],
-            "size": 1
+            "size": 8
         },
         {
             "name": "PxRepXObject",
@@ -2308,11 +2872,32 @@
         {
             "name": "PxRepXInstantiationArgs",
             "fields": [
-                {"name": "physics", "type": "physx_PxPhysics_Pod*", "offset": 0, "size": 8},
+                {"name": "PAD", "size": 8, "offset": 8},
                 {"name": "cooker", "type": "physx_PxCooking_Pod*", "offset": 8, "size": 8},
                 {"name": "stringTable", "type": "physx_PxStringTable_Pod*", "offset": 16, "size": 8}
             ],
             "size": 24
+        },
+        {
+            "name": "PxRepXSerializer",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxPvd",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
+        },
+        {
+            "name": "PxPvdTransport",
+            "fields": [
+                {"name": "PAD", "size": 8, "offset": 0}
+            ],
+            "size": 8
         }
     ]
 }

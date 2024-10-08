@@ -5,9 +5,13 @@ mod record;
 
 use crate::{
     consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, RecBinding},
-	writesln, StructMetadataList,
+    writesln, StructMetadataList,
 };
-use std::{fmt, fs::File, io::Write};
+use std::{
+    fmt,
+    fs::{create_dir, create_dir_all, exists, File},
+    io::Write,
+};
 
 /// It's impossible (I believe) with Rust's format strings to have the width
 /// of the alignment be dynamic, so we just uhhh...be lame
@@ -48,7 +52,16 @@ impl Generator {
     ) -> anyhow::Result<()> {
         let mut odin = File::create(rr.join("physx_generated.odin"))?;
         writesln!(odin, "package physx");
-        self.generate_odin(ast, &sizes, &mut odin)?;
+
+        let test_dir = rr.join("tests");
+        if !exists(&test_dir)? {
+            create_dir_all(&test_dir)?;
+        }
+        let mut tests = File::create(test_dir.join("physx_generated.odin"))?;
+        writesln!(tests, "package tests");
+        writesln!(tests, "import  \"core:testing\"");
+        writesln!(tests, "import physx \"..\"");
+        self.generate_odin(ast, &sizes, &mut odin, &mut tests)?;
 
         Ok(())
     }
@@ -58,15 +71,16 @@ impl Generator {
         ast: &AstConsumer<'_>,
         metadata: &StructMetadataList,
         odin: &mut impl Write,
+        tests: &mut impl Write,
     ) -> anyhow::Result<()> {
         let level = 0;
 
         writesln!(odin, "import _c \"core:c\"");
-        writesln!(odin, "import  \"core:testing\"");
+
         self.generate_odin_enums(ast, odin, level)?;
         self.generate_odin_records(ast, metadata, odin)?;
         self.generate_odin_functions(ast, odin, level)?;
-
+        self.generate_tests(ast, metadata, tests)?;
         Ok(())
     }
 
@@ -153,7 +167,7 @@ impl Generator {
     ) -> anyhow::Result<u32> {
         writesln!(
             odin,
-            "when ODIN_OS == .Linux do foreign import libphysx \"physx.so\"\n"
+            "when ODIN_OS == .Linux do foreign import libphysx \"libphysx.so\"\n"
         );
         writesln!(odin, "@(default_calling_convention = \"c\")");
         writesln!(odin, "foreign libphysx {{");
@@ -165,6 +179,32 @@ impl Generator {
         }
         writesln!(odin, "}}");
         Ok(0)
+    }
+
+    pub fn generate_tests(
+        &self,
+        ast: &AstConsumer<'_>,
+        metadata: &StructMetadataList,
+        tests: &mut impl Write,
+    ) -> anyhow::Result<u32> {
+        let mut num = 0;
+        let mut acc = String::new();
+
+        for rec in ast.recs.iter() {
+            acc.clear();
+            writesln!(acc);
+
+            match rec {
+                RecBinding::Def(def) => {
+                    def.emit_odin_test(&mut acc, metadata, 0);
+                    num += 1;
+                    write!(tests, "{acc}")?;
+                }
+                _ => {}
+            }
+        }
+
+        Ok(num)
     }
 }
 

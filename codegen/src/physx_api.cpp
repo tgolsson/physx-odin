@@ -1,6 +1,6 @@
 #include "PxPhysicsAPI.h"
 #include <cstdint>
-#include "physx_generated.hpp"
+#include "../physx_generated.hpp"
 
 PxDefaultAllocator gAllocator;
 PxDefaultErrorCallback gErrorCallback;
@@ -191,7 +191,7 @@ class RaycastFilterPrePostTrampoline : public PxQueryFilterCallback
 
     RaycastHitCallback mPreFilter;
     PostFilterCallback mPostFilter;
-    
+
     const void *mUserData;
 
     virtual PxQueryHitType::Enum preFilter(const PxFilterData &filterData, const PxShape *shape, const PxRigidActor *actor, PxHitFlags &hitFlags)

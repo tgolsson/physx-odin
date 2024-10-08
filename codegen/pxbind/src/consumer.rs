@@ -766,7 +766,7 @@ impl Builtin {
     pub fn c_type(self) -> &'static str {
         match self {
             Self::Void => "void",
-            Self::Bool => "",
+            Self::Bool => "bool",
             Self::Float => "float",
             Self::Double => "double",
             Self::Char => "char",
@@ -1077,8 +1077,11 @@ impl<'qt, 'ast> fmt::Display for OdinType<'qt, 'ast> {
             QualType::Array { element, len } => {
                 panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.odin_type());
             }
-            QualType::Enum { repr, .. } | QualType::Flags { repr, .. } => {
-                f.write_str(repr.odin_type())
+            QualType::Enum { name, .. } => {
+				f.write_str(name)
+			},
+			QualType::Flags { name, .. } => {
+				write!(f, "{}_Set", name)
             }
             QualType::Record { name } => write!(f, "{name}"),
             QualType::TemplateTypedef { name } => write!(f, "{name}"),

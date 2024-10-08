@@ -1,71 +1,19 @@
-package physx
+package ball
 
-when ODIN_OS == .Linux do foreign import px_api "physx_api.so"
-
+import physx "../"
 import "core:fmt"
-import "core:log"
+import corelog "core:log"
 import "core:strings"
 import "core:time"
 
 
-VERSION: u32 : (5 << 24) + (1 << 16) + (3 << 8)
-
-@(default_calling_convention = "c")
-foreign px_api {
-	@(link_name = "physx_create_foundation")
-	physx_create_foundation :: proc() -> ^PxFoundation ---
-
-	@(link_name = "physx_create_physics")
-	physx_create_physics :: proc(foundation: ^PxFoundation) -> ^PxPhysics ---
-
-	get_default_simulation_filter_shader :: proc() -> rawptr ---
-}
-
-main :: proc() {
-	cls := log.create_console_logger(
-		log.Level.Debug,
-		{
-			log.Option.Level,
-			log.Option.Short_File_Path,
-			log.Option.Line,
-			log.Option.Procedure,
-			log.Option.Terminal_Color,
-		},
-		"System API",
-	)
-
-	context.logger = cls
-
-	foundation := physx_create_foundation()
-	defer foundation_release_mut(foundation)
-	log.info("Succesfully created PxFoundation")
-
-	dispatcher := default_cpu_dispatcher_create(
-		1,
-		nil,
-		auto_cast (PxDefaultCpuDispatcherWaitForWorkMode.WaitForWork),
-		0,
-	)
-	defer default_cpu_dispatcher_release_mut(dispatcher)
-	log.debug("Created dispatcher with 1 thread")
-
-	physics := physx_create_physics(foundation)
-	defer physics_release_mut(physics)
-	log.info("Succesfully created PxPhysics")
-
-	scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
-	scene_desc.gravity = vec3_new_3(0.0, -9.81, 0.0)
-	scene_desc.cpuDispatcher = dispatcher
-	scene_desc.filterShader = get_default_simulation_filter_shader()
-	scene := physics_create_scene_mut(physics, scene_desc)
-	defer scene_release_mut(scene)
-	log.info("Succesfully created PxScene")
-
+run :: proc(physics: ^physx.PxPhysics, scene: ^physx.PxScene) {
+	using physx
 	// create a ground plane to the scene
 	material := physics_create_material_mut(physics, 0.5, 0.5, 0.6)
 	ground_plane := create_plane(physics, plane_new_1(0.0, 1.0, 0.0, 0.0), material)
 	scene_add_actor_mut(scene, ground_plane, nil)
-	log.info("Succesfully created ground plane")
+	corelog.info("Succesfully created ground plane")
 
 	sphere_geo := sphere_geometry_new(10.0)
 	sphere := create_dynamic(
@@ -74,11 +22,11 @@ main :: proc() {
 		&sphere_geo,
 		material,
 		10.0,
-		transform_new_2(cast(i32)PxIDENTITY.PxIdentity),
+		transform_new_2(PxIDENTITY.PxIdentity),
 	)
 	rigid_body_set_angular_damping_mut(sphere, 0.5)
 	scene_add_actor_mut(scene, sphere, nil)
-	log.info("Succesfully added ball to scene")
+	corelog.info("Succesfully added ball to scene")
 
 	heights: [100]i32
 
@@ -119,4 +67,49 @@ main :: proc() {
 			strings.builder_reset(&output)
 		}
 	}
+}
+
+main :: proc() {
+    using physx
+
+	cls := corelog.create_console_logger(
+		corelog.Level.Debug,
+		{
+			corelog.Option.Level,
+			corelog.Option.Short_File_Path,
+			corelog.Option.Line,
+			corelog.Option.Procedure,
+			corelog.Option.Terminal_Color,
+		},
+		"System API",
+	)
+
+	context.logger = cls
+
+	foundation := physx_create_foundation()
+	defer foundation_release_mut(foundation)
+	corelog.info("Succesfully created PxFoundation")
+
+	dispatcher := default_cpu_dispatcher_create(
+		1,
+		nil,
+		physx.PxDefaultCpuDispatcherWaitForWorkMode.WaitForWork,
+		0,
+	)
+	defer default_cpu_dispatcher_release_mut(dispatcher)
+	corelog.debug("Created dispatcher with 1 thread")
+
+	physics := physx_create_physics(foundation)
+	defer physics_release_mut(physics)
+	corelog.info("Succesfully created PxPhysics")
+
+	scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
+	scene_desc.gravity = vec3_new_3(0.0, -9.81, 0.0)
+	scene_desc.cpuDispatcher = dispatcher
+	scene_desc.filterShader = get_default_simulation_filter_shader()
+	scene := physics_create_scene_mut(physics, scene_desc)
+	defer scene_release_mut(scene)
+	corelog.info("Succesfully created PxScene")
+
+	run(physics, scene)
 }

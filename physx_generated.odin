@@ -1,25 +1,24 @@
 package physx
 import _c "core:c"
-import  "core:testing"
 /// enum for empty constructor tag
-PxEMPTY :: enum {
+PxEMPTY :: enum _c.int32_t {
     PxEmpty = 0,
 }
 
 /// enum for zero constructor tag for vectors and matrices
-PxZERO :: enum {
+PxZERO :: enum _c.int32_t {
     PxZero = 0,
 }
 
 /// enum for identity constructor flag for quaternions, transforms, and matrices
-PxIDENTITY :: enum {
+PxIDENTITY :: enum _c.int32_t {
     PxIdentity = 0,
 }
 
 /// Error codes
 ///
 /// These error codes are passed to [`PxErrorCallback`]
-PxErrorCode :: enum {
+PxErrorCode :: enum _c.int32_t {
     NoError = 0,
     /// An informational message.
     DebugInfo = 1,
@@ -42,7 +41,7 @@ PxErrorCode :: enum {
     MaskAll = -1,
 }
 
-PxThreadPriority :: enum {
+PxThreadPriority :: enum _c.uint32_t {
     /// High priority
     High = 0,
     /// Above Normal priority
@@ -57,7 +56,7 @@ PxThreadPriority :: enum {
 }
 
 /// Default color values used for debug rendering.
-PxDebugColor :: enum {
+PxDebugColor :: enum _c.uint32_t {
     ArgbBlack = 4278190080,
     ArgbRed = 4294901760,
     ArgbGreen = 4278255360,
@@ -76,7 +75,7 @@ PxDebugColor :: enum {
 ///
 /// Enumeration space is reserved for future PhysX core types, PhysXExtensions,
 /// PhysXVehicle and Custom application types.
-PxConcreteType :: enum {
+PxConcreteType :: enum _c.int32_t {
     Undefined = 0,
     Heightfield = 1,
     ConvexMesh = 2,
@@ -125,7 +124,7 @@ PxConcreteType :: enum {
 }
 
 /// Flags for PxBase.
-PxBaseFlag :: enum {
+PxBaseFlag :: enum _c.int32_t {
     OwnsMemory = 0,
     IsReleasable = 1,
 }
@@ -135,7 +134,7 @@ PxBaseFlags_Set :: bit_set[PxBaseFlag; _c.uint16_t]
 
 
 /// Flags used to configure binary meta data entries, typically set through PX_DEF_BIN_METADATA defines.
-PxMetaDataFlag :: enum {
+PxMetaDataFlag :: enum _c.int32_t {
     /// declares a class
     Class = 1,
     /// declares class to be virtual
@@ -174,7 +173,7 @@ PxMetaDataFlag :: enum {
 }
 
 /// Identifies the type of each heavyweight PxTask object
-PxTaskType :: enum {
+PxTaskType :: enum _c.int32_t {
     /// PxTask will be run on the CPU
     Cpu = 0,
     /// Return code when attempting to find a task that does not exist
@@ -186,7 +185,7 @@ PxTaskType :: enum {
 /// A geometry type.
 ///
 /// Used to distinguish the type of a ::PxGeometry object.
-PxGeometryType :: enum {
+PxGeometryType :: enum _c.int32_t {
     Sphere = 0,
     Plane = 1,
     Capsule = 2,
@@ -205,7 +204,7 @@ PxGeometryType :: enum {
 }
 
 /// Geometry-level query flags.
-PxGeometryQueryFlag :: enum {
+PxGeometryQueryFlag :: enum _c.int32_t {
     SimdGuard = 0,
 }
 
@@ -214,7 +213,7 @@ PxGeometryQueryFlags_Set :: bit_set[PxGeometryQueryFlag; _c.uint32_t]
 
 
 /// Desired build strategy for bounding-volume hierarchies
-PxBVHBuildStrategy :: enum {
+PxBVHBuildStrategy :: enum _c.int32_t {
     /// Fast build strategy. Fast build speed, good runtime performance in most cases. Recommended for runtime cooking.
     Fast = 0,
     /// Default build strategy. Medium build speed, good runtime performance in all cases.
@@ -227,7 +226,7 @@ PxBVHBuildStrategy :: enum {
 /// Flags controlling the simulated behavior of the convex mesh geometry.
 ///
 /// Used in ::PxConvexMeshGeometryFlags.
-PxConvexMeshGeometryFlag :: enum {
+PxConvexMeshGeometryFlag :: enum _c.int32_t {
     TightBounds = 0,
 }
 
@@ -238,7 +237,7 @@ PxConvexMeshGeometryFlags_Set :: bit_set[PxConvexMeshGeometryFlag; _c.uint8_t]
 /// Flags controlling the simulated behavior of the triangle mesh geometry.
 ///
 /// Used in ::PxMeshGeometryFlags.
-PxMeshGeometryFlag :: enum {
+PxMeshGeometryFlag :: enum _c.int32_t {
     TightBounds = 0,
     DoubleSided = 1,
 }
@@ -248,7 +247,7 @@ PxMeshGeometryFlags_Set :: bit_set[PxMeshGeometryFlag; _c.uint8_t]
 
 
 /// Identifies the solver to use for a particle system.
-PxParticleSolverType :: enum {
+PxParticleSolverType :: enum _c.int32_t {
     /// The position based dynamics solver that can handle fluid, granular material, cloth, inflatables etc. See [`PxPBDParticleSystem`].
     Pbd = 1,
     /// The FLIP fluid solver. See [`PxFLIPParticleSystem`].
@@ -268,7 +267,7 @@ PxParticleSolverType :: enum {
 /// 3) To specify additional options for the narrow phase and mid-phase intersection routines.
 ///
 /// All these flags apply to both scene queries and geometry queries (PxGeometryQuery).
-PxHitFlag :: enum {
+PxHitFlag :: enum _c.int32_t {
     Position = 0,
     Normal = 1,
     Uv = 3,
@@ -288,7 +287,7 @@ PxHitFlags_Set :: bit_set[PxHitFlag; _c.uint16_t]
 
 
 /// Describes the format of height field samples.
-PxHeightFieldFormat :: enum {
+PxHeightFieldFormat :: enum _c.int32_t {
     /// Height field height data is 16 bit signed integers, followed by triangle materials.
     ///
     /// Each sample is 32 bits wide arranged as follows:
@@ -307,7 +306,7 @@ PxHeightFieldFormat :: enum {
 }
 
 /// Determines the tessellation of height field cells.
-PxHeightFieldTessFlag :: enum {
+PxHeightFieldTessFlag :: enum _c.int32_t {
     /// This flag determines which way each quad cell is subdivided.
     ///
     /// The flag lowered indicates subdivision like this: (the 0th vertex is referenced by only one triangle)
@@ -363,7 +362,7 @@ PxHeightFieldTessFlag :: enum {
 }
 
 /// Enum with flag values to be used in PxHeightFieldDesc.flags.
-PxHeightFieldFlag :: enum {
+PxHeightFieldFlag :: enum _c.int32_t {
     NoBoundaryEdges = 0,
 }
 
@@ -372,12 +371,12 @@ PxHeightFieldFlags_Set :: bit_set[PxHeightFieldFlag; _c.uint16_t]
 
 
 /// Special material index values for height field samples.
-PxHeightFieldMaterial :: enum {
+PxHeightFieldMaterial :: enum _c.int32_t {
     /// A material indicating that the triangle should be treated as a hole in the mesh.
     Hole = 127,
 }
 
-PxMeshMeshQueryFlag :: enum {
+PxMeshMeshQueryFlag :: enum _c.int32_t {
     DiscardCoplanar = 0,
 }
 PxMeshMeshQueryFlag_Default :: 0
@@ -387,7 +386,7 @@ PxMeshMeshQueryFlags_Set :: bit_set[PxMeshMeshQueryFlag; _c.uint32_t]
 
 
 /// Enum with flag values to be used in PxSimpleTriangleMesh::flags.
-PxMeshFlag :: enum {
+PxMeshFlag :: enum _c.int32_t {
     Flipnormals = 0,
     E16BitIndices = 1,
 }
@@ -404,7 +403,7 @@ PxMeshFlags_Set :: bit_set[PxMeshFlag; _c.uint16_t]
 ///
 /// The PxMeshMidPhase::eBVH34 structure is a revisited implementation introduced in PhysX 3.4. It can be significantly faster both
 /// in terms of cooking performance and runtime performance.
-PxMeshMidPhase :: enum {
+PxMeshMidPhase :: enum _c.int32_t {
     /// Default midphase mesh structure, as used up to PhysX 3.3 (deprecated)
     Bvh33 = 0,
     /// New midphase mesh structure, introduced in PhysX 3.4
@@ -415,7 +414,7 @@ PxMeshMidPhase :: enum {
 /// Flags for the mesh geometry properties.
 ///
 /// Used in ::PxTriangleMeshFlags.
-PxTriangleMeshFlag :: enum {
+PxTriangleMeshFlag :: enum _c.int32_t {
     E16BitIndices = 1,
     AdjacencyInfo = 2,
     PreferNoSdfProj = 3,
@@ -425,7 +424,7 @@ PxTriangleMeshFlag :: enum {
 PxTriangleMeshFlags_Set :: bit_set[PxTriangleMeshFlag; _c.uint8_t]
 
 
-PxTetrahedronMeshFlag :: enum {
+PxTetrahedronMeshFlag :: enum _c.int32_t {
     E16BitIndices = 1,
 }
 
@@ -434,7 +433,7 @@ PxTetrahedronMeshFlags_Set :: bit_set[PxTetrahedronMeshFlag; _c.uint8_t]
 
 
 /// Flags which control the behavior of an actor.
-PxActorFlag :: enum {
+PxActorFlag :: enum _c.int32_t {
     Visualization = 0,
     DisableGravity = 1,
     SendSleepNotifies = 2,
@@ -446,7 +445,7 @@ PxActorFlags_Set :: bit_set[PxActorFlag; _c.uint8_t]
 
 
 /// Identifies each type of actor.
-PxActorType :: enum {
+PxActorType :: enum _c.int32_t {
     /// A static rigid body
     RigidStatic = 0,
     /// A dynamic rigid body
@@ -455,7 +454,7 @@ PxActorType :: enum {
     ArticulationLink = 2,
 }
 
-PxAggregateType :: enum {
+PxAggregateType :: enum _c.int32_t {
     /// Aggregate will contain various actors of unspecified types
     Generic = 0,
     /// Aggregate will only contain static actors
@@ -467,7 +466,7 @@ PxAggregateType :: enum {
 /// Constraint row flags
 ///
 /// These flags configure the post-processing of constraint rows and the behavior of the solver while solving constraints
-Px1DConstraintFlag :: enum {
+Px1DConstraintFlag :: enum _c.int32_t {
     Spring = 0,
     AccelerationSpring = 1,
     Restitution = 2,
@@ -483,7 +482,7 @@ Px1DConstraintFlags_Set :: bit_set[Px1DConstraintFlag; _c.uint16_t]
 
 
 /// Constraint type hints which the solver uses to optimize constraint handling
-PxConstraintSolveHint :: enum {
+PxConstraintSolveHint :: enum _c.int32_t {
     /// no special properties
     None = 0,
     /// a group of acceleration drive constraints with the same stiffness and drive parameters
@@ -505,7 +504,7 @@ PxConstraintSolveHint :: enum {
 }
 
 /// Flags for determining which components of the constraint should be visualized.
-PxConstraintVisualizationFlag :: enum {
+PxConstraintVisualizationFlag :: enum _c.int32_t {
     /// visualize constraint frames
     LocalFrames = 1,
     /// visualize constraint limits
@@ -513,7 +512,7 @@ PxConstraintVisualizationFlag :: enum {
 }
 
 /// Flags for determining how PVD should serialize a constraint update
-PxPvdUpdateType :: enum {
+PxPvdUpdateType :: enum _c.int32_t {
     /// triggers createPvdInstance call, creates an instance of a constraint
     CreateInstance = 0,
     /// triggers releasePvdInstance call, releases an instance of a constraint
@@ -525,7 +524,7 @@ PxPvdUpdateType :: enum {
 }
 
 /// Constraint descriptor used inside the solver
-ConstraintType :: enum {
+ConstraintType :: enum _c.int32_t {
     /// Defines this pair is a contact constraint
     ContactConstraint = 0,
     /// Defines this pair is a joint constraint
@@ -533,7 +532,7 @@ ConstraintType :: enum {
 }
 
 /// Data structure used for preparing constraints before solving them
-BodyState :: enum {
+BodyState :: enum _c.int32_t {
     DynamicBody = 1,
     StaticBody = 2,
     KinematicBody = 4,
@@ -542,7 +541,7 @@ BodyState :: enum {
 
 /// @
 /// {
-PxArticulationAxis :: enum {
+PxArticulationAxis :: enum _c.int32_t {
     /// Rotational about eX
     Twist = 0,
     /// Rotational about eY
@@ -558,7 +557,7 @@ PxArticulationAxis :: enum {
     Count = 6,
 }
 
-PxArticulationMotion :: enum {
+PxArticulationMotion :: enum _c.int32_t {
     Limited = 0,
     Free = 1,
 }
@@ -568,7 +567,7 @@ PxArticulationMotion_Locked :: 0
 PxArticulationMotions_Set :: bit_set[PxArticulationMotion; _c.uint8_t]
 
 
-PxArticulationJointType :: enum {
+PxArticulationJointType :: enum _c.int32_t {
     /// All joint axes, i.e. degrees of freedom (DOFs) locked
     Fix = 0,
     /// Single linear DOF, e.g. cart on a rail
@@ -582,7 +581,7 @@ PxArticulationJointType :: enum {
     Undefined = 5,
 }
 
-PxArticulationFlag :: enum {
+PxArticulationFlag :: enum _c.int32_t {
     FixBase = 0,
     DriveLimitsAreForces = 1,
     DisableSelfCollision = 2,
@@ -593,7 +592,7 @@ PxArticulationFlag :: enum {
 PxArticulationFlags_Set :: bit_set[PxArticulationFlag; _c.uint8_t]
 
 
-PxArticulationDriveType :: enum {
+PxArticulationDriveType :: enum _c.int32_t {
     /// The output of the implicit spring drive controller is a force/torque.
     Force = 0,
     /// The output of the implicit spring drive controller is a joint acceleration (use this to get (spatial)-inertia-invariant behavior of the drive).
@@ -609,7 +608,7 @@ PxArticulationDriveType :: enum {
 /// PxScene::copyArticulationData() and PxScene::applyArticulationData(). Types that are read-only may only be used in conjunction with
 /// PxScene::copyArticulationData(). Types that are write-only may only be used in conjunction with PxScene::applyArticulationData().
 /// A subset of data types may be used in conjunction with both PxScene::applyArticulationData() and PxScene::applyArticulationData().
-PxArticulationGpuDataType :: enum {
+PxArticulationGpuDataType :: enum _c.int32_t {
     /// The joint positions, read and write, see PxScene::copyArticulationData(), PxScene::applyArticulationData()
     JointPosition = 0,
     /// The joint velocities, read and write,  see PxScene::copyArticulationData(), PxScene::applyArticulationData()
@@ -649,7 +648,7 @@ PxArticulationGpuDataType :: enum {
 }
 
 /// These flags determine what data is read or written to the internal articulation data via cache.
-PxArticulationCacheFlag :: enum {
+PxArticulationCacheFlag :: enum _c.int32_t {
     Velocity = 0,
     Acceleration = 1,
     Position = 2,
@@ -668,7 +667,7 @@ PxArticulationCacheFlags_Set :: bit_set[PxArticulationCacheFlag; _c.uint32_t]
 
 
 /// Flags to configure the forces reported by articulation link sensors.
-PxArticulationSensorFlag :: enum {
+PxArticulationSensorFlag :: enum _c.int32_t {
     ForwardDynamicsForces = 0,
     ConstraintSolverForces = 1,
     WorldFrame = 2,
@@ -679,7 +678,7 @@ PxArticulationSensorFlags_Set :: bit_set[PxArticulationSensorFlag; _c.uint8_t]
 
 
 /// Flag that configures articulation-state updates by PxArticulationReducedCoordinate::updateKinematic.
-PxArticulationKinematicFlag :: enum {
+PxArticulationKinematicFlag :: enum _c.int32_t {
     Position = 0,
     Velocity = 1,
 }
@@ -689,7 +688,7 @@ PxArticulationKinematicFlags_Set :: bit_set[PxArticulationKinematicFlag; _c.uint
 
 
 /// Flags which affect the behavior of PxShapes.
-PxShapeFlag :: enum {
+PxShapeFlag :: enum _c.int32_t {
     SimulationShape = 0,
     SceneQueryShape = 1,
     TriggerShape = 2,
@@ -701,7 +700,7 @@ PxShapeFlags_Set :: bit_set[PxShapeFlag; _c.uint8_t]
 
 
 /// Parameter to addForce() and addTorque() calls, determines the exact operation that is carried out.
-PxForceMode :: enum {
+PxForceMode :: enum _c.int32_t {
     /// parameter has unit of mass * length / time^2, i.e., a force
     Force = 0,
     /// parameter has unit of mass * length / time, i.e., force * time
@@ -713,7 +712,7 @@ PxForceMode :: enum {
 }
 
 /// Collection of flags describing the behavior of a rigid body.
-PxRigidBodyFlag :: enum {
+PxRigidBodyFlag :: enum _c.int32_t {
     Kinematic = 0,
     UseKinematicTargetForSceneQueries = 1,
     EnableCcd = 2,
@@ -734,7 +733,7 @@ PxRigidBodyFlags_Set :: bit_set[PxRigidBodyFlag; _c.uint16_t]
 /// constraint flags
 ///
 /// eBROKEN is a read only flag
-PxConstraintFlag :: enum {
+PxConstraintFlag :: enum _c.int32_t {
     Broken = 0,
     ProjectToActor0 = 1,
     ProjectToActor1 = 2,
@@ -755,7 +754,7 @@ PxConstraintFlags_Set :: bit_set[PxConstraintFlag; _c.uint16_t]
 
 
 /// Header for a contact patch where all points share same material and normal
-PxContactPatchFlags :: enum {
+PxContactPatchFlags :: enum _c.int32_t {
     /// Indicates this contact stream has face indices.
     HasFaceIndices = 1,
     /// Indicates this contact stream is modifiable.
@@ -774,14 +773,14 @@ PxContactPatchFlags :: enum {
 }
 
 /// A class to iterate over a compressed contact stream. This supports read-only access to the various contact formats.
-StreamFormat :: enum {
+StreamFormat :: enum _c.int32_t {
     SimpleStream = 0,
     ModifiableStream = 1,
     CompressedModifiableStream = 2,
 }
 
 /// Flags specifying deletion event types.
-PxDeletionEventFlag :: enum {
+PxDeletionEventFlag :: enum _c.int32_t {
     UserRelease = 0,
     MemoryRelease = 1,
 }
@@ -791,7 +790,7 @@ PxDeletionEventFlags_Set :: bit_set[PxDeletionEventFlag; _c.uint8_t]
 
 
 /// Collection of flags describing the actions to take for a collision pair.
-PxPairFlag :: enum {
+PxPairFlag :: enum _c.int32_t {
     SolveContact = 0,
     ModifyContacts = 1,
     NotifyTouchFound = 2,
@@ -817,7 +816,7 @@ PxPairFlags_Set :: bit_set[PxPairFlag; _c.uint16_t]
 
 
 /// Collection of flags describing the filter actions to take for a collision pair.
-PxFilterFlag :: enum {
+PxFilterFlag :: enum _c.int32_t {
     Kill = 0,
     Suppress = 1,
     Callback = 2,
@@ -830,7 +829,7 @@ PxFilterFlags_Set :: bit_set[PxFilterFlag; _c.uint16_t]
 
 
 /// Identifies each type of filter object.
-PxFilterObjectType :: enum {
+PxFilterObjectType :: enum _c.int32_t {
     /// A static rigid body
     RigidStatic = 0,
     /// A dynamic rigid body
@@ -855,12 +854,12 @@ PxFilterObjectType :: enum {
     Undefined = 15,
 }
 
-PxFilterObjectFlag :: enum {
+PxFilterObjectFlag :: enum _c.int32_t {
     Kinematic = 16,
     Trigger = 32,
 }
 
-PxPairFilteringMode :: enum {
+PxPairFilteringMode :: enum _c.int32_t {
     /// Output pair from BP, potentially send to user callbacks, create regular interaction object.
     ///
     /// Enable contact pair filtering between kinematic/static or kinematic/kinematic rigid bodies.
@@ -876,7 +875,7 @@ PxPairFilteringMode :: enum {
     Kill = 2,
 }
 
-PxDataAccessFlag :: enum {
+PxDataAccessFlag :: enum _c.int32_t {
     Readable = 0,
     Writable = 1,
     Device = 2,
@@ -887,7 +886,7 @@ PxDataAccessFlags_Set :: bit_set[PxDataAccessFlag; _c.uint8_t]
 
 
 /// Flags which control the behavior of a material.
-PxMaterialFlag :: enum {
+PxMaterialFlag :: enum _c.int32_t {
     DisableFriction = 0,
     DisableStrongFriction = 1,
     ImprovedPatchFriction = 2,
@@ -913,7 +912,7 @@ PxMaterialFlags_Set :: bit_set[PxMaterialFlag; _c.uint16_t]
 /// eMAX
 ///
 /// The effective combine mode for the pair is maximum(material0.combineMode, material1.combineMode).
-PxCombineMode :: enum {
+PxCombineMode :: enum _c.int32_t {
     /// Average: (a + b)/2
     Average = 0,
     /// Minimum: minimum(a,b)
@@ -931,7 +930,7 @@ PxCombineMode :: enum {
 /// Identifies dirty particle buffers that need to be updated in the particle system.
 ///
 /// This flag can be used mark the device user buffers that are dirty and need to be written to the particle system.
-PxParticleBufferFlag :: enum {
+PxParticleBufferFlag :: enum _c.int32_t {
     UpdatePosition = 0,
     UpdateVelocity = 1,
     UpdatePhase = 2,
@@ -951,7 +950,7 @@ PxParticleBufferFlags_Set :: bit_set[PxParticleBufferFlag; _c.uint32_t]
 /// Identifies per-particle behavior for a PxParticleSystem.
 ///
 /// See [`PxParticleSystem::createPhase`]().
-PxParticlePhaseFlag :: enum {
+PxParticlePhaseFlag :: enum _c.uint32_t {
     ParticlePhaseSelfCollide = 20,
     ParticlePhaseSelfCollideFilter = 21,
     ParticlePhaseFluid = 22,
@@ -964,13 +963,13 @@ PxParticlePhaseFlags_Set :: bit_set[PxParticlePhaseFlag; _c.uint32_t]
 
 
 /// Specifies memory space for a PxBuffer instance.
-PxBufferType :: enum {
+PxBufferType :: enum _c.int32_t {
     Host = 0,
     Device = 1,
 }
 
 /// Filtering flags for scene queries.
-PxQueryFlag :: enum {
+PxQueryFlag :: enum _c.int32_t {
     Static = 0,
     Dynamic = 1,
     Prefilter = 2,
@@ -1005,7 +1004,7 @@ PxQueryFlags_Set :: bit_set[PxQueryFlag; _c.uint16_t]
 ///
 /// For raycast/sweep/overlap calls with zero touch buffer or PxHitCallback::nbTouches member,
 /// only the closest hit of type eBLOCK is returned. All eTOUCH hits are discarded.
-PxQueryHitType :: enum {
+PxQueryHitType :: enum _c.int32_t {
     /// the query should ignore this shape
     None = 0,
     /// a hit on the shape touches the intersection geometry of the query but does not block it
@@ -1015,7 +1014,7 @@ PxQueryHitType :: enum {
 }
 
 /// Collection of flags providing a mechanism to lock motion along/around a specific axis.
-PxRigidDynamicLockFlag :: enum {
+PxRigidDynamicLockFlag :: enum _c.int32_t {
     LockLinearX = 0,
     LockLinearY = 1,
     LockLinearZ = 2,
@@ -1043,7 +1042,7 @@ PxRigidDynamicLockFlags_Set :: bit_set[PxRigidDynamicLockFlag; _c.uint8_t]
 /// objects, if no static objects are added, moved or removed after the scene has been
 /// created. If there is no such guarantee (e.g. when streaming parts of the world in and out),
 /// then the dynamic version is a better choice even for static objects.
-PxPruningStructureType :: enum {
+PxPruningStructureType :: enum _c.int32_t {
     /// Using a simple data structure
     None = 0,
     /// Using a dynamic AABB tree
@@ -1075,7 +1074,7 @@ PxPruningStructureType :: enum {
 /// Query time is fast but insertion cost can be high.
 ///
 /// eBVH uses a PxBVH structure. This usually offers the best overall performance.
-PxDynamicTreeSecondaryPruner :: enum {
+PxDynamicTreeSecondaryPruner :: enum _c.int32_t {
     /// no secondary pruner, new objects aren't visible to SQ for a few frames
     None = 0,
     /// bucket-based secondary pruner, faster updates, slower query time
@@ -1105,7 +1104,7 @@ PxDynamicTreeSecondaryPruner :: enum {
 /// eBUILD_DISABLED_COMMIT_DISABLED no further scene query work is executed. The scene queries update needs to be called manually, see
 /// PxScene::sceneQueriesUpdate (see that function's doc for the equivalent PxSceneQuerySystem sequence). It is recommended to call
 /// PxScene::sceneQueriesUpdate right after fetchResults/finalizeUpdates as the pruning structures are not updated.
-PxSceneQueryUpdateMode :: enum {
+PxSceneQueryUpdateMode :: enum _c.int32_t {
     /// Both scene query build and commit are executed.
     BuildEnabledCommitEnabled = 0,
     /// Scene query build only is executed.
@@ -1117,7 +1116,7 @@ PxSceneQueryUpdateMode :: enum {
 /// Built-in enum for default PxScene pruners
 ///
 /// This is passed as a pruner index to various functions in the following APIs.
-PxScenePrunerIndex :: enum {
+PxScenePrunerIndex :: enum _c.uint32_t {
     PxScenePrunerStatic = 0,
     PxScenePrunerDynamic = 1,
     PxSceneCompoundPruner = 4294967295,
@@ -1151,7 +1150,7 @@ PxScenePrunerIndex :: enum {
 /// performance bottleneck if there are a very large number of shapes roughly projecting to the same values
 /// on a given axis. If the scene has a very large number of shapes in an actor, e.g. a humanoid, it is recommended
 /// to use an aggregate to represent multi-shape or multi-body actors to minimize stress placed on the broad phase.
-PxBroadPhaseType :: enum {
+PxBroadPhaseType :: enum _c.int32_t {
     /// 3-axes sweep-and-prune
     Sap = 0,
     /// Multi box pruning
@@ -1178,7 +1177,7 @@ PxBroadPhaseType :: enum {
 /// than patch friction for scenarios with many contact points.
 ///
 /// [`PxFrictionType::eFRICTION_COUNT`] is the total numer of friction models supported by the SDK.
-PxFrictionType :: enum {
+PxFrictionType :: enum _c.int32_t {
     /// Select default patch-friction model.
     Patch = 0,
     /// Select one directional per-contact friction model.
@@ -1194,7 +1193,7 @@ PxFrictionType :: enum {
 /// [`PxSolverType::ePGS`] selects the iterative sequential impulse solver. This is the same kind of solver used in PhysX 3.4 and earlier releases.
 ///
 /// [`PxSolverType::eTGS`] selects a non linear iterative solver. This kind of solver can lead to improved convergence and handle large mass ratios, long chains and jointed systems better. It is slightly more expensive than the default solver and can introduce more energy to correct joint and contact errors.
-PxSolverType :: enum {
+PxSolverType :: enum _c.int32_t {
     /// Projected Gauss-Seidel iterative solver
     Pgs = 0,
     /// Default Temporal Gauss-Seidel solver
@@ -1202,7 +1201,7 @@ PxSolverType :: enum {
 }
 
 /// flags for configuring properties of the scene
-PxSceneFlag :: enum {
+PxSceneFlag :: enum _c.int32_t {
     EnableActiveActors = 0,
     EnableCcd = 1,
     DisableCcdResweep = 2,
@@ -1229,7 +1228,7 @@ PxSceneFlags_Set :: bit_set[PxSceneFlag; _c.uint32_t]
 ///
 /// [`PxVisualizationParameter::eSCALE`] is the master switch for enabling visualization, please read the corresponding documentation
 /// for further details.
-PxVisualizationParameter :: enum {
+PxVisualizationParameter :: enum _c.int32_t {
     /// This overall visualization scale gets multiplied with the individual scales. Setting to zero ignores all visualizations. Default is 0.
     ///
     /// The below settings permit the debug visualization of various simulation properties.
@@ -1319,7 +1318,7 @@ PxVisualizationParameter :: enum {
 }
 
 /// Different types of rigid body collision pair statistics.
-RbPairStatsType :: enum {
+RbPairStatsType :: enum _c.int32_t {
     /// Shape pairs processed as discrete contact pairs for the current simulation step.
     DiscreteContactPairs = 0,
     /// Shape pairs processed as swept integration pairs for the current simulation step.
@@ -1334,7 +1333,7 @@ RbPairStatsType :: enum {
 }
 
 /// These flags determine what data is read or written to the gpu softbody.
-PxSoftBodyDataFlag :: enum {
+PxSoftBodyDataFlag :: enum _c.int32_t {
     /// The collision mesh tetrahedron indices (quadruples of int32)
     TetIndices = 0,
     /// The collision mesh cauchy stress tensors (float 3x3 matrices)
@@ -1358,7 +1357,7 @@ PxSoftBodyDataFlag :: enum {
 }
 
 /// Identifies input and output buffers for PxHairSystem
-PxHairSystemData :: enum {
+PxHairSystemData :: enum _c.int32_t {
     PositionInvmass = 0,
     Velocity = 1,
 }
@@ -1370,7 +1369,7 @@ PxHairSystemDataFlags_Set :: bit_set[PxHairSystemData; _c.uint32_t]
 
 
 /// Binary settings for hair system simulation
-PxHairSystemFlag :: enum {
+PxHairSystemFlag :: enum _c.int32_t {
     DisableSelfCollision = 0,
     DisableExternalCollision = 1,
     DisableTwosidedAttachment = 2,
@@ -1381,7 +1380,7 @@ PxHairSystemFlags_Set :: bit_set[PxHairSystemFlag; _c.uint32_t]
 
 
 /// Identifies each type of information for retrieving from actor.
-PxActorCacheFlag :: enum {
+PxActorCacheFlag :: enum _c.int32_t {
     ActorData = 0,
     Force = 2,
     Torque = 3,
@@ -1392,7 +1391,7 @@ PxActorCacheFlags_Set :: bit_set[PxActorCacheFlag; _c.uint16_t]
 
 
 /// PVD scene Flags. They are disabled by default, and only works if PxPvdInstrumentationFlag::eDEBUG is set.
-PxPvdSceneFlag :: enum {
+PxPvdSceneFlag :: enum _c.int32_t {
     TransmitContacts = 0,
     TransmitScenequeries = 1,
     TransmitConstraints = 2,
@@ -1405,7 +1404,7 @@ PxPvdSceneFlags_Set :: bit_set[PxPvdSceneFlag; _c.uint8_t]
 /// Identifies each type of actor for retrieving actors from a scene.
 ///
 /// [`PxArticulationLink`] objects are not supported. Use the #PxArticulationReducedCoordinate object to retrieve all its links.
-PxActorTypeFlag :: enum {
+PxActorTypeFlag :: enum _c.int32_t {
     RigidStatic = 0,
     RigidDynamic = 1,
 }
@@ -1415,7 +1414,7 @@ PxActorTypeFlags_Set :: bit_set[PxActorTypeFlag; _c.uint16_t]
 
 
 /// Extra data item types for contact pairs.
-PxContactPairExtraDataType :: enum {
+PxContactPairExtraDataType :: enum _c.int32_t {
     /// see [`PxContactPairVelocity`]
     PreSolverVelocity = 0,
     /// see [`PxContactPairVelocity`]
@@ -1427,7 +1426,7 @@ PxContactPairExtraDataType :: enum {
 }
 
 /// Collection of flags providing information on contact report pairs.
-PxContactPairHeaderFlag :: enum {
+PxContactPairHeaderFlag :: enum _c.int32_t {
     RemovedActor0 = 0,
     RemovedActor1 = 1,
 }
@@ -1437,7 +1436,7 @@ PxContactPairHeaderFlags_Set :: bit_set[PxContactPairHeaderFlag; _c.uint16_t]
 
 
 /// Collection of flags providing information on contact report pairs.
-PxContactPairFlag :: enum {
+PxContactPairFlag :: enum _c.int32_t {
     RemovedShape0 = 0,
     RemovedShape1 = 1,
     ActorPairHasFirstTouch = 2,
@@ -1451,7 +1450,7 @@ PxContactPairFlags_Set :: bit_set[PxContactPairFlag; _c.uint16_t]
 
 
 /// Collection of flags providing information on trigger report pairs.
-PxTriggerPairFlag :: enum {
+PxTriggerPairFlag :: enum _c.int32_t {
     RemovedShapeTrigger = 0,
     RemovedShapeOther = 1,
     NextFree = 2,
@@ -1462,7 +1461,7 @@ PxTriggerPairFlags_Set :: bit_set[PxTriggerPairFlag; _c.uint8_t]
 
 
 /// Identifies input and output buffers for PxSoftBody.
-PxSoftBodyData :: enum {
+PxSoftBodyData :: enum _c.int32_t {
     PositionInvmass = 0,
     SimPositionInvmass = 2,
     SimVelocity = 3,
@@ -1476,7 +1475,7 @@ PxSoftBodyDataFlags_Set :: bit_set[PxSoftBodyData; _c.uint32_t]
 
 
 /// Flags to enable or disable special modes of a SoftBody
-PxSoftBodyFlag :: enum {
+PxSoftBodyFlag :: enum _c.int32_t {
     DisableSelfCollision = 0,
     ComputeStressTensor = 1,
     EnableCcd = 2,
@@ -1490,7 +1489,7 @@ PxSoftBodyFlags_Set :: bit_set[PxSoftBodyFlag; _c.uint32_t]
 
 
 /// The type of controller, eg box, sphere or capsule.
-PxControllerShapeType :: enum {
+PxControllerShapeType :: enum _c.int32_t {
     /// A box controller.
     Box = 0,
     /// A capsule controller
@@ -1502,7 +1501,7 @@ PxControllerShapeType :: enum {
 /// specifies how a CCT interacts with non-walkable parts.
 ///
 /// This is only used when slopeLimit is non zero. It is currently enabled for static actors only, and not supported for spheres or capsules.
-PxControllerNonWalkableMode :: enum {
+PxControllerNonWalkableMode :: enum _c.int32_t {
     /// Stops character from climbing up non-walkable slopes, but doesn't move it otherwise
     PreventClimbing = 0,
     /// Stops character from climbing up non-walkable slopes, and forces it to slide down those slopes
@@ -1510,7 +1509,7 @@ PxControllerNonWalkableMode :: enum {
 }
 
 /// specifies which sides a character is colliding with.
-PxControllerCollisionFlag :: enum {
+PxControllerCollisionFlag :: enum _c.int32_t {
     CollisionSides = 0,
     CollisionUp = 1,
     CollisionDown = 2,
@@ -1520,7 +1519,7 @@ PxControllerCollisionFlag :: enum {
 PxControllerCollisionFlags_Set :: bit_set[PxControllerCollisionFlag; _c.uint8_t]
 
 
-PxCapsuleClimbingMode :: enum {
+PxCapsuleClimbingMode :: enum _c.int32_t {
     /// Standard mode, let the capsule climb over surfaces according to impact normal
     Easy = 0,
     /// Constrained mode, try to limit climbing according to the step offset
@@ -1529,7 +1528,7 @@ PxCapsuleClimbingMode :: enum {
 }
 
 /// specifies controller behavior
-PxControllerBehaviorFlag :: enum {
+PxControllerBehaviorFlag :: enum _c.int32_t {
     CctCanRideOnObject = 0,
     CctSlide = 1,
     CctUserDefinedRide = 2,
@@ -1540,7 +1539,7 @@ PxControllerBehaviorFlags_Set :: bit_set[PxControllerBehaviorFlag; _c.uint8_t]
 
 
 /// specifies debug-rendering flags
-PxControllerDebugRenderFlag :: enum {
+PxControllerDebugRenderFlag :: enum _c.uint32_t {
     TemporalBv = 0,
     CachedBv = 1,
     Obstacles = 2,
@@ -1553,7 +1552,7 @@ PxControllerDebugRenderFlags_Set :: bit_set[PxControllerDebugRenderFlag; _c.uint
 
 
 /// Defines the number of bits per subgrid pixel
-PxSdfBitsPerSubgridPixel :: enum {
+PxSdfBitsPerSubgridPixel :: enum _c.int32_t {
     /// 8 bit per subgrid pixel (values will be stored as normalized integers)
     E8BitPerPixel = 1,
     /// 16 bit per subgrid pixel (values will be stored as normalized integers)
@@ -1563,7 +1562,7 @@ PxSdfBitsPerSubgridPixel :: enum {
 }
 
 /// Flags which describe the format and behavior of a convex mesh.
-PxConvexFlag :: enum {
+PxConvexFlag :: enum _c.int32_t {
     E16BitIndices = 0,
     ComputeConvex = 1,
     CheckZeroAreaTriangles = 2,
@@ -1580,7 +1579,7 @@ PxConvexFlags_Set :: bit_set[PxConvexFlag; _c.uint16_t]
 
 
 /// Defines the tetrahedron structure of a mesh.
-PxMeshFormat :: enum {
+PxMeshFormat :: enum _c.int32_t {
     /// Normal tetmesh with arbitrary tetrahedra
     TetMesh = 0,
     /// 6 tetrahedra in a row will form a hexahedron
@@ -1588,7 +1587,7 @@ PxMeshFormat :: enum {
 }
 
 /// Desired build strategy for PxMeshMidPhase::eBVH34
-PxBVH34BuildStrategy :: enum {
+PxBVH34BuildStrategy :: enum _c.int32_t {
     /// Fast build strategy. Fast build speed, good runtime performance in most cases. Recommended for runtime mesh cooking.
     Fast = 0,
     /// Default build strategy. Medium build speed, good runtime performance in all cases.
@@ -1599,7 +1598,7 @@ PxBVH34BuildStrategy :: enum {
 }
 
 /// Result from convex cooking.
-PxConvexMeshCookingResult :: enum {
+PxConvexMeshCookingResult :: enum _c.int32_t {
     /// Convex mesh cooking succeeded.
     Success = 0,
     /// Convex mesh cooking failed, algorithm couldn't find 4 initial vertices without a small triangle.
@@ -1613,14 +1612,14 @@ PxConvexMeshCookingResult :: enum {
 }
 
 /// Enumeration for convex mesh cooking algorithms.
-PxConvexMeshCookingType :: enum {
+PxConvexMeshCookingType :: enum _c.int32_t {
     /// The Quickhull algorithm constructs the hull from the given input points. The resulting hull
     /// will only contain a subset of the input points.
     Quickhull = 0,
 }
 
 /// Result from triangle mesh cooking
-PxTriangleMeshCookingResult :: enum {
+PxTriangleMeshCookingResult :: enum _c.int32_t {
     /// Everything is A-OK.
     Success = 0,
     /// a triangle is too large for well-conditioned results. Tessellate the mesh for better behavior, see the user guide section on cooking for more details.
@@ -1630,7 +1629,7 @@ PxTriangleMeshCookingResult :: enum {
 }
 
 /// Enum for the set of mesh pre-processing parameters.
-PxMeshPreprocessingFlag :: enum {
+PxMeshPreprocessingFlag :: enum _c.int32_t {
     WeldVertices = 0,
     DisableCleanMesh = 1,
     DisableActiveEdgesPrecompute = 2,
@@ -1647,7 +1646,7 @@ PxMeshPreprocessingFlags_Set :: bit_set[PxMeshPreprocessingFlag; _c.uint32_t]
 ///
 /// Users which want to create their own custom constraint types should choose an ID larger or equal to eNEXT_FREE_ID
 /// and not eINVALID_ID.
-PxConstraintExtIDs :: enum {
+PxConstraintExtIDs :: enum _c.int32_t {
     Joint = 0,
     VehicleSuspLimitDeprecated = 1,
     VehicleStickyTyreDeprecated = 2,
@@ -1657,7 +1656,7 @@ PxConstraintExtIDs :: enum {
 }
 
 /// an enumeration of PhysX' built-in joint types
-PxJointConcreteType :: enum {
+PxJointConcreteType :: enum _c.int32_t {
     Spherical = 256,
     Revolute = 257,
     Prismatic = 258,
@@ -1671,14 +1670,14 @@ PxJointConcreteType :: enum {
 }
 
 /// an enumeration for specifying one or other of the actors referenced by a joint
-PxJointActorIndex :: enum {
+PxJointActorIndex :: enum _c.int32_t {
     Actor0 = 0,
     Actor1 = 1,
     Count = 2,
 }
 
 /// flags for configuring the drive of a PxDistanceJoint
-PxDistanceJointFlag :: enum {
+PxDistanceJointFlag :: enum _c.int32_t {
     MaxDistanceEnabled = 1,
     MinDistanceEnabled = 2,
     SpringEnabled = 3,
@@ -1689,7 +1688,7 @@ PxDistanceJointFlags_Set :: bit_set[PxDistanceJointFlag; _c.uint16_t]
 
 
 /// Flags specific to the prismatic joint.
-PxPrismaticJointFlag :: enum {
+PxPrismaticJointFlag :: enum _c.int32_t {
     LimitEnabled = 1,
 }
 
@@ -1698,7 +1697,7 @@ PxPrismaticJointFlags_Set :: bit_set[PxPrismaticJointFlag; _c.uint16_t]
 
 
 /// Flags specific to the Revolute Joint.
-PxRevoluteJointFlag :: enum {
+PxRevoluteJointFlag :: enum _c.int32_t {
     LimitEnabled = 0,
     DriveEnabled = 1,
     DriveFreespin = 2,
@@ -1709,7 +1708,7 @@ PxRevoluteJointFlags_Set :: bit_set[PxRevoluteJointFlag; _c.uint16_t]
 
 
 /// Flags specific to the spherical joint.
-PxSphericalJointFlag :: enum {
+PxSphericalJointFlag :: enum _c.int32_t {
     LimitEnabled = 1,
 }
 
@@ -1718,7 +1717,7 @@ PxSphericalJointFlags_Set :: bit_set[PxSphericalJointFlag; _c.uint16_t]
 
 
 /// Used to specify one of the degrees of freedom of  a D6 joint.
-PxD6Axis :: enum {
+PxD6Axis :: enum _c.int32_t {
     /// motion along the X axis
     X = 0,
     /// motion along the Y axis
@@ -1735,7 +1734,7 @@ PxD6Axis :: enum {
 }
 
 /// Used to specify the range of motions allowed for a degree of freedom in a D6 joint.
-PxD6Motion :: enum {
+PxD6Motion :: enum _c.int32_t {
     /// The DOF is locked, it does not allow relative motion.
     Locked = 0,
     /// The DOF is limited, it only allows motion within a specific range.
@@ -1755,7 +1754,7 @@ PxD6Motion :: enum {
 /// A linear axis is affected by drive only if the corresponding drive flag is set. There are two possible models
 /// for angular drive: swing/twist, which may be used to drive one or more angular degrees of freedom, or slerp,
 /// which may only be used to drive all three angular degrees simultaneously.
-PxD6Drive :: enum {
+PxD6Drive :: enum _c.int32_t {
     /// drive along the X-axis
     X = 0,
     /// drive along the Y-axis
@@ -1772,7 +1771,7 @@ PxD6Drive :: enum {
 }
 
 /// flags for configuring the drive model of a PxD6Joint
-PxD6JointDriveFlag :: enum {
+PxD6JointDriveFlag :: enum _c.int32_t {
     Acceleration = 0,
 }
 
@@ -1781,7 +1780,7 @@ PxD6JointDriveFlags_Set :: bit_set[PxD6JointDriveFlag; _c.uint32_t]
 
 
 /// Collision filtering operations.
-PxFilterOp :: enum {
+PxFilterOp :: enum _c.int32_t {
     PxFilteropAnd = 0,
     PxFilteropOr = 1,
     PxFilteropXor = 2,
@@ -1797,13 +1796,13 @@ PxFilterOp :: enum {
 /// a) wait until a work task signals the end of the spin-wait period.
 /// b) yield the thread by providing a hint to reschedule thread execution, thereby allowing other threads to run.
 /// c) yield the processor by informing it that it is waiting for work and requesting it to more efficiently use compute resources.
-PxDefaultCpuDispatcherWaitForWorkMode :: enum {
+PxDefaultCpuDispatcherWaitForWorkMode :: enum _c.int32_t {
     WaitForWork = 0,
     YieldThread = 1,
     YieldProcessor = 2,
 }
 
-PxBatchQueryStatus :: enum {
+PxBatchQueryStatus :: enum _c.int32_t {
     /// This is the initial state before a query starts.
     Pending = 0,
     /// The query is finished; results have been written into the result and hit buffers.
@@ -1813,7 +1812,7 @@ PxBatchQueryStatus :: enum {
 }
 
 /// types of instrumentation that PVD can do.
-PxPvdInstrumentationFlag :: enum {
+PxPvdInstrumentationFlag :: enum _c.int32_t {
     Debug = 0,
     Profile = 1,
     Memory = 2,
@@ -1824,68 +1823,41 @@ PxPvdInstrumentationFlag_All :: PxPvdInstrumentationFlag.Debug | PxPvdInstrument
 PxPvdInstrumentationFlags_Set :: bit_set[PxPvdInstrumentationFlag; _c.uint8_t]
 
 
-PxMat34 :: distinct rawptr 
+PxMat34 :: distinct rawptr
 
 PxAllocatorCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxAssertHandler :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxFoundation :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxAllocator :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxAllocator :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxAllocator) == 1, "Wrong size for type PxAllocator, expected 1 got %v", size_of(PxAllocator))
-}
-
-PxRawAllocator :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxRawAllocator :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxRawAllocator) == 1, "Wrong size for type PxRawAllocator, expected 1 got %v", size_of(PxRawAllocator))
-}
-
-PxVirtualAllocatorCallback :: struct {
-    vtable_: rawptr,
 };
 
-PxVirtualAllocator :: struct {
-// false false
-// []
-// 0
-    _private_mCallback: ^PxVirtualAllocatorCallback,
-    _private_mGroup: _c.int32_t,
-}
-@(test)
-test_layout_PxVirtualAllocator :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxVirtualAllocator) == 16, "Wrong size for type PxVirtualAllocator, expected 16 got %v", size_of(PxVirtualAllocator))
+PxRawAllocator :: struct {
+};
+
+PxVirtualAllocatorCallback :: struct {
+    _pad0: [8]u8,
 }
 
+
+PxVirtualAllocator :: struct {
+    _pad0: [16]u8,
+}
+
+
 PxUserAllocated :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxUserAllocated :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxUserAllocated) == 1, "Wrong size for type PxUserAllocated, expected 1 got %v", size_of(PxUserAllocated))
-}
+};
 
 PxTempAllocatorChunk :: struct #raw_union {
     mNext: ^PxTempAllocatorChunk,
@@ -1894,438 +1866,217 @@ PxTempAllocatorChunk :: struct #raw_union {
 };
 
 PxTempAllocator :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxTempAllocator :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTempAllocator) == 1, "Wrong size for type PxTempAllocator, expected 1 got %v", size_of(PxTempAllocator))
-}
+};
 
-PxLogTwo :: distinct rawptr 
+PxLogTwo :: distinct rawptr
 
-PxUnConst :: distinct rawptr 
+PxUnConst :: distinct rawptr
 
 PxBitAndByte :: struct {
-// false false
-// []
-// 0
-    _private_mData: _c.uint8_t,
+    _pad0: [1]u8,
 }
-@(test)
-test_layout_PxBitAndByte :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBitAndByte) == 1, "Wrong size for type PxBitAndByte, expected 1 got %v", size_of(PxBitAndByte))
-}
+
 
 PxBitMap :: struct {
-// false false
-// []
-// 0
-    _private_mMap: ^_c.uint32_t,
-    _private_mWordCount: _c.uint32_t,
-}
-@(test)
-test_layout_PxBitMap :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBitMap) == 16, "Wrong size for type PxBitMap, expected 16 got %v", size_of(PxBitMap))
+    _pad0: [16]u8,
 }
 
+
 PxVec3 :: struct {
-// false false
-// []
-// 0
     x: _c.float,
     y: _c.float,
     z: _c.float,
 }
-@(test)
-test_layout_PxVec3 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxVec3, y) == 4, "Wrong offset for PxVec3.y, expected 4 got %v", offset_of(PxVec3, y))
-    testing.expectf(t, offset_of(PxVec3, z) == 8, "Wrong offset for PxVec3.z, expected 8 got %v", offset_of(PxVec3, z))
-    testing.expectf(t, size_of(PxVec3) == 12, "Wrong size for type PxVec3, expected 12 got %v", size_of(PxVec3))
-}
+
 
 PxVec3Padded :: struct {
-// false false
-// ["PxVec3"]
     using _: PxVec3,
-// 12
-    _pad3: [0]u8,
     padding: _c.uint32_t,
 }
-@(test)
-test_layout_PxVec3Padded :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxVec3Padded, padding) == 12, "Wrong offset for PxVec3Padded.padding, expected 12 got %v", offset_of(PxVec3Padded, padding))
-    testing.expectf(t, size_of(PxVec3Padded) == 16, "Wrong size for type PxVec3Padded, expected 16 got %v", size_of(PxVec3Padded))
-}
+
 
 PxQuat :: struct {
-// false false
-// []
-// 0
     x: _c.float,
     y: _c.float,
     z: _c.float,
     w: _c.float,
 }
-@(test)
-test_layout_PxQuat :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxQuat, y) == 4, "Wrong offset for PxQuat.y, expected 4 got %v", offset_of(PxQuat, y))
-    testing.expectf(t, offset_of(PxQuat, z) == 8, "Wrong offset for PxQuat.z, expected 8 got %v", offset_of(PxQuat, z))
-    testing.expectf(t, offset_of(PxQuat, w) == 12, "Wrong offset for PxQuat.w, expected 12 got %v", offset_of(PxQuat, w))
-    testing.expectf(t, size_of(PxQuat) == 16, "Wrong size for type PxQuat, expected 16 got %v", size_of(PxQuat))
-}
+
 
 PxTransform :: struct {
-// false false
-// []
-// 0
     q: PxQuat,
     p: PxVec3,
 }
-@(test)
-test_layout_PxTransform :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTransform, p) == 16, "Wrong offset for PxTransform.p, expected 16 got %v", offset_of(PxTransform, p))
-    testing.expectf(t, size_of(PxTransform) == 28, "Wrong size for type PxTransform, expected 28 got %v", size_of(PxTransform))
-}
+
 
 PxTransformPadded :: struct {
-// false false
-// []
-// 0
     transform: PxTransform,
     padding: _c.uint32_t,
 }
-@(test)
-test_layout_PxTransformPadded :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTransformPadded, padding) == 28, "Wrong offset for PxTransformPadded.padding, expected 28 got %v", offset_of(PxTransformPadded, padding))
-    testing.expectf(t, size_of(PxTransformPadded) == 32, "Wrong size for type PxTransformPadded, expected 32 got %v", size_of(PxTransformPadded))
-}
+
 
 PxMat33 :: struct {
-// false false
-// []
-// 0
     column0: PxVec3,
     column1: PxVec3,
     column2: PxVec3,
 }
-@(test)
-test_layout_PxMat33 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMat33, column1) == 12, "Wrong offset for PxMat33.column1, expected 12 got %v", offset_of(PxMat33, column1))
-    testing.expectf(t, offset_of(PxMat33, column2) == 24, "Wrong offset for PxMat33.column2, expected 24 got %v", offset_of(PxMat33, column2))
-    testing.expectf(t, size_of(PxMat33) == 36, "Wrong size for type PxMat33, expected 36 got %v", size_of(PxMat33))
-}
+
 
 PxBounds3 :: struct {
-// false false
-// []
-// 0
     minimum: PxVec3,
     maximum: PxVec3,
 }
-@(test)
-test_layout_PxBounds3 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBounds3, maximum) == 12, "Wrong offset for PxBounds3.maximum, expected 12 got %v", offset_of(PxBounds3, maximum))
-    testing.expectf(t, size_of(PxBounds3) == 24, "Wrong size for type PxBounds3, expected 24 got %v", size_of(PxBounds3))
-}
+
 
 PxErrorCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxAllocationListener :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBroadcastingAllocator :: struct {
-// true true
-// ["PxAllocatorCallback"]
     using _: PxAllocatorCallback,
-// 0
-    _private_mAllocator: ^PxAllocatorCallback,
-    _private_mError: ^PxErrorCallback,
-    _private_mListeners: [16]^PxAllocationListener,
-    _private_mBufferUsed: _c.bool,
-    _private_mData: ^PxAllocationListener,
-    _private_mSize: _c.uint32_t,
-    _private_mCapacity: _c.uint32_t,
+    _pad1: [168]u8,
 }
-@(test)
-test_layout_PxBroadcastingAllocator :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBroadcastingAllocator) == 176, "Wrong size for type PxBroadcastingAllocator, expected 176 got %v", size_of(PxBroadcastingAllocator))
-}
+
 
 PxBroadcastingErrorCallback :: struct {
-// true true
-// ["PxErrorCallback"]
     using _: PxErrorCallback,
-// 0
-    _private_mListeners: [16]^PxErrorCallback,
-    _private_mBufferUsed: _c.bool,
-    _private_mData: ^PxErrorCallback,
-    _private_mSize: _c.uint32_t,
-    _private_mCapacity: _c.uint32_t,
-}
-@(test)
-test_layout_PxBroadcastingErrorCallback :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBroadcastingErrorCallback) == 160, "Wrong size for type PxBroadcastingErrorCallback, expected 160 got %v", size_of(PxBroadcastingErrorCallback))
+    _pad1: [152]u8,
 }
 
-PxHash :: distinct rawptr 
+
+PxHash :: distinct rawptr
 
 PxInputStream :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxInputData :: struct {
     using _: PxInputStream,
-};
+}
+
 
 PxOutputStream :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxVec4 :: struct {
-// false false
-// []
-// 0
     x: _c.float,
     y: _c.float,
     z: _c.float,
     w: _c.float,
 }
-@(test)
-test_layout_PxVec4 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxVec4, y) == 4, "Wrong offset for PxVec4.y, expected 4 got %v", offset_of(PxVec4, y))
-    testing.expectf(t, offset_of(PxVec4, z) == 8, "Wrong offset for PxVec4.z, expected 8 got %v", offset_of(PxVec4, z))
-    testing.expectf(t, offset_of(PxVec4, w) == 12, "Wrong offset for PxVec4.w, expected 12 got %v", offset_of(PxVec4, w))
-    testing.expectf(t, size_of(PxVec4) == 16, "Wrong size for type PxVec4, expected 16 got %v", size_of(PxVec4))
-}
+
 
 PxMat44 :: struct {
-// false false
-// []
-// 0
     column0: PxVec4,
     column1: PxVec4,
     column2: PxVec4,
     column3: PxVec4,
 }
-@(test)
-test_layout_PxMat44 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMat44, column1) == 16, "Wrong offset for PxMat44.column1, expected 16 got %v", offset_of(PxMat44, column1))
-    testing.expectf(t, offset_of(PxMat44, column2) == 32, "Wrong offset for PxMat44.column2, expected 32 got %v", offset_of(PxMat44, column2))
-    testing.expectf(t, offset_of(PxMat44, column3) == 48, "Wrong offset for PxMat44.column3, expected 48 got %v", offset_of(PxMat44, column3))
-    testing.expectf(t, size_of(PxMat44) == 64, "Wrong size for type PxMat44, expected 64 got %v", size_of(PxMat44))
-}
+
 
 PxPlane :: struct {
-// false false
-// []
-// 0
     n: PxVec3,
     d: _c.float,
 }
-@(test)
-test_layout_PxPlane :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxPlane, d) == 12, "Wrong offset for PxPlane.d, expected 12 got %v", offset_of(PxPlane, d))
-    testing.expectf(t, size_of(PxPlane) == 16, "Wrong size for type PxPlane, expected 16 got %v", size_of(PxPlane))
-}
+
 
 Interpolation :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_Interpolation :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(Interpolation) == 1, "Wrong size for type Interpolation, expected 1 got %v", size_of(Interpolation))
-}
-
-PxMutexImpl :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxMutexImpl :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxMutexImpl) == 1, "Wrong size for type PxMutexImpl, expected 1 got %v", size_of(PxMutexImpl))
-}
-
-PxReadWriteLock :: struct {
-// false false
-// []
-// 0
-    _private_mImpl: rawptr,
-}
-@(test)
-test_layout_PxReadWriteLock :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxReadWriteLock) == 8, "Wrong size for type PxReadWriteLock, expected 8 got %v", size_of(PxReadWriteLock))
-}
-
-PxProfilerCallback :: struct {
-    vtable_: rawptr,
 };
 
+PxMutexImpl :: struct {
+};
+
+PxReadWriteLock :: struct {
+    _pad0: [8]u8,
+}
+
+
+PxProfilerCallback :: struct {
+    _pad0: [8]u8,
+}
+
+
 PxProfileScoped :: struct {
-// false false
-// []
-// 0
     mCallback: ^PxProfilerCallback,
     mEventName: ^_c.char,
     mProfilerData: rawptr,
     mContextId: _c.uint64_t,
     mDetached: _c.bool,
+    _pad5: [7]u8,
 }
-@(test)
-test_layout_PxProfileScoped :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxProfileScoped, mEventName) == 8, "Wrong offset for PxProfileScoped.mEventName, expected 8 got %v", offset_of(PxProfileScoped, mEventName))
-    testing.expectf(t, offset_of(PxProfileScoped, mProfilerData) == 16, "Wrong offset for PxProfileScoped.mProfilerData, expected 16 got %v", offset_of(PxProfileScoped, mProfilerData))
-    testing.expectf(t, offset_of(PxProfileScoped, mContextId) == 24, "Wrong offset for PxProfileScoped.mContextId, expected 24 got %v", offset_of(PxProfileScoped, mContextId))
-    testing.expectf(t, offset_of(PxProfileScoped, mDetached) == 32, "Wrong offset for PxProfileScoped.mDetached, expected 32 got %v", offset_of(PxProfileScoped, mDetached))
-    testing.expectf(t, size_of(PxProfileScoped) == 40, "Wrong size for type PxProfileScoped, expected 40 got %v", size_of(PxProfileScoped))
-}
+
 
 PxSListEntry :: struct #align(16){
-// false false
-// []
-// 0
-    _private_mNext: ^PxSListEntry,
+    _pad0: [16]u8,
 }
-@(test)
-test_layout_PxSListEntry :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSListEntry) == 16, "Wrong size for type PxSListEntry, expected 16 got %v", size_of(PxSListEntry))
-}
+
 
 PxSListImpl :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxSListImpl :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSListImpl) == 1, "Wrong size for type PxSListImpl, expected 1 got %v", size_of(PxSListImpl))
-}
-
-PxSyncImpl :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxSyncImpl :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSyncImpl) == 1, "Wrong size for type PxSyncImpl, expected 1 got %v", size_of(PxSyncImpl))
-}
-
-PxRunnable :: struct {
-    vtable_: rawptr,
 };
 
+PxSyncImpl :: struct {
+};
+
+PxRunnable :: struct {
+    _pad0: [8]u8,
+}
+
+
 PxCounterFrequencyToTensOfNanos :: struct {
-// false false
-// []
-// 0
     mNumerator: _c.uint64_t,
     mDenominator: _c.uint64_t,
 }
-@(test)
-test_layout_PxCounterFrequencyToTensOfNanos :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCounterFrequencyToTensOfNanos, mDenominator) == 8, "Wrong offset for PxCounterFrequencyToTensOfNanos.mDenominator, expected 8 got %v", offset_of(PxCounterFrequencyToTensOfNanos, mDenominator))
-    testing.expectf(t, size_of(PxCounterFrequencyToTensOfNanos) == 16, "Wrong size for type PxCounterFrequencyToTensOfNanos, expected 16 got %v", size_of(PxCounterFrequencyToTensOfNanos))
-}
+
 
 PxTime :: struct {
-// false false
-// []
-// 0
-    _private_mLastTime: _c.double,
-}
-@(test)
-test_layout_PxTime :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTime) == 8, "Wrong size for type PxTime, expected 8 got %v", size_of(PxTime))
+    _pad0: [8]u8,
 }
 
+
 PxVec2 :: struct {
-// false false
-// []
-// 0
     x: _c.float,
     y: _c.float,
 }
-@(test)
-test_layout_PxVec2 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxVec2, y) == 4, "Wrong offset for PxVec2.y, expected 4 got %v", offset_of(PxVec2, y))
-    testing.expectf(t, size_of(PxVec2) == 8, "Wrong size for type PxVec2, expected 8 got %v", size_of(PxVec2))
-}
+
 
 PxStridedData :: struct {
-// false false
-// []
-// 0
     stride: _c.uint32_t,
     _pad1: [4]u8,
     data: rawptr,
 }
-@(test)
-test_layout_PxStridedData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxStridedData, data) == 8, "Wrong offset for PxStridedData.data, expected 8 got %v", offset_of(PxStridedData, data))
-    testing.expectf(t, size_of(PxStridedData) == 16, "Wrong size for type PxStridedData, expected 16 got %v", size_of(PxStridedData))
-}
+
 
 PxBoundedData :: struct {
-// false false
-// ["PxStridedData"]
     using _: PxStridedData,
-// 16
-    _pad3: [0]u8,
     count: _c.uint32_t,
-}
-@(test)
-test_layout_PxBoundedData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBoundedData, count) == 16, "Wrong offset for PxBoundedData.count, expected 16 got %v", offset_of(PxBoundedData, count))
-    testing.expectf(t, size_of(PxBoundedData) == 24, "Wrong size for type PxBoundedData, expected 24 got %v", size_of(PxBoundedData))
+    _pad5: [4]u8,
 }
 
+
 PxDebugPoint :: struct {
-// false false
-// []
-// 0
     pos: PxVec3,
     color: _c.uint32_t,
 }
-@(test)
-test_layout_PxDebugPoint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDebugPoint, color) == 12, "Wrong offset for PxDebugPoint.color, expected 12 got %v", offset_of(PxDebugPoint, color))
-    testing.expectf(t, size_of(PxDebugPoint) == 16, "Wrong size for type PxDebugPoint, expected 16 got %v", size_of(PxDebugPoint))
-}
+
 
 PxDebugLine :: struct {
-// false false
-// []
-// 0
     pos0: PxVec3,
     color0: _c.uint32_t,
     pos1: PxVec3,
     color1: _c.uint32_t,
 }
-@(test)
-test_layout_PxDebugLine :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDebugLine, color0) == 12, "Wrong offset for PxDebugLine.color0, expected 12 got %v", offset_of(PxDebugLine, color0))
-    testing.expectf(t, offset_of(PxDebugLine, pos1) == 16, "Wrong offset for PxDebugLine.pos1, expected 16 got %v", offset_of(PxDebugLine, pos1))
-    testing.expectf(t, offset_of(PxDebugLine, color1) == 28, "Wrong offset for PxDebugLine.color1, expected 28 got %v", offset_of(PxDebugLine, color1))
-    testing.expectf(t, size_of(PxDebugLine) == 32, "Wrong size for type PxDebugLine, expected 32 got %v", size_of(PxDebugLine))
-}
+
 
 PxDebugTriangle :: struct {
-// false false
-// []
-// 0
     pos0: PxVec3,
     color0: _c.uint32_t,
     pos1: PxVec3,
@@ -2333,149 +2084,114 @@ PxDebugTriangle :: struct {
     pos2: PxVec3,
     color2: _c.uint32_t,
 }
-@(test)
-test_layout_PxDebugTriangle :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDebugTriangle, color0) == 12, "Wrong offset for PxDebugTriangle.color0, expected 12 got %v", offset_of(PxDebugTriangle, color0))
-    testing.expectf(t, offset_of(PxDebugTriangle, pos1) == 16, "Wrong offset for PxDebugTriangle.pos1, expected 16 got %v", offset_of(PxDebugTriangle, pos1))
-    testing.expectf(t, offset_of(PxDebugTriangle, color1) == 28, "Wrong offset for PxDebugTriangle.color1, expected 28 got %v", offset_of(PxDebugTriangle, color1))
-    testing.expectf(t, offset_of(PxDebugTriangle, pos2) == 32, "Wrong offset for PxDebugTriangle.pos2, expected 32 got %v", offset_of(PxDebugTriangle, pos2))
-    testing.expectf(t, offset_of(PxDebugTriangle, color2) == 44, "Wrong offset for PxDebugTriangle.color2, expected 44 got %v", offset_of(PxDebugTriangle, color2))
-    testing.expectf(t, size_of(PxDebugTriangle) == 48, "Wrong size for type PxDebugTriangle, expected 48 got %v", size_of(PxDebugTriangle))
-}
+
 
 PxDebugText :: struct {
-// false false
-// []
-// 0
     position: PxVec3,
     size: _c.float,
     color: _c.uint32_t,
     _pad3: [4]u8,
     string: ^_c.char,
 }
-@(test)
-test_layout_PxDebugText :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDebugText, size) == 12, "Wrong offset for PxDebugText.size, expected 12 got %v", offset_of(PxDebugText, size))
-    testing.expectf(t, offset_of(PxDebugText, color) == 16, "Wrong offset for PxDebugText.color, expected 16 got %v", offset_of(PxDebugText, color))
-    testing.expectf(t, offset_of(PxDebugText, string) == 24, "Wrong offset for PxDebugText.string, expected 24 got %v", offset_of(PxDebugText, string))
-    testing.expectf(t, size_of(PxDebugText) == 32, "Wrong size for type PxDebugText, expected 32 got %v", size_of(PxDebugText))
-}
+
 
 PxRenderBuffer :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxProcessPxBaseCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSerializationContext :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxDeserializationContext :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-    _private_mExtraDataAddress: ^_c.uint8_t,
+    _pad0: [16]u8,
 }
-@(test)
-test_layout_PxDeserializationContext :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxDeserializationContext) == 16, "Wrong size for type PxDeserializationContext, expected 16 got %v", size_of(PxDeserializationContext))
-}
+
 
 PxSerializationRegistry :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxCollection :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
 
-PxTypeInfo :: distinct rawptr 
 
-PxFEMSoftBodyMaterial :: distinct rawptr 
+PxTypeInfo :: distinct rawptr
 
-PxFEMClothMaterial :: distinct rawptr 
+PxFEMSoftBodyMaterial :: distinct rawptr
 
-PxPBDMaterial :: distinct rawptr 
+PxFEMClothMaterial :: distinct rawptr
 
-PxFLIPMaterial :: distinct rawptr 
+PxPBDMaterial :: distinct rawptr
 
-PxMPMMaterial :: distinct rawptr 
+PxFLIPMaterial :: distinct rawptr
 
-PxCustomMaterial :: distinct rawptr 
+PxMPMMaterial :: distinct rawptr
 
-PxBVH33TriangleMesh :: distinct rawptr 
+PxCustomMaterial :: distinct rawptr
 
-PxParticleSystem :: distinct rawptr 
+PxBVH33TriangleMesh :: distinct rawptr
 
-PxPBDParticleSystem :: distinct rawptr 
+PxParticleSystem :: distinct rawptr
 
-PxFLIPParticleSystem :: distinct rawptr 
+PxPBDParticleSystem :: distinct rawptr
 
-PxMPMParticleSystem :: distinct rawptr 
+PxFLIPParticleSystem :: distinct rawptr
 
-PxCustomParticleSystem :: distinct rawptr 
+PxMPMParticleSystem :: distinct rawptr
 
-PxSoftBody :: distinct rawptr 
+PxCustomParticleSystem :: distinct rawptr
 
-PxFEMCloth :: distinct rawptr 
+PxSoftBody :: distinct rawptr
 
-PxHairSystem :: distinct rawptr 
+PxFEMCloth :: distinct rawptr
 
-PxParticleBuffer :: distinct rawptr 
+PxHairSystem :: distinct rawptr
 
-PxParticleAndDiffuseBuffer :: distinct rawptr 
+PxParticleBuffer :: distinct rawptr
 
-PxParticleClothBuffer :: distinct rawptr 
+PxParticleAndDiffuseBuffer :: distinct rawptr
 
-PxParticleRigidBuffer :: distinct rawptr 
+PxParticleClothBuffer :: distinct rawptr
+
+PxParticleRigidBuffer :: distinct rawptr
 
 PxBase :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-    _private_mConcreteType: _c.uint16_t,
-    _private_mBaseFlags: _c.uint16_t,
-    _private_mBuiltInRefCount: _c.uint32_t,
+    _pad0: [16]u8,
 }
-@(test)
-test_layout_PxBase :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBase) == 16, "Wrong size for type PxBase, expected 16 got %v", size_of(PxBase))
-}
+
 
 PxRefCounted :: struct {
     using _: PxBase,
-};
+}
+
 
 PxTolerancesScale :: struct {
-// false false
-// []
-// 0
     length: _c.float,
     speed: _c.float,
 }
-@(test)
-test_layout_PxTolerancesScale :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTolerancesScale, speed) == 4, "Wrong offset for PxTolerancesScale.speed, expected 4 got %v", offset_of(PxTolerancesScale, speed))
-    testing.expectf(t, size_of(PxTolerancesScale) == 8, "Wrong size for type PxTolerancesScale, expected 8 got %v", size_of(PxTolerancesScale))
-}
+
 
 PxStringTable :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSerializer :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxMetaDataEntry :: struct {
-// false false
-// []
-// 0
     type: ^_c.char,
     name: ^_c.char,
     offset: _c.uint32_t,
@@ -2485,625 +2201,355 @@ PxMetaDataEntry :: struct {
     flags: _c.uint32_t,
     alignment: _c.uint32_t,
 }
-@(test)
-test_layout_PxMetaDataEntry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMetaDataEntry, name) == 8, "Wrong offset for PxMetaDataEntry.name, expected 8 got %v", offset_of(PxMetaDataEntry, name))
-    testing.expectf(t, offset_of(PxMetaDataEntry, offset) == 16, "Wrong offset for PxMetaDataEntry.offset, expected 16 got %v", offset_of(PxMetaDataEntry, offset))
-    testing.expectf(t, offset_of(PxMetaDataEntry, size) == 20, "Wrong offset for PxMetaDataEntry.size, expected 20 got %v", offset_of(PxMetaDataEntry, size))
-    testing.expectf(t, offset_of(PxMetaDataEntry, count) == 24, "Wrong offset for PxMetaDataEntry.count, expected 24 got %v", offset_of(PxMetaDataEntry, count))
-    testing.expectf(t, offset_of(PxMetaDataEntry, offsetSize) == 28, "Wrong offset for PxMetaDataEntry.offsetSize, expected 28 got %v", offset_of(PxMetaDataEntry, offsetSize))
-    testing.expectf(t, offset_of(PxMetaDataEntry, flags) == 32, "Wrong offset for PxMetaDataEntry.flags, expected 32 got %v", offset_of(PxMetaDataEntry, flags))
-    testing.expectf(t, offset_of(PxMetaDataEntry, alignment) == 36, "Wrong offset for PxMetaDataEntry.alignment, expected 36 got %v", offset_of(PxMetaDataEntry, alignment))
-    testing.expectf(t, size_of(PxMetaDataEntry) == 40, "Wrong size for type PxMetaDataEntry, expected 40 got %v", size_of(PxMetaDataEntry))
-}
+
 
 PxInsertionCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxTaskManager :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxCpuDispatcher :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBaseTask :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-    _private_mContextID: _c.uint64_t,
-    _private_mTm: ^PxTaskManager,
+    _pad0: [24]u8,
 }
-@(test)
-test_layout_PxBaseTask :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBaseTask) == 24, "Wrong size for type PxBaseTask, expected 24 got %v", size_of(PxBaseTask))
-}
+
 
 PxTask :: struct {
-// true true
-// ["PxBaseTask"]
     using _: PxBaseTask,
-// 24
-    _private_mTaskID: _c.uint32_t,
+    _pad1: [8]u8,
 }
-@(test)
-test_layout_PxTask :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTask) == 32, "Wrong size for type PxTask, expected 32 got %v", size_of(PxTask))
-}
+
 
 PxLightCpuTask :: struct {
-// true true
-// ["PxBaseTask"]
     using _: PxBaseTask,
-// 24
-    _private_mCont: ^PxBaseTask,
-    _private_mRefCount: _c.int32_t,
+    _pad1: [16]u8,
 }
-@(test)
-test_layout_PxLightCpuTask :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxLightCpuTask) == 40, "Wrong size for type PxLightCpuTask, expected 40 got %v", size_of(PxLightCpuTask))
-}
+
 
 PxGeometry :: struct {
-// false false
-// []
-// 0
-    _private_mType: _c.int32_t,
+    _pad0: [4]u8,
     mTypePadding: _c.float,
 }
-@(test)
-test_layout_PxGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGeometry, mTypePadding) == 4, "Wrong offset for PxGeometry.mTypePadding, expected 4 got %v", offset_of(PxGeometry, mTypePadding))
-    testing.expectf(t, size_of(PxGeometry) == 8, "Wrong size for type PxGeometry, expected 8 got %v", size_of(PxGeometry))
-}
+
 
 PxBoxGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     halfExtents: PxVec3,
 }
-@(test)
-test_layout_PxBoxGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBoxGeometry, halfExtents) == 8, "Wrong offset for PxBoxGeometry.halfExtents, expected 8 got %v", offset_of(PxBoxGeometry, halfExtents))
-    testing.expectf(t, size_of(PxBoxGeometry) == 20, "Wrong size for type PxBoxGeometry, expected 20 got %v", size_of(PxBoxGeometry))
-}
+
 
 PxBVHRaycastCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBVHOverlapCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBVHTraversalCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBVH :: struct {
     using _: PxBase,
-};
+}
+
 
 PxCapsuleGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     radius: _c.float,
     halfHeight: _c.float,
 }
-@(test)
-test_layout_PxCapsuleGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCapsuleGeometry, radius) == 8, "Wrong offset for PxCapsuleGeometry.radius, expected 8 got %v", offset_of(PxCapsuleGeometry, radius))
-    testing.expectf(t, offset_of(PxCapsuleGeometry, halfHeight) == 12, "Wrong offset for PxCapsuleGeometry.halfHeight, expected 12 got %v", offset_of(PxCapsuleGeometry, halfHeight))
-    testing.expectf(t, size_of(PxCapsuleGeometry) == 16, "Wrong size for type PxCapsuleGeometry, expected 16 got %v", size_of(PxCapsuleGeometry))
-}
+
 
 PxHullPolygon :: struct {
-// false false
-// []
-// 0
     mPlane: [4]_c.float,
     mNbVerts: _c.uint16_t,
     mIndexBase: _c.uint16_t,
 }
-@(test)
-test_layout_PxHullPolygon :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxHullPolygon, mNbVerts) == 16, "Wrong offset for PxHullPolygon.mNbVerts, expected 16 got %v", offset_of(PxHullPolygon, mNbVerts))
-    testing.expectf(t, offset_of(PxHullPolygon, mIndexBase) == 18, "Wrong offset for PxHullPolygon.mIndexBase, expected 18 got %v", offset_of(PxHullPolygon, mIndexBase))
-    testing.expectf(t, size_of(PxHullPolygon) == 20, "Wrong size for type PxHullPolygon, expected 20 got %v", size_of(PxHullPolygon))
-}
+
 
 PxConvexMesh :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxMeshScale :: struct {
-// false false
-// []
-// 0
     scale: PxVec3,
     rotation: PxQuat,
 }
-@(test)
-test_layout_PxMeshScale :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMeshScale, rotation) == 12, "Wrong offset for PxMeshScale.rotation, expected 12 got %v", offset_of(PxMeshScale, rotation))
-    testing.expectf(t, size_of(PxMeshScale) == 28, "Wrong size for type PxMeshScale, expected 28 got %v", size_of(PxMeshScale))
-}
+
 
 PxConvexMeshGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     scale: PxMeshScale,
     _pad4: [4]u8,
     convexMesh: ^PxConvexMesh,
-    meshFlags: _c.uint8_t,
-}
-@(test)
-test_layout_PxConvexMeshGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConvexMeshGeometry, scale) == 8, "Wrong offset for PxConvexMeshGeometry.scale, expected 8 got %v", offset_of(PxConvexMeshGeometry, scale))
-    testing.expectf(t, offset_of(PxConvexMeshGeometry, convexMesh) == 40, "Wrong offset for PxConvexMeshGeometry.convexMesh, expected 40 got %v", offset_of(PxConvexMeshGeometry, convexMesh))
-    testing.expectf(t, offset_of(PxConvexMeshGeometry, meshFlags) == 48, "Wrong offset for PxConvexMeshGeometry.meshFlags, expected 48 got %v", offset_of(PxConvexMeshGeometry, meshFlags))
-    testing.expectf(t, size_of(PxConvexMeshGeometry) == 56, "Wrong size for type PxConvexMeshGeometry, expected 56 got %v", size_of(PxConvexMeshGeometry))
+    meshFlags: PxConvexMeshGeometryFlags_Set,
+    _pad7: [7]u8,
 }
 
+
 PxSphereGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     radius: _c.float,
 }
-@(test)
-test_layout_PxSphereGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSphereGeometry, radius) == 8, "Wrong offset for PxSphereGeometry.radius, expected 8 got %v", offset_of(PxSphereGeometry, radius))
-    testing.expectf(t, size_of(PxSphereGeometry) == 12, "Wrong size for type PxSphereGeometry, expected 12 got %v", size_of(PxSphereGeometry))
-}
+
 
 PxPlaneGeometry :: struct {
     using _: PxGeometry,
-};
+}
+
 
 PxTriangleMeshGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     scale: PxMeshScale,
-    meshFlags: _c.uint8_t,
+    meshFlags: PxMeshGeometryFlags_Set,
     _pad5: [3]u8,
     triangleMesh: ^PxTriangleMesh,
 }
-@(test)
-test_layout_PxTriangleMeshGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTriangleMeshGeometry, scale) == 8, "Wrong offset for PxTriangleMeshGeometry.scale, expected 8 got %v", offset_of(PxTriangleMeshGeometry, scale))
-    testing.expectf(t, offset_of(PxTriangleMeshGeometry, meshFlags) == 36, "Wrong offset for PxTriangleMeshGeometry.meshFlags, expected 36 got %v", offset_of(PxTriangleMeshGeometry, meshFlags))
-    testing.expectf(t, offset_of(PxTriangleMeshGeometry, triangleMesh) == 40, "Wrong offset for PxTriangleMeshGeometry.triangleMesh, expected 40 got %v", offset_of(PxTriangleMeshGeometry, triangleMesh))
-    testing.expectf(t, size_of(PxTriangleMeshGeometry) == 48, "Wrong size for type PxTriangleMeshGeometry, expected 48 got %v", size_of(PxTriangleMeshGeometry))
-}
+
 
 PxHeightFieldGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     heightField: ^PxHeightField,
     heightScale: _c.float,
     rowScale: _c.float,
     columnScale: _c.float,
-    heightFieldFlags: _c.uint8_t,
-}
-@(test)
-test_layout_PxHeightFieldGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxHeightFieldGeometry, heightField) == 8, "Wrong offset for PxHeightFieldGeometry.heightField, expected 8 got %v", offset_of(PxHeightFieldGeometry, heightField))
-    testing.expectf(t, offset_of(PxHeightFieldGeometry, heightScale) == 16, "Wrong offset for PxHeightFieldGeometry.heightScale, expected 16 got %v", offset_of(PxHeightFieldGeometry, heightScale))
-    testing.expectf(t, offset_of(PxHeightFieldGeometry, rowScale) == 20, "Wrong offset for PxHeightFieldGeometry.rowScale, expected 20 got %v", offset_of(PxHeightFieldGeometry, rowScale))
-    testing.expectf(t, offset_of(PxHeightFieldGeometry, columnScale) == 24, "Wrong offset for PxHeightFieldGeometry.columnScale, expected 24 got %v", offset_of(PxHeightFieldGeometry, columnScale))
-    testing.expectf(t, offset_of(PxHeightFieldGeometry, heightFieldFlags) == 28, "Wrong offset for PxHeightFieldGeometry.heightFieldFlags, expected 28 got %v", offset_of(PxHeightFieldGeometry, heightFieldFlags))
-    testing.expectf(t, size_of(PxHeightFieldGeometry) == 32, "Wrong size for type PxHeightFieldGeometry, expected 32 got %v", size_of(PxHeightFieldGeometry))
+    heightFieldFlags: PxMeshGeometryFlags_Set,
+    _pad8: [3]u8,
 }
 
+
 PxParticleSystemGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
-    mSolverType: _c.int32_t,
+    mSolverType: PxParticleSolverType,
 }
-@(test)
-test_layout_PxParticleSystemGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxParticleSystemGeometry, mSolverType) == 8, "Wrong offset for PxParticleSystemGeometry.mSolverType, expected 8 got %v", offset_of(PxParticleSystemGeometry, mSolverType))
-    testing.expectf(t, size_of(PxParticleSystemGeometry) == 12, "Wrong size for type PxParticleSystemGeometry, expected 12 got %v", size_of(PxParticleSystemGeometry))
-}
+
 
 PxHairSystemGeometry :: struct {
     using _: PxGeometry,
-};
+}
+
 
 PxTetrahedronMeshGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     tetrahedronMesh: ^PxTetrahedronMesh,
 }
-@(test)
-test_layout_PxTetrahedronMeshGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTetrahedronMeshGeometry, tetrahedronMesh) == 8, "Wrong offset for PxTetrahedronMeshGeometry.tetrahedronMesh, expected 8 got %v", offset_of(PxTetrahedronMeshGeometry, tetrahedronMesh))
-    testing.expectf(t, size_of(PxTetrahedronMeshGeometry) == 16, "Wrong size for type PxTetrahedronMeshGeometry, expected 16 got %v", size_of(PxTetrahedronMeshGeometry))
-}
+
 
 PxQueryHit :: struct {
-// false false
-// []
-// 0
     faceIndex: _c.uint32_t,
 }
-@(test)
-test_layout_PxQueryHit :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxQueryHit) == 4, "Wrong size for type PxQueryHit, expected 4 got %v", size_of(PxQueryHit))
-}
+
 
 PxLocationHit :: struct {
-// false false
-// ["PxQueryHit"]
     using _: PxQueryHit,
-// 4
-    _pad1: [0]u8,
-    flags: _c.uint16_t,
+    flags: PxHitFlags_Set,
     _pad3: [2]u8,
     position: PxVec3,
     normal: PxVec3,
     distance: _c.float,
 }
-@(test)
-test_layout_PxLocationHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxLocationHit, flags) == 4, "Wrong offset for PxLocationHit.flags, expected 4 got %v", offset_of(PxLocationHit, flags))
-    testing.expectf(t, offset_of(PxLocationHit, position) == 8, "Wrong offset for PxLocationHit.position, expected 8 got %v", offset_of(PxLocationHit, position))
-    testing.expectf(t, offset_of(PxLocationHit, normal) == 20, "Wrong offset for PxLocationHit.normal, expected 20 got %v", offset_of(PxLocationHit, normal))
-    testing.expectf(t, offset_of(PxLocationHit, distance) == 32, "Wrong offset for PxLocationHit.distance, expected 32 got %v", offset_of(PxLocationHit, distance))
-    testing.expectf(t, size_of(PxLocationHit) == 36, "Wrong size for type PxLocationHit, expected 36 got %v", size_of(PxLocationHit))
-}
+
 
 PxGeomRaycastHit :: struct {
-// false false
-// ["PxLocationHit"]
     using _: PxLocationHit,
-// 36
-    _pad7: [0]u8,
     u: _c.float,
     v: _c.float,
 }
-@(test)
-test_layout_PxGeomRaycastHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGeomRaycastHit, u) == 36, "Wrong offset for PxGeomRaycastHit.u, expected 36 got %v", offset_of(PxGeomRaycastHit, u))
-    testing.expectf(t, offset_of(PxGeomRaycastHit, v) == 40, "Wrong offset for PxGeomRaycastHit.v, expected 40 got %v", offset_of(PxGeomRaycastHit, v))
-    testing.expectf(t, size_of(PxGeomRaycastHit) == 44, "Wrong size for type PxGeomRaycastHit, expected 44 got %v", size_of(PxGeomRaycastHit))
-}
+
 
 PxGeomOverlapHit :: struct {
     using _: PxQueryHit,
-};
+}
+
 
 PxGeomSweepHit :: struct {
     using _: PxLocationHit,
-};
+}
+
 
 PxGeomIndexPair :: struct {
-// false false
-// []
-// 0
     id0: _c.uint32_t,
     id1: _c.uint32_t,
 }
-@(test)
-test_layout_PxGeomIndexPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGeomIndexPair, id1) == 4, "Wrong offset for PxGeomIndexPair.id1, expected 4 got %v", offset_of(PxGeomIndexPair, id1))
-    testing.expectf(t, size_of(PxGeomIndexPair) == 8, "Wrong size for type PxGeomIndexPair, expected 8 got %v", size_of(PxGeomIndexPair))
-}
+
 
 PxQueryThreadContext :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxQueryThreadContext :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxQueryThreadContext) == 1, "Wrong size for type PxQueryThreadContext, expected 1 got %v", size_of(PxQueryThreadContext))
-}
-
-PxContactBuffer :: distinct rawptr 
-
-PxRenderOutput :: distinct rawptr 
-
-PxCustomGeometryType :: struct {
-// false false
-// []
-// 0
-    _private_mID: _c.uint32_t,
-}
-@(test)
-test_layout_PxCustomGeometryType :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxCustomGeometryType) == 4, "Wrong size for type PxCustomGeometryType, expected 4 got %v", size_of(PxCustomGeometryType))
-}
-
-PxCustomGeometryCallbacks :: struct {
-    vtable_: rawptr,
 };
 
+PxContactBuffer :: distinct rawptr
+
+PxRenderOutput :: distinct rawptr
+
+PxCustomGeometryType :: struct {
+    _pad0: [4]u8,
+}
+
+
+PxCustomGeometryCallbacks :: struct {
+    _pad0: [8]u8,
+}
+
+
 PxCustomGeometry :: struct {
-// false false
-// ["PxGeometry"]
     using _: PxGeometry,
-// 8
-    _pad2: [0]u8,
     callbacks: ^PxCustomGeometryCallbacks,
 }
-@(test)
-test_layout_PxCustomGeometry :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCustomGeometry, callbacks) == 8, "Wrong offset for PxCustomGeometry.callbacks, expected 8 got %v", offset_of(PxCustomGeometry, callbacks))
-    testing.expectf(t, size_of(PxCustomGeometry) == 16, "Wrong size for type PxCustomGeometry, expected 16 got %v", size_of(PxCustomGeometry))
-}
+
 
 PxGeometryHolder :: struct {
-// false false
-// []
-// 0
-    _private_bytes: [56]_c.char,
+    _pad0: [56]u8,
 }
-@(test)
-test_layout_PxGeometryHolder :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxGeometryHolder) == 56, "Wrong size for type PxGeometryHolder, expected 56 got %v", size_of(PxGeometryHolder))
-}
+
 
 PxGeometryQuery :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxGeometryQuery :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxGeometryQuery) == 1, "Wrong size for type PxGeometryQuery, expected 1 got %v", size_of(PxGeometryQuery))
-}
+};
 
 PxHeightFieldSample :: struct {
-// false false
-// []
-// 0
     height: _c.int16_t,
     materialIndex0: PxBitAndByte,
     materialIndex1: PxBitAndByte,
 }
-@(test)
-test_layout_PxHeightFieldSample :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxHeightFieldSample, materialIndex0) == 2, "Wrong offset for PxHeightFieldSample.materialIndex0, expected 2 got %v", offset_of(PxHeightFieldSample, materialIndex0))
-    testing.expectf(t, offset_of(PxHeightFieldSample, materialIndex1) == 3, "Wrong offset for PxHeightFieldSample.materialIndex1, expected 3 got %v", offset_of(PxHeightFieldSample, materialIndex1))
-    testing.expectf(t, size_of(PxHeightFieldSample) == 4, "Wrong size for type PxHeightFieldSample, expected 4 got %v", size_of(PxHeightFieldSample))
-}
+
 
 PxHeightField :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxHeightFieldDesc :: struct {
-// false false
-// []
-// 0
     nbRows: _c.uint32_t,
     nbColumns: _c.uint32_t,
-    format: _c.int32_t,
+    format: PxHeightFieldFormat,
     _pad3: [4]u8,
     samples: PxStridedData,
     convexEdgeThreshold: _c.float,
-    flags: _c.uint16_t,
+    flags: PxHeightFieldFlags_Set,
+    _pad7: [2]u8,
 }
-@(test)
-test_layout_PxHeightFieldDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxHeightFieldDesc, nbColumns) == 4, "Wrong offset for PxHeightFieldDesc.nbColumns, expected 4 got %v", offset_of(PxHeightFieldDesc, nbColumns))
-    testing.expectf(t, offset_of(PxHeightFieldDesc, format) == 8, "Wrong offset for PxHeightFieldDesc.format, expected 8 got %v", offset_of(PxHeightFieldDesc, format))
-    testing.expectf(t, offset_of(PxHeightFieldDesc, samples) == 16, "Wrong offset for PxHeightFieldDesc.samples, expected 16 got %v", offset_of(PxHeightFieldDesc, samples))
-    testing.expectf(t, offset_of(PxHeightFieldDesc, convexEdgeThreshold) == 32, "Wrong offset for PxHeightFieldDesc.convexEdgeThreshold, expected 32 got %v", offset_of(PxHeightFieldDesc, convexEdgeThreshold))
-    testing.expectf(t, offset_of(PxHeightFieldDesc, flags) == 36, "Wrong offset for PxHeightFieldDesc.flags, expected 36 got %v", offset_of(PxHeightFieldDesc, flags))
-    testing.expectf(t, size_of(PxHeightFieldDesc) == 40, "Wrong size for type PxHeightFieldDesc, expected 40 got %v", size_of(PxHeightFieldDesc))
-}
+
 
 PxMeshQuery :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxMeshQuery :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxMeshQuery) == 1, "Wrong size for type PxMeshQuery, expected 1 got %v", size_of(PxMeshQuery))
-}
+};
 
 PxSimpleTriangleMesh :: struct {
-// false false
-// []
-// 0
     points: PxBoundedData,
     triangles: PxBoundedData,
-    flags: _c.uint16_t,
+    flags: PxMeshFlags_Set,
+    _pad3: [6]u8,
 }
-@(test)
-test_layout_PxSimpleTriangleMesh :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSimpleTriangleMesh, triangles) == 24, "Wrong offset for PxSimpleTriangleMesh.triangles, expected 24 got %v", offset_of(PxSimpleTriangleMesh, triangles))
-    testing.expectf(t, offset_of(PxSimpleTriangleMesh, flags) == 48, "Wrong offset for PxSimpleTriangleMesh.flags, expected 48 got %v", offset_of(PxSimpleTriangleMesh, flags))
-    testing.expectf(t, size_of(PxSimpleTriangleMesh) == 56, "Wrong size for type PxSimpleTriangleMesh, expected 56 got %v", size_of(PxSimpleTriangleMesh))
-}
+
 
 PxTriangle :: struct {
-// false false
-// []
-// 0
     verts: [3]PxVec3,
 }
-@(test)
-test_layout_PxTriangle :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTriangle) == 36, "Wrong size for type PxTriangle, expected 36 got %v", size_of(PxTriangle))
-}
+
 
 PxTrianglePadded :: struct {
-// false false
-// ["PxTriangle"]
     using _: PxTriangle,
-// 36
-    _pad1: [0]u8,
     padding: _c.uint32_t,
 }
-@(test)
-test_layout_PxTrianglePadded :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTrianglePadded, padding) == 36, "Wrong offset for PxTrianglePadded.padding, expected 36 got %v", offset_of(PxTrianglePadded, padding))
-    testing.expectf(t, size_of(PxTrianglePadded) == 40, "Wrong size for type PxTrianglePadded, expected 40 got %v", size_of(PxTrianglePadded))
-}
+
 
 PxTriangleMesh :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxBVH34TriangleMesh :: struct {
     using _: PxTriangleMesh,
-};
+}
+
 
 PxTetrahedron :: struct {
-// false false
-// []
-// 0
     verts: [4]PxVec3,
 }
-@(test)
-test_layout_PxTetrahedron :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTetrahedron) == 48, "Wrong size for type PxTetrahedron, expected 48 got %v", size_of(PxTetrahedron))
-}
+
 
 PxSoftBodyAuxData :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxTetrahedronMesh :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxSoftBodyMesh :: struct {
     using _: PxRefCounted,
-};
+}
+
 
 PxCollisionMeshMappingData :: struct {
     using _: PxUserAllocated,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSoftBodyCollisionData :: struct {
-// false false
-// ["PxUserAllocated"]
     using _: PxUserAllocated,
-// 1
-}
-@(test)
-test_layout_PxSoftBodyCollisionData :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSoftBodyCollisionData) == 1, "Wrong size for type PxSoftBodyCollisionData, expected 1 got %v", size_of(PxSoftBodyCollisionData))
-}
+};
 
 PxTetrahedronMeshData :: struct {
-// false false
-// ["PxUserAllocated"]
     using _: PxUserAllocated,
-// 1
-}
-@(test)
-test_layout_PxTetrahedronMeshData :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTetrahedronMeshData) == 1, "Wrong size for type PxTetrahedronMeshData, expected 1 got %v", size_of(PxTetrahedronMeshData))
-}
+};
 
 PxSoftBodySimulationData :: struct {
-// false false
-// ["PxUserAllocated"]
     using _: PxUserAllocated,
-// 1
-}
-@(test)
-test_layout_PxSoftBodySimulationData :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSoftBodySimulationData) == 1, "Wrong size for type PxSoftBodySimulationData, expected 1 got %v", size_of(PxSoftBodySimulationData))
-}
+};
 
 PxCollisionTetrahedronMeshData :: struct {
     using _: PxUserAllocated,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSimulationTetrahedronMeshData :: struct {
     using _: PxUserAllocated,
-};
+    _pad0: [8]u8,
+}
+
 
 PxActor :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxActor :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxActor, userData) == 16, "Wrong offset for PxActor.userData, expected 16 got %v", offset_of(PxActor, userData))
-    testing.expectf(t, size_of(PxActor) == 24, "Wrong size for type PxActor, expected 24 got %v", size_of(PxActor))
-}
+
 
 PxAggregate :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxAggregate :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxAggregate, userData) == 16, "Wrong offset for PxAggregate.userData, expected 16 got %v", offset_of(PxAggregate, userData))
-    testing.expectf(t, size_of(PxAggregate) == 24, "Wrong size for type PxAggregate, expected 24 got %v", size_of(PxAggregate))
-}
+
 
 PxSpringModifiers :: struct #align(16){
-// false false
-// []
-// 0
     stiffness: _c.float,
     damping: _c.float,
-}
-@(test)
-test_layout_PxSpringModifiers :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSpringModifiers, damping) == 4, "Wrong offset for PxSpringModifiers.damping, expected 4 got %v", offset_of(PxSpringModifiers, damping))
-    testing.expectf(t, size_of(PxSpringModifiers) == 16, "Wrong size for type PxSpringModifiers, expected 16 got %v", size_of(PxSpringModifiers))
+    _pad2: [8]u8,
 }
 
+
 PxRestitutionModifiers :: struct #align(16){
-// false false
-// []
-// 0
     restitution: _c.float,
     velocityThreshold: _c.float,
+    _pad2: [8]u8,
 }
-@(test)
-test_layout_PxRestitutionModifiers :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxRestitutionModifiers, velocityThreshold) == 4, "Wrong offset for PxRestitutionModifiers.velocityThreshold, expected 4 got %v", offset_of(PxRestitutionModifiers, velocityThreshold))
-    testing.expectf(t, size_of(PxRestitutionModifiers) == 16, "Wrong size for type PxRestitutionModifiers, expected 16 got %v", size_of(PxRestitutionModifiers))
-}
+
 
 Px1DConstraintMods :: struct #raw_union {
     spring: PxSpringModifiers,
@@ -3111,9 +2557,6 @@ Px1DConstraintMods :: struct #raw_union {
 };
 
 Px1DConstraint :: struct {
-// false false
-// []
-// 0
     linear0: PxVec3,
     geometricError: _c.float,
     angular0: PxVec3,
@@ -3126,52 +2569,29 @@ Px1DConstraint :: struct {
     forInternalUse: _c.float,
     flags: _c.uint16_t,
     solveHint: _c.uint16_t,
-}
-@(test)
-test_layout_Px1DConstraint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(Px1DConstraint, geometricError) == 12, "Wrong offset for Px1DConstraint.geometricError, expected 12 got %v", offset_of(Px1DConstraint, geometricError))
-    testing.expectf(t, offset_of(Px1DConstraint, angular0) == 16, "Wrong offset for Px1DConstraint.angular0, expected 16 got %v", offset_of(Px1DConstraint, angular0))
-    testing.expectf(t, offset_of(Px1DConstraint, velocityTarget) == 28, "Wrong offset for Px1DConstraint.velocityTarget, expected 28 got %v", offset_of(Px1DConstraint, velocityTarget))
-    testing.expectf(t, offset_of(Px1DConstraint, linear1) == 32, "Wrong offset for Px1DConstraint.linear1, expected 32 got %v", offset_of(Px1DConstraint, linear1))
-    testing.expectf(t, offset_of(Px1DConstraint, minImpulse) == 44, "Wrong offset for Px1DConstraint.minImpulse, expected 44 got %v", offset_of(Px1DConstraint, minImpulse))
-    testing.expectf(t, offset_of(Px1DConstraint, angular1) == 48, "Wrong offset for Px1DConstraint.angular1, expected 48 got %v", offset_of(Px1DConstraint, angular1))
-    testing.expectf(t, offset_of(Px1DConstraint, maxImpulse) == 60, "Wrong offset for Px1DConstraint.maxImpulse, expected 60 got %v", offset_of(Px1DConstraint, maxImpulse))
-    testing.expectf(t, offset_of(Px1DConstraint, mods) == 64, "Wrong offset for Px1DConstraint.mods, expected 64 got %v", offset_of(Px1DConstraint, mods))
-    testing.expectf(t, offset_of(Px1DConstraint, forInternalUse) == 80, "Wrong offset for Px1DConstraint.forInternalUse, expected 80 got %v", offset_of(Px1DConstraint, forInternalUse))
-    testing.expectf(t, offset_of(Px1DConstraint, flags) == 84, "Wrong offset for Px1DConstraint.flags, expected 84 got %v", offset_of(Px1DConstraint, flags))
-    testing.expectf(t, offset_of(Px1DConstraint, solveHint) == 86, "Wrong offset for Px1DConstraint.solveHint, expected 86 got %v", offset_of(Px1DConstraint, solveHint))
-    testing.expectf(t, size_of(Px1DConstraint) == 96, "Wrong size for type Px1DConstraint, expected 96 got %v", size_of(Px1DConstraint))
+    _pad12: [8]u8,
 }
 
+
 PxConstraintInvMassScale :: struct #align(16){
-// false false
-// []
-// 0
     linear0: _c.float,
     angular0: _c.float,
     linear1: _c.float,
     angular1: _c.float,
 }
-@(test)
-test_layout_PxConstraintInvMassScale :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConstraintInvMassScale, angular0) == 4, "Wrong offset for PxConstraintInvMassScale.angular0, expected 4 got %v", offset_of(PxConstraintInvMassScale, angular0))
-    testing.expectf(t, offset_of(PxConstraintInvMassScale, linear1) == 8, "Wrong offset for PxConstraintInvMassScale.linear1, expected 8 got %v", offset_of(PxConstraintInvMassScale, linear1))
-    testing.expectf(t, offset_of(PxConstraintInvMassScale, angular1) == 12, "Wrong offset for PxConstraintInvMassScale.angular1, expected 12 got %v", offset_of(PxConstraintInvMassScale, angular1))
-    testing.expectf(t, size_of(PxConstraintInvMassScale) == 16, "Wrong size for type PxConstraintInvMassScale, expected 16 got %v", size_of(PxConstraintInvMassScale))
-}
+
 
 PxConstraintVisualizer :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxConstraintConnector :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxContactPoint :: struct #align(16){
-// false false
-// []
-// 0
     normal: PxVec3,
     separation: _c.float,
     point: PxVec3,
@@ -3184,45 +2604,20 @@ PxContactPoint :: struct #align(16){
     dynamicFriction: _c.float,
     restitution: _c.float,
     damping: _c.float,
-}
-@(test)
-test_layout_PxContactPoint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPoint, separation) == 12, "Wrong offset for PxContactPoint.separation, expected 12 got %v", offset_of(PxContactPoint, separation))
-    testing.expectf(t, offset_of(PxContactPoint, point) == 16, "Wrong offset for PxContactPoint.point, expected 16 got %v", offset_of(PxContactPoint, point))
-    testing.expectf(t, offset_of(PxContactPoint, maxImpulse) == 28, "Wrong offset for PxContactPoint.maxImpulse, expected 28 got %v", offset_of(PxContactPoint, maxImpulse))
-    testing.expectf(t, offset_of(PxContactPoint, targetVel) == 32, "Wrong offset for PxContactPoint.targetVel, expected 32 got %v", offset_of(PxContactPoint, targetVel))
-    testing.expectf(t, offset_of(PxContactPoint, staticFriction) == 44, "Wrong offset for PxContactPoint.staticFriction, expected 44 got %v", offset_of(PxContactPoint, staticFriction))
-    testing.expectf(t, offset_of(PxContactPoint, materialFlags) == 48, "Wrong offset for PxContactPoint.materialFlags, expected 48 got %v", offset_of(PxContactPoint, materialFlags))
-    testing.expectf(t, offset_of(PxContactPoint, internalFaceIndex1) == 52, "Wrong offset for PxContactPoint.internalFaceIndex1, expected 52 got %v", offset_of(PxContactPoint, internalFaceIndex1))
-    testing.expectf(t, offset_of(PxContactPoint, dynamicFriction) == 56, "Wrong offset for PxContactPoint.dynamicFriction, expected 56 got %v", offset_of(PxContactPoint, dynamicFriction))
-    testing.expectf(t, offset_of(PxContactPoint, restitution) == 60, "Wrong offset for PxContactPoint.restitution, expected 60 got %v", offset_of(PxContactPoint, restitution))
-    testing.expectf(t, offset_of(PxContactPoint, damping) == 64, "Wrong offset for PxContactPoint.damping, expected 64 got %v", offset_of(PxContactPoint, damping))
-    testing.expectf(t, size_of(PxContactPoint) == 80, "Wrong size for type PxContactPoint, expected 80 got %v", size_of(PxContactPoint))
+    _pad12: [12]u8,
 }
 
+
 PxSolverBody :: struct {
-// false false
-// []
-// 0
     linearVelocity: PxVec3,
     maxSolverNormalProgress: _c.uint16_t,
     maxSolverFrictionProgress: _c.uint16_t,
     angularState: PxVec3,
     solverProgress: _c.uint32_t,
 }
-@(test)
-test_layout_PxSolverBody :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverBody, maxSolverNormalProgress) == 12, "Wrong offset for PxSolverBody.maxSolverNormalProgress, expected 12 got %v", offset_of(PxSolverBody, maxSolverNormalProgress))
-    testing.expectf(t, offset_of(PxSolverBody, maxSolverFrictionProgress) == 14, "Wrong offset for PxSolverBody.maxSolverFrictionProgress, expected 14 got %v", offset_of(PxSolverBody, maxSolverFrictionProgress))
-    testing.expectf(t, offset_of(PxSolverBody, angularState) == 16, "Wrong offset for PxSolverBody.angularState, expected 16 got %v", offset_of(PxSolverBody, angularState))
-    testing.expectf(t, offset_of(PxSolverBody, solverProgress) == 28, "Wrong offset for PxSolverBody.solverProgress, expected 28 got %v", offset_of(PxSolverBody, solverProgress))
-    testing.expectf(t, size_of(PxSolverBody) == 32, "Wrong size for type PxSolverBody, expected 32 got %v", size_of(PxSolverBody))
-}
+
 
 PxSolverBodyData :: struct {
-// false false
-// []
-// 0
     linearVelocity: PxVec3,
     invMass: _c.float,
     angularVelocity: PxVec3,
@@ -3233,40 +2628,18 @@ PxSolverBodyData :: struct {
     maxContactImpulse: _c.float,
     body2World: PxTransform,
     pad: _c.uint16_t,
-}
-@(test)
-test_layout_PxSolverBodyData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverBodyData, invMass) == 12, "Wrong offset for PxSolverBodyData.invMass, expected 12 got %v", offset_of(PxSolverBodyData, invMass))
-    testing.expectf(t, offset_of(PxSolverBodyData, angularVelocity) == 16, "Wrong offset for PxSolverBodyData.angularVelocity, expected 16 got %v", offset_of(PxSolverBodyData, angularVelocity))
-    testing.expectf(t, offset_of(PxSolverBodyData, reportThreshold) == 28, "Wrong offset for PxSolverBodyData.reportThreshold, expected 28 got %v", offset_of(PxSolverBodyData, reportThreshold))
-    testing.expectf(t, offset_of(PxSolverBodyData, sqrtInvInertia) == 32, "Wrong offset for PxSolverBodyData.sqrtInvInertia, expected 32 got %v", offset_of(PxSolverBodyData, sqrtInvInertia))
-    testing.expectf(t, offset_of(PxSolverBodyData, penBiasClamp) == 68, "Wrong offset for PxSolverBodyData.penBiasClamp, expected 68 got %v", offset_of(PxSolverBodyData, penBiasClamp))
-    testing.expectf(t, offset_of(PxSolverBodyData, nodeIndex) == 72, "Wrong offset for PxSolverBodyData.nodeIndex, expected 72 got %v", offset_of(PxSolverBodyData, nodeIndex))
-    testing.expectf(t, offset_of(PxSolverBodyData, maxContactImpulse) == 76, "Wrong offset for PxSolverBodyData.maxContactImpulse, expected 76 got %v", offset_of(PxSolverBodyData, maxContactImpulse))
-    testing.expectf(t, offset_of(PxSolverBodyData, body2World) == 80, "Wrong offset for PxSolverBodyData.body2World, expected 80 got %v", offset_of(PxSolverBodyData, body2World))
-    testing.expectf(t, offset_of(PxSolverBodyData, pad) == 108, "Wrong offset for PxSolverBodyData.pad, expected 108 got %v", offset_of(PxSolverBodyData, pad))
-    testing.expectf(t, size_of(PxSolverBodyData) == 112, "Wrong size for type PxSolverBodyData, expected 112 got %v", size_of(PxSolverBodyData))
+    _pad10: [2]u8,
 }
 
+
 PxConstraintBatchHeader :: struct {
-// false false
-// []
-// 0
     startIndex: _c.uint32_t,
     stride: _c.uint16_t,
     constraintType: _c.uint16_t,
 }
-@(test)
-test_layout_PxConstraintBatchHeader :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConstraintBatchHeader, stride) == 4, "Wrong offset for PxConstraintBatchHeader.stride, expected 4 got %v", offset_of(PxConstraintBatchHeader, stride))
-    testing.expectf(t, offset_of(PxConstraintBatchHeader, constraintType) == 6, "Wrong offset for PxConstraintBatchHeader.constraintType, expected 6 got %v", offset_of(PxConstraintBatchHeader, constraintType))
-    testing.expectf(t, size_of(PxConstraintBatchHeader) == 8, "Wrong size for type PxConstraintBatchHeader, expected 8 got %v", size_of(PxConstraintBatchHeader))
-}
+
 
 PxSolverConstraintDesc :: struct {
-// false false
-// []
-// 0
     bodyA: ^PxSolverBody,
     bodyB: ^PxSolverBody,
     bodyADataIndex: _c.uint32_t,
@@ -3280,25 +2653,9 @@ PxSolverConstraintDesc :: struct {
     constraintLengthOver16: _c.uint16_t,
     padding: [10]_c.uint8_t,
 }
-@(test)
-test_layout_PxSolverConstraintDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, bodyB) == 8, "Wrong offset for PxSolverConstraintDesc.bodyB, expected 8 got %v", offset_of(PxSolverConstraintDesc, bodyB))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, bodyADataIndex) == 16, "Wrong offset for PxSolverConstraintDesc.bodyADataIndex, expected 16 got %v", offset_of(PxSolverConstraintDesc, bodyADataIndex))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, bodyBDataIndex) == 20, "Wrong offset for PxSolverConstraintDesc.bodyBDataIndex, expected 20 got %v", offset_of(PxSolverConstraintDesc, bodyBDataIndex))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, linkIndexA) == 24, "Wrong offset for PxSolverConstraintDesc.linkIndexA, expected 24 got %v", offset_of(PxSolverConstraintDesc, linkIndexA))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, linkIndexB) == 28, "Wrong offset for PxSolverConstraintDesc.linkIndexB, expected 28 got %v", offset_of(PxSolverConstraintDesc, linkIndexB))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, constraint) == 32, "Wrong offset for PxSolverConstraintDesc.constraint, expected 32 got %v", offset_of(PxSolverConstraintDesc, constraint))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, writeBack) == 40, "Wrong offset for PxSolverConstraintDesc.writeBack, expected 40 got %v", offset_of(PxSolverConstraintDesc, writeBack))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, progressA) == 48, "Wrong offset for PxSolverConstraintDesc.progressA, expected 48 got %v", offset_of(PxSolverConstraintDesc, progressA))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, progressB) == 50, "Wrong offset for PxSolverConstraintDesc.progressB, expected 50 got %v", offset_of(PxSolverConstraintDesc, progressB))
-    testing.expectf(t, offset_of(PxSolverConstraintDesc, constraintLengthOver16) == 52, "Wrong offset for PxSolverConstraintDesc.constraintLengthOver16, expected 52 got %v", offset_of(PxSolverConstraintDesc, constraintLengthOver16))
-    testing.expectf(t, size_of(PxSolverConstraintDesc) == 64, "Wrong size for type PxSolverConstraintDesc, expected 64 got %v", size_of(PxSolverConstraintDesc))
-}
+
 
 PxSolverConstraintPrepDescBase :: struct {
-// false false
-// []
-// 0
     invMassScales: PxConstraintInvMassScale,
     desc: ^PxSolverConstraintDesc,
     body0: ^PxSolverBody,
@@ -3307,30 +2664,14 @@ PxSolverConstraintPrepDescBase :: struct {
     data1: ^PxSolverBodyData,
     bodyFrame0: PxTransform,
     bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-    _size_fix: [8]u8,
-}
-@(test)
-test_layout_PxSolverConstraintPrepDescBase :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, desc) == 16, "Wrong offset for PxSolverConstraintPrepDescBase.desc, expected 16 got %v", offset_of(PxSolverConstraintPrepDescBase, desc))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, body0) == 24, "Wrong offset for PxSolverConstraintPrepDescBase.body0, expected 24 got %v", offset_of(PxSolverConstraintPrepDescBase, body0))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, body1) == 32, "Wrong offset for PxSolverConstraintPrepDescBase.body1, expected 32 got %v", offset_of(PxSolverConstraintPrepDescBase, body1))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, data0) == 40, "Wrong offset for PxSolverConstraintPrepDescBase.data0, expected 40 got %v", offset_of(PxSolverConstraintPrepDescBase, data0))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, data1) == 48, "Wrong offset for PxSolverConstraintPrepDescBase.data1, expected 48 got %v", offset_of(PxSolverConstraintPrepDescBase, data1))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, bodyFrame0) == 56, "Wrong offset for PxSolverConstraintPrepDescBase.bodyFrame0, expected 56 got %v", offset_of(PxSolverConstraintPrepDescBase, bodyFrame0))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, bodyFrame1) == 84, "Wrong offset for PxSolverConstraintPrepDescBase.bodyFrame1, expected 84 got %v", offset_of(PxSolverConstraintPrepDescBase, bodyFrame1))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, bodyState0) == 112, "Wrong offset for PxSolverConstraintPrepDescBase.bodyState0, expected 112 got %v", offset_of(PxSolverConstraintPrepDescBase, bodyState0))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDescBase, bodyState1) == 116, "Wrong offset for PxSolverConstraintPrepDescBase.bodyState1, expected 116 got %v", offset_of(PxSolverConstraintPrepDescBase, bodyState1))
-    testing.expectf(t, size_of(PxSolverConstraintPrepDescBase) == 128, "Wrong size for type PxSolverConstraintPrepDescBase, expected 128 got %v", size_of(PxSolverConstraintPrepDescBase))
+    bodyState0: BodyState,
+    bodyState1: BodyState,
+    _pad10: [8]u8,
 }
 
+
 PxSolverConstraintPrepDesc :: struct {
-// false false
-// ["PxSolverConstraintPrepDescBase"]
     using _: PxSolverConstraintPrepDescBase,
-// 128
-    _pad10: [0]u8,
     rows: ^Px1DConstraint,
     numRows: _c.uint32_t,
     linBreakForce: _c.float,
@@ -3342,30 +2683,13 @@ PxSolverConstraintPrepDesc :: struct {
     driveLimitsAreForces: _c.bool,
     extendedLimits: _c.bool,
     disableConstraint: _c.bool,
-    _pad22: [3]u8,
+    _pad23: [3]u8,
     body0WorldOffset: PxVec3Padded,
-}
-@(test)
-test_layout_PxSolverConstraintPrepDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, rows) == 128, "Wrong offset for PxSolverConstraintPrepDesc.rows, expected 128 got %v", offset_of(PxSolverConstraintPrepDesc, rows))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, numRows) == 136, "Wrong offset for PxSolverConstraintPrepDesc.numRows, expected 136 got %v", offset_of(PxSolverConstraintPrepDesc, numRows))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, linBreakForce) == 140, "Wrong offset for PxSolverConstraintPrepDesc.linBreakForce, expected 140 got %v", offset_of(PxSolverConstraintPrepDesc, linBreakForce))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, angBreakForce) == 144, "Wrong offset for PxSolverConstraintPrepDesc.angBreakForce, expected 144 got %v", offset_of(PxSolverConstraintPrepDesc, angBreakForce))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, minResponseThreshold) == 148, "Wrong offset for PxSolverConstraintPrepDesc.minResponseThreshold, expected 148 got %v", offset_of(PxSolverConstraintPrepDesc, minResponseThreshold))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, writeback) == 152, "Wrong offset for PxSolverConstraintPrepDesc.writeback, expected 152 got %v", offset_of(PxSolverConstraintPrepDesc, writeback))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, disablePreprocessing) == 160, "Wrong offset for PxSolverConstraintPrepDesc.disablePreprocessing, expected 160 got %v", offset_of(PxSolverConstraintPrepDesc, disablePreprocessing))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, improvedSlerp) == 161, "Wrong offset for PxSolverConstraintPrepDesc.improvedSlerp, expected 161 got %v", offset_of(PxSolverConstraintPrepDesc, improvedSlerp))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, driveLimitsAreForces) == 162, "Wrong offset for PxSolverConstraintPrepDesc.driveLimitsAreForces, expected 162 got %v", offset_of(PxSolverConstraintPrepDesc, driveLimitsAreForces))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, extendedLimits) == 163, "Wrong offset for PxSolverConstraintPrepDesc.extendedLimits, expected 163 got %v", offset_of(PxSolverConstraintPrepDesc, extendedLimits))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, disableConstraint) == 164, "Wrong offset for PxSolverConstraintPrepDesc.disableConstraint, expected 164 got %v", offset_of(PxSolverConstraintPrepDesc, disableConstraint))
-    testing.expectf(t, offset_of(PxSolverConstraintPrepDesc, body0WorldOffset) == 168, "Wrong offset for PxSolverConstraintPrepDesc.body0WorldOffset, expected 168 got %v", offset_of(PxSolverConstraintPrepDesc, body0WorldOffset))
-    testing.expectf(t, size_of(PxSolverConstraintPrepDesc) == 192, "Wrong size for type PxSolverConstraintPrepDesc, expected 192 got %v", size_of(PxSolverConstraintPrepDesc))
+    _pad25: [8]u8,
 }
 
+
 PxSolverContactDesc :: struct {
-// false false
-// []
-// 0
     invMassScales: PxConstraintInvMassScale,
     desc: ^PxSolverConstraintDesc,
     body0: ^PxSolverBody,
@@ -3374,8 +2698,8 @@ PxSolverContactDesc :: struct {
     data1: ^PxSolverBodyData,
     bodyFrame0: PxTransform,
     bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
+    bodyState0: BodyState,
+    bodyState1: BodyState,
     shapeInteraction: rawptr,
     contacts: ^PxContactPoint,
     numContacts: _c.uint32_t,
@@ -3395,76 +2719,30 @@ PxSolverContactDesc :: struct {
     numContactPatches: _c.uint16_t,
     axisConstraintCount: _c.uint16_t,
     offsetSlop: _c.float,
+    _pad29: [12]u8,
 }
-@(test)
-test_layout_PxSolverContactDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSolverContactDesc, desc) == 16, "Wrong offset for PxSolverContactDesc.desc, expected 16 got %v", offset_of(PxSolverContactDesc, desc))
-    testing.expectf(t, offset_of(PxSolverContactDesc, body0) == 24, "Wrong offset for PxSolverContactDesc.body0, expected 24 got %v", offset_of(PxSolverContactDesc, body0))
-    testing.expectf(t, offset_of(PxSolverContactDesc, body1) == 32, "Wrong offset for PxSolverContactDesc.body1, expected 32 got %v", offset_of(PxSolverContactDesc, body1))
-    testing.expectf(t, offset_of(PxSolverContactDesc, data0) == 40, "Wrong offset for PxSolverContactDesc.data0, expected 40 got %v", offset_of(PxSolverContactDesc, data0))
-    testing.expectf(t, offset_of(PxSolverContactDesc, data1) == 48, "Wrong offset for PxSolverContactDesc.data1, expected 48 got %v", offset_of(PxSolverContactDesc, data1))
-    testing.expectf(t, offset_of(PxSolverContactDesc, bodyFrame0) == 56, "Wrong offset for PxSolverContactDesc.bodyFrame0, expected 56 got %v", offset_of(PxSolverContactDesc, bodyFrame0))
-    testing.expectf(t, offset_of(PxSolverContactDesc, bodyFrame1) == 84, "Wrong offset for PxSolverContactDesc.bodyFrame1, expected 84 got %v", offset_of(PxSolverContactDesc, bodyFrame1))
-    testing.expectf(t, offset_of(PxSolverContactDesc, bodyState0) == 112, "Wrong offset for PxSolverContactDesc.bodyState0, expected 112 got %v", offset_of(PxSolverContactDesc, bodyState0))
-    testing.expectf(t, offset_of(PxSolverContactDesc, bodyState1) == 116, "Wrong offset for PxSolverContactDesc.bodyState1, expected 116 got %v", offset_of(PxSolverContactDesc, bodyState1))
-    testing.expectf(t, offset_of(PxSolverContactDesc, shapeInteraction) == 120, "Wrong offset for PxSolverContactDesc.shapeInteraction, expected 120 got %v", offset_of(PxSolverContactDesc, shapeInteraction))
-    testing.expectf(t, offset_of(PxSolverContactDesc, contacts) == 128, "Wrong offset for PxSolverContactDesc.contacts, expected 128 got %v", offset_of(PxSolverContactDesc, contacts))
-    testing.expectf(t, offset_of(PxSolverContactDesc, numContacts) == 136, "Wrong offset for PxSolverContactDesc.numContacts, expected 136 got %v", offset_of(PxSolverContactDesc, numContacts))
-    testing.expectf(t, offset_of(PxSolverContactDesc, hasMaxImpulse) == 140, "Wrong offset for PxSolverContactDesc.hasMaxImpulse, expected 140 got %v", offset_of(PxSolverContactDesc, hasMaxImpulse))
-    testing.expectf(t, offset_of(PxSolverContactDesc, disableStrongFriction) == 141, "Wrong offset for PxSolverContactDesc.disableStrongFriction, expected 141 got %v", offset_of(PxSolverContactDesc, disableStrongFriction))
-    testing.expectf(t, offset_of(PxSolverContactDesc, hasForceThresholds) == 142, "Wrong offset for PxSolverContactDesc.hasForceThresholds, expected 142 got %v", offset_of(PxSolverContactDesc, hasForceThresholds))
-    testing.expectf(t, offset_of(PxSolverContactDesc, restDistance) == 144, "Wrong offset for PxSolverContactDesc.restDistance, expected 144 got %v", offset_of(PxSolverContactDesc, restDistance))
-    testing.expectf(t, offset_of(PxSolverContactDesc, maxCCDSeparation) == 148, "Wrong offset for PxSolverContactDesc.maxCCDSeparation, expected 148 got %v", offset_of(PxSolverContactDesc, maxCCDSeparation))
-    testing.expectf(t, offset_of(PxSolverContactDesc, frictionPtr) == 152, "Wrong offset for PxSolverContactDesc.frictionPtr, expected 152 got %v", offset_of(PxSolverContactDesc, frictionPtr))
-    testing.expectf(t, offset_of(PxSolverContactDesc, frictionCount) == 160, "Wrong offset for PxSolverContactDesc.frictionCount, expected 160 got %v", offset_of(PxSolverContactDesc, frictionCount))
-    testing.expectf(t, offset_of(PxSolverContactDesc, contactForces) == 168, "Wrong offset for PxSolverContactDesc.contactForces, expected 168 got %v", offset_of(PxSolverContactDesc, contactForces))
-    testing.expectf(t, offset_of(PxSolverContactDesc, startFrictionPatchIndex) == 176, "Wrong offset for PxSolverContactDesc.startFrictionPatchIndex, expected 176 got %v", offset_of(PxSolverContactDesc, startFrictionPatchIndex))
-    testing.expectf(t, offset_of(PxSolverContactDesc, numFrictionPatches) == 180, "Wrong offset for PxSolverContactDesc.numFrictionPatches, expected 180 got %v", offset_of(PxSolverContactDesc, numFrictionPatches))
-    testing.expectf(t, offset_of(PxSolverContactDesc, startContactPatchIndex) == 184, "Wrong offset for PxSolverContactDesc.startContactPatchIndex, expected 184 got %v", offset_of(PxSolverContactDesc, startContactPatchIndex))
-    testing.expectf(t, offset_of(PxSolverContactDesc, numContactPatches) == 188, "Wrong offset for PxSolverContactDesc.numContactPatches, expected 188 got %v", offset_of(PxSolverContactDesc, numContactPatches))
-    testing.expectf(t, offset_of(PxSolverContactDesc, axisConstraintCount) == 190, "Wrong offset for PxSolverContactDesc.axisConstraintCount, expected 190 got %v", offset_of(PxSolverContactDesc, axisConstraintCount))
-    testing.expectf(t, offset_of(PxSolverContactDesc, offsetSlop) == 192, "Wrong offset for PxSolverContactDesc.offsetSlop, expected 192 got %v", offset_of(PxSolverContactDesc, offsetSlop))
-    testing.expectf(t, size_of(PxSolverContactDesc) == 208, "Wrong size for type PxSolverContactDesc, expected 208 got %v", size_of(PxSolverContactDesc))
-}
+
 
 PxConstraintAllocator :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxArticulationLimit :: struct {
-// false false
-// []
-// 0
     low: _c.float,
     high: _c.float,
 }
-@(test)
-test_layout_PxArticulationLimit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationLimit, high) == 4, "Wrong offset for PxArticulationLimit.high, expected 4 got %v", offset_of(PxArticulationLimit, high))
-    testing.expectf(t, size_of(PxArticulationLimit) == 8, "Wrong size for type PxArticulationLimit, expected 8 got %v", size_of(PxArticulationLimit))
-}
+
 
 PxArticulationDrive :: struct {
-// false false
-// []
-// 0
     stiffness: _c.float,
     damping: _c.float,
     maxForce: _c.float,
-    driveType: _c.int32_t,
-}
-@(test)
-test_layout_PxArticulationDrive :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationDrive, damping) == 4, "Wrong offset for PxArticulationDrive.damping, expected 4 got %v", offset_of(PxArticulationDrive, damping))
-    testing.expectf(t, offset_of(PxArticulationDrive, maxForce) == 8, "Wrong offset for PxArticulationDrive.maxForce, expected 8 got %v", offset_of(PxArticulationDrive, maxForce))
-    testing.expectf(t, offset_of(PxArticulationDrive, driveType) == 12, "Wrong offset for PxArticulationDrive.driveType, expected 12 got %v", offset_of(PxArticulationDrive, driveType))
-    testing.expectf(t, size_of(PxArticulationDrive) == 16, "Wrong size for type PxArticulationDrive, expected 16 got %v", size_of(PxArticulationDrive))
+    driveType: PxArticulationDriveType,
 }
 
+
 PxTGSSolverBodyVel :: struct {
-// false false
-// []
-// 0
     linearVelocity: PxVec3,
     nbStaticInteractions: _c.uint16_t,
     maxDynamicPartition: _c.uint16_t,
@@ -3477,38 +2755,15 @@ PxTGSSolverBodyVel :: struct {
     isKinematic: _c.bool,
     pad: _c.uint8_t,
 }
-@(test)
-test_layout_PxTGSSolverBodyVel :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, nbStaticInteractions) == 12, "Wrong offset for PxTGSSolverBodyVel.nbStaticInteractions, expected 12 got %v", offset_of(PxTGSSolverBodyVel, nbStaticInteractions))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, maxDynamicPartition) == 14, "Wrong offset for PxTGSSolverBodyVel.maxDynamicPartition, expected 14 got %v", offset_of(PxTGSSolverBodyVel, maxDynamicPartition))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, angularVelocity) == 16, "Wrong offset for PxTGSSolverBodyVel.angularVelocity, expected 16 got %v", offset_of(PxTGSSolverBodyVel, angularVelocity))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, partitionMask) == 28, "Wrong offset for PxTGSSolverBodyVel.partitionMask, expected 28 got %v", offset_of(PxTGSSolverBodyVel, partitionMask))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, deltaAngDt) == 32, "Wrong offset for PxTGSSolverBodyVel.deltaAngDt, expected 32 got %v", offset_of(PxTGSSolverBodyVel, deltaAngDt))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, maxAngVel) == 44, "Wrong offset for PxTGSSolverBodyVel.maxAngVel, expected 44 got %v", offset_of(PxTGSSolverBodyVel, maxAngVel))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, deltaLinDt) == 48, "Wrong offset for PxTGSSolverBodyVel.deltaLinDt, expected 48 got %v", offset_of(PxTGSSolverBodyVel, deltaLinDt))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, lockFlags) == 60, "Wrong offset for PxTGSSolverBodyVel.lockFlags, expected 60 got %v", offset_of(PxTGSSolverBodyVel, lockFlags))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, isKinematic) == 62, "Wrong offset for PxTGSSolverBodyVel.isKinematic, expected 62 got %v", offset_of(PxTGSSolverBodyVel, isKinematic))
-    testing.expectf(t, offset_of(PxTGSSolverBodyVel, pad) == 63, "Wrong offset for PxTGSSolverBodyVel.pad, expected 63 got %v", offset_of(PxTGSSolverBodyVel, pad))
-    testing.expectf(t, size_of(PxTGSSolverBodyVel) == 64, "Wrong size for type PxTGSSolverBodyVel, expected 64 got %v", size_of(PxTGSSolverBodyVel))
-}
+
 
 PxTGSSolverBodyTxInertia :: struct {
-// false false
-// []
-// 0
     deltaBody2World: PxTransform,
     sqrtInvInertia: PxMat33,
 }
-@(test)
-test_layout_PxTGSSolverBodyTxInertia :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverBodyTxInertia, sqrtInvInertia) == 28, "Wrong offset for PxTGSSolverBodyTxInertia.sqrtInvInertia, expected 28 got %v", offset_of(PxTGSSolverBodyTxInertia, sqrtInvInertia))
-    testing.expectf(t, size_of(PxTGSSolverBodyTxInertia) == 64, "Wrong size for type PxTGSSolverBodyTxInertia, expected 64 got %v", size_of(PxTGSSolverBodyTxInertia))
-}
+
 
 PxTGSSolverBodyData :: struct {
-// false false
-// []
-// 0
     originalLinearVelocity: PxVec3,
     maxContactImpulse: _c.float,
     originalAngularVelocity: PxVec3,
@@ -3518,22 +2773,9 @@ PxTGSSolverBodyData :: struct {
     reportThreshold: _c.float,
     pad: _c.uint32_t,
 }
-@(test)
-test_layout_PxTGSSolverBodyData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, maxContactImpulse) == 12, "Wrong offset for PxTGSSolverBodyData.maxContactImpulse, expected 12 got %v", offset_of(PxTGSSolverBodyData, maxContactImpulse))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, originalAngularVelocity) == 16, "Wrong offset for PxTGSSolverBodyData.originalAngularVelocity, expected 16 got %v", offset_of(PxTGSSolverBodyData, originalAngularVelocity))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, penBiasClamp) == 28, "Wrong offset for PxTGSSolverBodyData.penBiasClamp, expected 28 got %v", offset_of(PxTGSSolverBodyData, penBiasClamp))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, invMass) == 32, "Wrong offset for PxTGSSolverBodyData.invMass, expected 32 got %v", offset_of(PxTGSSolverBodyData, invMass))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, nodeIndex) == 36, "Wrong offset for PxTGSSolverBodyData.nodeIndex, expected 36 got %v", offset_of(PxTGSSolverBodyData, nodeIndex))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, reportThreshold) == 40, "Wrong offset for PxTGSSolverBodyData.reportThreshold, expected 40 got %v", offset_of(PxTGSSolverBodyData, reportThreshold))
-    testing.expectf(t, offset_of(PxTGSSolverBodyData, pad) == 44, "Wrong offset for PxTGSSolverBodyData.pad, expected 44 got %v", offset_of(PxTGSSolverBodyData, pad))
-    testing.expectf(t, size_of(PxTGSSolverBodyData) == 48, "Wrong size for type PxTGSSolverBodyData, expected 48 got %v", size_of(PxTGSSolverBodyData))
-}
+
 
 PxTGSSolverConstraintPrepDescBase :: struct {
-// false false
-// []
-// 0
     invMassScales: PxConstraintInvMassScale,
     desc: ^PxSolverConstraintDesc,
     body0: ^PxTGSSolverBodyVel,
@@ -3544,29 +2786,13 @@ PxTGSSolverConstraintPrepDescBase :: struct {
     bodyData1: ^PxTGSSolverBodyData,
     bodyFrame0: PxTransform,
     bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
-}
-@(test)
-test_layout_PxTGSSolverConstraintPrepDescBase :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, desc) == 16, "Wrong offset for PxTGSSolverConstraintPrepDescBase.desc, expected 16 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, desc))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, body0) == 24, "Wrong offset for PxTGSSolverConstraintPrepDescBase.body0, expected 24 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, body0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, body1) == 32, "Wrong offset for PxTGSSolverConstraintPrepDescBase.body1, expected 32 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, body1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, body0TxI) == 40, "Wrong offset for PxTGSSolverConstraintPrepDescBase.body0TxI, expected 40 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, body0TxI))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, body1TxI) == 48, "Wrong offset for PxTGSSolverConstraintPrepDescBase.body1TxI, expected 48 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, body1TxI))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyData0) == 56, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyData0, expected 56 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyData0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyData1) == 64, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyData1, expected 64 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyData1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyFrame0) == 72, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyFrame0, expected 72 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyFrame0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyFrame1) == 100, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyFrame1, expected 100 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyFrame1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyState0) == 128, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyState0, expected 128 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyState0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDescBase, bodyState1) == 132, "Wrong offset for PxTGSSolverConstraintPrepDescBase.bodyState1, expected 132 got %v", offset_of(PxTGSSolverConstraintPrepDescBase, bodyState1))
-    testing.expectf(t, size_of(PxTGSSolverConstraintPrepDescBase) == 144, "Wrong size for type PxTGSSolverConstraintPrepDescBase, expected 144 got %v", size_of(PxTGSSolverConstraintPrepDescBase))
+    bodyState0: BodyState,
+    bodyState1: BodyState,
+    _pad12: [8]u8,
 }
 
+
 PxTGSSolverConstraintPrepDesc :: struct {
-// false false
-// []
-// 0
     invMassScales: PxConstraintInvMassScale,
     desc: ^PxSolverConstraintDesc,
     body0: ^PxTGSSolverBodyVel,
@@ -3577,8 +2803,8 @@ PxTGSSolverConstraintPrepDesc :: struct {
     bodyData1: ^PxTGSSolverBodyData,
     bodyFrame0: PxTransform,
     bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
+    bodyState0: BodyState,
+    bodyState1: BodyState,
     rows: ^Px1DConstraint,
     numRows: _c.uint32_t,
     linBreakForce: _c.float,
@@ -3595,40 +2821,9 @@ PxTGSSolverConstraintPrepDesc :: struct {
     cA2w: PxVec3Padded,
     cB2w: PxVec3Padded,
 }
-@(test)
-test_layout_PxTGSSolverConstraintPrepDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, desc) == 16, "Wrong offset for PxTGSSolverConstraintPrepDesc.desc, expected 16 got %v", offset_of(PxTGSSolverConstraintPrepDesc, desc))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, body0) == 24, "Wrong offset for PxTGSSolverConstraintPrepDesc.body0, expected 24 got %v", offset_of(PxTGSSolverConstraintPrepDesc, body0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, body1) == 32, "Wrong offset for PxTGSSolverConstraintPrepDesc.body1, expected 32 got %v", offset_of(PxTGSSolverConstraintPrepDesc, body1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, body0TxI) == 40, "Wrong offset for PxTGSSolverConstraintPrepDesc.body0TxI, expected 40 got %v", offset_of(PxTGSSolverConstraintPrepDesc, body0TxI))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, body1TxI) == 48, "Wrong offset for PxTGSSolverConstraintPrepDesc.body1TxI, expected 48 got %v", offset_of(PxTGSSolverConstraintPrepDesc, body1TxI))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyData0) == 56, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyData0, expected 56 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyData0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyData1) == 64, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyData1, expected 64 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyData1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyFrame0) == 72, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyFrame0, expected 72 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyFrame0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyFrame1) == 100, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyFrame1, expected 100 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyFrame1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyState0) == 128, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyState0, expected 128 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyState0))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, bodyState1) == 132, "Wrong offset for PxTGSSolverConstraintPrepDesc.bodyState1, expected 132 got %v", offset_of(PxTGSSolverConstraintPrepDesc, bodyState1))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, rows) == 136, "Wrong offset for PxTGSSolverConstraintPrepDesc.rows, expected 136 got %v", offset_of(PxTGSSolverConstraintPrepDesc, rows))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, numRows) == 144, "Wrong offset for PxTGSSolverConstraintPrepDesc.numRows, expected 144 got %v", offset_of(PxTGSSolverConstraintPrepDesc, numRows))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, linBreakForce) == 148, "Wrong offset for PxTGSSolverConstraintPrepDesc.linBreakForce, expected 148 got %v", offset_of(PxTGSSolverConstraintPrepDesc, linBreakForce))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, angBreakForce) == 152, "Wrong offset for PxTGSSolverConstraintPrepDesc.angBreakForce, expected 152 got %v", offset_of(PxTGSSolverConstraintPrepDesc, angBreakForce))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, minResponseThreshold) == 156, "Wrong offset for PxTGSSolverConstraintPrepDesc.minResponseThreshold, expected 156 got %v", offset_of(PxTGSSolverConstraintPrepDesc, minResponseThreshold))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, writeback) == 160, "Wrong offset for PxTGSSolverConstraintPrepDesc.writeback, expected 160 got %v", offset_of(PxTGSSolverConstraintPrepDesc, writeback))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, disablePreprocessing) == 168, "Wrong offset for PxTGSSolverConstraintPrepDesc.disablePreprocessing, expected 168 got %v", offset_of(PxTGSSolverConstraintPrepDesc, disablePreprocessing))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, improvedSlerp) == 169, "Wrong offset for PxTGSSolverConstraintPrepDesc.improvedSlerp, expected 169 got %v", offset_of(PxTGSSolverConstraintPrepDesc, improvedSlerp))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, driveLimitsAreForces) == 170, "Wrong offset for PxTGSSolverConstraintPrepDesc.driveLimitsAreForces, expected 170 got %v", offset_of(PxTGSSolverConstraintPrepDesc, driveLimitsAreForces))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, extendedLimits) == 171, "Wrong offset for PxTGSSolverConstraintPrepDesc.extendedLimits, expected 171 got %v", offset_of(PxTGSSolverConstraintPrepDesc, extendedLimits))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, disableConstraint) == 172, "Wrong offset for PxTGSSolverConstraintPrepDesc.disableConstraint, expected 172 got %v", offset_of(PxTGSSolverConstraintPrepDesc, disableConstraint))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, body0WorldOffset) == 176, "Wrong offset for PxTGSSolverConstraintPrepDesc.body0WorldOffset, expected 176 got %v", offset_of(PxTGSSolverConstraintPrepDesc, body0WorldOffset))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, cA2w) == 192, "Wrong offset for PxTGSSolverConstraintPrepDesc.cA2w, expected 192 got %v", offset_of(PxTGSSolverConstraintPrepDesc, cA2w))
-    testing.expectf(t, offset_of(PxTGSSolverConstraintPrepDesc, cB2w) == 208, "Wrong offset for PxTGSSolverConstraintPrepDesc.cB2w, expected 208 got %v", offset_of(PxTGSSolverConstraintPrepDesc, cB2w))
-    testing.expectf(t, size_of(PxTGSSolverConstraintPrepDesc) == 224, "Wrong size for type PxTGSSolverConstraintPrepDesc, expected 224 got %v", size_of(PxTGSSolverConstraintPrepDesc))
-}
+
 
 PxTGSSolverContactDesc :: struct {
-// false false
-// []
-// 0
     invMassScales: PxConstraintInvMassScale,
     desc: ^PxSolverConstraintDesc,
     body0: ^PxTGSSolverBodyVel,
@@ -3639,8 +2834,8 @@ PxTGSSolverContactDesc :: struct {
     bodyData1: ^PxTGSSolverBodyData,
     bodyFrame0: PxTransform,
     bodyFrame1: PxTransform,
-    bodyState0: _c.int32_t,
-    bodyState1: _c.int32_t,
+    bodyState0: BodyState,
+    bodyState1: BodyState,
     shapeInteraction: rawptr,
     contacts: ^PxContactPoint,
     numContacts: _c.uint32_t,
@@ -3664,162 +2859,68 @@ PxTGSSolverContactDesc :: struct {
     minTorsionalPatchRadius: _c.float,
     offsetSlop: _c.float,
 }
-@(test)
-test_layout_PxTGSSolverContactDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, desc) == 16, "Wrong offset for PxTGSSolverContactDesc.desc, expected 16 got %v", offset_of(PxTGSSolverContactDesc, desc))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, body0) == 24, "Wrong offset for PxTGSSolverContactDesc.body0, expected 24 got %v", offset_of(PxTGSSolverContactDesc, body0))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, body1) == 32, "Wrong offset for PxTGSSolverContactDesc.body1, expected 32 got %v", offset_of(PxTGSSolverContactDesc, body1))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, body0TxI) == 40, "Wrong offset for PxTGSSolverContactDesc.body0TxI, expected 40 got %v", offset_of(PxTGSSolverContactDesc, body0TxI))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, body1TxI) == 48, "Wrong offset for PxTGSSolverContactDesc.body1TxI, expected 48 got %v", offset_of(PxTGSSolverContactDesc, body1TxI))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyData0) == 56, "Wrong offset for PxTGSSolverContactDesc.bodyData0, expected 56 got %v", offset_of(PxTGSSolverContactDesc, bodyData0))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyData1) == 64, "Wrong offset for PxTGSSolverContactDesc.bodyData1, expected 64 got %v", offset_of(PxTGSSolverContactDesc, bodyData1))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyFrame0) == 72, "Wrong offset for PxTGSSolverContactDesc.bodyFrame0, expected 72 got %v", offset_of(PxTGSSolverContactDesc, bodyFrame0))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyFrame1) == 100, "Wrong offset for PxTGSSolverContactDesc.bodyFrame1, expected 100 got %v", offset_of(PxTGSSolverContactDesc, bodyFrame1))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyState0) == 128, "Wrong offset for PxTGSSolverContactDesc.bodyState0, expected 128 got %v", offset_of(PxTGSSolverContactDesc, bodyState0))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, bodyState1) == 132, "Wrong offset for PxTGSSolverContactDesc.bodyState1, expected 132 got %v", offset_of(PxTGSSolverContactDesc, bodyState1))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, shapeInteraction) == 136, "Wrong offset for PxTGSSolverContactDesc.shapeInteraction, expected 136 got %v", offset_of(PxTGSSolverContactDesc, shapeInteraction))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, contacts) == 144, "Wrong offset for PxTGSSolverContactDesc.contacts, expected 144 got %v", offset_of(PxTGSSolverContactDesc, contacts))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, numContacts) == 152, "Wrong offset for PxTGSSolverContactDesc.numContacts, expected 152 got %v", offset_of(PxTGSSolverContactDesc, numContacts))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, hasMaxImpulse) == 156, "Wrong offset for PxTGSSolverContactDesc.hasMaxImpulse, expected 156 got %v", offset_of(PxTGSSolverContactDesc, hasMaxImpulse))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, disableStrongFriction) == 157, "Wrong offset for PxTGSSolverContactDesc.disableStrongFriction, expected 157 got %v", offset_of(PxTGSSolverContactDesc, disableStrongFriction))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, hasForceThresholds) == 158, "Wrong offset for PxTGSSolverContactDesc.hasForceThresholds, expected 158 got %v", offset_of(PxTGSSolverContactDesc, hasForceThresholds))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, restDistance) == 160, "Wrong offset for PxTGSSolverContactDesc.restDistance, expected 160 got %v", offset_of(PxTGSSolverContactDesc, restDistance))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, maxCCDSeparation) == 164, "Wrong offset for PxTGSSolverContactDesc.maxCCDSeparation, expected 164 got %v", offset_of(PxTGSSolverContactDesc, maxCCDSeparation))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, frictionPtr) == 168, "Wrong offset for PxTGSSolverContactDesc.frictionPtr, expected 168 got %v", offset_of(PxTGSSolverContactDesc, frictionPtr))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, frictionCount) == 176, "Wrong offset for PxTGSSolverContactDesc.frictionCount, expected 176 got %v", offset_of(PxTGSSolverContactDesc, frictionCount))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, contactForces) == 184, "Wrong offset for PxTGSSolverContactDesc.contactForces, expected 184 got %v", offset_of(PxTGSSolverContactDesc, contactForces))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, startFrictionPatchIndex) == 192, "Wrong offset for PxTGSSolverContactDesc.startFrictionPatchIndex, expected 192 got %v", offset_of(PxTGSSolverContactDesc, startFrictionPatchIndex))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, numFrictionPatches) == 196, "Wrong offset for PxTGSSolverContactDesc.numFrictionPatches, expected 196 got %v", offset_of(PxTGSSolverContactDesc, numFrictionPatches))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, startContactPatchIndex) == 200, "Wrong offset for PxTGSSolverContactDesc.startContactPatchIndex, expected 200 got %v", offset_of(PxTGSSolverContactDesc, startContactPatchIndex))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, numContactPatches) == 204, "Wrong offset for PxTGSSolverContactDesc.numContactPatches, expected 204 got %v", offset_of(PxTGSSolverContactDesc, numContactPatches))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, axisConstraintCount) == 206, "Wrong offset for PxTGSSolverContactDesc.axisConstraintCount, expected 206 got %v", offset_of(PxTGSSolverContactDesc, axisConstraintCount))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, maxImpulse) == 208, "Wrong offset for PxTGSSolverContactDesc.maxImpulse, expected 208 got %v", offset_of(PxTGSSolverContactDesc, maxImpulse))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, torsionalPatchRadius) == 212, "Wrong offset for PxTGSSolverContactDesc.torsionalPatchRadius, expected 212 got %v", offset_of(PxTGSSolverContactDesc, torsionalPatchRadius))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, minTorsionalPatchRadius) == 216, "Wrong offset for PxTGSSolverContactDesc.minTorsionalPatchRadius, expected 216 got %v", offset_of(PxTGSSolverContactDesc, minTorsionalPatchRadius))
-    testing.expectf(t, offset_of(PxTGSSolverContactDesc, offsetSlop) == 220, "Wrong offset for PxTGSSolverContactDesc.offsetSlop, expected 220 got %v", offset_of(PxTGSSolverContactDesc, offsetSlop))
-    testing.expectf(t, size_of(PxTGSSolverContactDesc) == 224, "Wrong size for type PxTGSSolverContactDesc, expected 224 got %v", size_of(PxTGSSolverContactDesc))
-}
+
 
 PxArticulationTendonLimit :: struct {
-// false false
-// []
-// 0
     lowLimit: _c.float,
     highLimit: _c.float,
 }
-@(test)
-test_layout_PxArticulationTendonLimit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationTendonLimit, highLimit) == 4, "Wrong offset for PxArticulationTendonLimit.highLimit, expected 4 got %v", offset_of(PxArticulationTendonLimit, highLimit))
-    testing.expectf(t, size_of(PxArticulationTendonLimit) == 8, "Wrong size for type PxArticulationTendonLimit, expected 8 got %v", size_of(PxArticulationTendonLimit))
-}
+
 
 PxArticulationAttachment :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxArticulationAttachment :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationAttachment, userData) == 16, "Wrong offset for PxArticulationAttachment.userData, expected 16 got %v", offset_of(PxArticulationAttachment, userData))
-    testing.expectf(t, size_of(PxArticulationAttachment) == 24, "Wrong size for type PxArticulationAttachment, expected 24 got %v", size_of(PxArticulationAttachment))
-}
+
 
 PxArticulationTendonJoint :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
-}
-@(test)
-test_layout_PxArticulationTendonJoint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationTendonJoint, userData) == 16, "Wrong offset for PxArticulationTendonJoint.userData, expected 16 got %v", offset_of(PxArticulationTendonJoint, userData))
-    testing.expectf(t, size_of(PxArticulationTendonJoint) == 24, "Wrong size for type PxArticulationTendonJoint, expected 24 got %v", size_of(PxArticulationTendonJoint))
 }
 
+
 PxArticulationTendon :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxArticulationTendon :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationTendon, userData) == 16, "Wrong offset for PxArticulationTendon.userData, expected 16 got %v", offset_of(PxArticulationTendon, userData))
-    testing.expectf(t, size_of(PxArticulationTendon) == 24, "Wrong size for type PxArticulationTendon, expected 24 got %v", size_of(PxArticulationTendon))
-}
+
 
 PxArticulationSpatialTendon :: struct {
     using _: PxArticulationTendon,
-};
+}
+
 
 PxArticulationFixedTendon :: struct {
     using _: PxArticulationTendon,
-};
+}
+
 
 PxSpatialForce :: struct {
-// false false
-// []
-// 0
     force: PxVec3,
     pad0: _c.float,
     torque: PxVec3,
     pad1: _c.float,
 }
-@(test)
-test_layout_PxSpatialForce :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSpatialForce, pad0) == 12, "Wrong offset for PxSpatialForce.pad0, expected 12 got %v", offset_of(PxSpatialForce, pad0))
-    testing.expectf(t, offset_of(PxSpatialForce, torque) == 16, "Wrong offset for PxSpatialForce.torque, expected 16 got %v", offset_of(PxSpatialForce, torque))
-    testing.expectf(t, offset_of(PxSpatialForce, pad1) == 28, "Wrong offset for PxSpatialForce.pad1, expected 28 got %v", offset_of(PxSpatialForce, pad1))
-    testing.expectf(t, size_of(PxSpatialForce) == 32, "Wrong size for type PxSpatialForce, expected 32 got %v", size_of(PxSpatialForce))
-}
+
 
 PxSpatialVelocity :: struct {
-// false false
-// []
-// 0
     linear: PxVec3,
     pad0: _c.float,
     angular: PxVec3,
     pad1: _c.float,
 }
-@(test)
-test_layout_PxSpatialVelocity :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSpatialVelocity, pad0) == 12, "Wrong offset for PxSpatialVelocity.pad0, expected 12 got %v", offset_of(PxSpatialVelocity, pad0))
-    testing.expectf(t, offset_of(PxSpatialVelocity, angular) == 16, "Wrong offset for PxSpatialVelocity.angular, expected 16 got %v", offset_of(PxSpatialVelocity, angular))
-    testing.expectf(t, offset_of(PxSpatialVelocity, pad1) == 28, "Wrong offset for PxSpatialVelocity.pad1, expected 28 got %v", offset_of(PxSpatialVelocity, pad1))
-    testing.expectf(t, size_of(PxSpatialVelocity) == 32, "Wrong size for type PxSpatialVelocity, expected 32 got %v", size_of(PxSpatialVelocity))
-}
+
 
 PxArticulationRootLinkData :: struct {
-// false false
-// []
-// 0
     transform: PxTransform,
     worldLinVel: PxVec3,
     worldAngVel: PxVec3,
     worldLinAccel: PxVec3,
     worldAngAccel: PxVec3,
 }
-@(test)
-test_layout_PxArticulationRootLinkData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationRootLinkData, worldLinVel) == 28, "Wrong offset for PxArticulationRootLinkData.worldLinVel, expected 28 got %v", offset_of(PxArticulationRootLinkData, worldLinVel))
-    testing.expectf(t, offset_of(PxArticulationRootLinkData, worldAngVel) == 40, "Wrong offset for PxArticulationRootLinkData.worldAngVel, expected 40 got %v", offset_of(PxArticulationRootLinkData, worldAngVel))
-    testing.expectf(t, offset_of(PxArticulationRootLinkData, worldLinAccel) == 52, "Wrong offset for PxArticulationRootLinkData.worldLinAccel, expected 52 got %v", offset_of(PxArticulationRootLinkData, worldLinAccel))
-    testing.expectf(t, offset_of(PxArticulationRootLinkData, worldAngAccel) == 64, "Wrong offset for PxArticulationRootLinkData.worldAngAccel, expected 64 got %v", offset_of(PxArticulationRootLinkData, worldAngAccel))
-    testing.expectf(t, size_of(PxArticulationRootLinkData) == 76, "Wrong size for type PxArticulationRootLinkData, expected 76 got %v", size_of(PxArticulationRootLinkData))
-}
+
 
 PxArticulationCache :: struct {
-// false false
-// []
-// 0
     externalForces: ^PxSpatialForce,
     denseJacobian: ^_c.float,
     massMatrix: ^_c.float,
@@ -3837,189 +2938,92 @@ PxArticulationCache :: struct {
     scratchMemory: rawptr,
     scratchAllocator: rawptr,
     version: _c.uint32_t,
+    _pad17: [4]u8,
 }
-@(test)
-test_layout_PxArticulationCache :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationCache, denseJacobian) == 8, "Wrong offset for PxArticulationCache.denseJacobian, expected 8 got %v", offset_of(PxArticulationCache, denseJacobian))
-    testing.expectf(t, offset_of(PxArticulationCache, massMatrix) == 16, "Wrong offset for PxArticulationCache.massMatrix, expected 16 got %v", offset_of(PxArticulationCache, massMatrix))
-    testing.expectf(t, offset_of(PxArticulationCache, jointVelocity) == 24, "Wrong offset for PxArticulationCache.jointVelocity, expected 24 got %v", offset_of(PxArticulationCache, jointVelocity))
-    testing.expectf(t, offset_of(PxArticulationCache, jointAcceleration) == 32, "Wrong offset for PxArticulationCache.jointAcceleration, expected 32 got %v", offset_of(PxArticulationCache, jointAcceleration))
-    testing.expectf(t, offset_of(PxArticulationCache, jointPosition) == 40, "Wrong offset for PxArticulationCache.jointPosition, expected 40 got %v", offset_of(PxArticulationCache, jointPosition))
-    testing.expectf(t, offset_of(PxArticulationCache, jointForce) == 48, "Wrong offset for PxArticulationCache.jointForce, expected 48 got %v", offset_of(PxArticulationCache, jointForce))
-    testing.expectf(t, offset_of(PxArticulationCache, jointSolverForces) == 56, "Wrong offset for PxArticulationCache.jointSolverForces, expected 56 got %v", offset_of(PxArticulationCache, jointSolverForces))
-    testing.expectf(t, offset_of(PxArticulationCache, linkVelocity) == 64, "Wrong offset for PxArticulationCache.linkVelocity, expected 64 got %v", offset_of(PxArticulationCache, linkVelocity))
-    testing.expectf(t, offset_of(PxArticulationCache, linkAcceleration) == 72, "Wrong offset for PxArticulationCache.linkAcceleration, expected 72 got %v", offset_of(PxArticulationCache, linkAcceleration))
-    testing.expectf(t, offset_of(PxArticulationCache, rootLinkData) == 80, "Wrong offset for PxArticulationCache.rootLinkData, expected 80 got %v", offset_of(PxArticulationCache, rootLinkData))
-    testing.expectf(t, offset_of(PxArticulationCache, sensorForces) == 88, "Wrong offset for PxArticulationCache.sensorForces, expected 88 got %v", offset_of(PxArticulationCache, sensorForces))
-    testing.expectf(t, offset_of(PxArticulationCache, coefficientMatrix) == 96, "Wrong offset for PxArticulationCache.coefficientMatrix, expected 96 got %v", offset_of(PxArticulationCache, coefficientMatrix))
-    testing.expectf(t, offset_of(PxArticulationCache, lambda) == 104, "Wrong offset for PxArticulationCache.lambda, expected 104 got %v", offset_of(PxArticulationCache, lambda))
-    testing.expectf(t, offset_of(PxArticulationCache, scratchMemory) == 112, "Wrong offset for PxArticulationCache.scratchMemory, expected 112 got %v", offset_of(PxArticulationCache, scratchMemory))
-    testing.expectf(t, offset_of(PxArticulationCache, scratchAllocator) == 120, "Wrong offset for PxArticulationCache.scratchAllocator, expected 120 got %v", offset_of(PxArticulationCache, scratchAllocator))
-    testing.expectf(t, offset_of(PxArticulationCache, version) == 128, "Wrong offset for PxArticulationCache.version, expected 128 got %v", offset_of(PxArticulationCache, version))
-    testing.expectf(t, size_of(PxArticulationCache) == 136, "Wrong size for type PxArticulationCache, expected 136 got %v", size_of(PxArticulationCache))
-}
+
 
 PxArticulationSensor :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxArticulationSensor :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationSensor, userData) == 16, "Wrong offset for PxArticulationSensor.userData, expected 16 got %v", offset_of(PxArticulationSensor, userData))
-    testing.expectf(t, size_of(PxArticulationSensor) == 24, "Wrong size for type PxArticulationSensor, expected 24 got %v", size_of(PxArticulationSensor))
-}
+
 
 PxArticulationReducedCoordinate :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxArticulationReducedCoordinate :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationReducedCoordinate, userData) == 16, "Wrong offset for PxArticulationReducedCoordinate.userData, expected 16 got %v", offset_of(PxArticulationReducedCoordinate, userData))
-    testing.expectf(t, size_of(PxArticulationReducedCoordinate) == 24, "Wrong size for type PxArticulationReducedCoordinate, expected 24 got %v", size_of(PxArticulationReducedCoordinate))
-}
+
 
 PxArticulationJointReducedCoordinate :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
-}
-@(test)
-test_layout_PxArticulationJointReducedCoordinate :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxArticulationJointReducedCoordinate, userData) == 16, "Wrong offset for PxArticulationJointReducedCoordinate.userData, expected 16 got %v", offset_of(PxArticulationJointReducedCoordinate, userData))
-    testing.expectf(t, size_of(PxArticulationJointReducedCoordinate) == 24, "Wrong size for type PxArticulationJointReducedCoordinate, expected 24 got %v", size_of(PxArticulationJointReducedCoordinate))
 }
 
+
 PxShape :: struct {
-// true true
-// ["PxRefCounted"]
     using _: PxRefCounted,
-// 0
-// XXXX 16 < 0
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxShape :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxShape, userData) == 16, "Wrong offset for PxShape.userData, expected 16 got %v", offset_of(PxShape, userData))
-    testing.expectf(t, size_of(PxShape) == 24, "Wrong size for type PxShape, expected 24 got %v", size_of(PxShape))
-}
+
 
 PxRigidActor :: struct {
     using _: PxActor,
-};
+}
+
 
 PxNodeIndex :: struct {
-// false false
-// []
-// 0
-    _private_ind: _c.uint64_t,
+    _pad0: [8]u8,
 }
-@(test)
-test_layout_PxNodeIndex :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxNodeIndex) == 8, "Wrong size for type PxNodeIndex, expected 8 got %v", size_of(PxNodeIndex))
-}
+
 
 PxRigidBody :: struct {
     using _: PxRigidActor,
-};
+}
+
 
 PxArticulationLink :: struct {
     using _: PxRigidBody,
-};
+}
+
 
 PxConeLimitedConstraint :: struct {
-// false false
-// []
-// 0
     mAxis: PxVec3,
     mAngle: _c.float,
     mLowLimit: _c.float,
     mHighLimit: _c.float,
 }
-@(test)
-test_layout_PxConeLimitedConstraint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConeLimitedConstraint, mAngle) == 12, "Wrong offset for PxConeLimitedConstraint.mAngle, expected 12 got %v", offset_of(PxConeLimitedConstraint, mAngle))
-    testing.expectf(t, offset_of(PxConeLimitedConstraint, mLowLimit) == 16, "Wrong offset for PxConeLimitedConstraint.mLowLimit, expected 16 got %v", offset_of(PxConeLimitedConstraint, mLowLimit))
-    testing.expectf(t, offset_of(PxConeLimitedConstraint, mHighLimit) == 20, "Wrong offset for PxConeLimitedConstraint.mHighLimit, expected 20 got %v", offset_of(PxConeLimitedConstraint, mHighLimit))
-    testing.expectf(t, size_of(PxConeLimitedConstraint) == 24, "Wrong size for type PxConeLimitedConstraint, expected 24 got %v", size_of(PxConeLimitedConstraint))
-}
+
 
 PxConeLimitParams :: struct {
-// false false
-// []
-// 0
     lowHighLimits: PxVec4,
     axisAngle: PxVec4,
 }
-@(test)
-test_layout_PxConeLimitParams :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConeLimitParams, axisAngle) == 16, "Wrong offset for PxConeLimitParams.axisAngle, expected 16 got %v", offset_of(PxConeLimitParams, axisAngle))
-    testing.expectf(t, size_of(PxConeLimitParams) == 32, "Wrong size for type PxConeLimitParams, expected 32 got %v", size_of(PxConeLimitParams))
-}
+
 
 PxConstraintShaderTable :: struct {
-// false false
-// []
-// 0
     solverPrep: rawptr,
     _pad1: [8]u8,
     visualize: rawptr,
-    flag: _c.int32_t,
+    flag: PxConstraintFlag,
+    _pad4: [4]u8,
 }
-@(test)
-test_layout_PxConstraintShaderTable :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConstraintShaderTable, visualize) == 16, "Wrong offset for PxConstraintShaderTable.visualize, expected 16 got %v", offset_of(PxConstraintShaderTable, visualize))
-    testing.expectf(t, offset_of(PxConstraintShaderTable, flag) == 24, "Wrong offset for PxConstraintShaderTable.flag, expected 24 got %v", offset_of(PxConstraintShaderTable, flag))
-    testing.expectf(t, size_of(PxConstraintShaderTable) == 32, "Wrong size for type PxConstraintShaderTable, expected 32 got %v", size_of(PxConstraintShaderTable))
-}
+
 
 PxConstraint :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxConstraint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConstraint, userData) == 16, "Wrong offset for PxConstraint.userData, expected 16 got %v", offset_of(PxConstraint, userData))
-    testing.expectf(t, size_of(PxConstraint) == 24, "Wrong size for type PxConstraint, expected 24 got %v", size_of(PxConstraint))
-}
+
 
 PxMassModificationProps :: struct {
-// false false
-// []
-// 0
     mInvMassScale0: _c.float,
     mInvInertiaScale0: _c.float,
     mInvMassScale1: _c.float,
     mInvInertiaScale1: _c.float,
 }
-@(test)
-test_layout_PxMassModificationProps :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMassModificationProps, mInvInertiaScale0) == 4, "Wrong offset for PxMassModificationProps.mInvInertiaScale0, expected 4 got %v", offset_of(PxMassModificationProps, mInvInertiaScale0))
-    testing.expectf(t, offset_of(PxMassModificationProps, mInvMassScale1) == 8, "Wrong offset for PxMassModificationProps.mInvMassScale1, expected 8 got %v", offset_of(PxMassModificationProps, mInvMassScale1))
-    testing.expectf(t, offset_of(PxMassModificationProps, mInvInertiaScale1) == 12, "Wrong offset for PxMassModificationProps.mInvInertiaScale1, expected 12 got %v", offset_of(PxMassModificationProps, mInvInertiaScale1))
-    testing.expectf(t, size_of(PxMassModificationProps) == 16, "Wrong size for type PxMassModificationProps, expected 16 got %v", size_of(PxMassModificationProps))
-}
+
 
 PxContactPatch :: struct {
-// false false
-// []
-// 0
     mMassModification: PxMassModificationProps,
     normal: PxVec3,
     restitution: _c.float,
@@ -4034,57 +3038,23 @@ PxContactPatch :: struct {
     materialIndex1: _c.uint16_t,
     pad: [5]_c.uint16_t,
 }
-@(test)
-test_layout_PxContactPatch :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPatch, normal) == 16, "Wrong offset for PxContactPatch.normal, expected 16 got %v", offset_of(PxContactPatch, normal))
-    testing.expectf(t, offset_of(PxContactPatch, restitution) == 28, "Wrong offset for PxContactPatch.restitution, expected 28 got %v", offset_of(PxContactPatch, restitution))
-    testing.expectf(t, offset_of(PxContactPatch, dynamicFriction) == 32, "Wrong offset for PxContactPatch.dynamicFriction, expected 32 got %v", offset_of(PxContactPatch, dynamicFriction))
-    testing.expectf(t, offset_of(PxContactPatch, staticFriction) == 36, "Wrong offset for PxContactPatch.staticFriction, expected 36 got %v", offset_of(PxContactPatch, staticFriction))
-    testing.expectf(t, offset_of(PxContactPatch, damping) == 40, "Wrong offset for PxContactPatch.damping, expected 40 got %v", offset_of(PxContactPatch, damping))
-    testing.expectf(t, offset_of(PxContactPatch, startContactIndex) == 44, "Wrong offset for PxContactPatch.startContactIndex, expected 44 got %v", offset_of(PxContactPatch, startContactIndex))
-    testing.expectf(t, offset_of(PxContactPatch, nbContacts) == 46, "Wrong offset for PxContactPatch.nbContacts, expected 46 got %v", offset_of(PxContactPatch, nbContacts))
-    testing.expectf(t, offset_of(PxContactPatch, materialFlags) == 47, "Wrong offset for PxContactPatch.materialFlags, expected 47 got %v", offset_of(PxContactPatch, materialFlags))
-    testing.expectf(t, offset_of(PxContactPatch, internalFlags) == 48, "Wrong offset for PxContactPatch.internalFlags, expected 48 got %v", offset_of(PxContactPatch, internalFlags))
-    testing.expectf(t, offset_of(PxContactPatch, materialIndex0) == 50, "Wrong offset for PxContactPatch.materialIndex0, expected 50 got %v", offset_of(PxContactPatch, materialIndex0))
-    testing.expectf(t, offset_of(PxContactPatch, materialIndex1) == 52, "Wrong offset for PxContactPatch.materialIndex1, expected 52 got %v", offset_of(PxContactPatch, materialIndex1))
-    testing.expectf(t, size_of(PxContactPatch) == 64, "Wrong size for type PxContactPatch, expected 64 got %v", size_of(PxContactPatch))
-}
+
 
 PxContact :: struct {
-// false false
-// []
-// 0
     contact: PxVec3,
     separation: _c.float,
 }
-@(test)
-test_layout_PxContact :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContact, separation) == 12, "Wrong offset for PxContact.separation, expected 12 got %v", offset_of(PxContact, separation))
-    testing.expectf(t, size_of(PxContact) == 16, "Wrong size for type PxContact, expected 16 got %v", size_of(PxContact))
-}
+
 
 PxExtendedContact :: struct {
-// false false
-// ["PxContact"]
     using _: PxContact,
-// 16
-    _pad2: [0]u8,
     targetVelocity: PxVec3,
     maxImpulse: _c.float,
 }
-@(test)
-test_layout_PxExtendedContact :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxExtendedContact, targetVelocity) == 16, "Wrong offset for PxExtendedContact.targetVelocity, expected 16 got %v", offset_of(PxExtendedContact, targetVelocity))
-    testing.expectf(t, offset_of(PxExtendedContact, maxImpulse) == 28, "Wrong offset for PxExtendedContact.maxImpulse, expected 28 got %v", offset_of(PxExtendedContact, maxImpulse))
-    testing.expectf(t, size_of(PxExtendedContact) == 32, "Wrong size for type PxExtendedContact, expected 32 got %v", size_of(PxExtendedContact))
-}
+
 
 PxModifiableContact :: struct {
-// false false
-// ["PxExtendedContact"]
     using _: PxExtendedContact,
-// 32
-    _pad5: [0]u8,
     normal: PxVec3,
     restitution: _c.float,
     materialFlags: _c.uint32_t,
@@ -4093,22 +3063,9 @@ PxModifiableContact :: struct {
     staticFriction: _c.float,
     dynamicFriction: _c.float,
 }
-@(test)
-test_layout_PxModifiableContact :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxModifiableContact, normal) == 32, "Wrong offset for PxModifiableContact.normal, expected 32 got %v", offset_of(PxModifiableContact, normal))
-    testing.expectf(t, offset_of(PxModifiableContact, restitution) == 44, "Wrong offset for PxModifiableContact.restitution, expected 44 got %v", offset_of(PxModifiableContact, restitution))
-    testing.expectf(t, offset_of(PxModifiableContact, materialFlags) == 48, "Wrong offset for PxModifiableContact.materialFlags, expected 48 got %v", offset_of(PxModifiableContact, materialFlags))
-    testing.expectf(t, offset_of(PxModifiableContact, materialIndex0) == 52, "Wrong offset for PxModifiableContact.materialIndex0, expected 52 got %v", offset_of(PxModifiableContact, materialIndex0))
-    testing.expectf(t, offset_of(PxModifiableContact, materialIndex1) == 54, "Wrong offset for PxModifiableContact.materialIndex1, expected 54 got %v", offset_of(PxModifiableContact, materialIndex1))
-    testing.expectf(t, offset_of(PxModifiableContact, staticFriction) == 56, "Wrong offset for PxModifiableContact.staticFriction, expected 56 got %v", offset_of(PxModifiableContact, staticFriction))
-    testing.expectf(t, offset_of(PxModifiableContact, dynamicFriction) == 60, "Wrong offset for PxModifiableContact.dynamicFriction, expected 60 got %v", offset_of(PxModifiableContact, dynamicFriction))
-    testing.expectf(t, size_of(PxModifiableContact) == 64, "Wrong size for type PxModifiableContact, expected 64 got %v", size_of(PxModifiableContact))
-}
+
 
 PxContactStreamIterator :: struct {
-// false false
-// []
-// 0
     zero: PxVec3,
     _pad1: [4]u8,
     patch: ^PxContactPatch,
@@ -4120,34 +3077,15 @@ PxContactStreamIterator :: struct {
     nextPatchIndex: _c.uint32_t,
     contactPatchHeaderSize: _c.uint32_t,
     contactPointSize: _c.uint32_t,
-    mStreamFormat: _c.int32_t,
+    mStreamFormat: StreamFormat,
     forceNoResponse: _c.uint32_t,
     pointStepped: _c.bool,
     _pad14: [3]u8,
     hasFaceIndices: _c.uint32_t,
 }
-@(test)
-test_layout_PxContactStreamIterator :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactStreamIterator, patch) == 16, "Wrong offset for PxContactStreamIterator.patch, expected 16 got %v", offset_of(PxContactStreamIterator, patch))
-    testing.expectf(t, offset_of(PxContactStreamIterator, contact) == 24, "Wrong offset for PxContactStreamIterator.contact, expected 24 got %v", offset_of(PxContactStreamIterator, contact))
-    testing.expectf(t, offset_of(PxContactStreamIterator, faceIndice) == 32, "Wrong offset for PxContactStreamIterator.faceIndice, expected 32 got %v", offset_of(PxContactStreamIterator, faceIndice))
-    testing.expectf(t, offset_of(PxContactStreamIterator, totalPatches) == 40, "Wrong offset for PxContactStreamIterator.totalPatches, expected 40 got %v", offset_of(PxContactStreamIterator, totalPatches))
-    testing.expectf(t, offset_of(PxContactStreamIterator, totalContacts) == 44, "Wrong offset for PxContactStreamIterator.totalContacts, expected 44 got %v", offset_of(PxContactStreamIterator, totalContacts))
-    testing.expectf(t, offset_of(PxContactStreamIterator, nextContactIndex) == 48, "Wrong offset for PxContactStreamIterator.nextContactIndex, expected 48 got %v", offset_of(PxContactStreamIterator, nextContactIndex))
-    testing.expectf(t, offset_of(PxContactStreamIterator, nextPatchIndex) == 52, "Wrong offset for PxContactStreamIterator.nextPatchIndex, expected 52 got %v", offset_of(PxContactStreamIterator, nextPatchIndex))
-    testing.expectf(t, offset_of(PxContactStreamIterator, contactPatchHeaderSize) == 56, "Wrong offset for PxContactStreamIterator.contactPatchHeaderSize, expected 56 got %v", offset_of(PxContactStreamIterator, contactPatchHeaderSize))
-    testing.expectf(t, offset_of(PxContactStreamIterator, contactPointSize) == 60, "Wrong offset for PxContactStreamIterator.contactPointSize, expected 60 got %v", offset_of(PxContactStreamIterator, contactPointSize))
-    testing.expectf(t, offset_of(PxContactStreamIterator, mStreamFormat) == 64, "Wrong offset for PxContactStreamIterator.mStreamFormat, expected 64 got %v", offset_of(PxContactStreamIterator, mStreamFormat))
-    testing.expectf(t, offset_of(PxContactStreamIterator, forceNoResponse) == 68, "Wrong offset for PxContactStreamIterator.forceNoResponse, expected 68 got %v", offset_of(PxContactStreamIterator, forceNoResponse))
-    testing.expectf(t, offset_of(PxContactStreamIterator, pointStepped) == 72, "Wrong offset for PxContactStreamIterator.pointStepped, expected 72 got %v", offset_of(PxContactStreamIterator, pointStepped))
-    testing.expectf(t, offset_of(PxContactStreamIterator, hasFaceIndices) == 76, "Wrong offset for PxContactStreamIterator.hasFaceIndices, expected 76 got %v", offset_of(PxContactStreamIterator, hasFaceIndices))
-    testing.expectf(t, size_of(PxContactStreamIterator) == 80, "Wrong size for type PxContactStreamIterator, expected 80 got %v", size_of(PxContactStreamIterator))
-}
+
 
 PxGpuContactPair :: struct {
-// false false
-// []
-// 0
     contactPatches: ^_c.uint8_t,
     contactPoints: ^_c.uint8_t,
     contactForces: ^_c.float,
@@ -4159,158 +3097,96 @@ PxGpuContactPair :: struct {
     actor1: ^PxActor,
     nbContacts: _c.uint16_t,
     nbPatches: _c.uint16_t,
+    _pad11: [4]u8,
 }
-@(test)
-test_layout_PxGpuContactPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGpuContactPair, contactPoints) == 8, "Wrong offset for PxGpuContactPair.contactPoints, expected 8 got %v", offset_of(PxGpuContactPair, contactPoints))
-    testing.expectf(t, offset_of(PxGpuContactPair, contactForces) == 16, "Wrong offset for PxGpuContactPair.contactForces, expected 16 got %v", offset_of(PxGpuContactPair, contactForces))
-    testing.expectf(t, offset_of(PxGpuContactPair, transformCacheRef0) == 24, "Wrong offset for PxGpuContactPair.transformCacheRef0, expected 24 got %v", offset_of(PxGpuContactPair, transformCacheRef0))
-    testing.expectf(t, offset_of(PxGpuContactPair, transformCacheRef1) == 28, "Wrong offset for PxGpuContactPair.transformCacheRef1, expected 28 got %v", offset_of(PxGpuContactPair, transformCacheRef1))
-    testing.expectf(t, offset_of(PxGpuContactPair, nodeIndex0) == 32, "Wrong offset for PxGpuContactPair.nodeIndex0, expected 32 got %v", offset_of(PxGpuContactPair, nodeIndex0))
-    testing.expectf(t, offset_of(PxGpuContactPair, nodeIndex1) == 40, "Wrong offset for PxGpuContactPair.nodeIndex1, expected 40 got %v", offset_of(PxGpuContactPair, nodeIndex1))
-    testing.expectf(t, offset_of(PxGpuContactPair, actor0) == 48, "Wrong offset for PxGpuContactPair.actor0, expected 48 got %v", offset_of(PxGpuContactPair, actor0))
-    testing.expectf(t, offset_of(PxGpuContactPair, actor1) == 56, "Wrong offset for PxGpuContactPair.actor1, expected 56 got %v", offset_of(PxGpuContactPair, actor1))
-    testing.expectf(t, offset_of(PxGpuContactPair, nbContacts) == 64, "Wrong offset for PxGpuContactPair.nbContacts, expected 64 got %v", offset_of(PxGpuContactPair, nbContacts))
-    testing.expectf(t, offset_of(PxGpuContactPair, nbPatches) == 66, "Wrong offset for PxGpuContactPair.nbPatches, expected 66 got %v", offset_of(PxGpuContactPair, nbPatches))
-    testing.expectf(t, size_of(PxGpuContactPair) == 72, "Wrong size for type PxGpuContactPair, expected 72 got %v", size_of(PxGpuContactPair))
-}
+
 
 PxContactSet :: struct {
-// false false
-// []
-// 0
-    _private_mCount: _c.uint32_t,
-    _private_mContacts: ^PxModifiableContact,
-}
-@(test)
-test_layout_PxContactSet :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxContactSet) == 16, "Wrong size for type PxContactSet, expected 16 got %v", size_of(PxContactSet))
+    _pad0: [16]u8,
 }
 
+
 PxContactModifyPair :: struct {
-// false false
-// []
-// 0
     actor: [2]^PxRigidActor,
     shape: [2]^PxShape,
     transform: [2]PxTransform,
     contacts: PxContactSet,
 }
-@(test)
-test_layout_PxContactModifyPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactModifyPair, contacts) == 88, "Wrong offset for PxContactModifyPair.contacts, expected 88 got %v", offset_of(PxContactModifyPair, contacts))
-    testing.expectf(t, size_of(PxContactModifyPair) == 104, "Wrong size for type PxContactModifyPair, expected 104 got %v", size_of(PxContactModifyPair))
-}
+
 
 PxContactModifyCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxCCDContactModifyCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxDeletionListener :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBaseMaterial :: struct {
-// true true
-// ["PxRefCounted"]
     using _: PxRefCounted,
-// 0
-// XXXX 16 < 0
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxBaseMaterial :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBaseMaterial, userData) == 16, "Wrong offset for PxBaseMaterial.userData, expected 16 got %v", offset_of(PxBaseMaterial, userData))
-    testing.expectf(t, size_of(PxBaseMaterial) == 24, "Wrong size for type PxBaseMaterial, expected 24 got %v", size_of(PxBaseMaterial))
-}
+
 
 PxFEMMaterial :: struct {
     using _: PxBaseMaterial,
-};
+}
+
 
 PxFilterData :: struct {
-// false false
-// []
-// 0
     word0: _c.uint32_t,
     word1: _c.uint32_t,
     word2: _c.uint32_t,
     word3: _c.uint32_t,
 }
-@(test)
-test_layout_PxFilterData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxFilterData, word1) == 4, "Wrong offset for PxFilterData.word1, expected 4 got %v", offset_of(PxFilterData, word1))
-    testing.expectf(t, offset_of(PxFilterData, word2) == 8, "Wrong offset for PxFilterData.word2, expected 8 got %v", offset_of(PxFilterData, word2))
-    testing.expectf(t, offset_of(PxFilterData, word3) == 12, "Wrong offset for PxFilterData.word3, expected 12 got %v", offset_of(PxFilterData, word3))
-    testing.expectf(t, size_of(PxFilterData) == 16, "Wrong size for type PxFilterData, expected 16 got %v", size_of(PxFilterData))
-}
+
 
 PxSimulationFilterCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxParticleRigidFilterPair :: struct {
-// false false
-// []
-// 0
     mID0: _c.uint64_t,
     mID1: _c.uint64_t,
 }
-@(test)
-test_layout_PxParticleRigidFilterPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxParticleRigidFilterPair, mID1) == 8, "Wrong offset for PxParticleRigidFilterPair.mID1, expected 8 got %v", offset_of(PxParticleRigidFilterPair, mID1))
-    testing.expectf(t, size_of(PxParticleRigidFilterPair) == 16, "Wrong size for type PxParticleRigidFilterPair, expected 16 got %v", size_of(PxParticleRigidFilterPair))
-}
+
 
 PxLockedData :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxMaterial :: struct {
     using _: PxBaseMaterial,
-};
+}
+
 
 PxGpuParticleBufferIndexPair :: struct {
-// false false
-// []
-// 0
     systemIndex: _c.uint32_t,
     bufferIndex: _c.uint32_t,
 }
-@(test)
-test_layout_PxGpuParticleBufferIndexPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGpuParticleBufferIndexPair, bufferIndex) == 4, "Wrong offset for PxGpuParticleBufferIndexPair.bufferIndex, expected 4 got %v", offset_of(PxGpuParticleBufferIndexPair, bufferIndex))
-    testing.expectf(t, size_of(PxGpuParticleBufferIndexPair) == 8, "Wrong size for type PxGpuParticleBufferIndexPair, expected 8 got %v", size_of(PxGpuParticleBufferIndexPair))
-}
 
-PxCudaContextManager :: distinct rawptr 
 
-PxParticleRigidAttachment :: distinct rawptr 
+PxCudaContextManager :: distinct rawptr
+
+PxParticleRigidAttachment :: distinct rawptr
 
 PxParticleVolume :: struct {
-// false false
-// []
-// 0
     bound: PxBounds3,
     particleIndicesOffset: _c.uint32_t,
     numParticles: _c.uint32_t,
 }
-@(test)
-test_layout_PxParticleVolume :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxParticleVolume, particleIndicesOffset) == 24, "Wrong offset for PxParticleVolume.particleIndicesOffset, expected 24 got %v", offset_of(PxParticleVolume, particleIndicesOffset))
-    testing.expectf(t, offset_of(PxParticleVolume, numParticles) == 28, "Wrong offset for PxParticleVolume.numParticles, expected 28 got %v", offset_of(PxParticleVolume, numParticles))
-    testing.expectf(t, size_of(PxParticleVolume) == 32, "Wrong size for type PxParticleVolume, expected 32 got %v", size_of(PxParticleVolume))
-}
+
 
 PxDiffuseParticleParams :: struct {
-// false false
-// []
-// 0
     threshold: _c.float,
     lifetime: _c.float,
     airDrag: _c.float,
@@ -4321,25 +3197,11 @@ PxDiffuseParticleParams :: struct {
     divergenceWeight: _c.float,
     collisionDecay: _c.float,
     useAccurateVelocity: _c.bool,
-}
-@(test)
-test_layout_PxDiffuseParticleParams :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, lifetime) == 4, "Wrong offset for PxDiffuseParticleParams.lifetime, expected 4 got %v", offset_of(PxDiffuseParticleParams, lifetime))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, airDrag) == 8, "Wrong offset for PxDiffuseParticleParams.airDrag, expected 8 got %v", offset_of(PxDiffuseParticleParams, airDrag))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, bubbleDrag) == 12, "Wrong offset for PxDiffuseParticleParams.bubbleDrag, expected 12 got %v", offset_of(PxDiffuseParticleParams, bubbleDrag))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, buoyancy) == 16, "Wrong offset for PxDiffuseParticleParams.buoyancy, expected 16 got %v", offset_of(PxDiffuseParticleParams, buoyancy))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, kineticEnergyWeight) == 20, "Wrong offset for PxDiffuseParticleParams.kineticEnergyWeight, expected 20 got %v", offset_of(PxDiffuseParticleParams, kineticEnergyWeight))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, pressureWeight) == 24, "Wrong offset for PxDiffuseParticleParams.pressureWeight, expected 24 got %v", offset_of(PxDiffuseParticleParams, pressureWeight))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, divergenceWeight) == 28, "Wrong offset for PxDiffuseParticleParams.divergenceWeight, expected 28 got %v", offset_of(PxDiffuseParticleParams, divergenceWeight))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, collisionDecay) == 32, "Wrong offset for PxDiffuseParticleParams.collisionDecay, expected 32 got %v", offset_of(PxDiffuseParticleParams, collisionDecay))
-    testing.expectf(t, offset_of(PxDiffuseParticleParams, useAccurateVelocity) == 36, "Wrong offset for PxDiffuseParticleParams.useAccurateVelocity, expected 36 got %v", offset_of(PxDiffuseParticleParams, useAccurateVelocity))
-    testing.expectf(t, size_of(PxDiffuseParticleParams) == 40, "Wrong size for type PxDiffuseParticleParams, expected 40 got %v", size_of(PxDiffuseParticleParams))
+    _pad10: [3]u8,
 }
 
+
 PxParticleSpring :: struct {
-// false false
-// []
-// 0
     ind0: _c.uint32_t,
     ind1: _c.uint32_t,
     length: _c.float,
@@ -4347,61 +3209,49 @@ PxParticleSpring :: struct {
     damping: _c.float,
     pad: _c.float,
 }
-@(test)
-test_layout_PxParticleSpring :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxParticleSpring, ind1) == 4, "Wrong offset for PxParticleSpring.ind1, expected 4 got %v", offset_of(PxParticleSpring, ind1))
-    testing.expectf(t, offset_of(PxParticleSpring, length) == 8, "Wrong offset for PxParticleSpring.length, expected 8 got %v", offset_of(PxParticleSpring, length))
-    testing.expectf(t, offset_of(PxParticleSpring, stiffness) == 12, "Wrong offset for PxParticleSpring.stiffness, expected 12 got %v", offset_of(PxParticleSpring, stiffness))
-    testing.expectf(t, offset_of(PxParticleSpring, damping) == 16, "Wrong offset for PxParticleSpring.damping, expected 16 got %v", offset_of(PxParticleSpring, damping))
-    testing.expectf(t, offset_of(PxParticleSpring, pad) == 20, "Wrong offset for PxParticleSpring.pad, expected 20 got %v", offset_of(PxParticleSpring, pad))
-    testing.expectf(t, size_of(PxParticleSpring) == 24, "Wrong size for type PxParticleSpring, expected 24 got %v", size_of(PxParticleSpring))
-}
+
 
 PxParticleMaterial :: struct {
     using _: PxBaseMaterial,
-};
+}
 
-PxOmniPvd :: distinct rawptr 
+
+PxOmniPvd :: distinct rawptr
 
 PxPhysics :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxActorShape :: struct {
-// false false
-// []
-// 0
     actor: ^PxRigidActor,
     shape: ^PxShape,
 }
-@(test)
-test_layout_PxActorShape :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxActorShape, shape) == 8, "Wrong offset for PxActorShape.shape, expected 8 got %v", offset_of(PxActorShape, shape))
-    testing.expectf(t, size_of(PxActorShape) == 16, "Wrong size for type PxActorShape, expected 16 got %v", size_of(PxActorShape))
-}
 
-PxRaycastHit :: struct {
+
+PxRaycastHit :: struct #packed {
     using _: PxGeomRaycastHit,
     using _: PxActorShape,
-};
+    _pad12: [4]u8,
+}
 
-PxOverlapHit :: struct {
+
+PxOverlapHit :: struct #packed {
     using _: PxGeomOverlapHit,
     using _: PxActorShape,
-};
+    _pad4: [4]u8,
+}
 
-PxSweepHit :: struct {
+
+PxSweepHit :: struct #packed {
     using _: PxGeomSweepHit,
     using _: PxActorShape,
-};
+    _pad10: [4]u8,
+}
+
 
 PxRaycastCallback :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxRaycastHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4409,23 +3259,10 @@ PxRaycastCallback :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxRaycastCallback :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxRaycastCallback, block) == 8, "Wrong offset for PxRaycastCallback.block, expected 8 got %v", offset_of(PxRaycastCallback, block))
-    testing.expectf(t, offset_of(PxRaycastCallback, hasBlock) == 72, "Wrong offset for PxRaycastCallback.hasBlock, expected 72 got %v", offset_of(PxRaycastCallback, hasBlock))
-    testing.expectf(t, offset_of(PxRaycastCallback, touches) == 80, "Wrong offset for PxRaycastCallback.touches, expected 80 got %v", offset_of(PxRaycastCallback, touches))
-    testing.expectf(t, offset_of(PxRaycastCallback, maxNbTouches) == 88, "Wrong offset for PxRaycastCallback.maxNbTouches, expected 88 got %v", offset_of(PxRaycastCallback, maxNbTouches))
-    testing.expectf(t, offset_of(PxRaycastCallback, nbTouches) == 92, "Wrong offset for PxRaycastCallback.nbTouches, expected 92 got %v", offset_of(PxRaycastCallback, nbTouches))
-    testing.expectf(t, size_of(PxRaycastCallback) == 96, "Wrong size for type PxRaycastCallback, expected 96 got %v", size_of(PxRaycastCallback))
-}
+
 
 PxOverlapCallback :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxOverlapHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4433,23 +3270,10 @@ PxOverlapCallback :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxOverlapCallback :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxOverlapCallback, block) == 8, "Wrong offset for PxOverlapCallback.block, expected 8 got %v", offset_of(PxOverlapCallback, block))
-    testing.expectf(t, offset_of(PxOverlapCallback, hasBlock) == 32, "Wrong offset for PxOverlapCallback.hasBlock, expected 32 got %v", offset_of(PxOverlapCallback, hasBlock))
-    testing.expectf(t, offset_of(PxOverlapCallback, touches) == 40, "Wrong offset for PxOverlapCallback.touches, expected 40 got %v", offset_of(PxOverlapCallback, touches))
-    testing.expectf(t, offset_of(PxOverlapCallback, maxNbTouches) == 48, "Wrong offset for PxOverlapCallback.maxNbTouches, expected 48 got %v", offset_of(PxOverlapCallback, maxNbTouches))
-    testing.expectf(t, offset_of(PxOverlapCallback, nbTouches) == 52, "Wrong offset for PxOverlapCallback.nbTouches, expected 52 got %v", offset_of(PxOverlapCallback, nbTouches))
-    testing.expectf(t, size_of(PxOverlapCallback) == 56, "Wrong size for type PxOverlapCallback, expected 56 got %v", size_of(PxOverlapCallback))
-}
+
 
 PxSweepCallback :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxSweepHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4457,23 +3281,10 @@ PxSweepCallback :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxSweepCallback :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSweepCallback, block) == 8, "Wrong offset for PxSweepCallback.block, expected 8 got %v", offset_of(PxSweepCallback, block))
-    testing.expectf(t, offset_of(PxSweepCallback, hasBlock) == 64, "Wrong offset for PxSweepCallback.hasBlock, expected 64 got %v", offset_of(PxSweepCallback, hasBlock))
-    testing.expectf(t, offset_of(PxSweepCallback, touches) == 72, "Wrong offset for PxSweepCallback.touches, expected 72 got %v", offset_of(PxSweepCallback, touches))
-    testing.expectf(t, offset_of(PxSweepCallback, maxNbTouches) == 80, "Wrong offset for PxSweepCallback.maxNbTouches, expected 80 got %v", offset_of(PxSweepCallback, maxNbTouches))
-    testing.expectf(t, offset_of(PxSweepCallback, nbTouches) == 84, "Wrong offset for PxSweepCallback.nbTouches, expected 84 got %v", offset_of(PxSweepCallback, nbTouches))
-    testing.expectf(t, size_of(PxSweepCallback) == 88, "Wrong size for type PxSweepCallback, expected 88 got %v", size_of(PxSweepCallback))
-}
+
 
 PxRaycastBuffer :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxRaycastHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4481,23 +3292,10 @@ PxRaycastBuffer :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxRaycastBuffer :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxRaycastBuffer, block) == 8, "Wrong offset for PxRaycastBuffer.block, expected 8 got %v", offset_of(PxRaycastBuffer, block))
-    testing.expectf(t, offset_of(PxRaycastBuffer, hasBlock) == 72, "Wrong offset for PxRaycastBuffer.hasBlock, expected 72 got %v", offset_of(PxRaycastBuffer, hasBlock))
-    testing.expectf(t, offset_of(PxRaycastBuffer, touches) == 80, "Wrong offset for PxRaycastBuffer.touches, expected 80 got %v", offset_of(PxRaycastBuffer, touches))
-    testing.expectf(t, offset_of(PxRaycastBuffer, maxNbTouches) == 88, "Wrong offset for PxRaycastBuffer.maxNbTouches, expected 88 got %v", offset_of(PxRaycastBuffer, maxNbTouches))
-    testing.expectf(t, offset_of(PxRaycastBuffer, nbTouches) == 92, "Wrong offset for PxRaycastBuffer.nbTouches, expected 92 got %v", offset_of(PxRaycastBuffer, nbTouches))
-    testing.expectf(t, size_of(PxRaycastBuffer) == 96, "Wrong size for type PxRaycastBuffer, expected 96 got %v", size_of(PxRaycastBuffer))
-}
+
 
 PxOverlapBuffer :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxOverlapHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4505,23 +3303,10 @@ PxOverlapBuffer :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxOverlapBuffer :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxOverlapBuffer, block) == 8, "Wrong offset for PxOverlapBuffer.block, expected 8 got %v", offset_of(PxOverlapBuffer, block))
-    testing.expectf(t, offset_of(PxOverlapBuffer, hasBlock) == 32, "Wrong offset for PxOverlapBuffer.hasBlock, expected 32 got %v", offset_of(PxOverlapBuffer, hasBlock))
-    testing.expectf(t, offset_of(PxOverlapBuffer, touches) == 40, "Wrong offset for PxOverlapBuffer.touches, expected 40 got %v", offset_of(PxOverlapBuffer, touches))
-    testing.expectf(t, offset_of(PxOverlapBuffer, maxNbTouches) == 48, "Wrong offset for PxOverlapBuffer.maxNbTouches, expected 48 got %v", offset_of(PxOverlapBuffer, maxNbTouches))
-    testing.expectf(t, offset_of(PxOverlapBuffer, nbTouches) == 52, "Wrong offset for PxOverlapBuffer.nbTouches, expected 52 got %v", offset_of(PxOverlapBuffer, nbTouches))
-    testing.expectf(t, size_of(PxOverlapBuffer) == 56, "Wrong size for type PxOverlapBuffer, expected 56 got %v", size_of(PxOverlapBuffer))
-}
+
 
 PxSweepBuffer :: struct {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     block: PxSweepHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
@@ -4529,163 +3314,100 @@ PxSweepBuffer :: struct {
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
-@(test)
-test_layout_PxSweepBuffer :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSweepBuffer, block) == 8, "Wrong offset for PxSweepBuffer.block, expected 8 got %v", offset_of(PxSweepBuffer, block))
-    testing.expectf(t, offset_of(PxSweepBuffer, hasBlock) == 64, "Wrong offset for PxSweepBuffer.hasBlock, expected 64 got %v", offset_of(PxSweepBuffer, hasBlock))
-    testing.expectf(t, offset_of(PxSweepBuffer, touches) == 72, "Wrong offset for PxSweepBuffer.touches, expected 72 got %v", offset_of(PxSweepBuffer, touches))
-    testing.expectf(t, offset_of(PxSweepBuffer, maxNbTouches) == 80, "Wrong offset for PxSweepBuffer.maxNbTouches, expected 80 got %v", offset_of(PxSweepBuffer, maxNbTouches))
-    testing.expectf(t, offset_of(PxSweepBuffer, nbTouches) == 84, "Wrong offset for PxSweepBuffer.nbTouches, expected 84 got %v", offset_of(PxSweepBuffer, nbTouches))
-    testing.expectf(t, size_of(PxSweepBuffer) == 88, "Wrong size for type PxSweepBuffer, expected 88 got %v", size_of(PxSweepBuffer))
-}
+
 
 PxQueryCache :: struct {
-// false false
-// []
-// 0
     shape: ^PxShape,
     actor: ^PxRigidActor,
     faceIndex: _c.uint32_t,
+    _pad3: [4]u8,
 }
-@(test)
-test_layout_PxQueryCache :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxQueryCache, actor) == 8, "Wrong offset for PxQueryCache.actor, expected 8 got %v", offset_of(PxQueryCache, actor))
-    testing.expectf(t, offset_of(PxQueryCache, faceIndex) == 16, "Wrong offset for PxQueryCache.faceIndex, expected 16 got %v", offset_of(PxQueryCache, faceIndex))
-    testing.expectf(t, size_of(PxQueryCache) == 24, "Wrong size for type PxQueryCache, expected 24 got %v", size_of(PxQueryCache))
-}
+
 
 PxQueryFilterData :: struct {
-// false false
-// []
-// 0
     data: PxFilterData,
-    flags: _c.uint16_t,
-}
-@(test)
-test_layout_PxQueryFilterData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxQueryFilterData, flags) == 16, "Wrong offset for PxQueryFilterData.flags, expected 16 got %v", offset_of(PxQueryFilterData, flags))
-    testing.expectf(t, size_of(PxQueryFilterData) == 20, "Wrong size for type PxQueryFilterData, expected 20 got %v", size_of(PxQueryFilterData))
+    flags: PxQueryFlags_Set,
+    _pad2: [2]u8,
 }
 
+
 PxQueryFilterCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxRigidDynamic :: struct {
     using _: PxRigidBody,
-};
+}
+
 
 PxRigidStatic :: struct {
     using _: PxRigidActor,
-};
+}
+
 
 PxSceneQueryDesc :: struct {
-// false false
-// []
-// 0
-    staticStructure: _c.int32_t,
-    dynamicStructure: _c.int32_t,
+    staticStructure: PxPruningStructureType,
+    dynamicStructure: PxPruningStructureType,
     dynamicTreeRebuildRateHint: _c.uint32_t,
-    dynamicTreeSecondaryPruner: _c.int32_t,
-    staticBVHBuildStrategy: _c.int32_t,
-    dynamicBVHBuildStrategy: _c.int32_t,
+    dynamicTreeSecondaryPruner: PxDynamicTreeSecondaryPruner,
+    staticBVHBuildStrategy: PxBVHBuildStrategy,
+    dynamicBVHBuildStrategy: PxBVHBuildStrategy,
     staticNbObjectsPerNode: _c.uint32_t,
     dynamicNbObjectsPerNode: _c.uint32_t,
-    sceneQueryUpdateMode: _c.int32_t,
-}
-@(test)
-test_layout_PxSceneQueryDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSceneQueryDesc, dynamicStructure) == 4, "Wrong offset for PxSceneQueryDesc.dynamicStructure, expected 4 got %v", offset_of(PxSceneQueryDesc, dynamicStructure))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, dynamicTreeRebuildRateHint) == 8, "Wrong offset for PxSceneQueryDesc.dynamicTreeRebuildRateHint, expected 8 got %v", offset_of(PxSceneQueryDesc, dynamicTreeRebuildRateHint))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, dynamicTreeSecondaryPruner) == 12, "Wrong offset for PxSceneQueryDesc.dynamicTreeSecondaryPruner, expected 12 got %v", offset_of(PxSceneQueryDesc, dynamicTreeSecondaryPruner))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, staticBVHBuildStrategy) == 16, "Wrong offset for PxSceneQueryDesc.staticBVHBuildStrategy, expected 16 got %v", offset_of(PxSceneQueryDesc, staticBVHBuildStrategy))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, dynamicBVHBuildStrategy) == 20, "Wrong offset for PxSceneQueryDesc.dynamicBVHBuildStrategy, expected 20 got %v", offset_of(PxSceneQueryDesc, dynamicBVHBuildStrategy))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, staticNbObjectsPerNode) == 24, "Wrong offset for PxSceneQueryDesc.staticNbObjectsPerNode, expected 24 got %v", offset_of(PxSceneQueryDesc, staticNbObjectsPerNode))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, dynamicNbObjectsPerNode) == 28, "Wrong offset for PxSceneQueryDesc.dynamicNbObjectsPerNode, expected 28 got %v", offset_of(PxSceneQueryDesc, dynamicNbObjectsPerNode))
-    testing.expectf(t, offset_of(PxSceneQueryDesc, sceneQueryUpdateMode) == 32, "Wrong offset for PxSceneQueryDesc.sceneQueryUpdateMode, expected 32 got %v", offset_of(PxSceneQueryDesc, sceneQueryUpdateMode))
-    testing.expectf(t, size_of(PxSceneQueryDesc) == 36, "Wrong size for type PxSceneQueryDesc, expected 36 got %v", size_of(PxSceneQueryDesc))
+    sceneQueryUpdateMode: PxSceneQueryUpdateMode,
 }
 
+
 PxSceneQuerySystemBase :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSceneSQSystem :: struct {
     using _: PxSceneQuerySystemBase,
-};
+}
+
 
 PxSceneQuerySystem :: struct {
     using _: PxSceneQuerySystemBase,
-};
+}
+
 
 PxBroadPhaseRegion :: struct {
-// false false
-// []
-// 0
     mBounds: PxBounds3,
     mUserData: rawptr,
 }
-@(test)
-test_layout_PxBroadPhaseRegion :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhaseRegion, mUserData) == 24, "Wrong offset for PxBroadPhaseRegion.mUserData, expected 24 got %v", offset_of(PxBroadPhaseRegion, mUserData))
-    testing.expectf(t, size_of(PxBroadPhaseRegion) == 32, "Wrong size for type PxBroadPhaseRegion, expected 32 got %v", size_of(PxBroadPhaseRegion))
-}
+
 
 PxBroadPhaseRegionInfo :: struct {
-// false false
-// []
-// 0
     mRegion: PxBroadPhaseRegion,
     mNbStaticObjects: _c.uint32_t,
     mNbDynamicObjects: _c.uint32_t,
     mActive: _c.bool,
     mOverlap: _c.bool,
+    _pad5: [6]u8,
 }
-@(test)
-test_layout_PxBroadPhaseRegionInfo :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhaseRegionInfo, mNbStaticObjects) == 32, "Wrong offset for PxBroadPhaseRegionInfo.mNbStaticObjects, expected 32 got %v", offset_of(PxBroadPhaseRegionInfo, mNbStaticObjects))
-    testing.expectf(t, offset_of(PxBroadPhaseRegionInfo, mNbDynamicObjects) == 36, "Wrong offset for PxBroadPhaseRegionInfo.mNbDynamicObjects, expected 36 got %v", offset_of(PxBroadPhaseRegionInfo, mNbDynamicObjects))
-    testing.expectf(t, offset_of(PxBroadPhaseRegionInfo, mActive) == 40, "Wrong offset for PxBroadPhaseRegionInfo.mActive, expected 40 got %v", offset_of(PxBroadPhaseRegionInfo, mActive))
-    testing.expectf(t, offset_of(PxBroadPhaseRegionInfo, mOverlap) == 41, "Wrong offset for PxBroadPhaseRegionInfo.mOverlap, expected 41 got %v", offset_of(PxBroadPhaseRegionInfo, mOverlap))
-    testing.expectf(t, size_of(PxBroadPhaseRegionInfo) == 48, "Wrong size for type PxBroadPhaseRegionInfo, expected 48 got %v", size_of(PxBroadPhaseRegionInfo))
-}
+
 
 PxBroadPhaseCaps :: struct {
-// false false
-// []
-// 0
     mMaxNbRegions: _c.uint32_t,
 }
-@(test)
-test_layout_PxBroadPhaseCaps :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBroadPhaseCaps) == 4, "Wrong size for type PxBroadPhaseCaps, expected 4 got %v", size_of(PxBroadPhaseCaps))
-}
+
 
 PxBroadPhaseDesc :: struct {
-// false false
-// []
-// 0
-    mType: _c.int32_t,
+    mType: PxBroadPhaseType,
     _pad1: [4]u8,
     mContextID: _c.uint64_t,
     _pad3: [8]u8,
     mFoundLostPairsCapacity: _c.uint32_t,
     mDiscardStaticVsKinematic: _c.bool,
     mDiscardKinematicVsKinematic: _c.bool,
-}
-@(test)
-test_layout_PxBroadPhaseDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhaseDesc, mContextID) == 8, "Wrong offset for PxBroadPhaseDesc.mContextID, expected 8 got %v", offset_of(PxBroadPhaseDesc, mContextID))
-    testing.expectf(t, offset_of(PxBroadPhaseDesc, mFoundLostPairsCapacity) == 24, "Wrong offset for PxBroadPhaseDesc.mFoundLostPairsCapacity, expected 24 got %v", offset_of(PxBroadPhaseDesc, mFoundLostPairsCapacity))
-    testing.expectf(t, offset_of(PxBroadPhaseDesc, mDiscardStaticVsKinematic) == 28, "Wrong offset for PxBroadPhaseDesc.mDiscardStaticVsKinematic, expected 28 got %v", offset_of(PxBroadPhaseDesc, mDiscardStaticVsKinematic))
-    testing.expectf(t, offset_of(PxBroadPhaseDesc, mDiscardKinematicVsKinematic) == 29, "Wrong offset for PxBroadPhaseDesc.mDiscardKinematicVsKinematic, expected 29 got %v", offset_of(PxBroadPhaseDesc, mDiscardKinematicVsKinematic))
-    testing.expectf(t, size_of(PxBroadPhaseDesc) == 32, "Wrong size for type PxBroadPhaseDesc, expected 32 got %v", size_of(PxBroadPhaseDesc))
+    _pad7: [2]u8,
 }
 
+
 PxBroadPhaseUpdateData :: struct {
-// false false
-// []
-// 0
     mCreated: ^_c.uint32_t,
     mNbCreated: _c.uint32_t,
     _pad2: [4]u8,
@@ -4699,38 +3421,17 @@ PxBroadPhaseUpdateData :: struct {
     mGroups: ^_c.uint32_t,
     mDistances: ^_c.float,
     mCapacity: _c.uint32_t,
-}
-@(test)
-test_layout_PxBroadPhaseUpdateData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mNbCreated) == 8, "Wrong offset for PxBroadPhaseUpdateData.mNbCreated, expected 8 got %v", offset_of(PxBroadPhaseUpdateData, mNbCreated))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mUpdated) == 16, "Wrong offset for PxBroadPhaseUpdateData.mUpdated, expected 16 got %v", offset_of(PxBroadPhaseUpdateData, mUpdated))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mNbUpdated) == 24, "Wrong offset for PxBroadPhaseUpdateData.mNbUpdated, expected 24 got %v", offset_of(PxBroadPhaseUpdateData, mNbUpdated))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mRemoved) == 32, "Wrong offset for PxBroadPhaseUpdateData.mRemoved, expected 32 got %v", offset_of(PxBroadPhaseUpdateData, mRemoved))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mNbRemoved) == 40, "Wrong offset for PxBroadPhaseUpdateData.mNbRemoved, expected 40 got %v", offset_of(PxBroadPhaseUpdateData, mNbRemoved))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mBounds) == 48, "Wrong offset for PxBroadPhaseUpdateData.mBounds, expected 48 got %v", offset_of(PxBroadPhaseUpdateData, mBounds))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mGroups) == 56, "Wrong offset for PxBroadPhaseUpdateData.mGroups, expected 56 got %v", offset_of(PxBroadPhaseUpdateData, mGroups))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mDistances) == 64, "Wrong offset for PxBroadPhaseUpdateData.mDistances, expected 64 got %v", offset_of(PxBroadPhaseUpdateData, mDistances))
-    testing.expectf(t, offset_of(PxBroadPhaseUpdateData, mCapacity) == 72, "Wrong offset for PxBroadPhaseUpdateData.mCapacity, expected 72 got %v", offset_of(PxBroadPhaseUpdateData, mCapacity))
-    testing.expectf(t, size_of(PxBroadPhaseUpdateData) == 80, "Wrong size for type PxBroadPhaseUpdateData, expected 80 got %v", size_of(PxBroadPhaseUpdateData))
+    _pad13: [4]u8,
 }
 
+
 PxBroadPhasePair :: struct {
-// false false
-// []
-// 0
     mID0: _c.uint32_t,
     mID1: _c.uint32_t,
 }
-@(test)
-test_layout_PxBroadPhasePair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhasePair, mID1) == 4, "Wrong offset for PxBroadPhasePair.mID1, expected 4 got %v", offset_of(PxBroadPhasePair, mID1))
-    testing.expectf(t, size_of(PxBroadPhasePair) == 8, "Wrong size for type PxBroadPhasePair, expected 8 got %v", size_of(PxBroadPhasePair))
-}
+
 
 PxBroadPhaseResults :: struct {
-// false false
-// []
-// 0
     mNbCreatedPairs: _c.uint32_t,
     _pad1: [4]u8,
     mCreatedPairs: ^PxBroadPhasePair,
@@ -4738,30 +3439,24 @@ PxBroadPhaseResults :: struct {
     _pad4: [4]u8,
     mDeletedPairs: ^PxBroadPhasePair,
 }
-@(test)
-test_layout_PxBroadPhaseResults :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBroadPhaseResults, mCreatedPairs) == 8, "Wrong offset for PxBroadPhaseResults.mCreatedPairs, expected 8 got %v", offset_of(PxBroadPhaseResults, mCreatedPairs))
-    testing.expectf(t, offset_of(PxBroadPhaseResults, mNbDeletedPairs) == 16, "Wrong offset for PxBroadPhaseResults.mNbDeletedPairs, expected 16 got %v", offset_of(PxBroadPhaseResults, mNbDeletedPairs))
-    testing.expectf(t, offset_of(PxBroadPhaseResults, mDeletedPairs) == 24, "Wrong offset for PxBroadPhaseResults.mDeletedPairs, expected 24 got %v", offset_of(PxBroadPhaseResults, mDeletedPairs))
-    testing.expectf(t, size_of(PxBroadPhaseResults) == 32, "Wrong size for type PxBroadPhaseResults, expected 32 got %v", size_of(PxBroadPhaseResults))
-}
+
 
 PxBroadPhaseRegions :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBroadPhase :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxAABBManager :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSceneLimits :: struct {
-// false false
-// []
-// 0
     maxNbActors: _c.uint32_t,
     maxNbBodies: _c.uint32_t,
     maxNbStaticShapes: _c.uint32_t,
@@ -4771,22 +3466,9 @@ PxSceneLimits :: struct {
     maxNbRegions: _c.uint32_t,
     maxNbBroadPhaseOverlaps: _c.uint32_t,
 }
-@(test)
-test_layout_PxSceneLimits :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbBodies) == 4, "Wrong offset for PxSceneLimits.maxNbBodies, expected 4 got %v", offset_of(PxSceneLimits, maxNbBodies))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbStaticShapes) == 8, "Wrong offset for PxSceneLimits.maxNbStaticShapes, expected 8 got %v", offset_of(PxSceneLimits, maxNbStaticShapes))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbDynamicShapes) == 12, "Wrong offset for PxSceneLimits.maxNbDynamicShapes, expected 12 got %v", offset_of(PxSceneLimits, maxNbDynamicShapes))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbAggregates) == 16, "Wrong offset for PxSceneLimits.maxNbAggregates, expected 16 got %v", offset_of(PxSceneLimits, maxNbAggregates))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbConstraints) == 20, "Wrong offset for PxSceneLimits.maxNbConstraints, expected 20 got %v", offset_of(PxSceneLimits, maxNbConstraints))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbRegions) == 24, "Wrong offset for PxSceneLimits.maxNbRegions, expected 24 got %v", offset_of(PxSceneLimits, maxNbRegions))
-    testing.expectf(t, offset_of(PxSceneLimits, maxNbBroadPhaseOverlaps) == 28, "Wrong offset for PxSceneLimits.maxNbBroadPhaseOverlaps, expected 28 got %v", offset_of(PxSceneLimits, maxNbBroadPhaseOverlaps))
-    testing.expectf(t, size_of(PxSceneLimits) == 32, "Wrong size for type PxSceneLimits, expected 32 got %v", size_of(PxSceneLimits))
-}
+
 
 PxgDynamicsMemoryConfig :: struct {
-// false false
-// []
-// 0
     tempBufferCapacity: _c.uint32_t,
     maxRigidContactCount: _c.uint32_t,
     maxRigidPatchCount: _c.uint32_t,
@@ -4800,28 +3482,10 @@ PxgDynamicsMemoryConfig :: struct {
     collisionStackSize: _c.uint32_t,
     maxHairContacts: _c.uint32_t,
 }
-@(test)
-test_layout_PxgDynamicsMemoryConfig :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxRigidContactCount) == 4, "Wrong offset for PxgDynamicsMemoryConfig.maxRigidContactCount, expected 4 got %v", offset_of(PxgDynamicsMemoryConfig, maxRigidContactCount))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxRigidPatchCount) == 8, "Wrong offset for PxgDynamicsMemoryConfig.maxRigidPatchCount, expected 8 got %v", offset_of(PxgDynamicsMemoryConfig, maxRigidPatchCount))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, heapCapacity) == 12, "Wrong offset for PxgDynamicsMemoryConfig.heapCapacity, expected 12 got %v", offset_of(PxgDynamicsMemoryConfig, heapCapacity))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, foundLostPairsCapacity) == 16, "Wrong offset for PxgDynamicsMemoryConfig.foundLostPairsCapacity, expected 16 got %v", offset_of(PxgDynamicsMemoryConfig, foundLostPairsCapacity))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, foundLostAggregatePairsCapacity) == 20, "Wrong offset for PxgDynamicsMemoryConfig.foundLostAggregatePairsCapacity, expected 20 got %v", offset_of(PxgDynamicsMemoryConfig, foundLostAggregatePairsCapacity))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, totalAggregatePairsCapacity) == 24, "Wrong offset for PxgDynamicsMemoryConfig.totalAggregatePairsCapacity, expected 24 got %v", offset_of(PxgDynamicsMemoryConfig, totalAggregatePairsCapacity))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxSoftBodyContacts) == 28, "Wrong offset for PxgDynamicsMemoryConfig.maxSoftBodyContacts, expected 28 got %v", offset_of(PxgDynamicsMemoryConfig, maxSoftBodyContacts))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxFemClothContacts) == 32, "Wrong offset for PxgDynamicsMemoryConfig.maxFemClothContacts, expected 32 got %v", offset_of(PxgDynamicsMemoryConfig, maxFemClothContacts))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxParticleContacts) == 36, "Wrong offset for PxgDynamicsMemoryConfig.maxParticleContacts, expected 36 got %v", offset_of(PxgDynamicsMemoryConfig, maxParticleContacts))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, collisionStackSize) == 40, "Wrong offset for PxgDynamicsMemoryConfig.collisionStackSize, expected 40 got %v", offset_of(PxgDynamicsMemoryConfig, collisionStackSize))
-    testing.expectf(t, offset_of(PxgDynamicsMemoryConfig, maxHairContacts) == 44, "Wrong offset for PxgDynamicsMemoryConfig.maxHairContacts, expected 44 got %v", offset_of(PxgDynamicsMemoryConfig, maxHairContacts))
-    testing.expectf(t, size_of(PxgDynamicsMemoryConfig) == 48, "Wrong size for type PxgDynamicsMemoryConfig, expected 48 got %v", size_of(PxgDynamicsMemoryConfig))
-}
+
 
 PxSceneDesc :: struct {
-// false false
-// ["PxSceneQueryDesc"]
     using _: PxSceneQueryDesc,
-// 36
-    _pad9: [0]u8,
     gravity: PxVec3,
     simulationEventCallback: ^PxSimulationEventCallback,
     contactModifyCallback: ^PxContactModifyCallback,
@@ -4831,18 +3495,18 @@ PxSceneDesc :: struct {
     _pad16: [4]u8,
     filterShader: rawptr,
     filterCallback: ^PxSimulationFilterCallback,
-    kineKineFilteringMode: _c.int32_t,
-    staticKineFilteringMode: _c.int32_t,
-    broadPhaseType: _c.int32_t,
+    kineKineFilteringMode: PxPairFilteringMode,
+    staticKineFilteringMode: PxPairFilteringMode,
+    broadPhaseType: PxBroadPhaseType,
     _pad22: [4]u8,
     broadPhaseCallback: ^PxBroadPhaseCallback,
     limits: PxSceneLimits,
-    frictionType: _c.int32_t,
-    solverType: _c.int32_t,
+    frictionType: PxFrictionType,
+    solverType: PxSolverType,
     bounceThresholdVelocity: _c.float,
     frictionOffsetThreshold: _c.float,
     frictionCorrelationDistance: _c.float,
-    flags: _c.uint32_t,
+    flags: PxSceneFlags_Set,
     cpuDispatcher: ^PxCpuDispatcher,
     _pad32: [8]u8,
     userData: rawptr,
@@ -4863,55 +3527,11 @@ PxSceneDesc :: struct {
     gpuComputeVersion: _c.uint32_t,
     contactPairSlabSize: _c.uint32_t,
     sceneQuerySystem: ^PxSceneQuerySystem,
-    _private_tolerancesScale: PxTolerancesScale,
-}
-@(test)
-test_layout_PxSceneDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSceneDesc, gravity) == 36, "Wrong offset for PxSceneDesc.gravity, expected 36 got %v", offset_of(PxSceneDesc, gravity))
-    testing.expectf(t, offset_of(PxSceneDesc, simulationEventCallback) == 48, "Wrong offset for PxSceneDesc.simulationEventCallback, expected 48 got %v", offset_of(PxSceneDesc, simulationEventCallback))
-    testing.expectf(t, offset_of(PxSceneDesc, contactModifyCallback) == 56, "Wrong offset for PxSceneDesc.contactModifyCallback, expected 56 got %v", offset_of(PxSceneDesc, contactModifyCallback))
-    testing.expectf(t, offset_of(PxSceneDesc, ccdContactModifyCallback) == 64, "Wrong offset for PxSceneDesc.ccdContactModifyCallback, expected 64 got %v", offset_of(PxSceneDesc, ccdContactModifyCallback))
-    testing.expectf(t, offset_of(PxSceneDesc, filterShaderData) == 72, "Wrong offset for PxSceneDesc.filterShaderData, expected 72 got %v", offset_of(PxSceneDesc, filterShaderData))
-    testing.expectf(t, offset_of(PxSceneDesc, filterShaderDataSize) == 80, "Wrong offset for PxSceneDesc.filterShaderDataSize, expected 80 got %v", offset_of(PxSceneDesc, filterShaderDataSize))
-    testing.expectf(t, offset_of(PxSceneDesc, filterShader) == 88, "Wrong offset for PxSceneDesc.filterShader, expected 88 got %v", offset_of(PxSceneDesc, filterShader))
-    testing.expectf(t, offset_of(PxSceneDesc, filterCallback) == 96, "Wrong offset for PxSceneDesc.filterCallback, expected 96 got %v", offset_of(PxSceneDesc, filterCallback))
-    testing.expectf(t, offset_of(PxSceneDesc, kineKineFilteringMode) == 104, "Wrong offset for PxSceneDesc.kineKineFilteringMode, expected 104 got %v", offset_of(PxSceneDesc, kineKineFilteringMode))
-    testing.expectf(t, offset_of(PxSceneDesc, staticKineFilteringMode) == 108, "Wrong offset for PxSceneDesc.staticKineFilteringMode, expected 108 got %v", offset_of(PxSceneDesc, staticKineFilteringMode))
-    testing.expectf(t, offset_of(PxSceneDesc, broadPhaseType) == 112, "Wrong offset for PxSceneDesc.broadPhaseType, expected 112 got %v", offset_of(PxSceneDesc, broadPhaseType))
-    testing.expectf(t, offset_of(PxSceneDesc, broadPhaseCallback) == 120, "Wrong offset for PxSceneDesc.broadPhaseCallback, expected 120 got %v", offset_of(PxSceneDesc, broadPhaseCallback))
-    testing.expectf(t, offset_of(PxSceneDesc, limits) == 128, "Wrong offset for PxSceneDesc.limits, expected 128 got %v", offset_of(PxSceneDesc, limits))
-    testing.expectf(t, offset_of(PxSceneDesc, frictionType) == 160, "Wrong offset for PxSceneDesc.frictionType, expected 160 got %v", offset_of(PxSceneDesc, frictionType))
-    testing.expectf(t, offset_of(PxSceneDesc, solverType) == 164, "Wrong offset for PxSceneDesc.solverType, expected 164 got %v", offset_of(PxSceneDesc, solverType))
-    testing.expectf(t, offset_of(PxSceneDesc, bounceThresholdVelocity) == 168, "Wrong offset for PxSceneDesc.bounceThresholdVelocity, expected 168 got %v", offset_of(PxSceneDesc, bounceThresholdVelocity))
-    testing.expectf(t, offset_of(PxSceneDesc, frictionOffsetThreshold) == 172, "Wrong offset for PxSceneDesc.frictionOffsetThreshold, expected 172 got %v", offset_of(PxSceneDesc, frictionOffsetThreshold))
-    testing.expectf(t, offset_of(PxSceneDesc, frictionCorrelationDistance) == 176, "Wrong offset for PxSceneDesc.frictionCorrelationDistance, expected 176 got %v", offset_of(PxSceneDesc, frictionCorrelationDistance))
-    testing.expectf(t, offset_of(PxSceneDesc, flags) == 180, "Wrong offset for PxSceneDesc.flags, expected 180 got %v", offset_of(PxSceneDesc, flags))
-    testing.expectf(t, offset_of(PxSceneDesc, cpuDispatcher) == 184, "Wrong offset for PxSceneDesc.cpuDispatcher, expected 184 got %v", offset_of(PxSceneDesc, cpuDispatcher))
-    testing.expectf(t, offset_of(PxSceneDesc, userData) == 200, "Wrong offset for PxSceneDesc.userData, expected 200 got %v", offset_of(PxSceneDesc, userData))
-    testing.expectf(t, offset_of(PxSceneDesc, solverBatchSize) == 208, "Wrong offset for PxSceneDesc.solverBatchSize, expected 208 got %v", offset_of(PxSceneDesc, solverBatchSize))
-    testing.expectf(t, offset_of(PxSceneDesc, solverArticulationBatchSize) == 212, "Wrong offset for PxSceneDesc.solverArticulationBatchSize, expected 212 got %v", offset_of(PxSceneDesc, solverArticulationBatchSize))
-    testing.expectf(t, offset_of(PxSceneDesc, nbContactDataBlocks) == 216, "Wrong offset for PxSceneDesc.nbContactDataBlocks, expected 216 got %v", offset_of(PxSceneDesc, nbContactDataBlocks))
-    testing.expectf(t, offset_of(PxSceneDesc, maxNbContactDataBlocks) == 220, "Wrong offset for PxSceneDesc.maxNbContactDataBlocks, expected 220 got %v", offset_of(PxSceneDesc, maxNbContactDataBlocks))
-    testing.expectf(t, offset_of(PxSceneDesc, maxBiasCoefficient) == 224, "Wrong offset for PxSceneDesc.maxBiasCoefficient, expected 224 got %v", offset_of(PxSceneDesc, maxBiasCoefficient))
-    testing.expectf(t, offset_of(PxSceneDesc, contactReportStreamBufferSize) == 228, "Wrong offset for PxSceneDesc.contactReportStreamBufferSize, expected 228 got %v", offset_of(PxSceneDesc, contactReportStreamBufferSize))
-    testing.expectf(t, offset_of(PxSceneDesc, ccdMaxPasses) == 232, "Wrong offset for PxSceneDesc.ccdMaxPasses, expected 232 got %v", offset_of(PxSceneDesc, ccdMaxPasses))
-    testing.expectf(t, offset_of(PxSceneDesc, ccdThreshold) == 236, "Wrong offset for PxSceneDesc.ccdThreshold, expected 236 got %v", offset_of(PxSceneDesc, ccdThreshold))
-    testing.expectf(t, offset_of(PxSceneDesc, ccdMaxSeparation) == 240, "Wrong offset for PxSceneDesc.ccdMaxSeparation, expected 240 got %v", offset_of(PxSceneDesc, ccdMaxSeparation))
-    testing.expectf(t, offset_of(PxSceneDesc, wakeCounterResetValue) == 244, "Wrong offset for PxSceneDesc.wakeCounterResetValue, expected 244 got %v", offset_of(PxSceneDesc, wakeCounterResetValue))
-    testing.expectf(t, offset_of(PxSceneDesc, sanityBounds) == 248, "Wrong offset for PxSceneDesc.sanityBounds, expected 248 got %v", offset_of(PxSceneDesc, sanityBounds))
-    testing.expectf(t, offset_of(PxSceneDesc, gpuDynamicsConfig) == 272, "Wrong offset for PxSceneDesc.gpuDynamicsConfig, expected 272 got %v", offset_of(PxSceneDesc, gpuDynamicsConfig))
-    testing.expectf(t, offset_of(PxSceneDesc, gpuMaxNumPartitions) == 320, "Wrong offset for PxSceneDesc.gpuMaxNumPartitions, expected 320 got %v", offset_of(PxSceneDesc, gpuMaxNumPartitions))
-    testing.expectf(t, offset_of(PxSceneDesc, gpuMaxNumStaticPartitions) == 324, "Wrong offset for PxSceneDesc.gpuMaxNumStaticPartitions, expected 324 got %v", offset_of(PxSceneDesc, gpuMaxNumStaticPartitions))
-    testing.expectf(t, offset_of(PxSceneDesc, gpuComputeVersion) == 328, "Wrong offset for PxSceneDesc.gpuComputeVersion, expected 328 got %v", offset_of(PxSceneDesc, gpuComputeVersion))
-    testing.expectf(t, offset_of(PxSceneDesc, contactPairSlabSize) == 332, "Wrong offset for PxSceneDesc.contactPairSlabSize, expected 332 got %v", offset_of(PxSceneDesc, contactPairSlabSize))
-    testing.expectf(t, offset_of(PxSceneDesc, sceneQuerySystem) == 336, "Wrong offset for PxSceneDesc.sceneQuerySystem, expected 336 got %v", offset_of(PxSceneDesc, sceneQuerySystem))
-    testing.expectf(t, size_of(PxSceneDesc) == 352, "Wrong size for type PxSceneDesc, expected 352 got %v", size_of(PxSceneDesc))
+    _pad51: [8]u8,
 }
 
+
 PxSimulationStatistics :: struct {
-// false false
-// []
-// 0
     nbActiveConstraints: _c.uint32_t,
     nbActiveDynamicBodies: _c.uint32_t,
     nbActiveKinematicBodies: _c.uint32_t,
@@ -4961,257 +3581,113 @@ PxSimulationStatistics :: struct {
     nbModifiedContactPairs: [11][11]_c.uint32_t,
     nbTriggerPairs: [11][11]_c.uint32_t,
 }
-@(test)
-test_layout_PxSimulationStatistics :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbActiveDynamicBodies) == 4, "Wrong offset for PxSimulationStatistics.nbActiveDynamicBodies, expected 4 got %v", offset_of(PxSimulationStatistics, nbActiveDynamicBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbActiveKinematicBodies) == 8, "Wrong offset for PxSimulationStatistics.nbActiveKinematicBodies, expected 8 got %v", offset_of(PxSimulationStatistics, nbActiveKinematicBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbStaticBodies) == 12, "Wrong offset for PxSimulationStatistics.nbStaticBodies, expected 12 got %v", offset_of(PxSimulationStatistics, nbStaticBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbDynamicBodies) == 16, "Wrong offset for PxSimulationStatistics.nbDynamicBodies, expected 16 got %v", offset_of(PxSimulationStatistics, nbDynamicBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbKinematicBodies) == 20, "Wrong offset for PxSimulationStatistics.nbKinematicBodies, expected 20 got %v", offset_of(PxSimulationStatistics, nbKinematicBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbAggregates) == 68, "Wrong offset for PxSimulationStatistics.nbAggregates, expected 68 got %v", offset_of(PxSimulationStatistics, nbAggregates))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbArticulations) == 72, "Wrong offset for PxSimulationStatistics.nbArticulations, expected 72 got %v", offset_of(PxSimulationStatistics, nbArticulations))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbAxisSolverConstraints) == 76, "Wrong offset for PxSimulationStatistics.nbAxisSolverConstraints, expected 76 got %v", offset_of(PxSimulationStatistics, nbAxisSolverConstraints))
-    testing.expectf(t, offset_of(PxSimulationStatistics, compressedContactSize) == 80, "Wrong offset for PxSimulationStatistics.compressedContactSize, expected 80 got %v", offset_of(PxSimulationStatistics, compressedContactSize))
-    testing.expectf(t, offset_of(PxSimulationStatistics, requiredContactConstraintMemory) == 84, "Wrong offset for PxSimulationStatistics.requiredContactConstraintMemory, expected 84 got %v", offset_of(PxSimulationStatistics, requiredContactConstraintMemory))
-    testing.expectf(t, offset_of(PxSimulationStatistics, peakConstraintMemory) == 88, "Wrong offset for PxSimulationStatistics.peakConstraintMemory, expected 88 got %v", offset_of(PxSimulationStatistics, peakConstraintMemory))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbDiscreteContactPairsTotal) == 92, "Wrong offset for PxSimulationStatistics.nbDiscreteContactPairsTotal, expected 92 got %v", offset_of(PxSimulationStatistics, nbDiscreteContactPairsTotal))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbDiscreteContactPairsWithCacheHits) == 96, "Wrong offset for PxSimulationStatistics.nbDiscreteContactPairsWithCacheHits, expected 96 got %v", offset_of(PxSimulationStatistics, nbDiscreteContactPairsWithCacheHits))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbDiscreteContactPairsWithContacts) == 100, "Wrong offset for PxSimulationStatistics.nbDiscreteContactPairsWithContacts, expected 100 got %v", offset_of(PxSimulationStatistics, nbDiscreteContactPairsWithContacts))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbNewPairs) == 104, "Wrong offset for PxSimulationStatistics.nbNewPairs, expected 104 got %v", offset_of(PxSimulationStatistics, nbNewPairs))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbLostPairs) == 108, "Wrong offset for PxSimulationStatistics.nbLostPairs, expected 108 got %v", offset_of(PxSimulationStatistics, nbLostPairs))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbNewTouches) == 112, "Wrong offset for PxSimulationStatistics.nbNewTouches, expected 112 got %v", offset_of(PxSimulationStatistics, nbNewTouches))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbLostTouches) == 116, "Wrong offset for PxSimulationStatistics.nbLostTouches, expected 116 got %v", offset_of(PxSimulationStatistics, nbLostTouches))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbPartitions) == 120, "Wrong offset for PxSimulationStatistics.nbPartitions, expected 120 got %v", offset_of(PxSimulationStatistics, nbPartitions))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemParticles) == 128, "Wrong offset for PxSimulationStatistics.gpuMemParticles, expected 128 got %v", offset_of(PxSimulationStatistics, gpuMemParticles))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemSoftBodies) == 136, "Wrong offset for PxSimulationStatistics.gpuMemSoftBodies, expected 136 got %v", offset_of(PxSimulationStatistics, gpuMemSoftBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemFEMCloths) == 144, "Wrong offset for PxSimulationStatistics.gpuMemFEMCloths, expected 144 got %v", offset_of(PxSimulationStatistics, gpuMemFEMCloths))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHairSystems) == 152, "Wrong offset for PxSimulationStatistics.gpuMemHairSystems, expected 152 got %v", offset_of(PxSimulationStatistics, gpuMemHairSystems))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeap) == 160, "Wrong offset for PxSimulationStatistics.gpuMemHeap, expected 160 got %v", offset_of(PxSimulationStatistics, gpuMemHeap))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapBroadPhase) == 168, "Wrong offset for PxSimulationStatistics.gpuMemHeapBroadPhase, expected 168 got %v", offset_of(PxSimulationStatistics, gpuMemHeapBroadPhase))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapNarrowPhase) == 176, "Wrong offset for PxSimulationStatistics.gpuMemHeapNarrowPhase, expected 176 got %v", offset_of(PxSimulationStatistics, gpuMemHeapNarrowPhase))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSolver) == 184, "Wrong offset for PxSimulationStatistics.gpuMemHeapSolver, expected 184 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSolver))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapArticulation) == 192, "Wrong offset for PxSimulationStatistics.gpuMemHeapArticulation, expected 192 got %v", offset_of(PxSimulationStatistics, gpuMemHeapArticulation))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulation) == 200, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulation, expected 200 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulation))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulationArticulation) == 208, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulationArticulation, expected 208 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulationArticulation))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulationParticles) == 216, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulationParticles, expected 216 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulationParticles))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulationSoftBody) == 224, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulationSoftBody, expected 224 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulationSoftBody))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulationFEMCloth) == 232, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulationFEMCloth, expected 232 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulationFEMCloth))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSimulationHairSystem) == 240, "Wrong offset for PxSimulationStatistics.gpuMemHeapSimulationHairSystem, expected 240 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSimulationHairSystem))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapParticles) == 248, "Wrong offset for PxSimulationStatistics.gpuMemHeapParticles, expected 248 got %v", offset_of(PxSimulationStatistics, gpuMemHeapParticles))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapSoftBodies) == 256, "Wrong offset for PxSimulationStatistics.gpuMemHeapSoftBodies, expected 256 got %v", offset_of(PxSimulationStatistics, gpuMemHeapSoftBodies))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapFEMCloths) == 264, "Wrong offset for PxSimulationStatistics.gpuMemHeapFEMCloths, expected 264 got %v", offset_of(PxSimulationStatistics, gpuMemHeapFEMCloths))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapHairSystems) == 272, "Wrong offset for PxSimulationStatistics.gpuMemHeapHairSystems, expected 272 got %v", offset_of(PxSimulationStatistics, gpuMemHeapHairSystems))
-    testing.expectf(t, offset_of(PxSimulationStatistics, gpuMemHeapOther) == 280, "Wrong offset for PxSimulationStatistics.gpuMemHeapOther, expected 280 got %v", offset_of(PxSimulationStatistics, gpuMemHeapOther))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbBroadPhaseAdds) == 288, "Wrong offset for PxSimulationStatistics.nbBroadPhaseAdds, expected 288 got %v", offset_of(PxSimulationStatistics, nbBroadPhaseAdds))
-    testing.expectf(t, offset_of(PxSimulationStatistics, nbBroadPhaseRemoves) == 292, "Wrong offset for PxSimulationStatistics.nbBroadPhaseRemoves, expected 292 got %v", offset_of(PxSimulationStatistics, nbBroadPhaseRemoves))
-    testing.expectf(t, size_of(PxSimulationStatistics) == 2232, "Wrong size for type PxSimulationStatistics, expected 2232 got %v", size_of(PxSimulationStatistics))
-}
+
 
 PxGpuBodyData :: struct {
-// false false
-// []
-// 0
     quat: PxQuat,
     pos: PxVec4,
     linVel: PxVec4,
     angVel: PxVec4,
 }
-@(test)
-test_layout_PxGpuBodyData :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGpuBodyData, pos) == 16, "Wrong offset for PxGpuBodyData.pos, expected 16 got %v", offset_of(PxGpuBodyData, pos))
-    testing.expectf(t, offset_of(PxGpuBodyData, linVel) == 32, "Wrong offset for PxGpuBodyData.linVel, expected 32 got %v", offset_of(PxGpuBodyData, linVel))
-    testing.expectf(t, offset_of(PxGpuBodyData, angVel) == 48, "Wrong offset for PxGpuBodyData.angVel, expected 48 got %v", offset_of(PxGpuBodyData, angVel))
-    testing.expectf(t, size_of(PxGpuBodyData) == 64, "Wrong size for type PxGpuBodyData, expected 64 got %v", size_of(PxGpuBodyData))
-}
+
 
 PxGpuActorPair :: struct {
-// false false
-// []
-// 0
     srcIndex: _c.uint32_t,
     _pad1: [4]u8,
     nodeIndex: PxNodeIndex,
 }
-@(test)
-test_layout_PxGpuActorPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGpuActorPair, nodeIndex) == 8, "Wrong offset for PxGpuActorPair.nodeIndex, expected 8 got %v", offset_of(PxGpuActorPair, nodeIndex))
-    testing.expectf(t, size_of(PxGpuActorPair) == 16, "Wrong size for type PxGpuActorPair, expected 16 got %v", size_of(PxGpuActorPair))
-}
+
 
 PxIndexDataPair :: struct {
-// false false
-// []
-// 0
     index: _c.uint32_t,
     _pad1: [4]u8,
     data: rawptr,
 }
-@(test)
-test_layout_PxIndexDataPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxIndexDataPair, data) == 8, "Wrong offset for PxIndexDataPair.data, expected 8 got %v", offset_of(PxIndexDataPair, data))
-    testing.expectf(t, size_of(PxIndexDataPair) == 16, "Wrong size for type PxIndexDataPair, expected 16 got %v", size_of(PxIndexDataPair))
-}
+
 
 PxPvdSceneClient :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxDominanceGroupPair :: struct {
-// false false
-// []
-// 0
     dominance0: _c.uint8_t,
     dominance1: _c.uint8_t,
 }
-@(test)
-test_layout_PxDominanceGroupPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDominanceGroupPair, dominance1) == 1, "Wrong offset for PxDominanceGroupPair.dominance1, expected 1 got %v", offset_of(PxDominanceGroupPair, dominance1))
-    testing.expectf(t, size_of(PxDominanceGroupPair) == 2, "Wrong size for type PxDominanceGroupPair, expected 2 got %v", size_of(PxDominanceGroupPair))
-}
+
 
 PxBroadPhaseCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxScene :: struct {
-// true true
-// ["PxSceneSQSystem"]
     using _: PxSceneSQSystem,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxScene :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxScene, userData) == 8, "Wrong offset for PxScene.userData, expected 8 got %v", offset_of(PxScene, userData))
-    testing.expectf(t, size_of(PxScene) == 16, "Wrong size for type PxScene, expected 16 got %v", size_of(PxScene))
-}
+
 
 PxSceneReadLock :: struct {
-// false false
-// []
-// 0
-    _private_mScene: ^PxScene,
+    _pad0: [8]u8,
 }
-@(test)
-test_layout_PxSceneReadLock :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSceneReadLock) == 8, "Wrong size for type PxSceneReadLock, expected 8 got %v", size_of(PxSceneReadLock))
-}
+
 
 PxSceneWriteLock :: struct {
-// false false
-// []
-// 0
-    _private_mScene: ^PxScene,
+    _pad0: [8]u8,
 }
-@(test)
-test_layout_PxSceneWriteLock :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSceneWriteLock) == 8, "Wrong size for type PxSceneWriteLock, expected 8 got %v", size_of(PxSceneWriteLock))
-}
+
 
 PxContactPairExtraDataItem :: struct {
-// false false
-// []
-// 0
     type: _c.uint8_t,
 }
-@(test)
-test_layout_PxContactPairExtraDataItem :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxContactPairExtraDataItem) == 1, "Wrong size for type PxContactPairExtraDataItem, expected 1 got %v", size_of(PxContactPairExtraDataItem))
-}
+
 
 PxContactPairVelocity :: struct {
-// false false
-// ["PxContactPairExtraDataItem"]
     using _: PxContactPairExtraDataItem,
-// 1
-// XXXX 4 < 1
-    _pad1: [0]u8,
+    _pad1: [3]u8,
     linearVelocity: [2]PxVec3,
     angularVelocity: [2]PxVec3,
 }
-@(test)
-test_layout_PxContactPairVelocity :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxContactPairVelocity) == 52, "Wrong size for type PxContactPairVelocity, expected 52 got %v", size_of(PxContactPairVelocity))
-}
+
 
 PxContactPairPose :: struct {
-// false false
-// ["PxContactPairExtraDataItem"]
     using _: PxContactPairExtraDataItem,
-// 1
-// XXXX 4 < 1
-    _pad1: [0]u8,
+    _pad1: [3]u8,
     globalPose: [2]PxTransform,
 }
-@(test)
-test_layout_PxContactPairPose :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxContactPairPose) == 60, "Wrong size for type PxContactPairPose, expected 60 got %v", size_of(PxContactPairPose))
-}
+
 
 PxContactPairIndex :: struct {
-// false false
-// ["PxContactPairExtraDataItem"]
     using _: PxContactPairExtraDataItem,
-// 1
-// XXXX 2 < 1
-    _pad1: [0]u8,
+    _pad1: [1]u8,
     index: _c.uint16_t,
 }
-@(test)
-test_layout_PxContactPairIndex :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPairIndex, index) == 2, "Wrong offset for PxContactPairIndex.index, expected 2 got %v", offset_of(PxContactPairIndex, index))
-    testing.expectf(t, size_of(PxContactPairIndex) == 4, "Wrong size for type PxContactPairIndex, expected 4 got %v", size_of(PxContactPairIndex))
-}
+
 
 PxContactPairExtraDataIterator :: struct {
-// false false
-// []
-// 0
     currPtr: ^_c.uint8_t,
     endPtr: ^_c.uint8_t,
     preSolverVelocity: ^PxContactPairVelocity,
     postSolverVelocity: ^PxContactPairVelocity,
     eventPose: ^PxContactPairPose,
     contactPairIndex: _c.uint32_t,
-}
-@(test)
-test_layout_PxContactPairExtraDataIterator :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPairExtraDataIterator, endPtr) == 8, "Wrong offset for PxContactPairExtraDataIterator.endPtr, expected 8 got %v", offset_of(PxContactPairExtraDataIterator, endPtr))
-    testing.expectf(t, offset_of(PxContactPairExtraDataIterator, preSolverVelocity) == 16, "Wrong offset for PxContactPairExtraDataIterator.preSolverVelocity, expected 16 got %v", offset_of(PxContactPairExtraDataIterator, preSolverVelocity))
-    testing.expectf(t, offset_of(PxContactPairExtraDataIterator, postSolverVelocity) == 24, "Wrong offset for PxContactPairExtraDataIterator.postSolverVelocity, expected 24 got %v", offset_of(PxContactPairExtraDataIterator, postSolverVelocity))
-    testing.expectf(t, offset_of(PxContactPairExtraDataIterator, eventPose) == 32, "Wrong offset for PxContactPairExtraDataIterator.eventPose, expected 32 got %v", offset_of(PxContactPairExtraDataIterator, eventPose))
-    testing.expectf(t, offset_of(PxContactPairExtraDataIterator, contactPairIndex) == 40, "Wrong offset for PxContactPairExtraDataIterator.contactPairIndex, expected 40 got %v", offset_of(PxContactPairExtraDataIterator, contactPairIndex))
-    testing.expectf(t, size_of(PxContactPairExtraDataIterator) == 48, "Wrong size for type PxContactPairExtraDataIterator, expected 48 got %v", size_of(PxContactPairExtraDataIterator))
+    _pad6: [4]u8,
 }
 
+
 PxContactPairHeader :: struct {
-// false false
-// []
-// 0
     actors: [2]^PxActor,
     extraDataStream: ^_c.uint8_t,
     extraDataStreamSize: _c.uint16_t,
-    flags: _c.uint16_t,
+    flags: PxContactPairHeaderFlags_Set,
     _pad4: [4]u8,
     pairs: ^PxContactPair,
     nbPairs: _c.uint32_t,
-}
-@(test)
-test_layout_PxContactPairHeader :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPairHeader, extraDataStream) == 16, "Wrong offset for PxContactPairHeader.extraDataStream, expected 16 got %v", offset_of(PxContactPairHeader, extraDataStream))
-    testing.expectf(t, offset_of(PxContactPairHeader, extraDataStreamSize) == 24, "Wrong offset for PxContactPairHeader.extraDataStreamSize, expected 24 got %v", offset_of(PxContactPairHeader, extraDataStreamSize))
-    testing.expectf(t, offset_of(PxContactPairHeader, flags) == 26, "Wrong offset for PxContactPairHeader.flags, expected 26 got %v", offset_of(PxContactPairHeader, flags))
-    testing.expectf(t, offset_of(PxContactPairHeader, pairs) == 32, "Wrong offset for PxContactPairHeader.pairs, expected 32 got %v", offset_of(PxContactPairHeader, pairs))
-    testing.expectf(t, offset_of(PxContactPairHeader, nbPairs) == 40, "Wrong offset for PxContactPairHeader.nbPairs, expected 40 got %v", offset_of(PxContactPairHeader, nbPairs))
-    testing.expectf(t, size_of(PxContactPairHeader) == 48, "Wrong size for type PxContactPairHeader, expected 48 got %v", size_of(PxContactPairHeader))
+    _pad7: [4]u8,
 }
 
+
 PxContactPairPoint :: struct {
-// false false
-// []
-// 0
     position: PxVec3,
     separation: _c.float,
     normal: PxVec3,
@@ -5219,20 +3695,9 @@ PxContactPairPoint :: struct {
     impulse: PxVec3,
     internalFaceIndex1: _c.uint32_t,
 }
-@(test)
-test_layout_PxContactPairPoint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPairPoint, separation) == 12, "Wrong offset for PxContactPairPoint.separation, expected 12 got %v", offset_of(PxContactPairPoint, separation))
-    testing.expectf(t, offset_of(PxContactPairPoint, normal) == 16, "Wrong offset for PxContactPairPoint.normal, expected 16 got %v", offset_of(PxContactPairPoint, normal))
-    testing.expectf(t, offset_of(PxContactPairPoint, internalFaceIndex0) == 28, "Wrong offset for PxContactPairPoint.internalFaceIndex0, expected 28 got %v", offset_of(PxContactPairPoint, internalFaceIndex0))
-    testing.expectf(t, offset_of(PxContactPairPoint, impulse) == 32, "Wrong offset for PxContactPairPoint.impulse, expected 32 got %v", offset_of(PxContactPairPoint, impulse))
-    testing.expectf(t, offset_of(PxContactPairPoint, internalFaceIndex1) == 44, "Wrong offset for PxContactPairPoint.internalFaceIndex1, expected 44 got %v", offset_of(PxContactPairPoint, internalFaceIndex1))
-    testing.expectf(t, size_of(PxContactPairPoint) == 48, "Wrong size for type PxContactPairPoint, expected 48 got %v", size_of(PxContactPairPoint))
-}
+
 
 PxContactPair :: struct {
-// false false
-// []
-// 0
     shapes: [2]^PxShape,
     contactPatches: ^_c.uint8_t,
     contactPoints: ^_c.uint8_t,
@@ -5241,68 +3706,38 @@ PxContactPair :: struct {
     contactCount: _c.uint8_t,
     patchCount: _c.uint8_t,
     contactStreamSize: _c.uint16_t,
-    flags: _c.uint16_t,
-    events: _c.uint16_t,
+    flags: PxContactPairFlags_Set,
+    events: PxPairFlags_Set,
     internalData: [2]_c.uint32_t,
-}
-@(test)
-test_layout_PxContactPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxContactPair, contactPatches) == 16, "Wrong offset for PxContactPair.contactPatches, expected 16 got %v", offset_of(PxContactPair, contactPatches))
-    testing.expectf(t, offset_of(PxContactPair, contactPoints) == 24, "Wrong offset for PxContactPair.contactPoints, expected 24 got %v", offset_of(PxContactPair, contactPoints))
-    testing.expectf(t, offset_of(PxContactPair, contactImpulses) == 32, "Wrong offset for PxContactPair.contactImpulses, expected 32 got %v", offset_of(PxContactPair, contactImpulses))
-    testing.expectf(t, offset_of(PxContactPair, requiredBufferSize) == 40, "Wrong offset for PxContactPair.requiredBufferSize, expected 40 got %v", offset_of(PxContactPair, requiredBufferSize))
-    testing.expectf(t, offset_of(PxContactPair, contactCount) == 44, "Wrong offset for PxContactPair.contactCount, expected 44 got %v", offset_of(PxContactPair, contactCount))
-    testing.expectf(t, offset_of(PxContactPair, patchCount) == 45, "Wrong offset for PxContactPair.patchCount, expected 45 got %v", offset_of(PxContactPair, patchCount))
-    testing.expectf(t, offset_of(PxContactPair, contactStreamSize) == 46, "Wrong offset for PxContactPair.contactStreamSize, expected 46 got %v", offset_of(PxContactPair, contactStreamSize))
-    testing.expectf(t, offset_of(PxContactPair, flags) == 48, "Wrong offset for PxContactPair.flags, expected 48 got %v", offset_of(PxContactPair, flags))
-    testing.expectf(t, offset_of(PxContactPair, events) == 50, "Wrong offset for PxContactPair.events, expected 50 got %v", offset_of(PxContactPair, events))
-    testing.expectf(t, size_of(PxContactPair) == 64, "Wrong size for type PxContactPair, expected 64 got %v", size_of(PxContactPair))
+    _pad11: [4]u8,
 }
 
+
 PxTriggerPair :: struct {
-// false false
-// []
-// 0
     triggerShape: ^PxShape,
     triggerActor: ^PxActor,
     otherShape: ^PxShape,
     otherActor: ^PxActor,
-    status: _c.int32_t,
-    flags: _c.uint8_t,
-}
-@(test)
-test_layout_PxTriggerPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTriggerPair, triggerActor) == 8, "Wrong offset for PxTriggerPair.triggerActor, expected 8 got %v", offset_of(PxTriggerPair, triggerActor))
-    testing.expectf(t, offset_of(PxTriggerPair, otherShape) == 16, "Wrong offset for PxTriggerPair.otherShape, expected 16 got %v", offset_of(PxTriggerPair, otherShape))
-    testing.expectf(t, offset_of(PxTriggerPair, otherActor) == 24, "Wrong offset for PxTriggerPair.otherActor, expected 24 got %v", offset_of(PxTriggerPair, otherActor))
-    testing.expectf(t, offset_of(PxTriggerPair, status) == 32, "Wrong offset for PxTriggerPair.status, expected 32 got %v", offset_of(PxTriggerPair, status))
-    testing.expectf(t, offset_of(PxTriggerPair, flags) == 36, "Wrong offset for PxTriggerPair.flags, expected 36 got %v", offset_of(PxTriggerPair, flags))
-    testing.expectf(t, size_of(PxTriggerPair) == 40, "Wrong size for type PxTriggerPair, expected 40 got %v", size_of(PxTriggerPair))
+    status: PxPairFlag,
+    flags: PxTriggerPairFlags_Set,
+    _pad6: [3]u8,
 }
 
+
 PxConstraintInfo :: struct {
-// false false
-// []
-// 0
     constraint: ^PxConstraint,
     externalReference: rawptr,
     type: _c.uint32_t,
+    _pad3: [4]u8,
 }
-@(test)
-test_layout_PxConstraintInfo :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConstraintInfo, externalReference) == 8, "Wrong offset for PxConstraintInfo.externalReference, expected 8 got %v", offset_of(PxConstraintInfo, externalReference))
-    testing.expectf(t, offset_of(PxConstraintInfo, type) == 16, "Wrong offset for PxConstraintInfo.type, expected 16 got %v", offset_of(PxConstraintInfo, type))
-    testing.expectf(t, size_of(PxConstraintInfo) == 24, "Wrong size for type PxConstraintInfo, expected 24 got %v", size_of(PxConstraintInfo))
-}
+
 
 PxSimulationEventCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxFEMParameters :: struct {
-// false false
-// []
-// 0
     velocityDamping: _c.float,
     settlingThreshold: _c.float,
     sleepThreshold: _c.float,
@@ -5310,91 +3745,48 @@ PxFEMParameters :: struct {
     selfCollisionFilterDistance: _c.float,
     selfCollisionStressTolerance: _c.float,
 }
-@(test)
-test_layout_PxFEMParameters :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxFEMParameters, settlingThreshold) == 4, "Wrong offset for PxFEMParameters.settlingThreshold, expected 4 got %v", offset_of(PxFEMParameters, settlingThreshold))
-    testing.expectf(t, offset_of(PxFEMParameters, sleepThreshold) == 8, "Wrong offset for PxFEMParameters.sleepThreshold, expected 8 got %v", offset_of(PxFEMParameters, sleepThreshold))
-    testing.expectf(t, offset_of(PxFEMParameters, sleepDamping) == 12, "Wrong offset for PxFEMParameters.sleepDamping, expected 12 got %v", offset_of(PxFEMParameters, sleepDamping))
-    testing.expectf(t, offset_of(PxFEMParameters, selfCollisionFilterDistance) == 16, "Wrong offset for PxFEMParameters.selfCollisionFilterDistance, expected 16 got %v", offset_of(PxFEMParameters, selfCollisionFilterDistance))
-    testing.expectf(t, offset_of(PxFEMParameters, selfCollisionStressTolerance) == 20, "Wrong offset for PxFEMParameters.selfCollisionStressTolerance, expected 20 got %v", offset_of(PxFEMParameters, selfCollisionStressTolerance))
-    testing.expectf(t, size_of(PxFEMParameters) == 24, "Wrong size for type PxFEMParameters, expected 24 got %v", size_of(PxFEMParameters))
-}
+
 
 PxPruningStructure :: struct {
     using _: PxBase,
-};
+}
+
 
 PxExtendedVec3 :: struct {
-// false false
-// []
-// 0
     x: _c.double,
     y: _c.double,
     z: _c.double,
 }
-@(test)
-test_layout_PxExtendedVec3 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxExtendedVec3, y) == 8, "Wrong offset for PxExtendedVec3.y, expected 8 got %v", offset_of(PxExtendedVec3, y))
-    testing.expectf(t, offset_of(PxExtendedVec3, z) == 16, "Wrong offset for PxExtendedVec3.z, expected 16 got %v", offset_of(PxExtendedVec3, z))
-    testing.expectf(t, size_of(PxExtendedVec3) == 24, "Wrong size for type PxExtendedVec3, expected 24 got %v", size_of(PxExtendedVec3))
-}
+
 
 PxObstacle :: struct {
-// false false
-// []
-// 0
-    _private_mType: _c.int32_t,
-    _pad1: [4]u8,
+    _pad0: [8]u8,
     mUserData: rawptr,
     mPos: PxExtendedVec3,
     mRot: PxQuat,
 }
-@(test)
-test_layout_PxObstacle :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxObstacle, mUserData) == 8, "Wrong offset for PxObstacle.mUserData, expected 8 got %v", offset_of(PxObstacle, mUserData))
-    testing.expectf(t, offset_of(PxObstacle, mPos) == 16, "Wrong offset for PxObstacle.mPos, expected 16 got %v", offset_of(PxObstacle, mPos))
-    testing.expectf(t, offset_of(PxObstacle, mRot) == 40, "Wrong offset for PxObstacle.mRot, expected 40 got %v", offset_of(PxObstacle, mRot))
-    testing.expectf(t, size_of(PxObstacle) == 56, "Wrong size for type PxObstacle, expected 56 got %v", size_of(PxObstacle))
-}
+
 
 PxBoxObstacle :: struct {
-// false false
-// ["PxObstacle"]
     using _: PxObstacle,
-// 56
-    _pad5: [0]u8,
     mHalfExtents: PxVec3,
-}
-@(test)
-test_layout_PxBoxObstacle :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBoxObstacle, mHalfExtents) == 56, "Wrong offset for PxBoxObstacle.mHalfExtents, expected 56 got %v", offset_of(PxBoxObstacle, mHalfExtents))
-    testing.expectf(t, size_of(PxBoxObstacle) == 72, "Wrong size for type PxBoxObstacle, expected 72 got %v", size_of(PxBoxObstacle))
+    _pad6: [4]u8,
 }
 
+
 PxCapsuleObstacle :: struct {
-// false false
-// ["PxObstacle"]
     using _: PxObstacle,
-// 56
-    _pad5: [0]u8,
     mHalfHeight: _c.float,
     mRadius: _c.float,
 }
-@(test)
-test_layout_PxCapsuleObstacle :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCapsuleObstacle, mHalfHeight) == 56, "Wrong offset for PxCapsuleObstacle.mHalfHeight, expected 56 got %v", offset_of(PxCapsuleObstacle, mHalfHeight))
-    testing.expectf(t, offset_of(PxCapsuleObstacle, mRadius) == 60, "Wrong offset for PxCapsuleObstacle.mRadius, expected 60 got %v", offset_of(PxCapsuleObstacle, mRadius))
-    testing.expectf(t, size_of(PxCapsuleObstacle) == 64, "Wrong size for type PxCapsuleObstacle, expected 64 got %v", size_of(PxCapsuleObstacle))
-}
+
 
 PxObstacleContext :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxControllerState :: struct {
-// false false
-// []
-// 0
     deltaXP: PxVec3,
     _pad1: [4]u8,
     touchedShape: ^PxShape,
@@ -5404,134 +3796,70 @@ PxControllerState :: struct {
     standOnAnotherCCT: _c.bool,
     standOnObstacle: _c.bool,
     isMovingUp: _c.bool,
-}
-@(test)
-test_layout_PxControllerState :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerState, touchedShape) == 16, "Wrong offset for PxControllerState.touchedShape, expected 16 got %v", offset_of(PxControllerState, touchedShape))
-    testing.expectf(t, offset_of(PxControllerState, touchedActor) == 24, "Wrong offset for PxControllerState.touchedActor, expected 24 got %v", offset_of(PxControllerState, touchedActor))
-    testing.expectf(t, offset_of(PxControllerState, touchedObstacleHandle) == 32, "Wrong offset for PxControllerState.touchedObstacleHandle, expected 32 got %v", offset_of(PxControllerState, touchedObstacleHandle))
-    testing.expectf(t, offset_of(PxControllerState, collisionFlags) == 36, "Wrong offset for PxControllerState.collisionFlags, expected 36 got %v", offset_of(PxControllerState, collisionFlags))
-    testing.expectf(t, offset_of(PxControllerState, standOnAnotherCCT) == 40, "Wrong offset for PxControllerState.standOnAnotherCCT, expected 40 got %v", offset_of(PxControllerState, standOnAnotherCCT))
-    testing.expectf(t, offset_of(PxControllerState, standOnObstacle) == 41, "Wrong offset for PxControllerState.standOnObstacle, expected 41 got %v", offset_of(PxControllerState, standOnObstacle))
-    testing.expectf(t, offset_of(PxControllerState, isMovingUp) == 42, "Wrong offset for PxControllerState.isMovingUp, expected 42 got %v", offset_of(PxControllerState, isMovingUp))
-    testing.expectf(t, size_of(PxControllerState) == 48, "Wrong size for type PxControllerState, expected 48 got %v", size_of(PxControllerState))
+    _pad9: [5]u8,
 }
 
+
 PxControllerStats :: struct {
-// false false
-// []
-// 0
     nbIterations: _c.uint16_t,
     nbFullUpdates: _c.uint16_t,
     nbPartialUpdates: _c.uint16_t,
     nbTessellation: _c.uint16_t,
 }
-@(test)
-test_layout_PxControllerStats :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerStats, nbFullUpdates) == 2, "Wrong offset for PxControllerStats.nbFullUpdates, expected 2 got %v", offset_of(PxControllerStats, nbFullUpdates))
-    testing.expectf(t, offset_of(PxControllerStats, nbPartialUpdates) == 4, "Wrong offset for PxControllerStats.nbPartialUpdates, expected 4 got %v", offset_of(PxControllerStats, nbPartialUpdates))
-    testing.expectf(t, offset_of(PxControllerStats, nbTessellation) == 6, "Wrong offset for PxControllerStats.nbTessellation, expected 6 got %v", offset_of(PxControllerStats, nbTessellation))
-    testing.expectf(t, size_of(PxControllerStats) == 8, "Wrong size for type PxControllerStats, expected 8 got %v", size_of(PxControllerStats))
-}
+
 
 PxControllerHit :: struct {
-// false false
-// []
-// 0
     controller: ^PxController,
     worldPos: PxExtendedVec3,
     worldNormal: PxVec3,
     dir: PxVec3,
     length: _c.float,
-}
-@(test)
-test_layout_PxControllerHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerHit, worldPos) == 8, "Wrong offset for PxControllerHit.worldPos, expected 8 got %v", offset_of(PxControllerHit, worldPos))
-    testing.expectf(t, offset_of(PxControllerHit, worldNormal) == 32, "Wrong offset for PxControllerHit.worldNormal, expected 32 got %v", offset_of(PxControllerHit, worldNormal))
-    testing.expectf(t, offset_of(PxControllerHit, dir) == 44, "Wrong offset for PxControllerHit.dir, expected 44 got %v", offset_of(PxControllerHit, dir))
-    testing.expectf(t, offset_of(PxControllerHit, length) == 56, "Wrong offset for PxControllerHit.length, expected 56 got %v", offset_of(PxControllerHit, length))
-    testing.expectf(t, size_of(PxControllerHit) == 64, "Wrong size for type PxControllerHit, expected 64 got %v", size_of(PxControllerHit))
+    _pad5: [4]u8,
 }
 
+
 PxControllerShapeHit :: struct {
-// false false
-// ["PxControllerHit"]
     using _: PxControllerHit,
-// 64
-    _pad5: [0]u8,
     shape: ^PxShape,
     actor: ^PxRigidActor,
     triangleIndex: _c.uint32_t,
+    _pad10: [4]u8,
 }
-@(test)
-test_layout_PxControllerShapeHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerShapeHit, shape) == 64, "Wrong offset for PxControllerShapeHit.shape, expected 64 got %v", offset_of(PxControllerShapeHit, shape))
-    testing.expectf(t, offset_of(PxControllerShapeHit, actor) == 72, "Wrong offset for PxControllerShapeHit.actor, expected 72 got %v", offset_of(PxControllerShapeHit, actor))
-    testing.expectf(t, offset_of(PxControllerShapeHit, triangleIndex) == 80, "Wrong offset for PxControllerShapeHit.triangleIndex, expected 80 got %v", offset_of(PxControllerShapeHit, triangleIndex))
-    testing.expectf(t, size_of(PxControllerShapeHit) == 88, "Wrong size for type PxControllerShapeHit, expected 88 got %v", size_of(PxControllerShapeHit))
-}
+
 
 PxControllersHit :: struct {
-// false false
-// ["PxControllerHit"]
     using _: PxControllerHit,
-// 64
-    _pad5: [0]u8,
     other: ^PxController,
 }
-@(test)
-test_layout_PxControllersHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllersHit, other) == 64, "Wrong offset for PxControllersHit.other, expected 64 got %v", offset_of(PxControllersHit, other))
-    testing.expectf(t, size_of(PxControllersHit) == 72, "Wrong size for type PxControllersHit, expected 72 got %v", size_of(PxControllersHit))
-}
+
 
 PxControllerObstacleHit :: struct {
-// false false
-// ["PxControllerHit"]
     using _: PxControllerHit,
-// 64
-    _pad5: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxControllerObstacleHit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerObstacleHit, userData) == 64, "Wrong offset for PxControllerObstacleHit.userData, expected 64 got %v", offset_of(PxControllerObstacleHit, userData))
-    testing.expectf(t, size_of(PxControllerObstacleHit) == 72, "Wrong size for type PxControllerObstacleHit, expected 72 got %v", size_of(PxControllerObstacleHit))
-}
+
 
 PxUserControllerHitReport :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxControllerFilterCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxControllerFilters :: struct {
-// false false
-// []
-// 0
     mFilterData: ^PxFilterData,
     mFilterCallback: ^PxQueryFilterCallback,
-    mFilterFlags: _c.uint16_t,
+    mFilterFlags: PxQueryFlags_Set,
     _pad3: [6]u8,
     mCCTFilterCallback: ^PxControllerFilterCallback,
 }
-@(test)
-test_layout_PxControllerFilters :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerFilters, mFilterCallback) == 8, "Wrong offset for PxControllerFilters.mFilterCallback, expected 8 got %v", offset_of(PxControllerFilters, mFilterCallback))
-    testing.expectf(t, offset_of(PxControllerFilters, mFilterFlags) == 16, "Wrong offset for PxControllerFilters.mFilterFlags, expected 16 got %v", offset_of(PxControllerFilters, mFilterFlags))
-    testing.expectf(t, offset_of(PxControllerFilters, mCCTFilterCallback) == 24, "Wrong offset for PxControllerFilters.mCCTFilterCallback, expected 24 got %v", offset_of(PxControllerFilters, mCCTFilterCallback))
-    testing.expectf(t, size_of(PxControllerFilters) == 32, "Wrong size for type PxControllerFilters, expected 32 got %v", size_of(PxControllerFilters))
-}
+
 
 PxControllerDesc :: struct #packed {
-// true false
-// []
-    vtable: rawptr,
-// 0
-// XXXX 8 < 0
-    _pad0: [0]u8,
+    _pad0: [8]u8,
     position: PxExtendedVec3,
     upDirection: PxVec3,
     slopeLimit: _c.float,
@@ -5545,118 +3873,72 @@ PxControllerDesc :: struct #packed {
     _pad11: [4]u8,
     reportCallback: ^PxUserControllerHitReport,
     behaviorCallback: ^PxControllerBehaviorCallback,
-    nonWalkableMode: _c.int32_t,
+    nonWalkableMode: PxControllerNonWalkableMode,
     _pad15: [4]u8,
     material: ^PxMaterial,
     registerDeletionListener: _c.bool,
     clientID: _c.uint8_t,
     _pad19: [6]u8,
     userData: rawptr,
-    _private_mType: _c.int32_t,
+    _pad21: [4]u8,
 }
-@(test)
-test_layout_PxControllerDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxControllerDesc, position) == 8, "Wrong offset for PxControllerDesc.position, expected 8 got %v", offset_of(PxControllerDesc, position))
-    testing.expectf(t, offset_of(PxControllerDesc, upDirection) == 32, "Wrong offset for PxControllerDesc.upDirection, expected 32 got %v", offset_of(PxControllerDesc, upDirection))
-    testing.expectf(t, offset_of(PxControllerDesc, slopeLimit) == 44, "Wrong offset for PxControllerDesc.slopeLimit, expected 44 got %v", offset_of(PxControllerDesc, slopeLimit))
-    testing.expectf(t, offset_of(PxControllerDesc, invisibleWallHeight) == 48, "Wrong offset for PxControllerDesc.invisibleWallHeight, expected 48 got %v", offset_of(PxControllerDesc, invisibleWallHeight))
-    testing.expectf(t, offset_of(PxControllerDesc, maxJumpHeight) == 52, "Wrong offset for PxControllerDesc.maxJumpHeight, expected 52 got %v", offset_of(PxControllerDesc, maxJumpHeight))
-    testing.expectf(t, offset_of(PxControllerDesc, contactOffset) == 56, "Wrong offset for PxControllerDesc.contactOffset, expected 56 got %v", offset_of(PxControllerDesc, contactOffset))
-    testing.expectf(t, offset_of(PxControllerDesc, stepOffset) == 60, "Wrong offset for PxControllerDesc.stepOffset, expected 60 got %v", offset_of(PxControllerDesc, stepOffset))
-    testing.expectf(t, offset_of(PxControllerDesc, density) == 64, "Wrong offset for PxControllerDesc.density, expected 64 got %v", offset_of(PxControllerDesc, density))
-    testing.expectf(t, offset_of(PxControllerDesc, scaleCoeff) == 68, "Wrong offset for PxControllerDesc.scaleCoeff, expected 68 got %v", offset_of(PxControllerDesc, scaleCoeff))
-    testing.expectf(t, offset_of(PxControllerDesc, volumeGrowth) == 72, "Wrong offset for PxControllerDesc.volumeGrowth, expected 72 got %v", offset_of(PxControllerDesc, volumeGrowth))
-    testing.expectf(t, offset_of(PxControllerDesc, reportCallback) == 80, "Wrong offset for PxControllerDesc.reportCallback, expected 80 got %v", offset_of(PxControllerDesc, reportCallback))
-    testing.expectf(t, offset_of(PxControllerDesc, behaviorCallback) == 88, "Wrong offset for PxControllerDesc.behaviorCallback, expected 88 got %v", offset_of(PxControllerDesc, behaviorCallback))
-    testing.expectf(t, offset_of(PxControllerDesc, nonWalkableMode) == 96, "Wrong offset for PxControllerDesc.nonWalkableMode, expected 96 got %v", offset_of(PxControllerDesc, nonWalkableMode))
-    testing.expectf(t, offset_of(PxControllerDesc, material) == 104, "Wrong offset for PxControllerDesc.material, expected 104 got %v", offset_of(PxControllerDesc, material))
-    testing.expectf(t, offset_of(PxControllerDesc, registerDeletionListener) == 112, "Wrong offset for PxControllerDesc.registerDeletionListener, expected 112 got %v", offset_of(PxControllerDesc, registerDeletionListener))
-    testing.expectf(t, offset_of(PxControllerDesc, clientID) == 113, "Wrong offset for PxControllerDesc.clientID, expected 113 got %v", offset_of(PxControllerDesc, clientID))
-    testing.expectf(t, offset_of(PxControllerDesc, userData) == 120, "Wrong offset for PxControllerDesc.userData, expected 120 got %v", offset_of(PxControllerDesc, userData))
-    testing.expectf(t, size_of(PxControllerDesc) == 132, "Wrong size for type PxControllerDesc, expected 132 got %v", size_of(PxControllerDesc))
-}
+
 
 PxController :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxBoxControllerDesc :: struct {
-// true true
-// ["PxControllerDesc"]
     using _: PxControllerDesc,
-// 132
-    _pad22: [0]u8,
     halfHeight: _c.float,
     halfSideExtent: _c.float,
     halfForwardExtent: _c.float,
 }
-@(test)
-test_layout_PxBoxControllerDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBoxControllerDesc, halfHeight) == 132, "Wrong offset for PxBoxControllerDesc.halfHeight, expected 132 got %v", offset_of(PxBoxControllerDesc, halfHeight))
-    testing.expectf(t, offset_of(PxBoxControllerDesc, halfSideExtent) == 136, "Wrong offset for PxBoxControllerDesc.halfSideExtent, expected 136 got %v", offset_of(PxBoxControllerDesc, halfSideExtent))
-    testing.expectf(t, offset_of(PxBoxControllerDesc, halfForwardExtent) == 140, "Wrong offset for PxBoxControllerDesc.halfForwardExtent, expected 140 got %v", offset_of(PxBoxControllerDesc, halfForwardExtent))
-    testing.expectf(t, size_of(PxBoxControllerDesc) == 144, "Wrong size for type PxBoxControllerDesc, expected 144 got %v", size_of(PxBoxControllerDesc))
-}
+
 
 PxBoxController :: struct {
     using _: PxController,
-};
+}
+
 
 PxCapsuleControllerDesc :: struct {
-// true true
-// ["PxControllerDesc"]
     using _: PxControllerDesc,
-// 132
-    _pad22: [0]u8,
     radius: _c.float,
     height: _c.float,
-    climbingMode: _c.int32_t,
+    climbingMode: PxCapsuleClimbingMode,
 }
-@(test)
-test_layout_PxCapsuleControllerDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCapsuleControllerDesc, radius) == 132, "Wrong offset for PxCapsuleControllerDesc.radius, expected 132 got %v", offset_of(PxCapsuleControllerDesc, radius))
-    testing.expectf(t, offset_of(PxCapsuleControllerDesc, height) == 136, "Wrong offset for PxCapsuleControllerDesc.height, expected 136 got %v", offset_of(PxCapsuleControllerDesc, height))
-    testing.expectf(t, offset_of(PxCapsuleControllerDesc, climbingMode) == 140, "Wrong offset for PxCapsuleControllerDesc.climbingMode, expected 140 got %v", offset_of(PxCapsuleControllerDesc, climbingMode))
-    testing.expectf(t, size_of(PxCapsuleControllerDesc) == 144, "Wrong size for type PxCapsuleControllerDesc, expected 144 got %v", size_of(PxCapsuleControllerDesc))
-}
+
 
 PxCapsuleController :: struct {
     using _: PxController,
-};
+}
+
 
 PxControllerBehaviorCallback :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxControllerManager :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxDim3 :: struct {
-// false false
-// []
-// 0
     x: _c.uint32_t,
     y: _c.uint32_t,
     z: _c.uint32_t,
 }
-@(test)
-test_layout_PxDim3 :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxDim3, y) == 4, "Wrong offset for PxDim3.y, expected 4 got %v", offset_of(PxDim3, y))
-    testing.expectf(t, offset_of(PxDim3, z) == 8, "Wrong offset for PxDim3.z, expected 8 got %v", offset_of(PxDim3, z))
-    testing.expectf(t, size_of(PxDim3) == 12, "Wrong size for type PxDim3, expected 12 got %v", size_of(PxDim3))
-}
+
 
 PxSDFDesc :: struct {
-// false false
-// []
-// 0
     sdf: PxBoundedData,
     dims: PxDim3,
     meshLower: PxVec3,
     spacing: _c.float,
     subgridSize: _c.uint32_t,
-    bitsPerSubgridPixel: _c.int32_t,
+    bitsPerSubgridPixel: PxSdfBitsPerSubgridPixel,
     sdfSubgrids3DTexBlockDim: PxDim3,
     sdfSubgrids: PxBoundedData,
     sdfStartSlots: PxBoundedData,
@@ -5666,677 +3948,368 @@ PxSDFDesc :: struct {
     narrowBandThicknessRelativeToSdfBoundsDiagonal: _c.float,
     numThreadsForSdfConstruction: _c.uint32_t,
 }
-@(test)
-test_layout_PxSDFDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSDFDesc, dims) == 24, "Wrong offset for PxSDFDesc.dims, expected 24 got %v", offset_of(PxSDFDesc, dims))
-    testing.expectf(t, offset_of(PxSDFDesc, meshLower) == 36, "Wrong offset for PxSDFDesc.meshLower, expected 36 got %v", offset_of(PxSDFDesc, meshLower))
-    testing.expectf(t, offset_of(PxSDFDesc, spacing) == 48, "Wrong offset for PxSDFDesc.spacing, expected 48 got %v", offset_of(PxSDFDesc, spacing))
-    testing.expectf(t, offset_of(PxSDFDesc, subgridSize) == 52, "Wrong offset for PxSDFDesc.subgridSize, expected 52 got %v", offset_of(PxSDFDesc, subgridSize))
-    testing.expectf(t, offset_of(PxSDFDesc, bitsPerSubgridPixel) == 56, "Wrong offset for PxSDFDesc.bitsPerSubgridPixel, expected 56 got %v", offset_of(PxSDFDesc, bitsPerSubgridPixel))
-    testing.expectf(t, offset_of(PxSDFDesc, sdfSubgrids3DTexBlockDim) == 60, "Wrong offset for PxSDFDesc.sdfSubgrids3DTexBlockDim, expected 60 got %v", offset_of(PxSDFDesc, sdfSubgrids3DTexBlockDim))
-    testing.expectf(t, offset_of(PxSDFDesc, sdfSubgrids) == 72, "Wrong offset for PxSDFDesc.sdfSubgrids, expected 72 got %v", offset_of(PxSDFDesc, sdfSubgrids))
-    testing.expectf(t, offset_of(PxSDFDesc, sdfStartSlots) == 96, "Wrong offset for PxSDFDesc.sdfStartSlots, expected 96 got %v", offset_of(PxSDFDesc, sdfStartSlots))
-    testing.expectf(t, offset_of(PxSDFDesc, subgridsMinSdfValue) == 120, "Wrong offset for PxSDFDesc.subgridsMinSdfValue, expected 120 got %v", offset_of(PxSDFDesc, subgridsMinSdfValue))
-    testing.expectf(t, offset_of(PxSDFDesc, subgridsMaxSdfValue) == 124, "Wrong offset for PxSDFDesc.subgridsMaxSdfValue, expected 124 got %v", offset_of(PxSDFDesc, subgridsMaxSdfValue))
-    testing.expectf(t, offset_of(PxSDFDesc, sdfBounds) == 128, "Wrong offset for PxSDFDesc.sdfBounds, expected 128 got %v", offset_of(PxSDFDesc, sdfBounds))
-    testing.expectf(t, offset_of(PxSDFDesc, narrowBandThicknessRelativeToSdfBoundsDiagonal) == 152, "Wrong offset for PxSDFDesc.narrowBandThicknessRelativeToSdfBoundsDiagonal, expected 152 got %v", offset_of(PxSDFDesc, narrowBandThicknessRelativeToSdfBoundsDiagonal))
-    testing.expectf(t, offset_of(PxSDFDesc, numThreadsForSdfConstruction) == 156, "Wrong offset for PxSDFDesc.numThreadsForSdfConstruction, expected 156 got %v", offset_of(PxSDFDesc, numThreadsForSdfConstruction))
-    testing.expectf(t, size_of(PxSDFDesc) == 160, "Wrong size for type PxSDFDesc, expected 160 got %v", size_of(PxSDFDesc))
-}
+
 
 PxConvexMeshDesc :: struct {
-// false false
-// []
-// 0
     points: PxBoundedData,
     polygons: PxBoundedData,
     indices: PxBoundedData,
-    flags: _c.uint16_t,
+    flags: PxConvexFlags_Set,
     vertexLimit: _c.uint16_t,
     polygonLimit: _c.uint16_t,
     quantizedCount: _c.uint16_t,
     sdfDesc: ^PxSDFDesc,
 }
-@(test)
-test_layout_PxConvexMeshDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxConvexMeshDesc, polygons) == 24, "Wrong offset for PxConvexMeshDesc.polygons, expected 24 got %v", offset_of(PxConvexMeshDesc, polygons))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, indices) == 48, "Wrong offset for PxConvexMeshDesc.indices, expected 48 got %v", offset_of(PxConvexMeshDesc, indices))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, flags) == 72, "Wrong offset for PxConvexMeshDesc.flags, expected 72 got %v", offset_of(PxConvexMeshDesc, flags))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, vertexLimit) == 74, "Wrong offset for PxConvexMeshDesc.vertexLimit, expected 74 got %v", offset_of(PxConvexMeshDesc, vertexLimit))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, polygonLimit) == 76, "Wrong offset for PxConvexMeshDesc.polygonLimit, expected 76 got %v", offset_of(PxConvexMeshDesc, polygonLimit))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, quantizedCount) == 78, "Wrong offset for PxConvexMeshDesc.quantizedCount, expected 78 got %v", offset_of(PxConvexMeshDesc, quantizedCount))
-    testing.expectf(t, offset_of(PxConvexMeshDesc, sdfDesc) == 80, "Wrong offset for PxConvexMeshDesc.sdfDesc, expected 80 got %v", offset_of(PxConvexMeshDesc, sdfDesc))
-    testing.expectf(t, size_of(PxConvexMeshDesc) == 88, "Wrong size for type PxConvexMeshDesc, expected 88 got %v", size_of(PxConvexMeshDesc))
-}
+
 
 PxTriangleMeshDesc :: struct {
-// false false
-// ["PxSimpleTriangleMesh"]
     using _: PxSimpleTriangleMesh,
-// 56
-    _pad3: [0]u8,
     materialIndices: [16]_c.char,
     sdfDesc: ^PxSDFDesc,
 }
-@(test)
-test_layout_PxTriangleMeshDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTriangleMeshDesc, sdfDesc) == 72, "Wrong offset for PxTriangleMeshDesc.sdfDesc, expected 72 got %v", offset_of(PxTriangleMeshDesc, sdfDesc))
-    testing.expectf(t, size_of(PxTriangleMeshDesc) == 80, "Wrong size for type PxTriangleMeshDesc, expected 80 got %v", size_of(PxTriangleMeshDesc))
-}
+
 
 PxTetrahedronMeshDesc :: struct {
-// false false
-// []
-// 0
     materialIndices: [16]_c.char,
     points: PxBoundedData,
     tetrahedrons: PxBoundedData,
-    flags: _c.uint16_t,
+    flags: PxMeshFlags_Set,
     tetsPerElement: _c.uint16_t,
+    _pad5: [4]u8,
 }
-@(test)
-test_layout_PxTetrahedronMeshDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxTetrahedronMeshDesc, points) == 16, "Wrong offset for PxTetrahedronMeshDesc.points, expected 16 got %v", offset_of(PxTetrahedronMeshDesc, points))
-    testing.expectf(t, offset_of(PxTetrahedronMeshDesc, tetrahedrons) == 40, "Wrong offset for PxTetrahedronMeshDesc.tetrahedrons, expected 40 got %v", offset_of(PxTetrahedronMeshDesc, tetrahedrons))
-    testing.expectf(t, offset_of(PxTetrahedronMeshDesc, flags) == 64, "Wrong offset for PxTetrahedronMeshDesc.flags, expected 64 got %v", offset_of(PxTetrahedronMeshDesc, flags))
-    testing.expectf(t, offset_of(PxTetrahedronMeshDesc, tetsPerElement) == 66, "Wrong offset for PxTetrahedronMeshDesc.tetsPerElement, expected 66 got %v", offset_of(PxTetrahedronMeshDesc, tetsPerElement))
-    testing.expectf(t, size_of(PxTetrahedronMeshDesc) == 72, "Wrong size for type PxTetrahedronMeshDesc, expected 72 got %v", size_of(PxTetrahedronMeshDesc))
-}
+
 
 PxSoftBodySimulationDataDesc :: struct {
-// false false
-// []
-// 0
     vertexToTet: PxBoundedData,
 }
-@(test)
-test_layout_PxSoftBodySimulationDataDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSoftBodySimulationDataDesc) == 24, "Wrong size for type PxSoftBodySimulationDataDesc, expected 24 got %v", size_of(PxSoftBodySimulationDataDesc))
-}
+
 
 PxBVH34MidphaseDesc :: struct {
-// false false
-// []
-// 0
     numPrimsPerLeaf: _c.uint32_t,
-    buildStrategy: _c.int32_t,
+    buildStrategy: PxBVH34BuildStrategy,
     quantized: _c.bool,
+    _pad3: [3]u8,
 }
-@(test)
-test_layout_PxBVH34MidphaseDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBVH34MidphaseDesc, buildStrategy) == 4, "Wrong offset for PxBVH34MidphaseDesc.buildStrategy, expected 4 got %v", offset_of(PxBVH34MidphaseDesc, buildStrategy))
-    testing.expectf(t, offset_of(PxBVH34MidphaseDesc, quantized) == 8, "Wrong offset for PxBVH34MidphaseDesc.quantized, expected 8 got %v", offset_of(PxBVH34MidphaseDesc, quantized))
-    testing.expectf(t, size_of(PxBVH34MidphaseDesc) == 12, "Wrong size for type PxBVH34MidphaseDesc, expected 12 got %v", size_of(PxBVH34MidphaseDesc))
-}
+
 
 PxMidphaseDesc :: struct {
-// false false
-// []
-// 0
     mBVH34Desc: [12]_c.char,
-    _private_mType: _c.int32_t,
-}
-@(test)
-test_layout_PxMidphaseDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxMidphaseDesc) == 16, "Wrong size for type PxMidphaseDesc, expected 16 got %v", size_of(PxMidphaseDesc))
+    _pad1: [4]u8,
 }
 
+
 PxBVHDesc :: struct {
-// false false
-// []
-// 0
     bounds: PxBoundedData,
     enlargement: _c.float,
     numPrimsPerLeaf: _c.uint32_t,
-    buildStrategy: _c.int32_t,
-}
-@(test)
-test_layout_PxBVHDesc :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxBVHDesc, enlargement) == 24, "Wrong offset for PxBVHDesc.enlargement, expected 24 got %v", offset_of(PxBVHDesc, enlargement))
-    testing.expectf(t, offset_of(PxBVHDesc, numPrimsPerLeaf) == 28, "Wrong offset for PxBVHDesc.numPrimsPerLeaf, expected 28 got %v", offset_of(PxBVHDesc, numPrimsPerLeaf))
-    testing.expectf(t, offset_of(PxBVHDesc, buildStrategy) == 32, "Wrong offset for PxBVHDesc.buildStrategy, expected 32 got %v", offset_of(PxBVHDesc, buildStrategy))
-    testing.expectf(t, size_of(PxBVHDesc) == 40, "Wrong size for type PxBVHDesc, expected 40 got %v", size_of(PxBVHDesc))
+    buildStrategy: PxBVHBuildStrategy,
+    _pad4: [4]u8,
 }
 
+
 PxCookingParams :: struct {
-// false false
-// []
-// 0
     areaTestEpsilon: _c.float,
     planeTolerance: _c.float,
-    convexMeshCookingType: _c.int32_t,
+    convexMeshCookingType: PxConvexMeshCookingType,
     suppressTriangleMeshRemapTable: _c.bool,
     buildTriangleAdjacencies: _c.bool,
     buildGPUData: _c.bool,
     _pad6: [1]u8,
     scale: PxTolerancesScale,
-    meshPreprocessParams: _c.uint32_t,
+    meshPreprocessParams: PxMeshPreprocessingFlags_Set,
     meshWeldTolerance: _c.float,
     midphaseDesc: PxMidphaseDesc,
     gaussMapLimit: _c.uint32_t,
     maxWeightRatioInTet: _c.float,
 }
-@(test)
-test_layout_PxCookingParams :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxCookingParams, planeTolerance) == 4, "Wrong offset for PxCookingParams.planeTolerance, expected 4 got %v", offset_of(PxCookingParams, planeTolerance))
-    testing.expectf(t, offset_of(PxCookingParams, convexMeshCookingType) == 8, "Wrong offset for PxCookingParams.convexMeshCookingType, expected 8 got %v", offset_of(PxCookingParams, convexMeshCookingType))
-    testing.expectf(t, offset_of(PxCookingParams, suppressTriangleMeshRemapTable) == 12, "Wrong offset for PxCookingParams.suppressTriangleMeshRemapTable, expected 12 got %v", offset_of(PxCookingParams, suppressTriangleMeshRemapTable))
-    testing.expectf(t, offset_of(PxCookingParams, buildTriangleAdjacencies) == 13, "Wrong offset for PxCookingParams.buildTriangleAdjacencies, expected 13 got %v", offset_of(PxCookingParams, buildTriangleAdjacencies))
-    testing.expectf(t, offset_of(PxCookingParams, buildGPUData) == 14, "Wrong offset for PxCookingParams.buildGPUData, expected 14 got %v", offset_of(PxCookingParams, buildGPUData))
-    testing.expectf(t, offset_of(PxCookingParams, scale) == 16, "Wrong offset for PxCookingParams.scale, expected 16 got %v", offset_of(PxCookingParams, scale))
-    testing.expectf(t, offset_of(PxCookingParams, meshPreprocessParams) == 24, "Wrong offset for PxCookingParams.meshPreprocessParams, expected 24 got %v", offset_of(PxCookingParams, meshPreprocessParams))
-    testing.expectf(t, offset_of(PxCookingParams, meshWeldTolerance) == 28, "Wrong offset for PxCookingParams.meshWeldTolerance, expected 28 got %v", offset_of(PxCookingParams, meshWeldTolerance))
-    testing.expectf(t, offset_of(PxCookingParams, midphaseDesc) == 32, "Wrong offset for PxCookingParams.midphaseDesc, expected 32 got %v", offset_of(PxCookingParams, midphaseDesc))
-    testing.expectf(t, offset_of(PxCookingParams, gaussMapLimit) == 48, "Wrong offset for PxCookingParams.gaussMapLimit, expected 48 got %v", offset_of(PxCookingParams, gaussMapLimit))
-    testing.expectf(t, offset_of(PxCookingParams, maxWeightRatioInTet) == 52, "Wrong offset for PxCookingParams.maxWeightRatioInTet, expected 52 got %v", offset_of(PxCookingParams, maxWeightRatioInTet))
-    testing.expectf(t, size_of(PxCookingParams) == 56, "Wrong size for type PxCookingParams, expected 56 got %v", size_of(PxCookingParams))
-}
+
 
 PxDefaultMemoryOutputStream :: struct {
-// true true
-// ["PxOutputStream"]
     using _: PxOutputStream,
-// 0
-    _private_mAllocator: ^PxAllocatorCallback,
-    _private_mData: ^_c.uint8_t,
-    _private_mSize: _c.uint32_t,
-    _private_mCapacity: _c.uint32_t,
+    _pad1: [24]u8,
 }
-@(test)
-test_layout_PxDefaultMemoryOutputStream :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxDefaultMemoryOutputStream) == 32, "Wrong size for type PxDefaultMemoryOutputStream, expected 32 got %v", size_of(PxDefaultMemoryOutputStream))
-}
+
 
 PxDefaultMemoryInputData :: struct {
-// true true
-// ["PxInputData"]
     using _: PxInputData,
-// 0
-    _private_mSize: _c.uint32_t,
-    _private_mData: ^_c.uint8_t,
-    _private_mPos: _c.uint32_t,
+    _pad1: [24]u8,
 }
-@(test)
-test_layout_PxDefaultMemoryInputData :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxDefaultMemoryInputData) == 32, "Wrong size for type PxDefaultMemoryInputData, expected 32 got %v", size_of(PxDefaultMemoryInputData))
-}
+
 
 PxDefaultFileOutputStream :: struct {
-// true true
-// ["PxOutputStream"]
     using _: PxOutputStream,
-// 0
-    _private_mFile: rawptr,
-}
-@(test)
-test_layout_PxDefaultFileOutputStream :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxDefaultFileOutputStream) == 16, "Wrong size for type PxDefaultFileOutputStream, expected 16 got %v", size_of(PxDefaultFileOutputStream))
+    _pad1: [8]u8,
 }
 
+
 PxDefaultFileInputData :: struct {
-// true true
-// ["PxInputData"]
     using _: PxInputData,
-// 0
-    _private_mFile: rawptr,
-    _private_mLength: _c.uint32_t,
+    _pad1: [16]u8,
 }
-@(test)
-test_layout_PxDefaultFileInputData :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxDefaultFileInputData) == 24, "Wrong size for type PxDefaultFileInputData, expected 24 got %v", size_of(PxDefaultFileInputData))
-}
+
 
 PxDefaultAllocator :: struct {
     using _: PxAllocatorCallback,
-};
+}
+
 
 PxJoint :: struct {
-// true true
-// ["PxBase"]
     using _: PxBase,
-// 16
-    _pad3: [0]u8,
     userData: rawptr,
 }
-@(test)
-test_layout_PxJoint :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJoint, userData) == 16, "Wrong offset for PxJoint.userData, expected 16 got %v", offset_of(PxJoint, userData))
-    testing.expectf(t, size_of(PxJoint) == 24, "Wrong size for type PxJoint, expected 24 got %v", size_of(PxJoint))
-}
+
 
 PxSpring :: struct {
-// false false
-// []
-// 0
     stiffness: _c.float,
     damping: _c.float,
 }
-@(test)
-test_layout_PxSpring :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxSpring, damping) == 4, "Wrong offset for PxSpring.damping, expected 4 got %v", offset_of(PxSpring, damping))
-    testing.expectf(t, size_of(PxSpring) == 8, "Wrong size for type PxSpring, expected 8 got %v", size_of(PxSpring))
-}
+
 
 PxDistanceJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxJacobianRow :: struct {
-// false false
-// []
-// 0
     linear0: PxVec3,
     linear1: PxVec3,
     angular0: PxVec3,
     angular1: PxVec3,
 }
-@(test)
-test_layout_PxJacobianRow :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJacobianRow, linear1) == 12, "Wrong offset for PxJacobianRow.linear1, expected 12 got %v", offset_of(PxJacobianRow, linear1))
-    testing.expectf(t, offset_of(PxJacobianRow, angular0) == 24, "Wrong offset for PxJacobianRow.angular0, expected 24 got %v", offset_of(PxJacobianRow, angular0))
-    testing.expectf(t, offset_of(PxJacobianRow, angular1) == 36, "Wrong offset for PxJacobianRow.angular1, expected 36 got %v", offset_of(PxJacobianRow, angular1))
-    testing.expectf(t, size_of(PxJacobianRow) == 48, "Wrong size for type PxJacobianRow, expected 48 got %v", size_of(PxJacobianRow))
-}
+
 
 PxContactJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxFixedJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxJointLimitParameters :: struct {
-// false false
-// []
-// 0
     restitution: _c.float,
     bounceThreshold: _c.float,
     stiffness: _c.float,
     damping: _c.float,
     contactDistance_deprecated: _c.float,
 }
-@(test)
-test_layout_PxJointLimitParameters :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointLimitParameters, bounceThreshold) == 4, "Wrong offset for PxJointLimitParameters.bounceThreshold, expected 4 got %v", offset_of(PxJointLimitParameters, bounceThreshold))
-    testing.expectf(t, offset_of(PxJointLimitParameters, stiffness) == 8, "Wrong offset for PxJointLimitParameters.stiffness, expected 8 got %v", offset_of(PxJointLimitParameters, stiffness))
-    testing.expectf(t, offset_of(PxJointLimitParameters, damping) == 12, "Wrong offset for PxJointLimitParameters.damping, expected 12 got %v", offset_of(PxJointLimitParameters, damping))
-    testing.expectf(t, offset_of(PxJointLimitParameters, contactDistance_deprecated) == 16, "Wrong offset for PxJointLimitParameters.contactDistance_deprecated, expected 16 got %v", offset_of(PxJointLimitParameters, contactDistance_deprecated))
-    testing.expectf(t, size_of(PxJointLimitParameters) == 20, "Wrong size for type PxJointLimitParameters, expected 20 got %v", size_of(PxJointLimitParameters))
-}
+
 
 PxJointLinearLimit :: struct {
-// false false
-// ["PxJointLimitParameters"]
     using _: PxJointLimitParameters,
-// 20
-    _pad5: [0]u8,
     value: _c.float,
 }
-@(test)
-test_layout_PxJointLinearLimit :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointLinearLimit, value) == 20, "Wrong offset for PxJointLinearLimit.value, expected 20 got %v", offset_of(PxJointLinearLimit, value))
-    testing.expectf(t, size_of(PxJointLinearLimit) == 24, "Wrong size for type PxJointLinearLimit, expected 24 got %v", size_of(PxJointLinearLimit))
-}
+
 
 PxJointLinearLimitPair :: struct {
-// false false
-// ["PxJointLimitParameters"]
     using _: PxJointLimitParameters,
-// 20
-    _pad5: [0]u8,
     upper: _c.float,
     lower: _c.float,
 }
-@(test)
-test_layout_PxJointLinearLimitPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointLinearLimitPair, upper) == 20, "Wrong offset for PxJointLinearLimitPair.upper, expected 20 got %v", offset_of(PxJointLinearLimitPair, upper))
-    testing.expectf(t, offset_of(PxJointLinearLimitPair, lower) == 24, "Wrong offset for PxJointLinearLimitPair.lower, expected 24 got %v", offset_of(PxJointLinearLimitPair, lower))
-    testing.expectf(t, size_of(PxJointLinearLimitPair) == 28, "Wrong size for type PxJointLinearLimitPair, expected 28 got %v", size_of(PxJointLinearLimitPair))
-}
+
 
 PxJointAngularLimitPair :: struct {
-// false false
-// ["PxJointLimitParameters"]
     using _: PxJointLimitParameters,
-// 20
-    _pad5: [0]u8,
     upper: _c.float,
     lower: _c.float,
 }
-@(test)
-test_layout_PxJointAngularLimitPair :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointAngularLimitPair, upper) == 20, "Wrong offset for PxJointAngularLimitPair.upper, expected 20 got %v", offset_of(PxJointAngularLimitPair, upper))
-    testing.expectf(t, offset_of(PxJointAngularLimitPair, lower) == 24, "Wrong offset for PxJointAngularLimitPair.lower, expected 24 got %v", offset_of(PxJointAngularLimitPair, lower))
-    testing.expectf(t, size_of(PxJointAngularLimitPair) == 28, "Wrong size for type PxJointAngularLimitPair, expected 28 got %v", size_of(PxJointAngularLimitPair))
-}
+
 
 PxJointLimitCone :: struct {
-// false false
-// ["PxJointLimitParameters"]
     using _: PxJointLimitParameters,
-// 20
-    _pad5: [0]u8,
     yAngle: _c.float,
     zAngle: _c.float,
 }
-@(test)
-test_layout_PxJointLimitCone :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointLimitCone, yAngle) == 20, "Wrong offset for PxJointLimitCone.yAngle, expected 20 got %v", offset_of(PxJointLimitCone, yAngle))
-    testing.expectf(t, offset_of(PxJointLimitCone, zAngle) == 24, "Wrong offset for PxJointLimitCone.zAngle, expected 24 got %v", offset_of(PxJointLimitCone, zAngle))
-    testing.expectf(t, size_of(PxJointLimitCone) == 28, "Wrong size for type PxJointLimitCone, expected 28 got %v", size_of(PxJointLimitCone))
-}
+
 
 PxJointLimitPyramid :: struct {
-// false false
-// ["PxJointLimitParameters"]
     using _: PxJointLimitParameters,
-// 20
-    _pad5: [0]u8,
     yAngleMin: _c.float,
     yAngleMax: _c.float,
     zAngleMin: _c.float,
     zAngleMax: _c.float,
 }
-@(test)
-test_layout_PxJointLimitPyramid :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxJointLimitPyramid, yAngleMin) == 20, "Wrong offset for PxJointLimitPyramid.yAngleMin, expected 20 got %v", offset_of(PxJointLimitPyramid, yAngleMin))
-    testing.expectf(t, offset_of(PxJointLimitPyramid, yAngleMax) == 24, "Wrong offset for PxJointLimitPyramid.yAngleMax, expected 24 got %v", offset_of(PxJointLimitPyramid, yAngleMax))
-    testing.expectf(t, offset_of(PxJointLimitPyramid, zAngleMin) == 28, "Wrong offset for PxJointLimitPyramid.zAngleMin, expected 28 got %v", offset_of(PxJointLimitPyramid, zAngleMin))
-    testing.expectf(t, offset_of(PxJointLimitPyramid, zAngleMax) == 32, "Wrong offset for PxJointLimitPyramid.zAngleMax, expected 32 got %v", offset_of(PxJointLimitPyramid, zAngleMax))
-    testing.expectf(t, size_of(PxJointLimitPyramid) == 36, "Wrong size for type PxJointLimitPyramid, expected 36 got %v", size_of(PxJointLimitPyramid))
-}
+
 
 PxPrismaticJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxRevoluteJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxSphericalJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxD6JointDrive :: struct {
-// false false
-// ["PxSpring"]
     using _: PxSpring,
-// 8
-    _pad2: [0]u8,
     forceLimit: _c.float,
-    flags: _c.uint32_t,
+    flags: PxD6JointDriveFlags_Set,
 }
-@(test)
-test_layout_PxD6JointDrive :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxD6JointDrive, forceLimit) == 8, "Wrong offset for PxD6JointDrive.forceLimit, expected 8 got %v", offset_of(PxD6JointDrive, forceLimit))
-    testing.expectf(t, offset_of(PxD6JointDrive, flags) == 12, "Wrong offset for PxD6JointDrive.flags, expected 12 got %v", offset_of(PxD6JointDrive, flags))
-    testing.expectf(t, size_of(PxD6JointDrive) == 16, "Wrong size for type PxD6JointDrive, expected 16 got %v", size_of(PxD6JointDrive))
-}
+
 
 PxD6Joint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxGearJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxRackAndPinionJoint :: struct {
     using _: PxJoint,
-};
+}
+
 
 PxGroupsMask :: struct {
-// false false
-// []
-// 0
     bits0: _c.uint16_t,
     bits1: _c.uint16_t,
     bits2: _c.uint16_t,
     bits3: _c.uint16_t,
 }
-@(test)
-test_layout_PxGroupsMask :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxGroupsMask, bits1) == 2, "Wrong offset for PxGroupsMask.bits1, expected 2 got %v", offset_of(PxGroupsMask, bits1))
-    testing.expectf(t, offset_of(PxGroupsMask, bits2) == 4, "Wrong offset for PxGroupsMask.bits2, expected 4 got %v", offset_of(PxGroupsMask, bits2))
-    testing.expectf(t, offset_of(PxGroupsMask, bits3) == 6, "Wrong offset for PxGroupsMask.bits3, expected 6 got %v", offset_of(PxGroupsMask, bits3))
-    testing.expectf(t, size_of(PxGroupsMask) == 8, "Wrong size for type PxGroupsMask, expected 8 got %v", size_of(PxGroupsMask))
-}
+
 
 PxDefaultErrorCallback :: struct {
     using _: PxErrorCallback,
-};
+}
+
 
 PxRigidActorExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxRigidActorExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxRigidActorExt) == 1, "Wrong size for type PxRigidActorExt, expected 1 got %v", size_of(PxRigidActorExt))
-}
+};
 
 PxMassProperties :: struct {
-// false false
-// []
-// 0
     inertiaTensor: PxMat33,
     centerOfMass: PxVec3,
     mass: _c.float,
 }
-@(test)
-test_layout_PxMassProperties :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxMassProperties, centerOfMass) == 36, "Wrong offset for PxMassProperties.centerOfMass, expected 36 got %v", offset_of(PxMassProperties, centerOfMass))
-    testing.expectf(t, offset_of(PxMassProperties, mass) == 48, "Wrong offset for PxMassProperties.mass, expected 48 got %v", offset_of(PxMassProperties, mass))
-    testing.expectf(t, size_of(PxMassProperties) == 52, "Wrong size for type PxMassProperties, expected 52 got %v", size_of(PxMassProperties))
-}
+
 
 PxRigidBodyExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxRigidBodyExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxRigidBodyExt) == 1, "Wrong size for type PxRigidBodyExt, expected 1 got %v", size_of(PxRigidBodyExt))
-}
+};
 
 PxShapeExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxShapeExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxShapeExt) == 1, "Wrong size for type PxShapeExt, expected 1 got %v", size_of(PxShapeExt))
-}
+};
 
 PxMeshOverlapUtil :: struct {
-// false false
-// []
-// 0
-    _private_mResultsMemory: ^_c.uint32_t,
-    _private_mResults: [256]_c.uint32_t,
-    _private_mNbResults: _c.uint32_t,
-    _private_mMaxNbResults: _c.uint32_t,
-}
-@(test)
-test_layout_PxMeshOverlapUtil :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxMeshOverlapUtil) == 1040, "Wrong size for type PxMeshOverlapUtil, expected 1040 got %v", size_of(PxMeshOverlapUtil))
+    _pad0: [1040]u8,
 }
 
-PxBinaryConverter :: distinct rawptr 
+
+PxBinaryConverter :: distinct rawptr
 
 PxXmlMiscParameter :: struct {
-// false false
-// []
-// 0
     upVector: PxVec3,
     scale: PxTolerancesScale,
 }
-@(test)
-test_layout_PxXmlMiscParameter :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxXmlMiscParameter, scale) == 12, "Wrong offset for PxXmlMiscParameter.scale, expected 12 got %v", offset_of(PxXmlMiscParameter, scale))
-    testing.expectf(t, size_of(PxXmlMiscParameter) == 20, "Wrong size for type PxXmlMiscParameter, expected 20 got %v", size_of(PxXmlMiscParameter))
-}
+
 
 PxSerialization :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxSerialization :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSerialization) == 1, "Wrong size for type PxSerialization, expected 1 got %v", size_of(PxSerialization))
-}
+};
 
 PxDefaultCpuDispatcher :: struct {
     using _: PxCpuDispatcher,
-};
+}
+
 
 PxStringTableExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxStringTableExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxStringTableExt) == 1, "Wrong size for type PxStringTableExt, expected 1 got %v", size_of(PxStringTableExt))
-}
+};
 
 PxBroadPhaseExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxBroadPhaseExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxBroadPhaseExt) == 1, "Wrong size for type PxBroadPhaseExt, expected 1 got %v", size_of(PxBroadPhaseExt))
-}
+};
 
 PxSceneQueryExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxSceneQueryExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSceneQueryExt) == 1, "Wrong size for type PxSceneQueryExt, expected 1 got %v", size_of(PxSceneQueryExt))
-}
+};
 
 PxBatchQueryExt :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxCustomSceneQuerySystem :: struct {
     using _: PxSceneQuerySystem,
-};
+}
+
 
 PxCustomSceneQuerySystemAdapter :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
+
 
 PxSamplingExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxSamplingExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxSamplingExt) == 1, "Wrong size for type PxSamplingExt, expected 1 got %v", size_of(PxSamplingExt))
-}
+};
 
 PxPoissonSampler :: struct {
     using _: PxUserAllocated,
-};
+    _pad0: [8]u8,
+}
+
 
 PxTriangleMeshPoissonSampler :: struct {
     using _: PxPoissonSampler,
-};
+}
+
 
 PxTetrahedronMeshExt :: struct {
-// false false
-// []
-// 0
-    unused0: [1]u8,
-}
-@(test)
-test_layout_PxTetrahedronMeshExt :: proc(t: ^testing.T) {
-    testing.expectf(t, size_of(PxTetrahedronMeshExt) == 1, "Wrong size for type PxTetrahedronMeshExt, expected 1 got %v", size_of(PxTetrahedronMeshExt))
-}
+};
 
 PxRepXObject :: struct {
-// false false
-// []
-// 0
     typeName: ^_c.char,
     serializable: rawptr,
     id: _c.uint64_t,
 }
-@(test)
-test_layout_PxRepXObject :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxRepXObject, serializable) == 8, "Wrong offset for PxRepXObject.serializable, expected 8 got %v", offset_of(PxRepXObject, serializable))
-    testing.expectf(t, offset_of(PxRepXObject, id) == 16, "Wrong offset for PxRepXObject.id, expected 16 got %v", offset_of(PxRepXObject, id))
-    testing.expectf(t, size_of(PxRepXObject) == 24, "Wrong size for type PxRepXObject, expected 24 got %v", size_of(PxRepXObject))
-}
 
-PxCooking :: distinct rawptr 
+
+PxCooking :: distinct rawptr
 
 PxRepXInstantiationArgs :: struct {
-// false false
-// []
-// 0
-    physics: ^PxPhysics,
+    _pad0: [8]u8,
     cooker: ^PxCooking,
     stringTable: ^PxStringTable,
 }
-@(test)
-test_layout_PxRepXInstantiationArgs :: proc(t: ^testing.T) {
-    testing.expectf(t, offset_of(PxRepXInstantiationArgs, cooker) == 8, "Wrong offset for PxRepXInstantiationArgs.cooker, expected 8 got %v", offset_of(PxRepXInstantiationArgs, cooker))
-    testing.expectf(t, offset_of(PxRepXInstantiationArgs, stringTable) == 16, "Wrong offset for PxRepXInstantiationArgs.stringTable, expected 16 got %v", offset_of(PxRepXInstantiationArgs, stringTable))
-    testing.expectf(t, size_of(PxRepXInstantiationArgs) == 24, "Wrong size for type PxRepXInstantiationArgs, expected 24 got %v", size_of(PxRepXInstantiationArgs))
-}
 
-XmlMemoryAllocator :: distinct rawptr 
 
-XmlWriter :: distinct rawptr 
+XmlMemoryAllocator :: distinct rawptr
 
-XmlReader :: distinct rawptr 
+XmlWriter :: distinct rawptr
 
-MemoryBuffer :: distinct rawptr 
+XmlReader :: distinct rawptr
+
+MemoryBuffer :: distinct rawptr
 
 PxRepXSerializer :: struct {
-    vtable_: rawptr,
-};
+    _pad0: [8]u8,
+}
 
-PxVehicleWheels4SimData :: distinct rawptr 
 
-PxVehicleWheels4DynData :: distinct rawptr 
+PxVehicleWheels4SimData :: distinct rawptr
 
-PxVehicleTireForceCalculator :: distinct rawptr 
+PxVehicleWheels4DynData :: distinct rawptr
 
-PxVehicleDrivableSurfaceToTireFrictionPairs :: distinct rawptr 
+PxVehicleTireForceCalculator :: distinct rawptr
 
-PxVehicleTelemetryData :: distinct rawptr 
+PxVehicleDrivableSurfaceToTireFrictionPairs :: distinct rawptr
+
+PxVehicleTelemetryData :: distinct rawptr
 
 PxPvd :: struct {
     using _: PxProfilerCallback,
-};
+}
+
 
 PxPvdTransport :: struct {
-    vtable_: rawptr,
-};
-when ODIN_OS == .Linux do foreign import libphysx "physx.so"
+    _pad0: [8]u8,
+}
+
+when ODIN_OS == .Linux do foreign import libphysx "libphysx.so"
 
 @(default_calling_convention = "c")
 foreign libphysx {
@@ -6601,7 +4574,7 @@ foreign libphysx {
 
     /// zero constructor.
     @(link_name = "PxVec3_new_1")
-    vec3_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec3 ---
+    vec3_new_1 :: proc(anon_param0: PxZERO) -> PxVec3 ---
 
     /// Assigns scalar parameter to all elements.
     ///
@@ -6703,7 +4676,7 @@ foreign libphysx {
 
     /// identity constructor
     @(link_name = "PxQuat_new_1")
-    quat_new_1 :: proc(anon_param0: _c.int32_t) -> PxQuat ---
+    quat_new_1 :: proc(anon_param0: PxIDENTITY) -> PxQuat ---
 
     /// Constructor from a scalar: sets the real part w to the scalar value, and the imaginary parts (x,y,z) to zero
     @(link_name = "PxQuat_new_2")
@@ -6814,7 +4787,7 @@ foreign libphysx {
     transform_new_1 :: proc(#by_ptr position: PxVec3) -> PxTransform ---
 
     @(link_name = "PxTransform_new_2")
-    transform_new_2 :: proc(anon_param0: _c.int32_t) -> PxTransform ---
+    transform_new_2 :: proc(anon_param0: PxIDENTITY) -> PxTransform ---
 
     @(link_name = "PxTransform_new_3")
     transform_new_3 :: proc(#by_ptr orientation: PxQuat) -> PxTransform ---
@@ -6874,11 +4847,11 @@ foreign libphysx {
 
     /// identity constructor
     @(link_name = "PxMat33_new_1")
-    mat33_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
+    mat33_new_1 :: proc(anon_param0: PxIDENTITY) -> PxMat33 ---
 
     /// zero constructor
     @(link_name = "PxMat33_new_2")
-    mat33_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat33 ---
+    mat33_new_2 :: proc(anon_param0: PxZERO) -> PxMat33 ---
 
     /// Construct from three base vectors
     @(link_name = "PxMat33_new_3")
@@ -7078,7 +5051,7 @@ foreign libphysx {
 
     /// Reports an error code.
     @(link_name = "PxErrorCallback_reportError_mut")
-    error_callback_report_error_mut :: proc(self_: ^PxErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    error_callback_report_error_mut :: proc(self_: ^PxErrorCallback, code: PxErrorCode, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// callback when memory is allocated.
     @(link_name = "PxAllocationListener_onAllocation_mut")
@@ -7127,7 +5100,7 @@ foreign libphysx {
 
     /// Reports an error code.
     @(link_name = "PxBroadcastingErrorCallback_reportError_mut")
-    broadcasting_error_callback_report_error_mut :: proc(self_: ^PxBroadcastingErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    broadcasting_error_callback_report_error_mut :: proc(self_: ^PxBroadcastingErrorCallback, code: PxErrorCode, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// Enables floating point exceptions for the scalar and SIMD unit
     @(link_name = "phys_PxEnableFPExceptions")
@@ -7180,7 +5153,7 @@ foreign libphysx {
 
     /// zero constructor.
     @(link_name = "PxVec4_new_1")
-    vec4_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec4 ---
+    vec4_new_1 :: proc(anon_param0: PxZERO) -> PxVec4 ---
 
     /// Assigns scalar parameter to all elements.
     ///
@@ -7255,11 +5228,11 @@ foreign libphysx {
 
     /// identity constructor
     @(link_name = "PxMat44_new_1")
-    mat44_new_1 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
+    mat44_new_1 :: proc(anon_param0: PxIDENTITY) -> PxMat44 ---
 
     /// zero constructor
     @(link_name = "PxMat44_new_2")
-    mat44_new_2 :: proc(anon_param0: _c.int32_t) -> PxMat44 ---
+    mat44_new_2 :: proc(anon_param0: PxZERO) -> PxMat44 ---
 
     /// Construct from four 4-vectors
     @(link_name = "PxMat44_new_3")
@@ -7674,7 +5647,7 @@ foreign libphysx {
 
     /// zero constructor.
     @(link_name = "PxVec2_new_1")
-    vec2_new_1 :: proc(anon_param0: _c.int32_t) -> PxVec2 ---
+    vec2_new_1 :: proc(anon_param0: PxZERO) -> PxVec2 ---
 
     /// Assigns scalar parameter to all elements.
     ///
@@ -8050,17 +6023,17 @@ foreign libphysx {
 
     /// Set PxBaseFlag
     @(link_name = "PxBase_setBaseFlag_mut")
-    base_set_base_flag_mut :: proc(self_: ^PxBase, flag: _c.int32_t, value: _c.bool) ---
+    base_set_base_flag_mut :: proc(self_: ^PxBase, flag: PxBaseFlag, value: _c.bool) ---
 
     /// Set PxBaseFlags
     @(link_name = "PxBase_setBaseFlags_mut")
-    base_set_base_flags_mut :: proc(self_: ^PxBase, inFlags: _c.uint16_t) ---
+    base_set_base_flags_mut :: proc(self_: ^PxBase, inFlags: PxBaseFlags_Set) ---
 
     /// Returns PxBaseFlags
     ///
     /// PxBaseFlags
     @(link_name = "PxBase_getBaseFlags")
-    base_get_base_flags :: proc(self_: ^PxBase) -> _c.uint16_t ---
+    base_get_base_flags :: proc(self_: ^PxBase) -> PxBaseFlags_Set ---
 
     /// Whether the object is subordinate.
     ///
@@ -8161,7 +6134,7 @@ foreign libphysx {
     ///
     /// PxBase Created object in PxPhysics.
     @(link_name = "PxInsertionCallback_buildObjectFromData_mut")
-    insertion_callback_build_object_from_data_mut :: proc(self_: ^PxInsertionCallback, type: _c.int32_t, data: rawptr) -> ^PxBase ---
+    insertion_callback_build_object_from_data_mut :: proc(self_: ^PxInsertionCallback, type: PxConcreteType, data: rawptr) -> ^PxBase ---
 
     /// Set the user-provided dispatcher object for CPU tasks
     @(link_name = "PxTaskManager_setCpuDispatcher_mut")
@@ -8203,13 +6176,13 @@ foreign libphysx {
     ///
     /// The ID of the task with that name, or eNOT_PRESENT if not found
     @(link_name = "PxTaskManager_submitNamedTask_mut")
-    task_manager_submit_named_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, name: ^_c.char, type: _c.int32_t) -> _c.uint32_t ---
+    task_manager_submit_named_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, name: ^_c.char, type: PxTaskType) -> _c.uint32_t ---
 
     /// Submit an unnamed task.
     ///
     /// The ID of the task with that name, or eNOT_PRESENT if not found
     @(link_name = "PxTaskManager_submitUnnamedTask_mut")
-    task_manager_submit_unnamed_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, type: _c.int32_t) -> _c.uint32_t ---
+    task_manager_submit_unnamed_task_mut :: proc(self_: ^PxTaskManager, task: ^PxTask, type: PxTaskType) -> _c.uint32_t ---
 
     /// Retrieve a task given a task ID
     ///
@@ -8370,7 +6343,7 @@ foreign libphysx {
     ///
     /// The type of the object.
     @(link_name = "PxGeometry_getType")
-    geometry_get_type :: proc(self_: ^PxGeometry) -> _c.int32_t ---
+    geometry_get_type :: proc(self_: ^PxGeometry) -> PxGeometryType ---
 
     /// Constructor to initialize half extents from scalar parameters.
     @(link_name = "PxBoxGeometry_new")
@@ -8414,19 +6387,19 @@ foreign libphysx {
     ///
     /// false if query has been aborted
     @(link_name = "PxBVH_raycast")
-    b_v_h_raycast :: proc(self_: ^PxBVH, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    b_v_h_raycast :: proc(self_: ^PxBVH, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Sweep test against a BVH.
     ///
     /// false if query has been aborted
     @(link_name = "PxBVH_sweep")
-    b_v_h_sweep :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    b_v_h_sweep :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, maxDist: _c.float, cb: ^PxBVHRaycastCallback, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Overlap test against a BVH.
     ///
     /// false if query has been aborted
     @(link_name = "PxBVH_overlap")
-    b_v_h_overlap :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    b_v_h_overlap :: proc(self_: ^PxBVH, geom: ^PxGeometry, #by_ptr pose: PxTransform, cb: ^PxBVHOverlapCallback, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Frustum culling test against a BVH.
     ///
@@ -8440,7 +6413,7 @@ foreign libphysx {
     ///
     /// false if query has been aborted
     @(link_name = "PxBVH_cull")
-    b_v_h_cull :: proc(self_: ^PxBVH, nbPlanes: _c.uint32_t, planes: ^PxPlane, cb: ^PxBVHOverlapCallback, queryFlags: _c.uint32_t) -> _c.bool ---
+    b_v_h_cull :: proc(self_: ^PxBVH, nbPlanes: _c.uint32_t, planes: ^PxPlane, cb: ^PxBVHOverlapCallback, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Returns the number of bounds in the BVH.
     ///
@@ -8639,7 +6612,7 @@ foreign libphysx {
 
     /// Constructor. By default creates an empty object with a NULL mesh and identity scale.
     @(link_name = "PxConvexMeshGeometry_new")
-    convex_mesh_geometry_new :: proc(mesh: ^PxConvexMesh, #by_ptr scaling: PxMeshScale, flags: _c.uint8_t) -> PxConvexMeshGeometry ---
+    convex_mesh_geometry_new :: proc(mesh: ^PxConvexMesh, #by_ptr scaling: PxMeshScale, flags: PxConvexMeshGeometryFlags_Set) -> PxConvexMeshGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -8675,7 +6648,7 @@ foreign libphysx {
 
     /// Constructor. By default creates an empty object with a NULL mesh and identity scale.
     @(link_name = "PxTriangleMeshGeometry_new")
-    triangle_mesh_geometry_new :: proc(mesh: ^PxTriangleMesh, #by_ptr scaling: PxMeshScale, flags: _c.uint8_t) -> PxTriangleMeshGeometry ---
+    triangle_mesh_geometry_new :: proc(mesh: ^PxTriangleMesh, #by_ptr scaling: PxMeshScale, flags: PxMeshGeometryFlags_Set) -> PxTriangleMeshGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -8688,7 +6661,7 @@ foreign libphysx {
 
     /// Constructor.
     @(link_name = "PxHeightFieldGeometry_new")
-    height_field_geometry_new :: proc(hf: ^PxHeightField, flags: _c.uint8_t, heightScale_: _c.float, rowScale_: _c.float, columnScale_: _c.float) -> PxHeightFieldGeometry ---
+    height_field_geometry_new :: proc(hf: ^PxHeightField, flags: PxMeshGeometryFlags_Set, heightScale_: _c.float, rowScale_: _c.float, columnScale_: _c.float) -> PxHeightFieldGeometry ---
 
     /// Returns true if the geometry is valid.
     ///
@@ -8791,7 +6764,7 @@ foreign libphysx {
     ///
     /// Number of hits.
     @(link_name = "PxCustomGeometryCallbacks_raycast")
-    custom_geometry_callbacks_raycast :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
+    custom_geometry_callbacks_raycast :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: PxHitFlags_Set, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
 
     /// Overlap. Test if geometries overlap.
     ///
@@ -8803,7 +6776,7 @@ foreign libphysx {
     ///
     /// True if there is hit. False otherwise.
     @(link_name = "PxCustomGeometryCallbacks_sweep")
-    custom_geometry_callbacks_sweep :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    custom_geometry_callbacks_sweep :: proc(self_: ^PxCustomGeometryCallbacks, #by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: PxHitFlags_Set, inflation: _c.float, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Compute custom geometry mass properties. For geometries usable with dynamic rigidbodies.
     @(link_name = "PxCustomGeometryCallbacks_computeMassProperties")
@@ -8837,7 +6810,7 @@ foreign libphysx {
     custom_geometry_get_custom_type :: proc(self_: ^PxCustomGeometry) -> PxCustomGeometryType ---
 
     @(link_name = "PxGeometryHolder_getType")
-    geometry_holder_get_type :: proc(self_: ^PxGeometryHolder) -> _c.int32_t ---
+    geometry_holder_get_type :: proc(self_: ^PxGeometryHolder) -> PxGeometryType ---
 
     @(link_name = "PxGeometryHolder_any_mut")
     geometry_holder_any_mut :: proc(self_: ^PxGeometryHolder) -> ^PxGeometry ---
@@ -8926,7 +6899,7 @@ foreign libphysx {
     ///
     /// Number of hits between the ray and the geometry object
     @(link_name = "PxGeometryQuery_raycast")
-    geometry_query_raycast :: proc(#by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
+    geometry_query_raycast :: proc(#by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, maxDist: _c.float, hitFlags: PxHitFlags_Set, maxHits: _c.uint32_t, rayHits: ^PxGeomRaycastHit, stride: _c.uint32_t, queryFlags: PxGeometryQueryFlags_Set, threadContext: ^PxQueryThreadContext) -> _c.uint32_t ---
 
     /// Overlap test for two geometry objects.
     ///
@@ -8942,7 +6915,7 @@ foreign libphysx {
     ///
     /// True if the two geometry objects overlap
     @(link_name = "PxGeometryQuery_overlap")
-    geometry_query_overlap :: proc(geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    geometry_query_overlap :: proc(geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: PxGeometryQueryFlags_Set, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Sweep a specified geometry object in space and test for collision with a given object.
     ///
@@ -8958,7 +6931,7 @@ foreign libphysx {
     ///
     /// True if the swept geometry object geom0 hits the object geom1
     @(link_name = "PxGeometryQuery_sweep")
-    geometry_query_sweep :: proc(#by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, inflation: _c.float, queryFlags: _c.uint32_t, threadContext: ^PxQueryThreadContext) -> _c.bool ---
+    geometry_query_sweep :: proc(#by_ptr unitDir: PxVec3, maxDist: _c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, sweepHit: ^PxGeomSweepHit, hitFlags: PxHitFlags_Set, inflation: _c.float, queryFlags: PxGeometryQueryFlags_Set, threadContext: ^PxQueryThreadContext) -> _c.bool ---
 
     /// Compute minimum translational distance (MTD) between two geometry objects.
     ///
@@ -8982,7 +6955,7 @@ foreign libphysx {
     ///
     /// True if the MTD has successfully been computed, i.e. if objects do overlap.
     @(link_name = "PxGeometryQuery_computePenetration")
-    geometry_query_compute_penetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: _c.uint32_t) -> _c.bool ---
+    geometry_query_compute_penetration :: proc(direction: ^PxVec3, depth: ^_c.float, geom0: ^PxGeometry, #by_ptr pose0: PxTransform, geom1: ^PxGeometry, #by_ptr pose1: PxTransform, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Computes distance between a point and a geometry object.
     ///
@@ -8992,11 +6965,11 @@ foreign libphysx {
     ///
     /// Square distance between the point and the geom object, or 0.0 if the point is inside the object, or -1.0 if an error occured (geometry type is not supported, or invalid pose)
     @(link_name = "PxGeometryQuery_pointDistance")
-    geometry_query_point_distance :: proc(#by_ptr point: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, closestPoint: ^PxVec3, closestIndex: ^_c.uint32_t, queryFlags: _c.uint32_t) -> _c.float ---
+    geometry_query_point_distance :: proc(#by_ptr point: PxVec3, geom: ^PxGeometry, #by_ptr pose: PxTransform, closestPoint: ^PxVec3, closestIndex: ^_c.uint32_t, queryFlags: PxGeometryQueryFlags_Set) -> _c.float ---
 
     /// computes the bounds for a geometry object
     @(link_name = "PxGeometryQuery_computeGeomBounds")
-    geometry_query_compute_geom_bounds :: proc(bounds: ^PxBounds3, geom: ^PxGeometry, #by_ptr pose: PxTransform, offset: _c.float, inflation: _c.float, queryFlags: _c.uint32_t) ---
+    geometry_query_compute_geom_bounds :: proc(bounds: ^PxBounds3, geom: ^PxGeometry, #by_ptr pose: PxTransform, offset: _c.float, inflation: _c.float, queryFlags: PxGeometryQueryFlags_Set) ---
 
     /// Checks if provided geometry is valid.
     ///
@@ -9057,7 +7030,7 @@ foreign libphysx {
     ///
     /// The format of the sample data.
     @(link_name = "PxHeightField_getFormat")
-    height_field_get_format :: proc(self_: ^PxHeightField) -> _c.int32_t ---
+    height_field_get_format :: proc(self_: ^PxHeightField) -> PxHeightFieldFormat ---
 
     /// Retrieves the offset in bytes between consecutive samples in the array.
     ///
@@ -9075,7 +7048,7 @@ foreign libphysx {
     ///
     /// The flags bits, combined from values of the enum ::PxHeightFieldFlag.
     @(link_name = "PxHeightField_getFlags")
-    height_field_get_flags :: proc(self_: ^PxHeightField) -> _c.uint16_t ---
+    height_field_get_flags :: proc(self_: ^PxHeightField) -> PxHeightFieldFlags_Set ---
 
     /// Retrieves the height at the given coordinates in grid space.
     ///
@@ -9175,7 +7148,7 @@ foreign libphysx {
     ///
     /// Number of overlaps found, i.e. number of elements written to the results buffer
     @(link_name = "PxMeshQuery_findOverlapTriangleMesh")
-    mesh_query_find_overlap_triangle_mesh :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr meshGeom: PxTriangleMeshGeometry, #by_ptr meshPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
+    mesh_query_find_overlap_triangle_mesh :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr meshGeom: PxTriangleMeshGeometry, #by_ptr meshPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: PxGeometryQueryFlags_Set) -> _c.uint32_t ---
 
     /// Find the height field triangles which touch the specified geometry object.
     ///
@@ -9183,7 +7156,7 @@ foreign libphysx {
     ///
     /// Number of overlaps found, i.e. number of elements written to the results buffer
     @(link_name = "PxMeshQuery_findOverlapHeightField")
-    mesh_query_find_overlap_height_field :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr hfGeom: PxHeightFieldGeometry, #by_ptr hfPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: _c.uint32_t) -> _c.uint32_t ---
+    mesh_query_find_overlap_height_field :: proc(geom: ^PxGeometry, #by_ptr geomPose: PxTransform, #by_ptr hfGeom: PxHeightFieldGeometry, #by_ptr hfPose: PxTransform, results: ^_c.uint32_t, maxResults: _c.uint32_t, startIndex: _c.uint32_t, overflow: ^_c.bool, queryFlags: PxGeometryQueryFlags_Set) -> _c.uint32_t ---
 
     /// Sweep a specified geometry object in space and test for collision with a set of given triangles.
     ///
@@ -9210,7 +7183,7 @@ foreign libphysx {
     ///
     /// The inflation parameter is not compatible with PxHitFlag::ePRECISE_SWEEP.
     @(link_name = "PxMeshQuery_sweep")
-    mesh_query_sweep :: proc(#by_ptr unitDir: PxVec3, distance: _c.float, geom: ^PxGeometry, #by_ptr pose: PxTransform, triangleCount: _c.uint32_t, triangles: ^PxTriangle, sweepHit: ^PxGeomSweepHit, hitFlags: _c.uint16_t, cachedIndex: ^_c.uint32_t, inflation: _c.float, doubleSided: _c.bool, queryFlags: _c.uint32_t) -> _c.bool ---
+    mesh_query_sweep :: proc(#by_ptr unitDir: PxVec3, distance: _c.float, geom: ^PxGeometry, #by_ptr pose: PxTransform, triangleCount: _c.uint32_t, triangles: ^PxTriangle, sweepHit: ^PxGeomSweepHit, hitFlags: PxHitFlags_Set, cachedIndex: ^_c.uint32_t, inflation: _c.float, doubleSided: _c.bool, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// constructor sets to default.
     @(link_name = "PxSimpleTriangleMesh_new")
@@ -9340,7 +7313,7 @@ foreign libphysx {
     ///
     /// The values of the PxTriangleMesh flags.
     @(link_name = "PxTriangleMesh_getTriangleMeshFlags")
-    triangle_mesh_get_triangle_mesh_flags :: proc(self_: ^PxTriangleMesh) -> _c.uint8_t ---
+    triangle_mesh_get_triangle_mesh_flags :: proc(self_: ^PxTriangleMesh) -> PxTriangleMeshFlags_Set ---
 
     /// Returns the triangle remapping table.
     ///
@@ -9462,7 +7435,7 @@ foreign libphysx {
     ///
     /// The values of the PxTetrahedronMesh flags.
     @(link_name = "PxTetrahedronMesh_getTetrahedronMeshFlags")
-    tetrahedron_mesh_get_tetrahedron_mesh_flags :: proc(self_: ^PxTetrahedronMesh) -> _c.uint8_t ---
+    tetrahedron_mesh_get_tetrahedron_mesh_flags :: proc(self_: ^PxTetrahedronMesh) -> PxTetrahedronMeshFlags_Set ---
 
     /// Returns the tetrahedra remapping table.
     ///
@@ -9553,7 +7526,7 @@ foreign libphysx {
     ///
     /// The actor type of the actor.
     @(link_name = "PxActor_getType")
-    actor_get_type :: proc(self_: ^PxActor) -> _c.int32_t ---
+    actor_get_type :: proc(self_: ^PxActor) -> PxActorType ---
 
     /// Retrieves the scene which this actor belongs to.
     ///
@@ -9595,13 +7568,13 @@ foreign libphysx {
     /// NOT
     /// wake the actor up automatically.
     @(link_name = "PxActor_setActorFlag_mut")
-    actor_set_actor_flag_mut :: proc(self_: ^PxActor, flag: _c.int32_t, value: _c.bool) ---
+    actor_set_actor_flag_mut :: proc(self_: ^PxActor, flag: PxActorFlag, value: _c.bool) ---
 
     /// Sets the actor flags.
     ///
     /// See the list of flags [`PxActorFlag`]
     @(link_name = "PxActor_setActorFlags_mut")
-    actor_set_actor_flags_mut :: proc(self_: ^PxActor, inFlags: _c.uint8_t) ---
+    actor_set_actor_flags_mut :: proc(self_: ^PxActor, inFlags: PxActorFlags_Set) ---
 
     /// Reads the PxActor flags.
     ///
@@ -9609,7 +7582,7 @@ foreign libphysx {
     ///
     /// The values of the PxActor flags.
     @(link_name = "PxActor_getActorFlags")
-    actor_get_actor_flags :: proc(self_: ^PxActor) -> _c.uint8_t ---
+    actor_get_actor_flags :: proc(self_: ^PxActor) -> PxActorFlags_Set ---
 
     /// Assigns dynamic actors a dominance group identifier.
     ///
@@ -9656,13 +7629,13 @@ foreign libphysx {
     actor_get_aggregate :: proc(self_: ^PxActor) -> ^PxAggregate ---
 
     @(link_name = "phys_PxGetAggregateFilterHint")
-    get_aggregate_filter_hint :: proc(type: _c.int32_t, enableSelfCollision: _c.bool) -> _c.uint32_t ---
+    get_aggregate_filter_hint :: proc(type: PxAggregateType, enableSelfCollision: _c.bool) -> _c.uint32_t ---
 
     @(link_name = "phys_PxGetAggregateSelfCollisionBit")
     get_aggregate_self_collision_bit :: proc(hint: _c.uint32_t) -> _c.uint32_t ---
 
     @(link_name = "phys_PxGetAggregateType")
-    get_aggregate_type :: proc(hint: _c.uint32_t) -> _c.int32_t ---
+    get_aggregate_type :: proc(hint: _c.uint32_t) -> PxAggregateType ---
 
     /// Deletes the aggregate object.
     ///
@@ -9877,7 +7850,7 @@ foreign libphysx {
     articulation_drive_new :: proc() -> PxArticulationDrive ---
 
     @(link_name = "PxArticulationDrive_new_1")
-    articulation_drive_new_1 :: proc(stiffness_: _c.float, damping_: _c.float, maxForce_: _c.float, driveType_: _c.int32_t) -> PxArticulationDrive ---
+    articulation_drive_new_1 :: proc(stiffness_: _c.float, damping_: _c.float, maxForce_: _c.float, driveType_: PxArticulationDriveType) -> PxArticulationDrive ---
 
     @(link_name = "PxTGSSolverBodyVel_projectVelocity")
     t_g_s_solver_body_vel_project_velocity :: proc(self_: ^PxTGSSolverBodyVel, #by_ptr lin: PxVec3, #by_ptr ang: PxVec3) -> _c.float ---
@@ -9974,11 +7947,11 @@ foreign libphysx {
     /// RecipCoefficient is commonly expected to be 1/coefficient, but it can be set to different values to tune behavior; for example, zero can be used to
     /// have a joint axis only participate in the length computation of the tendon, but not have any tendon force applied to it.
     @(link_name = "PxArticulationTendonJoint_setCoefficient_mut")
-    articulation_tendon_joint_set_coefficient_mut :: proc(self_: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float) ---
+    articulation_tendon_joint_set_coefficient_mut :: proc(self_: ^PxArticulationTendonJoint, axis: PxArticulationAxis, coefficient: _c.float, recipCoefficient: _c.float) ---
 
     /// Gets the tendon joint coefficient.
     @(link_name = "PxArticulationTendonJoint_getCoefficient")
-    articulation_tendon_joint_get_coefficient :: proc(self_: ^PxArticulationTendonJoint, axis: ^_c.int32_t, coefficient: ^_c.float, recipCoefficient: ^_c.float) ---
+    articulation_tendon_joint_get_coefficient :: proc(self_: ^PxArticulationTendonJoint, axis: ^PxArticulationAxis, coefficient: ^_c.float, recipCoefficient: ^_c.float) ---
 
     /// Gets the articulation link.
     ///
@@ -10110,7 +8083,7 @@ foreign libphysx {
     /// - The axis motion must not be configured as PxArticulationMotion::eLOCKED.
     /// - The axis cannot be part of a fixed joint, i.e. joint configured as PxArticulationJointType::eFIX.
     @(link_name = "PxArticulationFixedTendon_createTendonJoint_mut")
-    articulation_fixed_tendon_create_tendon_joint_mut :: proc(self_: ^PxArticulationFixedTendon, parent: ^PxArticulationTendonJoint, axis: _c.int32_t, coefficient: _c.float, recipCoefficient: _c.float, link: ^PxArticulationLink) -> ^PxArticulationTendonJoint ---
+    articulation_fixed_tendon_create_tendon_joint_mut :: proc(self_: ^PxArticulationFixedTendon, parent: ^PxArticulationTendonJoint, axis: PxArticulationAxis, coefficient: _c.float, recipCoefficient: _c.float, link: ^PxArticulationLink) -> ^PxArticulationTendonJoint ---
 
     /// Fills a user-provided buffer of tendon-joint pointers with the set of tendon joints.
     ///
@@ -10223,14 +8196,14 @@ foreign libphysx {
     ///
     /// The current set of flags of the sensor.
     @(link_name = "PxArticulationSensor_getFlags")
-    articulation_sensor_get_flags :: proc(self_: ^PxArticulationSensor) -> _c.uint8_t ---
+    articulation_sensor_get_flags :: proc(self_: ^PxArticulationSensor) -> PxArticulationSensorFlags_Set ---
 
     /// Sets a flag of the sensor.
     ///
     /// Setting the sensor flags is not allowed while the articulation is in a scene. In order to
     /// set the flags, remove and then re-add the articulation to the scene.
     @(link_name = "PxArticulationSensor_setFlag_mut")
-    articulation_sensor_set_flag_mut :: proc(self_: ^PxArticulationSensor, flag: _c.int32_t, enabled: _c.bool) ---
+    articulation_sensor_set_flag_mut :: proc(self_: ^PxArticulationSensor, flag: PxArticulationSensorFlag, enabled: _c.bool) ---
 
     /// Returns the string name of the dynamic type.
     ///
@@ -10483,19 +8456,19 @@ foreign libphysx {
     ///
     /// This call may not be made during simulation.
     @(link_name = "PxArticulationReducedCoordinate_setArticulationFlags_mut")
-    articulation_reduced_coordinate_set_articulation_flags_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
+    articulation_reduced_coordinate_set_articulation_flags_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: PxArticulationFlags_Set) ---
 
     /// Raises or clears a flag on the articulation.
     ///
     /// This call may not be made during simulation.
     @(link_name = "PxArticulationReducedCoordinate_setArticulationFlag_mut")
-    articulation_reduced_coordinate_set_articulation_flag_mut :: proc(self_: ^PxArticulationReducedCoordinate, flag: _c.int32_t, value: _c.bool) ---
+    articulation_reduced_coordinate_set_articulation_flag_mut :: proc(self_: ^PxArticulationReducedCoordinate, flag: PxArticulationFlag, value: _c.bool) ---
 
     /// Returns the articulation's flags.
     ///
     /// The flags.
     @(link_name = "PxArticulationReducedCoordinate_getArticulationFlags")
-    articulation_reduced_coordinate_get_articulation_flags :: proc(self_: ^PxArticulationReducedCoordinate) -> _c.uint8_t ---
+    articulation_reduced_coordinate_get_articulation_flags :: proc(self_: ^PxArticulationReducedCoordinate) -> PxArticulationFlags_Set ---
 
     /// Returns the total number of joint degrees-of-freedom (DOFs) of the articulation.
     ///
@@ -10543,13 +8516,13 @@ foreign libphysx {
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
     @(link_name = "PxArticulationReducedCoordinate_applyCache_mut")
-    articulation_reduced_coordinate_apply_cache_mut :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t, autowake: _c.bool) ---
+    articulation_reduced_coordinate_apply_cache_mut :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: PxArticulationCacheFlags_Set, autowake: _c.bool) ---
 
     /// Copies internal data of the articulation to the cache.
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
     @(link_name = "PxArticulationReducedCoordinate_copyInternalStateToCache")
-    articulation_reduced_coordinate_copy_internal_state_to_cache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: _c.uint32_t) ---
+    articulation_reduced_coordinate_copy_internal_state_to_cache :: proc(self_: ^PxArticulationReducedCoordinate, cache: ^PxArticulationCache, flags: PxArticulationCacheFlags_Set) ---
 
     /// Converts maximal-coordinate joint DOF data to reduced coordinates.
     ///
@@ -10895,7 +8868,7 @@ foreign libphysx {
     ///
     /// This call may only be made on articulations that are in a scene, and may not be made during simulation.
     @(link_name = "PxArticulationReducedCoordinate_updateKinematic_mut")
-    articulation_reduced_coordinate_update_kinematic_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: _c.uint8_t) ---
+    articulation_reduced_coordinate_update_kinematic_mut :: proc(self_: ^PxArticulationReducedCoordinate, flags: PxArticulationKinematicFlags_Set) ---
 
     /// Gets the parent articulation link of this joint.
     ///
@@ -10938,26 +8911,26 @@ foreign libphysx {
     /// Setting the joint type is not allowed while the articulation is in a scene.
     /// In order to set the joint type, remove and then re-add the articulation to the scene.
     @(link_name = "PxArticulationJointReducedCoordinate_setJointType_mut")
-    articulation_joint_reduced_coordinate_set_joint_type_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, jointType: _c.int32_t) ---
+    articulation_joint_reduced_coordinate_set_joint_type_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, jointType: PxArticulationJointType) ---
 
     /// Gets the joint type.
     ///
     /// The joint type.
     @(link_name = "PxArticulationJointReducedCoordinate_getJointType")
-    articulation_joint_reduced_coordinate_get_joint_type :: proc(self_: ^PxArticulationJointReducedCoordinate) -> _c.int32_t ---
+    articulation_joint_reduced_coordinate_get_joint_type :: proc(self_: ^PxArticulationJointReducedCoordinate) -> PxArticulationJointType ---
 
     /// Sets the joint motion for a given axis.
     ///
     /// Setting the motion of joint axes is not allowed while the articulation is in a scene.
     /// In order to set the motion, remove and then re-add the articulation to the scene.
     @(link_name = "PxArticulationJointReducedCoordinate_setMotion_mut")
-    articulation_joint_reduced_coordinate_set_motion_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, motion: _c.int32_t) ---
+    articulation_joint_reduced_coordinate_set_motion_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, motion: PxArticulationMotion) ---
 
     /// Returns the joint motion for the given axis.
     ///
     /// The joint motion of the given axis.
     @(link_name = "PxArticulationJointReducedCoordinate_getMotion")
-    articulation_joint_reduced_coordinate_get_motion :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.int32_t ---
+    articulation_joint_reduced_coordinate_get_motion :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> PxArticulationMotion ---
 
     /// Sets the joint limits for a given axis.
     ///
@@ -10969,13 +8942,13 @@ foreign libphysx {
     ///
     /// For spherical joints, limit.min and limit.max must both be in range [-Pi, Pi].
     @(link_name = "PxArticulationJointReducedCoordinate_setLimitParams_mut")
-    articulation_joint_reduced_coordinate_set_limit_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, #by_ptr limit: PxArticulationLimit) ---
+    articulation_joint_reduced_coordinate_set_limit_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, #by_ptr limit: PxArticulationLimit) ---
 
     /// Returns the joint limits for a given axis.
     ///
     /// The joint limits.
     @(link_name = "PxArticulationJointReducedCoordinate_getLimitParams")
-    articulation_joint_reduced_coordinate_get_limit_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationLimit ---
+    articulation_joint_reduced_coordinate_get_limit_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> PxArticulationLimit ---
 
     /// Configures a joint drive for the given axis.
     ///
@@ -10983,13 +8956,13 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running.
     @(link_name = "PxArticulationJointReducedCoordinate_setDriveParams_mut")
-    articulation_joint_reduced_coordinate_set_drive_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, #by_ptr drive: PxArticulationDrive) ---
+    articulation_joint_reduced_coordinate_set_drive_params_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, #by_ptr drive: PxArticulationDrive) ---
 
     /// Gets the joint drive configuration for the given axis.
     ///
     /// The drive parameters.
     @(link_name = "PxArticulationJointReducedCoordinate_getDriveParams")
-    articulation_joint_reduced_coordinate_get_drive_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> PxArticulationDrive ---
+    articulation_joint_reduced_coordinate_get_drive_params :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> PxArticulationDrive ---
 
     /// Sets the joint drive position target for the given axis.
     ///
@@ -11003,13 +8976,13 @@ foreign libphysx {
     ///
     /// For spherical joints with more than 1 degree of freedom, the joint target angles taken together can collectively represent a rotation of greater than Pi around a vector. When this happens the rotation that matches the joint drive target is not the shortest path rotation.  The joint pose J that is the outcome after driving to the target pose will always be the equivalent of the shortest path rotation.
     @(link_name = "PxArticulationJointReducedCoordinate_setDriveTarget_mut")
-    articulation_joint_reduced_coordinate_set_drive_target_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, target: _c.float, autowake: _c.bool) ---
+    articulation_joint_reduced_coordinate_set_drive_target_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, target: _c.float, autowake: _c.bool) ---
 
     /// Returns the joint drive position target for the given axis.
     ///
     /// The target position.
     @(link_name = "PxArticulationJointReducedCoordinate_getDriveTarget")
-    articulation_joint_reduced_coordinate_get_drive_target :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    articulation_joint_reduced_coordinate_get_drive_target :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> _c.float ---
 
     /// Sets the joint drive velocity target for the given axis.
     ///
@@ -11017,13 +8990,13 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running.
     @(link_name = "PxArticulationJointReducedCoordinate_setDriveVelocity_mut")
-    articulation_joint_reduced_coordinate_set_drive_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, targetVel: _c.float, autowake: _c.bool) ---
+    articulation_joint_reduced_coordinate_set_drive_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, targetVel: _c.float, autowake: _c.bool) ---
 
     /// Returns the joint drive velocity target for the given axis.
     ///
     /// The target velocity.
     @(link_name = "PxArticulationJointReducedCoordinate_getDriveVelocity")
-    articulation_joint_reduced_coordinate_get_drive_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    articulation_joint_reduced_coordinate_get_drive_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> _c.float ---
 
     /// Sets the joint armature for the given axis.
     ///
@@ -11032,13 +9005,13 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running.
     @(link_name = "PxArticulationJointReducedCoordinate_setArmature_mut")
-    articulation_joint_reduced_coordinate_set_armature_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, armature: _c.float) ---
+    articulation_joint_reduced_coordinate_set_armature_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, armature: _c.float) ---
 
     /// Gets the joint armature for the given axis.
     ///
     /// The armature set on the given axis.
     @(link_name = "PxArticulationJointReducedCoordinate_getArmature")
-    articulation_joint_reduced_coordinate_get_armature :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    articulation_joint_reduced_coordinate_get_armature :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> _c.float ---
 
     /// Sets the joint friction coefficient, which applies to all joint axes.
     ///
@@ -11089,7 +9062,7 @@ foreign libphysx {
     ///
     /// For spherical joints with more than 1 degree of freedom, the input joint positions taken together can collectively represent a rotation of greater than Pi around a vector. When this happens the rotation that matches the joint positions is not the shortest path rotation.  The joint pose J that is the outcome of setting and applying the joint positions will always be the equivalent of the shortest path rotation.
     @(link_name = "PxArticulationJointReducedCoordinate_setJointPosition_mut")
-    articulation_joint_reduced_coordinate_set_joint_position_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointPos: _c.float) ---
+    articulation_joint_reduced_coordinate_set_joint_position_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, jointPos: _c.float) ---
 
     /// Gets the joint position for the given axis, i.e. joint degree of freedom (DOF).
     ///
@@ -11100,7 +9073,7 @@ foreign libphysx {
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
     @(link_name = "PxArticulationJointReducedCoordinate_getJointPosition")
-    articulation_joint_reduced_coordinate_get_joint_position :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    articulation_joint_reduced_coordinate_get_joint_position :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> _c.float ---
 
     /// Sets the joint velocity for the given axis.
     ///
@@ -11110,7 +9083,7 @@ foreign libphysx {
     ///
     /// This call is not allowed while the simulation is running.
     @(link_name = "PxArticulationJointReducedCoordinate_setJointVelocity_mut")
-    articulation_joint_reduced_coordinate_set_joint_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t, jointVel: _c.float) ---
+    articulation_joint_reduced_coordinate_set_joint_velocity_mut :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis, jointVel: _c.float) ---
 
     /// Gets the joint velocity for the given axis.
     ///
@@ -11121,7 +9094,7 @@ foreign libphysx {
     /// This call is not allowed while the simulation is running except in a split simulation during [`PxScene::collide`]() and up to #PxScene::advance(),
     /// and in PxContactModifyCallback or in contact report callbacks.
     @(link_name = "PxArticulationJointReducedCoordinate_getJointVelocity")
-    articulation_joint_reduced_coordinate_get_joint_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: _c.int32_t) -> _c.float ---
+    articulation_joint_reduced_coordinate_get_joint_velocity :: proc(self_: ^PxArticulationJointReducedCoordinate, axis: PxArticulationAxis) -> _c.float ---
 
     /// Returns the string name of the dynamic type.
     ///
@@ -11378,17 +9351,17 @@ foreign libphysx {
     /// Default:
     /// PxShapeFlag::eVISUALIZATION | PxShapeFlag::eSIMULATION_SHAPE | PxShapeFlag::eSCENE_QUERY_SHAPE
     @(link_name = "PxShape_setFlag_mut")
-    shape_set_flag_mut :: proc(self_: ^PxShape, flag: _c.int32_t, value: _c.bool) ---
+    shape_set_flag_mut :: proc(self_: ^PxShape, flag: PxShapeFlag, value: _c.bool) ---
 
     /// Sets shape flags
     @(link_name = "PxShape_setFlags_mut")
-    shape_set_flags_mut :: proc(self_: ^PxShape, inFlags: _c.uint8_t) ---
+    shape_set_flags_mut :: proc(self_: ^PxShape, inFlags: PxShapeFlags_Set) ---
 
     /// Retrieves shape flags.
     ///
     /// The values of the shape flags.
     @(link_name = "PxShape_getFlags")
-    shape_get_flags :: proc(self_: ^PxShape) -> _c.uint8_t ---
+    shape_get_flags :: proc(self_: ^PxShape) -> PxShapeFlags_Set ---
 
     /// Returns true if the shape is exclusive to an actor.
     @(link_name = "PxShape_isExclusive")
@@ -11784,7 +9757,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping, and the autowake parameter is true (default) or the force is non-zero.
     @(link_name = "PxRigidBody_addForce_mut")
-    rigid_body_add_force_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
+    rigid_body_add_force_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, mode: PxForceMode, autowake: _c.bool) ---
 
     /// Applies an impulsive torque defined in the global coordinate frame to the actor.
     ///
@@ -11807,7 +9780,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping, and the autowake parameter is true (default) or the torque is non-zero.
     @(link_name = "PxRigidBody_addTorque_mut")
-    rigid_body_add_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr torque: PxVec3, mode: _c.int32_t, autowake: _c.bool) ---
+    rigid_body_add_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr torque: PxVec3, mode: PxForceMode, autowake: _c.bool) ---
 
     /// Clears the accumulated forces (sets the accumulated force back to zero).
     ///
@@ -11823,7 +9796,7 @@ foreign libphysx {
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
     @(link_name = "PxRigidBody_clearForce_mut")
-    rigid_body_clear_force_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
+    rigid_body_clear_force_mut :: proc(self_: ^PxRigidBody, mode: PxForceMode) ---
 
     /// Clears the impulsive torque defined in the global coordinate frame to the actor.
     ///
@@ -11839,7 +9812,7 @@ foreign libphysx {
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
     @(link_name = "PxRigidBody_clearTorque_mut")
-    rigid_body_clear_torque_mut :: proc(self_: ^PxRigidBody, mode: _c.int32_t) ---
+    rigid_body_clear_torque_mut :: proc(self_: ^PxRigidBody, mode: PxForceMode) ---
 
     /// Sets the impulsive force and torque defined in the global coordinate frame to the actor.
     ///
@@ -11849,7 +9822,7 @@ foreign libphysx {
     ///
     /// It is invalid to use this method if the actor has not been added to a scene already or if PxActorFlag::eDISABLE_SIMULATION is set.
     @(link_name = "PxRigidBody_setForceAndTorque_mut")
-    rigid_body_set_force_and_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr torque: PxVec3, mode: _c.int32_t) ---
+    rigid_body_set_force_and_torque_mut :: proc(self_: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr torque: PxVec3, mode: PxForceMode) ---
 
     /// Raises or clears a particular rigid body flag.
     ///
@@ -11863,10 +9836,10 @@ foreign libphysx {
     /// NOT
     /// wake the actor up automatically.
     @(link_name = "PxRigidBody_setRigidBodyFlag_mut")
-    rigid_body_set_rigid_body_flag_mut :: proc(self_: ^PxRigidBody, flag: _c.int32_t, value: _c.bool) ---
+    rigid_body_set_rigid_body_flag_mut :: proc(self_: ^PxRigidBody, flag: PxRigidBodyFlag, value: _c.bool) ---
 
     @(link_name = "PxRigidBody_setRigidBodyFlags_mut")
-    rigid_body_set_rigid_body_flags_mut :: proc(self_: ^PxRigidBody, inFlags: _c.uint16_t) ---
+    rigid_body_set_rigid_body_flags_mut :: proc(self_: ^PxRigidBody, inFlags: PxRigidBodyFlags_Set) ---
 
     /// Reads the PxRigidBody flags.
     ///
@@ -11874,7 +9847,7 @@ foreign libphysx {
     ///
     /// The values of the PxRigidBody flags.
     @(link_name = "PxRigidBody_getRigidBodyFlags")
-    rigid_body_get_rigid_body_flags :: proc(self_: ^PxRigidBody) -> _c.uint16_t ---
+    rigid_body_get_rigid_body_flags :: proc(self_: ^PxRigidBody) -> PxRigidBodyFlags_Set ---
 
     /// Sets the CCD minimum advance coefficient.
     ///
@@ -12077,17 +10050,17 @@ foreign libphysx {
     ///
     /// the constraint flags
     @(link_name = "PxConstraint_getFlags")
-    constraint_get_flags :: proc(self_: ^PxConstraint) -> _c.uint16_t ---
+    constraint_get_flags :: proc(self_: ^PxConstraint) -> PxConstraintFlags_Set ---
 
     /// Set the flags for this constraint
     ///
     /// default: PxConstraintFlag::eDRIVE_LIMITS_ARE_FORCES
     @(link_name = "PxConstraint_setFlags_mut")
-    constraint_set_flags_mut :: proc(self_: ^PxConstraint, flags: _c.uint16_t) ---
+    constraint_set_flags_mut :: proc(self_: ^PxConstraint, flags: PxConstraintFlags_Set) ---
 
     /// Set a flag for this constraint
     @(link_name = "PxConstraint_setFlag_mut")
-    constraint_set_flag_mut :: proc(self_: ^PxConstraint, flag: _c.int32_t, value: _c.bool) ---
+    constraint_set_flag_mut :: proc(self_: ^PxConstraint, flag: PxConstraintFlag, value: _c.bool) ---
 
     /// Retrieve the constraint force most recently applied to maintain this constraint.
     ///
@@ -12507,7 +10480,7 @@ foreign libphysx {
     /// as soon as it is safe to do so. After the destruction of the object and its memory, an eMEMORY_RELEASE event will get fired. In this case it is not
     /// allowed to dereference the object pointer in the callback.
     @(link_name = "PxDeletionListener_onRelease_mut")
-    deletion_listener_on_release_mut :: proc(self_: ^PxDeletionListener, observed: ^PxBase, userData: rawptr, deletionEvent: _c.int32_t) ---
+    deletion_listener_on_release_mut :: proc(self_: ^PxDeletionListener, observed: ^PxBase, userData: rawptr, deletionEvent: PxDeletionEventFlag) ---
 
     @(link_name = "PxBaseMaterial_isKindOf")
     base_material_is_kind_of :: proc(self_: ^PxBaseMaterial, name: ^_c.char) -> _c.bool ---
@@ -12543,7 +10516,7 @@ foreign libphysx {
     f_e_m_material_get_dynamic_friction :: proc(self_: ^PxFEMMaterial) -> _c.float ---
 
     @(link_name = "PxFilterData_new")
-    filter_data_new :: proc(anon_param0: _c.int32_t) -> PxFilterData ---
+    filter_data_new :: proc(anon_param0: PxEMPTY) -> PxFilterData ---
 
     /// Default constructor.
     @(link_name = "PxFilterData_new_1")
@@ -12561,7 +10534,7 @@ foreign libphysx {
     ///
     /// The type of the collision pair object.
     @(link_name = "phys_PxGetFilterObjectType")
-    get_filter_object_type :: proc(attr: _c.uint32_t) -> _c.int32_t ---
+    get_filter_object_type :: proc(attr: _c.uint32_t) -> PxFilterObjectType ---
 
     /// Specifies whether the collision object belongs to a kinematic rigid body
     ///
@@ -12585,7 +10558,7 @@ foreign libphysx {
     /// Filter flags defining whether the pair should be discarded, temporarily ignored or processed and whether the pair
     /// should be tracked and send a report on pair deletion through the filter callback
     @(link_name = "PxSimulationFilterCallback_pairFound_mut")
-    simulation_filter_callback_pair_found_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, a0: ^PxActor, s0: ^PxShape, attributes1: _c.uint32_t, filterData1: PxFilterData, a1: ^PxActor, s1: ^PxShape, pairFlags: ^_c.uint16_t) -> _c.uint16_t ---
+    simulation_filter_callback_pair_found_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: _c.uint32_t, attributes0: _c.uint32_t, filterData0: PxFilterData, a0: ^PxActor, s0: ^PxShape, attributes1: _c.uint32_t, filterData1: PxFilterData, a1: ^PxActor, s1: ^PxShape, pairFlags: ^PxPairFlags_Set) -> PxFilterFlags_Set ---
 
     /// Callback to inform that a tracked collision pair is gone.
     ///
@@ -12610,11 +10583,11 @@ foreign libphysx {
     /// True if the changes should be applied. In this case the method will get called again. False if
     /// no more status changes should be done in the current simulation step. In that case the provided flags will be discarded.
     @(link_name = "PxSimulationFilterCallback_statusChange_mut")
-    simulation_filter_callback_status_change_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: ^_c.uint32_t, pairFlags: ^_c.uint16_t, filterFlags: ^_c.uint16_t) -> _c.bool ---
+    simulation_filter_callback_status_change_mut :: proc(self_: ^PxSimulationFilterCallback, pairID: ^_c.uint32_t, pairFlags: ^PxPairFlags_Set, filterFlags: ^PxFilterFlags_Set) -> _c.bool ---
 
     /// Any combination of PxDataAccessFlag::eREADABLE and PxDataAccessFlag::eWRITABLE
     @(link_name = "PxLockedData_getDataAccessFlags_mut")
-    locked_data_get_data_access_flags_mut :: proc(self_: ^PxLockedData) -> _c.uint8_t ---
+    locked_data_get_data_access_flags_mut :: proc(self_: ^PxLockedData) -> PxDataAccessFlags_Set ---
 
     /// Unlocks the bulk data.
     @(link_name = "PxLockedData_unlock_mut")
@@ -12714,7 +10687,7 @@ foreign libphysx {
     /// NOT
     /// wake any actors which may be affected.
     @(link_name = "PxMaterial_setFlag_mut")
-    material_set_flag_mut :: proc(self_: ^PxMaterial, flag: _c.int32_t, b: _c.bool) ---
+    material_set_flag_mut :: proc(self_: ^PxMaterial, flag: PxMaterialFlag, b: _c.bool) ---
 
     /// sets all the material flags.
     ///
@@ -12728,13 +10701,13 @@ foreign libphysx {
     /// NOT
     /// wake any actors which may be affected.
     @(link_name = "PxMaterial_setFlags_mut")
-    material_set_flags_mut :: proc(self_: ^PxMaterial, flags: _c.uint16_t) ---
+    material_set_flags_mut :: proc(self_: ^PxMaterial, flags: PxMaterialFlags_Set) ---
 
     /// Retrieves the flags. See [`PxMaterialFlag`].
     ///
     /// The material flags.
     @(link_name = "PxMaterial_getFlags")
-    material_get_flags :: proc(self_: ^PxMaterial) -> _c.uint16_t ---
+    material_get_flags :: proc(self_: ^PxMaterial) -> PxMaterialFlags_Set ---
 
     /// Sets the friction combine mode.
     ///
@@ -12748,7 +10721,7 @@ foreign libphysx {
     /// NOT
     /// wake any actors which may be affected.
     @(link_name = "PxMaterial_setFrictionCombineMode_mut")
-    material_set_friction_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
+    material_set_friction_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: PxCombineMode) ---
 
     /// Retrieves the friction combine mode.
     ///
@@ -12756,7 +10729,7 @@ foreign libphysx {
     ///
     /// The friction combine mode for this material.
     @(link_name = "PxMaterial_getFrictionCombineMode")
-    material_get_friction_combine_mode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
+    material_get_friction_combine_mode :: proc(self_: ^PxMaterial) -> PxCombineMode ---
 
     /// Sets the restitution combine mode.
     ///
@@ -12770,7 +10743,7 @@ foreign libphysx {
     /// NOT
     /// wake any actors which may be affected.
     @(link_name = "PxMaterial_setRestitutionCombineMode_mut")
-    material_set_restitution_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: _c.int32_t) ---
+    material_set_restitution_combine_mode_mut :: proc(self_: ^PxMaterial, combMode: PxCombineMode) ---
 
     /// Retrieves the restitution combine mode.
     ///
@@ -12778,7 +10751,7 @@ foreign libphysx {
     ///
     /// The coefficient of restitution combine mode for this material.
     @(link_name = "PxMaterial_getRestitutionCombineMode")
-    material_get_restitution_combine_mode :: proc(self_: ^PxMaterial) -> _c.int32_t ---
+    material_get_restitution_combine_mode :: proc(self_: ^PxMaterial) -> PxCombineMode ---
 
     @(link_name = "PxMaterial_getConcreteTypeName")
     material_get_concrete_type_name :: proc(self_: ^PxMaterial) -> ^_c.char ---
@@ -13065,7 +11038,7 @@ foreign libphysx {
     ///
     /// Shared shapes are not mutable when they are attached to an actor
     @(link_name = "PxPhysics_createShape_mut")
-    physics_create_shape_mut :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, #by_ptr material: PxMaterial, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    physics_create_shape_mut :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, #by_ptr material: PxMaterial, isExclusive: _c.bool, shapeFlags: PxShapeFlags_Set) -> ^PxShape ---
 
     /// Creates a shape which may be attached to multiple actors
     ///
@@ -13077,7 +11050,7 @@ foreign libphysx {
     ///
     /// Shapes created from *SDF* triangle-mesh geometries do not support more than one material.
     @(link_name = "PxPhysics_createShape_mut_1")
-    physics_create_shape_mut_1 :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, isExclusive: _c.bool, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    physics_create_shape_mut_1 :: proc(self_: ^PxPhysics, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, isExclusive: _c.bool, shapeFlags: PxShapeFlags_Set) -> ^PxShape ---
 
     /// Return the number of shapes that currently exist.
     ///
@@ -13140,7 +11113,7 @@ foreign libphysx {
     ///
     /// The deletion events are only supported on core PhysX objects. In general, objects in extension modules do not provide this functionality, however, in the case of PxJoint objects, the underlying PxConstraint will send the events.
     @(link_name = "PxPhysics_registerDeletionListener_mut")
-    physics_register_deletion_listener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, #by_ptr deletionEvents: _c.uint8_t, restrictedObjectSet: _c.bool) ---
+    physics_register_deletion_listener_mut :: proc(self_: ^PxPhysics, observer: ^PxDeletionListener, #by_ptr deletionEvents: PxDeletionEventFlags_Set, restrictedObjectSet: _c.bool) ---
 
     /// Unregister a deletion listener.
     ///
@@ -13212,23 +11185,23 @@ foreign libphysx {
 
     /// constructor to set both filter data and filter flags
     @(link_name = "PxQueryFilterData_new_1")
-    query_filter_data_new_1 :: proc(#by_ptr fd: PxFilterData, f: _c.uint16_t) -> PxQueryFilterData ---
+    query_filter_data_new_1 :: proc(#by_ptr fd: PxFilterData, f: PxQueryFlags_Set) -> PxQueryFilterData ---
 
     /// constructor to set filter flags only
     @(link_name = "PxQueryFilterData_new_2")
-    query_filter_data_new_2 :: proc(f: _c.uint16_t) -> PxQueryFilterData ---
+    query_filter_data_new_2 :: proc(f: PxQueryFlags_Set) -> PxQueryFilterData ---
 
     /// This filter callback is executed before the exact intersection test if PxQueryFlag::ePREFILTER flag was set.
     ///
     /// the updated type for this hit  (see [`PxQueryHitType`])
     @(link_name = "PxQueryFilterCallback_preFilter_mut")
-    query_filter_callback_pre_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, shape: ^PxShape, actor: ^PxRigidActor, queryFlags: ^_c.uint16_t) -> _c.int32_t ---
+    query_filter_callback_pre_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, shape: ^PxShape, actor: ^PxRigidActor, queryFlags: ^PxHitFlags_Set) -> PxQueryHitType ---
 
     /// This filter callback is executed if the exact intersection test returned true and PxQueryFlag::ePOSTFILTER flag was set.
     ///
     /// the updated hit type for this hit  (see [`PxQueryHitType`])
     @(link_name = "PxQueryFilterCallback_postFilter_mut")
-    query_filter_callback_post_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, hit: ^PxQueryHit, shape: ^PxShape, actor: ^PxRigidActor) -> _c.int32_t ---
+    query_filter_callback_post_filter_mut :: proc(self_: ^PxQueryFilterCallback, #by_ptr filterData: PxFilterData, hit: ^PxQueryHit, shape: ^PxShape, actor: ^PxRigidActor) -> PxQueryHitType ---
 
     /// virtual destructor
     @(link_name = "PxQueryFilterCallback_delete")
@@ -13341,7 +11314,7 @@ foreign libphysx {
     ///
     /// The values of the PxRigidDynamicLock flags.
     @(link_name = "PxRigidDynamic_getRigidDynamicLockFlags")
-    rigid_dynamic_get_rigid_dynamic_lock_flags :: proc(self_: ^PxRigidDynamic) -> _c.uint8_t ---
+    rigid_dynamic_get_rigid_dynamic_lock_flags :: proc(self_: ^PxRigidDynamic) -> PxRigidDynamicLockFlags_Set ---
 
     /// Raises or clears a particular rigid dynamic lock flag.
     ///
@@ -13350,10 +11323,10 @@ foreign libphysx {
     /// Default:
     /// no flags are set
     @(link_name = "PxRigidDynamic_setRigidDynamicLockFlag_mut")
-    rigid_dynamic_set_rigid_dynamic_lock_flag_mut :: proc(self_: ^PxRigidDynamic, flag: _c.int32_t, value: _c.bool) ---
+    rigid_dynamic_set_rigid_dynamic_lock_flag_mut :: proc(self_: ^PxRigidDynamic, flag: PxRigidDynamicLockFlag, value: _c.bool) ---
 
     @(link_name = "PxRigidDynamic_setRigidDynamicLockFlags_mut")
-    rigid_dynamic_set_rigid_dynamic_lock_flags_mut :: proc(self_: ^PxRigidDynamic, flags: _c.uint8_t) ---
+    rigid_dynamic_set_rigid_dynamic_lock_flags_mut :: proc(self_: ^PxRigidDynamic, flags: PxRigidDynamicLockFlags_Set) ---
 
     /// Retrieves the linear velocity of an actor.
     ///
@@ -13540,13 +11513,13 @@ foreign libphysx {
 
     /// Sets scene query update mode
     @(link_name = "PxSceneQuerySystemBase_setUpdateMode_mut")
-    scene_query_system_base_set_update_mode_mut :: proc(self_: ^PxSceneQuerySystemBase, updateMode: _c.int32_t) ---
+    scene_query_system_base_set_update_mode_mut :: proc(self_: ^PxSceneQuerySystemBase, updateMode: PxSceneQueryUpdateMode) ---
 
     /// Gets scene query update mode
     ///
     /// Current scene query update mode.
     @(link_name = "PxSceneQuerySystemBase_getUpdateMode")
-    scene_query_system_base_get_update_mode :: proc(self_: ^PxSceneQuerySystemBase) -> _c.int32_t ---
+    scene_query_system_base_get_update_mode :: proc(self_: ^PxSceneQuerySystemBase) -> PxSceneQueryUpdateMode ---
 
     /// Retrieves the system's internal scene query timestamp, increased each time a change to the
     /// static scene query structure is performed.
@@ -13578,7 +11551,7 @@ foreign libphysx {
     ///
     /// True if any touching or blocking hits were found or any hit was found in case PxQueryFlag::eANY_HIT was specified.
     @(link_name = "PxSceneQuerySystemBase_raycast")
-    scene_query_system_base_raycast :: proc(self_: ^PxSceneQuerySystemBase, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxRaycastCallback, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
+    scene_query_system_base_raycast :: proc(self_: ^PxSceneQuerySystemBase, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxRaycastCallback, hitFlags: PxHitFlags_Set, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Performs a sweep test against objects in the scene, returns results in a PxSweepBuffer object
     /// or via a custom user callback implementation inheriting from PxSweepCallback.
@@ -13590,7 +11563,7 @@ foreign libphysx {
     ///
     /// True if any touching or blocking hits were found or any hit was found in case PxQueryFlag::eANY_HIT was specified.
     @(link_name = "PxSceneQuerySystemBase_sweep")
-    scene_query_system_base_sweep :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxSweepCallback, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float, queryFlags: _c.uint32_t) -> _c.bool ---
+    scene_query_system_base_sweep :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, hitCall: ^PxSweepCallback, hitFlags: PxHitFlags_Set, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Performs an overlap test of a given geometry against objects in the scene, returns results in a PxOverlapBuffer object
     /// or via a custom user callback implementation inheriting from PxOverlapCallback.
@@ -13603,17 +11576,17 @@ foreign libphysx {
     ///
     /// If the PxQueryFlag::eNO_BLOCK flag is set, the eBLOCK will instead be automatically converted to an eTOUCH and the warning suppressed.
     @(link_name = "PxSceneQuerySystemBase_overlap")
-    scene_query_system_base_overlap :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, hitCall: ^PxOverlapCallback, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: _c.uint32_t) -> _c.bool ---
+    scene_query_system_base_overlap :: proc(self_: ^PxSceneQuerySystemBase, geometry: ^PxGeometry, #by_ptr pose: PxTransform, hitCall: ^PxOverlapCallback, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, queryFlags: PxGeometryQueryFlags_Set) -> _c.bool ---
 
     /// Sets scene query update mode
     @(link_name = "PxSceneSQSystem_setSceneQueryUpdateMode_mut")
-    scene_s_q_system_set_scene_query_update_mode_mut :: proc(self_: ^PxSceneSQSystem, updateMode: _c.int32_t) ---
+    scene_s_q_system_set_scene_query_update_mode_mut :: proc(self_: ^PxSceneSQSystem, updateMode: PxSceneQueryUpdateMode) ---
 
     /// Gets scene query update mode
     ///
     /// Current scene query update mode.
     @(link_name = "PxSceneSQSystem_getSceneQueryUpdateMode")
-    scene_s_q_system_get_scene_query_update_mode :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    scene_s_q_system_get_scene_query_update_mode :: proc(self_: ^PxSceneSQSystem) -> PxSceneQueryUpdateMode ---
 
     /// Retrieves the scene's internal scene query timestamp, increased each time a change to the
     /// static scene query structure is performed.
@@ -13632,11 +11605,11 @@ foreign libphysx {
 
     /// Return the value of PxSceneQueryDesc::staticStructure that was set when creating the scene with PxPhysics::createScene
     @(link_name = "PxSceneSQSystem_getStaticStructure")
-    scene_s_q_system_get_static_structure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    scene_s_q_system_get_static_structure :: proc(self_: ^PxSceneSQSystem) -> PxPruningStructureType ---
 
     /// Return the value of PxSceneQueryDesc::dynamicStructure that was set when creating the scene with PxPhysics::createScene
     @(link_name = "PxSceneSQSystem_getDynamicStructure")
-    scene_s_q_system_get_dynamic_structure :: proc(self_: ^PxSceneSQSystem) -> _c.int32_t ---
+    scene_s_q_system_get_dynamic_structure :: proc(self_: ^PxSceneSQSystem) -> PxPruningStructureType ---
 
     /// Executes scene queries update tasks.
     ///
@@ -13812,7 +11785,7 @@ foreign libphysx {
     scene_query_system_scene_query_build_step_mut :: proc(self_: ^PxSceneQuerySystem, handle: rawptr) ---
 
     @(link_name = "PxBroadPhaseDesc_new")
-    broad_phase_desc_new :: proc(type: _c.int32_t) -> PxBroadPhaseDesc ---
+    broad_phase_desc_new :: proc(type: PxBroadPhaseType) -> PxBroadPhaseDesc ---
 
     @(link_name = "PxBroadPhaseDesc_isValid")
     broad_phase_desc_is_valid :: proc(self_: ^PxBroadPhaseDesc) -> _c.bool ---
@@ -13917,7 +11890,7 @@ foreign libphysx {
     ///
     /// Broadphase type.
     @(link_name = "PxBroadPhase_getType")
-    broad_phase_get_type :: proc(self_: ^PxBroadPhase) -> _c.int32_t ---
+    broad_phase_get_type :: proc(self_: ^PxBroadPhase) -> PxBroadPhaseType ---
 
     /// Gets broad-phase caps.
     @(link_name = "PxBroadPhase_getCaps")
@@ -14134,22 +12107,22 @@ foreign libphysx {
     ///
     /// Number of processed pairs of the specified geometry types.
     @(link_name = "PxSimulationStatistics_getRbPairStats")
-    simulation_statistics_get_rb_pair_stats :: proc(self_: ^PxSimulationStatistics, pairType: _c.int32_t, g0: _c.int32_t, g1: _c.int32_t) -> _c.uint32_t ---
+    simulation_statistics_get_rb_pair_stats :: proc(self_: ^PxSimulationStatistics, pairType: RbPairStatsType, g0: PxGeometryType, g1: PxGeometryType) -> _c.uint32_t ---
 
     @(link_name = "PxSimulationStatistics_new")
     simulation_statistics_new :: proc() -> PxSimulationStatistics ---
 
     /// Sets the PVD flag. See PxPvdSceneFlag.
     @(link_name = "PxPvdSceneClient_setScenePvdFlag_mut")
-    pvd_scene_client_set_scene_pvd_flag_mut :: proc(self_: ^PxPvdSceneClient, flag: _c.int32_t, value: _c.bool) ---
+    pvd_scene_client_set_scene_pvd_flag_mut :: proc(self_: ^PxPvdSceneClient, flag: PxPvdSceneFlag, value: _c.bool) ---
 
     /// Sets the PVD flags. See PxPvdSceneFlags.
     @(link_name = "PxPvdSceneClient_setScenePvdFlags_mut")
-    pvd_scene_client_set_scene_pvd_flags_mut :: proc(self_: ^PxPvdSceneClient, flags: _c.uint8_t) ---
+    pvd_scene_client_set_scene_pvd_flags_mut :: proc(self_: ^PxPvdSceneClient, flags: PxPvdSceneFlags_Set) ---
 
     /// Retrieves the PVD flags. See PxPvdSceneFlags.
     @(link_name = "PxPvdSceneClient_getScenePvdFlags")
-    pvd_scene_client_get_scene_pvd_flags :: proc(self_: ^PxPvdSceneClient) -> _c.uint8_t ---
+    pvd_scene_client_get_scene_pvd_flags :: proc(self_: ^PxPvdSceneClient) -> PxPvdSceneFlags_Set ---
 
     /// update camera on PVD application's render window
     @(link_name = "PxPvdSceneClient_updateCamera_mut")
@@ -14203,13 +12176,13 @@ foreign libphysx {
     ///
     /// Not all flags are mutable and changing some will result in an error. Please check [`PxSceneFlag`] to see which flags can be changed.
     @(link_name = "PxScene_setFlag_mut")
-    scene_set_flag_mut :: proc(self_: ^PxScene, flag: _c.int32_t, value: _c.bool) ---
+    scene_set_flag_mut :: proc(self_: ^PxScene, flag: PxSceneFlag, value: _c.bool) ---
 
     /// Get the scene flags.
     ///
     /// The scene flags. See [`PxSceneFlag`]
     @(link_name = "PxScene_getFlags")
-    scene_get_flags :: proc(self_: ^PxScene) -> _c.uint32_t ---
+    scene_get_flags :: proc(self_: ^PxScene) -> PxSceneFlags_Set ---
 
     /// Set new scene limits.
     ///
@@ -14372,13 +12345,13 @@ foreign libphysx {
     ///
     /// the number of actors.
     @(link_name = "PxScene_getNbActors")
-    scene_get_nb_actors :: proc(self_: ^PxScene, types: _c.uint16_t) -> _c.uint32_t ---
+    scene_get_nb_actors :: proc(self_: ^PxScene, types: PxActorTypeFlags_Set) -> _c.uint32_t ---
 
     /// Retrieve an array of all the actors of certain types in the scene. For supported types, see PxActorTypeFlags.
     ///
     /// Number of actors written to the buffer.
     @(link_name = "PxScene_getActors")
-    scene_get_actors :: proc(self_: ^PxScene, types: _c.uint16_t, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_actors :: proc(self_: ^PxScene, types: PxActorTypeFlags_Set, userBuffer: ^^PxActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Queries the PxScene for a list of the PxActors whose transforms have been
     /// updated during the previous simulation step. Only includes actors of type PxRigidDynamic and PxArticulationLink.
@@ -14619,13 +12592,13 @@ foreign libphysx {
     ///
     /// Filtering mode for kinematic-kinematic pairs.
     @(link_name = "PxScene_getKinematicKinematicFilteringMode")
-    scene_get_kinematic_kinematic_filtering_mode :: proc(self_: ^PxScene) -> _c.int32_t ---
+    scene_get_kinematic_kinematic_filtering_mode :: proc(self_: ^PxScene) -> PxPairFilteringMode ---
 
     /// Gets the pair filtering mode for static-kinematic pairs.
     ///
     /// Filtering mode for static-kinematic pairs.
     @(link_name = "PxScene_getStaticKinematicFilteringMode")
-    scene_get_static_kinematic_filtering_mode :: proc(self_: ^PxScene) -> _c.int32_t ---
+    scene_get_static_kinematic_filtering_mode :: proc(self_: ^PxScene) -> PxPairFilteringMode ---
 
     /// Advances the simulation by an elapsedTime time.
     ///
@@ -14819,11 +12792,11 @@ foreign libphysx {
 
     /// Return the friction model.
     @(link_name = "PxScene_getFrictionType")
-    scene_get_friction_type :: proc(self_: ^PxScene) -> _c.int32_t ---
+    scene_get_friction_type :: proc(self_: ^PxScene) -> PxFrictionType ---
 
     /// Return the solver model.
     @(link_name = "PxScene_getSolverType")
-    scene_get_solver_type :: proc(self_: ^PxScene) -> _c.int32_t ---
+    scene_get_solver_type :: proc(self_: ^PxScene) -> PxSolverType ---
 
     /// Function that lets you set debug visualization parameters.
     ///
@@ -14833,13 +12806,13 @@ foreign libphysx {
     ///
     /// False if the parameter is out of range.
     @(link_name = "PxScene_setVisualizationParameter_mut")
-    scene_set_visualization_parameter_mut :: proc(self_: ^PxScene, param: _c.int32_t, value: _c.float) -> _c.bool ---
+    scene_set_visualization_parameter_mut :: proc(self_: ^PxScene, param: PxVisualizationParameter, value: _c.float) -> _c.bool ---
 
     /// Function that lets you query debug visualization parameters.
     ///
     /// The value of the parameter.
     @(link_name = "PxScene_getVisualizationParameter")
-    scene_get_visualization_parameter :: proc(self_: ^PxScene, paramEnum: _c.int32_t) -> _c.float ---
+    scene_get_visualization_parameter :: proc(self_: ^PxScene, paramEnum: PxVisualizationParameter) -> _c.float ---
 
     /// Defines a box in world space to which visualization geometry will be (conservatively) culled. Use a non-empty culling box to enable the feature, and an empty culling box to disable it.
     ///
@@ -14873,7 +12846,7 @@ foreign libphysx {
     ///
     /// Broad-phase type
     @(link_name = "PxScene_getBroadPhaseType")
-    scene_get_broad_phase_type :: proc(self_: ^PxScene) -> _c.int32_t ---
+    scene_get_broad_phase_type :: proc(self_: ^PxScene) -> PxBroadPhaseType ---
 
     /// Gets broad-phase caps.
     ///
@@ -15075,19 +13048,19 @@ foreign libphysx {
 
     /// Copy GPU articulation data from the internal GPU buffer to a user-provided device buffer.
     @(link_name = "PxScene_copyArticulationData_mut")
-    scene_copy_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbCopyArticulations: _c.uint32_t, copyEvent: rawptr) ---
+    scene_copy_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: PxArticulationGpuDataType, nbCopyArticulations: _c.uint32_t, copyEvent: rawptr) ---
 
     /// Apply GPU articulation data from a user-provided device buffer to the internal GPU buffer.
     @(link_name = "PxScene_applyArticulationData_mut")
-    scene_apply_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: _c.int32_t, nbUpdatedArticulations: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    scene_apply_articulation_data_mut :: proc(self_: ^PxScene, data: rawptr, index: rawptr, dataType: PxArticulationGpuDataType, nbUpdatedArticulations: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Copy GPU softbody data from the internal GPU buffer to a user-provided device buffer.
     @(link_name = "PxScene_copySoftBodyData_mut")
-    scene_copy_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbCopySoftBodies: _c.uint32_t, maxSize: _c.uint32_t, copyEvent: rawptr) ---
+    scene_copy_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: PxSoftBodyDataFlag, nbCopySoftBodies: _c.uint32_t, maxSize: _c.uint32_t, copyEvent: rawptr) ---
 
     /// Apply user-provided data to the internal softbody system.
     @(link_name = "PxScene_applySoftBodyData_mut")
-    scene_apply_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: _c.int32_t, nbUpdatedSoftBodies: _c.uint32_t, maxSize: _c.uint32_t, applyEvent: rawptr) ---
+    scene_apply_soft_body_data_mut :: proc(self_: ^PxScene, data: ^rawptr, dataSizes: rawptr, softBodyIndices: rawptr, flag: PxSoftBodyDataFlag, nbUpdatedSoftBodies: _c.uint32_t, maxSize: _c.uint32_t, applyEvent: rawptr) ---
 
     /// Copy contact data from the internal GPU buffer to a user-provided device buffer.
     ///
@@ -15101,7 +13074,7 @@ foreign libphysx {
 
     /// Apply user-provided data to rigid body.
     @(link_name = "PxScene_applyActorData_mut")
-    scene_apply_actor_data_mut :: proc(self_: ^PxScene, data: rawptr, index: ^PxGpuActorPair, flag: _c.int32_t, nbUpdatedActors: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    scene_apply_actor_data_mut :: proc(self_: ^PxScene, data: rawptr, index: ^PxGpuActorPair, flag: PxActorCacheFlag, nbUpdatedActors: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Compute dense Jacobian matrices for specified articulations on the GPU.
     ///
@@ -15158,7 +13131,7 @@ foreign libphysx {
     ///
     /// This assumes the data has been changed directly in the PxParticleBuffer.
     @(link_name = "PxScene_applyParticleBufferData_mut")
-    scene_apply_particle_buffer_data_mut :: proc(self_: ^PxScene, indices: ^_c.uint32_t, bufferIndexPair: ^PxGpuParticleBufferIndexPair, flags: ^_c.uint32_t, nbUpdatedBuffers: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
+    scene_apply_particle_buffer_data_mut :: proc(self_: ^PxScene, indices: ^_c.uint32_t, bufferIndexPair: ^PxGpuParticleBufferIndexPair, flags: ^PxParticleBufferFlags_Set, nbUpdatedBuffers: _c.uint32_t, waitEvent: rawptr, signalEvent: rawptr) ---
 
     /// Constructor
     @(link_name = "PxSceneReadLock_new_alloc")
@@ -15418,7 +13391,7 @@ foreign libphysx {
     to_vec3 :: proc(#by_ptr v: PxExtendedVec3) -> PxVec3 ---
 
     @(link_name = "PxObstacle_getType")
-    obstacle_get_type :: proc(self_: ^PxObstacle) -> _c.int32_t ---
+    obstacle_get_type :: proc(self_: ^PxObstacle) -> PxGeometryType ---
 
     @(link_name = "PxBoxObstacle_new")
     box_obstacle_new :: proc() -> PxBoxObstacle ---
@@ -15508,11 +13481,11 @@ foreign libphysx {
     ///
     /// The controllers type.
     @(link_name = "PxControllerDesc_getType")
-    controller_desc_get_type :: proc(self_: ^PxControllerDesc) -> _c.int32_t ---
+    controller_desc_get_type :: proc(self_: ^PxControllerDesc) -> PxControllerShapeType ---
 
     /// Return the type of controller
     @(link_name = "PxController_getType")
-    controller_get_type :: proc(self_: ^PxController) -> _c.int32_t ---
+    controller_get_type :: proc(self_: ^PxController) -> PxControllerShapeType ---
 
     /// Releases the controller.
     @(link_name = "PxController_release_mut")
@@ -15522,7 +13495,7 @@ foreign libphysx {
     ///
     /// Collision flags, collection of ::PxControllerCollisionFlags
     @(link_name = "PxController_move_mut")
-    controller_move_mut :: proc(self_: ^PxController, #by_ptr disp: PxVec3, minDist: _c.float, elapsedTime: _c.float, #by_ptr filters: PxControllerFilters, obstacles: ^PxObstacleContext) -> _c.uint8_t ---
+    controller_move_mut :: proc(self_: ^PxController, #by_ptr disp: PxVec3, minDist: _c.float, elapsedTime: _c.float, #by_ptr filters: PxControllerFilters, obstacles: ^PxObstacleContext) -> PxControllerCollisionFlags_Set ---
 
     /// Sets controller's position.
     ///
@@ -15592,13 +13565,13 @@ foreign libphysx {
 
     /// Sets the non-walkable mode for the CCT.
     @(link_name = "PxController_setNonWalkableMode_mut")
-    controller_set_non_walkable_mode_mut :: proc(self_: ^PxController, flag: _c.int32_t) ---
+    controller_set_non_walkable_mode_mut :: proc(self_: ^PxController, flag: PxControllerNonWalkableMode) ---
 
     /// Retrieves the non-walkable mode for the CCT.
     ///
     /// The current non-walkable mode.
     @(link_name = "PxController_getNonWalkableMode")
-    controller_get_non_walkable_mode :: proc(self_: ^PxController) -> _c.int32_t ---
+    controller_get_non_walkable_mode :: proc(self_: ^PxController) -> PxControllerNonWalkableMode ---
 
     /// Retrieve the contact offset.
     ///
@@ -15789,11 +13762,11 @@ foreign libphysx {
     ///
     /// The capsule controller's climbing mode.
     @(link_name = "PxCapsuleController_getClimbingMode")
-    capsule_controller_get_climbing_mode :: proc(self_: ^PxCapsuleController) -> _c.int32_t ---
+    capsule_controller_get_climbing_mode :: proc(self_: ^PxCapsuleController) -> PxCapsuleClimbingMode ---
 
     /// Sets controller's climbing mode.
     @(link_name = "PxCapsuleController_setClimbingMode_mut")
-    capsule_controller_set_climbing_mode_mut :: proc(self_: ^PxCapsuleController, mode: _c.int32_t) -> _c.bool ---
+    capsule_controller_set_climbing_mode_mut :: proc(self_: ^PxCapsuleController, mode: PxCapsuleClimbingMode) -> _c.bool ---
 
     /// Retrieve behavior flags for a shape.
     ///
@@ -15804,7 +13777,7 @@ foreign libphysx {
     ///
     /// Desired behavior flags for the given shape
     @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut")
-    controller_behavior_callback_get_behavior_flags_mut :: proc(self_: ^PxControllerBehaviorCallback, #by_ptr shape: PxShape, actor: ^PxActor) -> _c.uint8_t ---
+    controller_behavior_callback_get_behavior_flags_mut :: proc(self_: ^PxControllerBehaviorCallback, #by_ptr shape: PxShape, actor: ^PxActor) -> PxControllerBehaviorFlags_Set ---
 
     /// Retrieve behavior flags for a controller.
     ///
@@ -15817,7 +13790,7 @@ foreign libphysx {
     ///
     /// Desired behavior flags for the given controller
     @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut_1")
-    controller_behavior_callback_get_behavior_flags_mut_1 :: proc(self_: ^PxControllerBehaviorCallback, controller: ^PxController) -> _c.uint8_t ---
+    controller_behavior_callback_get_behavior_flags_mut_1 :: proc(self_: ^PxControllerBehaviorCallback, controller: ^PxController) -> PxControllerBehaviorFlags_Set ---
 
     /// Retrieve behavior flags for an obstacle.
     ///
@@ -15828,7 +13801,7 @@ foreign libphysx {
     ///
     /// Desired behavior flags for the given obstacle
     @(link_name = "PxControllerBehaviorCallback_getBehaviorFlags_mut_2")
-    controller_behavior_callback_get_behavior_flags_mut_2 :: proc(self_: ^PxControllerBehaviorCallback, obstacle: ^PxObstacle) -> _c.uint8_t ---
+    controller_behavior_callback_get_behavior_flags_mut_2 :: proc(self_: ^PxControllerBehaviorCallback, obstacle: ^PxObstacle) -> PxControllerBehaviorFlags_Set ---
 
     /// Releases the controller manager.
     ///
@@ -15874,7 +13847,7 @@ foreign libphysx {
 
     /// Sets debug rendering flags
     @(link_name = "PxControllerManager_setDebugRenderingFlags_mut")
-    controller_manager_set_debug_rendering_flags_mut :: proc(self_: ^PxControllerManager, flags: _c.uint32_t) ---
+    controller_manager_set_debug_rendering_flags_mut :: proc(self_: ^PxControllerManager, flags: PxControllerDebugRenderFlags_Set) ---
 
     /// Returns the number of obstacle contexts that are being managed.
     ///
@@ -16057,11 +14030,11 @@ foreign libphysx {
     ///
     /// PxMeshMidPhase::Enum
     @(link_name = "PxMidphaseDesc_getType")
-    midphase_desc_get_type :: proc(self_: ^PxMidphaseDesc) -> _c.int32_t ---
+    midphase_desc_get_type :: proc(self_: ^PxMidphaseDesc) -> PxMeshMidPhase ---
 
     /// Initialize the midphase mesh structure descriptor
     @(link_name = "PxMidphaseDesc_setToDefault_mut")
-    midphase_desc_set_to_default_mut :: proc(self_: ^PxMidphaseDesc, type: _c.int32_t) ---
+    midphase_desc_set_to_default_mut :: proc(self_: ^PxMidphaseDesc, type: PxMeshMidPhase) ---
 
     /// Returns true if the descriptor is valid.
     ///
@@ -16141,7 +14114,7 @@ foreign libphysx {
     ///
     /// true on success.
     @(link_name = "phys_PxCookConvexMesh")
-    cook_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
+    cook_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, stream: ^PxOutputStream, condition: ^PxConvexMeshCookingResult) -> _c.bool ---
 
     /// Cooks and creates a convex mesh without going through a stream.
     ///
@@ -16154,7 +14127,7 @@ foreign libphysx {
     ///
     /// PxConvexMesh pointer on success
     @(link_name = "phys_PxCreateConvexMesh")
-    create_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxConvexMesh ---
+    create_convex_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxConvexMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^PxConvexMeshCookingResult) -> ^PxConvexMesh ---
 
     /// Verifies if the convex mesh is valid. Prints an error message for each inconsistency found.
     ///
@@ -16199,7 +14172,7 @@ foreign libphysx {
     ///
     /// PxTriangleMesh pointer on success.
     @(link_name = "phys_PxCreateTriangleMesh")
-    create_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^_c.int32_t) -> ^PxTriangleMesh ---
+    create_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, insertionCallback: ^PxInsertionCallback, condition: ^PxTriangleMeshCookingResult) -> ^PxTriangleMesh ---
 
     /// Cooks a triangle mesh. The results are written to the stream.
     ///
@@ -16211,7 +14184,7 @@ foreign libphysx {
     ///
     /// true on success
     @(link_name = "phys_PxCookTriangleMesh")
-    cook_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, stream: ^PxOutputStream, condition: ^_c.int32_t) -> _c.bool ---
+    cook_triangle_mesh :: proc(#by_ptr params: PxCookingParams, #by_ptr desc: PxTriangleMeshDesc, stream: ^PxOutputStream, condition: ^PxTriangleMeshCookingResult) -> _c.bool ---
 
     @(link_name = "PxDefaultMemoryOutputStream_new_alloc")
     default_memory_output_stream_new_alloc :: proc(allocator: ^PxAllocatorCallback) -> ^PxDefaultMemoryOutputStream ---
@@ -16305,13 +14278,13 @@ foreign libphysx {
     ///
     /// This is the relative pose which locates the joint frame relative to the actor.
     @(link_name = "PxJoint_setLocalPose_mut")
-    joint_set_local_pose_mut :: proc(self_: ^PxJoint, actor: _c.int32_t, #by_ptr localPose: PxTransform) ---
+    joint_set_local_pose_mut :: proc(self_: ^PxJoint, actor: PxJointActorIndex, #by_ptr localPose: PxTransform) ---
 
     /// get the joint local pose for an actor.
     ///
     /// return the local pose for this joint
     @(link_name = "PxJoint_getLocalPose")
-    joint_get_local_pose :: proc(self_: ^PxJoint, actor: _c.int32_t) -> PxTransform ---
+    joint_get_local_pose :: proc(self_: ^PxJoint, actor: PxJointActorIndex) -> PxTransform ---
 
     /// get the relative pose for this joint
     ///
@@ -16346,17 +14319,17 @@ foreign libphysx {
 
     /// set the constraint flags for this joint.
     @(link_name = "PxJoint_setConstraintFlags_mut")
-    joint_set_constraint_flags_mut :: proc(self_: ^PxJoint, flags: _c.uint16_t) ---
+    joint_set_constraint_flags_mut :: proc(self_: ^PxJoint, flags: PxConstraintFlags_Set) ---
 
     /// set a constraint flags for this joint to a specified value.
     @(link_name = "PxJoint_setConstraintFlag_mut")
-    joint_set_constraint_flag_mut :: proc(self_: ^PxJoint, flag: _c.int32_t, value: _c.bool) ---
+    joint_set_constraint_flag_mut :: proc(self_: ^PxJoint, flag: PxConstraintFlag, value: _c.bool) ---
 
     /// get the constraint flags for this joint.
     ///
     /// the constraint flags
     @(link_name = "PxJoint_getConstraintFlags")
-    joint_get_constraint_flags :: proc(self_: ^PxJoint) -> _c.uint16_t ---
+    joint_get_constraint_flags :: proc(self_: ^PxJoint) -> PxConstraintFlags_Set ---
 
     /// set the inverse mass scale for actor0.
     @(link_name = "PxJoint_setInvMassScale0_mut")
@@ -16576,17 +14549,17 @@ foreign libphysx {
     /// Default
     /// PxDistanceJointFlag::eMAX_DISTANCE_ENABLED
     @(link_name = "PxDistanceJoint_setDistanceJointFlags_mut")
-    distance_joint_set_distance_joint_flags_mut :: proc(self_: ^PxDistanceJoint, flags: _c.uint16_t) ---
+    distance_joint_set_distance_joint_flags_mut :: proc(self_: ^PxDistanceJoint, flags: PxDistanceJointFlags_Set) ---
 
     /// Set a single flag specific to a Distance Joint to true or false.
     @(link_name = "PxDistanceJoint_setDistanceJointFlag_mut")
-    distance_joint_set_distance_joint_flag_mut :: proc(self_: ^PxDistanceJoint, flag: _c.int32_t, value: _c.bool) ---
+    distance_joint_set_distance_joint_flag_mut :: proc(self_: ^PxDistanceJoint, flag: PxDistanceJointFlag, value: _c.bool) ---
 
     /// Get the flags specific to the Distance Joint.
     ///
     /// the joint flags
     @(link_name = "PxDistanceJoint_getDistanceJointFlags")
-    distance_joint_get_distance_joint_flags :: proc(self_: ^PxDistanceJoint) -> _c.uint16_t ---
+    distance_joint_get_distance_joint_flags :: proc(self_: ^PxDistanceJoint) -> PxDistanceJointFlags_Set ---
 
     /// Returns string name of PxDistanceJoint, used for serialization
     @(link_name = "PxDistanceJoint_getConcreteTypeName")
@@ -16785,17 +14758,17 @@ foreign libphysx {
     /// Default
     /// PxPrismaticJointFlags(0)
     @(link_name = "PxPrismaticJoint_setPrismaticJointFlags_mut")
-    prismatic_joint_set_prismatic_joint_flags_mut :: proc(self_: ^PxPrismaticJoint, flags: _c.uint16_t) ---
+    prismatic_joint_set_prismatic_joint_flags_mut :: proc(self_: ^PxPrismaticJoint, flags: PxPrismaticJointFlags_Set) ---
 
     /// Set a single flag specific to a Prismatic Joint to true or false.
     @(link_name = "PxPrismaticJoint_setPrismaticJointFlag_mut")
-    prismatic_joint_set_prismatic_joint_flag_mut :: proc(self_: ^PxPrismaticJoint, flag: _c.int32_t, value: _c.bool) ---
+    prismatic_joint_set_prismatic_joint_flag_mut :: proc(self_: ^PxPrismaticJoint, flag: PxPrismaticJointFlag, value: _c.bool) ---
 
     /// Get the flags specific to the Prismatic Joint.
     ///
     /// the joint flags
     @(link_name = "PxPrismaticJoint_getPrismaticJointFlags")
-    prismatic_joint_get_prismatic_joint_flags :: proc(self_: ^PxPrismaticJoint) -> _c.uint16_t ---
+    prismatic_joint_get_prismatic_joint_flags :: proc(self_: ^PxPrismaticJoint) -> PxPrismaticJointFlags_Set ---
 
     /// Returns string name of PxPrismaticJoint, used for serialization
     @(link_name = "PxPrismaticJoint_getConcreteTypeName")
@@ -16890,17 +14863,17 @@ foreign libphysx {
     /// Default
     /// PxRevoluteJointFlags(0)
     @(link_name = "PxRevoluteJoint_setRevoluteJointFlags_mut")
-    revolute_joint_set_revolute_joint_flags_mut :: proc(self_: ^PxRevoluteJoint, flags: _c.uint16_t) ---
+    revolute_joint_set_revolute_joint_flags_mut :: proc(self_: ^PxRevoluteJoint, flags: PxRevoluteJointFlags_Set) ---
 
     /// sets a single flag specific to a Revolute Joint.
     @(link_name = "PxRevoluteJoint_setRevoluteJointFlag_mut")
-    revolute_joint_set_revolute_joint_flag_mut :: proc(self_: ^PxRevoluteJoint, flag: _c.int32_t, value: _c.bool) ---
+    revolute_joint_set_revolute_joint_flag_mut :: proc(self_: ^PxRevoluteJoint, flag: PxRevoluteJointFlag, value: _c.bool) ---
 
     /// gets the flags specific to the Revolute Joint.
     ///
     /// the joint flags
     @(link_name = "PxRevoluteJoint_getRevoluteJointFlags")
-    revolute_joint_get_revolute_joint_flags :: proc(self_: ^PxRevoluteJoint) -> _c.uint16_t ---
+    revolute_joint_get_revolute_joint_flags :: proc(self_: ^PxRevoluteJoint) -> PxRevoluteJointFlags_Set ---
 
     /// Returns string name of PxRevoluteJoint, used for serialization
     @(link_name = "PxRevoluteJoint_getConcreteTypeName")
@@ -16936,17 +14909,17 @@ foreign libphysx {
     /// Default
     /// PxSphericalJointFlags(0)
     @(link_name = "PxSphericalJoint_setSphericalJointFlags_mut")
-    spherical_joint_set_spherical_joint_flags_mut :: proc(self_: ^PxSphericalJoint, flags: _c.uint16_t) ---
+    spherical_joint_set_spherical_joint_flags_mut :: proc(self_: ^PxSphericalJoint, flags: PxSphericalJointFlags_Set) ---
 
     /// Set a single flag specific to a Spherical Joint to true or false.
     @(link_name = "PxSphericalJoint_setSphericalJointFlag_mut")
-    spherical_joint_set_spherical_joint_flag_mut :: proc(self_: ^PxSphericalJoint, flag: _c.int32_t, value: _c.bool) ---
+    spherical_joint_set_spherical_joint_flag_mut :: proc(self_: ^PxSphericalJoint, flag: PxSphericalJointFlag, value: _c.bool) ---
 
     /// Get the flags specific to the Spherical Joint.
     ///
     /// the joint flags
     @(link_name = "PxSphericalJoint_getSphericalJointFlags")
-    spherical_joint_get_spherical_joint_flags :: proc(self_: ^PxSphericalJoint) -> _c.uint16_t ---
+    spherical_joint_get_spherical_joint_flags :: proc(self_: ^PxSphericalJoint) -> PxSphericalJointFlags_Set ---
 
     /// Returns string name of PxSphericalJoint, used for serialization
     @(link_name = "PxSphericalJoint_getConcreteTypeName")
@@ -16976,13 +14949,13 @@ foreign libphysx {
     /// Default:
     /// all degrees of freedom are locked
     @(link_name = "PxD6Joint_setMotion_mut")
-    d6_joint_set_motion_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, type: _c.int32_t) ---
+    d6_joint_set_motion_mut :: proc(self_: ^PxD6Joint, axis: PxD6Axis, type: PxD6Motion) ---
 
     /// Get the motion type around the specified axis.
     ///
     /// the motion type around the specified axis
     @(link_name = "PxD6Joint_getMotion")
-    d6_joint_get_motion :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> _c.int32_t ---
+    d6_joint_get_motion :: proc(self_: ^PxD6Joint, axis: PxD6Axis) -> PxD6Motion ---
 
     /// get the twist angle of the joint, in the range (-2*Pi, 2*Pi]
     @(link_name = "PxD6Joint_getTwistAngle")
@@ -17019,13 +14992,13 @@ foreign libphysx {
     /// This can be used to create prismatic joints similar to PxPrismaticJoint, or point-in-quad joints,
     /// or point-in-box joints.
     @(link_name = "PxD6Joint_setLinearLimit_mut")
-    d6_joint_set_linear_limit_mut :: proc(self_: ^PxD6Joint, axis: _c.int32_t, #by_ptr limit: PxJointLinearLimitPair) ---
+    d6_joint_set_linear_limit_mut :: proc(self_: ^PxD6Joint, axis: PxD6Axis, #by_ptr limit: PxJointLinearLimitPair) ---
 
     /// Get the linear limit for a given linear axis.
     ///
     /// the linear limit pair structure from desired axis
     @(link_name = "PxD6Joint_getLinearLimit")
-    d6_joint_get_linear_limit :: proc(self_: ^PxD6Joint, axis: _c.int32_t) -> PxJointLinearLimitPair ---
+    d6_joint_get_linear_limit :: proc(self_: ^PxD6Joint, axis: PxD6Axis) -> PxJointLinearLimitPair ---
 
     /// Set the twist limit for the joint.
     ///
@@ -17076,11 +15049,11 @@ foreign libphysx {
     /// Default
     /// The default drive spring and damping values are zero, the force limit is zero, and no flags are set.
     @(link_name = "PxD6Joint_setDrive_mut")
-    d6_joint_set_drive_mut :: proc(self_: ^PxD6Joint, index: _c.int32_t, #by_ptr drive: PxD6JointDrive) ---
+    d6_joint_set_drive_mut :: proc(self_: ^PxD6Joint, index: PxD6Drive, #by_ptr drive: PxD6JointDrive) ---
 
     /// Get the drive parameters for the specified drive type.
     @(link_name = "PxD6Joint_getDrive")
-    d6_joint_get_drive :: proc(self_: ^PxD6Joint, index: _c.int32_t) -> PxD6JointDrive ---
+    d6_joint_get_drive :: proc(self_: ^PxD6Joint, index: PxD6Drive) -> PxD6JointDrive ---
 
     /// Set the drive goal pose
     ///
@@ -17278,7 +15251,7 @@ foreign libphysx {
     /// 1) Collision groups of the pair are enabled
     /// 2) Collision filtering equation is satisfied
     @(link_name = "phys_PxDefaultSimulationFilterShader")
-    default_simulation_filter_shader :: proc(attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, pairFlags: ^_c.uint16_t, constantBlock: rawptr, constantBlockSize: _c.uint32_t) -> _c.uint16_t ---
+    default_simulation_filter_shader :: proc(attributes0: _c.uint32_t, filterData0: PxFilterData, attributes1: _c.uint32_t, filterData1: PxFilterData, pairFlags: ^PxPairFlags_Set, constantBlock: rawptr, constantBlockSize: _c.uint32_t) -> PxFilterFlags_Set ---
 
     /// Determines if collision detection is performed between a pair of groups
     ///
@@ -17310,11 +15283,11 @@ foreign libphysx {
 
     /// Retrieves filtering operation. See comments for PxGroupsMask
     @(link_name = "phys_PxGetFilterOps")
-    get_filter_ops :: proc(op0: ^_c.int32_t, op1: ^_c.int32_t, op2: ^_c.int32_t) ---
+    get_filter_ops :: proc(op0: ^PxFilterOp, op1: ^PxFilterOp, op2: ^PxFilterOp) ---
 
     /// Setups filtering operations. See comments for PxGroupsMask
     @(link_name = "phys_PxSetFilterOps")
-    set_filter_ops :: proc(#by_ptr op0: _c.int32_t, #by_ptr op1: _c.int32_t, #by_ptr op2: _c.int32_t) ---
+    set_filter_ops :: proc(#by_ptr op0: PxFilterOp, #by_ptr op1: PxFilterOp, #by_ptr op2: PxFilterOp) ---
 
     /// Retrieves filtering's boolean value. See comments for PxGroupsMask
     ///
@@ -17351,7 +15324,7 @@ foreign libphysx {
     default_error_callback_delete :: proc(self_: ^PxDefaultErrorCallback) ---
 
     @(link_name = "PxDefaultErrorCallback_reportError_mut")
-    default_error_callback_report_error_mut :: proc(self_: ^PxDefaultErrorCallback, code: _c.int32_t, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
+    default_error_callback_report_error_mut :: proc(self_: ^PxDefaultErrorCallback, code: PxErrorCode, message: ^_c.char, file: ^_c.char, line: _c.int32_t) ---
 
     /// Creates a new shape with default properties and a list of materials and adds it to the list of shapes of this actor.
     ///
@@ -17381,7 +15354,7 @@ foreign libphysx {
     ///
     /// The newly created shape.
     @(link_name = "PxRigidActorExt_createExclusiveShape")
-    rigid_actor_ext_create_exclusive_shape :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    rigid_actor_ext_create_exclusive_shape :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, materials: ^^PxMaterial, materialCount: _c.uint16_t, shapeFlags: PxShapeFlags_Set) -> ^PxShape ---
 
     /// Creates a new shape with default properties and a single material adds it to the list of shapes of this actor.
     ///
@@ -17411,7 +15384,7 @@ foreign libphysx {
     ///
     /// The newly created shape.
     @(link_name = "PxRigidActorExt_createExclusiveShape_1")
-    rigid_actor_ext_create_exclusive_shape_1 :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, #by_ptr material: PxMaterial, shapeFlags: _c.uint8_t) -> ^PxShape ---
+    rigid_actor_ext_create_exclusive_shape_1 :: proc(actor: ^PxRigidActor, geometry: ^PxGeometry, #by_ptr material: PxMaterial, shapeFlags: PxShapeFlags_Set) -> ^PxShape ---
 
     /// Gets a list of bounds based on shapes in rigid actor. This list can be used to cook/create
     /// bounding volume hierarchy though PxCooking API.
@@ -17557,7 +15530,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
     @(link_name = "PxRigidBodyExt_addForceAtPos")
-    rigid_body_ext_add_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    rigid_body_ext_add_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: PxForceMode, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the global coordinate frame, acting at a particular
     /// point in local coordinates, to the actor.
@@ -17576,7 +15549,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
     @(link_name = "PxRigidBodyExt_addForceAtLocalPos")
-    rigid_body_ext_add_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    rigid_body_ext_add_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: PxForceMode, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the actor local coordinate frame, acting at a
     /// particular point in global coordinates, to the actor.
@@ -17595,7 +15568,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
     @(link_name = "PxRigidBodyExt_addLocalForceAtPos")
-    rigid_body_ext_add_local_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    rigid_body_ext_add_local_force_at_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: PxForceMode, wakeup: _c.bool) ---
 
     /// Applies a force (or impulse) defined in the actor local coordinate frame, acting at a
     /// particular point in local coordinates, to the actor.
@@ -17614,7 +15587,7 @@ foreign libphysx {
     /// Sleeping:
     /// This call wakes the actor if it is sleeping and the wakeup parameter is true (default).
     @(link_name = "PxRigidBodyExt_addLocalForceAtLocalPos")
-    rigid_body_ext_add_local_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: _c.int32_t, wakeup: _c.bool) ---
+    rigid_body_ext_add_local_force_at_local_pos :: proc(body: ^PxRigidBody, #by_ptr force: PxVec3, #by_ptr pos: PxVec3, mode: PxForceMode, wakeup: _c.bool) ---
 
     /// Computes the velocity of a point given in world coordinates if it were attached to the
     /// specified body and moving with it.
@@ -17671,7 +15644,7 @@ foreign libphysx {
     ///
     /// True if a blocking hit was found.
     @(link_name = "PxRigidBodyExt_linearSweepSingle")
-    rigid_body_ext_linear_sweep_single :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, closestHit: ^PxSweepHit, shapeIndex: ^_c.uint32_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    rigid_body_ext_linear_sweep_single :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, closestHit: ^PxSweepHit, shapeIndex: ^_c.uint32_t, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Performs a linear sweep through space with the body's geometry objects, returning all overlaps.
     ///
@@ -17683,7 +15656,7 @@ foreign libphysx {
     ///
     /// the number of touching hits. If overflow is set to true, the results are incomplete. In case of overflow there are also no guarantees that all touching hits returned are closer than the blocking hit.
     @(link_name = "PxRigidBodyExt_linearSweepMultiple")
-    rigid_body_ext_linear_sweep_multiple :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, touchHitBuffer: ^PxSweepHit, touchHitShapeIndices: ^_c.uint32_t, touchHitBufferSize: _c.uint32_t, block: ^PxSweepHit, blockingShapeIndex: ^_c.int32_t, overflow: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.uint32_t ---
+    rigid_body_ext_linear_sweep_multiple :: proc(body: ^PxRigidBody, scene: ^PxScene, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, touchHitBuffer: ^PxSweepHit, touchHitShapeIndices: ^_c.uint32_t, touchHitBufferSize: _c.uint32_t, block: ^PxSweepHit, blockingShapeIndex: ^_c.int32_t, overflow: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.uint32_t ---
 
     /// Retrieves the world space pose of the shape.
     ///
@@ -17695,7 +15668,7 @@ foreign libphysx {
     ///
     /// Number of hits between the ray and the shape
     @(link_name = "PxShapeExt_raycast")
-    shape_ext_raycast :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr rayOrigin: PxVec3, #by_ptr rayDir: PxVec3, maxDist: _c.float, hitFlags: _c.uint16_t, maxHits: _c.uint32_t, rayHits: ^PxRaycastHit) -> _c.uint32_t ---
+    shape_ext_raycast :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr rayOrigin: PxVec3, #by_ptr rayDir: PxVec3, maxDist: _c.float, hitFlags: PxHitFlags_Set, maxHits: _c.uint32_t, rayHits: ^PxRaycastHit) -> _c.uint32_t ---
 
     /// Test overlap between the shape and a geometry object
     ///
@@ -17709,7 +15682,7 @@ foreign libphysx {
     ///
     /// True if the swept geometry object hits the shape
     @(link_name = "PxShapeExt_sweep")
-    shape_ext_sweep :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr unitDir: PxVec3, distance: _c.float, otherGeom: ^PxGeometry, #by_ptr otherGeomPose: PxTransform, sweepHit: ^PxSweepHit, hitFlags: _c.uint16_t) -> _c.bool ---
+    shape_ext_sweep :: proc(#by_ptr shape: PxShape, actor: ^PxRigidActor, #by_ptr unitDir: PxVec3, distance: _c.float, otherGeom: ^PxGeometry, #by_ptr otherGeomPose: PxTransform, sweepHit: ^PxSweepHit, hitFlags: PxHitFlags_Set) -> _c.bool ---
 
     /// Retrieves the axis aligned bounding box enclosing the shape.
     ///
@@ -17921,7 +15894,7 @@ foreign libphysx {
     /// eYIELD_THREAD and eYIELD_PROCESSOR modes will use compute resources even if the simulation is not running.
     /// It is left to users to keep threads inactive, if so desired, when no simulation is running.
     @(link_name = "phys_PxDefaultCpuDispatcherCreate")
-    default_cpu_dispatcher_create :: proc(numThreads: _c.uint32_t, affinityMasks: ^_c.uint32_t, mode: _c.int32_t, yieldProcessorCount: _c.uint32_t) -> ^PxDefaultCpuDispatcher ---
+    default_cpu_dispatcher_create :: proc(numThreads: _c.uint32_t, affinityMasks: ^_c.uint32_t, mode: PxDefaultCpuDispatcherWaitForWorkMode, yieldProcessorCount: _c.uint32_t) -> ^PxDefaultCpuDispatcher ---
 
     /// Builds smooth vertex normals over a mesh.
     ///
@@ -18107,7 +16080,7 @@ foreign libphysx {
     ///
     /// True if a blocking hit was found.
     @(link_name = "PxSceneQueryExt_raycastSingle")
-    scene_query_ext_raycast_single :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxRaycastHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
+    scene_query_ext_raycast_single :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, hit: ^PxRaycastHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.bool ---
 
     /// Raycast returning multiple results.
     ///
@@ -18119,7 +16092,7 @@ foreign libphysx {
     ///
     /// Number of hits in the buffer, or -1 if the buffer overflowed.
     @(link_name = "PxSceneQueryExt_raycastMultiple")
-    scene_query_ext_raycast_multiple :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxRaycastHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.int32_t ---
+    scene_query_ext_raycast_multiple :: proc(#by_ptr scene: PxScene, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, hitBuffer: ^PxRaycastHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache) -> _c.int32_t ---
 
     /// Sweep returning any blocking hit, not necessarily the closest.
     ///
@@ -18129,7 +16102,7 @@ foreign libphysx {
     ///
     /// True if a blocking hit was found.
     @(link_name = "PxSceneQueryExt_sweepAny")
-    scene_query_ext_sweep_any :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, queryFlags: _c.uint16_t, hit: ^PxQueryHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    scene_query_ext_sweep_any :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, queryFlags: PxHitFlags_Set, hit: ^PxQueryHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Sweep returning a single result.
     ///
@@ -18139,7 +16112,7 @@ foreign libphysx {
     ///
     /// True if a blocking hit was found.
     @(link_name = "PxSceneQueryExt_sweepSingle")
-    scene_query_ext_sweep_single :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hit: ^PxSweepHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
+    scene_query_ext_sweep_single :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, hit: ^PxSweepHit, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.bool ---
 
     /// Sweep returning multiple results.
     ///
@@ -18151,7 +16124,7 @@ foreign libphysx {
     ///
     /// Number of hits in the buffer, or -1 if the buffer overflowed.
     @(link_name = "PxSceneQueryExt_sweepMultiple")
-    scene_query_ext_sweep_multiple :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: _c.uint16_t, hitBuffer: ^PxSweepHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.int32_t ---
+    scene_query_ext_sweep_multiple :: proc(#by_ptr scene: PxScene, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, outputFlags: PxHitFlags_Set, hitBuffer: ^PxSweepHit, hitBufferSize: _c.uint32_t, blockingHit: ^_c.bool, #by_ptr filterData: PxQueryFilterData, filterCall: ^PxQueryFilterCallback, cache: ^PxQueryCache, inflation: _c.float) -> _c.int32_t ---
 
     /// Test overlap between a geometry and objects in the scene.
     ///
@@ -18188,7 +16161,7 @@ foreign libphysx {
     /// Returns a PxRaycastBuffer pointer that will store the result of the query after execute() is completed.
     /// This will point either to an element of the buffer allocated on construction or to a user buffer passed to the constructor.
     @(link_name = "PxBatchQueryExt_raycast_mut")
-    batch_query_ext_raycast_mut :: proc(self_: ^PxBatchQueryExt, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache) -> ^PxRaycastBuffer ---
+    batch_query_ext_raycast_mut :: proc(self_: ^PxBatchQueryExt, #by_ptr origin: PxVec3, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: PxHitFlags_Set, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache) -> ^PxRaycastBuffer ---
 
     /// Performs a sweep test against objects in the scene.
     ///
@@ -18203,7 +16176,7 @@ foreign libphysx {
     /// Returns a PxSweepBuffer pointer that will store the result of the query after execute() is completed.
     /// This will point either to an element of the buffer allocated on construction or to a user buffer passed to the constructor.
     @(link_name = "PxBatchQueryExt_sweep_mut")
-    batch_query_ext_sweep_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: _c.uint16_t, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache, inflation: _c.float) -> ^PxSweepBuffer ---
+    batch_query_ext_sweep_mut :: proc(self_: ^PxBatchQueryExt, geometry: ^PxGeometry, #by_ptr pose: PxTransform, #by_ptr unitDir: PxVec3, distance: _c.float, maxNbTouches: _c.uint16_t, hitFlags: PxHitFlags_Set, #by_ptr filterData: PxQueryFilterData, cache: ^PxQueryCache, inflation: _c.float) -> ^PxSweepBuffer ---
 
     /// Performs an overlap test of a given geometry against objects in the scene.
     ///
@@ -18265,7 +16238,7 @@ foreign libphysx {
     ///
     /// A pruner index
     @(link_name = "PxCustomSceneQuerySystem_addPruner_mut")
-    custom_scene_query_system_add_pruner_mut :: proc(self_: ^PxCustomSceneQuerySystem, primaryType: _c.int32_t, secondaryType: _c.int32_t, preallocated: _c.uint32_t) -> _c.uint32_t ---
+    custom_scene_query_system_add_pruner_mut :: proc(self_: ^PxCustomSceneQuerySystem, primaryType: PxPruningStructureType, secondaryType: PxDynamicTreeSecondaryPruner, preallocated: _c.uint32_t) -> _c.uint32_t ---
 
     /// Start custom build-steps for all pruners
     ///
@@ -18329,7 +16302,7 @@ foreign libphysx {
     ///
     /// A custom SQ system instance
     @(link_name = "phys_PxCreateCustomSceneQuerySystem")
-    create_custom_scene_query_system :: proc(sceneQueryUpdateMode: _c.int32_t, contextID: _c.uint64_t, #by_ptr adapter: PxCustomSceneQuerySystemAdapter, usesTreeOfPruners: _c.bool) -> ^PxCustomSceneQuerySystem ---
+    create_custom_scene_query_system :: proc(sceneQueryUpdateMode: PxSceneQueryUpdateMode, contextID: _c.uint64_t, #by_ptr adapter: PxCustomSceneQuerySystemAdapter, usesTreeOfPruners: _c.bool) -> ^PxCustomSceneQuerySystem ---
 
     /// Computes closest polygon of the convex hull geometry for a given impact point
     /// and impact direction. When doing sweeps against a scene, one might want to delay
@@ -18432,7 +16405,7 @@ foreign libphysx {
 
     /// Connects the SDK to the PhysX Visual Debugger application.
     @(link_name = "PxPvd_connect_mut")
-    pvd_connect_mut :: proc(self_: ^PxPvd, transport: ^PxPvdTransport, flags: _c.uint8_t) -> _c.bool ---
+    pvd_connect_mut :: proc(self_: ^PxPvd, transport: ^PxPvdTransport, flags: PxPvdInstrumentationFlags_Set) -> _c.bool ---
 
     /// Disconnects the SDK from the PhysX Visual Debugger application.
     /// If we are still connected, this will kill the entire debugger connection.
@@ -18450,7 +16423,7 @@ foreign libphysx {
 
     /// Retrieves the PVD flags. See PxPvdInstrumentationFlags.
     @(link_name = "PxPvd_getInstrumentationFlags_mut")
-    pvd_get_instrumentation_flags_mut :: proc(self_: ^PxPvd) -> _c.uint8_t ---
+    pvd_get_instrumentation_flags_mut :: proc(self_: ^PxPvd) -> PxPvdInstrumentationFlags_Set ---
 
     /// Releases the pvd instance.
     @(link_name = "PxPvd_release_mut")

@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use std::{env, path::PathBuf};
+use std::{env, path::PathBuf, process::Command};
 
 struct Environment {
     host: String,
@@ -443,7 +443,19 @@ fn cc_compile(target_env: Environment) {
         ctx.builder.include(dir);
     }
 
-    ctx.builder.compile("physx");
+    let files = ctx.builder.compile_intermediates();
+
+    let compiler = ctx.builder.get_compiler();
+    let compiler = compiler.path();
+
+    let mut command = Command::new(compiler);
+    command.arg("-shared").arg("-fpic").arg("-olibphysx.so");
+
+    for path in files {
+        command.arg(path);
+    }
+
+    command.output().unwrap();
 }
 
 fn main() {
@@ -456,7 +468,7 @@ fn main() {
         .and_then(|s| s.parse::<i32>().ok())
         .unwrap_or(1)
     {
-        0 => "debug",
+        0 | 1 => "debug",
         _ => "profile",
     };
 
@@ -502,7 +514,7 @@ fn main() {
     let mut cc_builder = cc::Build::new();
     let physx_cc = cc_builder
         .cpp(true)
-        .opt_level(3)
+        .opt_level(0)
         .debug(false)
         .use_plt(false)
         .warnings(false)
@@ -634,13 +646,24 @@ fn main() {
         physx_cc.flag(dw);
     }
 
-    physx_cc
+    let files = physx_cc
         .include(include_path)
         .file("src/physx_api.cpp")
-        .compile("physx_api");
+        .compile_intermediates();
 
-    println!("cargo:rerun-if-changed=src/physx_generated.hpp");
-    println!("cargo:rerun-if-changed=src/physx_generated.rs");
+    let compiler = physx_cc.get_compiler();
+    let compiler = compiler.path();
+
+    let mut command = Command::new(compiler);
+    command.arg("-shared").arg("-fpic").arg("-olibphysx_api.so");
+
+    for path in files {
+        command.arg(path);
+    }
+
+    command.output().unwrap();
+
+    println!("cargo:rerun-if-changed=physx_generated.hpp");
     println!("cargo:rerun-if-changed=src/physx_api.cpp");
 
     // TODO: use the cloned git revision number instead

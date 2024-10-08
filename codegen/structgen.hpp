@@ -8,7 +8,8 @@ struct PodStructGen {
     PodStructGen() {
         cppfile = fopen("structgen_out.hpp", "w");
         definitions_file = fopen("structgen_out.json", "w");
-
+        fputs("#include <cstdint>\n", cppfile);
+        fputs("#include <cstddef>\n", cppfile);
         fputs("{\n    \"structs\": [\n", definitions_file);
         current_indent = 8;
     }
@@ -92,7 +93,7 @@ struct PodStructGen {
         const char* cppType,
         const char* cppName,
         size_t size) {
-        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		//        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
 		indent();
         fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
         pos += size;
@@ -108,15 +109,15 @@ struct PodStructGen {
         fprintf(cppfile, "    %s %s;\n", cppType, cppName);
 		indent();
         fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
-        pos += size;
+		pos += size;
 		fieldsEmitted += 1;
     }
 
     void end_struct(size_t size) {
         assert(size >= pos);
-        // if (size > pos) {
-        //     emit_padding(uint32_t(size - pos), pos);
-        // }
+        if (size > pos) {
+            emit_padding(uint32_t(size - pos), pos);
+        }
 		if (fieldsEmitted) {
 			int res = fseek(definitions_file, -2, SEEK_CUR);
 

@@ -1,5 +1,5 @@
 use super::Indent;
-use crate::consumer::{Builtin, EnumBinding};
+use crate::consumer::EnumBinding;
 use crate::{writes, writesln};
 
 /// Fixes enum variant names from the ugly C++ style of `eWHY_ARE_YOU_SHOUTING`
@@ -16,12 +16,12 @@ fn fix_variant_name(s: &str) -> String {
 
 impl<'ast> EnumBinding<'ast> {
     pub fn emit_odin(&self, w: &mut String, is_flags: bool, level: u32) {
-		if is_flags {
-			self.emit_as_flags(w, level)
-		} else {
-			self.emit_as_enum(w, level)
-		}
-	}
+        if is_flags {
+            self.emit_as_flags(w, level)
+        } else {
+            self.emit_as_enum(w, level)
+        }
+    }
 
     pub fn emit_as_flags(&self, w: &mut String, level: u32) {
         if let Some(com) = &self.comment {
@@ -30,7 +30,7 @@ impl<'ast> EnumBinding<'ast> {
 
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
-        writesln!(w, "{indent}{} :: enum {{", self.name);
+        writesln!(w, "{indent}{} :: enum {} {{", self.name, self.repr.odin_type());
 
         for var in &self.variants {
             // Since bitflags are made up of power of 2 values that can
@@ -58,7 +58,7 @@ impl<'ast> EnumBinding<'ast> {
             // combinations of flags, reconstruct the bitflags to be
             // easier to read
             let val = var.value as u64;
-            if (val != 0 && (val & (val - 1)) == 0) {
+            if val != 0 && (val & (val - 1)) == 0 {
                 continue;
             }
 
@@ -103,15 +103,14 @@ impl<'ast> EnumBinding<'ast> {
         }
     }
 
-	pub fn emit_as_enum(&self, w: &mut String, level: u32) {
+    pub fn emit_as_enum(&self, w: &mut String, level: u32) {
         if let Some(com) = &self.comment {
             com.emit_odin(w, level);
         }
 
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
-        writesln!(w, "{indent}{} :: enum {{", self.name);
-
+        writesln!(w, "{indent}{} :: enum {} {{", self.name, self.repr.odin_type());
 
         for var in &self.variants {
             if let Some(com) = &var.comment {
@@ -142,52 +141,5 @@ impl<'ast> crate::consumer::FlagsBinding<'ast> {
             enum_binding.name,
             self.storage_type.odin_type()
         );
-
-        // for var in &enum_binding.variants {
-        //     writes!(w, "{indent1}{} = ", fix_variant_name(var.name));
-
-        //     // Since bitflags are made up of power of 2 values that can
-        //     // be combined, and the PhysX API sometimes defines named
-        //     // combinations of flags, reconstruct the bitflags to be
-        //     // easier to read
-        //     let val = var.value as u64;
-        // 	if val == 0 {
-        // 		writes!(w, "0 << 0");
-        // 	}
-        //     else if val & (val - 1) == 0 {
-        //         writes!(w, "1 << {}", val.ilog2());
-        //     } else {
-        //         let mut is_combo = false;
-        //         // If we're not a power of 2, we're a combination of flags,
-        //         // find which ones and emit them in a friendly way
-
-        //         for (i, which) in enum_binding
-        //             .variants
-        //             .iter()
-        //             .filter_map(|var| {
-        //                 let prev = var.value as u64;
-        //                 (prev > 0 && (prev & (prev - 1) == 0 && (prev & val) != 0)).then_some(var.name)
-        //             })
-        //             .enumerate()
-        //         {
-        //             is_combo = true;
-        //             if i > 0 {
-        //                 writes!(w, " | ");
-        //             }
-
-        //             writes!(w, "{}_{}", self.name, fix_variant_name(which));
-        //         }
-
-        //         // There are a couple of cases where they're not combos, so just
-        //         // emit the raw value
-        //         if !is_combo {
-        //             writes!(w, "0x{val:08x}");
-        //         }
-        //     }
-
-        //     writesln!(w, ",");
-        // }
-
-        // writesln!(w, "{indent}}} {};\n", self.name);
     }
 }

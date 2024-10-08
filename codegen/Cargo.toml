@@ -3,7 +3,7 @@
 resolver = "2"
 members = ["pxbind"]
 
-[profile.dev]
+[profile.dev.package.pxbind]
 opt-level = 1               # Use slightly better optimizations.
 overflow-checks = false     # Disable integer overflow checks.
 
