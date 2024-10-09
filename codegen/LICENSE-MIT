@@ -1,4 +1,7 @@
-Copyright (c) 2021 Embark Studios
+Copyright (c) 2024 Tom Solberg
+
+Adapted and rewritten from https://github.com/EmbarkStudios/physx-rs,
+available under the same license.
 
 Permission is hereby granted, free of charge, to any
 person obtaining a copy of this software and associated
