@@ -5,20 +5,20 @@ const OUT_DIR: &'static str = env!("OUT_DIR");
 
 #[cfg(target_os = "windows")]
 mod files {
-	pub const PHYSX_API_NAME: &'static str = "physx_api.lib";
+	pub const LIBPHYSX_API_NAME: &'static str = "physx_api.lib";
 
-	pub const PHYSX_NAME: &'static str = "physx.lib";
+	pub const LIBPHYSX_NAME: &'static str = "physx.lib";
 
 
 	#[cfg(debug_assertions)]
-	pub const PHYSX_API_TARGET_NAME: &'static str = "physx_api.lib";
+	pub const LIBPHYSX_API_TARGET_NAME: &'static str = "physx_api.lib";
 	#[cfg(debug_assertions)]
-	pub const PHYSX_TARGET_NAME: &'static str = "physx.lib";
+	pub const LIBPHYSX_TARGET_NAME: &'static str = "physx.lib";
 
 	#[cfg(not(debug_assertions))]
-	pub const PHYSX_API_TARGET_NAME: &'static str = "physx_api_release.lib";
+	pub const LIBPHYSX_API_TARGET_NAME: &'static str = "physx_api_release.lib";
 	#[cfg(not(debug_assertions))]
-	pub const PHYSX_TARGET_NAME: &'static str = "physx_release.lib";
+	pub const LIBPHYSX_TARGET_NAME: &'static str = "physx_release.lib";
 }
 
 #[cfg(target_os = "linux")]
