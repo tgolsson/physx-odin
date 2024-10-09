@@ -1,12 +1,13 @@
 use super::Indent;
-use crate::consumer::{self, QualType, RecBindingDef};
 use crate::odin_generator::OdinIdent;
+use crate::type_db::TypeDB;
+use crate::type_db::{QualTypeValue, RecBindingDef, RecBindingValue};
 use crate::{writes, writesln, FieldMetadata, StructMetadataList};
 
-fn gather_base_fields<'a, 'ast>(
-    ast: &consumer::AstConsumer<'ast>,
-    metalist: &'a StructMetadataList,
-    root_bases: &[RecBindingDef<'ast>],
+fn gather_base_fields(
+    ast: &TypeDB,
+    metalist: &StructMetadataList,
+    root_bases: &[RecBindingDef],
 ) -> Vec<FieldMetadata> {
     let mut out = vec![];
     for base in root_bases {
@@ -16,10 +17,8 @@ fn gather_base_fields<'a, 'ast>(
             }
 
             match b {
-                consumer::RecBinding::Forward(_) => {}
-                consumer::RecBinding::Def(r) => {
-                    out.extend(gather_base_fields(ast, metalist, &r.bases))
-                }
+                RecBindingValue::Forward(_) => {}
+                RecBindingValue::Def(r) => out.extend(gather_base_fields(ast, metalist, &r.bases)),
             }
         }
     }
@@ -43,11 +42,11 @@ const PACKED: &[(&str, u8)] = &[
     ("PxRaycastHit", 0),
 ];
 
-impl<'ast> crate::consumer::RecBindingDef<'ast> {
+impl crate::type_db::RecBindingDef {
     pub fn emit_odin(
         &self,
         w: &mut String,
-        ast: &consumer::AstConsumer<'ast>,
+        ast: &TypeDB,
         metalist: &StructMetadataList,
         level: u32,
     ) -> bool {
@@ -61,7 +60,7 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
     pub fn emit_odin_calc_layout(
         &self,
         w: &mut String,
-        ast: &consumer::AstConsumer<'ast>,
+        ast: &TypeDB,
         metalist: &StructMetadataList,
         level: u32,
     ) -> bool {
@@ -73,10 +72,10 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
 
-        let is_union = matches!(self.ast.tag_used, Some(crate::consumer::Tag::Union));
+        let is_union = matches!(self.ast_tag_used, Some(crate::consumer::Tag::Union));
         let base_fields = gather_base_fields(ast, metalist, &self.bases);
 
-        let align = if ALIGNED.contains(&self.name) {
+        let align = if ALIGNED.contains(&self.name.as_str()) {
             "#align(16)"
         } else {
             ""
@@ -90,12 +89,12 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
         writesln!(
             w,
             "{indent}{} :: struct {}{align}{packed}{{",
-            OdinIdent(self.name),
+            OdinIdent(&self.name),
             if is_union { "#raw_union " } else { "" },
         );
 
         for base in &self.bases {
-            writesln!(w, "{indent1}using _: {},", OdinIdent(base.name));
+            writesln!(w, "{indent1}using _: {},", OdinIdent(&base.name));
         }
 
         let prefix_pad = if self.bases.is_empty() {
@@ -166,8 +165,8 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 .unwrap();
 
             let prefix = if !field.is_public { "_private_" } else { "" };
-            if let QualType::Array { element, len } = &field.kind {
-                if let QualType::Array {
+            if let QualTypeValue::Array { element, len } = &field.kind {
+                if let QualTypeValue::Array {
                     element: inner,
                     len: len1,
                 } = &**element
@@ -221,7 +220,11 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 .unwrap_or(0u8);
 
             writesln!(w, "@(test)");
-            writesln!(w, "test_layout_{} :: proc(t: ^testing.T) {{", OdinIdent(self.name));
+            writesln!(
+                w,
+                "test_layout_{} :: proc(t: ^testing.T) {{",
+                OdinIdent(&self.name)
+            );
             writesln!(w, "{indent1}using physx");
 
             for field in &meta.fields {
@@ -229,13 +232,13 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                     writesln!(
 						w,
 						"{indent1}testing.expectf(t, offset_of({}, {}) == {}, \"Wrong offset for {}.{}, expected {} got %v\", offset_of({}, {}))",
-						OdinIdent(self.name),
+						OdinIdent(&self.name),
 						field.name,
 						field.offset,
-						OdinIdent(self.name),
+						OdinIdent(&self.name),
 						field.name,
 						field.offset,
-						OdinIdent(self.name),
+						OdinIdent(&self.name),
 						field.name,
 					);
                 }
@@ -243,34 +246,34 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
             writesln!(
 				w,
 				"{indent1}testing.expectf(t, size_of({}) == {}, \"Wrong size for type {}, expected {} got %v\", size_of({}))",
-				OdinIdent(self.name),
+				OdinIdent(&self.name),
 				meta.size as isize - free_bytes as isize,
-				OdinIdent(self.name),
+				OdinIdent(&self.name),
 				meta.size as isize - free_bytes as isize,
-				OdinIdent(self.name),
+				 OdinIdent(&self.name),
 			);
             writesln!(w, "}}");
         }
     }
 
     pub fn emit_odin_raw(&self, w: &mut String, level: u32) -> bool {
-        let is_union = matches!(self.ast.tag_used, Some(crate::consumer::Tag::Union));
+        let is_union = matches!(self.ast_tag_used, Some(crate::consumer::Tag::Union));
 
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
         writesln!(
             w,
             "{indent}{} :: struct {}{{",
-            OdinIdent(self.name),
+            OdinIdent(&self.name),
             if is_union { "#raw_union " } else { "" },
         );
 
-        if self.ast.definition_data.is_none() {
+        if self.def_data.is_none() {
             return true;
         }
 
         for base in &self.bases {
-            writesln!(w, "{indent1}using _: {},", OdinIdent(base.name));
+            writesln!(w, "{indent1}using _: {},", OdinIdent(&base.name));
         }
 
         for field in &self.fields {
@@ -278,8 +281,8 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
                 continue;
             }
 
-            if let QualType::Array { element, len } = &field.kind {
-                if let QualType::Array {
+            if let QualTypeValue::Array { element, len } = &field.kind {
+                if let QualTypeValue::Array {
                     element: inner,
                     len: len1,
                 } = &**element
@@ -311,10 +314,10 @@ impl<'ast> crate::consumer::RecBindingDef<'ast> {
     }
 }
 
-impl<'ast> crate::consumer::RecBindingForward<'ast> {
+impl crate::type_db::RecBindingForward {
     pub fn emit_odin(&self, w: &mut String, level: u32) {
         let indent = Indent(level);
 
-        writesln!(w, "{indent}{} :: distinct rawptr ", OdinIdent(self.name));
+        writesln!(w, "{indent}{} :: distinct rawptr ", OdinIdent(&self.name));
     }
 }

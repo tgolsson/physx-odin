@@ -1,11 +1,11 @@
 use super::Indent;
-use crate::{writesln, writes};
+use crate::{writes, writesln};
 
-impl<'ast> crate::consumer::Comment<'ast> {
+impl crate::type_db::CommentValue {
     pub(super) fn emit_odin(&self, writer: &mut String, level: u32) {
         let indent = Indent(level);
 
-        let emit_lines = |w: &mut String, lines: &[&str]| {
+        let emit_lines = |w: &mut String, lines: &[String]| {
             for line in lines {
                 if line.is_empty() {
                     writesln!(w, "{indent}///");

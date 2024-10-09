@@ -17,3 +17,5 @@ foo/structgen
 *.exe
 *.dll
 *.lib
+*.so
+*.bin

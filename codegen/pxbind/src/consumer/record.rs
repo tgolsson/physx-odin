@@ -4,7 +4,7 @@ use super::{functions, Builtin, ClassDef, Id, Item, QualType, Type, Typedef};
 use crate::Node;
 use anyhow::Context as _;
 use functions::*;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 #[derive(Copy, Clone, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -74,7 +74,7 @@ impl Constructor {
     }
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Clone, Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 struct Dtor {
     #[serde(default)]
@@ -83,7 +83,7 @@ struct Dtor {
     simple: bool,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Clone, Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct DefinitionData {
     // #[serde(default, rename = "isPOD")]
@@ -104,7 +104,7 @@ pub struct Base {
     //written_access: String,
 }
 
-#[derive(Copy, Clone, Deserialize, Debug)]
+#[derive(Copy, Clone, Deserialize, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub enum Tag {
     Struct,
@@ -568,7 +568,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     is_reference: false,
                 },
             );
-        } else if rname == "PxSolverConstraintDesc" || rname == "PxSolverConstraintDesc" {
+        } else if rname == "PxSolverConstraintDesc" {
             fields.insert(
                 0,
                 FieldBinding {

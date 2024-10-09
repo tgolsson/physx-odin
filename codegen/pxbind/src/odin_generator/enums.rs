@@ -1,6 +1,6 @@
 use super::Indent;
-use crate::consumer::EnumBinding;
 use crate::odin_generator::OdinIdent;
+use crate::type_db::{EnumBindingValue, FlagsBindingValue};
 use crate::{writes, writesln};
 
 /// Fixes enum variant names from the ugly C++ style of `eWHY_ARE_YOU_SHOUTING`
@@ -11,16 +11,14 @@ fn fix_variant_name(s: &str) -> String {
         .filter(|s| s.chars().next().unwrap().is_ascii_alphabetic())
         .unwrap_or(s);
 
-	let no_px = no_e.strip_prefix("Px")
-		.unwrap_or(no_e);
-	let no_px = no_e.strip_prefix("PX")
-		.unwrap_or(no_px);
+    let no_px = no_e.strip_prefix("Px").unwrap_or(no_e);
+    let no_px = no_e.strip_prefix("PX").unwrap_or(no_px);
 
     use heck::ToUpperCamelCase;
     no_px.to_upper_camel_case()
 }
 
-impl<'ast> EnumBinding<'ast> {
+impl EnumBindingValue {
     pub fn emit_odin(&self, w: &mut String, is_flags: bool, level: u32) {
         if is_flags {
             self.emit_as_flags(w, level)
@@ -36,7 +34,12 @@ impl<'ast> EnumBinding<'ast> {
 
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
-        writesln!(w, "{indent}{} :: enum {} {{", OdinIdent(self.name), self.repr.odin_type());
+        writesln!(
+            w,
+            "{indent}{} :: enum {} {{",
+            OdinIdent(&self.name),
+            self.repr.odin_type()
+        );
 
         for var in &self.variants {
             // Since bitflags are made up of power of 2 values that can
@@ -50,7 +53,7 @@ impl<'ast> EnumBinding<'ast> {
                 writesln!(
                     w,
                     "{indent1}{} = {},",
-                    fix_variant_name(var.name),
+                    fix_variant_name(&var.name),
                     val.ilog2()
                 );
             }
@@ -72,15 +75,15 @@ impl<'ast> EnumBinding<'ast> {
                 writes!(
                     w,
                     "{indent}{}_{} :: 0",
-                    OdinIdent(self.name),
-                    fix_variant_name(var.name)
+                    OdinIdent(&self.name),
+                    fix_variant_name(&var.name)
                 );
             } else {
                 writes!(
                     w,
                     "{indent}{}_{} :: ",
-                    OdinIdent(self.name),
-                    fix_variant_name(var.name)
+                    OdinIdent(&self.name),
+                    fix_variant_name(&var.name)
                 );
                 let mut is_combo = false;
                 for (i, which) in self
@@ -89,7 +92,7 @@ impl<'ast> EnumBinding<'ast> {
                     .filter_map(|var| {
                         let prev = var.value as u64;
                         (prev > 0 && (prev & (prev - 1) == 0 && (prev & val) != 0))
-                            .then_some(var.name)
+                            .then_some(&var.name)
                     })
                     .enumerate()
                 {
@@ -98,7 +101,7 @@ impl<'ast> EnumBinding<'ast> {
                         writes!(w, " | ");
                     }
 
-                    writes!(w, "{}.{}", OdinIdent(self.name), fix_variant_name(which));
+                    writes!(w, "{}.{}", OdinIdent(&self.name), fix_variant_name(which));
                 }
 
                 if !is_combo {
@@ -116,18 +119,22 @@ impl<'ast> EnumBinding<'ast> {
 
         let indent = Indent(level);
         let indent1 = Indent(level + 1);
-        writesln!(w, "{indent}{} :: enum {} {{", OdinIdent(self.name), self.repr.odin_type());
+        writesln!(
+            w,
+            "{indent}{} :: enum {} {{",
+            OdinIdent(&self.name),
+            self.repr.odin_type()
+        );
 
         for var in &self.variants {
             if let Some(com) = &var.comment {
                 com.emit_odin(w, level + 1);
             }
 
-
             writesln!(
                 w,
                 "{indent1}{} = {},",
-                fix_variant_name(var.name),
+                fix_variant_name(&var.name),
                 var.value
             );
         }
@@ -135,8 +142,8 @@ impl<'ast> EnumBinding<'ast> {
     }
 }
 
-impl<'ast> crate::consumer::FlagsBinding<'ast> {
-    pub fn emit_odin(&self, enum_binding: &EnumBinding<'ast>, w: &mut String, level: u32) {
+impl FlagsBindingValue {
+    pub fn emit_odin(&self, enum_binding: &EnumBindingValue, w: &mut String, level: u32) {
         let indent = Indent(level);
 
         writesln!(w, "{indent}/// Flags for [`{}`]", enum_binding.name);
@@ -144,8 +151,8 @@ impl<'ast> crate::consumer::FlagsBinding<'ast> {
         writesln!(
             w,
             "{indent}{}_Set :: bit_set[{}; {}]\n",
-            OdinIdent(self.name),
-            OdinIdent(enum_binding.name),
+            OdinIdent(&self.name),
+            OdinIdent(&enum_binding.name),
             self.storage_type.odin_type()
         );
     }

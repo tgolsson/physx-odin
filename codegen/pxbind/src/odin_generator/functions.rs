@@ -1,5 +1,5 @@
 use super::Indent;
-use crate::consumer::{functions::*, AstConsumer, QualType};
+use crate::type_db::{FuncBindingValue, QualTypeValue, TypeDB};
 use crate::{writes, writesln};
 
 fn cleanup_name(name: &str) -> String {
@@ -29,19 +29,19 @@ fn cleanup_name(name: &str) -> String {
         }
     }
 
-	if out.contains("c_c_d")  {
-		out = out.replace("c_c_d", "ccd");
-	}
+    if out.contains("c_c_d") {
+        out = out.replace("c_c_d", "ccd");
+    }
 
-	if out == "log" {
-		out = "quat_log".to_owned();
-	}
+    if out == "log" {
+        out = "quat_log".to_owned();
+    }
 
     out
 }
 
-impl<'ast> FuncBinding<'ast> {
-    pub(super) fn emit_odin(&self, writer: &mut String, ast: &AstConsumer<'_>, level: u32) {
+impl FuncBindingValue {
+    pub(super) fn emit_odin(&self, writer: &mut String, ast: &TypeDB, level: u32) {
         if let Some(com) = &self.comment {
             com.emit_odin(writer, level);
         }
@@ -52,34 +52,35 @@ impl<'ast> FuncBinding<'ast> {
         writesln!(acc, "{indent}@(link_name = \"{}\")", self.name);
         writes!(acc, "{indent}{} :: proc(", cleanup_name(&self.name));
 
-
         for (i, param) in self.params.iter().enumerate() {
-			let has_derived =
-				match &param.kind {
-					QualType::Reference { pointee, .. } => {
-						match &**pointee {
-							QualType::Record { name } => {
-								ast.derived.get(*name).map(|v| !v.is_empty()).unwrap_or(false)
-							}
-							_ => false
-						}
-
-					}
-					_=> false,
-				};
+            let has_derived = match &param.kind {
+                QualTypeValue::Reference { pointee, .. } => match &**pointee {
+                    QualTypeValue::Record { name } => ast
+                        .derived
+                        .get(name)
+                        .map(|v| !v.is_empty())
+                        .unwrap_or(false),
+                    _ => false,
+                },
+                _ => false,
+            };
             let sep = if i > 0 { ", " } else { "" };
             let typ = param.kind.odin_type();
-			let tag = if typ.is_const_ref() && !has_derived {
-				"#by_ptr "
-			} else {
-				""
-			};
+            let tag = if typ.is_const_ref() && !has_derived {
+                "#by_ptr "
+            } else {
+                ""
+            };
             writes!(
                 acc,
                 "{sep}{}{}: {}",
-				tag,
+                tag,
                 super::OdinIdent(&param.name),
-                if typ.is_const_ref() && !has_derived { typ.const_ref_type() } else { typ },
+                if typ.is_const_ref() && !has_derived {
+                    typ.const_ref_type()
+                } else {
+                    typ
+                },
             );
         }
 

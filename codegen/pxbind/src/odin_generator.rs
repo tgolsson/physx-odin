@@ -4,7 +4,8 @@ mod functions;
 mod record;
 
 use crate::{
-    consumer::{AstConsumer, Builtin, EnumBinding, FuncBinding, OdinType, QualType, RecBinding},
+    consumer::{Builtin, EnumBinding, FuncBinding, RecBinding},
+    type_db::{QualTypeValue, RecBindingValue, TypeDB},
     writesln, StructMetadataList,
 };
 use std::{
@@ -12,6 +13,32 @@ use std::{
     fs::{create_dir_all, exists, File},
     io::Write,
 };
+
+#[derive(Copy, Clone)]
+pub struct OdinType<'qt>(pub &'qt QualTypeValue);
+
+impl<'qt> OdinType<'qt> {
+    pub fn is_const_ref(&self) -> bool {
+        match self.0 {
+            QualTypeValue::Reference { is_const, .. } => *is_const,
+            _ => false,
+        }
+    }
+
+    pub fn const_ref_type(&self) -> OdinType<'qt> {
+        match self.0 {
+            QualTypeValue::Reference { pointee, .. } => pointee.odin_type(),
+            _ => panic!("ooh"),
+        }
+    }
+}
+
+impl QualTypeValue {
+    #[inline]
+    pub fn odin_type(&self) -> OdinType<'_> {
+        OdinType(self)
+    }
+}
 
 /// It's impossible (I believe) with Rust's format strings to have the width
 /// of the alignment be dynamic, so we just uhhh...be lame
@@ -46,7 +73,7 @@ impl Default for Generator {
 impl Generator {
     pub fn generate_all(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         rr: std::path::PathBuf,
         sizes: super::StructMetadataList,
     ) -> anyhow::Result<()> {
@@ -68,7 +95,7 @@ impl Generator {
 
     pub fn generate_odin(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         metadata: &StructMetadataList,
         odin: &mut impl Write,
         tests: &mut impl Write,
@@ -86,21 +113,21 @@ impl Generator {
 
     pub fn generate_odin_enums(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         odin: &mut impl Write,
         level: u32,
     ) -> anyhow::Result<u32> {
         let mut fiter = ast.flags.iter().peekable();
         let mut acc = String::new();
 
-        for (enum_binding, flags_binding) in ast.enums.iter().enumerate().filter_map(|(i, eb)| {
+        for (enum_binding, flags_binding) in ast.enums.iter().enumerate().map(|(i, eb)| {
             let fb = if fiter.peek().map_or(false, |f| f.enums_index == i) {
                 fiter.next()
             } else {
                 None
             };
 
-            Some((eb, fb))
+            (eb, fb)
         }) {
             if !acc.is_empty() {
                 acc.clear();
@@ -123,26 +150,26 @@ impl Generator {
 
     pub fn generate_odin_records(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         metadata: &StructMetadataList,
         odin: &mut impl Write,
     ) -> anyhow::Result<u32> {
         let mut num = 0;
         let mut acc = String::new();
 
-        for rec in ast.recs.iter().filter(|rb| (self.record_filter)(rb)) {
+        for rec in ast.recs.iter() {
             acc.clear();
             writesln!(acc);
 
             match rec {
-                RecBinding::Def(def) => {
+                RecBindingValue::Def(def) => {
                     if def.emit_odin(&mut acc, ast, metadata, 0) {
                         num += 1;
                         write!(odin, "{acc}")?;
                     }
                 }
-                RecBinding::Forward(forward) => {
-                    if matches!(ast.classes.get(forward.name), Some(None)) {
+                RecBindingValue::Forward(forward) => {
+                    if matches!(ast.classes.get(&forward.name), Some(false)) {
                         forward.emit_odin(&mut acc, 0);
                         write!(odin, "{acc}")?;
                         num += 1;
@@ -156,7 +183,7 @@ impl Generator {
 
     pub fn generate_odin_functions(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         odin: &mut impl Write,
         level: u32,
     ) -> anyhow::Result<u32> {
@@ -178,7 +205,7 @@ impl Generator {
 
     pub fn generate_tests(
         &self,
-        ast: &AstConsumer<'_>,
+        ast: &TypeDB,
         metadata: &StructMetadataList,
         tests: &mut impl Write,
     ) -> anyhow::Result<u32> {
@@ -189,13 +216,10 @@ impl Generator {
             acc.clear();
             writesln!(acc);
 
-            match rec {
-                RecBinding::Def(def) => {
-                    def.emit_odin_test(&mut acc, metadata, 0);
-                    num += 1;
-                    write!(tests, "{acc}")?;
-                }
-                _ => {}
+            if let RecBindingValue::Def(def) = rec {
+                def.emit_odin_test(&mut acc, metadata, 0);
+                num += 1;
+                write!(tests, "{acc}")?;
             }
         }
 
@@ -209,56 +233,54 @@ impl<'ast> fmt::Display for OdinIdent<'ast> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         static KEYWORDS: &[&str] = &["matrix", "context"];
 
-		let stripped = self.0.strip_prefix("Px").unwrap_or(self.0);
+        let stripped = self.0.strip_prefix("Px").unwrap_or(self.0);
 
-		if stripped.starts_with("1D") {
-			f.write_str(&stripped.replace("1D", "OneD"))?;
-		} else {
-			f.write_str(stripped)?;
-		}
+        if stripped.starts_with("1D") {
+            f.write_str(&stripped.replace("1D", "OneD"))?;
+        } else {
+            f.write_str(stripped)?;
+        }
 
         if KEYWORDS.contains(&self.0) {
             f.write_str("_")?;
-		}
+        }
 
         Ok(())
     }
 }
 
-
-impl<'qt, 'ast> fmt::Display for OdinType<'qt, 'ast> {
+impl<'qt> fmt::Display for OdinType<'qt> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self.0 {
-
-            QualType::Pointer { pointee, .. } => {
-               match pointee.odin_type().0 {
-                   QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
-                    _ => write!(f, "^{}", pointee.odin_type())?,
-                }
-
-                Ok(())
-            }
-            QualType::Reference { pointee, .. } => {
+            QualTypeValue::Pointer { pointee, .. } => {
                 match pointee.odin_type().0 {
-                    QualType::Builtin(Builtin::Void) => write!(f, "rawptr")?,
+                    QualTypeValue::Builtin(Builtin::Void) => write!(f, "rawptr")?,
                     _ => write!(f, "^{}", pointee.odin_type())?,
                 }
 
                 Ok(())
             }
-            QualType::Builtin(bi) => f.write_str(bi.odin_type()),
-            QualType::FunctionPointer => f.write_str("rawptr"),
-            QualType::Array { element, len } => {
+            QualTypeValue::Reference { pointee, .. } => {
+                match pointee.odin_type().0 {
+                    QualTypeValue::Builtin(Builtin::Void) => write!(f, "rawptr")?,
+                    _ => write!(f, "^{}", pointee.odin_type())?,
+                }
+
+                Ok(())
+            }
+            QualTypeValue::Builtin(bi) => f.write_str(bi.odin_type()),
+            QualTypeValue::FunctionPointer => f.write_str("rawptr"),
+            QualTypeValue::Array { element, len } => {
                 panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.odin_type());
             }
-            QualType::Enum { name, .. } => {
-				write!(f, "{}", OdinIdent(name))
-			},
-			QualType::Flags { name, .. } => {
-				write!(f, "{}_Set", OdinIdent(name))
+            QualTypeValue::Enum { name, .. } => {
+                write!(f, "{}", OdinIdent(name))
             }
-            QualType::Record { name } => write!(f, "{}", OdinIdent(name)),
-            QualType::TemplateTypedef { name } => write!(f, "{}", OdinIdent(name)),
+            QualTypeValue::Flags { name, .. } => {
+                write!(f, "{}_Set", OdinIdent(name))
+            }
+            QualTypeValue::Record { name } => write!(f, "{}", OdinIdent(name)),
+            QualTypeValue::TemplateTypedef { name } => write!(f, "{}", OdinIdent(name)),
         }
     }
 }

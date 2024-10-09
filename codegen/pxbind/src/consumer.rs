@@ -7,7 +7,7 @@ use anyhow::Context as _;
 pub use record::*;
 mod enums;
 use clang_ast::Id;
-pub use enums::{EnumBinding, FlagsBinding};
+pub use enums::{EnumBinding, EnumVariant, FlagsBinding};
 pub mod functions;
 pub use functions::{FuncBinding, PhysxInvoke};
 mod templates;
@@ -175,7 +175,7 @@ impl Item {
 
 #[derive(Default)]
 pub struct Block<'ast> {
-    b: Vec<&'ast str>,
+    pub b: Vec<&'ast str>,
 }
 
 impl<'ast> Block<'ast> {
@@ -261,7 +261,7 @@ pub struct AstConsumer<'ast> {
     /// for `release` methods, or whether something is a record at all
     pub classes: HashMap<&'ast str, Option<ClassDef<'ast>>>,
     pub back_refs: HashMap<Id, &'ast Node>,
-	pub derived: HashMap<&'ast str, Vec<String>>
+    pub derived: HashMap<&'ast str, Vec<String>>,
 }
 
 impl<'ast> AstConsumer<'ast> {
@@ -694,7 +694,7 @@ impl<'ast> AstType<'ast> {
     }
 }
 
-#[derive(Copy, Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, PartialEq, serde::Deserialize, serde::Serialize)]
 pub enum Builtin {
     Void,
     Bool,
@@ -919,173 +919,37 @@ pub enum QualType<'ast> {
         name: String,
     },
 }
-
 use std::fmt;
 
-#[derive(Copy, Clone)]
-pub struct RustType<'qt, 'ast>(&'qt QualType<'ast>);
+// #[derive(Copy, Clone)]
+// pub struct RustType<'qt, 'ast>(&'qt QualType<'ast>);
 
-impl<'qt, 'ast> fmt::Display for RustType<'qt, 'ast> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.0 {
-            QualType::Pointer {
-                is_pointee_const,
-                pointee,
-                ..
-            } => {
-                write!(f, "*{} ", if *is_pointee_const { "const" } else { "mut" })?;
-                write!(f, "{}", pointee.rust_type())
-            }
-            QualType::Reference {
-                is_const, pointee, ..
-            } => {
-                write!(f, "*{} ", if *is_const { "const" } else { "mut" })?;
-                write!(f, "{}", pointee.rust_type())
-            }
-            QualType::Builtin(bi) => f.write_str(bi.rust_type()),
-            QualType::FunctionPointer => f.write_str("*mut std::ffi::c_void"),
-            QualType::Array { element, len } => {
-                write!(f, "[{}; {len}]", element.rust_type())
-            }
-            QualType::Enum { name, .. }
-            | QualType::Flags { name, .. }
-            | QualType::Record { name } => f.write_str(name),
-            QualType::TemplateTypedef { name } => f.write_str(name),
-        }
-    }
-}
-
-#[derive(Copy, Clone)]
-pub struct CppType<'qt, 'ast>(&'qt QualType<'ast>);
-
-impl<'qt, 'ast> fmt::Display for CppType<'qt, 'ast> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.0 {
-            QualType::Pointer {
-                is_const,
-                pointee,
-                is_pointee_const,
-            } => {
-                write!(f, "{}", pointee.cpp_type())?;
-                write!(f, "{}*", if *is_pointee_const { " const" } else { "" })?;
-                if *is_const {
-                    write!(f, "const")?;
-                }
-
-                Ok(())
-            }
-            QualType::Reference {
-                is_const, pointee, ..
-            } => {
-                write!(f, "{}", pointee.cpp_type())?;
-                write!(f, "{}&", if *is_const { " const" } else { "" })
-            }
-            QualType::Builtin(bi) => f.write_str(bi.cpp_type()),
-            QualType::FunctionPointer => f.write_str("void *"),
-            QualType::Array { element, len } => {
-                write!(f, "{}[{len}]", element.cpp_type())
-            }
-            QualType::Enum { cxx_qt: name, .. }
-            | QualType::Flags { name, .. }
-            | QualType::Record { name } => write!(f, "physx::{name}"),
-            QualType::TemplateTypedef { name } => f.write_str(name),
-        }
-    }
-}
-
-#[derive(Copy, Clone)]
-pub struct CType<'qt, 'ast>(&'qt QualType<'ast>);
-
-impl<'qt, 'ast> fmt::Display for CType<'qt, 'ast> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self.0 {
-            QualType::Pointer {
-                is_const,
-                pointee,
-                is_pointee_const,
-            } => {
-                write!(f, "{}", pointee.c_type())?;
-                write!(f, "{}*", if *is_pointee_const { " const" } else { "" })?;
-                if *is_const {
-                    write!(f, "const")?;
-                }
-                Ok(())
-            }
-            QualType::Reference { is_const, pointee } => {
-                write!(f, "{}", pointee.c_type())?;
-                write!(f, "{}*", if *is_const { " const" } else { "" })
-            }
-            QualType::Builtin(bi) => f.write_str(bi.c_type()),
-            QualType::FunctionPointer => f.write_str("void *"),
-            QualType::Array { element, len } => {
-                panic!("C array `{}[{len}]` breaks the pattern of every other type by have elements on both sides of an identifier", element.c_type());
-            }
-            QualType::Enum { repr, .. } | QualType::Flags { repr, .. } => {
-                f.write_str(repr.c_type())
-            }
-            QualType::Record { name } => write!(f, "physx_{name}_Pod"),
-            QualType::TemplateTypedef { name } => write!(f, "physx_{name}_Pod"),
-        }
-    }
-}
-
-#[derive(Copy, Clone)]
-pub struct OdinType<'qt, 'ast>(pub &'qt QualType<'ast>);
-
-
-impl<'qt, 'ast>  OdinType<'qt, 'ast> {
-	pub fn is_const_ref(&self)-> bool {
-		match self.0 {
-			QualType::Reference { is_const, .. } => {
-				*is_const
-			}
-			_ => false,
-		}
-	}
-
-	pub fn const_ref_type(&self) -> OdinType<'qt, 'ast> {
-		match self.0 {
-			QualType::Reference { pointee, .. } => {
-				pointee.odin_type()
-			}
-			_ => panic!("ooh"),
-		}
-	}
-}
-
-impl<'ast> QualType<'ast> {
-    #[inline]
-    pub fn rust_type(&self) -> RustType<'_, 'ast> {
-        RustType(self)
-    }
-
-    #[inline]
-    pub fn cpp_type(&self) -> CppType<'_, 'ast> {
-        CppType(self)
-    }
-
-    #[inline]
-    pub fn c_type(&self) -> CType<'_, 'ast> {
-        CType(self)
-    }
-
-    #[inline]
-    pub fn odin_type(&self) -> OdinType<'_, 'ast> {
-        OdinType(self)
-    }
-
-    #[inline]
-    pub fn is_pod(&self) -> bool {
-        match self {
-            QualType::Pointer { pointee, .. } => pointee.is_pod(),
-            QualType::Builtin(bi) => bi.is_pod(),
-            QualType::FunctionPointer => false,
-            QualType::Array { element, .. } => element.is_pod(),
-            QualType::Enum { .. }
-            | QualType::Flags { .. }
-            | QualType::Record { .. }
-            | QualType::Reference { .. }
-            | QualType::TemplateTypedef { .. } => true,
-        }
-    }
-}
+// impl<'qt, 'ast> fmt::Display for RustType<'qt, 'ast> {
+//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+//         match self.0 {
+//             QualType::Pointer {
+//                 is_pointee_const,
+//                 pointee,
+//                 ..
+//             } => {
+//                 write!(f, "*{} ", if *is_pointee_const { "const" } else { "mut" })?;
+//                 write!(f, "{}", pointee.rust_type())
+//             }
+//             QualType::Reference {
+//                 is_const, pointee, ..
+//             } => {
+//                 write!(f, "*{} ", if *is_const { "const" } else { "mut" })?;
+//                 write!(f, "{}", pointee.rust_type())
+//             }
+//             QualType::Builtin(bi) => f.write_str(bi.rust_type()),
+//             QualType::FunctionPointer => f.write_str("*mut std::ffi::c_void"),
+//             QualType::Array { element, len } => {
+//                 write!(f, "[{}; {len}]", element.rust_type())
+//             }
+//             QualType::Enum { name, .. }
+//             | QualType::Flags { name, .. }
+//             | QualType::Record { name } => f.write_str(name),
+//             QualType::TemplateTypedef { name } => f.write_str(name),
+//         }
+//     }
+// }
