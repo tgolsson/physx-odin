@@ -4,8 +4,7 @@ resolver = "2"
 members = ["pxbind"]
 
 [profile.dev.package.pxbind]
-opt-level = 1               # Use slightly better optimizations.
-overflow-checks = false     # Disable integer overflow checks.
+opt-level = 1
 
 [package]
 name = "physx-odin"
@@ -27,9 +26,6 @@ edition = "2021"
 # as the crate includes pre-generated ones
 structgen = []
 profile = []
-# Enables `Debug` derivations for the FFI structures, which can be useful for
-# print debugging
-debug-structs = []
 # Enables warnings in when compiling the C++ code. This is not something you should care about
 cpp-warnings = []
 
