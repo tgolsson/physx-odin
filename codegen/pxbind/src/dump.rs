@@ -21,7 +21,7 @@ pub fn get_include_dir() -> anyhow::Result<String> {
     // this from (eg root, tests, wherever)
     let repo_root = get_repo_root()?;
 
-    Ok(format!("{repo_root}/physx/physx/include"))
+    Ok(format!("{repo_root}/codegen/physx/physx/include"))
 }
 
 pub fn get_ast(header: impl AsRef<std::path::Path>) -> anyhow::Result<Vec<u8>> {
