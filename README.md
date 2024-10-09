@@ -12,7 +12,7 @@ presentation for more information.
 
 ## Basic usage
 
-```odin
+```c
 main :: proc() {
 	using physx
 
