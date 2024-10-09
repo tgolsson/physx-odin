@@ -453,7 +453,7 @@ fn cc_compile(target_env: Environment) {
             command.arg(path);
         }
 
-        command.arg("-shared").arg("-fpic").arg("-olibphysx.so");
+        command.arg("-shared").arg("-fpic").arg(format!("-o{}/libphysx.so", std::env::var("OUT_DIR").unwrap()));
         let output = command.output().unwrap();
         if !output.status.success() {
             println!("{:?}", String::from_utf8_lossy(&output.stdout));
@@ -473,7 +473,7 @@ fn main() {
         .and_then(|s| s.parse::<i32>().ok())
         .unwrap_or(1)
     {
-        0 | 1 => "debug",
+        0 => "debug",
         _ => "profile",
     };
 
@@ -519,7 +519,7 @@ fn main() {
     let mut cc_builder = cc::Build::new();
     let physx_cc = cc_builder
         .cpp(true)
-        .opt_level(0)
+        .opt_level(3)
         .debug(false)
         .use_plt(false)
         .warnings(false)
@@ -668,7 +668,7 @@ fn main() {
             command.arg(path);
         }
 
-        command.arg("-shared").arg("-fpic").arg("-olibphysx_api.so");
+        command.arg("-shared").arg("-fpic").arg(format!("-o{}/libphysx_api.so", std::env::var("OUT_DIR").unwrap()));
         let output = command.output().unwrap();
         if !output.status.success() {
             println!("{:?}", String::from_utf8_lossy(&output.stdout));

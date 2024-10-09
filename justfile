@@ -11,12 +11,14 @@ bindgen: structgen
     cd codegen/pxbind && cargo run -- --stage 1
 
 build:  bindgen
-    cd codegen && cargo build
-    cp codegen/*.so .
+    cd codegen && cargo run && cargo run --release
 
 gen:
     cd codegen && clang++ -DNDEBUG -g structgen.cpp -Iphysx/physx/include/ -o structgen && ./structgen
     cd codegen/pxbind && cargo run -- --stage 1
 
-gentest: gen
+test:
     odin test tests
+
+gentest: gen test
+    echo "DONE"

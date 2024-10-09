@@ -10,7 +10,18 @@ This is a fork from [`physx-rs`](https://github.com/EmbarkStudios/physx-rs), usi
 generation. Check out the [`physx-sys`](https://github.com/EmbarkStudios/physx-rs/tree/main/physx-sys) and related
 presentation for more information.
 
+## Getting started
+
+
+As of right now, no libraries are shipped as they'd be > 200 MB in
+total. Soon~ I hope to have prebuilt binaries + generated files as
+Github releases. However, building everything locally *should* be
+easy: the provided `justfile` contains a build command. This should
+run all codegen, followed by building the native libraries and copying
+them to the repository root.
+
 ## Basic usage
+
 
 ```c
 main :: proc() {
@@ -26,7 +37,8 @@ main :: proc() {
 
 	physics := create_physics_ext(foundation)
 
-	scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
+
+scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
 	scene_desc.gravity = vec3_new_3(0.0, -9.81, 0.0)
 	scene_desc.cpuDispatcher = dispatcher
 	scene_desc.filterShader = get_default_simulation_filter_shader()

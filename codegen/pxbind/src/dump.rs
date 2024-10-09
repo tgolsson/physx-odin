@@ -1,6 +1,5 @@
 use crate::Node;
 use anyhow::Context as _;
-
 pub fn get_repo_root() -> anyhow::Result<String> {
     let mut git = std::process::Command::new("git");
     git.args(["rev-parse", "--show-toplevel"]);

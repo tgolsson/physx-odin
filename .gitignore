@@ -19,3 +19,7 @@ foo/structgen
 *.lib
 *.so
 *.bin
+/codegen/physx_generated.hpp
+/codegen/structgen.cpp
+/codegen/structgen_out.hpp
+/codegen/structgen_out.json

@@ -77,18 +77,23 @@ impl Generator {
         rr: std::path::PathBuf,
         sizes: super::StructMetadataList,
     ) -> anyhow::Result<()> {
-        let mut odin = File::create(rr.join("physx_generated.odin"))?;
-        writesln!(odin, "package physx");
+		#[cfg(target_os = "windows")]
+        let mut types = File::create(rr.join("types_windows.odin"))?;
+		#[cfg(target_os = "linux")]
+        let mut types = File::create(rr.join("types_linux.odin"))?;
+
+		let mut functions = File::create(rr.join("functions.odin"))?;
 
         let test_dir = rr.join("tests");
         if !exists(&test_dir)? {
             create_dir_all(&test_dir)?;
         }
-        let mut tests = File::create(test_dir.join("physx_generated.odin"))?;
-        writesln!(tests, "package tests");
-        writesln!(tests, "import  \"core:testing\"");
-        writesln!(tests, "import physx \"..\"");
-        self.generate_odin(ast, &sizes, &mut odin, &mut tests)?;
+
+		#[cfg(target_os = "windows")]
+        let mut tests = File::create(test_dir.join("layout_windows.odin"))?;
+		#[cfg(target_os = "linux")]
+        let mut tests = File::create(test_dir.join("layout_linux.odin"))?;
+        self.generate_odin(ast, &sizes, &mut types, &mut functions, &mut tests)?;
 
         Ok(())
     }
@@ -97,16 +102,20 @@ impl Generator {
         &self,
         ast: &TypeDB,
         metadata: &StructMetadataList,
-        odin: &mut impl Write,
+        types: &mut impl Write,
+        functions: &mut impl Write,
         tests: &mut impl Write,
     ) -> anyhow::Result<()> {
         let level = 0;
 
-        writesln!(odin, "import _c \"core:c\"");
+        writesln!(types, "package physx");
+        writesln!(types, "import _c \"core:c\"");
+        writesln!(functions, "package physx");
+        writesln!(functions, "import _c \"core:c\"");
 
-        self.generate_odin_enums(ast, odin, level)?;
-        self.generate_odin_records(ast, metadata, odin)?;
-        self.generate_odin_functions(ast, odin, level)?;
+        self.generate_odin_enums(ast, types, level)?;
+        self.generate_odin_records(ast, metadata, types)?;
+        self.generate_odin_functions(ast, functions, level)?;
         self.generate_tests(ast, metadata, tests)?;
         Ok(())
     }
@@ -189,7 +198,13 @@ impl Generator {
     ) -> anyhow::Result<u32> {
         writesln!(
             odin,
-            "when ODIN_OS == .Linux do foreign import libphysx \"libphysx.so\"\n"
+            r#"when ODIN_OS == .Linux {{
+    foreign import libphysx {{ "libphysx_release.so" when PHYSX_RELEASE else "libphysx.so" }}
+}}
+else when ODIN_OS == .Windows {{
+    foreign import libphysx {{ "physx_release.lib" when PHYSX_RELEASE else "physx.lib", "system:msvcrt.lib" }}
+}}
+"#
         );
         writesln!(odin, "@(default_calling_convention = \"c\")");
         writesln!(odin, "foreign libphysx {{");
@@ -209,6 +224,11 @@ impl Generator {
         metadata: &StructMetadataList,
         tests: &mut impl Write,
     ) -> anyhow::Result<u32> {
+
+        writesln!(tests, "package tests");
+        writesln!(tests, "import  \"core:testing\"");
+        writesln!(tests, "import physx \"..\"");
+
         let mut num = 0;
         let mut acc = String::new();
 
