@@ -13,29 +13,32 @@ presentation for more information.
 ## Basic usage
 
 ```odin
-unsafe {
-    let foundation = physx_create_foundation();
-    let physics = physx_create_physics(foundation);
+main :: proc() {
+	using physx
 
-    let mut scene_desc = PxSceneDesc_new(PxPhysics_getTolerancesScale(physics));
-    scene_desc.gravity = PxVec3 {
-        x: 0.0,
-        y: -9.81,
-        z: 0.0,
-    };
+	foundation := create_foundation_ext()
+	dispatcher := default_cpu_dispatcher_create(
+		1,
+		nil,
+		physx.DefaultCpuDispatcherWaitForWorkMode.WaitForWork,
+		0,
+	)
 
-    let dispatcher = phys_PxDefaultCpuDispatcherCreate(
-        1,
-        null_mut(),
-        PxDefaultCpuDispatcherWaitForWorkMode::WaitForWork,
-        0,
-    );
-    scene_desc.cpuDispatcher = dispatcher.cast();
-    scene_desc.filterShader = get_default_simulation_filter_shader();
+	physics := create_physics_ext(foundation)
 
-    let scene = PxPhysics_createScene_mut(physics, &scene_desc);
+	scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
+	scene_desc.gravity = vec3_new_3(0.0, -9.81, 0.0)
+	scene_desc.cpuDispatcher = dispatcher
+	scene_desc.filterShader = get_default_simulation_filter_shader()
+	scene := physics_create_scene_mut(physics, scene_desc)
+	defer {
+		scene_release_mut(scene)
+		physics_release_mut(physics)
+		default_cpu_dispatcher_release_mut(dispatcher)
+		foundation_release_mut(foundation)
+	}
 
-    // Your physics simulation goes here
+	run(physics, scene)
 }
 ```
 
