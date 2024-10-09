@@ -56,7 +56,7 @@ scene_desc := scene_desc_new(tolerances_scale_new(1.0, 10.0))
 
 ## Examples
 
-### [Ball](examples/ball.rs)
+### [Ball](examples/ball.odin)
 
 A simple example to showcase how to use physx-sys. It can be run with `odin run examples/ball.odin -file`.
 
@@ -82,6 +82,10 @@ Heights over time (x=time, dt=100ms)
                             o                             o    o               o    ooooooooo
                          o o                               o oo                 oooo         ooooooo
 ```
+
+There's also a graphical equivalent using raylib: `odin run examples/ball_raylib.odin -file`.
+
+![An example of a bouncing ball rendered using raylib](./images/ball.png)
 
 ## License
 
