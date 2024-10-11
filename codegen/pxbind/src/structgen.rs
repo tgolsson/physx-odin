@@ -1,5 +1,6 @@
 use super::{Indent, SG, UOF};
 use crate::type_db::QualTypeValue;
+use crate::type_db::FieldBindingValue;
 use crate::writes;
 use crate::writesln;
 
@@ -29,17 +30,17 @@ impl crate::type_db::RecBindingDef {
             r#"{indent2}{SG}.begin_struct("physx_{name}_Pod", "{name}");"#
         );
 
-        for field in &self.fields {
-            let fname = &field.name;
+		let mut emit_field = |field: &FieldBindingValue, is_base: bool| {
+			let fname = &field.name;
             let cpp_type = field.kind.cpp_type();
 
             let fmted = format!("{cpp_type}");
             if fmted.contains("unnamed") {
-                continue;
+                return;
             }
 
             if !field.is_public || field.is_reference {
-                continue;
+                return;
             }
 
             writes!(w, "{indent2}{SG}.add_field(");
@@ -66,8 +67,16 @@ impl crate::type_db::RecBindingDef {
 
             writesln!(
                 w,
-                r#", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}));"#,
+                r#", sizeof({cpp_type}), {UOF}(physx_{name}_Pod, {fname}), {is_base:?});"#,
             );
+		};
+
+        for field in &self.base_fields {
+			emit_field(field, true);
+        }
+
+        for field in &self.fields {
+			emit_field(field, false);
         }
 
         writesln!(w, "{indent2}{SG}.end_struct(sizeof(physx::{name}));");

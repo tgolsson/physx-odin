@@ -37,9 +37,6 @@ const ALIGNED: &[&str] = &[
 
 const PACKED: &[(&str, u8)] = &[
     ("PxControllerDesc", 4),
-    ("PxOverlapHit", 0),
-    ("PxSweepHit", 0),
-    ("PxRaycastHit", 0),
 ];
 
 impl crate::type_db::RecBindingDef {
@@ -228,19 +225,34 @@ impl crate::type_db::RecBindingDef {
             writesln!(w, "{indent1}using physx");
 
             for field in &meta.fields {
-                if field.offset > 0 && field.name != "PAD" && !field.name.contains('[') {
-                    writesln!(
-						w,
-						"{indent1}testing.expectf(t, offset_of({}, {}) == {}, \"Wrong offset for {}.{}, expected {} got %v\", offset_of({}, {}))",
-						OdinIdent(&self.name),
-						field.name,
-						field.offset,
-						OdinIdent(&self.name),
-						field.name,
-						field.offset,
-						OdinIdent(&self.name),
-						field.name,
-					);
+                if field.name != "PAD" && !field.name.contains('[') {
+					if field.offset >= 0 {
+						writesln!(
+							w,
+							"{indent1}testing.expectf(t, offset_of({}, {}) == {}, \"Wrong offset for {}.{}, expected {} got %v\", offset_of({}, {}))",
+							OdinIdent(&self.name),
+							field.name,
+							field.offset,
+							OdinIdent(&self.name),
+							field.name,
+							field.offset,
+							OdinIdent(&self.name),
+							field.name,
+						);
+
+						writesln!(
+							w,
+							"{indent1}testing.expectf(t, size_of({}{{}}.{}) == {}, \"Wrong size for {}.{}, expected {} got %v\", size_of({}{{}}.{}))",
+							OdinIdent(&self.name),
+							field.name,
+							field.size,
+							OdinIdent(&self.name),
+							field.name,
+							field.size,
+							OdinIdent(&self.name),
+							field.name,
+						);
+					}
                 }
             }
             writesln!(
@@ -250,7 +262,7 @@ impl crate::type_db::RecBindingDef {
 				meta.size as isize - free_bytes as isize,
 				OdinIdent(&self.name),
 				meta.size as isize - free_bytes as isize,
-				 OdinIdent(&self.name),
+				OdinIdent(&self.name),
 			);
             writesln!(w, "}}");
         }

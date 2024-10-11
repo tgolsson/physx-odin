@@ -64,40 +64,47 @@ struct PodStructGen {
 		fieldsEmitted = 0;
     }
 
-    void emit_padding(uint32_t bytes, uint32_t offset) {
+    void emit_padding(uint32_t bytes, uint32_t offset, bool isBase = false) {
         fprintf(cppfile, "    char structgen_pad%u[%u];\n", padIdx, bytes);
 		indent();
-        fprintf(definitions_file, "{\"name\": \"PAD\", \"size\": %u, \"offset\": %u},\n", bytes, offset);
+        if (!isBase) fprintf(definitions_file, "{\"name\": \"PAD\", \"size\": %u, \"offset\": %u},\n", bytes, offset);
 		fieldsEmitted += 1;
         ++padIdx;
     }
 
-    void add_field(
-        const char* cppType,
-        const char* cppName,
-        size_t size,
-        size_t offset) {
+    void add_field(const char *cppType, const char *cppName, size_t size,
+                   size_t offset,  bool isBase
+		) {
         assert(offset >= pos);
         if (offset > pos) {
-            emit_padding(uint32_t(offset - pos), offset);
+
+            emit_padding(uint32_t(offset - pos), offset, isBase);
             pos = offset;
         }
         fprintf(cppfile, "    %s %s;\n", cppType, cppName);
-		indent();
-        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": %zu, \"size\": %zu},\n", cppName, cppType, offset, size);
-        pos += size;
-		fieldsEmitted += 1;
+		if (!isBase){
+			indent();
+			fprintf(definitions_file,
+					"{\"name\": \"%s\", \"type\": \"%s\", "
+					"\"offset\": %zu, \"size\": %zu},\n",
+					cppName, cppType, offset, size);
+
+			fieldsEmitted += 1;
+                }
+		previousWasBase = isBase;
+		pos += size;
+
     }
 
     void add_reference(
         const char* cppType,
         const char* cppName,
         size_t size) {
-		//        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
-		indent();
-        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
-        pos += size;
-		fieldsEmitted += 1;
+		// fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		// indent();
+		// fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
+        //  pos += size;
+		// fieldsEmitted += 1;
     }
 
 
@@ -106,11 +113,11 @@ struct PodStructGen {
         const char* cppType,
         const char* cppName,
         size_t size) {
-        fprintf(cppfile, "    %s %s;\n", cppType, cppName);
-		indent();
-        fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
-		pos += size;
-		fieldsEmitted += 1;
+        // fprintf(cppfile, "    %s %s;\n", cppType, cppName);
+		// indent();
+        //  fprintf(definitions_file, "{\"name\": \"%s\", \"type\": \"%s\", \"offset\": 0, \"size\": %zu},\n", cppName, cppType, size);
+		//  pos += size;
+		// fieldsEmitted += 1;
     }
 
     void end_struct(size_t size) {
@@ -145,5 +152,6 @@ struct PodStructGen {
     size_t pos;
     uint32_t padIdx;
 	size_t current_indent;
-	size_t fieldsEmitted;
+        size_t fieldsEmitted;
+	bool previousWasBase;
 };

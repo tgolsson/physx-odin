@@ -9907,465 +9907,465 @@
       "Int",
       "PxConvexMeshCookingType"
     ],
-    "PxThreadPriority::Enum": [
-      "UInt",
-      "PxThreadPriority"
-    ],
-    "PxTaskType::Enum": [
+    "PxGeometryQueryFlag::Enum": [
       "Int",
-      "PxTaskType"
-    ],
-    "PxPvdUpdateType::Enum": [
-      "Int",
-      "PxPvdUpdateType"
-    ],
-    "PxArticulationGpuDataType::Enum": [
-      "Int",
-      "PxArticulationGpuDataType"
-    ],
-    "PxSimulationStatistics::RbPairStatsType": [
-      "Int",
-      "RbPairStatsType"
-    ],
-    "PxFilterOp::Enum": [
-      "Int",
-      "PxFilterOp"
-    ],
-    "PxBroadPhaseType::Enum": [
-      "Int",
-      "PxBroadPhaseType"
-    ],
-    "PxQueryFlag::Enum": [
-      "Int",
-      "PxQueryFlag"
-    ],
-    "PxContactPatch::PxContactPatchFlags": [
-      "Int",
-      "PxContactPatchFlags"
-    ],
-    "PxFilterObjectFlag::Enum": [
-      "Int",
-      "PxFilterObjectFlag"
-    ],
-    "PxActorType::Enum": [
-      "Int",
-      "PxActorType"
-    ],
-    "PxMeshFlag::Enum": [
-      "Int",
-      "PxMeshFlag"
-    ],
-    "PxQueryHitType::Enum": [
-      "Int",
-      "PxQueryHitType"
-    ],
-    "PxMeshMeshQueryFlag::Enum": [
-      "Int",
-      "PxMeshMeshQueryFlag"
-    ],
-    "PxRevoluteJointFlag::Enum": [
-      "Int",
-      "PxRevoluteJointFlag"
-    ],
-    "PxPairFilteringMode::Enum": [
-      "Int",
-      "PxPairFilteringMode"
-    ],
-    "PxMaterialFlag::Enum": [
-      "Int",
-      "PxMaterialFlag"
-    ],
-    "PxConvexMeshGeometryFlag::Enum": [
-      "Int",
-      "PxConvexMeshGeometryFlag"
-    ],
-    "PxConvexMeshCookingResult::Enum": [
-      "Int",
-      "PxConvexMeshCookingResult"
-    ],
-    "PxTetrahedronMeshFlag::Enum": [
-      "Int",
-      "PxTetrahedronMeshFlag"
+      "PxGeometryQueryFlag"
     ],
     "PxPairFlag::Enum": [
       "Int",
       "PxPairFlag"
     ],
-    "PxArticulationKinematicFlag::Enum": [
-      "Int",
-      "PxArticulationKinematicFlag"
-    ],
-    "PxPvdSceneFlag::Enum": [
-      "Int",
-      "PxPvdSceneFlag"
-    ],
-    "PxD6Motion::Enum": [
-      "Int",
-      "PxD6Motion"
-    ],
-    "PxSdfBitsPerSubgridPixel::Enum": [
-      "Int",
-      "PxSdfBitsPerSubgridPixel"
-    ],
-    "PxTriggerPairFlag::Enum": [
-      "Int",
-      "PxTriggerPairFlag"
-    ],
-    "PxGeometryType::Enum": [
-      "Int",
-      "PxGeometryType"
-    ],
-    "PxContactPairFlag::Enum": [
-      "Int",
-      "PxContactPairFlag"
-    ],
-    "PxHeightFieldMaterial::Enum": [
-      "Int",
-      "PxHeightFieldMaterial"
-    ],
-    "PxSoftBodyFlag::Enum": [
-      "Int",
-      "PxSoftBodyFlag"
-    ],
-    "PxDistanceJointFlag::Enum": [
-      "Int",
-      "PxDistanceJointFlag"
-    ],
-    "PxControllerNonWalkableMode::Enum": [
-      "Int",
-      "PxControllerNonWalkableMode"
-    ],
-    "PxActorFlag::Enum": [
-      "Int",
-      "PxActorFlag"
-    ],
-    "PxHairSystemData::Enum": [
-      "Int",
-      "PxHairSystemData"
-    ],
-    "PxContactPairHeaderFlag::Enum": [
-      "Int",
-      "PxContactPairHeaderFlag"
-    ],
-    "PxErrorCode::Enum": [
-      "Int",
-      "PxErrorCode"
-    ],
-    "PxContactPairExtraDataType::Enum": [
-      "Int",
-      "PxContactPairExtraDataType"
-    ],
-    "PxBatchQueryStatus::Enum": [
-      "Int",
-      "PxBatchQueryStatus"
-    ],
-    "PxJointActorIndex::Enum": [
-      "Int",
-      "PxJointActorIndex"
-    ],
-    "PxSphericalJointFlag::Enum": [
-      "Int",
-      "PxSphericalJointFlag"
-    ],
-    "PxShapeFlag::Enum": [
-      "Int",
-      "PxShapeFlag"
-    ],
-    "PxParticleSolverType::Enum": [
-      "Int",
-      "PxParticleSolverType"
-    ],
-    "PxSolverConstraintPrepDescBase::BodyState": [
-      "Int",
-      "BodyState"
-    ],
-    "PxDebugColor::Enum": [
-      "UInt",
-      "PxDebugColor"
-    ],
-    "PxTriangleMeshCookingResult::Enum": [
-      "Int",
-      "PxTriangleMeshCookingResult"
-    ],
-    "PxActorCacheFlag::Enum": [
-      "Int",
-      "PxActorCacheFlag"
-    ],
     "PxBVHBuildStrategy::Enum": [
       "Int",
       "PxBVHBuildStrategy"
-    ],
-    "PxDataAccessFlag::Enum": [
-      "Int",
-      "PxDataAccessFlag"
-    ],
-    "PxTetrahedronMeshDesc::PxMeshFormat": [
-      "Int",
-      "PxMeshFormat"
-    ],
-    "PxSceneFlag::Enum": [
-      "Int",
-      "PxSceneFlag"
-    ],
-    "PxConvexFlag::Enum": [
-      "Int",
-      "PxConvexFlag"
-    ],
-    "PxBufferType::Enum": [
-      "Int",
-      "PxBufferType"
-    ],
-    "PxHeightFieldTessFlag::Enum": [
-      "Int",
-      "PxHeightFieldTessFlag"
-    ],
-    "PxMeshGeometryFlag::Enum": [
-      "Int",
-      "PxMeshGeometryFlag"
-    ],
-    "PxPrismaticJointFlag::Enum": [
-      "Int",
-      "PxPrismaticJointFlag"
-    ],
-    "PxArticulationAxis::Enum": [
-      "Int",
-      "PxArticulationAxis"
-    ],
-    "PxHeightFieldFormat::Enum": [
-      "Int",
-      "PxHeightFieldFormat"
-    ],
-    "PxBVH34BuildStrategy::Enum": [
-      "Int",
-      "PxBVH34BuildStrategy"
-    ],
-    "PxConstraintExtIDs::Enum": [
-      "Int",
-      "PxConstraintExtIDs"
-    ],
-    "PxHairSystemFlag::Enum": [
-      "Int",
-      "PxHairSystemFlag"
-    ],
-    "PxFrictionType::Enum": [
-      "Int",
-      "PxFrictionType"
-    ],
-    "PxIDENTITY": [
-      "Int",
-      "PxIDENTITY"
-    ],
-    "PxEMPTY": [
-      "Int",
-      "PxEMPTY"
-    ],
-    "PxTriangleMeshFlag::Enum": [
-      "Int",
-      "PxTriangleMeshFlag"
-    ],
-    "PxRigidBodyFlag::Enum": [
-      "Int",
-      "PxRigidBodyFlag"
-    ],
-    "PxContactStreamIterator::StreamFormat": [
-      "Int",
-      "StreamFormat"
-    ],
-    "PxArticulationMotion::Enum": [
-      "Int",
-      "PxArticulationMotion"
-    ],
-    "PxGeometryQueryFlag::Enum": [
-      "Int",
-      "PxGeometryQueryFlag"
-    ],
-    "PxFilterObjectType::Enum": [
-      "Int",
-      "PxFilterObjectType"
-    ],
-    "PxConstraintFlag::Enum": [
-      "Int",
-      "PxConstraintFlag"
-    ],
-    "PxD6Axis::Enum": [
-      "Int",
-      "PxD6Axis"
-    ],
-    "PxDeletionEventFlag::Enum": [
-      "Int",
-      "PxDeletionEventFlag"
-    ],
-    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
-      "Int",
-      "PxDefaultCpuDispatcherWaitForWorkMode"
-    ],
-    "PxD6Drive::Enum": [
-      "Int",
-      "PxD6Drive"
-    ],
-    "PxRigidDynamicLockFlag::Enum": [
-      "Int",
-      "PxRigidDynamicLockFlag"
-    ],
-    "PxJointConcreteType::Enum": [
-      "Int",
-      "PxJointConcreteType"
-    ],
-    "PxHitFlag::Enum": [
-      "Int",
-      "PxHitFlag"
-    ],
-    "PxSceneQueryUpdateMode::Enum": [
-      "Int",
-      "PxSceneQueryUpdateMode"
-    ],
-    "Px1DConstraintFlag::Type": [
-      "Int",
-      "Px1DConstraintFlag"
-    ],
-    "PxControllerDebugRenderFlag::Enum": [
-      "UInt",
-      "PxControllerDebugRenderFlag"
-    ],
-    "PxParticleBufferFlag::Enum": [
-      "Int",
-      "PxParticleBufferFlag"
-    ],
-    "PxHeightFieldFlag::Enum": [
-      "Int",
-      "PxHeightFieldFlag"
-    ],
-    "PxForceMode::Enum": [
-      "Int",
-      "PxForceMode"
-    ],
-    "PxArticulationSensorFlag::Enum": [
-      "Int",
-      "PxArticulationSensorFlag"
-    ],
-    "PxMeshPreprocessingFlag::Enum": [
-      "Int",
-      "PxMeshPreprocessingFlag"
-    ],
-    "PxCapsuleClimbingMode::Enum": [
-      "Int",
-      "PxCapsuleClimbingMode"
-    ],
-    "PxVisualizationParameter::Enum": [
-      "Int",
-      "PxVisualizationParameter"
-    ],
-    "PxParticlePhaseFlag::Enum": [
-      "UInt",
-      "PxParticlePhaseFlag"
-    ],
-    "PxSoftBodyDataFlag::Enum": [
-      "Int",
-      "PxSoftBodyDataFlag"
-    ],
-    "PxConstraintSolveHint::Enum": [
-      "Int",
-      "PxConstraintSolveHint"
-    ],
-    "PxMetaDataFlag::Enum": [
-      "Int",
-      "PxMetaDataFlag"
-    ],
-    "PxSolverConstraintDesc::ConstraintType": [
-      "Int",
-      "ConstraintType"
-    ],
-    "PxArticulationCacheFlag::Enum": [
-      "Int",
-      "PxArticulationCacheFlag"
-    ],
-    "PxArticulationFlag::Enum": [
-      "Int",
-      "PxArticulationFlag"
-    ],
-    "PxScenePrunerIndex": [
-      "UInt",
-      "PxScenePrunerIndex"
-    ],
-    "PxPvdInstrumentationFlag::Enum": [
-      "Int",
-      "PxPvdInstrumentationFlag"
-    ],
-    "PxConstraintVisualizationFlag::Enum": [
-      "Int",
-      "PxConstraintVisualizationFlag"
-    ],
-    "PxSolverType::Enum": [
-      "Int",
-      "PxSolverType"
-    ],
-    "PxActorTypeFlag::Enum": [
-      "Int",
-      "PxActorTypeFlag"
-    ],
-    "PxControllerCollisionFlag::Enum": [
-      "Int",
-      "PxControllerCollisionFlag"
-    ],
-    "PxDynamicTreeSecondaryPruner::Enum": [
-      "Int",
-      "PxDynamicTreeSecondaryPruner"
-    ],
-    "PxPruningStructureType::Enum": [
-      "Int",
-      "PxPruningStructureType"
     ],
     "PxArticulationJointType::Enum": [
       "Int",
       "PxArticulationJointType"
     ],
-    "PxConcreteType::Enum": [
+    "PxPairFilteringMode::Enum": [
       "Int",
-      "PxConcreteType"
+      "PxPairFilteringMode"
     ],
-    "PxControllerBehaviorFlag::Enum": [
+    "PxHeightFieldTessFlag::Enum": [
       "Int",
-      "PxControllerBehaviorFlag"
+      "PxHeightFieldTessFlag"
     ],
-    "PxBaseFlag::Enum": [
+    "PxTriangleMeshCookingResult::Enum": [
       "Int",
-      "PxBaseFlag"
+      "PxTriangleMeshCookingResult"
     ],
-    "PxControllerShapeType::Enum": [
+    "PxErrorCode::Enum": [
       "Int",
-      "PxControllerShapeType"
+      "PxErrorCode"
     ],
-    "PxFilterFlag::Enum": [
+    "PxSimulationStatistics::RbPairStatsType": [
       "Int",
-      "PxFilterFlag"
+      "RbPairStatsType"
     ],
-    "PxAggregateType::Enum": [
+    "PxConvexMeshCookingResult::Enum": [
       "Int",
-      "PxAggregateType"
+      "PxConvexMeshCookingResult"
     ],
-    "PxSoftBodyData::Enum": [
+    "PxBatchQueryStatus::Enum": [
       "Int",
-      "PxSoftBodyData"
+      "PxBatchQueryStatus"
     ],
-    "PxMeshMidPhase::Enum": [
+    "PxMeshGeometryFlag::Enum": [
       "Int",
-      "PxMeshMidPhase"
+      "PxMeshGeometryFlag"
     ],
-    "PxZERO": [
+    "PxHeightFieldMaterial::Enum": [
       "Int",
-      "PxZERO"
+      "PxHeightFieldMaterial"
     ],
-    "PxCombineMode::Enum": [
+    "PxHairSystemData::Enum": [
       "Int",
-      "PxCombineMode"
+      "PxHairSystemData"
     ],
     "PxD6JointDriveFlag::Enum": [
       "Int",
       "PxD6JointDriveFlag"
     ],
+    "PxMaterialFlag::Enum": [
+      "Int",
+      "PxMaterialFlag"
+    ],
+    "PxHitFlag::Enum": [
+      "Int",
+      "PxHitFlag"
+    ],
+    "PxRigidBodyFlag::Enum": [
+      "Int",
+      "PxRigidBodyFlag"
+    ],
+    "PxConcreteType::Enum": [
+      "Int",
+      "PxConcreteType"
+    ],
+    "PxSceneFlag::Enum": [
+      "Int",
+      "PxSceneFlag"
+    ],
+    "PxTriggerPairFlag::Enum": [
+      "Int",
+      "PxTriggerPairFlag"
+    ],
+    "PxForceMode::Enum": [
+      "Int",
+      "PxForceMode"
+    ],
+    "PxActorTypeFlag::Enum": [
+      "Int",
+      "PxActorTypeFlag"
+    ],
+    "PxConvexMeshGeometryFlag::Enum": [
+      "Int",
+      "PxConvexMeshGeometryFlag"
+    ],
+    "PxPruningStructureType::Enum": [
+      "Int",
+      "PxPruningStructureType"
+    ],
+    "PxBroadPhaseType::Enum": [
+      "Int",
+      "PxBroadPhaseType"
+    ],
+    "PxTaskType::Enum": [
+      "Int",
+      "PxTaskType"
+    ],
+    "PxBaseFlag::Enum": [
+      "Int",
+      "PxBaseFlag"
+    ],
+    "PxQueryFlag::Enum": [
+      "Int",
+      "PxQueryFlag"
+    ],
+    "PxArticulationFlag::Enum": [
+      "Int",
+      "PxArticulationFlag"
+    ],
+    "PxDataAccessFlag::Enum": [
+      "Int",
+      "PxDataAccessFlag"
+    ],
+    "PxGeometryType::Enum": [
+      "Int",
+      "PxGeometryType"
+    ],
+    "PxHeightFieldFlag::Enum": [
+      "Int",
+      "PxHeightFieldFlag"
+    ],
+    "PxMeshMeshQueryFlag::Enum": [
+      "Int",
+      "PxMeshMeshQueryFlag"
+    ],
+    "PxControllerDebugRenderFlag::Enum": [
+      "UInt",
+      "PxControllerDebugRenderFlag"
+    ],
+    "PxFilterFlag::Enum": [
+      "Int",
+      "PxFilterFlag"
+    ],
+    "PxTetrahedronMeshDesc::PxMeshFormat": [
+      "Int",
+      "PxMeshFormat"
+    ],
+    "PxCombineMode::Enum": [
+      "Int",
+      "PxCombineMode"
+    ],
+    "PxActorFlag::Enum": [
+      "Int",
+      "PxActorFlag"
+    ],
+    "PxMeshMidPhase::Enum": [
+      "Int",
+      "PxMeshMidPhase"
+    ],
+    "PxSolverType::Enum": [
+      "Int",
+      "PxSolverType"
+    ],
+    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
+      "Int",
+      "PxDefaultCpuDispatcherWaitForWorkMode"
+    ],
+    "PxContactPairHeaderFlag::Enum": [
+      "Int",
+      "PxContactPairHeaderFlag"
+    ],
+    "PxContactPatch::PxContactPatchFlags": [
+      "Int",
+      "PxContactPatchFlags"
+    ],
+    "PxHeightFieldFormat::Enum": [
+      "Int",
+      "PxHeightFieldFormat"
+    ],
+    "PxControllerShapeType::Enum": [
+      "Int",
+      "PxControllerShapeType"
+    ],
+    "PxSphericalJointFlag::Enum": [
+      "Int",
+      "PxSphericalJointFlag"
+    ],
+    "PxCapsuleClimbingMode::Enum": [
+      "Int",
+      "PxCapsuleClimbingMode"
+    ],
+    "PxConvexFlag::Enum": [
+      "Int",
+      "PxConvexFlag"
+    ],
+    "PxParticleSolverType::Enum": [
+      "Int",
+      "PxParticleSolverType"
+    ],
+    "PxAggregateType::Enum": [
+      "Int",
+      "PxAggregateType"
+    ],
+    "PxTriangleMeshFlag::Enum": [
+      "Int",
+      "PxTriangleMeshFlag"
+    ],
+    "PxPvdUpdateType::Enum": [
+      "Int",
+      "PxPvdUpdateType"
+    ],
+    "PxArticulationMotion::Enum": [
+      "Int",
+      "PxArticulationMotion"
+    ],
+    "PxD6Drive::Enum": [
+      "Int",
+      "PxD6Drive"
+    ],
+    "PxActorType::Enum": [
+      "Int",
+      "PxActorType"
+    ],
+    "PxArticulationCacheFlag::Enum": [
+      "Int",
+      "PxArticulationCacheFlag"
+    ],
+    "PxD6Axis::Enum": [
+      "Int",
+      "PxD6Axis"
+    ],
+    "PxFilterOp::Enum": [
+      "Int",
+      "PxFilterOp"
+    ],
+    "PxSdfBitsPerSubgridPixel::Enum": [
+      "Int",
+      "PxSdfBitsPerSubgridPixel"
+    ],
+    "PxFilterObjectFlag::Enum": [
+      "Int",
+      "PxFilterObjectFlag"
+    ],
+    "Px1DConstraintFlag::Type": [
+      "Int",
+      "Px1DConstraintFlag"
+    ],
+    "PxControllerNonWalkableMode::Enum": [
+      "Int",
+      "PxControllerNonWalkableMode"
+    ],
+    "PxDistanceJointFlag::Enum": [
+      "Int",
+      "PxDistanceJointFlag"
+    ],
+    "PxFrictionType::Enum": [
+      "Int",
+      "PxFrictionType"
+    ],
+    "PxConstraintFlag::Enum": [
+      "Int",
+      "PxConstraintFlag"
+    ],
+    "PxSceneQueryUpdateMode::Enum": [
+      "Int",
+      "PxSceneQueryUpdateMode"
+    ],
+    "PxVisualizationParameter::Enum": [
+      "Int",
+      "PxVisualizationParameter"
+    ],
+    "PxEMPTY": [
+      "Int",
+      "PxEMPTY"
+    ],
+    "PxContactPairFlag::Enum": [
+      "Int",
+      "PxContactPairFlag"
+    ],
+    "PxSoftBodyData::Enum": [
+      "Int",
+      "PxSoftBodyData"
+    ],
+    "PxDeletionEventFlag::Enum": [
+      "Int",
+      "PxDeletionEventFlag"
+    ],
+    "PxJointActorIndex::Enum": [
+      "Int",
+      "PxJointActorIndex"
+    ],
+    "PxQueryHitType::Enum": [
+      "Int",
+      "PxQueryHitType"
+    ],
+    "PxSoftBodyFlag::Enum": [
+      "Int",
+      "PxSoftBodyFlag"
+    ],
+    "PxMetaDataFlag::Enum": [
+      "Int",
+      "PxMetaDataFlag"
+    ],
+    "PxParticlePhaseFlag::Enum": [
+      "UInt",
+      "PxParticlePhaseFlag"
+    ],
+    "PxContactStreamIterator::StreamFormat": [
+      "Int",
+      "StreamFormat"
+    ],
+    "PxConstraintExtIDs::Enum": [
+      "Int",
+      "PxConstraintExtIDs"
+    ],
+    "PxArticulationKinematicFlag::Enum": [
+      "Int",
+      "PxArticulationKinematicFlag"
+    ],
+    "PxRevoluteJointFlag::Enum": [
+      "Int",
+      "PxRevoluteJointFlag"
+    ],
+    "PxD6Motion::Enum": [
+      "Int",
+      "PxD6Motion"
+    ],
+    "PxThreadPriority::Enum": [
+      "UInt",
+      "PxThreadPriority"
+    ],
+    "PxRigidDynamicLockFlag::Enum": [
+      "Int",
+      "PxRigidDynamicLockFlag"
+    ],
+    "PxContactPairExtraDataType::Enum": [
+      "Int",
+      "PxContactPairExtraDataType"
+    ],
+    "PxPrismaticJointFlag::Enum": [
+      "Int",
+      "PxPrismaticJointFlag"
+    ],
+    "PxMeshFlag::Enum": [
+      "Int",
+      "PxMeshFlag"
+    ],
+    "PxSoftBodyDataFlag::Enum": [
+      "Int",
+      "PxSoftBodyDataFlag"
+    ],
+    "PxActorCacheFlag::Enum": [
+      "Int",
+      "PxActorCacheFlag"
+    ],
+    "PxFilterObjectType::Enum": [
+      "Int",
+      "PxFilterObjectType"
+    ],
+    "PxArticulationSensorFlag::Enum": [
+      "Int",
+      "PxArticulationSensorFlag"
+    ],
+    "PxIDENTITY": [
+      "Int",
+      "PxIDENTITY"
+    ],
+    "PxTetrahedronMeshFlag::Enum": [
+      "Int",
+      "PxTetrahedronMeshFlag"
+    ],
+    "PxArticulationAxis::Enum": [
+      "Int",
+      "PxArticulationAxis"
+    ],
+    "PxShapeFlag::Enum": [
+      "Int",
+      "PxShapeFlag"
+    ],
+    "PxPvdInstrumentationFlag::Enum": [
+      "Int",
+      "PxPvdInstrumentationFlag"
+    ],
+    "PxConstraintSolveHint::Enum": [
+      "Int",
+      "PxConstraintSolveHint"
+    ],
+    "PxConstraintVisualizationFlag::Enum": [
+      "Int",
+      "PxConstraintVisualizationFlag"
+    ],
+    "PxSolverConstraintDesc::ConstraintType": [
+      "Int",
+      "ConstraintType"
+    ],
+    "PxJointConcreteType::Enum": [
+      "Int",
+      "PxJointConcreteType"
+    ],
+    "PxControllerCollisionFlag::Enum": [
+      "Int",
+      "PxControllerCollisionFlag"
+    ],
+    "PxSolverConstraintPrepDescBase::BodyState": [
+      "Int",
+      "BodyState"
+    ],
+    "PxBufferType::Enum": [
+      "Int",
+      "PxBufferType"
+    ],
+    "PxDynamicTreeSecondaryPruner::Enum": [
+      "Int",
+      "PxDynamicTreeSecondaryPruner"
+    ],
+    "PxDebugColor::Enum": [
+      "UInt",
+      "PxDebugColor"
+    ],
+    "PxParticleBufferFlag::Enum": [
+      "Int",
+      "PxParticleBufferFlag"
+    ],
+    "PxControllerBehaviorFlag::Enum": [
+      "Int",
+      "PxControllerBehaviorFlag"
+    ],
     "PxArticulationDriveType::Enum": [
       "Int",
       "PxArticulationDriveType"
+    ],
+    "PxBVH34BuildStrategy::Enum": [
+      "Int",
+      "PxBVH34BuildStrategy"
+    ],
+    "PxArticulationGpuDataType::Enum": [
+      "Int",
+      "PxArticulationGpuDataType"
+    ],
+    "PxZERO": [
+      "Int",
+      "PxZERO"
+    ],
+    "PxPvdSceneFlag::Enum": [
+      "Int",
+      "PxPvdSceneFlag"
+    ],
+    "PxHairSystemFlag::Enum": [
+      "Int",
+      "PxHairSystemFlag"
+    ],
+    "PxMeshPreprocessingFlag::Enum": [
+      "Int",
+      "PxMeshPreprocessingFlag"
+    ],
+    "PxScenePrunerIndex": [
+      "UInt",
+      "PxScenePrunerIndex"
     ]
   },
   "flags": [
@@ -10626,116 +10626,94 @@
     }
   ],
   "flags_map": {
-    "PxParticleBufferFlags": "UInt",
-    "PxArticulationKinematicFlags": "UChar",
-    "PxSoftBodyDataFlags": "UInt",
-    "PxHeightFieldFlags": "UShort",
-    "PxMeshMeshQueryFlags": "UInt",
-    "PxControllerDebugRenderFlags": "UInt",
-    "PxActorTypeFlags": "UShort",
-    "PxShapeFlags": "UChar",
-    "PxRigidBodyFlags": "UShort",
-    "PxHairSystemFlags": "UInt",
-    "PxTriangleMeshFlags": "UChar",
-    "PxContactPairFlags": "UShort",
-    "Px1DConstraintFlags": "UShort",
-    "PxHairSystemDataFlags": "UInt",
-    "PxControllerCollisionFlags": "UChar",
-    "PxDataAccessFlags": "UChar",
+    "PxRigidDynamicLockFlags": "UChar",
     "PxConvexFlags": "UShort",
-    "PxControllerBehaviorFlags": "UChar",
+    "PxContactPairFlags": "UShort",
+    "PxActorCacheFlags": "UShort",
+    "PxHairSystemDataFlags": "UInt",
     "PxQueryFlags": "UShort",
-    "PxContactPairHeaderFlags": "UShort",
-    "PxMeshFlags": "UShort",
-    "PxPvdInstrumentationFlags": "UChar",
+    "PxControllerDebugRenderFlags": "UInt",
+    "PxFilterFlags": "UShort",
+    "PxMeshPreprocessingFlags": "UInt",
+    "PxArticulationMotions": "UChar",
+    "PxRigidBodyFlags": "UShort",
+    "PxBaseFlags": "UShort",
+    "PxArticulationKinematicFlags": "UChar",
+    "PxMaterialFlags": "UShort",
+    "PxHairSystemFlags": "UInt",
+    "PxHeightFieldFlags": "UShort",
+    "PxSceneFlags": "UInt",
+    "PxPrismaticJointFlags": "UShort",
+    "PxSoftBodyDataFlags": "UInt",
+    "PxParticlePhaseFlags": "UInt",
+    "PxArticulationSensorFlags": "UChar",
+    "PxMeshMeshQueryFlags": "UInt",
+    "PxTetrahedronMeshFlags": "UChar",
+    "PxRevoluteJointFlags": "UShort",
     "PxConstraintFlags": "UShort",
+    "PxControllerCollisionFlags": "UChar",
+    "PxArticulationCacheFlags": "UInt",
+    "PxPvdSceneFlags": "UChar",
+    "PxActorFlags": "UChar",
+    "PxGeometryQueryFlags": "UInt",
+    "PxControllerBehaviorFlags": "UChar",
+    "PxMeshGeometryFlags": "UChar",
+    "PxConvexMeshGeometryFlags": "UChar",
+    "PxArticulationFlags": "UChar",
+    "PxDistanceJointFlags": "UShort",
+    "PxContactPairHeaderFlags": "UShort",
+    "PxDataAccessFlags": "UChar",
+    "PxDeletionEventFlags": "UChar",
+    "PxMeshFlags": "UShort",
+    "PxSoftBodyFlags": "UInt",
+    "PxActorTypeFlags": "UShort",
+    "PxD6JointDriveFlags": "UInt",
+    "PxParticleBufferFlags": "UInt",
     "PxPairFlags": "UShort",
     "PxSphericalJointFlags": "UShort",
-    "PxArticulationSensorFlags": "UChar",
-    "PxPrismaticJointFlags": "UShort",
-    "PxArticulationMotions": "UChar",
-    "PxMeshGeometryFlags": "UChar",
-    "PxFilterFlags": "UShort",
-    "PxTetrahedronMeshFlags": "UChar",
-    "PxActorCacheFlags": "UShort",
-    "PxSoftBodyFlags": "UInt",
-    "PxRigidDynamicLockFlags": "UChar",
+    "PxPvdInstrumentationFlags": "UChar",
+    "PxTriangleMeshFlags": "UChar",
     "PxHitFlags": "UShort",
-    "PxParticlePhaseFlags": "UInt",
-    "PxD6JointDriveFlags": "UInt",
-    "PxConvexMeshGeometryFlags": "UChar",
-    "PxDistanceJointFlags": "UShort",
-    "PxArticulationCacheFlags": "UInt",
-    "PxGeometryQueryFlags": "UInt",
-    "PxPvdSceneFlags": "UChar",
     "PxTriggerPairFlags": "UChar",
-    "PxArticulationFlags": "UChar",
-    "PxDeletionEventFlags": "UChar",
-    "PxMeshPreprocessingFlags": "UInt",
-    "PxActorFlags": "UChar",
-    "PxMaterialFlags": "UShort",
-    "PxSceneFlags": "UInt",
-    "PxRevoluteJointFlags": "UShort",
-    "PxBaseFlags": "UShort"
+    "PxShapeFlags": "UChar",
+    "Px1DConstraintFlags": "UShort"
   },
   "type_defs": {
-    "PxAgain": {
-      "Builtin": "Bool"
-    },
-    "PxExtended": {
-      "Builtin": "Double"
-    },
-    "PxObstacleHandle": {
-      "Builtin": "UInt"
-    },
-    "PxSceneQueryFlags": {
-      "Flags": {
-        "name": "PxHitFlags",
-        "repr": "UShort"
+    "PxSceneQueryHit": {
+      "Record": {
+        "name": "PxQueryHit"
       }
     },
-    "PxBpIndex": {
-      "Builtin": "UInt"
+    "PxI32": {
+      "Builtin": "Int"
+    },
+    "PxPhysicsInsertionCallback": {
+      "Record": {
+        "name": "PxInsertionCallback"
+      }
     },
     "PxSQCompoundHandle": {
       "Builtin": "UInt"
     },
-    "PxU64": {
-      "Builtin": "ULong"
+    "PxTriangleID": {
+      "Builtin": "UInt"
     },
-    "PxF32": {
-      "Builtin": "Float"
-    },
-    "PxClientID": {
-      "Builtin": "UChar"
-    },
-    "PxOverlapThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
+    "PxType": {
+      "Builtin": "UShort"
     },
     "PxDominanceGroup": {
       "Builtin": "UChar"
     },
-    "PxTaskID": {
-      "Builtin": "UInt"
-    },
-    "PxU32": {
-      "Builtin": "UInt"
-    },
-    "PxI16": {
-      "Builtin": "Short"
-    },
-    "PxSceneQueryFilterCallback": {
-      "Record": {
-        "name": "PxQueryFilterCallback"
-      }
-    },
-    "PxSerialObjectId": {
+    "PxU64": {
       "Builtin": "ULong"
     },
-    "PxI64": {
-      "Builtin": "Long"
+    "PxF64": {
+      "Builtin": "Double"
+    },
+    "PxSceneQueryFlag": {
+      "Record": {
+        "name": "PxHitFlag"
+      }
     },
     "PxSQBuildStepHandle": {
       "Pointer": {
@@ -10746,83 +10724,67 @@
         }
       }
     },
-    "PxI32": {
-      "Builtin": "Int"
-    },
-    "PxI8": {
-      "Builtin": "Char"
-    },
-    "PxTransform32": {
-      "Record": {
-        "name": "PxTransformPadded"
-      }
-    },
-    "PxVec3p": {
-      "Record": {
-        "name": "PxVec3Padded"
-      }
-    },
-    "PxSimulationFilterShader": "FunctionPointer",
-    "PxCompileTimeAssert_Dummy": {
-      "Array": {
-        "element": {
-          "Builtin": "Char"
-        },
-        "len": 1
-      }
-    },
-    "PxTriangleID": {
+    "PxFilterObjectAttributes": {
       "Builtin": "UInt"
     },
-    "PxPhysicsInsertionCallback": {
+    "PxTaskID": {
+      "Builtin": "UInt"
+    },
+    "PxConstraintSolverPrep": "FunctionPointer",
+    "PxRaycastThreadContext": {
       "Record": {
-        "name": "PxInsertionCallback"
+        "name": "PxQueryThreadContext"
       }
+    },
+    "PxSceneQueryFilterCallback": {
+      "Record": {
+        "name": "PxQueryFilterCallback"
+      }
+    },
+    "PxExtended": {
+      "Builtin": "Double"
+    },
+    "PxSceneQueryFlags": {
+      "Flags": {
+        "name": "PxHitFlags",
+        "repr": "UShort"
+      }
+    },
+    "PxBpFilterGroup": {
+      "Builtin": "UInt"
+    },
+    "PxSceneQueryFilterData": {
+      "Record": {
+        "name": "PxQueryFilterData"
+      }
+    },
+    "PxOverlapThreadContext": {
+      "Record": {
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxSweepThreadContext": {
+      "Record": {
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxClientID": {
+      "Builtin": "UChar"
+    },
+    "PxConstraintVisualize": "FunctionPointer",
+    "PxAgain": {
+      "Builtin": "Bool"
     },
     "PxSceneQueryCache": {
       "Record": {
         "name": "PxQueryCache"
       }
     },
-    "PxFilterObjectAttributes": {
+    "PxU32": {
       "Builtin": "UInt"
     },
-    "PxIntBool": {
-      "Builtin": "Int"
-    },
-    "PxFEMMaterialTableIndex": {
+    "PxMaterialTableIndex": {
       "Builtin": "UShort"
-    },
-    "PxConstraintSolverPrep": "FunctionPointer",
-    "PxU16": {
-      "Builtin": "UShort"
-    },
-    "PxSceneQueryHit": {
-      "Record": {
-        "name": "PxQueryHit"
-      }
-    },
-    "PxRaycastThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
-    },
-    "PxU8": {
-      "Builtin": "UChar"
-    },
-    "PxReal": {
-      "Builtin": "Float"
-    },
-    "PxAggregateFilterHint": {
-      "Builtin": "UInt"
-    },
-    "PxSceneQueryFlag": {
-      "Record": {
-        "name": "PxHitFlag"
-      }
-    },
-    "PxBpFilterGroup": {
-      "Builtin": "UInt"
     },
     "PxFileHandle": {
       "Pointer": {
@@ -10833,29 +10795,67 @@
         }
       }
     },
-    "PxMaterialTableIndex": {
+    "PxFEMMaterialTableIndex": {
       "Builtin": "UShort"
+    },
+    "PxSimulationFilterShader": "FunctionPointer",
+    "PxBpIndex": {
+      "Builtin": "UInt"
+    },
+    "PxTransform32": {
+      "Record": {
+        "name": "PxTransformPadded"
+      }
     },
     "PxSQPrunerHandle": {
       "Builtin": "UInt"
     },
-    "PxF64": {
-      "Builtin": "Double"
+    "PxReal": {
+      "Builtin": "Float"
     },
-    "PxSweepThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
+    "PxObstacleHandle": {
+      "Builtin": "UInt"
     },
-    "PxType": {
+    "PxIntBool": {
+      "Builtin": "Int"
+    },
+    "PxU16": {
       "Builtin": "UShort"
     },
-    "PxSceneQueryFilterData": {
+    "PxSerialObjectId": {
+      "Builtin": "ULong"
+    },
+    "PxI16": {
+      "Builtin": "Short"
+    },
+    "PxVec3p": {
       "Record": {
-        "name": "PxQueryFilterData"
+        "name": "PxVec3Padded"
       }
     },
-    "PxConstraintVisualize": "FunctionPointer"
+    "PxAggregateFilterHint": {
+      "Builtin": "UInt"
+    },
+    "PxI64": {
+      "Builtin": "Long"
+    },
+    "PxI8": {
+      "Builtin": "Char"
+    },
+    "PxU8": {
+      "Builtin": "UChar"
+    },
+    "PxCompileTimeAssert_Dummy": {
+      "Array": {
+        "element": {
+          "Builtin": "Char"
+        },
+        "len": 1
+      }
+    },
+    "PxF32": {
+      "Builtin": "Float"
+    }
   },
   "recs": [
     {
@@ -15453,6 +15453,14 @@
         ],
         "base_fields": [
           {
+            "name": "faceIndex",
+            "kind": {
+              "Builtin": "UInt"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
             "name": "flags",
             "kind": {
               "Flags": {
@@ -15483,14 +15491,6 @@
             "name": "distance",
             "kind": {
               "Builtin": "Float"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
-            "name": "faceIndex",
-            "kind": {
-              "Builtin": "UInt"
             },
             "is_public": true,
             "is_reference": false
@@ -15661,6 +15661,14 @@
         ],
         "base_fields": [
           {
+            "name": "faceIndex",
+            "kind": {
+              "Builtin": "UInt"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
             "name": "flags",
             "kind": {
               "Flags": {
@@ -15691,14 +15699,6 @@
             "name": "distance",
             "kind": {
               "Builtin": "Float"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
-            "name": "faceIndex",
-            "kind": {
-              "Builtin": "UInt"
             },
             "is_public": true,
             "is_reference": false
@@ -21029,20 +21029,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -21067,6 +21053,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -21197,20 +21197,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -21235,6 +21221,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -22281,20 +22281,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -22319,6 +22305,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -22482,20 +22482,6 @@
             ],
             "base_fields": [
               {
-                "name": "userData",
-                "kind": {
-                  "Pointer": {
-                    "is_const": false,
-                    "is_pointee_const": false,
-                    "pointee": {
-                      "Builtin": "Void"
-                    }
-                  }
-                },
-                "is_public": true,
-                "is_reference": false
-              },
-              {
                 "name": "mConcreteType",
                 "kind": {
                   "Builtin": "UShort"
@@ -22521,6 +22507,20 @@
                 },
                 "is_public": false,
                 "is_reference": false
+              },
+              {
+                "name": "userData",
+                "kind": {
+                  "Pointer": {
+                    "is_const": false,
+                    "is_pointee_const": false,
+                    "pointee": {
+                      "Builtin": "Void"
+                    }
+                  }
+                },
+                "is_public": true,
+                "is_reference": false
               }
             ],
             "calc_layout": true,
@@ -22536,20 +22536,6 @@
           }
         ],
         "base_fields": [
-          {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
           {
             "name": "mConcreteType",
             "kind": {
@@ -22575,6 +22561,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -22715,20 +22715,6 @@
                 ],
                 "base_fields": [
                   {
-                    "name": "userData",
-                    "kind": {
-                      "Pointer": {
-                        "is_const": false,
-                        "is_pointee_const": false,
-                        "pointee": {
-                          "Builtin": "Void"
-                        }
-                      }
-                    },
-                    "is_public": true,
-                    "is_reference": false
-                  },
-                  {
                     "name": "mConcreteType",
                     "kind": {
                       "Builtin": "UShort"
@@ -22754,6 +22740,20 @@
                     },
                     "is_public": false,
                     "is_reference": false
+                  },
+                  {
+                    "name": "userData",
+                    "kind": {
+                      "Pointer": {
+                        "is_const": false,
+                        "is_pointee_const": false,
+                        "pointee": {
+                          "Builtin": "Void"
+                        }
+                      }
+                    },
+                    "is_public": true,
+                    "is_reference": false
                   }
                 ],
                 "calc_layout": true,
@@ -22769,20 +22769,6 @@
               }
             ],
             "base_fields": [
-              {
-                "name": "userData",
-                "kind": {
-                  "Pointer": {
-                    "is_const": false,
-                    "is_pointee_const": false,
-                    "pointee": {
-                      "Builtin": "Void"
-                    }
-                  }
-                },
-                "is_public": true,
-                "is_reference": false
-              },
               {
                 "name": "mConcreteType",
                 "kind": {
@@ -22809,6 +22795,20 @@
                 },
                 "is_public": false,
                 "is_reference": false
+              },
+              {
+                "name": "userData",
+                "kind": {
+                  "Pointer": {
+                    "is_const": false,
+                    "is_pointee_const": false,
+                    "pointee": {
+                      "Builtin": "Void"
+                    }
+                  }
+                },
+                "is_public": true,
+                "is_reference": false
               }
             ],
             "calc_layout": true,
@@ -22824,20 +22824,6 @@
           }
         ],
         "base_fields": [
-          {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
           {
             "name": "mConcreteType",
             "kind": {
@@ -22863,6 +22849,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -23577,22 +23577,6 @@
         ],
         "base_fields": [
           {
-            "name": "targetVelocity",
-            "kind": {
-              "Builtin": "Vec3"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
-            "name": "maxImpulse",
-            "kind": {
-              "Builtin": "Float"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "contact",
             "kind": {
               "Builtin": "Vec3"
@@ -23602,6 +23586,22 @@
           },
           {
             "name": "separation",
+            "kind": {
+              "Builtin": "Float"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
+            "name": "targetVelocity",
+            "kind": {
+              "Builtin": "Vec3"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
+            "name": "maxImpulse",
             "kind": {
               "Builtin": "Float"
             },
@@ -24428,20 +24428,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -24466,6 +24452,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -24768,20 +24768,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -24806,6 +24792,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -25242,20 +25242,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -25280,6 +25266,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -25501,6 +25501,14 @@
             ],
             "base_fields": [
               {
+                "name": "faceIndex",
+                "kind": {
+                  "Builtin": "UInt"
+                },
+                "is_public": true,
+                "is_reference": false
+              },
+              {
                 "name": "flags",
                 "kind": {
                   "Flags": {
@@ -25531,14 +25539,6 @@
                 "name": "distance",
                 "kind": {
                   "Builtin": "Float"
-                },
-                "is_public": true,
-                "is_reference": false
-              },
-              {
-                "name": "faceIndex",
-                "kind": {
-                  "Builtin": "UInt"
                 },
                 "is_public": true,
                 "is_reference": false
@@ -25608,17 +25608,9 @@
         ],
         "base_fields": [
           {
-            "name": "u",
+            "name": "faceIndex",
             "kind": {
-              "Builtin": "Float"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
-            "name": "v",
-            "kind": {
-              "Builtin": "Float"
+              "Builtin": "UInt"
             },
             "is_public": true,
             "is_reference": false
@@ -25659,9 +25651,17 @@
             "is_reference": false
           },
           {
-            "name": "faceIndex",
+            "name": "u",
             "kind": {
-              "Builtin": "UInt"
+              "Builtin": "Float"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
+            "name": "v",
+            "kind": {
+              "Builtin": "Float"
             },
             "is_public": true,
             "is_reference": false
@@ -25978,6 +25978,14 @@
             ],
             "base_fields": [
               {
+                "name": "faceIndex",
+                "kind": {
+                  "Builtin": "UInt"
+                },
+                "is_public": true,
+                "is_reference": false
+              },
+              {
                 "name": "flags",
                 "kind": {
                   "Flags": {
@@ -26008,14 +26016,6 @@
                 "name": "distance",
                 "kind": {
                   "Builtin": "Float"
-                },
-                "is_public": true,
-                "is_reference": false
-              },
-              {
-                "name": "faceIndex",
-                "kind": {
-                  "Builtin": "UInt"
                 },
                 "is_public": true,
                 "is_reference": false
@@ -26085,6 +26085,14 @@
         ],
         "base_fields": [
           {
+            "name": "faceIndex",
+            "kind": {
+              "Builtin": "UInt"
+            },
+            "is_public": true,
+            "is_reference": false
+          },
+          {
             "name": "flags",
             "kind": {
               "Flags": {
@@ -26115,14 +26123,6 @@
             "name": "distance",
             "kind": {
               "Builtin": "Float"
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
-            "name": "faceIndex",
-            "kind": {
-              "Builtin": "UInt"
             },
             "is_public": true,
             "is_reference": false
@@ -26837,20 +26837,6 @@
                 ],
                 "base_fields": [
                   {
-                    "name": "userData",
-                    "kind": {
-                      "Pointer": {
-                        "is_const": false,
-                        "is_pointee_const": false,
-                        "pointee": {
-                          "Builtin": "Void"
-                        }
-                      }
-                    },
-                    "is_public": true,
-                    "is_reference": false
-                  },
-                  {
                     "name": "mConcreteType",
                     "kind": {
                       "Builtin": "UShort"
@@ -26876,6 +26862,20 @@
                     },
                     "is_public": false,
                     "is_reference": false
+                  },
+                  {
+                    "name": "userData",
+                    "kind": {
+                      "Pointer": {
+                        "is_const": false,
+                        "is_pointee_const": false,
+                        "pointee": {
+                          "Builtin": "Void"
+                        }
+                      }
+                    },
+                    "is_public": true,
+                    "is_reference": false
                   }
                 ],
                 "calc_layout": true,
@@ -26891,20 +26891,6 @@
               }
             ],
             "base_fields": [
-              {
-                "name": "userData",
-                "kind": {
-                  "Pointer": {
-                    "is_const": false,
-                    "is_pointee_const": false,
-                    "pointee": {
-                      "Builtin": "Void"
-                    }
-                  }
-                },
-                "is_public": true,
-                "is_reference": false
-              },
               {
                 "name": "mConcreteType",
                 "kind": {
@@ -26931,6 +26917,20 @@
                 },
                 "is_public": false,
                 "is_reference": false
+              },
+              {
+                "name": "userData",
+                "kind": {
+                  "Pointer": {
+                    "is_const": false,
+                    "is_pointee_const": false,
+                    "pointee": {
+                      "Builtin": "Void"
+                    }
+                  }
+                },
+                "is_public": true,
+                "is_reference": false
               }
             ],
             "calc_layout": true,
@@ -26946,20 +26946,6 @@
           }
         ],
         "base_fields": [
-          {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
           {
             "name": "mConcreteType",
             "kind": {
@@ -26985,6 +26971,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -27120,20 +27120,6 @@
             ],
             "base_fields": [
               {
-                "name": "userData",
-                "kind": {
-                  "Pointer": {
-                    "is_const": false,
-                    "is_pointee_const": false,
-                    "pointee": {
-                      "Builtin": "Void"
-                    }
-                  }
-                },
-                "is_public": true,
-                "is_reference": false
-              },
-              {
                 "name": "mConcreteType",
                 "kind": {
                   "Builtin": "UShort"
@@ -27159,6 +27145,20 @@
                 },
                 "is_public": false,
                 "is_reference": false
+              },
+              {
+                "name": "userData",
+                "kind": {
+                  "Pointer": {
+                    "is_const": false,
+                    "is_pointee_const": false,
+                    "pointee": {
+                      "Builtin": "Void"
+                    }
+                  }
+                },
+                "is_public": true,
+                "is_reference": false
               }
             ],
             "calc_layout": true,
@@ -27174,20 +27174,6 @@
           }
         ],
         "base_fields": [
-          {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
           {
             "name": "mConcreteType",
             "kind": {
@@ -27213,6 +27199,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -34512,20 +34512,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -34550,6 +34536,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -34732,20 +34732,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -34770,6 +34756,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -34900,20 +34900,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -34938,6 +34924,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -35816,20 +35816,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -35854,6 +35840,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -35984,20 +35984,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -36022,6 +36008,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -36152,20 +36152,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -36190,6 +36176,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -36411,20 +36411,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -36449,6 +36435,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -36579,20 +36579,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -36617,6 +36603,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -36747,20 +36747,6 @@
         ],
         "base_fields": [
           {
-            "name": "userData",
-            "kind": {
-              "Pointer": {
-                "is_const": false,
-                "is_pointee_const": false,
-                "pointee": {
-                  "Builtin": "Void"
-                }
-              }
-            },
-            "is_public": true,
-            "is_reference": false
-          },
-          {
             "name": "mConcreteType",
             "kind": {
               "Builtin": "UShort"
@@ -36785,6 +36771,20 @@
               "Builtin": "UInt"
             },
             "is_public": false,
+            "is_reference": false
+          },
+          {
+            "name": "userData",
+            "kind": {
+              "Pointer": {
+                "is_const": false,
+                "is_pointee_const": false,
+                "pointee": {
+                  "Builtin": "Void"
+                }
+              }
+            },
+            "is_public": true,
             "is_reference": false
           }
         ],
@@ -134430,396 +134430,377 @@
     }
   ],
   "classes": {
-    "PxGpuContactPair": true,
-    "PxArticulationSensor": true,
-    "PxHeightFieldGeometry": true,
-    "PxArticulationDrive": true,
-    "PxTetrahedronMeshDesc": true,
-    "PxTGSSolverConstraintPrepDesc": true,
-    "PxCustomGeometry": true,
-    "PxControllerHit": true,
-    "PxAllocationListener": true,
-    "PxArticulationTendon": true,
-    "PxParticleBuffer": false,
-    "PxGeomSweepHit": true,
-    "PxParticleSystem": false,
-    "PxFEMClothMaterial": false,
-    "PxTGSSolverContactDesc": true,
-    "PxPrismaticJoint": true,
-    "PxSceneQueryDesc": true,
-    "PxPruningStructure": true,
-    "PxGpuParticleBufferIndexPair": true,
-    "PxJoint": true,
-    "PxParticleAndDiffuseBuffer": false,
-    "PxTGSSolverBodyData": true,
-    "PxBitMap": true,
-    "PxFilterData": true,
-    "PxBroadPhaseRegionInfo": true,
-    "PxCpuDispatcher": true,
-    "PxFEMSoftBodyMaterial": false,
-    "PxRaycastBuffer": true,
-    "PxTrianglePadded": true,
-    "PxSceneSQSystem": true,
-    "PxControllerBehaviorCallback": true,
-    "PxSceneDesc": true,
-    "PxProcessPxBaseCallback": true,
-    "PxJointAngularLimitPair": true,
-    "PxGpuBodyData": true,
-    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
-    "PxBVHDesc": true,
-    "PxRevoluteJoint": true,
-    "PxTask": true,
-    "PxBaseMaterial": true,
-    "PxLockedData": true,
-    "PxUserAllocated": true,
-    "PxTransformPadded": true,
-    "PxSerialization": true,
-    "PxSamplingExt": true,
-    "PxOverlapHit": true,
-    "PxMeshScale": true,
-    "PxTaskManager": true,
-    "PxContactPairPoint": true,
-    "PxControllerDesc": true,
-    "PxTransform": true,
-    "PxGeometryQuery": true,
-    "PxTriangleMeshGeometry": true,
-    "PxDefaultErrorCallback": true,
-    "PxCustomGeometryCallbacks": true,
-    "PxGpuActorPair": true,
-    "PxSolverBodyData": true,
-    "PxCCDContactModifyCallback": true,
-    "PxInputStream": true,
-    "PxJointLinearLimitPair": true,
-    "PxCapsuleControllerDesc": true,
-    "PxHairSystemGeometry": true,
-    "MemoryBuffer": false,
-    "PxBVH": true,
+    "PxCustomSceneQuerySystemAdapter": true,
     "PxBroadPhaseResults": true,
-    "PxCustomMaterial": false,
-    "PxBatchQueryExt": true,
-    "PxRestitutionModifiers": true,
-    "PxSoftBodySimulationData": true,
-    "PxPhysics": true,
-    "PxRepXSerializer": true,
-    "PxShapeExt": true,
-    "PxBroadPhasePair": true,
-    "PxCapsuleObstacle": true,
-    "PxDominanceGroupPair": true,
-    "PxDebugLine": true,
-    "PxExtendedContact": true,
-    "PxConvexMesh": true,
-    "PxReadWriteLock": true,
-    "PxQuat": true,
-    "PxBVH33TriangleMesh": false,
-    "PxUserControllerHitReport": true,
-    "PxControllerFilters": true,
-    "PxMPMMaterial": false,
-    "PxSphericalJoint": true,
-    "PxIndexDataPair": true,
-    "PxCustomSceneQuerySystem": true,
-    "PxDeletionListener": true,
-    "PxUnConst": false,
-    "PxBoxController": true,
-    "PxMat34": false,
-    "PxVehicleTelemetryData": false,
-    "PxArticulationRootLinkData": true,
-    "XmlMemoryAllocator": false,
-    "PxContactSet": true,
-    "PxGeomRaycastHit": true,
-    "PxBroadcastingAllocator": true,
-    "PxXmlMiscParameter": true,
-    "PxConstraint": true,
-    "PxTriangleMeshPoissonSampler": true,
-    "PxStridedData": true,
-    "PxOverlapCallback": true,
-    "Interpolation": true,
-    "PxArticulationLimit": true,
-    "PxTriangleMesh": true,
-    "PxBroadPhaseDesc": true,
-    "PxHeightFieldSample": true,
-    "PxGeomOverlapHit": true,
-    "PxFLIPParticleSystem": false,
-    "XmlReader": false,
-    "PxBroadPhaseRegion": true,
-    "PxGearJoint": true,
-    "PxAABBManager": true,
-    "PxBVH34TriangleMesh": true,
-    "PxJointLimitCone": true,
-    "PxTime": true,
-    "PxSerializationRegistry": true,
-    "PxFEMParameters": true,
-    "PxTGSSolverBodyVel": true,
-    "PxConstraintShaderTable": true,
-    "PxCollisionTetrahedronMeshData": true,
-    "PxParticleMaterial": true,
-    "PxHash": false,
-    "PxCooking": false,
-    "PxActorShape": true,
-    "PxTriangleMeshDesc": true,
-    "PxSpring": true,
+    "PxDebugTriangle": true,
     "PxContactStreamIterator": true,
-    "PxSListImpl": true,
-    "PxSimulationTetrahedronMeshData": true,
-    "PxController": true,
-    "PxArticulationLink": true,
-    "PxConstraintConnector": true,
-    "PxRaycastCallback": true,
-    "PxRigidStatic": true,
-    "PxLogTwo": false,
-    "PxRigidActor": true,
-    "PxArticulationSpatialTendon": true,
-    "PxSolverBody": true,
-    "PxBroadPhaseCaps": true,
-    "PxRigidBodyExt": true,
-    "PxContactPairPose": true,
-    "PxConeLimitedConstraint": true,
-    "PxBroadPhase": true,
-    "PxRaycastHit": true,
-    "PxSoftBodyCollisionData": true,
-    "PxControllerState": true,
-    "PxContactJoint": true,
-    "PxSerializer": true,
-    "PxPoissonSampler": true,
-    "PxMassModificationProps": true,
-    "PxVec3Padded": true,
-    "PxBinaryConverter": false,
-    "PxContactPairVelocity": true,
-    "PxSweepHit": true,
-    "PxBoxControllerDesc": true,
-    "PxBroadcastingErrorCallback": true,
-    "PxDefaultAllocator": true,
-    "PxTriangle": true,
-    "PxSolverConstraintPrepDesc": true,
-    "PxgDynamicsMemoryConfig": true,
-    "PxJointLimitPyramid": true,
-    "PxMeshQuery": true,
-    "PxConvexMeshGeometry": true,
-    "PxRackAndPinionJoint": true,
-    "PxVec2": true,
-    "PxDefaultMemoryInputData": true,
-    "PxBVH34MidphaseDesc": true,
-    "PxArticulationJointReducedCoordinate": true,
-    "PxSyncImpl": true,
-    "PxFLIPMaterial": false,
-    "PxDefaultFileInputData": true,
-    "PxSpringModifiers": true,
-    "PxVirtualAllocatorCallback": true,
-    "PxBoxObstacle": true,
-    "PxJacobianRow": true,
-    "PxGeometryHolder": true,
-    "PxBoundedData": true,
-    "PxVec4": true,
-    "PxPBDMaterial": false,
-    "PxDefaultCpuDispatcher": true,
-    "PxCustomGeometryType": true,
-    "PxSDFDesc": true,
-    "PxCollisionMeshMappingData": true,
-    "PxSceneQuerySystemBase": true,
-    "PxContactModifyCallback": true,
-    "PxHairSystem": false,
-    "PxAggregate": true,
+    "PxHairSystemGeometry": true,
     "PxControllerObstacleHit": true,
-    "PxFEMCloth": false,
-    "PxDebugPoint": true,
-    "PxControllerManager": true,
-    "PxSolverContactDesc": true,
-    "PxSphereGeometry": true,
-    "PxSceneReadLock": true,
-    "PxContactPairExtraDataIterator": true,
-    "PxD6JointDrive": true,
-    "PxAssertHandler": true,
-    "PxContactPoint": true,
-    "PxArticulationAttachment": true,
-    "PxParticleRigidFilterPair": true,
-    "PxControllerFilterCallback": true,
-    "PxSceneLimits": true,
-    "PxSceneQueryExt": true,
-    "PxGeomIndexPair": true,
+    "PxSoftBodySimulationData": true,
+    "PxBitAndByte": true,
     "PxMassProperties": true,
-    "PxMat33": true,
-    "PxFEMMaterial": true,
-    "PxContactPatch": true,
-    "PxArticulationCache": true,
+    "Px1DConstraintMods": true,
+    "PxConstraintConnector": true,
     "PxProfileScoped": true,
     "PxInsertionCallback": true,
-    "PxVehicleTireForceCalculator": false,
-    "PxPvd": true,
-    "PxConeLimitParams": true,
-    "PxInputData": true,
-    "PxBase": true,
-    "PxTetrahedronMeshGeometry": true,
-    "PxDebugText": true,
-    "PxTempAllocator": true,
-    "PxMat44": true,
-    "PxExtendedVec3": true,
-    "PxTGSSolverConstraintPrepDescBase": true,
-    "PxConstraintBatchHeader": true,
-    "PxTriggerPair": true,
-    "PxSoftBodyAuxData": true,
-    "PxBaseTask": true,
-    "PxPvdSceneClient": true,
-    "PxStringTableExt": true,
-    "PxFoundation": true,
-    "PxTypeInfo": false,
-    "PxMutexImpl": true,
-    "PxConvexMeshDesc": true,
-    "PxControllersHit": true,
-    "PxVec3": true,
-    "PxPlaneGeometry": true,
-    "PxRigidDynamic": true,
-    "PxParticleRigidAttachment": false,
-    "PxSceneQuerySystem": true,
-    "PxCapsuleGeometry": true,
-    "PxJointLinearLimit": true,
-    "PxRenderBuffer": true,
-    "PxHeightField": true,
-    "PxArticulationTendonJoint": true,
-    "PxBroadPhaseCallback": true,
-    "PxPlane": true,
-    "PxRepXObject": true,
-    "PxTetrahedronMesh": true,
-    "PxHullPolygon": true,
-    "PxObstacle": true,
-    "PxPvdTransport": true,
-    "PxArticulationTendonLimit": true,
-    "PxBVHTraversalCallback": true,
-    "PxDeserializationContext": true,
-    "PxRunnable": true,
-    "PxRepXInstantiationArgs": true,
-    "PxContactPair": true,
-    "PxContactBuffer": false,
-    "PxSListEntry": true,
+    "PxRawAllocator": true,
+    "PxContactPairPoint": true,
+    "PxSDFDesc": true,
+    "PxTaskManager": true,
+    "PxParticleSystemGeometry": true,
+    "PxRigidBodyExt": true,
+    "PxCpuDispatcher": true,
+    "PxConstraintInvMassScale": true,
+    "PxCustomGeometry": true,
+    "PxContactPairExtraDataItem": true,
+    "PxArticulationSpatialTendon": true,
+    "PxDefaultErrorCallback": true,
+    "PxRigidActor": true,
+    "PxDefaultMemoryInputData": true,
+    "PxParticleRigidBuffer": false,
+    "PxUnConst": false,
+    "PxSamplingExt": true,
     "PxLightCpuTask": true,
-    "PxRefCounted": true,
-    "PxSolverConstraintDesc": true,
-    "PxQueryHit": true,
+    "PxCudaContextManager": false,
+    "PxBroadPhaseRegionInfo": true,
+    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
+    "PxSimulationStatistics": true,
+    "PxBroadPhaseCallback": true,
+    "PxArticulationCache": true,
+    "PxContactModifyPair": true,
+    "PxBroadPhaseRegions": true,
+    "PxRigidDynamic": true,
+    "PxAggregate": true,
+    "PxCollection": true,
+    "PxContactPairHeader": true,
+    "PxSoftBodySimulationDataDesc": true,
     "PxTGSSolverBodyTxInertia": true,
-    "PxObstacleContext": true,
-    "PxContact": true,
+    "PxSimulationFilterCallback": true,
+    "PxTriangleMeshGeometry": true,
+    "PxMeshOverlapUtil": true,
+    "PxgDynamicsMemoryConfig": true,
+    "PxBVHDesc": true,
+    "PxSerializer": true,
+    "PxFilterData": true,
+    "PxSolverConstraintPrepDescBase": true,
+    "PxTetrahedronMeshGeometry": true,
+    "PxOverlapCallback": true,
+    "PxTetrahedronMesh": true,
+    "PxRenderOutput": false,
+    "PxIndexDataPair": true,
+    "PxLogTwo": false,
+    "PxParticleAndDiffuseBuffer": false,
+    "PxFEMSoftBodyMaterial": false,
+    "PxControllerShapeHit": true,
+    "PxSpringModifiers": true,
+    "PxParticleRigidFilterPair": true,
+    "PxArticulationDrive": true,
+    "PxScene": true,
+    "PxFEMMaterial": true,
+    "PxSolverBodyData": true,
+    "PxFEMClothMaterial": false,
+    "PxTetrahedronMeshExt": true,
+    "PxFEMParameters": true,
+    "PxVehicleTelemetryData": false,
+    "PxConstraintShaderTable": true,
+    "PxSerializationRegistry": true,
+    "PxDistanceJoint": true,
+    "PxActorShape": true,
+    "PxHullPolygon": true,
+    "PxNodeIndex": true,
+    "PxActor": true,
+    "PxMat44": true,
+    "PxUserControllerHitReport": true,
+    "PxControllersHit": true,
+    "PxConvexMesh": true,
+    "PxBVH33TriangleMesh": false,
+    "PxSweepCallback": true,
+    "PxTetrahedronMeshData": true,
+    "PxSolverContactDesc": true,
+    "PxSimpleTriangleMesh": true,
+    "PxRefCounted": true,
+    "PxLockedData": true,
+    "PxCounterFrequencyToTensOfNanos": true,
+    "PxArticulationTendonLimit": true,
+    "PxGeometryHolder": true,
     "PxDim3": true,
-    "Px1DConstraintMods": true,
-    "PxBroadPhaseUpdateData": true,
+    "PxStridedData": true,
+    "PxOverlapHit": true,
+    "PxConvexMeshDesc": true,
+    "PxSListEntry": true,
+    "PxLocationHit": true,
+    "PxBitMap": true,
+    "PxSceneQueryExt": true,
+    "PxArticulationTendonJoint": true,
+    "PxMat34": false,
+    "PxTriggerPair": true,
+    "PxControllerBehaviorCallback": true,
+    "PxSoftBodyAuxData": true,
+    "PxSerialization": true,
+    "PxSceneQuerySystem": true,
+    "PxSweepBuffer": true,
+    "PxSpatialForce": true,
+    "PxSolverConstraintPrepDesc": true,
+    "PxPhysics": true,
+    "PxHeightFieldDesc": true,
+    "PxBoundedData": true,
+    "PxVec2": true,
+    "PxGpuContactPair": true,
+    "PxPvdTransport": true,
+    "PxControllerState": true,
+    "PxPruningStructure": true,
+    "PxContact": true,
     "PxQueryFilterData": true,
     "PxJointLimitParameters": true,
-    "PxCapsuleController": true,
-    "PxAllocatorCallback": true,
-    "PxMaterial": true,
-    "PxBroadPhaseExt": true,
-    "PxQueryFilterCallback": true,
-    "PxShape": true,
-    "PxRigidActorExt": true,
+    "PxCustomSceneQuerySystem": true,
+    "PxContactPairExtraDataIterator": true,
+    "PxContactPairPose": true,
+    "PxArticulationFixedTendon": true,
+    "PxPoissonSampler": true,
+    "PxHash": false,
+    "PxJointLinearLimit": true,
+    "PxDefaultMemoryOutputStream": true,
+    "PxTGSSolverBodyVel": true,
+    "PxBoxControllerDesc": true,
+    "PxParticleMaterial": true,
+    "PxCCDContactModifyCallback": true,
+    "PxContactPairVelocity": true,
+    "PxParticleVolume": true,
+    "PxBroadPhase": true,
+    "PxAssertHandler": true,
+    "PxSceneReadLock": true,
+    "PxPlaneGeometry": true,
+    "PxExtendedVec3": true,
+    "PxBinaryConverter": false,
+    "PxParticleSystem": false,
+    "PxTGSSolverBodyData": true,
+    "PxArticulationLimit": true,
+    "PxTempAllocator": true,
+    "PxBatchQueryExt": true,
+    "PxInputStream": true,
+    "PxTransformPadded": true,
+    "PxTriangleMeshPoissonSampler": true,
+    "PxFixedJoint": true,
+    "PxCapsuleControllerDesc": true,
+    "PxBVHRaycastCallback": true,
+    "PxBroadPhaseDesc": true,
+    "PxVirtualAllocatorCallback": true,
+    "PxParticleClothBuffer": false,
+    "PxSceneSQSystem": true,
+    "PxRunnable": true,
+    "PxConstraintInfo": true,
+    "PxSweepHit": true,
+    "PxPBDParticleSystem": false,
+    "PxDebugText": true,
+    "PxSoftBody": false,
+    "PxContactPair": true,
+    "PxTetrahedronMeshDesc": true,
+    "PxDiffuseParticleParams": true,
+    "PxSolverConstraintDesc": true,
+    "PxVehicleWheels4DynData": false,
+    "PxSerializationContext": true,
+    "PxGearJoint": true,
+    "PxContactBuffer": false,
+    "PxPvd": true,
+    "PxJointLinearLimitPair": true,
+    "PxTriangleMeshDesc": true,
+    "PxRigidBody": true,
+    "PxSoftBodyCollisionData": true,
+    "PxSpring": true,
+    "PxControllerFilters": true,
+    "PxSListImpl": true,
+    "PxBroadPhaseUpdateData": true,
+    "PxRaycastCallback": true,
+    "PxBroadPhasePair": true,
+    "PxBVHOverlapCallback": true,
+    "PxConstraint": true,
+    "PxBVH": true,
+    "PxRepXInstantiationArgs": true,
+    "PxConeLimitParams": true,
+    "PxCapsuleGeometry": true,
+    "PxContactModifyCallback": true,
+    "PxFoundation": true,
+    "PxRepXSerializer": true,
+    "PxControllerDesc": true,
+    "PxContactPoint": true,
+    "PxD6Joint": true,
+    "PxSimulationTetrahedronMeshData": true,
+    "PxSyncImpl": true,
+    "PxTolerancesScale": true,
+    "PxArticulationSensor": true,
+    "PxFLIPMaterial": false,
+    "PxMeshScale": true,
+    "PxRaycastHit": true,
+    "PxPlane": true,
     "PxDefaultFileOutputStream": true,
     "PxProfilerCallback": true,
-    "PxQueryCache": true,
-    "PxHeightFieldDesc": true,
-    "PxArticulationFixedTendon": true,
-    "PxStringTable": true,
-    "PxOutputStream": true,
-    "PxOverlapBuffer": true,
-    "PxSpatialForce": true,
-    "PxMeshOverlapUtil": true,
-    "PxConstraintVisualizer": true,
-    "PxSimulationStatistics": true,
-    "PxBroadPhaseRegions": true,
-    "PxCustomSceneQuerySystemAdapter": true,
-    "PxSimulationFilterCallback": true,
-    "PxSweepCallback": true,
-    "PxParticleSystemGeometry": true,
-    "PxSimpleTriangleMesh": true,
-    "PxCounterFrequencyToTensOfNanos": true,
-    "PxErrorCallback": true,
-    "PxControllerShapeHit": true,
-    "PxMPMParticleSystem": false,
-    "PxMidphaseDesc": true,
-    "Px1DConstraint": true,
-    "PxConstraintInvMassScale": true,
-    "PxParticleSpring": true,
-    "PxPBDParticleSystem": false,
-    "PxDistanceJoint": true,
-    "PxTetrahedronMeshData": true,
-    "PxGroupsMask": true,
-    "PxLocationHit": true,
-    "PxCollection": true,
-    "PxSimulationEventCallback": true,
-    "PxParticleClothBuffer": false,
-    "PxTolerancesScale": true,
-    "PxVehicleWheels4DynData": false,
-    "PxCustomParticleSystem": false,
-    "XmlWriter": false,
-    "PxDiffuseParticleParams": true,
-    "PxContactPairExtraDataItem": true,
-    "PxActor": true,
+    "PxTrianglePadded": true,
+    "PxDebugLine": true,
+    "PxRenderBuffer": true,
+    "PxParticleBuffer": false,
+    "PxBroadPhaseExt": true,
+    "PxBroadcastingAllocator": true,
+    "XmlReader": false,
+    "PxTriangleMesh": true,
+    "PxConeLimitedConstraint": true,
+    "PxArticulationLink": true,
+    "PxBase": true,
+    "PxTGSSolverConstraintPrepDesc": true,
+    "PxJointLimitPyramid": true,
     "PxCookingParams": true,
-    "PxSoftBodyMesh": true,
-    "PxAllocator": true,
-    "PxSceneWriteLock": true,
-    "PxRigidBody": true,
-    "PxSolverConstraintPrepDescBase": true,
-    "PxParticleVolume": true,
-    "PxTetrahedronMeshExt": true,
-    "PxSoftBodySimulationDataDesc": true,
-    "PxCudaContextManager": false,
-    "PxSpatialVelocity": true,
-    "PxContactPairHeader": true,
-    "PxModifiableContact": true,
-    "PxControllerStats": true,
-    "PxSweepBuffer": true,
-    "PxBitAndByte": true,
-    "PxVehicleWheels4SimData": false,
-    "PxDebugTriangle": true,
-    "PxSerializationContext": true,
-    "PxVirtualAllocator": true,
-    "PxDefaultMemoryOutputStream": true,
-    "PxD6Joint": true,
-    "PxBoxGeometry": true,
-    "PxConstraintInfo": true,
-    "PxConstraintAllocator": true,
-    "PxBVHRaycastCallback": true,
-    "PxSoftBody": false,
-    "PxMetaDataEntry": true,
-    "PxRawAllocator": true,
-    "PxRenderOutput": false,
-    "PxFixedJoint": true,
-    "PxContactModifyPair": true,
-    "PxTempAllocatorChunk": true,
-    "PxArticulationReducedCoordinate": true,
-    "PxBVHOverlapCallback": true,
-    "PxQueryThreadContext": true,
-    "PxNodeIndex": true,
-    "PxTetrahedron": true,
-    "PxBounds3": true,
+    "PxMeshQuery": true,
+    "PxArticulationRootLinkData": true,
+    "PxControllerManager": true,
+    "PxBaseTask": true,
     "PxOmniPvd": false,
-    "PxGeometry": true,
-    "PxParticleRigidBuffer": false,
+    "PxDefaultCpuDispatcher": true,
+    "PxTypeInfo": false,
+    "PxQueryHit": true,
+    "PxMassModificationProps": true,
+    "PxConstraintAllocator": true,
+    "PxConstraintBatchHeader": true,
+    "PxRigidStatic": true,
+    "PxBoxController": true,
+    "PxRigidActorExt": true,
+    "PxParticleSpring": true,
+    "PxBoxObstacle": true,
+    "PxCustomGeometryCallbacks": true,
+    "PxBVH34TriangleMesh": true,
+    "PxMidphaseDesc": true,
+    "PxTime": true,
+    "PxCustomMaterial": false,
+    "PxOverlapBuffer": true,
+    "PxRackAndPinionJoint": true,
+    "PxTask": true,
+    "PxObstacle": true,
+    "PxPrismaticJoint": true,
+    "PxDominanceGroupPair": true,
+    "PxStringTable": true,
+    "PxProcessPxBaseCallback": true,
+    "PxGeomSweepHit": true,
+    "PxInputData": true,
+    "PxModifiableContact": true,
+    "PxHeightFieldGeometry": true,
+    "PxTGSSolverContactDesc": true,
+    "PxObstacleContext": true,
+    "PxCollisionTetrahedronMeshData": true,
+    "PxTransform": true,
+    "PxStringTableExt": true,
+    "PxGeomOverlapHit": true,
+    "PxDeletionListener": true,
+    "PxXmlMiscParameter": true,
+    "PxAllocatorCallback": true,
+    "PxBounds3": true,
+    "PxFEMCloth": false,
+    "PxUserAllocated": true,
+    "PxRestitutionModifiers": true,
+    "PxVirtualAllocator": true,
+    "PxParticleRigidAttachment": false,
+    "PxMPMParticleSystem": false,
+    "PxFLIPParticleSystem": false,
+    "PxGroupsMask": true,
+    "PxMaterial": true,
+    "PxVehicleWheels4SimData": false,
+    "MemoryBuffer": false,
+    "PxSphericalJoint": true,
+    "PxSpatialVelocity": true,
+    "PxCustomParticleSystem": false,
+    "PxSimulationEventCallback": true,
+    "PxPBDMaterial": false,
+    "Interpolation": true,
+    "PxAllocationListener": true,
+    "PxDebugPoint": true,
+    "PxArticulationTendon": true,
+    "PxControllerFilterCallback": true,
+    "PxTetrahedron": true,
+    "PxSoftBodyMesh": true,
+    "PxConstraintVisualizer": true,
+    "PxSceneLimits": true,
+    "PxRevoluteJoint": true,
+    "PxGeometryQuery": true,
+    "PxHeightField": true,
+    "PxControllerStats": true,
+    "PxVec3": true,
+    "PxVec3Padded": true,
+    "PxTGSSolverConstraintPrepDescBase": true,
+    "PxDefaultAllocator": true,
+    "PxVehicleTireForceCalculator": false,
+    "PxArticulationAttachment": true,
+    "PxDefaultFileInputData": true,
+    "PxCustomGeometryType": true,
+    "PxMutexImpl": true,
+    "PxAllocator": true,
+    "PxBroadPhaseRegion": true,
+    "PxOutputStream": true,
+    "PxJointAngularLimitPair": true,
+    "PxContactJoint": true,
+    "PxQueryFilterCallback": true,
+    "PxGeomRaycastHit": true,
+    "PxPvdSceneClient": true,
+    "PxBVHTraversalCallback": true,
+    "PxConvexMeshGeometry": true,
+    "PxHairSystem": false,
+    "PxCollisionMeshMappingData": true,
+    "PxControllerHit": true,
+    "PxMetaDataEntry": true,
+    "PxSolverBody": true,
+    "PxBroadcastingErrorCallback": true,
+    "PxContactSet": true,
+    "PxMat33": true,
+    "PxAABBManager": true,
+    "PxBaseMaterial": true,
+    "PxBoxGeometry": true,
+    "PxGeomIndexPair": true,
+    "PxSceneDesc": true,
+    "PxSceneQuerySystemBase": true,
+    "PxShapeExt": true,
+    "PxArticulationReducedCoordinate": true,
+    "PxContactPatch": true,
+    "PxJoint": true,
+    "PxCooking": false,
+    "PxController": true,
+    "XmlWriter": false,
     "PxContactPairIndex": true,
-    "PxScene": true
+    "PxJointLimitCone": true,
+    "PxShape": true,
+    "PxQuat": true,
+    "PxD6JointDrive": true,
+    "PxSphereGeometry": true,
+    "PxHeightFieldSample": true,
+    "PxArticulationJointReducedCoordinate": true,
+    "PxTempAllocatorChunk": true,
+    "PxMPMMaterial": false,
+    "PxQueryCache": true,
+    "PxCapsuleObstacle": true,
+    "PxCapsuleController": true,
+    "PxGeometry": true,
+    "PxRepXObject": true,
+    "PxQueryThreadContext": true,
+    "PxGpuParticleBufferIndexPair": true,
+    "PxRaycastBuffer": true,
+    "PxReadWriteLock": true,
+    "PxSceneWriteLock": true,
+    "Px1DConstraint": true,
+    "PxDeserializationContext": true,
+    "PxTriangle": true,
+    "PxJacobianRow": true,
+    "PxErrorCallback": true,
+    "PxExtendedContact": true,
+    "PxGpuBodyData": true,
+    "XmlMemoryAllocator": false,
+    "PxSceneQueryDesc": true,
+    "PxBVH34MidphaseDesc": true,
+    "PxVec4": true,
+    "PxBroadPhaseCaps": true,
+    "PxGpuActorPair": true
   },
   "derived": {
-    "PxSimpleTriangleMesh": [
-      "PxTriangleMeshDesc"
-    ],
-    "PxProfilerCallback": [
-      "PxPvd"
-    ],
-    "PxErrorCallback": [
-      "PxBroadcastingErrorCallback",
-      "PxDefaultErrorCallback"
-    ],
-    "PxControllerHit": [
-      "PxControllerShapeHit",
-      "PxControllersHit",
-      "PxControllerObstacleHit"
-    ],
-    "PxBaseTask": [
-      "PxTask",
-      "PxLightCpuTask"
-    ],
     "PxQueryHit": [
       "PxLocationHit",
       "PxGeomOverlapHit"
     ],
-    "PxGeomOverlapHit": [
-      "PxOverlapHit"
+    "PxPoissonSampler": [
+      "PxTriangleMeshPoissonSampler"
     ],
     "PxRefCounted": [
       "PxConvexMesh",
@@ -134831,113 +134812,8 @@
       "PxShape",
       "PxBaseMaterial"
     ],
-    "PxController": [
-      "PxBoxController",
-      "PxCapsuleController"
-    ],
-    "PxObstacle": [
-      "PxBoxObstacle",
-      "PxCapsuleObstacle"
-    ],
-    "PxSceneQuerySystem": [
-      "PxCustomSceneQuerySystem"
-    ],
-    "PxTriangle": [
-      "PxTrianglePadded"
-    ],
-    "PxSpring": [
-      "PxD6JointDrive"
-    ],
-    "PxControllerDesc": [
-      "PxBoxControllerDesc",
-      "PxCapsuleControllerDesc"
-    ],
-    "PxExtendedContact": [
-      "PxModifiableContact"
-    ],
-    "PxGeometry": [
-      "PxBoxGeometry",
-      "PxCapsuleGeometry",
-      "PxConvexMeshGeometry",
-      "PxSphereGeometry",
-      "PxPlaneGeometry",
-      "PxTriangleMeshGeometry",
-      "PxHeightFieldGeometry",
-      "PxParticleSystemGeometry",
-      "PxHairSystemGeometry",
-      "PxTetrahedronMeshGeometry",
-      "PxCustomGeometry"
-    ],
-    "PxAllocatorCallback": [
-      "PxBroadcastingAllocator",
-      "PxDefaultAllocator"
-    ],
-    "PxLocationHit": [
-      "PxGeomRaycastHit",
-      "PxGeomSweepHit"
-    ],
-    "PxOutputStream": [
-      "PxDefaultMemoryOutputStream",
-      "PxDefaultFileOutputStream"
-    ],
-    "PxJoint": [
-      "PxDistanceJoint",
-      "PxContactJoint",
-      "PxFixedJoint",
-      "PxPrismaticJoint",
-      "PxRevoluteJoint",
-      "PxSphericalJoint",
-      "PxD6Joint",
-      "PxGearJoint",
-      "PxRackAndPinionJoint"
-    ],
-    "PxInputStream": [
-      "PxInputData"
-    ],
-    "PxPoissonSampler": [
-      "PxTriangleMeshPoissonSampler"
-    ],
-    "PxBaseMaterial": [
-      "PxFEMMaterial",
-      "PxMaterial",
-      "PxParticleMaterial"
-    ],
-    "PxStridedData": [
-      "PxBoundedData"
-    ],
-    "PxUserAllocated": [
-      "PxCollisionMeshMappingData",
-      "PxSoftBodyCollisionData",
-      "PxTetrahedronMeshData",
-      "PxSoftBodySimulationData",
-      "PxCollisionTetrahedronMeshData",
-      "PxSimulationTetrahedronMeshData",
-      "PxPoissonSampler"
-    ],
-    "PxSolverConstraintPrepDescBase": [
-      "PxSolverConstraintPrepDesc"
-    ],
-    "PxRigidBody": [
-      "PxArticulationLink",
-      "PxRigidDynamic"
-    ],
-    "PxSceneQueryDesc": [
-      "PxSceneDesc"
-    ],
-    "PxVec3": [
-      "PxVec3Padded"
-    ],
-    "PxRigidActor": [
-      "PxRigidBody",
-      "PxRigidStatic"
-    ],
-    "PxTriangleMesh": [
-      "PxBVH34TriangleMesh"
-    ],
-    "PxContactPairExtraDataItem": [
-      "PxContactPairVelocity",
-      "PxContactPairPose",
-      "PxContactPairIndex"
+    "PxCpuDispatcher": [
+      "PxDefaultCpuDispatcher"
     ],
     "PxBase": [
       "PxRefCounted",
@@ -134954,40 +134830,121 @@
       "PxPruningStructure",
       "PxJoint"
     ],
-    "PxGeomSweepHit": [
-      "PxSweepHit"
+    "PxSimpleTriangleMesh": [
+      "PxTriangleMeshDesc"
+    ],
+    "PxProfilerCallback": [
+      "PxPvd"
+    ],
+    "PxBaseTask": [
+      "PxTask",
+      "PxLightCpuTask"
+    ],
+    "PxSolverConstraintPrepDescBase": [
+      "PxSolverConstraintPrepDesc"
+    ],
+    "PxGeomOverlapHit": [
+      "PxOverlapHit"
+    ],
+    "PxUserAllocated": [
+      "PxCollisionMeshMappingData",
+      "PxSoftBodyCollisionData",
+      "PxTetrahedronMeshData",
+      "PxSoftBodySimulationData",
+      "PxCollisionTetrahedronMeshData",
+      "PxSimulationTetrahedronMeshData",
+      "PxPoissonSampler"
+    ],
+    "PxContact": [
+      "PxExtendedContact"
+    ],
+    "PxTriangle": [
+      "PxTrianglePadded"
+    ],
+    "PxActor": [
+      "PxRigidActor"
+    ],
+    "PxOutputStream": [
+      "PxDefaultMemoryOutputStream",
+      "PxDefaultFileOutputStream"
+    ],
+    "PxAllocatorCallback": [
+      "PxBroadcastingAllocator",
+      "PxDefaultAllocator"
+    ],
+    "PxBaseMaterial": [
+      "PxFEMMaterial",
+      "PxMaterial",
+      "PxParticleMaterial"
+    ],
+    "PxSceneQueryDesc": [
+      "PxSceneDesc"
+    ],
+    "PxControllerDesc": [
+      "PxBoxControllerDesc",
+      "PxCapsuleControllerDesc"
+    ],
+    "PxObstacle": [
+      "PxBoxObstacle",
+      "PxCapsuleObstacle"
+    ],
+    "PxInputStream": [
+      "PxInputData"
+    ],
+    "PxTriangleMesh": [
+      "PxBVH34TriangleMesh"
     ],
     "PxActorShape": [
       "PxRaycastHit",
       "PxOverlapHit",
       "PxSweepHit"
     ],
-    "PxArticulationTendon": [
-      "PxArticulationSpatialTendon",
-      "PxArticulationFixedTendon"
-    ],
     "PxSceneQuerySystemBase": [
       "PxSceneSQSystem",
       "PxSceneQuerySystem"
+    ],
+    "PxContactPairExtraDataItem": [
+      "PxContactPairVelocity",
+      "PxContactPairPose",
+      "PxContactPairIndex"
     ],
     "PxInputData": [
       "PxDefaultMemoryInputData",
       "PxDefaultFileInputData"
     ],
-    "PxSceneSQSystem": [
-      "PxScene"
+    "PxSceneQuerySystem": [
+      "PxCustomSceneQuerySystem"
+    ],
+    "PxStridedData": [
+      "PxBoundedData"
+    ],
+    "PxArticulationTendon": [
+      "PxArticulationSpatialTendon",
+      "PxArticulationFixedTendon"
     ],
     "PxGeomRaycastHit": [
       "PxRaycastHit"
     ],
-    "PxContact": [
-      "PxExtendedContact"
+    "PxRigidActor": [
+      "PxRigidBody",
+      "PxRigidStatic"
     ],
-    "PxCpuDispatcher": [
-      "PxDefaultCpuDispatcher"
+    "PxGeometry": [
+      "PxBoxGeometry",
+      "PxCapsuleGeometry",
+      "PxConvexMeshGeometry",
+      "PxSphereGeometry",
+      "PxPlaneGeometry",
+      "PxTriangleMeshGeometry",
+      "PxHeightFieldGeometry",
+      "PxParticleSystemGeometry",
+      "PxHairSystemGeometry",
+      "PxTetrahedronMeshGeometry",
+      "PxCustomGeometry"
     ],
-    "PxActor": [
-      "PxRigidActor"
+    "PxLocationHit": [
+      "PxGeomRaycastHit",
+      "PxGeomSweepHit"
     ],
     "PxJointLimitParameters": [
       "PxJointLinearLimit",
@@ -134995,6 +134952,49 @@
       "PxJointAngularLimitPair",
       "PxJointLimitCone",
       "PxJointLimitPyramid"
+    ],
+    "PxExtendedContact": [
+      "PxModifiableContact"
+    ],
+    "PxSceneSQSystem": [
+      "PxScene"
+    ],
+    "PxRigidBody": [
+      "PxArticulationLink",
+      "PxRigidDynamic"
+    ],
+    "PxControllerHit": [
+      "PxControllerShapeHit",
+      "PxControllersHit",
+      "PxControllerObstacleHit"
+    ],
+    "PxSpring": [
+      "PxD6JointDrive"
+    ],
+    "PxVec3": [
+      "PxVec3Padded"
+    ],
+    "PxErrorCallback": [
+      "PxBroadcastingErrorCallback",
+      "PxDefaultErrorCallback"
+    ],
+    "PxJoint": [
+      "PxDistanceJoint",
+      "PxContactJoint",
+      "PxFixedJoint",
+      "PxPrismaticJoint",
+      "PxRevoluteJoint",
+      "PxSphericalJoint",
+      "PxD6Joint",
+      "PxGearJoint",
+      "PxRackAndPinionJoint"
+    ],
+    "PxGeomSweepHit": [
+      "PxSweepHit"
+    ],
+    "PxController": [
+      "PxBoxController",
+      "PxCapsuleController"
     ]
   }
 }

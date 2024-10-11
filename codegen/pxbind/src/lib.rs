@@ -57,7 +57,7 @@ pub struct StructMetadata {
 pub struct FieldMetadata {
     pub name: String,
     pub size: usize,
-    pub offset: usize,
+    pub offset: isize,
     #[serde(default)]
     pub r#type: Option<String>,
 }

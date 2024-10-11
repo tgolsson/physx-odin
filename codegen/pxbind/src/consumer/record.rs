@@ -485,8 +485,8 @@ impl<'ast> super::AstConsumer<'ast> {
         let mut base_fields = Vec::new();
         for base_binding in self.iter_bases(rec) {
             let (_, base_binding) = base_binding?;
-            base_fields.extend(base_binding.fields.iter().cloned());
             base_fields.extend(base_binding.base_fields.iter().cloned());
+            base_fields.extend(base_binding.fields.iter().cloned());
         }
 
         let mut fields = Vec::new();
