@@ -40,7 +40,6 @@ rotator_from_pxquat :: proc {
 	deg_rotator_from_pxquat,
 }
 
-
 rad_to_degrees :: proc(r: Rotator(Rad)) -> Rotator(Deg) {
 	return Rotator(Deg) {
 		yaw = math.to_degrees(r.yaw),
@@ -116,7 +115,7 @@ mui_all_windows :: proc(state: ^MuiState, joints: []^physx.D6Joint) {
 							} else {
 								drive.flags = {}
 							}
-							drive_d = true;
+							drive_d = true
 						}
 
 						if drive_d {
