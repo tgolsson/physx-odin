@@ -15,6 +15,7 @@ impl<'qt> fmt::Display for CppType<'qt> {
                 is_const,
                 pointee,
                 is_pointee_const,
+                is_array_like: _,
             } => {
                 write!(f, "{}", pointee.cpp_type())?;
                 write!(f, "{}*", if *is_pointee_const { " const" } else { "" })?;
@@ -53,6 +54,7 @@ impl<'qt> fmt::Display for CType<'qt> {
                 is_const,
                 pointee,
                 is_pointee_const,
+                is_array_like: _,
             } => {
                 write!(f, "{}", pointee.c_type())?;
                 write!(f, "{}*", if *is_pointee_const { " const" } else { "" })?;

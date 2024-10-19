@@ -272,9 +272,14 @@ impl<'ast> fmt::Display for OdinIdent<'ast> {
 impl<'qt> fmt::Display for OdinType<'qt> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self.0 {
-            QualTypeValue::Pointer { pointee, .. } => {
-                match pointee.odin_type().0 {
-                    QualTypeValue::Builtin(Builtin::Void) => write!(f, "rawptr")?,
+            QualTypeValue::Pointer {
+                pointee,
+                is_array_like,
+                ..
+            } => {
+                match (pointee.odin_type().0, is_array_like) {
+                    (QualTypeValue::Builtin(Builtin::Void), _) => write!(f, "rawptr")?,
+                    (_, true) => write!(f, "[^]{}", pointee.odin_type())?,
                     _ => write!(f, "^{}", pointee.odin_type())?,
                 }
 

@@ -381,6 +381,7 @@ impl<'ast> AstConsumer<'ast> {
                 QualType::Pointer {
                     is_const: false,
                     is_pointee_const: false,
+                    is_array_like: false,
                     pointee: Box::new(QualType::Builtin(Builtin::Void)),
                 },
             );
@@ -533,6 +534,7 @@ impl<'ast> AstConsumer<'ast> {
             return Ok(QualType::Pointer {
                 is_const: false,
                 is_pointee_const,
+                is_array_like: false,
                 pointee: Box::new(pointee),
             });
         } else if let Some(ptr) = type_str.strip_suffix("*const") {
@@ -543,6 +545,7 @@ impl<'ast> AstConsumer<'ast> {
             return Ok(QualType::Pointer {
                 is_const: true,
                 is_pointee_const,
+                is_array_like: false,
                 pointee: Box::new(pointee),
             });
         } else if let Some(refer) = type_str.strip_suffix('&') {
@@ -891,6 +894,7 @@ pub enum QualType<'ast> {
     Pointer {
         is_const: bool,
         is_pointee_const: bool,
+        is_array_like: bool,
         pointee: Box<QualType<'ast>>,
     },
     Reference {
