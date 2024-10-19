@@ -1437,7 +1437,7 @@ foreign libphysx {
     render_buffer_get_nb_points :: proc(self_: ^RenderBuffer) -> _c.uint32_t ---
 
     @(link_name = "PxRenderBuffer_getPoints")
-    render_buffer_get_points :: proc(self_: ^RenderBuffer) -> ^DebugPoint ---
+    render_buffer_get_points :: proc(self_: ^RenderBuffer) -> [^]DebugPoint ---
 
     @(link_name = "PxRenderBuffer_addPoint_mut")
     render_buffer_add_point_mut :: proc(self_: ^RenderBuffer, #by_ptr point: DebugPoint) ---
@@ -1446,22 +1446,22 @@ foreign libphysx {
     render_buffer_get_nb_lines :: proc(self_: ^RenderBuffer) -> _c.uint32_t ---
 
     @(link_name = "PxRenderBuffer_getLines")
-    render_buffer_get_lines :: proc(self_: ^RenderBuffer) -> ^DebugLine ---
+    render_buffer_get_lines :: proc(self_: ^RenderBuffer) -> [^]DebugLine ---
 
     @(link_name = "PxRenderBuffer_addLine_mut")
     render_buffer_add_line_mut :: proc(self_: ^RenderBuffer, #by_ptr line: DebugLine) ---
 
     @(link_name = "PxRenderBuffer_reserveLines_mut")
-    render_buffer_reserve_lines_mut :: proc(self_: ^RenderBuffer, nbLines: _c.uint32_t) -> ^DebugLine ---
+    render_buffer_reserve_lines_mut :: proc(self_: ^RenderBuffer, nbLines: _c.uint32_t) -> [^]DebugLine ---
 
     @(link_name = "PxRenderBuffer_reservePoints_mut")
-    render_buffer_reserve_points_mut :: proc(self_: ^RenderBuffer, nbLines: _c.uint32_t) -> ^DebugPoint ---
+    render_buffer_reserve_points_mut :: proc(self_: ^RenderBuffer, nbLines: _c.uint32_t) -> [^]DebugPoint ---
 
     @(link_name = "PxRenderBuffer_getNbTriangles")
     render_buffer_get_nb_triangles :: proc(self_: ^RenderBuffer) -> _c.uint32_t ---
 
     @(link_name = "PxRenderBuffer_getTriangles")
-    render_buffer_get_triangles :: proc(self_: ^RenderBuffer) -> ^DebugTriangle ---
+    render_buffer_get_triangles :: proc(self_: ^RenderBuffer) -> [^]DebugTriangle ---
 
     @(link_name = "PxRenderBuffer_addTriangle_mut")
     render_buffer_add_triangle_mut :: proc(self_: ^RenderBuffer, #by_ptr triangle: DebugTriangle) ---
@@ -1654,7 +1654,7 @@ foreign libphysx {
     ///
     /// number of members PxBase objects that have been written to the userBuffer
     @(link_name = "PxCollection_getObjects")
-    collection_get_objects :: proc(self_: ^Collection, userBuffer: ^^Base, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    collection_get_objects :: proc(self_: ^Collection, userBuffer: [^]^Base, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Looks for a PxBase object given a PxSerialObjectId value.
     ///
@@ -1674,7 +1674,7 @@ foreign libphysx {
     ///
     /// number of members PxSerialObjectId values that have been written to the userBuffer
     @(link_name = "PxCollection_getIds")
-    collection_get_ids :: proc(self_: ^Collection, userBuffer: ^_c.uint64_t, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    collection_get_ids :: proc(self_: ^Collection, userBuffer: [^]_c.uint64_t, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Gets the PxSerialObjectId name of a PxBase object within the collection.
     ///
@@ -2125,7 +2125,7 @@ foreign libphysx {
     ///
     /// These are the user-defined bounds passed to the BVH builder, not the internal bounds around each BVH node.
     @(link_name = "PxBVH_getBounds")
-    b_v_h_get_bounds :: proc(self_: ^BVH) -> ^Bounds3 ---
+    b_v_h_get_bounds :: proc(self_: ^BVH) -> [^]Bounds3 ---
 
     /// Retrieve the bounds in the BVH.
     ///
@@ -2205,7 +2205,7 @@ foreign libphysx {
     ///
     /// Array of vertices.
     @(link_name = "PxConvexMesh_getVertices")
-    convex_mesh_get_vertices :: proc(self_: ^ConvexMesh) -> ^Vec3 ---
+    convex_mesh_get_vertices :: proc(self_: ^ConvexMesh) -> [^]Vec3 ---
 
     /// Returns the index buffer.
     ///
@@ -2939,7 +2939,7 @@ foreign libphysx {
     ///
     /// array of vertices
     @(link_name = "PxTriangleMesh_getVertices")
-    triangle_mesh_get_vertices :: proc(self_: ^TriangleMesh) -> ^Vec3 ---
+    triangle_mesh_get_vertices :: proc(self_: ^TriangleMesh) -> [^]Vec3 ---
 
     /// Returns all mesh vertices for modification.
     ///
@@ -3106,7 +3106,7 @@ foreign libphysx {
     ///
     /// array of vertices
     @(link_name = "PxTetrahedronMesh_getVertices")
-    tetrahedron_mesh_get_vertices :: proc(self_: ^TetrahedronMesh) -> ^Vec3 ---
+    tetrahedron_mesh_get_vertices :: proc(self_: ^TetrahedronMesh) -> [^]Vec3 ---
 
     /// Returns the number of tetrahedrons.
     ///
@@ -3409,7 +3409,7 @@ foreign libphysx {
     ///
     /// Number of actor pointers written to the buffer.
     @(link_name = "PxAggregate_getActors")
-    aggregate_get_actors :: proc(self_: ^Aggregate, userBuffer: ^^Actor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    aggregate_get_actors :: proc(self_: ^Aggregate, userBuffer: [^][^]Actor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Retrieves the scene which this aggregate belongs to.
     ///
@@ -3755,7 +3755,7 @@ foreign libphysx {
     ///
     /// The number of attachments that were filled into the user buffer.
     @(link_name = "PxArticulationSpatialTendon_getAttachments")
-    articulation_spatial_tendon_get_attachments :: proc(self_: ^ArticulationSpatialTendon, userBuffer: ^^ArticulationAttachment, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_spatial_tendon_get_attachments :: proc(self_: ^ArticulationSpatialTendon, userBuffer: [^]^ArticulationAttachment, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of attachments in the tendon.
     ///
@@ -3785,7 +3785,7 @@ foreign libphysx {
     ///
     /// The number of tendon joints filled into the user buffer.
     @(link_name = "PxArticulationFixedTendon_getTendonJoints")
-    articulation_fixed_tendon_get_tendon_joints :: proc(self_: ^ArticulationFixedTendon, userBuffer: ^^ArticulationTendonJoint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_fixed_tendon_get_tendon_joints :: proc(self_: ^ArticulationFixedTendon, userBuffer: [^]^ArticulationTendonJoint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of tendon joints in the tendon.
     ///
@@ -4112,7 +4112,7 @@ foreign libphysx {
     ///
     /// The number of links written into the buffer.
     @(link_name = "PxArticulationReducedCoordinate_getLinks")
-    articulation_reduced_coordinate_get_links :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: ^^ArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_reduced_coordinate_get_links :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: [^]^ArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of shapes in the articulation.
     ///
@@ -4381,7 +4381,7 @@ foreign libphysx {
     ///
     /// The number of constraints written into the buffer.
     @(link_name = "PxArticulationReducedCoordinate_getLoopJoints")
-    articulation_reduced_coordinate_get_loop_joints :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: ^^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_reduced_coordinate_get_loop_joints :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: [^]^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the required size of the coefficient matrix in the articulation.
     ///
@@ -4509,7 +4509,7 @@ foreign libphysx {
     ///
     /// The number of tendons written into the buffer.
     @(link_name = "PxArticulationReducedCoordinate_getSpatialTendons")
-    articulation_reduced_coordinate_get_spatial_tendons :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: ^^ArticulationSpatialTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_reduced_coordinate_get_spatial_tendons :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: [^]^ArticulationSpatialTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of spatial tendons in the articulation.
     ///
@@ -4523,7 +4523,7 @@ foreign libphysx {
     ///
     /// The number of tendons written into the buffer.
     @(link_name = "PxArticulationReducedCoordinate_getFixedTendons")
-    articulation_reduced_coordinate_get_fixed_tendons :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: ^^ArticulationFixedTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_reduced_coordinate_get_fixed_tendons :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: [^]^ArticulationFixedTendon, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of fixed tendons in the articulation.
     ///
@@ -4537,7 +4537,7 @@ foreign libphysx {
     ///
     /// The number of sensors written into the buffer.
     @(link_name = "PxArticulationReducedCoordinate_getSensors")
-    articulation_reduced_coordinate_get_sensors :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: ^^ArticulationSensor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_reduced_coordinate_get_sensors :: proc(self_: ^ArticulationReducedCoordinate, userBuffer: [^]^ArticulationSensor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of sensors in the articulation.
     ///
@@ -4910,7 +4910,7 @@ foreign libphysx {
     ///
     /// Number of material pointers written to the buffer.
     @(link_name = "PxShape_getMaterials")
-    shape_get_materials :: proc(self_: ^Shape, userBuffer: ^^Material, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    shape_get_materials :: proc(self_: ^Shape, userBuffer: [^]^Material, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Retrieve material from given triangle index.
     ///
@@ -5188,7 +5188,7 @@ foreign libphysx {
     ///
     /// Number of shape pointers written to the buffer.
     @(link_name = "PxRigidActor_getShapes")
-    rigid_actor_get_shapes :: proc(self_: ^RigidActor, userBuffer: ^^Shape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    rigid_actor_get_shapes :: proc(self_: ^RigidActor, userBuffer: [^]^Shape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of constraint shaders attached to the actor.
     ///
@@ -5206,7 +5206,7 @@ foreign libphysx {
     ///
     /// Number of constraint shader pointers written to the buffer.
     @(link_name = "PxRigidActor_getConstraints")
-    rigid_actor_get_constraints :: proc(self_: ^RigidActor, userBuffer: ^^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    rigid_actor_get_constraints :: proc(self_: ^RigidActor, userBuffer: [^]^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     @(link_name = "PxNodeIndex_new")
     node_index_new :: proc(id: _c.uint32_t, articLinkId: _c.uint32_t) -> NodeIndex ---
@@ -5661,7 +5661,7 @@ foreign libphysx {
     ///
     /// The number of articulation links written to the buffer.
     @(link_name = "PxArticulationLink_getChildren")
-    articulation_link_get_children :: proc(self_: ^ArticulationLink, userBuffer: ^^ArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    articulation_link_get_children :: proc(self_: ^ArticulationLink, userBuffer: [^]^ArticulationLink, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Set the constraint-force-mixing scale term.
     ///
@@ -6575,7 +6575,7 @@ foreign libphysx {
     ///
     /// The number of triangle mesh pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getTriangleMeshes")
-    physics_get_triangle_meshes :: proc(self_: ^Physics, userBuffer: ^^TriangleMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_triangle_meshes :: proc(self_: ^Physics, userBuffer: [^]^TriangleMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a tetrahedron mesh object.
     ///
@@ -6605,7 +6605,7 @@ foreign libphysx {
     ///
     /// The number of tetrahedron mesh pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getTetrahedronMeshes")
-    physics_get_tetrahedron_meshes :: proc(self_: ^Physics, userBuffer: ^^TetrahedronMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_tetrahedron_meshes :: proc(self_: ^Physics, userBuffer: [^]^TetrahedronMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a heightfield object from previously cooked stream.
     ///
@@ -6629,7 +6629,7 @@ foreign libphysx {
     ///
     /// The number of heightfield pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getHeightFields")
-    physics_get_height_fields :: proc(self_: ^Physics, userBuffer: ^^HeightField, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_height_fields :: proc(self_: ^Physics, userBuffer: [^]^HeightField, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a convex mesh object.
     ///
@@ -6653,7 +6653,7 @@ foreign libphysx {
     ///
     /// The number of convex mesh pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getConvexMeshes")
-    physics_get_convex_meshes :: proc(self_: ^Physics, userBuffer: ^^ConvexMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_convex_meshes :: proc(self_: ^Physics, userBuffer: [^]^ConvexMesh, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a bounding volume hierarchy.
     ///
@@ -6675,7 +6675,7 @@ foreign libphysx {
     ///
     /// The number of BVH pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getBVHs")
-    physics_get_b_v_hs :: proc(self_: ^Physics, userBuffer: ^^BVH, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_b_v_hs :: proc(self_: ^Physics, userBuffer: [^]^BVH, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a scene.
     ///
@@ -6700,7 +6700,7 @@ foreign libphysx {
     ///
     /// The number of scene pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getScenes")
-    physics_get_scenes :: proc(self_: ^Physics, userBuffer: ^^Scene, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_scenes :: proc(self_: ^Physics, userBuffer: [^]^Scene, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a static rigid actor with the specified pose and all other fields initialized
     /// to their default values.
@@ -6762,7 +6762,7 @@ foreign libphysx {
     ///
     /// The number of shape pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getShapes")
-    physics_get_shapes :: proc(self_: ^Physics, userBuffer: ^^Shape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_shapes :: proc(self_: ^Physics, userBuffer: [^]^Shape, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Creates a constraint shader.
     ///
@@ -6799,7 +6799,7 @@ foreign libphysx {
     ///
     /// The number of material pointers written to userBuffer, this should be less or equal to bufferSize.
     @(link_name = "PxPhysics_getMaterials")
-    physics_get_materials :: proc(self_: ^Physics, userBuffer: ^^Material, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    physics_get_materials :: proc(self_: ^Physics, userBuffer: [^]^Material, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Register a deletion listener. Listeners will be called whenever an object is deleted.
     ///
@@ -7533,7 +7533,7 @@ foreign libphysx {
     ///
     /// Number of written out regions.
     @(link_name = "PxBroadPhaseRegions_getRegions")
-    broad_phase_regions_get_regions :: proc(self_: ^BroadPhaseRegions, userBuffer: ^BroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    broad_phase_regions_get_regions :: proc(self_: ^BroadPhaseRegions, userBuffer: [^]BroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Adds a new broad-phase region.
     ///
@@ -8047,7 +8047,7 @@ foreign libphysx {
     ///
     /// Number of actors written to the buffer.
     @(link_name = "PxScene_getActors")
-    scene_get_actors :: proc(self_: ^Scene, types: ActorTypeFlags_Set, userBuffer: ^^Actor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_actors :: proc(self_: ^Scene, types: ActorTypeFlags_Set, userBuffer: [^]^Actor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Queries the PxScene for a list of the PxActors whose transforms have been
     /// updated during the previous simulation step. Only includes actors of type PxRigidDynamic and PxArticulationLink.
@@ -8070,7 +8070,7 @@ foreign libphysx {
     ///
     /// Number of articulations written to the buffer.
     @(link_name = "PxScene_getArticulations")
-    scene_get_articulations :: proc(self_: ^Scene, userBuffer: ^^ArticulationReducedCoordinate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_articulations :: proc(self_: ^Scene, userBuffer: [^]^ArticulationReducedCoordinate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of constraint shaders in the scene.
     ///
@@ -8082,7 +8082,7 @@ foreign libphysx {
     ///
     /// Number of constraint shaders written to the buffer.
     @(link_name = "PxScene_getConstraints")
-    scene_get_constraints :: proc(self_: ^Scene, userBuffer: ^^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_constraints :: proc(self_: ^Scene, userBuffer: [^]^Constraint, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of aggregates in the scene.
     ///
@@ -8094,7 +8094,7 @@ foreign libphysx {
     ///
     /// Number of aggregates written to the buffer.
     @(link_name = "PxScene_getAggregates")
-    scene_get_aggregates :: proc(self_: ^Scene, userBuffer: ^^Aggregate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_aggregates :: proc(self_: ^Scene, userBuffer: [^]^Aggregate, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Specifies the dominance behavior of contacts between two actors with two certain dominance groups.
     ///
@@ -8560,7 +8560,7 @@ foreign libphysx {
     ///
     /// Number of written out regions
     @(link_name = "PxScene_getBroadPhaseRegions")
-    scene_get_broad_phase_regions :: proc(self_: ^Scene, userBuffer: ^BroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    scene_get_broad_phase_regions :: proc(self_: ^Scene, userBuffer: [^]BroadPhaseRegionInfo, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Adds a new broad-phase region.
     ///
@@ -8886,7 +8886,7 @@ foreign libphysx {
     ///
     /// Number of contact points written to the buffer.
     @(link_name = "PxContactPair_extractContacts")
-    contact_pair_extract_contacts :: proc(self_: ^ContactPair, userBuffer: ^ContactPairPoint, bufferSize: _c.uint32_t) -> _c.uint32_t ---
+    contact_pair_extract_contacts :: proc(self_: ^ContactPair, userBuffer: [^]ContactPairPoint, bufferSize: _c.uint32_t) -> _c.uint32_t ---
 
     /// Helper method to clone the contact pair and copy the contact data stream into a user buffer.
     ///
@@ -8998,7 +8998,7 @@ foreign libphysx {
     ///
     /// Number of rigid actor pointers written to the buffer.
     @(link_name = "PxPruningStructure_getRigidActors")
-    pruning_structure_get_rigid_actors :: proc(self_: ^PruningStructure, userBuffer: ^^RigidActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
+    pruning_structure_get_rigid_actors :: proc(self_: ^PruningStructure, userBuffer: [^]^RigidActor, bufferSize: _c.uint32_t, startIndex: _c.uint32_t) -> _c.uint32_t ---
 
     /// Returns the number of rigid actors in the pruning structure.
     ///

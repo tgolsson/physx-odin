@@ -2058,7 +2058,7 @@ StridedData :: struct {
 BoundedData :: struct {
     using _: StridedData,
     count: _c.uint32_t,
-    _pad5: [4]u8,
+    _pad4: [4]u8,
 }
 
 
@@ -2295,10 +2295,10 @@ MeshScale :: struct {
 ConvexMeshGeometry :: struct {
     using _: Geometry,
     scale: MeshScale,
-    _pad4: [4]u8,
+    _pad3: [4]u8,
     convexMesh: ^ConvexMesh,
     meshFlags: ConvexMeshGeometryFlags_Set,
-    _pad7: [7]u8,
+    _pad6: [7]u8,
 }
 
 
@@ -2317,7 +2317,7 @@ TriangleMeshGeometry :: struct {
     using _: Geometry,
     scale: MeshScale,
     meshFlags: MeshGeometryFlags_Set,
-    _pad5: [3]u8,
+    _pad4: [3]u8,
     triangleMesh: ^TriangleMesh,
 }
 
@@ -2329,7 +2329,7 @@ HeightFieldGeometry :: struct {
     rowScale: _c.float,
     columnScale: _c.float,
     heightFieldFlags: MeshGeometryFlags_Set,
-    _pad8: [3]u8,
+    _pad7: [3]u8,
 }
 
 
@@ -2358,7 +2358,7 @@ QueryHit :: struct {
 LocationHit :: struct {
     using _: QueryHit,
     flags: HitFlags_Set,
-    _pad3: [2]u8,
+    _pad2: [2]u8,
     position: Vec3,
     normal: Vec3,
     distance: _c.float,
@@ -3234,24 +3234,21 @@ ActorShape :: struct {
 }
 
 
-RaycastHit :: struct #packed {
+RaycastHit :: struct {
     using _: GeomRaycastHit,
     using _: ActorShape,
-    _pad12: [4]u8,
 }
 
 
-OverlapHit :: struct #packed {
+OverlapHit :: struct {
     using _: GeomOverlapHit,
     using _: ActorShape,
-    _pad4: [4]u8,
 }
 
 
-SweepHit :: struct #packed {
+SweepHit :: struct {
     using _: GeomSweepHit,
     using _: ActorShape,
-    _pad10: [4]u8,
 }
 
 
@@ -3497,13 +3494,13 @@ SceneDesc :: struct {
     ccdContactModifyCallback: ^CCDContactModifyCallback,
     filterShaderData: rawptr,
     filterShaderDataSize: _c.uint32_t,
-    _pad16: [4]u8,
+    _pad15: [4]u8,
     filterShader: rawptr,
     filterCallback: ^SimulationFilterCallback,
     kineKineFilteringMode: PairFilteringMode,
     staticKineFilteringMode: PairFilteringMode,
     broadPhaseType: BroadPhaseType,
-    _pad22: [4]u8,
+    _pad21: [4]u8,
     broadPhaseCallback: ^BroadPhaseCallback,
     limits: SceneLimits,
     frictionType: FrictionType,
@@ -3513,7 +3510,7 @@ SceneDesc :: struct {
     frictionCorrelationDistance: _c.float,
     flags: SceneFlags_Set,
     cpuDispatcher: ^CpuDispatcher,
-    _pad32: [8]u8,
+    _pad31: [8]u8,
     userData: rawptr,
     solverBatchSize: _c.uint32_t,
     solverArticulationBatchSize: _c.uint32_t,
@@ -3532,7 +3529,7 @@ SceneDesc :: struct {
     gpuComputeVersion: _c.uint32_t,
     contactPairSlabSize: _c.uint32_t,
     sceneQuerySystem: ^SceneQuerySystem,
-    _pad51: [8]u8,
+    _pad50: [8]u8,
 }
 
 
@@ -3649,7 +3646,7 @@ ContactPairExtraDataItem :: struct {
 
 ContactPairVelocity :: struct {
     using _: ContactPairExtraDataItem,
-    _pad1: [3]u8,
+    _pad1: [2]u8,
     linearVelocity: [2]Vec3,
     angularVelocity: [2]Vec3,
 }
@@ -3657,14 +3654,13 @@ ContactPairVelocity :: struct {
 
 ContactPairPose :: struct {
     using _: ContactPairExtraDataItem,
-    _pad1: [3]u8,
+    _pad1: [2]u8,
     globalPose: [2]Transform,
 }
 
 
 ContactPairIndex :: struct {
     using _: ContactPairExtraDataItem,
-    _pad1: [1]u8,
     index: _c.uint16_t,
 }
 
@@ -3775,7 +3771,7 @@ Obstacle :: struct {
 BoxObstacle :: struct {
     using _: Obstacle,
     mHalfExtents: Vec3,
-    _pad6: [4]u8,
+    _pad5: [4]u8,
 }
 
 
@@ -3896,7 +3892,6 @@ Controller :: struct {
 
 BoxControllerDesc :: struct {
     using _: ControllerDesc,
-    _pad22: [4]u8,
     halfHeight: _c.float,
     halfSideExtent: _c.float,
     halfForwardExtent: _c.float,
@@ -3911,7 +3906,6 @@ BoxController :: struct {
 
 CapsuleControllerDesc :: struct {
     using _: ControllerDesc,
-    _pad22: [4]u8,
     radius: _c.float,
     height: _c.float,
     climbingMode: CapsuleClimbingMode,
