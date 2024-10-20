@@ -12244,7 +12244,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -12821,7 +12821,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -13420,7 +13420,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -13435,7 +13435,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -30340,7 +30340,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "UChar"
                 }
@@ -30355,7 +30355,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "UChar"
                 }
@@ -30370,7 +30370,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Float"
                 }
@@ -37723,7 +37723,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -38054,7 +38054,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -38067,7 +38067,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39139,7 +39139,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39193,7 +39193,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39277,7 +39277,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39331,7 +39331,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39471,7 +39471,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39617,7 +39617,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39716,7 +39716,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39770,7 +39770,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -43480,7 +43480,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Float"
               }
@@ -45504,7 +45504,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45517,7 +45517,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45582,7 +45582,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45595,7 +45595,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45827,7 +45827,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45840,7 +45840,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46054,7 +46054,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46067,7 +46067,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46671,7 +46671,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Float"
               }
@@ -50688,7 +50688,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -50777,7 +50777,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -50829,7 +50829,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -52809,7 +52809,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -53800,7 +53800,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -53932,7 +53932,7 @@
                 "Pointer": {
                   "is_const": false,
                   "is_pointee_const": true,
-                  "is_array_like": false,
+                  "is_array_like": true,
                   "pointee": {
                     "Builtin": "Char"
                   }
@@ -54332,7 +54332,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -55375,7 +55375,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -55879,7 +55879,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -55891,7 +55891,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -55982,7 +55982,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -56867,7 +56867,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -56939,7 +56939,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -57408,7 +57408,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -59625,7 +59625,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -60221,7 +60221,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -65194,7 +65194,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -68764,7 +68764,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -68818,7 +68818,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -69988,7 +69988,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -72007,7 +72007,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -72402,7 +72402,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -73144,7 +73144,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -73626,7 +73626,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -74188,7 +74188,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -75376,7 +75376,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -75430,7 +75430,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -79831,7 +79831,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -81399,7 +81399,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -81453,7 +81453,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -81493,7 +81493,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -84936,7 +84936,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -85884,7 +85884,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -88769,7 +88769,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -90577,7 +90577,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -92744,7 +92744,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -95711,7 +95711,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -95751,7 +95751,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -101004,7 +101004,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -102073,7 +102073,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -102291,7 +102291,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -106578,7 +106578,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -106698,7 +106698,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -108536,7 +108536,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -108625,7 +108625,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -109241,7 +109241,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -109321,7 +109321,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -109935,7 +109935,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -117059,7 +117059,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117205,7 +117205,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117537,7 +117537,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117550,7 +117550,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -118783,7 +118783,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -118837,7 +118837,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120012,7 +120012,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120654,7 +120654,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120886,7 +120886,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -122329,7 +122329,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -123128,7 +123128,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -123622,7 +123622,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125248,7 +125248,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125572,7 +125572,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125972,7 +125972,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -126784,7 +126784,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -126797,7 +126797,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -135693,7 +135693,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -135860,7 +135860,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Builtin": "Char"
           }
@@ -136811,7 +136811,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -136871,7 +136871,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Builtin": "Char"
               }
