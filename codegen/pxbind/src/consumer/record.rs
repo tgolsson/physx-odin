@@ -316,6 +316,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
+                        is_array_like: true,
                         pointee: Box::new(QualType::Record { name: hit_type }),
                     },
                     is_public: true,
@@ -340,6 +341,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
+                        is_array_like: true,
                         pointee: Box::new(QualType::Builtin(Builtin::UInt)),
                     },
                     is_public: false,
@@ -506,6 +508,7 @@ impl<'ast> super::AstConsumer<'ast> {
                         pointee: Box::new(QualType::Record { name: inner_type }),
                         is_const: false,
                         is_pointee_const: false,
+                        is_array_like: false,
                     }),
                     len: 16,
                 },
@@ -526,6 +529,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     pointee: Box::new(QualType::Record { name: inner_type }),
                     is_const: false,
                     is_pointee_const: false,
+                    is_array_like: false,
                 },
                 is_public: false,
                 is_reference: false,
@@ -576,6 +580,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
+                        is_array_like: false,
                         pointee: Box::new(QualType::Record {
                             name: "PxSolverBody",
                         }),
@@ -591,6 +596,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
+                        is_array_like: false,
                         pointee: Box::new(QualType::Record {
                             name: "PxSolverBody",
                         }),
@@ -666,6 +672,7 @@ impl<'ast> super::AstConsumer<'ast> {
                             ret: Some(QualType::Pointer {
                                 is_const: false,
                                 is_pointee_const: false,
+                                is_array_like: false,
                                 pointee: Box::new(QualType::Record { name: rname }),
                             }),
                             comment,

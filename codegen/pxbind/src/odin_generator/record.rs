@@ -148,6 +148,7 @@ impl crate::type_db::RecBindingDef {
 
                 continue;
             }
+
             let name = if emitted_field.name.ends_with(']') {
                 emitted_field.name[..emitted_field.name.find('[').unwrap()].to_owned()
             } else {
