@@ -279,6 +279,7 @@ impl<'qt> fmt::Display for OdinType<'qt> {
             } => {
                 match (pointee.odin_type().0, is_array_like) {
                     (QualTypeValue::Builtin(Builtin::Void), _) => write!(f, "rawptr")?,
+                    (QualTypeValue::Builtin(Builtin::Char), _) => write!(f, "cstring")?,
                     (_, true) => write!(f, "[^]{}", pointee.odin_type())?,
                     _ => write!(f, "^{}", pointee.odin_type())?,
                 }

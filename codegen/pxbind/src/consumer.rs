@@ -512,44 +512,48 @@ impl<'ast> AstConsumer<'ast> {
 
         // There's probably a smarter way to do this, but ugh, C++ pointers are so
         // dumb
-        fn parse_ptr(inner: &str) -> (&str, bool) {
+        fn parse_ptr(inner: &str) -> (&str, bool, bool) {
             if inner.contains('*') {
                 if let Some(s) = inner.strip_suffix("const ") {
-                    (s, true)
+                    (s, true, true)
                 } else {
-                    (inner, false)
+                    (inner, false, true)
                 }
             } else if let Some(s) = inner.strip_prefix("const ") {
-                (s, true)
+                (s, true, false)
             } else {
-                (inner, false)
+                (inner, false, false)
             }
         }
 
         if let Some(ptr) = type_str.strip_suffix('*') {
-            let (inner, is_pointee_const) = parse_ptr(ptr);
+            let (inner, is_pointee_const, is_ptr_of_ptr) = parse_ptr(ptr);
 
             let pointee = self.parse_type(inner.trim(), template_types)?;
 
+            // Heuristic: PhysX commonly has c-style arrays that point to pointers (ie. array of
+            // pointers of objects), so we'll assume that makes it array-like.
             return Ok(QualType::Pointer {
                 is_const: false,
                 is_pointee_const,
-                is_array_like: false,
+                is_array_like: is_ptr_of_ptr,
                 pointee: Box::new(pointee),
             });
         } else if let Some(ptr) = type_str.strip_suffix("*const") {
-            let (inner, is_pointee_const) = parse_ptr(ptr);
+            let (inner, is_pointee_const, is_ptr_of_ptr) = parse_ptr(ptr);
 
             let pointee = self.parse_type(inner.trim(), template_types)?;
 
+            // Heuristic: PhysX commonly has c-style arrays that point to pointers (ie. array of
+            // pointers of objects), so we'll assume that makes it array-like.
             return Ok(QualType::Pointer {
                 is_const: true,
                 is_pointee_const,
-                is_array_like: false,
+                is_array_like: is_ptr_of_ptr,
                 pointee: Box::new(pointee),
             });
         } else if let Some(refer) = type_str.strip_suffix('&') {
-            let (inner, is_const) = parse_ptr(refer);
+            let (inner, is_const, _) = parse_ptr(refer);
 
             let pointee = self.parse_type(inner.trim(), template_types)?;
 

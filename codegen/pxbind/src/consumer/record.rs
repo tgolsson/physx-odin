@@ -316,7 +316,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
-                        is_array_like: false,
+                        is_array_like: true,
                         pointee: Box::new(QualType::Record { name: hit_type }),
                     },
                     is_public: true,
@@ -341,7 +341,7 @@ impl<'ast> super::AstConsumer<'ast> {
                     kind: QualType::Pointer {
                         is_const: false,
                         is_pointee_const: false,
-                        is_array_like: false,
+                        is_array_like: true,
                         pointee: Box::new(QualType::Builtin(Builtin::UInt)),
                     },
                     is_public: false,

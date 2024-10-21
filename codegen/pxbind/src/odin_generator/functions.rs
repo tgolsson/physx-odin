@@ -85,6 +85,21 @@ impl FuncBindingValue {
         }
 
         if let Some(ret) = &self.ret {
+            // Heuristic: Multi-pointer return value for "getXs" functions
+            let is_array_return = self.name.ends_with("s") && self.name.contains("get");
+
+            let ret = match ret {
+                QualTypeValue::Pointer { is_const, is_pointee_const, is_array_like, pointee } if is_array_return => {
+                    QualTypeValue::Pointer {
+                        is_const: *is_const,
+                        is_pointee_const: *is_pointee_const,
+                        is_array_like: true,
+                        pointee: pointee.clone(),
+                    }
+                },
+                _ => ret.clone()
+            };
+
             writes!(acc, ") -> {}", ret.odin_type());
         } else {
             writes!(acc, ")");
