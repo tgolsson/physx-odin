@@ -89,7 +89,7 @@ impl FuncBindingValue {
             let is_array_return = self.name.ends_with("s") && self.name.contains("get");
 
             let ret = match ret {
-                QualTypeValue::Pointer { is_const, is_pointee_const, is_array_like, pointee } if is_array_return => {
+                QualTypeValue::Pointer { is_const, is_pointee_const, is_array_like: _, pointee } if is_array_return => {
                     QualTypeValue::Pointer {
                         is_const: *is_const,
                         is_pointee_const: *is_pointee_const,

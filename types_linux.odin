@@ -2007,7 +2007,7 @@ ProfilerCallback :: struct {
 
 ProfileScoped :: struct {
     mCallback: ^ProfilerCallback,
-    mEventName: ^_c.char,
+    mEventName: cstring,
     mProfilerData: rawptr,
     mContextId: _c.uint64_t,
     mDetached: _c.bool,
@@ -2091,7 +2091,7 @@ DebugText :: struct {
     size: _c.float,
     color: _c.uint32_t,
     _pad3: [4]u8,
-    string: ^_c.char,
+    string: cstring,
 }
 
 
@@ -2192,8 +2192,8 @@ Serializer :: struct {
 
 
 MetaDataEntry :: struct {
-    type: ^_c.char,
-    name: ^_c.char,
+    type: cstring,
+    name: cstring,
     offset: _c.uint32_t,
     size: _c.uint32_t,
     count: _c.uint32_t,
@@ -3252,7 +3252,7 @@ RaycastCallback :: struct {
     block: RaycastHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^RaycastHit,
+    touches: [^]RaycastHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -3263,7 +3263,7 @@ OverlapCallback :: struct {
     block: OverlapHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^OverlapHit,
+    touches: [^]OverlapHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -3274,7 +3274,7 @@ SweepCallback :: struct {
     block: SweepHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^SweepHit,
+    touches: [^]SweepHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -3285,7 +3285,7 @@ RaycastBuffer :: struct {
     block: RaycastHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^RaycastHit,
+    touches: [^]RaycastHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -3296,7 +3296,7 @@ OverlapBuffer :: struct {
     block: OverlapHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^OverlapHit,
+    touches: [^]OverlapHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -3307,7 +3307,7 @@ SweepBuffer :: struct {
     block: SweepHit,
     hasBlock: _c.bool,
     _pad3: [7]u8,
-    touches: ^SweepHit,
+    touches: [^]SweepHit,
     maxNbTouches: _c.uint32_t,
     nbTouches: _c.uint32_t,
 }
@@ -4258,7 +4258,7 @@ TetrahedronMeshExt :: struct {
 };
 
 RepXObject :: struct {
-    typeName: ^_c.char,
+    typeName: cstring,
     serializable: rawptr,
     id: _c.uint64_t,
 }

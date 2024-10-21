@@ -9903,469 +9903,469 @@
     }
   ],
   "enum_map": {
-    "PxConvexMeshCookingType::Enum": [
-      "Int",
-      "PxConvexMeshCookingType"
-    ],
-    "PxGeometryQueryFlag::Enum": [
-      "Int",
-      "PxGeometryQueryFlag"
-    ],
-    "PxPairFlag::Enum": [
-      "Int",
-      "PxPairFlag"
-    ],
-    "PxBVHBuildStrategy::Enum": [
-      "Int",
-      "PxBVHBuildStrategy"
-    ],
-    "PxArticulationJointType::Enum": [
-      "Int",
-      "PxArticulationJointType"
-    ],
-    "PxPairFilteringMode::Enum": [
-      "Int",
-      "PxPairFilteringMode"
-    ],
-    "PxHeightFieldTessFlag::Enum": [
-      "Int",
-      "PxHeightFieldTessFlag"
-    ],
-    "PxTriangleMeshCookingResult::Enum": [
-      "Int",
-      "PxTriangleMeshCookingResult"
-    ],
-    "PxErrorCode::Enum": [
-      "Int",
-      "PxErrorCode"
-    ],
-    "PxSimulationStatistics::RbPairStatsType": [
-      "Int",
-      "RbPairStatsType"
-    ],
-    "PxConvexMeshCookingResult::Enum": [
-      "Int",
-      "PxConvexMeshCookingResult"
-    ],
-    "PxBatchQueryStatus::Enum": [
-      "Int",
-      "PxBatchQueryStatus"
-    ],
-    "PxMeshGeometryFlag::Enum": [
-      "Int",
-      "PxMeshGeometryFlag"
-    ],
-    "PxHeightFieldMaterial::Enum": [
-      "Int",
-      "PxHeightFieldMaterial"
-    ],
-    "PxHairSystemData::Enum": [
-      "Int",
-      "PxHairSystemData"
-    ],
-    "PxD6JointDriveFlag::Enum": [
-      "Int",
-      "PxD6JointDriveFlag"
-    ],
-    "PxMaterialFlag::Enum": [
-      "Int",
-      "PxMaterialFlag"
-    ],
-    "PxHitFlag::Enum": [
-      "Int",
-      "PxHitFlag"
-    ],
-    "PxRigidBodyFlag::Enum": [
-      "Int",
-      "PxRigidBodyFlag"
-    ],
-    "PxConcreteType::Enum": [
-      "Int",
-      "PxConcreteType"
-    ],
-    "PxSceneFlag::Enum": [
-      "Int",
-      "PxSceneFlag"
-    ],
-    "PxTriggerPairFlag::Enum": [
-      "Int",
-      "PxTriggerPairFlag"
-    ],
-    "PxForceMode::Enum": [
-      "Int",
-      "PxForceMode"
-    ],
     "PxActorTypeFlag::Enum": [
       "Int",
       "PxActorTypeFlag"
-    ],
-    "PxConvexMeshGeometryFlag::Enum": [
-      "Int",
-      "PxConvexMeshGeometryFlag"
-    ],
-    "PxPruningStructureType::Enum": [
-      "Int",
-      "PxPruningStructureType"
-    ],
-    "PxBroadPhaseType::Enum": [
-      "Int",
-      "PxBroadPhaseType"
-    ],
-    "PxTaskType::Enum": [
-      "Int",
-      "PxTaskType"
-    ],
-    "PxBaseFlag::Enum": [
-      "Int",
-      "PxBaseFlag"
-    ],
-    "PxQueryFlag::Enum": [
-      "Int",
-      "PxQueryFlag"
-    ],
-    "PxArticulationFlag::Enum": [
-      "Int",
-      "PxArticulationFlag"
-    ],
-    "PxDataAccessFlag::Enum": [
-      "Int",
-      "PxDataAccessFlag"
-    ],
-    "PxGeometryType::Enum": [
-      "Int",
-      "PxGeometryType"
-    ],
-    "PxHeightFieldFlag::Enum": [
-      "Int",
-      "PxHeightFieldFlag"
-    ],
-    "PxMeshMeshQueryFlag::Enum": [
-      "Int",
-      "PxMeshMeshQueryFlag"
-    ],
-    "PxControllerDebugRenderFlag::Enum": [
-      "UInt",
-      "PxControllerDebugRenderFlag"
-    ],
-    "PxFilterFlag::Enum": [
-      "Int",
-      "PxFilterFlag"
-    ],
-    "PxTetrahedronMeshDesc::PxMeshFormat": [
-      "Int",
-      "PxMeshFormat"
-    ],
-    "PxCombineMode::Enum": [
-      "Int",
-      "PxCombineMode"
-    ],
-    "PxActorFlag::Enum": [
-      "Int",
-      "PxActorFlag"
-    ],
-    "PxMeshMidPhase::Enum": [
-      "Int",
-      "PxMeshMidPhase"
-    ],
-    "PxSolverType::Enum": [
-      "Int",
-      "PxSolverType"
-    ],
-    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
-      "Int",
-      "PxDefaultCpuDispatcherWaitForWorkMode"
-    ],
-    "PxContactPairHeaderFlag::Enum": [
-      "Int",
-      "PxContactPairHeaderFlag"
-    ],
-    "PxContactPatch::PxContactPatchFlags": [
-      "Int",
-      "PxContactPatchFlags"
-    ],
-    "PxHeightFieldFormat::Enum": [
-      "Int",
-      "PxHeightFieldFormat"
-    ],
-    "PxControllerShapeType::Enum": [
-      "Int",
-      "PxControllerShapeType"
-    ],
-    "PxSphericalJointFlag::Enum": [
-      "Int",
-      "PxSphericalJointFlag"
-    ],
-    "PxCapsuleClimbingMode::Enum": [
-      "Int",
-      "PxCapsuleClimbingMode"
-    ],
-    "PxConvexFlag::Enum": [
-      "Int",
-      "PxConvexFlag"
-    ],
-    "PxParticleSolverType::Enum": [
-      "Int",
-      "PxParticleSolverType"
-    ],
-    "PxAggregateType::Enum": [
-      "Int",
-      "PxAggregateType"
-    ],
-    "PxTriangleMeshFlag::Enum": [
-      "Int",
-      "PxTriangleMeshFlag"
-    ],
-    "PxPvdUpdateType::Enum": [
-      "Int",
-      "PxPvdUpdateType"
-    ],
-    "PxArticulationMotion::Enum": [
-      "Int",
-      "PxArticulationMotion"
-    ],
-    "PxD6Drive::Enum": [
-      "Int",
-      "PxD6Drive"
-    ],
-    "PxActorType::Enum": [
-      "Int",
-      "PxActorType"
-    ],
-    "PxArticulationCacheFlag::Enum": [
-      "Int",
-      "PxArticulationCacheFlag"
-    ],
-    "PxD6Axis::Enum": [
-      "Int",
-      "PxD6Axis"
-    ],
-    "PxFilterOp::Enum": [
-      "Int",
-      "PxFilterOp"
-    ],
-    "PxSdfBitsPerSubgridPixel::Enum": [
-      "Int",
-      "PxSdfBitsPerSubgridPixel"
-    ],
-    "PxFilterObjectFlag::Enum": [
-      "Int",
-      "PxFilterObjectFlag"
-    ],
-    "Px1DConstraintFlag::Type": [
-      "Int",
-      "Px1DConstraintFlag"
-    ],
-    "PxControllerNonWalkableMode::Enum": [
-      "Int",
-      "PxControllerNonWalkableMode"
-    ],
-    "PxDistanceJointFlag::Enum": [
-      "Int",
-      "PxDistanceJointFlag"
-    ],
-    "PxFrictionType::Enum": [
-      "Int",
-      "PxFrictionType"
-    ],
-    "PxConstraintFlag::Enum": [
-      "Int",
-      "PxConstraintFlag"
-    ],
-    "PxSceneQueryUpdateMode::Enum": [
-      "Int",
-      "PxSceneQueryUpdateMode"
-    ],
-    "PxVisualizationParameter::Enum": [
-      "Int",
-      "PxVisualizationParameter"
-    ],
-    "PxEMPTY": [
-      "Int",
-      "PxEMPTY"
-    ],
-    "PxContactPairFlag::Enum": [
-      "Int",
-      "PxContactPairFlag"
-    ],
-    "PxSoftBodyData::Enum": [
-      "Int",
-      "PxSoftBodyData"
-    ],
-    "PxDeletionEventFlag::Enum": [
-      "Int",
-      "PxDeletionEventFlag"
-    ],
-    "PxJointActorIndex::Enum": [
-      "Int",
-      "PxJointActorIndex"
-    ],
-    "PxQueryHitType::Enum": [
-      "Int",
-      "PxQueryHitType"
-    ],
-    "PxSoftBodyFlag::Enum": [
-      "Int",
-      "PxSoftBodyFlag"
-    ],
-    "PxMetaDataFlag::Enum": [
-      "Int",
-      "PxMetaDataFlag"
-    ],
-    "PxParticlePhaseFlag::Enum": [
-      "UInt",
-      "PxParticlePhaseFlag"
-    ],
-    "PxContactStreamIterator::StreamFormat": [
-      "Int",
-      "StreamFormat"
     ],
     "PxConstraintExtIDs::Enum": [
       "Int",
       "PxConstraintExtIDs"
     ],
-    "PxArticulationKinematicFlag::Enum": [
+    "PxSolverConstraintDesc::ConstraintType": [
       "Int",
-      "PxArticulationKinematicFlag"
+      "ConstraintType"
     ],
-    "PxRevoluteJointFlag::Enum": [
+    "PxTetrahedronMeshDesc::PxMeshFormat": [
       "Int",
-      "PxRevoluteJointFlag"
+      "PxMeshFormat"
     ],
-    "PxD6Motion::Enum": [
+    "PxMeshGeometryFlag::Enum": [
       "Int",
-      "PxD6Motion"
+      "PxMeshGeometryFlag"
     ],
-    "PxThreadPriority::Enum": [
+    "PxD6JointDriveFlag::Enum": [
+      "Int",
+      "PxD6JointDriveFlag"
+    ],
+    "PxPruningStructureType::Enum": [
+      "Int",
+      "PxPruningStructureType"
+    ],
+    "PxSolverType::Enum": [
+      "Int",
+      "PxSolverType"
+    ],
+    "PxGeometryType::Enum": [
+      "Int",
+      "PxGeometryType"
+    ],
+    "PxParticlePhaseFlag::Enum": [
       "UInt",
-      "PxThreadPriority"
+      "PxParticlePhaseFlag"
     ],
-    "PxRigidDynamicLockFlag::Enum": [
+    "PxJointActorIndex::Enum": [
       "Int",
-      "PxRigidDynamicLockFlag"
+      "PxJointActorIndex"
     ],
-    "PxContactPairExtraDataType::Enum": [
+    "PxConvexMeshCookingResult::Enum": [
       "Int",
-      "PxContactPairExtraDataType"
+      "PxConvexMeshCookingResult"
     ],
-    "PxPrismaticJointFlag::Enum": [
+    "PxMeshMeshQueryFlag::Enum": [
       "Int",
-      "PxPrismaticJointFlag"
-    ],
-    "PxMeshFlag::Enum": [
-      "Int",
-      "PxMeshFlag"
-    ],
-    "PxSoftBodyDataFlag::Enum": [
-      "Int",
-      "PxSoftBodyDataFlag"
-    ],
-    "PxActorCacheFlag::Enum": [
-      "Int",
-      "PxActorCacheFlag"
-    ],
-    "PxFilterObjectType::Enum": [
-      "Int",
-      "PxFilterObjectType"
-    ],
-    "PxArticulationSensorFlag::Enum": [
-      "Int",
-      "PxArticulationSensorFlag"
-    ],
-    "PxIDENTITY": [
-      "Int",
-      "PxIDENTITY"
-    ],
-    "PxTetrahedronMeshFlag::Enum": [
-      "Int",
-      "PxTetrahedronMeshFlag"
-    ],
-    "PxArticulationAxis::Enum": [
-      "Int",
-      "PxArticulationAxis"
+      "PxMeshMeshQueryFlag"
     ],
     "PxShapeFlag::Enum": [
       "Int",
       "PxShapeFlag"
     ],
-    "PxPvdInstrumentationFlag::Enum": [
+    "PxTriggerPairFlag::Enum": [
       "Int",
-      "PxPvdInstrumentationFlag"
+      "PxTriggerPairFlag"
+    ],
+    "PxContactPatch::PxContactPatchFlags": [
+      "Int",
+      "PxContactPatchFlags"
+    ],
+    "PxControllerNonWalkableMode::Enum": [
+      "Int",
+      "PxControllerNonWalkableMode"
     ],
     "PxConstraintSolveHint::Enum": [
       "Int",
       "PxConstraintSolveHint"
     ],
-    "PxConstraintVisualizationFlag::Enum": [
+    "PxActorFlag::Enum": [
       "Int",
-      "PxConstraintVisualizationFlag"
+      "PxActorFlag"
     ],
-    "PxSolverConstraintDesc::ConstraintType": [
+    "PxEMPTY": [
       "Int",
-      "ConstraintType"
+      "PxEMPTY"
     ],
-    "PxJointConcreteType::Enum": [
+    "PxErrorCode::Enum": [
       "Int",
-      "PxJointConcreteType"
+      "PxErrorCode"
     ],
-    "PxControllerCollisionFlag::Enum": [
+    "PxActorCacheFlag::Enum": [
       "Int",
-      "PxControllerCollisionFlag"
+      "PxActorCacheFlag"
     ],
-    "PxSolverConstraintPrepDescBase::BodyState": [
+    "PxCombineMode::Enum": [
       "Int",
-      "BodyState"
+      "PxCombineMode"
     ],
-    "PxBufferType::Enum": [
+    "PxSoftBodyData::Enum": [
       "Int",
-      "PxBufferType"
-    ],
-    "PxDynamicTreeSecondaryPruner::Enum": [
-      "Int",
-      "PxDynamicTreeSecondaryPruner"
+      "PxSoftBodyData"
     ],
     "PxDebugColor::Enum": [
       "UInt",
       "PxDebugColor"
     ],
-    "PxParticleBufferFlag::Enum": [
+    "PxControllerShapeType::Enum": [
       "Int",
-      "PxParticleBufferFlag"
+      "PxControllerShapeType"
     ],
-    "PxControllerBehaviorFlag::Enum": [
+    "PxBatchQueryStatus::Enum": [
       "Int",
-      "PxControllerBehaviorFlag"
+      "PxBatchQueryStatus"
     ],
-    "PxArticulationDriveType::Enum": [
+    "PxSoftBodyFlag::Enum": [
       "Int",
-      "PxArticulationDriveType"
+      "PxSoftBodyFlag"
     ],
-    "PxBVH34BuildStrategy::Enum": [
+    "PxConvexMeshGeometryFlag::Enum": [
       "Int",
-      "PxBVH34BuildStrategy"
+      "PxConvexMeshGeometryFlag"
     ],
-    "PxArticulationGpuDataType::Enum": [
+    "PxD6Drive::Enum": [
       "Int",
-      "PxArticulationGpuDataType"
+      "PxD6Drive"
     ],
-    "PxZERO": [
+    "PxSimulationStatistics::RbPairStatsType": [
       "Int",
-      "PxZERO"
+      "RbPairStatsType"
     ],
-    "PxPvdSceneFlag::Enum": [
+    "PxArticulationSensorFlag::Enum": [
       "Int",
-      "PxPvdSceneFlag"
+      "PxArticulationSensorFlag"
     ],
-    "PxHairSystemFlag::Enum": [
+    "PxRigidDynamicLockFlag::Enum": [
       "Int",
-      "PxHairSystemFlag"
+      "PxRigidDynamicLockFlag"
+    ],
+    "PxAggregateType::Enum": [
+      "Int",
+      "PxAggregateType"
+    ],
+    "PxFilterObjectFlag::Enum": [
+      "Int",
+      "PxFilterObjectFlag"
+    ],
+    "PxIDENTITY": [
+      "Int",
+      "PxIDENTITY"
+    ],
+    "PxScenePrunerIndex": [
+      "UInt",
+      "PxScenePrunerIndex"
+    ],
+    "PxD6Axis::Enum": [
+      "Int",
+      "PxD6Axis"
+    ],
+    "PxTetrahedronMeshFlag::Enum": [
+      "Int",
+      "PxTetrahedronMeshFlag"
+    ],
+    "PxForceMode::Enum": [
+      "Int",
+      "PxForceMode"
+    ],
+    "PxConvexFlag::Enum": [
+      "Int",
+      "PxConvexFlag"
+    ],
+    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
+      "Int",
+      "PxDefaultCpuDispatcherWaitForWorkMode"
+    ],
+    "PxContactPairExtraDataType::Enum": [
+      "Int",
+      "PxContactPairExtraDataType"
     ],
     "PxMeshPreprocessingFlag::Enum": [
       "Int",
       "PxMeshPreprocessingFlag"
     ],
-    "PxScenePrunerIndex": [
+    "PxHeightFieldFormat::Enum": [
+      "Int",
+      "PxHeightFieldFormat"
+    ],
+    "PxMaterialFlag::Enum": [
+      "Int",
+      "PxMaterialFlag"
+    ],
+    "PxPvdSceneFlag::Enum": [
+      "Int",
+      "PxPvdSceneFlag"
+    ],
+    "PxArticulationCacheFlag::Enum": [
+      "Int",
+      "PxArticulationCacheFlag"
+    ],
+    "PxParticleBufferFlag::Enum": [
+      "Int",
+      "PxParticleBufferFlag"
+    ],
+    "PxSolverConstraintPrepDescBase::BodyState": [
+      "Int",
+      "BodyState"
+    ],
+    "PxSceneQueryUpdateMode::Enum": [
+      "Int",
+      "PxSceneQueryUpdateMode"
+    ],
+    "PxSoftBodyDataFlag::Enum": [
+      "Int",
+      "PxSoftBodyDataFlag"
+    ],
+    "PxDeletionEventFlag::Enum": [
+      "Int",
+      "PxDeletionEventFlag"
+    ],
+    "PxArticulationMotion::Enum": [
+      "Int",
+      "PxArticulationMotion"
+    ],
+    "PxDistanceJointFlag::Enum": [
+      "Int",
+      "PxDistanceJointFlag"
+    ],
+    "PxHeightFieldFlag::Enum": [
+      "Int",
+      "PxHeightFieldFlag"
+    ],
+    "PxContactStreamIterator::StreamFormat": [
+      "Int",
+      "StreamFormat"
+    ],
+    "PxMeshFlag::Enum": [
+      "Int",
+      "PxMeshFlag"
+    ],
+    "PxConstraintFlag::Enum": [
+      "Int",
+      "PxConstraintFlag"
+    ],
+    "PxVisualizationParameter::Enum": [
+      "Int",
+      "PxVisualizationParameter"
+    ],
+    "PxMetaDataFlag::Enum": [
+      "Int",
+      "PxMetaDataFlag"
+    ],
+    "PxConcreteType::Enum": [
+      "Int",
+      "PxConcreteType"
+    ],
+    "PxParticleSolverType::Enum": [
+      "Int",
+      "PxParticleSolverType"
+    ],
+    "PxControllerCollisionFlag::Enum": [
+      "Int",
+      "PxControllerCollisionFlag"
+    ],
+    "PxRigidBodyFlag::Enum": [
+      "Int",
+      "PxRigidBodyFlag"
+    ],
+    "PxHairSystemFlag::Enum": [
+      "Int",
+      "PxHairSystemFlag"
+    ],
+    "PxBroadPhaseType::Enum": [
+      "Int",
+      "PxBroadPhaseType"
+    ],
+    "PxRevoluteJointFlag::Enum": [
+      "Int",
+      "PxRevoluteJointFlag"
+    ],
+    "PxContactPairHeaderFlag::Enum": [
+      "Int",
+      "PxContactPairHeaderFlag"
+    ],
+    "PxConvexMeshCookingType::Enum": [
+      "Int",
+      "PxConvexMeshCookingType"
+    ],
+    "PxBufferType::Enum": [
+      "Int",
+      "PxBufferType"
+    ],
+    "PxConstraintVisualizationFlag::Enum": [
+      "Int",
+      "PxConstraintVisualizationFlag"
+    ],
+    "PxHeightFieldMaterial::Enum": [
+      "Int",
+      "PxHeightFieldMaterial"
+    ],
+    "PxTaskType::Enum": [
+      "Int",
+      "PxTaskType"
+    ],
+    "Px1DConstraintFlag::Type": [
+      "Int",
+      "Px1DConstraintFlag"
+    ],
+    "PxBVH34BuildStrategy::Enum": [
+      "Int",
+      "PxBVH34BuildStrategy"
+    ],
+    "PxZERO": [
+      "Int",
+      "PxZERO"
+    ],
+    "PxFilterFlag::Enum": [
+      "Int",
+      "PxFilterFlag"
+    ],
+    "PxHeightFieldTessFlag::Enum": [
+      "Int",
+      "PxHeightFieldTessFlag"
+    ],
+    "PxArticulationDriveType::Enum": [
+      "Int",
+      "PxArticulationDriveType"
+    ],
+    "PxPvdUpdateType::Enum": [
+      "Int",
+      "PxPvdUpdateType"
+    ],
+    "PxControllerDebugRenderFlag::Enum": [
       "UInt",
-      "PxScenePrunerIndex"
+      "PxControllerDebugRenderFlag"
+    ],
+    "PxActorType::Enum": [
+      "Int",
+      "PxActorType"
+    ],
+    "PxHairSystemData::Enum": [
+      "Int",
+      "PxHairSystemData"
+    ],
+    "PxJointConcreteType::Enum": [
+      "Int",
+      "PxJointConcreteType"
+    ],
+    "PxSceneFlag::Enum": [
+      "Int",
+      "PxSceneFlag"
+    ],
+    "PxSdfBitsPerSubgridPixel::Enum": [
+      "Int",
+      "PxSdfBitsPerSubgridPixel"
+    ],
+    "PxD6Motion::Enum": [
+      "Int",
+      "PxD6Motion"
+    ],
+    "PxArticulationAxis::Enum": [
+      "Int",
+      "PxArticulationAxis"
+    ],
+    "PxPairFlag::Enum": [
+      "Int",
+      "PxPairFlag"
+    ],
+    "PxDataAccessFlag::Enum": [
+      "Int",
+      "PxDataAccessFlag"
+    ],
+    "PxQueryHitType::Enum": [
+      "Int",
+      "PxQueryHitType"
+    ],
+    "PxFrictionType::Enum": [
+      "Int",
+      "PxFrictionType"
+    ],
+    "PxArticulationFlag::Enum": [
+      "Int",
+      "PxArticulationFlag"
+    ],
+    "PxHitFlag::Enum": [
+      "Int",
+      "PxHitFlag"
+    ],
+    "PxArticulationKinematicFlag::Enum": [
+      "Int",
+      "PxArticulationKinematicFlag"
+    ],
+    "PxTriangleMeshCookingResult::Enum": [
+      "Int",
+      "PxTriangleMeshCookingResult"
+    ],
+    "PxTriangleMeshFlag::Enum": [
+      "Int",
+      "PxTriangleMeshFlag"
+    ],
+    "PxGeometryQueryFlag::Enum": [
+      "Int",
+      "PxGeometryQueryFlag"
+    ],
+    "PxPvdInstrumentationFlag::Enum": [
+      "Int",
+      "PxPvdInstrumentationFlag"
+    ],
+    "PxBVHBuildStrategy::Enum": [
+      "Int",
+      "PxBVHBuildStrategy"
+    ],
+    "PxThreadPriority::Enum": [
+      "UInt",
+      "PxThreadPriority"
+    ],
+    "PxFilterOp::Enum": [
+      "Int",
+      "PxFilterOp"
+    ],
+    "PxPrismaticJointFlag::Enum": [
+      "Int",
+      "PxPrismaticJointFlag"
+    ],
+    "PxBaseFlag::Enum": [
+      "Int",
+      "PxBaseFlag"
+    ],
+    "PxControllerBehaviorFlag::Enum": [
+      "Int",
+      "PxControllerBehaviorFlag"
+    ],
+    "PxFilterObjectType::Enum": [
+      "Int",
+      "PxFilterObjectType"
+    ],
+    "PxCapsuleClimbingMode::Enum": [
+      "Int",
+      "PxCapsuleClimbingMode"
+    ],
+    "PxDynamicTreeSecondaryPruner::Enum": [
+      "Int",
+      "PxDynamicTreeSecondaryPruner"
+    ],
+    "PxArticulationGpuDataType::Enum": [
+      "Int",
+      "PxArticulationGpuDataType"
+    ],
+    "PxSphericalJointFlag::Enum": [
+      "Int",
+      "PxSphericalJointFlag"
+    ],
+    "PxContactPairFlag::Enum": [
+      "Int",
+      "PxContactPairFlag"
+    ],
+    "PxPairFilteringMode::Enum": [
+      "Int",
+      "PxPairFilteringMode"
+    ],
+    "PxMeshMidPhase::Enum": [
+      "Int",
+      "PxMeshMidPhase"
+    ],
+    "PxQueryFlag::Enum": [
+      "Int",
+      "PxQueryFlag"
+    ],
+    "PxArticulationJointType::Enum": [
+      "Int",
+      "PxArticulationJointType"
     ]
   },
   "flags": [
@@ -10626,94 +10626,91 @@
     }
   ],
   "flags_map": {
-    "PxRigidDynamicLockFlags": "UChar",
-    "PxConvexFlags": "UShort",
-    "PxContactPairFlags": "UShort",
-    "PxActorCacheFlags": "UShort",
-    "PxHairSystemDataFlags": "UInt",
-    "PxQueryFlags": "UShort",
-    "PxControllerDebugRenderFlags": "UInt",
-    "PxFilterFlags": "UShort",
-    "PxMeshPreprocessingFlags": "UInt",
-    "PxArticulationMotions": "UChar",
+    "PxConstraintFlags": "UShort",
+    "PxTetrahedronMeshFlags": "UChar",
+    "PxTriggerPairFlags": "UChar",
+    "PxActorTypeFlags": "UShort",
     "PxRigidBodyFlags": "UShort",
     "PxBaseFlags": "UShort",
-    "PxArticulationKinematicFlags": "UChar",
-    "PxMaterialFlags": "UShort",
-    "PxHairSystemFlags": "UInt",
-    "PxHeightFieldFlags": "UShort",
-    "PxSceneFlags": "UInt",
-    "PxPrismaticJointFlags": "UShort",
-    "PxSoftBodyDataFlags": "UInt",
-    "PxParticlePhaseFlags": "UInt",
-    "PxArticulationSensorFlags": "UChar",
-    "PxMeshMeshQueryFlags": "UInt",
-    "PxTetrahedronMeshFlags": "UChar",
+    "PxActorCacheFlags": "UShort",
+    "PxSoftBodyFlags": "UInt",
+    "PxParticleBufferFlags": "UInt",
+    "PxPvdInstrumentationFlags": "UChar",
     "PxRevoluteJointFlags": "UShort",
-    "PxConstraintFlags": "UShort",
-    "PxControllerCollisionFlags": "UChar",
-    "PxArticulationCacheFlags": "UInt",
-    "PxPvdSceneFlags": "UChar",
-    "PxActorFlags": "UChar",
-    "PxGeometryQueryFlags": "UInt",
-    "PxControllerBehaviorFlags": "UChar",
-    "PxMeshGeometryFlags": "UChar",
-    "PxConvexMeshGeometryFlags": "UChar",
-    "PxArticulationFlags": "UChar",
-    "PxDistanceJointFlags": "UShort",
     "PxContactPairHeaderFlags": "UShort",
     "PxDataAccessFlags": "UChar",
-    "PxDeletionEventFlags": "UChar",
-    "PxMeshFlags": "UShort",
-    "PxSoftBodyFlags": "UInt",
-    "PxActorTypeFlags": "UShort",
-    "PxD6JointDriveFlags": "UInt",
-    "PxParticleBufferFlags": "UInt",
-    "PxPairFlags": "UShort",
-    "PxSphericalJointFlags": "UShort",
-    "PxPvdInstrumentationFlags": "UChar",
-    "PxTriangleMeshFlags": "UChar",
     "PxHitFlags": "UShort",
-    "PxTriggerPairFlags": "UChar",
     "PxShapeFlags": "UChar",
-    "Px1DConstraintFlags": "UShort"
+    "PxSphericalJointFlags": "UShort",
+    "PxArticulationFlags": "UChar",
+    "PxArticulationSensorFlags": "UChar",
+    "PxControllerCollisionFlags": "UChar",
+    "PxArticulationKinematicFlags": "UChar",
+    "PxMeshMeshQueryFlags": "UInt",
+    "PxPrismaticJointFlags": "UShort",
+    "PxMeshPreprocessingFlags": "UInt",
+    "PxMeshFlags": "UShort",
+    "PxControllerDebugRenderFlags": "UInt",
+    "PxGeometryQueryFlags": "UInt",
+    "PxPvdSceneFlags": "UChar",
+    "PxMeshGeometryFlags": "UChar",
+    "PxMaterialFlags": "UShort",
+    "PxDeletionEventFlags": "UChar",
+    "PxArticulationMotions": "UChar",
+    "PxSoftBodyDataFlags": "UInt",
+    "PxArticulationCacheFlags": "UInt",
+    "PxRigidDynamicLockFlags": "UChar",
+    "PxSceneFlags": "UInt",
+    "PxActorFlags": "UChar",
+    "PxFilterFlags": "UShort",
+    "PxHairSystemFlags": "UInt",
+    "PxPairFlags": "UShort",
+    "PxDistanceJointFlags": "UShort",
+    "PxHairSystemDataFlags": "UInt",
+    "PxConvexFlags": "UShort",
+    "Px1DConstraintFlags": "UShort",
+    "PxControllerBehaviorFlags": "UChar",
+    "PxTriangleMeshFlags": "UChar",
+    "PxContactPairFlags": "UShort",
+    "PxHeightFieldFlags": "UShort",
+    "PxConvexMeshGeometryFlags": "UChar",
+    "PxD6JointDriveFlags": "UInt",
+    "PxQueryFlags": "UShort",
+    "PxParticlePhaseFlags": "UInt"
   },
   "type_defs": {
-    "PxSceneQueryHit": {
+    "PxU16": {
+      "Builtin": "UShort"
+    },
+    "PxI16": {
+      "Builtin": "Short"
+    },
+    "PxTransform32": {
       "Record": {
-        "name": "PxQueryHit"
+        "name": "PxTransformPadded"
       }
     },
-    "PxI32": {
-      "Builtin": "Int"
+    "PxBpFilterGroup": {
+      "Builtin": "UInt"
     },
-    "PxPhysicsInsertionCallback": {
+    "PxSweepThreadContext": {
       "Record": {
-        "name": "PxInsertionCallback"
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxObstacleHandle": {
+      "Builtin": "UInt"
+    },
+    "PxSceneQueryCache": {
+      "Record": {
+        "name": "PxQueryCache"
       }
     },
     "PxSQCompoundHandle": {
       "Builtin": "UInt"
     },
-    "PxTriangleID": {
+    "PxAggregateFilterHint": {
       "Builtin": "UInt"
-    },
-    "PxType": {
-      "Builtin": "UShort"
-    },
-    "PxDominanceGroup": {
-      "Builtin": "UChar"
-    },
-    "PxU64": {
-      "Builtin": "ULong"
-    },
-    "PxF64": {
-      "Builtin": "Double"
-    },
-    "PxSceneQueryFlag": {
-      "Record": {
-        "name": "PxHitFlag"
-      }
     },
     "PxSQBuildStepHandle": {
       "Pointer": {
@@ -10725,25 +10722,40 @@
         }
       }
     },
-    "PxFilterObjectAttributes": {
-      "Builtin": "UInt"
+    "PxSceneQueryFilterData": {
+      "Record": {
+        "name": "PxQueryFilterData"
+      }
     },
-    "PxTaskID": {
-      "Builtin": "UInt"
+    "PxI8": {
+      "Builtin": "Char"
     },
-    "PxConstraintSolverPrep": "FunctionPointer",
     "PxRaycastThreadContext": {
       "Record": {
         "name": "PxQueryThreadContext"
       }
+    },
+    "PxU64": {
+      "Builtin": "ULong"
+    },
+    "PxSceneQueryHit": {
+      "Record": {
+        "name": "PxQueryHit"
+      }
+    },
+    "PxFEMMaterialTableIndex": {
+      "Builtin": "UShort"
+    },
+    "PxIntBool": {
+      "Builtin": "Int"
     },
     "PxSceneQueryFilterCallback": {
       "Record": {
         "name": "PxQueryFilterCallback"
       }
     },
-    "PxExtended": {
-      "Builtin": "Double"
+    "PxTaskID": {
+      "Builtin": "UInt"
     },
     "PxSceneQueryFlags": {
       "Flags": {
@@ -10751,41 +10763,86 @@
         "repr": "UShort"
       }
     },
-    "PxBpFilterGroup": {
+    "PxSerialObjectId": {
+      "Builtin": "ULong"
+    },
+    "PxType": {
+      "Builtin": "UShort"
+    },
+    "PxFilterObjectAttributes": {
       "Builtin": "UInt"
     },
-    "PxSceneQueryFilterData": {
+    "PxI32": {
+      "Builtin": "Int"
+    },
+    "PxSQPrunerHandle": {
+      "Builtin": "UInt"
+    },
+    "PxPhysicsInsertionCallback": {
       "Record": {
-        "name": "PxQueryFilterData"
+        "name": "PxInsertionCallback"
       }
+    },
+    "PxMaterialTableIndex": {
+      "Builtin": "UShort"
+    },
+    "PxReal": {
+      "Builtin": "Float"
+    },
+    "PxExtended": {
+      "Builtin": "Double"
+    },
+    "PxF64": {
+      "Builtin": "Double"
+    },
+    "PxConstraintVisualize": "FunctionPointer",
+    "PxF32": {
+      "Builtin": "Float"
+    },
+    "PxTriangleID": {
+      "Builtin": "UInt"
+    },
+    "PxSceneQueryFlag": {
+      "Record": {
+        "name": "PxHitFlag"
+      }
+    },
+    "PxClientID": {
+      "Builtin": "UChar"
+    },
+    "PxI64": {
+      "Builtin": "Long"
+    },
+    "PxU32": {
+      "Builtin": "UInt"
+    },
+    "PxBpIndex": {
+      "Builtin": "UInt"
+    },
+    "PxSimulationFilterShader": "FunctionPointer",
+    "PxAgain": {
+      "Builtin": "Bool"
+    },
+    "PxU8": {
+      "Builtin": "UChar"
     },
     "PxOverlapThreadContext": {
       "Record": {
         "name": "PxQueryThreadContext"
       }
     },
-    "PxSweepThreadContext": {
+    "PxVec3p": {
       "Record": {
-        "name": "PxQueryThreadContext"
+        "name": "PxVec3Padded"
       }
     },
-    "PxClientID": {
-      "Builtin": "UChar"
-    },
-    "PxConstraintVisualize": "FunctionPointer",
-    "PxAgain": {
-      "Builtin": "Bool"
-    },
-    "PxSceneQueryCache": {
-      "Record": {
-        "name": "PxQueryCache"
+    "PxCompileTimeAssert_Dummy": {
+      "Array": {
+        "element": {
+          "Builtin": "Char"
+        },
+        "len": 1
       }
-    },
-    "PxU32": {
-      "Builtin": "UInt"
-    },
-    "PxMaterialTableIndex": {
-      "Builtin": "UShort"
     },
     "PxFileHandle": {
       "Pointer": {
@@ -10797,66 +10854,9 @@
         }
       }
     },
-    "PxFEMMaterialTableIndex": {
-      "Builtin": "UShort"
-    },
-    "PxSimulationFilterShader": "FunctionPointer",
-    "PxBpIndex": {
-      "Builtin": "UInt"
-    },
-    "PxTransform32": {
-      "Record": {
-        "name": "PxTransformPadded"
-      }
-    },
-    "PxSQPrunerHandle": {
-      "Builtin": "UInt"
-    },
-    "PxReal": {
-      "Builtin": "Float"
-    },
-    "PxObstacleHandle": {
-      "Builtin": "UInt"
-    },
-    "PxIntBool": {
-      "Builtin": "Int"
-    },
-    "PxU16": {
-      "Builtin": "UShort"
-    },
-    "PxSerialObjectId": {
-      "Builtin": "ULong"
-    },
-    "PxI16": {
-      "Builtin": "Short"
-    },
-    "PxVec3p": {
-      "Record": {
-        "name": "PxVec3Padded"
-      }
-    },
-    "PxAggregateFilterHint": {
-      "Builtin": "UInt"
-    },
-    "PxI64": {
-      "Builtin": "Long"
-    },
-    "PxI8": {
-      "Builtin": "Char"
-    },
-    "PxU8": {
+    "PxConstraintSolverPrep": "FunctionPointer",
+    "PxDominanceGroup": {
       "Builtin": "UChar"
-    },
-    "PxCompileTimeAssert_Dummy": {
-      "Array": {
-        "element": {
-          "Builtin": "Char"
-        },
-        "len": 1
-      }
-    },
-    "PxF32": {
-      "Builtin": "Float"
     }
   },
   "recs": [
@@ -11254,7 +11254,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Builtin": "UInt"
                 }
@@ -11278,7 +11278,7 @@
         "ast_tag_used": "class",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": false,
@@ -12244,7 +12244,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -12821,7 +12821,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -13420,7 +13420,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -13435,7 +13435,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -26361,7 +26361,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxRaycastHit"
@@ -26395,7 +26395,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": true,
@@ -26432,7 +26432,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxOverlapHit"
@@ -26466,7 +26466,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": true,
@@ -26503,7 +26503,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxSweepHit"
@@ -26537,7 +26537,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": true,
@@ -26574,7 +26574,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxRaycastHit"
@@ -26608,7 +26608,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": false,
@@ -26645,7 +26645,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxOverlapHit"
@@ -26679,7 +26679,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": false,
@@ -26716,7 +26716,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": false,
-                "is_array_like": false,
+                "is_array_like": true,
                 "pointee": {
                   "Record": {
                     "name": "PxSweepHit"
@@ -26750,7 +26750,7 @@
         "ast_tag_used": "struct",
         "def_data": {
           "dtor": {
-            "irrelevant": true,
+            "irrelevant": false,
             "simple": false
           },
           "isAbstract": false,
@@ -30340,7 +30340,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "UChar"
                 }
@@ -30355,7 +30355,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "UChar"
                 }
@@ -30370,7 +30370,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Float"
                 }
@@ -37723,7 +37723,7 @@
               "Pointer": {
                 "is_const": false,
                 "is_pointee_const": true,
-                "is_array_like": true,
+                "is_array_like": false,
                 "pointee": {
                   "Builtin": "Char"
                 }
@@ -38054,7 +38054,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -38067,7 +38067,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39139,7 +39139,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39193,7 +39193,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39277,7 +39277,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39331,7 +39331,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39471,7 +39471,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39617,7 +39617,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39716,7 +39716,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -39770,7 +39770,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -43480,7 +43480,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Float"
               }
@@ -45504,7 +45504,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45517,7 +45517,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45582,7 +45582,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45595,7 +45595,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45827,7 +45827,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -45840,7 +45840,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46054,7 +46054,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46067,7 +46067,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -46671,7 +46671,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Float"
               }
@@ -50688,7 +50688,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -50777,7 +50777,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -50829,7 +50829,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -52809,7 +52809,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -52914,7 +52914,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxDebugPoint"
@@ -53033,7 +53033,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxDebugLine"
@@ -53125,7 +53125,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": false,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxDebugLine"
@@ -53173,7 +53173,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": false,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxDebugPoint"
@@ -53248,7 +53248,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxDebugTriangle"
@@ -53800,7 +53800,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -53932,7 +53932,7 @@
                 "Pointer": {
                   "is_const": false,
                   "is_pointee_const": true,
-                  "is_array_like": true,
+                  "is_array_like": false,
                   "pointee": {
                     "Builtin": "Char"
                   }
@@ -54332,7 +54332,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -55125,7 +55125,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "ULong"
               }
@@ -55375,7 +55375,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -55879,7 +55879,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -55891,7 +55891,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -55982,7 +55982,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -56867,7 +56867,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -56939,7 +56939,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -57408,7 +57408,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -59304,7 +59304,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Record": {
               "name": "PxBounds3"
@@ -59625,7 +59625,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -59804,7 +59804,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Vec3"
           }
@@ -60221,7 +60221,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -65194,7 +65194,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -66528,7 +66528,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Vec3"
           }
@@ -66758,7 +66758,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Void"
           }
@@ -67580,7 +67580,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Vec3"
           }
@@ -67680,7 +67680,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Void"
           }
@@ -68764,7 +68764,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -68818,7 +68818,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -69830,7 +69830,7 @@
                 "Pointer": {
                   "is_const": false,
                   "is_pointee_const": false,
-                  "is_array_like": true,
+                  "is_array_like": false,
                   "pointee": {
                     "Record": {
                       "name": "PxActor"
@@ -69988,7 +69988,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -72007,7 +72007,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -72402,7 +72402,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -73144,7 +73144,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -73626,7 +73626,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -74188,7 +74188,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -75376,7 +75376,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -75430,7 +75430,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -79831,7 +79831,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -80417,7 +80417,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -81399,7 +81399,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -81453,7 +81453,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -81493,7 +81493,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -84936,7 +84936,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -85884,7 +85884,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -88769,7 +88769,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -90577,7 +90577,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -92942,7 +92942,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -93683,7 +93683,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -93770,7 +93770,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -95711,7 +95711,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -95751,7 +95751,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -97680,7 +97680,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -98721,7 +98721,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Record": {
                   "name": "PxBroadPhaseRegionInfo"
@@ -101004,7 +101004,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -102710,7 +102710,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": false,
-          "is_array_like": false,
+          "is_array_like": true,
           "pointee": {
             "Pointer": {
               "is_const": false,
@@ -104111,7 +104111,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -106303,7 +106303,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Record": {
                   "name": "PxBroadPhaseRegionInfo"
@@ -106578,7 +106578,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -106698,7 +106698,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -107533,7 +107533,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -107654,7 +107654,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -108536,7 +108536,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -108625,7 +108625,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -108911,7 +108911,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": false,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Record": {
                   "name": "PxContactPairPoint"
@@ -109548,7 +109548,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -109935,7 +109935,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -117059,7 +117059,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117205,7 +117205,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117537,7 +117537,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -117550,7 +117550,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -118783,7 +118783,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -118837,7 +118837,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120012,7 +120012,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120654,7 +120654,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -120886,7 +120886,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -122329,7 +122329,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -123128,7 +123128,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -123622,7 +123622,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125248,7 +125248,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125572,7 +125572,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -125972,7 +125972,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -126784,7 +126784,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -126797,7 +126797,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -126893,7 +126893,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -127997,7 +127997,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": false,
+              "is_array_like": true,
               "pointee": {
                 "Pointer": {
                   "is_const": false,
@@ -135693,7 +135693,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -135860,7 +135860,7 @@
         "Pointer": {
           "is_const": false,
           "is_pointee_const": true,
-          "is_array_like": true,
+          "is_array_like": false,
           "pointee": {
             "Builtin": "Char"
           }
@@ -136811,7 +136811,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -136871,7 +136871,7 @@
             "Pointer": {
               "is_const": false,
               "is_pointee_const": true,
-              "is_array_like": true,
+              "is_array_like": false,
               "pointee": {
                 "Builtin": "Char"
               }
@@ -136894,377 +136894,407 @@
     }
   ],
   "classes": {
-    "PxCustomSceneQuerySystemAdapter": true,
-    "PxBroadPhaseResults": true,
-    "PxDebugTriangle": true,
-    "PxContactStreamIterator": true,
-    "PxHairSystemGeometry": true,
-    "PxControllerObstacleHit": true,
-    "PxSoftBodySimulationData": true,
-    "PxBitAndByte": true,
-    "PxMassProperties": true,
-    "Px1DConstraintMods": true,
-    "PxConstraintConnector": true,
-    "PxProfileScoped": true,
-    "PxInsertionCallback": true,
-    "PxRawAllocator": true,
-    "PxContactPairPoint": true,
-    "PxSDFDesc": true,
-    "PxTaskManager": true,
-    "PxParticleSystemGeometry": true,
-    "PxRigidBodyExt": true,
-    "PxCpuDispatcher": true,
-    "PxConstraintInvMassScale": true,
-    "PxCustomGeometry": true,
-    "PxContactPairExtraDataItem": true,
-    "PxArticulationSpatialTendon": true,
-    "PxDefaultErrorCallback": true,
-    "PxRigidActor": true,
-    "PxDefaultMemoryInputData": true,
-    "PxParticleRigidBuffer": false,
-    "PxUnConst": false,
-    "PxSamplingExt": true,
-    "PxLightCpuTask": true,
-    "PxCudaContextManager": false,
-    "PxBroadPhaseRegionInfo": true,
-    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
-    "PxSimulationStatistics": true,
-    "PxBroadPhaseCallback": true,
-    "PxArticulationCache": true,
-    "PxContactModifyPair": true,
-    "PxBroadPhaseRegions": true,
-    "PxRigidDynamic": true,
-    "PxAggregate": true,
-    "PxCollection": true,
-    "PxContactPairHeader": true,
-    "PxSoftBodySimulationDataDesc": true,
-    "PxTGSSolverBodyTxInertia": true,
-    "PxSimulationFilterCallback": true,
-    "PxTriangleMeshGeometry": true,
-    "PxMeshOverlapUtil": true,
-    "PxgDynamicsMemoryConfig": true,
-    "PxBVHDesc": true,
-    "PxSerializer": true,
-    "PxFilterData": true,
-    "PxSolverConstraintPrepDescBase": true,
-    "PxTetrahedronMeshGeometry": true,
-    "PxOverlapCallback": true,
-    "PxTetrahedronMesh": true,
-    "PxRenderOutput": false,
-    "PxIndexDataPair": true,
-    "PxLogTwo": false,
-    "PxParticleAndDiffuseBuffer": false,
-    "PxFEMSoftBodyMaterial": false,
-    "PxControllerShapeHit": true,
-    "PxSpringModifiers": true,
-    "PxParticleRigidFilterPair": true,
-    "PxArticulationDrive": true,
-    "PxScene": true,
-    "PxFEMMaterial": true,
-    "PxSolverBodyData": true,
-    "PxFEMClothMaterial": false,
-    "PxTetrahedronMeshExt": true,
-    "PxFEMParameters": true,
-    "PxVehicleTelemetryData": false,
-    "PxConstraintShaderTable": true,
-    "PxSerializationRegistry": true,
-    "PxDistanceJoint": true,
-    "PxActorShape": true,
-    "PxHullPolygon": true,
-    "PxNodeIndex": true,
-    "PxActor": true,
-    "PxMat44": true,
-    "PxUserControllerHitReport": true,
-    "PxControllersHit": true,
-    "PxConvexMesh": true,
-    "PxBVH33TriangleMesh": false,
-    "PxSweepCallback": true,
-    "PxTetrahedronMeshData": true,
-    "PxSolverContactDesc": true,
-    "PxSimpleTriangleMesh": true,
-    "PxRefCounted": true,
-    "PxLockedData": true,
-    "PxCounterFrequencyToTensOfNanos": true,
-    "PxArticulationTendonLimit": true,
-    "PxGeometryHolder": true,
-    "PxDim3": true,
-    "PxStridedData": true,
-    "PxOverlapHit": true,
-    "PxConvexMeshDesc": true,
-    "PxSListEntry": true,
-    "PxLocationHit": true,
-    "PxBitMap": true,
-    "PxSceneQueryExt": true,
-    "PxArticulationTendonJoint": true,
-    "PxMat34": false,
-    "PxTriggerPair": true,
-    "PxControllerBehaviorCallback": true,
-    "PxSoftBodyAuxData": true,
-    "PxSerialization": true,
-    "PxSceneQuerySystem": true,
-    "PxSweepBuffer": true,
-    "PxSpatialForce": true,
-    "PxSolverConstraintPrepDesc": true,
-    "PxPhysics": true,
     "PxHeightFieldDesc": true,
-    "PxBoundedData": true,
-    "PxVec2": true,
-    "PxGpuContactPair": true,
-    "PxPvdTransport": true,
-    "PxControllerState": true,
-    "PxPruningStructure": true,
-    "PxContact": true,
-    "PxQueryFilterData": true,
-    "PxJointLimitParameters": true,
-    "PxCustomSceneQuerySystem": true,
-    "PxContactPairExtraDataIterator": true,
-    "PxContactPairPose": true,
-    "PxArticulationFixedTendon": true,
-    "PxPoissonSampler": true,
-    "PxHash": false,
-    "PxJointLinearLimit": true,
-    "PxDefaultMemoryOutputStream": true,
-    "PxTGSSolverBodyVel": true,
-    "PxBoxControllerDesc": true,
-    "PxParticleMaterial": true,
-    "PxCCDContactModifyCallback": true,
-    "PxContactPairVelocity": true,
-    "PxParticleVolume": true,
-    "PxBroadPhase": true,
-    "PxAssertHandler": true,
-    "PxSceneReadLock": true,
-    "PxPlaneGeometry": true,
-    "PxExtendedVec3": true,
-    "PxBinaryConverter": false,
-    "PxParticleSystem": false,
-    "PxTGSSolverBodyData": true,
-    "PxArticulationLimit": true,
-    "PxTempAllocator": true,
-    "PxBatchQueryExt": true,
-    "PxInputStream": true,
-    "PxTransformPadded": true,
-    "PxTriangleMeshPoissonSampler": true,
-    "PxFixedJoint": true,
-    "PxCapsuleControllerDesc": true,
-    "PxBVHRaycastCallback": true,
-    "PxBroadPhaseDesc": true,
-    "PxVirtualAllocatorCallback": true,
-    "PxParticleClothBuffer": false,
-    "PxSceneSQSystem": true,
-    "PxRunnable": true,
-    "PxConstraintInfo": true,
-    "PxSweepHit": true,
-    "PxPBDParticleSystem": false,
-    "PxDebugText": true,
-    "PxSoftBody": false,
-    "PxContactPair": true,
-    "PxTetrahedronMeshDesc": true,
-    "PxDiffuseParticleParams": true,
-    "PxSolverConstraintDesc": true,
-    "PxVehicleWheels4DynData": false,
-    "PxSerializationContext": true,
-    "PxGearJoint": true,
-    "PxContactBuffer": false,
-    "PxPvd": true,
-    "PxJointLinearLimitPair": true,
-    "PxTriangleMeshDesc": true,
-    "PxRigidBody": true,
-    "PxSoftBodyCollisionData": true,
-    "PxSpring": true,
-    "PxControllerFilters": true,
-    "PxSListImpl": true,
-    "PxBroadPhaseUpdateData": true,
-    "PxRaycastCallback": true,
-    "PxBroadPhasePair": true,
-    "PxBVHOverlapCallback": true,
-    "PxConstraint": true,
-    "PxBVH": true,
-    "PxRepXInstantiationArgs": true,
-    "PxConeLimitParams": true,
-    "PxCapsuleGeometry": true,
-    "PxContactModifyCallback": true,
-    "PxFoundation": true,
-    "PxRepXSerializer": true,
-    "PxControllerDesc": true,
-    "PxContactPoint": true,
-    "PxD6Joint": true,
-    "PxSimulationTetrahedronMeshData": true,
-    "PxSyncImpl": true,
-    "PxTolerancesScale": true,
-    "PxArticulationSensor": true,
-    "PxFLIPMaterial": false,
-    "PxMeshScale": true,
-    "PxRaycastHit": true,
-    "PxPlane": true,
-    "PxDefaultFileOutputStream": true,
-    "PxProfilerCallback": true,
-    "PxTrianglePadded": true,
-    "PxDebugLine": true,
-    "PxRenderBuffer": true,
-    "PxParticleBuffer": false,
-    "PxBroadPhaseExt": true,
-    "PxBroadcastingAllocator": true,
-    "XmlReader": false,
-    "PxTriangleMesh": true,
-    "PxConeLimitedConstraint": true,
-    "PxArticulationLink": true,
-    "PxBase": true,
-    "PxTGSSolverConstraintPrepDesc": true,
-    "PxJointLimitPyramid": true,
-    "PxCookingParams": true,
-    "PxMeshQuery": true,
-    "PxArticulationRootLinkData": true,
-    "PxControllerManager": true,
-    "PxBaseTask": true,
-    "PxOmniPvd": false,
-    "PxDefaultCpuDispatcher": true,
-    "PxTypeInfo": false,
-    "PxQueryHit": true,
-    "PxMassModificationProps": true,
-    "PxConstraintAllocator": true,
-    "PxConstraintBatchHeader": true,
-    "PxRigidStatic": true,
-    "PxBoxController": true,
-    "PxRigidActorExt": true,
-    "PxParticleSpring": true,
-    "PxBoxObstacle": true,
-    "PxCustomGeometryCallbacks": true,
-    "PxBVH34TriangleMesh": true,
-    "PxMidphaseDesc": true,
-    "PxTime": true,
-    "PxCustomMaterial": false,
-    "PxOverlapBuffer": true,
-    "PxRackAndPinionJoint": true,
-    "PxTask": true,
-    "PxObstacle": true,
-    "PxPrismaticJoint": true,
-    "PxDominanceGroupPair": true,
-    "PxStringTable": true,
-    "PxProcessPxBaseCallback": true,
-    "PxGeomSweepHit": true,
-    "PxInputData": true,
-    "PxModifiableContact": true,
-    "PxHeightFieldGeometry": true,
-    "PxTGSSolverContactDesc": true,
-    "PxObstacleContext": true,
-    "PxCollisionTetrahedronMeshData": true,
-    "PxTransform": true,
-    "PxStringTableExt": true,
-    "PxGeomOverlapHit": true,
-    "PxDeletionListener": true,
-    "PxXmlMiscParameter": true,
-    "PxAllocatorCallback": true,
-    "PxBounds3": true,
-    "PxFEMCloth": false,
-    "PxUserAllocated": true,
-    "PxRestitutionModifiers": true,
-    "PxVirtualAllocator": true,
-    "PxParticleRigidAttachment": false,
-    "PxMPMParticleSystem": false,
-    "PxFLIPParticleSystem": false,
-    "PxGroupsMask": true,
-    "PxMaterial": true,
-    "PxVehicleWheels4SimData": false,
-    "MemoryBuffer": false,
-    "PxSphericalJoint": true,
-    "PxSpatialVelocity": true,
-    "PxCustomParticleSystem": false,
-    "PxSimulationEventCallback": true,
-    "PxPBDMaterial": false,
-    "Interpolation": true,
-    "PxAllocationListener": true,
-    "PxDebugPoint": true,
-    "PxArticulationTendon": true,
-    "PxControllerFilterCallback": true,
-    "PxTetrahedron": true,
-    "PxSoftBodyMesh": true,
-    "PxConstraintVisualizer": true,
-    "PxSceneLimits": true,
-    "PxRevoluteJoint": true,
-    "PxGeometryQuery": true,
-    "PxHeightField": true,
-    "PxControllerStats": true,
-    "PxVec3": true,
-    "PxVec3Padded": true,
-    "PxTGSSolverConstraintPrepDescBase": true,
-    "PxDefaultAllocator": true,
-    "PxVehicleTireForceCalculator": false,
-    "PxArticulationAttachment": true,
-    "PxDefaultFileInputData": true,
-    "PxCustomGeometryType": true,
-    "PxMutexImpl": true,
-    "PxAllocator": true,
-    "PxBroadPhaseRegion": true,
-    "PxOutputStream": true,
-    "PxJointAngularLimitPair": true,
-    "PxContactJoint": true,
-    "PxQueryFilterCallback": true,
-    "PxGeomRaycastHit": true,
-    "PxPvdSceneClient": true,
-    "PxBVHTraversalCallback": true,
-    "PxConvexMeshGeometry": true,
-    "PxHairSystem": false,
-    "PxCollisionMeshMappingData": true,
-    "PxControllerHit": true,
-    "PxMetaDataEntry": true,
-    "PxSolverBody": true,
-    "PxBroadcastingErrorCallback": true,
     "PxContactSet": true,
-    "PxMat33": true,
-    "PxAABBManager": true,
-    "PxBaseMaterial": true,
-    "PxBoxGeometry": true,
-    "PxGeomIndexPair": true,
-    "PxSceneDesc": true,
-    "PxSceneQuerySystemBase": true,
-    "PxShapeExt": true,
-    "PxArticulationReducedCoordinate": true,
-    "PxContactPatch": true,
-    "PxJoint": true,
-    "PxCooking": false,
-    "PxController": true,
-    "XmlWriter": false,
-    "PxContactPairIndex": true,
-    "PxJointLimitCone": true,
-    "PxShape": true,
-    "PxQuat": true,
-    "PxD6JointDrive": true,
+    "PxBVH": true,
     "PxSphereGeometry": true,
-    "PxHeightFieldSample": true,
-    "PxArticulationJointReducedCoordinate": true,
-    "PxTempAllocatorChunk": true,
-    "PxMPMMaterial": false,
-    "PxQueryCache": true,
-    "PxCapsuleObstacle": true,
-    "PxCapsuleController": true,
-    "PxGeometry": true,
-    "PxRepXObject": true,
-    "PxQueryThreadContext": true,
-    "PxGpuParticleBufferIndexPair": true,
-    "PxRaycastBuffer": true,
-    "PxReadWriteLock": true,
-    "PxSceneWriteLock": true,
-    "Px1DConstraint": true,
-    "PxDeserializationContext": true,
-    "PxTriangle": true,
-    "PxJacobianRow": true,
-    "PxErrorCallback": true,
-    "PxExtendedContact": true,
+    "PxBounds3": true,
+    "PxBroadPhase": true,
+    "PxDebugTriangle": true,
+    "PxContactPatch": true,
+    "PxPhysics": true,
+    "PxTime": true,
+    "PxSamplingExt": true,
+    "PxStringTable": true,
+    "PxD6JointDrive": true,
+    "PxBoundedData": true,
+    "PxCustomGeometryCallbacks": true,
+    "PxCustomGeometryType": true,
+    "PxModifiableContact": true,
+    "PxSpatialVelocity": true,
+    "PxCustomSceneQuerySystemAdapter": true,
+    "PxContactPairVelocity": true,
+    "PxBroadPhaseCallback": true,
+    "PxParticleVolume": true,
+    "PxParticleSpring": true,
+    "PxSimpleTriangleMesh": true,
+    "PxHeightField": true,
+    "PxMassModificationProps": true,
+    "PxPvdSceneClient": true,
+    "PxVehicleWheels4SimData": false,
+    "PxDefaultFileInputData": true,
+    "PxBVH34TriangleMesh": true,
+    "PxCounterFrequencyToTensOfNanos": true,
+    "PxVec2": true,
+    "PxRefCounted": true,
+    "PxBoxObstacle": true,
     "PxGpuBodyData": true,
+    "PxRaycastCallback": true,
+    "PxVec3Padded": true,
+    "PxContactModifyPair": true,
+    "PxBitAndByte": true,
     "XmlMemoryAllocator": false,
+    "PxSoftBody": false,
+    "PxProcessPxBaseCallback": true,
+    "PxCapsuleController": true,
+    "Interpolation": true,
+    "PxParticleRigidBuffer": false,
+    "PxContactPairExtraDataItem": true,
+    "PxGeomSweepHit": true,
+    "PxRigidDynamic": true,
+    "PxUnConst": false,
+    "PxTrianglePadded": true,
+    "PxDiffuseParticleParams": true,
+    "PxControllerBehaviorCallback": true,
+    "PxPBDMaterial": false,
+    "PxSolverConstraintPrepDescBase": true,
+    "PxAssertHandler": true,
+    "PxSListImpl": true,
+    "PxPvdTransport": true,
+    "PxDominanceGroupPair": true,
+    "PxParticleSystemGeometry": true,
+    "PxHeightFieldSample": true,
+    "PxProfilerCallback": true,
+    "PxSimulationTetrahedronMeshData": true,
+    "PxCustomSceneQuerySystem": true,
+    "PxHeightFieldGeometry": true,
+    "PxMeshQuery": true,
+    "PxTGSSolverBodyVel": true,
+    "PxTetrahedronMeshDesc": true,
+    "PxGeometryQuery": true,
+    "PxContactBuffer": false,
+    "PxSerialization": true,
+    "PxConvexMeshDesc": true,
+    "PxObstacle": true,
+    "Px1DConstraintMods": true,
+    "PxBroadPhaseResults": true,
+    "PxGeomRaycastHit": true,
+    "PxUserControllerHitReport": true,
+    "PxSweepBuffer": true,
+    "PxMassProperties": true,
+    "PxRenderBuffer": true,
+    "PxPlaneGeometry": true,
+    "PxJointLinearLimitPair": true,
+    "PxDebugText": true,
+    "PxPrismaticJoint": true,
+    "PxControllerShapeHit": true,
+    "PxNodeIndex": true,
+    "PxQueryCache": true,
+    "PxConstraintBatchHeader": true,
+    "PxFEMParameters": true,
+    "PxBaseTask": true,
+    "PxJointLimitParameters": true,
+    "PxFLIPMaterial": false,
+    "PxArticulationRootLinkData": true,
+    "PxConeLimitedConstraint": true,
+    "PxVehicleTireForceCalculator": false,
+    "PxgDynamicsMemoryConfig": true,
+    "PxRackAndPinionJoint": true,
+    "PxHullPolygon": true,
+    "PxSceneDesc": true,
+    "PxSerializationRegistry": true,
+    "PxSimulationFilterCallback": true,
+    "PxOmniPvd": false,
+    "PxContactPoint": true,
+    "PxArticulationSpatialTendon": true,
+    "PxSceneWriteLock": true,
+    "PxBVHTraversalCallback": true,
+    "PxBroadPhaseRegions": true,
+    "PxJointLimitPyramid": true,
+    "PxTransformPadded": true,
+    "PxDim3": true,
+    "PxAllocator": true,
+    "PxLocationHit": true,
+    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
+    "PxSpringModifiers": true,
     "PxSceneQueryDesc": true,
-    "PxBVH34MidphaseDesc": true,
+    "PxBoxController": true,
+    "PxGeomOverlapHit": true,
+    "PxSceneQuerySystem": true,
+    "PxCpuDispatcher": true,
+    "PxConstraint": true,
+    "PxShapeExt": true,
+    "PxTaskManager": true,
+    "PxFEMCloth": false,
+    "PxSDFDesc": true,
+    "PxArticulationFixedTendon": true,
+    "PxVehicleWheels4DynData": false,
+    "PxGearJoint": true,
     "PxVec4": true,
+    "PxSListEntry": true,
+    "PxBVH33TriangleMesh": false,
+    "PxContactModifyCallback": true,
+    "PxMPMMaterial": false,
+    "PxDeserializationContext": true,
+    "PxContactStreamIterator": true,
+    "PxCustomParticleSystem": false,
+    "PxDefaultFileOutputStream": true,
+    "PxIndexDataPair": true,
+    "PxTetrahedron": true,
+    "PxCookingParams": true,
+    "PxUserAllocated": true,
+    "PxCCDContactModifyCallback": true,
+    "PxSpatialForce": true,
+    "PxArticulationTendonJoint": true,
+    "PxCustomGeometry": true,
+    "PxFEMClothMaterial": false,
+    "PxGeometryHolder": true,
+    "PxDefaultErrorCallback": true,
+    "PxBatchQueryExt": true,
+    "PxSerializationContext": true,
+    "PxSoftBodyAuxData": true,
+    "PxMeshOverlapUtil": true,
+    "PxMetaDataEntry": true,
+    "PxTypeInfo": false,
+    "PxRepXObject": true,
+    "PxGroupsMask": true,
+    "PxArticulationSensor": true,
+    "PxSolverConstraintDesc": true,
+    "PxRenderOutput": false,
+    "PxConstraintConnector": true,
+    "MemoryBuffer": false,
+    "PxParticleAndDiffuseBuffer": false,
+    "PxRigidStatic": true,
+    "PxMPMParticleSystem": false,
+    "PxOverlapCallback": true,
+    "PxErrorCallback": true,
+    "PxMeshScale": true,
+    "PxJointAngularLimitPair": true,
+    "PxSweepHit": true,
+    "PxConstraintVisualizer": true,
+    "PxRigidActor": true,
+    "PxAllocatorCallback": true,
+    "PxSpring": true,
+    "PxContact": true,
+    "PxCooking": false,
+    "PxParticleRigidAttachment": false,
+    "PxSphericalJoint": true,
+    "PxContactPairPoint": true,
+    "PxBroadPhasePair": true,
+    "PxBVH34MidphaseDesc": true,
+    "PxOverlapHit": true,
+    "PxControllerHit": true,
+    "PxTetrahedronMeshGeometry": true,
+    "PxDebugPoint": true,
+    "PxSerializer": true,
+    "PxTriangleMeshGeometry": true,
+    "PxHash": false,
+    "PxCapsuleControllerDesc": true,
+    "PxParticleRigidFilterPair": true,
+    "PxMutexImpl": true,
+    "PxReadWriteLock": true,
+    "PxPlane": true,
+    "PxContactPair": true,
+    "PxTolerancesScale": true,
+    "PxConvexMeshGeometry": true,
+    "PxFEMSoftBodyMaterial": false,
+    "PxTriangleMesh": true,
+    "PxPBDParticleSystem": false,
+    "PxTriangleMeshPoissonSampler": true,
+    "PxDefaultAllocator": true,
+    "PxTGSSolverBodyData": true,
+    "PxControllerDesc": true,
+    "PxSolverContactDesc": true,
+    "PxSoftBodyCollisionData": true,
+    "PxXmlMiscParameter": true,
+    "PxArticulationLink": true,
+    "PxQueryHit": true,
+    "PxVirtualAllocatorCallback": true,
+    "PxPruningStructure": true,
+    "PxArticulationTendonLimit": true,
+    "PxSolverConstraintPrepDesc": true,
+    "PxAllocationListener": true,
+    "PxStridedData": true,
+    "PxGpuParticleBufferIndexPair": true,
+    "PxRaycastHit": true,
+    "PxGeomIndexPair": true,
+    "PxMat44": true,
+    "PxBroadPhaseRegion": true,
+    "PxTGSSolverConstraintPrepDesc": true,
+    "PxBroadPhaseExt": true,
+    "PxRigidBodyExt": true,
+    "PxExtendedContact": true,
+    "PxTransform": true,
+    "PxCustomMaterial": false,
+    "PxParticleMaterial": true,
+    "PxJointLimitCone": true,
+    "PxOverlapBuffer": true,
+    "PxBVHDesc": true,
+    "PxLightCpuTask": true,
+    "PxPoissonSampler": true,
+    "PxDistanceJoint": true,
+    "PxSceneReadLock": true,
+    "PxRaycastBuffer": true,
+    "PxCapsuleGeometry": true,
+    "PxRevoluteJoint": true,
+    "PxAggregate": true,
+    "PxFEMMaterial": true,
+    "PxContactPairHeader": true,
+    "PxRepXSerializer": true,
+    "PxArticulationJointReducedCoordinate": true,
+    "PxFoundation": true,
+    "PxContactPairExtraDataIterator": true,
+    "PxCudaContextManager": false,
+    "PxD6Joint": true,
+    "PxBoxGeometry": true,
+    "PxMat33": true,
+    "PxRawAllocator": true,
+    "PxTGSSolverBodyTxInertia": true,
     "PxBroadPhaseCaps": true,
-    "PxGpuActorPair": true
+    "PxInputData": true,
+    "PxControllersHit": true,
+    "PxSceneQuerySystemBase": true,
+    "PxTask": true,
+    "PxSceneLimits": true,
+    "PxConeLimitParams": true,
+    "PxSoftBodySimulationDataDesc": true,
+    "PxSceneQueryExt": true,
+    "PxShape": true,
+    "PxControllerManager": true,
+    "PxGpuActorPair": true,
+    "PxBaseMaterial": true,
+    "XmlReader": false,
+    "PxDeletionListener": true,
+    "PxBroadPhaseRegionInfo": true,
+    "PxHairSystemGeometry": true,
+    "PxFLIPParticleSystem": false,
+    "PxExtendedVec3": true,
+    "PxHairSystem": false,
+    "PxParticleBuffer": false,
+    "PxRunnable": true,
+    "PxActor": true,
+    "PxInputStream": true,
+    "PxTriggerPair": true,
+    "PxAABBManager": true,
+    "PxArticulationCache": true,
+    "PxGeometry": true,
+    "PxBroadcastingErrorCallback": true,
+    "PxBVHOverlapCallback": true,
+    "PxTetrahedronMeshData": true,
+    "PxTGSSolverConstraintPrepDescBase": true,
+    "PxMat34": false,
+    "PxBroadcastingAllocator": true,
+    "PxBoxControllerDesc": true,
+    "PxTGSSolverContactDesc": true,
+    "PxQueryFilterData": true,
+    "PxController": true,
+    "PxArticulationDrive": true,
+    "PxTriangleMeshDesc": true,
+    "PxOutputStream": true,
+    "PxSoftBodySimulationData": true,
+    "PxCollisionMeshMappingData": true,
+    "PxContactJoint": true,
+    "PxPvd": true,
+    "PxFilterData": true,
+    "PxControllerFilters": true,
+    "PxSweepCallback": true,
+    "PxArticulationReducedCoordinate": true,
+    "PxBinaryConverter": false,
+    "PxQuat": true,
+    "PxConstraintShaderTable": true,
+    "PxBitMap": true,
+    "PxVehicleTelemetryData": false,
+    "PxProfileScoped": true,
+    "PxJacobianRow": true,
+    "PxBase": true,
+    "PxBroadPhaseDesc": true,
+    "PxVec3": true,
+    "PxCapsuleObstacle": true,
+    "PxParticleSystem": false,
+    "PxTempAllocator": true,
+    "PxStringTableExt": true,
+    "PxSolverBodyData": true,
+    "PxCollection": true,
+    "PxRepXInstantiationArgs": true,
+    "PxDebugLine": true,
+    "PxConvexMesh": true,
+    "PxCollisionTetrahedronMeshData": true,
+    "PxArticulationLimit": true,
+    "PxArticulationAttachment": true,
+    "PxConstraintAllocator": true,
+    "PxSyncImpl": true,
+    "PxJointLinearLimit": true,
+    "PxControllerObstacleHit": true,
+    "PxSimulationEventCallback": true,
+    "PxControllerState": true,
+    "PxQueryFilterCallback": true,
+    "PxControllerFilterCallback": true,
+    "PxJoint": true,
+    "PxFixedJoint": true,
+    "PxDefaultMemoryInputData": true,
+    "PxTriangle": true,
+    "PxRestitutionModifiers": true,
+    "PxTetrahedronMeshExt": true,
+    "PxDefaultMemoryOutputStream": true,
+    "PxConstraintInfo": true,
+    "PxRigidActorExt": true,
+    "PxLogTwo": false,
+    "PxScene": true,
+    "Px1DConstraint": true,
+    "PxSolverBody": true,
+    "PxMidphaseDesc": true,
+    "PxSoftBodyMesh": true,
+    "PxContactPairIndex": true,
+    "PxLockedData": true,
+    "PxBVHRaycastCallback": true,
+    "PxDefaultCpuDispatcher": true,
+    "PxTempAllocatorChunk": true,
+    "PxQueryThreadContext": true,
+    "PxActorShape": true,
+    "PxObstacleContext": true,
+    "PxVirtualAllocator": true,
+    "PxConstraintInvMassScale": true,
+    "PxMaterial": true,
+    "PxTetrahedronMesh": true,
+    "PxRigidBody": true,
+    "PxParticleClothBuffer": false,
+    "PxSimulationStatistics": true,
+    "PxInsertionCallback": true,
+    "XmlWriter": false,
+    "PxContactPairPose": true,
+    "PxGpuContactPair": true,
+    "PxArticulationTendon": true,
+    "PxControllerStats": true,
+    "PxSceneSQSystem": true,
+    "PxBroadPhaseUpdateData": true
   },
   "derived": {
-    "PxQueryHit": [
-      "PxLocationHit",
-      "PxGeomOverlapHit"
+    "PxUserAllocated": [
+      "PxCollisionMeshMappingData",
+      "PxSoftBodyCollisionData",
+      "PxTetrahedronMeshData",
+      "PxSoftBodySimulationData",
+      "PxCollisionTetrahedronMeshData",
+      "PxSimulationTetrahedronMeshData",
+      "PxPoissonSampler"
+    ],
+    "PxSpring": [
+      "PxD6JointDrive"
     ],
     "PxPoissonSampler": [
       "PxTriangleMeshPoissonSampler"
+    ],
+    "PxLocationHit": [
+      "PxGeomRaycastHit",
+      "PxGeomSweepHit"
+    ],
+    "PxSolverConstraintPrepDescBase": [
+      "PxSolverConstraintPrepDesc"
+    ],
+    "PxSceneQuerySystem": [
+      "PxCustomSceneQuerySystem"
+    ],
+    "PxInputData": [
+      "PxDefaultMemoryInputData",
+      "PxDefaultFileInputData"
+    ],
+    "PxSceneQuerySystemBase": [
+      "PxSceneSQSystem",
+      "PxSceneQuerySystem"
+    ],
+    "PxControllerDesc": [
+      "PxBoxControllerDesc",
+      "PxCapsuleControllerDesc"
     ],
     "PxRefCounted": [
       "PxConvexMesh",
@@ -137276,8 +137306,117 @@
       "PxShape",
       "PxBaseMaterial"
     ],
+    "PxSceneSQSystem": [
+      "PxScene"
+    ],
+    "PxActorShape": [
+      "PxRaycastHit",
+      "PxOverlapHit",
+      "PxSweepHit"
+    ],
+    "PxStridedData": [
+      "PxBoundedData"
+    ],
+    "PxController": [
+      "PxBoxController",
+      "PxCapsuleController"
+    ],
+    "PxOutputStream": [
+      "PxDefaultMemoryOutputStream",
+      "PxDefaultFileOutputStream"
+    ],
+    "PxArticulationTendon": [
+      "PxArticulationSpatialTendon",
+      "PxArticulationFixedTendon"
+    ],
+    "PxContact": [
+      "PxExtendedContact"
+    ],
+    "PxInputStream": [
+      "PxInputData"
+    ],
+    "PxGeomOverlapHit": [
+      "PxOverlapHit"
+    ],
+    "PxErrorCallback": [
+      "PxBroadcastingErrorCallback",
+      "PxDefaultErrorCallback"
+    ],
     "PxCpuDispatcher": [
       "PxDefaultCpuDispatcher"
+    ],
+    "PxJointLimitParameters": [
+      "PxJointLinearLimit",
+      "PxJointLinearLimitPair",
+      "PxJointAngularLimitPair",
+      "PxJointLimitCone",
+      "PxJointLimitPyramid"
+    ],
+    "PxBaseMaterial": [
+      "PxFEMMaterial",
+      "PxMaterial",
+      "PxParticleMaterial"
+    ],
+    "PxGeomSweepHit": [
+      "PxSweepHit"
+    ],
+    "PxGeomRaycastHit": [
+      "PxRaycastHit"
+    ],
+    "PxExtendedContact": [
+      "PxModifiableContact"
+    ],
+    "PxQueryHit": [
+      "PxLocationHit",
+      "PxGeomOverlapHit"
+    ],
+    "PxBaseTask": [
+      "PxTask",
+      "PxLightCpuTask"
+    ],
+    "PxSimpleTriangleMesh": [
+      "PxTriangleMeshDesc"
+    ],
+    "PxAllocatorCallback": [
+      "PxBroadcastingAllocator",
+      "PxDefaultAllocator"
+    ],
+    "PxContactPairExtraDataItem": [
+      "PxContactPairVelocity",
+      "PxContactPairPose",
+      "PxContactPairIndex"
+    ],
+    "PxTriangle": [
+      "PxTrianglePadded"
+    ],
+    "PxRigidBody": [
+      "PxArticulationLink",
+      "PxRigidDynamic"
+    ],
+    "PxObstacle": [
+      "PxBoxObstacle",
+      "PxCapsuleObstacle"
+    ],
+    "PxActor": [
+      "PxRigidActor"
+    ],
+    "PxSceneQueryDesc": [
+      "PxSceneDesc"
+    ],
+    "PxControllerHit": [
+      "PxControllerShapeHit",
+      "PxControllersHit",
+      "PxControllerObstacleHit"
+    ],
+    "PxProfilerCallback": [
+      "PxPvd"
+    ],
+    "PxTriangleMesh": [
+      "PxBVH34TriangleMesh"
+    ],
+    "PxRigidActor": [
+      "PxRigidBody",
+      "PxRigidStatic"
     ],
     "PxBase": [
       "PxRefCounted",
@@ -137294,105 +137433,6 @@
       "PxPruningStructure",
       "PxJoint"
     ],
-    "PxSimpleTriangleMesh": [
-      "PxTriangleMeshDesc"
-    ],
-    "PxProfilerCallback": [
-      "PxPvd"
-    ],
-    "PxBaseTask": [
-      "PxTask",
-      "PxLightCpuTask"
-    ],
-    "PxSolverConstraintPrepDescBase": [
-      "PxSolverConstraintPrepDesc"
-    ],
-    "PxGeomOverlapHit": [
-      "PxOverlapHit"
-    ],
-    "PxUserAllocated": [
-      "PxCollisionMeshMappingData",
-      "PxSoftBodyCollisionData",
-      "PxTetrahedronMeshData",
-      "PxSoftBodySimulationData",
-      "PxCollisionTetrahedronMeshData",
-      "PxSimulationTetrahedronMeshData",
-      "PxPoissonSampler"
-    ],
-    "PxContact": [
-      "PxExtendedContact"
-    ],
-    "PxTriangle": [
-      "PxTrianglePadded"
-    ],
-    "PxActor": [
-      "PxRigidActor"
-    ],
-    "PxOutputStream": [
-      "PxDefaultMemoryOutputStream",
-      "PxDefaultFileOutputStream"
-    ],
-    "PxAllocatorCallback": [
-      "PxBroadcastingAllocator",
-      "PxDefaultAllocator"
-    ],
-    "PxBaseMaterial": [
-      "PxFEMMaterial",
-      "PxMaterial",
-      "PxParticleMaterial"
-    ],
-    "PxSceneQueryDesc": [
-      "PxSceneDesc"
-    ],
-    "PxControllerDesc": [
-      "PxBoxControllerDesc",
-      "PxCapsuleControllerDesc"
-    ],
-    "PxObstacle": [
-      "PxBoxObstacle",
-      "PxCapsuleObstacle"
-    ],
-    "PxInputStream": [
-      "PxInputData"
-    ],
-    "PxTriangleMesh": [
-      "PxBVH34TriangleMesh"
-    ],
-    "PxActorShape": [
-      "PxRaycastHit",
-      "PxOverlapHit",
-      "PxSweepHit"
-    ],
-    "PxSceneQuerySystemBase": [
-      "PxSceneSQSystem",
-      "PxSceneQuerySystem"
-    ],
-    "PxContactPairExtraDataItem": [
-      "PxContactPairVelocity",
-      "PxContactPairPose",
-      "PxContactPairIndex"
-    ],
-    "PxInputData": [
-      "PxDefaultMemoryInputData",
-      "PxDefaultFileInputData"
-    ],
-    "PxSceneQuerySystem": [
-      "PxCustomSceneQuerySystem"
-    ],
-    "PxStridedData": [
-      "PxBoundedData"
-    ],
-    "PxArticulationTendon": [
-      "PxArticulationSpatialTendon",
-      "PxArticulationFixedTendon"
-    ],
-    "PxGeomRaycastHit": [
-      "PxRaycastHit"
-    ],
-    "PxRigidActor": [
-      "PxRigidBody",
-      "PxRigidStatic"
-    ],
     "PxGeometry": [
       "PxBoxGeometry",
       "PxCapsuleGeometry",
@@ -137406,41 +137446,8 @@
       "PxTetrahedronMeshGeometry",
       "PxCustomGeometry"
     ],
-    "PxLocationHit": [
-      "PxGeomRaycastHit",
-      "PxGeomSweepHit"
-    ],
-    "PxJointLimitParameters": [
-      "PxJointLinearLimit",
-      "PxJointLinearLimitPair",
-      "PxJointAngularLimitPair",
-      "PxJointLimitCone",
-      "PxJointLimitPyramid"
-    ],
-    "PxExtendedContact": [
-      "PxModifiableContact"
-    ],
-    "PxSceneSQSystem": [
-      "PxScene"
-    ],
-    "PxRigidBody": [
-      "PxArticulationLink",
-      "PxRigidDynamic"
-    ],
-    "PxControllerHit": [
-      "PxControllerShapeHit",
-      "PxControllersHit",
-      "PxControllerObstacleHit"
-    ],
-    "PxSpring": [
-      "PxD6JointDrive"
-    ],
     "PxVec3": [
       "PxVec3Padded"
-    ],
-    "PxErrorCallback": [
-      "PxBroadcastingErrorCallback",
-      "PxDefaultErrorCallback"
     ],
     "PxJoint": [
       "PxDistanceJoint",
@@ -137452,13 +137459,6 @@
       "PxD6Joint",
       "PxGearJoint",
       "PxRackAndPinionJoint"
-    ],
-    "PxGeomSweepHit": [
-      "PxSweepHit"
-    ],
-    "PxController": [
-      "PxBoxController",
-      "PxCapsuleController"
     ]
   }
 }
