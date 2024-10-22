@@ -25,6 +25,7 @@ impl<'ast> Param<'ast> {
             kind: QualType::Pointer {
                 is_const: false,
                 is_pointee_const: is_const,
+                is_array_like: false,
                 pointee: Box::new(rec_type),
             },
         }

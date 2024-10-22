@@ -55,6 +55,7 @@ pub enum QualTypeValue {
     Pointer {
         is_const: bool,
         is_pointee_const: bool,
+        is_array_like: bool,
         pointee: Box<QualTypeValue>,
     },
     Reference {
@@ -382,10 +383,12 @@ impl<'ast> From<&crate::consumer::QualType<'ast>> for QualTypeValue {
             QualType::Pointer {
                 is_const,
                 is_pointee_const,
+                is_array_like,
                 pointee,
             } => QualTypeValue::Pointer {
                 is_const: *is_const,
                 is_pointee_const: *is_pointee_const,
+                is_array_like: *is_array_like,
                 pointee: Box::new(pointee.as_ref().into()),
             },
             QualType::Reference { is_const, pointee } => QualTypeValue::Reference {
