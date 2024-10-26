@@ -36,6 +36,7 @@ const ALIGNED: &[&str] = &[
 ];
 
 const PACKED: &[(&str, u8)] = &[
+	#[cfg(target_os = "linux")]
     ("PxControllerDesc", 4),
 ];
 

@@ -2919,7 +2919,7 @@ test_layout_ControllerDesc :: proc(t: ^testing.T) {
     testing.expectf(t, size_of(ControllerDesc{}.clientID) == 1, "Wrong size for ControllerDesc.clientID, expected 1 got %v", size_of(ControllerDesc{}.clientID))
     testing.expectf(t, offset_of(ControllerDesc, userData) == 120, "Wrong offset for ControllerDesc.userData, expected 120 got %v", offset_of(ControllerDesc, userData))
     testing.expectf(t, size_of(ControllerDesc{}.userData) == 8, "Wrong size for ControllerDesc.userData, expected 8 got %v", size_of(ControllerDesc{}.userData))
-    testing.expectf(t, size_of(ControllerDesc) == 132, "Wrong size for type ControllerDesc, expected 132 got %v", size_of(ControllerDesc))
+    testing.expectf(t, size_of(ControllerDesc) == 136, "Wrong size for type ControllerDesc, expected 136 got %v", size_of(ControllerDesc))
 }
 
 @(test)
