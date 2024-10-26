@@ -9903,81 +9903,213 @@
     }
   ],
   "enum_map": {
+    "Px1DConstraintFlag::Type": [
+      "Int",
+      "Px1DConstraintFlag"
+    ],
+    "PxActorCacheFlag::Enum": [
+      "Int",
+      "PxActorCacheFlag"
+    ],
+    "PxActorFlag::Enum": [
+      "Int",
+      "PxActorFlag"
+    ],
+    "PxActorType::Enum": [
+      "Int",
+      "PxActorType"
+    ],
     "PxActorTypeFlag::Enum": [
       "Int",
       "PxActorTypeFlag"
+    ],
+    "PxAggregateType::Enum": [
+      "Int",
+      "PxAggregateType"
+    ],
+    "PxArticulationAxis::Enum": [
+      "Int",
+      "PxArticulationAxis"
+    ],
+    "PxArticulationCacheFlag::Enum": [
+      "Int",
+      "PxArticulationCacheFlag"
+    ],
+    "PxArticulationDriveType::Enum": [
+      "Int",
+      "PxArticulationDriveType"
+    ],
+    "PxArticulationFlag::Enum": [
+      "Int",
+      "PxArticulationFlag"
+    ],
+    "PxArticulationGpuDataType::Enum": [
+      "Int",
+      "PxArticulationGpuDataType"
+    ],
+    "PxArticulationJointType::Enum": [
+      "Int",
+      "PxArticulationJointType"
+    ],
+    "PxArticulationKinematicFlag::Enum": [
+      "Int",
+      "PxArticulationKinematicFlag"
+    ],
+    "PxArticulationMotion::Enum": [
+      "Int",
+      "PxArticulationMotion"
+    ],
+    "PxArticulationSensorFlag::Enum": [
+      "Int",
+      "PxArticulationSensorFlag"
+    ],
+    "PxBVH34BuildStrategy::Enum": [
+      "Int",
+      "PxBVH34BuildStrategy"
+    ],
+    "PxBVHBuildStrategy::Enum": [
+      "Int",
+      "PxBVHBuildStrategy"
+    ],
+    "PxBaseFlag::Enum": [
+      "Int",
+      "PxBaseFlag"
+    ],
+    "PxBatchQueryStatus::Enum": [
+      "Int",
+      "PxBatchQueryStatus"
+    ],
+    "PxBroadPhaseType::Enum": [
+      "Int",
+      "PxBroadPhaseType"
+    ],
+    "PxBufferType::Enum": [
+      "Int",
+      "PxBufferType"
+    ],
+    "PxCapsuleClimbingMode::Enum": [
+      "Int",
+      "PxCapsuleClimbingMode"
+    ],
+    "PxCombineMode::Enum": [
+      "Int",
+      "PxCombineMode"
+    ],
+    "PxConcreteType::Enum": [
+      "Int",
+      "PxConcreteType"
     ],
     "PxConstraintExtIDs::Enum": [
       "Int",
       "PxConstraintExtIDs"
     ],
-    "PxSolverConstraintDesc::ConstraintType": [
+    "PxConstraintFlag::Enum": [
       "Int",
-      "ConstraintType"
-    ],
-    "PxTetrahedronMeshDesc::PxMeshFormat": [
-      "Int",
-      "PxMeshFormat"
-    ],
-    "PxMeshGeometryFlag::Enum": [
-      "Int",
-      "PxMeshGeometryFlag"
-    ],
-    "PxD6JointDriveFlag::Enum": [
-      "Int",
-      "PxD6JointDriveFlag"
-    ],
-    "PxPruningStructureType::Enum": [
-      "Int",
-      "PxPruningStructureType"
-    ],
-    "PxSolverType::Enum": [
-      "Int",
-      "PxSolverType"
-    ],
-    "PxGeometryType::Enum": [
-      "Int",
-      "PxGeometryType"
-    ],
-    "PxParticlePhaseFlag::Enum": [
-      "UInt",
-      "PxParticlePhaseFlag"
-    ],
-    "PxJointActorIndex::Enum": [
-      "Int",
-      "PxJointActorIndex"
-    ],
-    "PxConvexMeshCookingResult::Enum": [
-      "Int",
-      "PxConvexMeshCookingResult"
-    ],
-    "PxMeshMeshQueryFlag::Enum": [
-      "Int",
-      "PxMeshMeshQueryFlag"
-    ],
-    "PxShapeFlag::Enum": [
-      "Int",
-      "PxShapeFlag"
-    ],
-    "PxTriggerPairFlag::Enum": [
-      "Int",
-      "PxTriggerPairFlag"
-    ],
-    "PxContactPatch::PxContactPatchFlags": [
-      "Int",
-      "PxContactPatchFlags"
-    ],
-    "PxControllerNonWalkableMode::Enum": [
-      "Int",
-      "PxControllerNonWalkableMode"
+      "PxConstraintFlag"
     ],
     "PxConstraintSolveHint::Enum": [
       "Int",
       "PxConstraintSolveHint"
     ],
-    "PxActorFlag::Enum": [
+    "PxConstraintVisualizationFlag::Enum": [
       "Int",
-      "PxActorFlag"
+      "PxConstraintVisualizationFlag"
+    ],
+    "PxContactPairExtraDataType::Enum": [
+      "Int",
+      "PxContactPairExtraDataType"
+    ],
+    "PxContactPairFlag::Enum": [
+      "Int",
+      "PxContactPairFlag"
+    ],
+    "PxContactPairHeaderFlag::Enum": [
+      "Int",
+      "PxContactPairHeaderFlag"
+    ],
+    "PxContactPatch::PxContactPatchFlags": [
+      "Int",
+      "PxContactPatchFlags"
+    ],
+    "PxContactStreamIterator::StreamFormat": [
+      "Int",
+      "StreamFormat"
+    ],
+    "PxControllerBehaviorFlag::Enum": [
+      "Int",
+      "PxControllerBehaviorFlag"
+    ],
+    "PxControllerCollisionFlag::Enum": [
+      "Int",
+      "PxControllerCollisionFlag"
+    ],
+    "PxControllerDebugRenderFlag::Enum": [
+      "UInt",
+      "PxControllerDebugRenderFlag"
+    ],
+    "PxControllerNonWalkableMode::Enum": [
+      "Int",
+      "PxControllerNonWalkableMode"
+    ],
+    "PxControllerShapeType::Enum": [
+      "Int",
+      "PxControllerShapeType"
+    ],
+    "PxConvexFlag::Enum": [
+      "Int",
+      "PxConvexFlag"
+    ],
+    "PxConvexMeshCookingResult::Enum": [
+      "Int",
+      "PxConvexMeshCookingResult"
+    ],
+    "PxConvexMeshCookingType::Enum": [
+      "Int",
+      "PxConvexMeshCookingType"
+    ],
+    "PxConvexMeshGeometryFlag::Enum": [
+      "Int",
+      "PxConvexMeshGeometryFlag"
+    ],
+    "PxD6Axis::Enum": [
+      "Int",
+      "PxD6Axis"
+    ],
+    "PxD6Drive::Enum": [
+      "Int",
+      "PxD6Drive"
+    ],
+    "PxD6JointDriveFlag::Enum": [
+      "Int",
+      "PxD6JointDriveFlag"
+    ],
+    "PxD6Motion::Enum": [
+      "Int",
+      "PxD6Motion"
+    ],
+    "PxDataAccessFlag::Enum": [
+      "Int",
+      "PxDataAccessFlag"
+    ],
+    "PxDebugColor::Enum": [
+      "UInt",
+      "PxDebugColor"
+    ],
+    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
+      "Int",
+      "PxDefaultCpuDispatcherWaitForWorkMode"
+    ],
+    "PxDeletionEventFlag::Enum": [
+      "Int",
+      "PxDeletionEventFlag"
+    ],
+    "PxDistanceJointFlag::Enum": [
+      "Int",
+      "PxDistanceJointFlag"
+    ],
+    "PxDynamicTreeSecondaryPruner::Enum": [
+      "Int",
+      "PxDynamicTreeSecondaryPruner"
     ],
     "PxEMPTY": [
       "Int",
@@ -9987,305 +10119,233 @@
       "Int",
       "PxErrorCode"
     ],
-    "PxActorCacheFlag::Enum": [
+    "PxFilterFlag::Enum": [
       "Int",
-      "PxActorCacheFlag"
-    ],
-    "PxCombineMode::Enum": [
-      "Int",
-      "PxCombineMode"
-    ],
-    "PxSoftBodyData::Enum": [
-      "Int",
-      "PxSoftBodyData"
-    ],
-    "PxDebugColor::Enum": [
-      "UInt",
-      "PxDebugColor"
-    ],
-    "PxControllerShapeType::Enum": [
-      "Int",
-      "PxControllerShapeType"
-    ],
-    "PxBatchQueryStatus::Enum": [
-      "Int",
-      "PxBatchQueryStatus"
-    ],
-    "PxSoftBodyFlag::Enum": [
-      "Int",
-      "PxSoftBodyFlag"
-    ],
-    "PxConvexMeshGeometryFlag::Enum": [
-      "Int",
-      "PxConvexMeshGeometryFlag"
-    ],
-    "PxD6Drive::Enum": [
-      "Int",
-      "PxD6Drive"
-    ],
-    "PxSimulationStatistics::RbPairStatsType": [
-      "Int",
-      "RbPairStatsType"
-    ],
-    "PxArticulationSensorFlag::Enum": [
-      "Int",
-      "PxArticulationSensorFlag"
-    ],
-    "PxRigidDynamicLockFlag::Enum": [
-      "Int",
-      "PxRigidDynamicLockFlag"
-    ],
-    "PxAggregateType::Enum": [
-      "Int",
-      "PxAggregateType"
+      "PxFilterFlag"
     ],
     "PxFilterObjectFlag::Enum": [
       "Int",
       "PxFilterObjectFlag"
     ],
-    "PxIDENTITY": [
+    "PxFilterObjectType::Enum": [
       "Int",
-      "PxIDENTITY"
+      "PxFilterObjectType"
     ],
-    "PxScenePrunerIndex": [
-      "UInt",
-      "PxScenePrunerIndex"
-    ],
-    "PxD6Axis::Enum": [
+    "PxFilterOp::Enum": [
       "Int",
-      "PxD6Axis"
-    ],
-    "PxTetrahedronMeshFlag::Enum": [
-      "Int",
-      "PxTetrahedronMeshFlag"
+      "PxFilterOp"
     ],
     "PxForceMode::Enum": [
       "Int",
       "PxForceMode"
     ],
-    "PxConvexFlag::Enum": [
+    "PxFrictionType::Enum": [
       "Int",
-      "PxConvexFlag"
+      "PxFrictionType"
     ],
-    "PxDefaultCpuDispatcherWaitForWorkMode::Enum": [
+    "PxGeometryQueryFlag::Enum": [
       "Int",
-      "PxDefaultCpuDispatcherWaitForWorkMode"
+      "PxGeometryQueryFlag"
     ],
-    "PxContactPairExtraDataType::Enum": [
+    "PxGeometryType::Enum": [
       "Int",
-      "PxContactPairExtraDataType"
-    ],
-    "PxMeshPreprocessingFlag::Enum": [
-      "Int",
-      "PxMeshPreprocessingFlag"
-    ],
-    "PxHeightFieldFormat::Enum": [
-      "Int",
-      "PxHeightFieldFormat"
-    ],
-    "PxMaterialFlag::Enum": [
-      "Int",
-      "PxMaterialFlag"
-    ],
-    "PxPvdSceneFlag::Enum": [
-      "Int",
-      "PxPvdSceneFlag"
-    ],
-    "PxArticulationCacheFlag::Enum": [
-      "Int",
-      "PxArticulationCacheFlag"
-    ],
-    "PxParticleBufferFlag::Enum": [
-      "Int",
-      "PxParticleBufferFlag"
-    ],
-    "PxSolverConstraintPrepDescBase::BodyState": [
-      "Int",
-      "BodyState"
-    ],
-    "PxSceneQueryUpdateMode::Enum": [
-      "Int",
-      "PxSceneQueryUpdateMode"
-    ],
-    "PxSoftBodyDataFlag::Enum": [
-      "Int",
-      "PxSoftBodyDataFlag"
-    ],
-    "PxDeletionEventFlag::Enum": [
-      "Int",
-      "PxDeletionEventFlag"
-    ],
-    "PxArticulationMotion::Enum": [
-      "Int",
-      "PxArticulationMotion"
-    ],
-    "PxDistanceJointFlag::Enum": [
-      "Int",
-      "PxDistanceJointFlag"
-    ],
-    "PxHeightFieldFlag::Enum": [
-      "Int",
-      "PxHeightFieldFlag"
-    ],
-    "PxContactStreamIterator::StreamFormat": [
-      "Int",
-      "StreamFormat"
-    ],
-    "PxMeshFlag::Enum": [
-      "Int",
-      "PxMeshFlag"
-    ],
-    "PxConstraintFlag::Enum": [
-      "Int",
-      "PxConstraintFlag"
-    ],
-    "PxVisualizationParameter::Enum": [
-      "Int",
-      "PxVisualizationParameter"
-    ],
-    "PxMetaDataFlag::Enum": [
-      "Int",
-      "PxMetaDataFlag"
-    ],
-    "PxConcreteType::Enum": [
-      "Int",
-      "PxConcreteType"
-    ],
-    "PxParticleSolverType::Enum": [
-      "Int",
-      "PxParticleSolverType"
-    ],
-    "PxControllerCollisionFlag::Enum": [
-      "Int",
-      "PxControllerCollisionFlag"
-    ],
-    "PxRigidBodyFlag::Enum": [
-      "Int",
-      "PxRigidBodyFlag"
-    ],
-    "PxHairSystemFlag::Enum": [
-      "Int",
-      "PxHairSystemFlag"
-    ],
-    "PxBroadPhaseType::Enum": [
-      "Int",
-      "PxBroadPhaseType"
-    ],
-    "PxRevoluteJointFlag::Enum": [
-      "Int",
-      "PxRevoluteJointFlag"
-    ],
-    "PxContactPairHeaderFlag::Enum": [
-      "Int",
-      "PxContactPairHeaderFlag"
-    ],
-    "PxConvexMeshCookingType::Enum": [
-      "Int",
-      "PxConvexMeshCookingType"
-    ],
-    "PxBufferType::Enum": [
-      "Int",
-      "PxBufferType"
-    ],
-    "PxConstraintVisualizationFlag::Enum": [
-      "Int",
-      "PxConstraintVisualizationFlag"
-    ],
-    "PxHeightFieldMaterial::Enum": [
-      "Int",
-      "PxHeightFieldMaterial"
-    ],
-    "PxTaskType::Enum": [
-      "Int",
-      "PxTaskType"
-    ],
-    "Px1DConstraintFlag::Type": [
-      "Int",
-      "Px1DConstraintFlag"
-    ],
-    "PxBVH34BuildStrategy::Enum": [
-      "Int",
-      "PxBVH34BuildStrategy"
-    ],
-    "PxZERO": [
-      "Int",
-      "PxZERO"
-    ],
-    "PxFilterFlag::Enum": [
-      "Int",
-      "PxFilterFlag"
-    ],
-    "PxHeightFieldTessFlag::Enum": [
-      "Int",
-      "PxHeightFieldTessFlag"
-    ],
-    "PxArticulationDriveType::Enum": [
-      "Int",
-      "PxArticulationDriveType"
-    ],
-    "PxPvdUpdateType::Enum": [
-      "Int",
-      "PxPvdUpdateType"
-    ],
-    "PxControllerDebugRenderFlag::Enum": [
-      "UInt",
-      "PxControllerDebugRenderFlag"
-    ],
-    "PxActorType::Enum": [
-      "Int",
-      "PxActorType"
+      "PxGeometryType"
     ],
     "PxHairSystemData::Enum": [
       "Int",
       "PxHairSystemData"
     ],
-    "PxJointConcreteType::Enum": [
+    "PxHairSystemFlag::Enum": [
       "Int",
-      "PxJointConcreteType"
+      "PxHairSystemFlag"
     ],
-    "PxSceneFlag::Enum": [
+    "PxHeightFieldFlag::Enum": [
       "Int",
-      "PxSceneFlag"
+      "PxHeightFieldFlag"
     ],
-    "PxSdfBitsPerSubgridPixel::Enum": [
+    "PxHeightFieldFormat::Enum": [
       "Int",
-      "PxSdfBitsPerSubgridPixel"
+      "PxHeightFieldFormat"
     ],
-    "PxD6Motion::Enum": [
+    "PxHeightFieldMaterial::Enum": [
       "Int",
-      "PxD6Motion"
+      "PxHeightFieldMaterial"
     ],
-    "PxArticulationAxis::Enum": [
+    "PxHeightFieldTessFlag::Enum": [
       "Int",
-      "PxArticulationAxis"
-    ],
-    "PxPairFlag::Enum": [
-      "Int",
-      "PxPairFlag"
-    ],
-    "PxDataAccessFlag::Enum": [
-      "Int",
-      "PxDataAccessFlag"
-    ],
-    "PxQueryHitType::Enum": [
-      "Int",
-      "PxQueryHitType"
-    ],
-    "PxFrictionType::Enum": [
-      "Int",
-      "PxFrictionType"
-    ],
-    "PxArticulationFlag::Enum": [
-      "Int",
-      "PxArticulationFlag"
+      "PxHeightFieldTessFlag"
     ],
     "PxHitFlag::Enum": [
       "Int",
       "PxHitFlag"
     ],
-    "PxArticulationKinematicFlag::Enum": [
+    "PxIDENTITY": [
       "Int",
-      "PxArticulationKinematicFlag"
+      "PxIDENTITY"
+    ],
+    "PxJointActorIndex::Enum": [
+      "Int",
+      "PxJointActorIndex"
+    ],
+    "PxJointConcreteType::Enum": [
+      "Int",
+      "PxJointConcreteType"
+    ],
+    "PxMaterialFlag::Enum": [
+      "Int",
+      "PxMaterialFlag"
+    ],
+    "PxMeshFlag::Enum": [
+      "Int",
+      "PxMeshFlag"
+    ],
+    "PxMeshGeometryFlag::Enum": [
+      "Int",
+      "PxMeshGeometryFlag"
+    ],
+    "PxMeshMeshQueryFlag::Enum": [
+      "Int",
+      "PxMeshMeshQueryFlag"
+    ],
+    "PxMeshMidPhase::Enum": [
+      "Int",
+      "PxMeshMidPhase"
+    ],
+    "PxMeshPreprocessingFlag::Enum": [
+      "Int",
+      "PxMeshPreprocessingFlag"
+    ],
+    "PxMetaDataFlag::Enum": [
+      "Int",
+      "PxMetaDataFlag"
+    ],
+    "PxPairFilteringMode::Enum": [
+      "Int",
+      "PxPairFilteringMode"
+    ],
+    "PxPairFlag::Enum": [
+      "Int",
+      "PxPairFlag"
+    ],
+    "PxParticleBufferFlag::Enum": [
+      "Int",
+      "PxParticleBufferFlag"
+    ],
+    "PxParticlePhaseFlag::Enum": [
+      "UInt",
+      "PxParticlePhaseFlag"
+    ],
+    "PxParticleSolverType::Enum": [
+      "Int",
+      "PxParticleSolverType"
+    ],
+    "PxPrismaticJointFlag::Enum": [
+      "Int",
+      "PxPrismaticJointFlag"
+    ],
+    "PxPruningStructureType::Enum": [
+      "Int",
+      "PxPruningStructureType"
+    ],
+    "PxPvdInstrumentationFlag::Enum": [
+      "Int",
+      "PxPvdInstrumentationFlag"
+    ],
+    "PxPvdSceneFlag::Enum": [
+      "Int",
+      "PxPvdSceneFlag"
+    ],
+    "PxPvdUpdateType::Enum": [
+      "Int",
+      "PxPvdUpdateType"
+    ],
+    "PxQueryFlag::Enum": [
+      "Int",
+      "PxQueryFlag"
+    ],
+    "PxQueryHitType::Enum": [
+      "Int",
+      "PxQueryHitType"
+    ],
+    "PxRevoluteJointFlag::Enum": [
+      "Int",
+      "PxRevoluteJointFlag"
+    ],
+    "PxRigidBodyFlag::Enum": [
+      "Int",
+      "PxRigidBodyFlag"
+    ],
+    "PxRigidDynamicLockFlag::Enum": [
+      "Int",
+      "PxRigidDynamicLockFlag"
+    ],
+    "PxSceneFlag::Enum": [
+      "Int",
+      "PxSceneFlag"
+    ],
+    "PxScenePrunerIndex": [
+      "UInt",
+      "PxScenePrunerIndex"
+    ],
+    "PxSceneQueryUpdateMode::Enum": [
+      "Int",
+      "PxSceneQueryUpdateMode"
+    ],
+    "PxSdfBitsPerSubgridPixel::Enum": [
+      "Int",
+      "PxSdfBitsPerSubgridPixel"
+    ],
+    "PxShapeFlag::Enum": [
+      "Int",
+      "PxShapeFlag"
+    ],
+    "PxSimulationStatistics::RbPairStatsType": [
+      "Int",
+      "RbPairStatsType"
+    ],
+    "PxSoftBodyData::Enum": [
+      "Int",
+      "PxSoftBodyData"
+    ],
+    "PxSoftBodyDataFlag::Enum": [
+      "Int",
+      "PxSoftBodyDataFlag"
+    ],
+    "PxSoftBodyFlag::Enum": [
+      "Int",
+      "PxSoftBodyFlag"
+    ],
+    "PxSolverConstraintDesc::ConstraintType": [
+      "Int",
+      "ConstraintType"
+    ],
+    "PxSolverConstraintPrepDescBase::BodyState": [
+      "Int",
+      "BodyState"
+    ],
+    "PxSolverType::Enum": [
+      "Int",
+      "PxSolverType"
+    ],
+    "PxSphericalJointFlag::Enum": [
+      "Int",
+      "PxSphericalJointFlag"
+    ],
+    "PxTaskType::Enum": [
+      "Int",
+      "PxTaskType"
+    ],
+    "PxTetrahedronMeshDesc::PxMeshFormat": [
+      "Int",
+      "PxMeshFormat"
+    ],
+    "PxTetrahedronMeshFlag::Enum": [
+      "Int",
+      "PxTetrahedronMeshFlag"
+    ],
+    "PxThreadPriority::Enum": [
+      "UInt",
+      "PxThreadPriority"
     ],
     "PxTriangleMeshCookingResult::Enum": [
       "Int",
@@ -10295,77 +10355,17 @@
       "Int",
       "PxTriangleMeshFlag"
     ],
-    "PxGeometryQueryFlag::Enum": [
+    "PxTriggerPairFlag::Enum": [
       "Int",
-      "PxGeometryQueryFlag"
+      "PxTriggerPairFlag"
     ],
-    "PxPvdInstrumentationFlag::Enum": [
+    "PxVisualizationParameter::Enum": [
       "Int",
-      "PxPvdInstrumentationFlag"
+      "PxVisualizationParameter"
     ],
-    "PxBVHBuildStrategy::Enum": [
+    "PxZERO": [
       "Int",
-      "PxBVHBuildStrategy"
-    ],
-    "PxThreadPriority::Enum": [
-      "UInt",
-      "PxThreadPriority"
-    ],
-    "PxFilterOp::Enum": [
-      "Int",
-      "PxFilterOp"
-    ],
-    "PxPrismaticJointFlag::Enum": [
-      "Int",
-      "PxPrismaticJointFlag"
-    ],
-    "PxBaseFlag::Enum": [
-      "Int",
-      "PxBaseFlag"
-    ],
-    "PxControllerBehaviorFlag::Enum": [
-      "Int",
-      "PxControllerBehaviorFlag"
-    ],
-    "PxFilterObjectType::Enum": [
-      "Int",
-      "PxFilterObjectType"
-    ],
-    "PxCapsuleClimbingMode::Enum": [
-      "Int",
-      "PxCapsuleClimbingMode"
-    ],
-    "PxDynamicTreeSecondaryPruner::Enum": [
-      "Int",
-      "PxDynamicTreeSecondaryPruner"
-    ],
-    "PxArticulationGpuDataType::Enum": [
-      "Int",
-      "PxArticulationGpuDataType"
-    ],
-    "PxSphericalJointFlag::Enum": [
-      "Int",
-      "PxSphericalJointFlag"
-    ],
-    "PxContactPairFlag::Enum": [
-      "Int",
-      "PxContactPairFlag"
-    ],
-    "PxPairFilteringMode::Enum": [
-      "Int",
-      "PxPairFilteringMode"
-    ],
-    "PxMeshMidPhase::Enum": [
-      "Int",
-      "PxMeshMidPhase"
-    ],
-    "PxQueryFlag::Enum": [
-      "Int",
-      "PxQueryFlag"
-    ],
-    "PxArticulationJointType::Enum": [
-      "Int",
-      "PxArticulationJointType"
+      "PxZERO"
     ]
   },
   "flags": [
@@ -10626,215 +10626,73 @@
     }
   ],
   "flags_map": {
-    "PxConstraintFlags": "UShort",
-    "PxTetrahedronMeshFlags": "UChar",
-    "PxTriggerPairFlags": "UChar",
-    "PxActorTypeFlags": "UShort",
-    "PxRigidBodyFlags": "UShort",
-    "PxBaseFlags": "UShort",
-    "PxActorCacheFlags": "UShort",
-    "PxSoftBodyFlags": "UInt",
-    "PxParticleBufferFlags": "UInt",
-    "PxPvdInstrumentationFlags": "UChar",
-    "PxRevoluteJointFlags": "UShort",
-    "PxContactPairHeaderFlags": "UShort",
-    "PxDataAccessFlags": "UChar",
-    "PxHitFlags": "UShort",
-    "PxShapeFlags": "UChar",
-    "PxSphericalJointFlags": "UShort",
-    "PxArticulationFlags": "UChar",
-    "PxArticulationSensorFlags": "UChar",
-    "PxControllerCollisionFlags": "UChar",
-    "PxArticulationKinematicFlags": "UChar",
-    "PxMeshMeshQueryFlags": "UInt",
-    "PxPrismaticJointFlags": "UShort",
-    "PxMeshPreprocessingFlags": "UInt",
-    "PxMeshFlags": "UShort",
-    "PxControllerDebugRenderFlags": "UInt",
-    "PxGeometryQueryFlags": "UInt",
-    "PxPvdSceneFlags": "UChar",
-    "PxMeshGeometryFlags": "UChar",
-    "PxMaterialFlags": "UShort",
-    "PxDeletionEventFlags": "UChar",
-    "PxArticulationMotions": "UChar",
-    "PxSoftBodyDataFlags": "UInt",
-    "PxArticulationCacheFlags": "UInt",
-    "PxRigidDynamicLockFlags": "UChar",
-    "PxSceneFlags": "UInt",
-    "PxActorFlags": "UChar",
-    "PxFilterFlags": "UShort",
-    "PxHairSystemFlags": "UInt",
-    "PxPairFlags": "UShort",
-    "PxDistanceJointFlags": "UShort",
-    "PxHairSystemDataFlags": "UInt",
-    "PxConvexFlags": "UShort",
     "Px1DConstraintFlags": "UShort",
-    "PxControllerBehaviorFlags": "UChar",
-    "PxTriangleMeshFlags": "UChar",
+    "PxActorCacheFlags": "UShort",
+    "PxActorFlags": "UChar",
+    "PxActorTypeFlags": "UShort",
+    "PxArticulationCacheFlags": "UInt",
+    "PxArticulationFlags": "UChar",
+    "PxArticulationKinematicFlags": "UChar",
+    "PxArticulationMotions": "UChar",
+    "PxArticulationSensorFlags": "UChar",
+    "PxBaseFlags": "UShort",
+    "PxConstraintFlags": "UShort",
     "PxContactPairFlags": "UShort",
-    "PxHeightFieldFlags": "UShort",
+    "PxContactPairHeaderFlags": "UShort",
+    "PxControllerBehaviorFlags": "UChar",
+    "PxControllerCollisionFlags": "UChar",
+    "PxControllerDebugRenderFlags": "UInt",
+    "PxConvexFlags": "UShort",
     "PxConvexMeshGeometryFlags": "UChar",
     "PxD6JointDriveFlags": "UInt",
+    "PxDataAccessFlags": "UChar",
+    "PxDeletionEventFlags": "UChar",
+    "PxDistanceJointFlags": "UShort",
+    "PxFilterFlags": "UShort",
+    "PxGeometryQueryFlags": "UInt",
+    "PxHairSystemDataFlags": "UInt",
+    "PxHairSystemFlags": "UInt",
+    "PxHeightFieldFlags": "UShort",
+    "PxHitFlags": "UShort",
+    "PxMaterialFlags": "UShort",
+    "PxMeshFlags": "UShort",
+    "PxMeshGeometryFlags": "UChar",
+    "PxMeshMeshQueryFlags": "UInt",
+    "PxMeshPreprocessingFlags": "UInt",
+    "PxPairFlags": "UShort",
+    "PxParticleBufferFlags": "UInt",
+    "PxParticlePhaseFlags": "UInt",
+    "PxPrismaticJointFlags": "UShort",
+    "PxPvdInstrumentationFlags": "UChar",
+    "PxPvdSceneFlags": "UChar",
     "PxQueryFlags": "UShort",
-    "PxParticlePhaseFlags": "UInt"
+    "PxRevoluteJointFlags": "UShort",
+    "PxRigidBodyFlags": "UShort",
+    "PxRigidDynamicLockFlags": "UChar",
+    "PxSceneFlags": "UInt",
+    "PxShapeFlags": "UChar",
+    "PxSoftBodyDataFlags": "UInt",
+    "PxSoftBodyFlags": "UInt",
+    "PxSphericalJointFlags": "UShort",
+    "PxTetrahedronMeshFlags": "UChar",
+    "PxTriangleMeshFlags": "UChar",
+    "PxTriggerPairFlags": "UChar"
   },
   "type_defs": {
-    "PxU16": {
-      "Builtin": "UShort"
-    },
-    "PxI16": {
-      "Builtin": "Short"
-    },
-    "PxTransform32": {
-      "Record": {
-        "name": "PxTransformPadded"
-      }
-    },
-    "PxBpFilterGroup": {
-      "Builtin": "UInt"
-    },
-    "PxSweepThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
-    },
-    "PxObstacleHandle": {
-      "Builtin": "UInt"
-    },
-    "PxSceneQueryCache": {
-      "Record": {
-        "name": "PxQueryCache"
-      }
-    },
-    "PxSQCompoundHandle": {
-      "Builtin": "UInt"
+    "PxAgain": {
+      "Builtin": "Bool"
     },
     "PxAggregateFilterHint": {
       "Builtin": "UInt"
     },
-    "PxSQBuildStepHandle": {
-      "Pointer": {
-        "is_const": false,
-        "is_pointee_const": false,
-        "is_array_like": false,
-        "pointee": {
-          "Builtin": "Void"
-        }
-      }
-    },
-    "PxSceneQueryFilterData": {
-      "Record": {
-        "name": "PxQueryFilterData"
-      }
-    },
-    "PxI8": {
-      "Builtin": "Char"
-    },
-    "PxRaycastThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
-    },
-    "PxU64": {
-      "Builtin": "ULong"
-    },
-    "PxSceneQueryHit": {
-      "Record": {
-        "name": "PxQueryHit"
-      }
-    },
-    "PxFEMMaterialTableIndex": {
-      "Builtin": "UShort"
-    },
-    "PxIntBool": {
-      "Builtin": "Int"
-    },
-    "PxSceneQueryFilterCallback": {
-      "Record": {
-        "name": "PxQueryFilterCallback"
-      }
-    },
-    "PxTaskID": {
-      "Builtin": "UInt"
-    },
-    "PxSceneQueryFlags": {
-      "Flags": {
-        "name": "PxHitFlags",
-        "repr": "UShort"
-      }
-    },
-    "PxSerialObjectId": {
-      "Builtin": "ULong"
-    },
-    "PxType": {
-      "Builtin": "UShort"
-    },
-    "PxFilterObjectAttributes": {
-      "Builtin": "UInt"
-    },
-    "PxI32": {
-      "Builtin": "Int"
-    },
-    "PxSQPrunerHandle": {
-      "Builtin": "UInt"
-    },
-    "PxPhysicsInsertionCallback": {
-      "Record": {
-        "name": "PxInsertionCallback"
-      }
-    },
-    "PxMaterialTableIndex": {
-      "Builtin": "UShort"
-    },
-    "PxReal": {
-      "Builtin": "Float"
-    },
-    "PxExtended": {
-      "Builtin": "Double"
-    },
-    "PxF64": {
-      "Builtin": "Double"
-    },
-    "PxConstraintVisualize": "FunctionPointer",
-    "PxF32": {
-      "Builtin": "Float"
-    },
-    "PxTriangleID": {
-      "Builtin": "UInt"
-    },
-    "PxSceneQueryFlag": {
-      "Record": {
-        "name": "PxHitFlag"
-      }
-    },
-    "PxClientID": {
-      "Builtin": "UChar"
-    },
-    "PxI64": {
-      "Builtin": "Long"
-    },
-    "PxU32": {
+    "PxBpFilterGroup": {
       "Builtin": "UInt"
     },
     "PxBpIndex": {
       "Builtin": "UInt"
     },
-    "PxSimulationFilterShader": "FunctionPointer",
-    "PxAgain": {
-      "Builtin": "Bool"
-    },
-    "PxU8": {
+    "PxClientID": {
       "Builtin": "UChar"
-    },
-    "PxOverlapThreadContext": {
-      "Record": {
-        "name": "PxQueryThreadContext"
-      }
-    },
-    "PxVec3p": {
-      "Record": {
-        "name": "PxVec3Padded"
-      }
     },
     "PxCompileTimeAssert_Dummy": {
       "Array": {
@@ -10843,6 +10701,23 @@
         },
         "len": 1
       }
+    },
+    "PxConstraintSolverPrep": "FunctionPointer",
+    "PxConstraintVisualize": "FunctionPointer",
+    "PxDominanceGroup": {
+      "Builtin": "UChar"
+    },
+    "PxExtended": {
+      "Builtin": "Double"
+    },
+    "PxF32": {
+      "Builtin": "Float"
+    },
+    "PxF64": {
+      "Builtin": "Double"
+    },
+    "PxFEMMaterialTableIndex": {
+      "Builtin": "UShort"
     },
     "PxFileHandle": {
       "Pointer": {
@@ -10854,9 +10729,134 @@
         }
       }
     },
-    "PxConstraintSolverPrep": "FunctionPointer",
-    "PxDominanceGroup": {
+    "PxFilterObjectAttributes": {
+      "Builtin": "UInt"
+    },
+    "PxI16": {
+      "Builtin": "Short"
+    },
+    "PxI32": {
+      "Builtin": "Int"
+    },
+    "PxI64": {
+      "Builtin": "Long"
+    },
+    "PxI8": {
+      "Builtin": "Char"
+    },
+    "PxIntBool": {
+      "Builtin": "Int"
+    },
+    "PxMaterialTableIndex": {
+      "Builtin": "UShort"
+    },
+    "PxObstacleHandle": {
+      "Builtin": "UInt"
+    },
+    "PxOverlapThreadContext": {
+      "Record": {
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxPhysicsInsertionCallback": {
+      "Record": {
+        "name": "PxInsertionCallback"
+      }
+    },
+    "PxRaycastThreadContext": {
+      "Record": {
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxReal": {
+      "Builtin": "Float"
+    },
+    "PxSQBuildStepHandle": {
+      "Pointer": {
+        "is_const": false,
+        "is_pointee_const": false,
+        "is_array_like": false,
+        "pointee": {
+          "Builtin": "Void"
+        }
+      }
+    },
+    "PxSQCompoundHandle": {
+      "Builtin": "UInt"
+    },
+    "PxSQPrunerHandle": {
+      "Builtin": "UInt"
+    },
+    "PxSceneQueryCache": {
+      "Record": {
+        "name": "PxQueryCache"
+      }
+    },
+    "PxSceneQueryFilterCallback": {
+      "Record": {
+        "name": "PxQueryFilterCallback"
+      }
+    },
+    "PxSceneQueryFilterData": {
+      "Record": {
+        "name": "PxQueryFilterData"
+      }
+    },
+    "PxSceneQueryFlag": {
+      "Record": {
+        "name": "PxHitFlag"
+      }
+    },
+    "PxSceneQueryFlags": {
+      "Flags": {
+        "name": "PxHitFlags",
+        "repr": "UShort"
+      }
+    },
+    "PxSceneQueryHit": {
+      "Record": {
+        "name": "PxQueryHit"
+      }
+    },
+    "PxSerialObjectId": {
+      "Builtin": "ULong"
+    },
+    "PxSimulationFilterShader": "FunctionPointer",
+    "PxSweepThreadContext": {
+      "Record": {
+        "name": "PxQueryThreadContext"
+      }
+    },
+    "PxTaskID": {
+      "Builtin": "UInt"
+    },
+    "PxTransform32": {
+      "Record": {
+        "name": "PxTransformPadded"
+      }
+    },
+    "PxTriangleID": {
+      "Builtin": "UInt"
+    },
+    "PxType": {
+      "Builtin": "UShort"
+    },
+    "PxU16": {
+      "Builtin": "UShort"
+    },
+    "PxU32": {
+      "Builtin": "UInt"
+    },
+    "PxU64": {
+      "Builtin": "ULong"
+    },
+    "PxU8": {
       "Builtin": "UChar"
+    },
+    "PxVec3p": {
+      "Record": {
+        "name": "PxVec3Padded"
+      }
     }
   },
   "recs": [
@@ -136894,529 +136894,386 @@
     }
   ],
   "classes": {
-    "PxHeightFieldDesc": true,
-    "PxContactSet": true,
+    "Interpolation": true,
+    "MemoryBuffer": false,
+    "Px1DConstraint": true,
+    "Px1DConstraintMods": true,
+    "PxAABBManager": true,
+    "PxActor": true,
+    "PxActorShape": true,
+    "PxAggregate": true,
+    "PxAllocationListener": true,
+    "PxAllocator": true,
+    "PxAllocatorCallback": true,
+    "PxArticulationAttachment": true,
+    "PxArticulationCache": true,
+    "PxArticulationDrive": true,
+    "PxArticulationFixedTendon": true,
+    "PxArticulationJointReducedCoordinate": true,
+    "PxArticulationLimit": true,
+    "PxArticulationLink": true,
+    "PxArticulationReducedCoordinate": true,
+    "PxArticulationRootLinkData": true,
+    "PxArticulationSensor": true,
+    "PxArticulationSpatialTendon": true,
+    "PxArticulationTendon": true,
+    "PxArticulationTendonJoint": true,
+    "PxArticulationTendonLimit": true,
+    "PxAssertHandler": true,
     "PxBVH": true,
-    "PxSphereGeometry": true,
-    "PxBounds3": true,
-    "PxBroadPhase": true,
-    "PxDebugTriangle": true,
-    "PxContactPatch": true,
-    "PxPhysics": true,
-    "PxTime": true,
-    "PxSamplingExt": true,
-    "PxStringTable": true,
-    "PxD6JointDrive": true,
+    "PxBVH33TriangleMesh": false,
+    "PxBVH34MidphaseDesc": true,
+    "PxBVH34TriangleMesh": true,
+    "PxBVHDesc": true,
+    "PxBVHOverlapCallback": true,
+    "PxBVHRaycastCallback": true,
+    "PxBVHTraversalCallback": true,
+    "PxBase": true,
+    "PxBaseMaterial": true,
+    "PxBaseTask": true,
+    "PxBatchQueryExt": true,
+    "PxBinaryConverter": false,
+    "PxBitAndByte": true,
+    "PxBitMap": true,
     "PxBoundedData": true,
+    "PxBounds3": true,
+    "PxBoxController": true,
+    "PxBoxControllerDesc": true,
+    "PxBoxGeometry": true,
+    "PxBoxObstacle": true,
+    "PxBroadPhase": true,
+    "PxBroadPhaseCallback": true,
+    "PxBroadPhaseCaps": true,
+    "PxBroadPhaseDesc": true,
+    "PxBroadPhaseExt": true,
+    "PxBroadPhasePair": true,
+    "PxBroadPhaseRegion": true,
+    "PxBroadPhaseRegionInfo": true,
+    "PxBroadPhaseRegions": true,
+    "PxBroadPhaseResults": true,
+    "PxBroadPhaseUpdateData": true,
+    "PxBroadcastingAllocator": true,
+    "PxBroadcastingErrorCallback": true,
+    "PxCCDContactModifyCallback": true,
+    "PxCapsuleController": true,
+    "PxCapsuleControllerDesc": true,
+    "PxCapsuleGeometry": true,
+    "PxCapsuleObstacle": true,
+    "PxCollection": true,
+    "PxCollisionMeshMappingData": true,
+    "PxCollisionTetrahedronMeshData": true,
+    "PxConeLimitParams": true,
+    "PxConeLimitedConstraint": true,
+    "PxConstraint": true,
+    "PxConstraintAllocator": true,
+    "PxConstraintBatchHeader": true,
+    "PxConstraintConnector": true,
+    "PxConstraintInfo": true,
+    "PxConstraintInvMassScale": true,
+    "PxConstraintShaderTable": true,
+    "PxConstraintVisualizer": true,
+    "PxContact": true,
+    "PxContactBuffer": false,
+    "PxContactJoint": true,
+    "PxContactModifyCallback": true,
+    "PxContactModifyPair": true,
+    "PxContactPair": true,
+    "PxContactPairExtraDataItem": true,
+    "PxContactPairExtraDataIterator": true,
+    "PxContactPairHeader": true,
+    "PxContactPairIndex": true,
+    "PxContactPairPoint": true,
+    "PxContactPairPose": true,
+    "PxContactPairVelocity": true,
+    "PxContactPatch": true,
+    "PxContactPoint": true,
+    "PxContactSet": true,
+    "PxContactStreamIterator": true,
+    "PxController": true,
+    "PxControllerBehaviorCallback": true,
+    "PxControllerDesc": true,
+    "PxControllerFilterCallback": true,
+    "PxControllerFilters": true,
+    "PxControllerHit": true,
+    "PxControllerManager": true,
+    "PxControllerObstacleHit": true,
+    "PxControllerShapeHit": true,
+    "PxControllerState": true,
+    "PxControllerStats": true,
+    "PxControllersHit": true,
+    "PxConvexMesh": true,
+    "PxConvexMeshDesc": true,
+    "PxConvexMeshGeometry": true,
+    "PxCooking": false,
+    "PxCookingParams": true,
+    "PxCounterFrequencyToTensOfNanos": true,
+    "PxCpuDispatcher": true,
+    "PxCudaContextManager": false,
+    "PxCustomGeometry": true,
     "PxCustomGeometryCallbacks": true,
     "PxCustomGeometryType": true,
-    "PxModifiableContact": true,
-    "PxSpatialVelocity": true,
-    "PxCustomSceneQuerySystemAdapter": true,
-    "PxContactPairVelocity": true,
-    "PxBroadPhaseCallback": true,
-    "PxParticleVolume": true,
-    "PxParticleSpring": true,
-    "PxSimpleTriangleMesh": true,
-    "PxHeightField": true,
-    "PxMassModificationProps": true,
-    "PxPvdSceneClient": true,
-    "PxVehicleWheels4SimData": false,
-    "PxDefaultFileInputData": true,
-    "PxBVH34TriangleMesh": true,
-    "PxCounterFrequencyToTensOfNanos": true,
-    "PxVec2": true,
-    "PxRefCounted": true,
-    "PxBoxObstacle": true,
-    "PxGpuBodyData": true,
-    "PxRaycastCallback": true,
-    "PxVec3Padded": true,
-    "PxContactModifyPair": true,
-    "PxBitAndByte": true,
-    "XmlMemoryAllocator": false,
-    "PxSoftBody": false,
-    "PxProcessPxBaseCallback": true,
-    "PxCapsuleController": true,
-    "Interpolation": true,
-    "PxParticleRigidBuffer": false,
-    "PxContactPairExtraDataItem": true,
-    "PxGeomSweepHit": true,
-    "PxRigidDynamic": true,
-    "PxUnConst": false,
-    "PxTrianglePadded": true,
-    "PxDiffuseParticleParams": true,
-    "PxControllerBehaviorCallback": true,
-    "PxPBDMaterial": false,
-    "PxSolverConstraintPrepDescBase": true,
-    "PxAssertHandler": true,
-    "PxSListImpl": true,
-    "PxPvdTransport": true,
-    "PxDominanceGroupPair": true,
-    "PxParticleSystemGeometry": true,
-    "PxHeightFieldSample": true,
-    "PxProfilerCallback": true,
-    "PxSimulationTetrahedronMeshData": true,
-    "PxCustomSceneQuerySystem": true,
-    "PxHeightFieldGeometry": true,
-    "PxMeshQuery": true,
-    "PxTGSSolverBodyVel": true,
-    "PxTetrahedronMeshDesc": true,
-    "PxGeometryQuery": true,
-    "PxContactBuffer": false,
-    "PxSerialization": true,
-    "PxConvexMeshDesc": true,
-    "PxObstacle": true,
-    "Px1DConstraintMods": true,
-    "PxBroadPhaseResults": true,
-    "PxGeomRaycastHit": true,
-    "PxUserControllerHitReport": true,
-    "PxSweepBuffer": true,
-    "PxMassProperties": true,
-    "PxRenderBuffer": true,
-    "PxPlaneGeometry": true,
-    "PxJointLinearLimitPair": true,
-    "PxDebugText": true,
-    "PxPrismaticJoint": true,
-    "PxControllerShapeHit": true,
-    "PxNodeIndex": true,
-    "PxQueryCache": true,
-    "PxConstraintBatchHeader": true,
-    "PxFEMParameters": true,
-    "PxBaseTask": true,
-    "PxJointLimitParameters": true,
-    "PxFLIPMaterial": false,
-    "PxArticulationRootLinkData": true,
-    "PxConeLimitedConstraint": true,
-    "PxVehicleTireForceCalculator": false,
-    "PxgDynamicsMemoryConfig": true,
-    "PxRackAndPinionJoint": true,
-    "PxHullPolygon": true,
-    "PxSceneDesc": true,
-    "PxSerializationRegistry": true,
-    "PxSimulationFilterCallback": true,
-    "PxOmniPvd": false,
-    "PxContactPoint": true,
-    "PxArticulationSpatialTendon": true,
-    "PxSceneWriteLock": true,
-    "PxBVHTraversalCallback": true,
-    "PxBroadPhaseRegions": true,
-    "PxJointLimitPyramid": true,
-    "PxTransformPadded": true,
-    "PxDim3": true,
-    "PxAllocator": true,
-    "PxLocationHit": true,
-    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
-    "PxSpringModifiers": true,
-    "PxSceneQueryDesc": true,
-    "PxBoxController": true,
-    "PxGeomOverlapHit": true,
-    "PxSceneQuerySystem": true,
-    "PxCpuDispatcher": true,
-    "PxConstraint": true,
-    "PxShapeExt": true,
-    "PxTaskManager": true,
-    "PxFEMCloth": false,
-    "PxSDFDesc": true,
-    "PxArticulationFixedTendon": true,
-    "PxVehicleWheels4DynData": false,
-    "PxGearJoint": true,
-    "PxVec4": true,
-    "PxSListEntry": true,
-    "PxBVH33TriangleMesh": false,
-    "PxContactModifyCallback": true,
-    "PxMPMMaterial": false,
-    "PxDeserializationContext": true,
-    "PxContactStreamIterator": true,
-    "PxCustomParticleSystem": false,
-    "PxDefaultFileOutputStream": true,
-    "PxIndexDataPair": true,
-    "PxTetrahedron": true,
-    "PxCookingParams": true,
-    "PxUserAllocated": true,
-    "PxCCDContactModifyCallback": true,
-    "PxSpatialForce": true,
-    "PxArticulationTendonJoint": true,
-    "PxCustomGeometry": true,
-    "PxFEMClothMaterial": false,
-    "PxGeometryHolder": true,
-    "PxDefaultErrorCallback": true,
-    "PxBatchQueryExt": true,
-    "PxSerializationContext": true,
-    "PxSoftBodyAuxData": true,
-    "PxMeshOverlapUtil": true,
-    "PxMetaDataEntry": true,
-    "PxTypeInfo": false,
-    "PxRepXObject": true,
-    "PxGroupsMask": true,
-    "PxArticulationSensor": true,
-    "PxSolverConstraintDesc": true,
-    "PxRenderOutput": false,
-    "PxConstraintConnector": true,
-    "MemoryBuffer": false,
-    "PxParticleAndDiffuseBuffer": false,
-    "PxRigidStatic": true,
-    "PxMPMParticleSystem": false,
-    "PxOverlapCallback": true,
-    "PxErrorCallback": true,
-    "PxMeshScale": true,
-    "PxJointAngularLimitPair": true,
-    "PxSweepHit": true,
-    "PxConstraintVisualizer": true,
-    "PxRigidActor": true,
-    "PxAllocatorCallback": true,
-    "PxSpring": true,
-    "PxContact": true,
-    "PxCooking": false,
-    "PxParticleRigidAttachment": false,
-    "PxSphericalJoint": true,
-    "PxContactPairPoint": true,
-    "PxBroadPhasePair": true,
-    "PxBVH34MidphaseDesc": true,
-    "PxOverlapHit": true,
-    "PxControllerHit": true,
-    "PxTetrahedronMeshGeometry": true,
-    "PxDebugPoint": true,
-    "PxSerializer": true,
-    "PxTriangleMeshGeometry": true,
-    "PxHash": false,
-    "PxCapsuleControllerDesc": true,
-    "PxParticleRigidFilterPair": true,
-    "PxMutexImpl": true,
-    "PxReadWriteLock": true,
-    "PxPlane": true,
-    "PxContactPair": true,
-    "PxTolerancesScale": true,
-    "PxConvexMeshGeometry": true,
-    "PxFEMSoftBodyMaterial": false,
-    "PxTriangleMesh": true,
-    "PxPBDParticleSystem": false,
-    "PxTriangleMeshPoissonSampler": true,
-    "PxDefaultAllocator": true,
-    "PxTGSSolverBodyData": true,
-    "PxControllerDesc": true,
-    "PxSolverContactDesc": true,
-    "PxSoftBodyCollisionData": true,
-    "PxXmlMiscParameter": true,
-    "PxArticulationLink": true,
-    "PxQueryHit": true,
-    "PxVirtualAllocatorCallback": true,
-    "PxPruningStructure": true,
-    "PxArticulationTendonLimit": true,
-    "PxSolverConstraintPrepDesc": true,
-    "PxAllocationListener": true,
-    "PxStridedData": true,
-    "PxGpuParticleBufferIndexPair": true,
-    "PxRaycastHit": true,
-    "PxGeomIndexPair": true,
-    "PxMat44": true,
-    "PxBroadPhaseRegion": true,
-    "PxTGSSolverConstraintPrepDesc": true,
-    "PxBroadPhaseExt": true,
-    "PxRigidBodyExt": true,
-    "PxExtendedContact": true,
-    "PxTransform": true,
     "PxCustomMaterial": false,
-    "PxParticleMaterial": true,
-    "PxJointLimitCone": true,
-    "PxOverlapBuffer": true,
-    "PxBVHDesc": true,
-    "PxLightCpuTask": true,
-    "PxPoissonSampler": true,
-    "PxDistanceJoint": true,
-    "PxSceneReadLock": true,
-    "PxRaycastBuffer": true,
-    "PxCapsuleGeometry": true,
-    "PxRevoluteJoint": true,
-    "PxAggregate": true,
-    "PxFEMMaterial": true,
-    "PxContactPairHeader": true,
-    "PxRepXSerializer": true,
-    "PxArticulationJointReducedCoordinate": true,
-    "PxFoundation": true,
-    "PxContactPairExtraDataIterator": true,
-    "PxCudaContextManager": false,
+    "PxCustomParticleSystem": false,
+    "PxCustomSceneQuerySystem": true,
+    "PxCustomSceneQuerySystemAdapter": true,
     "PxD6Joint": true,
-    "PxBoxGeometry": true,
-    "PxMat33": true,
-    "PxRawAllocator": true,
-    "PxTGSSolverBodyTxInertia": true,
-    "PxBroadPhaseCaps": true,
-    "PxInputData": true,
-    "PxControllersHit": true,
-    "PxSceneQuerySystemBase": true,
-    "PxTask": true,
-    "PxSceneLimits": true,
-    "PxConeLimitParams": true,
-    "PxSoftBodySimulationDataDesc": true,
-    "PxSceneQueryExt": true,
-    "PxShape": true,
-    "PxControllerManager": true,
-    "PxGpuActorPair": true,
-    "PxBaseMaterial": true,
-    "XmlReader": false,
-    "PxDeletionListener": true,
-    "PxBroadPhaseRegionInfo": true,
-    "PxHairSystemGeometry": true,
-    "PxFLIPParticleSystem": false,
-    "PxExtendedVec3": true,
-    "PxHairSystem": false,
-    "PxParticleBuffer": false,
-    "PxRunnable": true,
-    "PxActor": true,
-    "PxInputStream": true,
-    "PxTriggerPair": true,
-    "PxAABBManager": true,
-    "PxArticulationCache": true,
-    "PxGeometry": true,
-    "PxBroadcastingErrorCallback": true,
-    "PxBVHOverlapCallback": true,
-    "PxTetrahedronMeshData": true,
-    "PxTGSSolverConstraintPrepDescBase": true,
-    "PxMat34": false,
-    "PxBroadcastingAllocator": true,
-    "PxBoxControllerDesc": true,
-    "PxTGSSolverContactDesc": true,
-    "PxQueryFilterData": true,
-    "PxController": true,
-    "PxArticulationDrive": true,
-    "PxTriangleMeshDesc": true,
-    "PxOutputStream": true,
-    "PxSoftBodySimulationData": true,
-    "PxCollisionMeshMappingData": true,
-    "PxContactJoint": true,
-    "PxPvd": true,
-    "PxFilterData": true,
-    "PxControllerFilters": true,
-    "PxSweepCallback": true,
-    "PxArticulationReducedCoordinate": true,
-    "PxBinaryConverter": false,
-    "PxQuat": true,
-    "PxConstraintShaderTable": true,
-    "PxBitMap": true,
-    "PxVehicleTelemetryData": false,
-    "PxProfileScoped": true,
-    "PxJacobianRow": true,
-    "PxBase": true,
-    "PxBroadPhaseDesc": true,
-    "PxVec3": true,
-    "PxCapsuleObstacle": true,
-    "PxParticleSystem": false,
-    "PxTempAllocator": true,
-    "PxStringTableExt": true,
-    "PxSolverBodyData": true,
-    "PxCollection": true,
-    "PxRepXInstantiationArgs": true,
+    "PxD6JointDrive": true,
     "PxDebugLine": true,
-    "PxConvexMesh": true,
-    "PxCollisionTetrahedronMeshData": true,
-    "PxArticulationLimit": true,
-    "PxArticulationAttachment": true,
-    "PxConstraintAllocator": true,
-    "PxSyncImpl": true,
-    "PxJointLinearLimit": true,
-    "PxControllerObstacleHit": true,
-    "PxSimulationEventCallback": true,
-    "PxControllerState": true,
-    "PxQueryFilterCallback": true,
-    "PxControllerFilterCallback": true,
-    "PxJoint": true,
-    "PxFixedJoint": true,
-    "PxDefaultMemoryInputData": true,
-    "PxTriangle": true,
-    "PxRestitutionModifiers": true,
-    "PxTetrahedronMeshExt": true,
-    "PxDefaultMemoryOutputStream": true,
-    "PxConstraintInfo": true,
-    "PxRigidActorExt": true,
-    "PxLogTwo": false,
-    "PxScene": true,
-    "Px1DConstraint": true,
-    "PxSolverBody": true,
-    "PxMidphaseDesc": true,
-    "PxSoftBodyMesh": true,
-    "PxContactPairIndex": true,
-    "PxLockedData": true,
-    "PxBVHRaycastCallback": true,
+    "PxDebugPoint": true,
+    "PxDebugText": true,
+    "PxDebugTriangle": true,
+    "PxDefaultAllocator": true,
     "PxDefaultCpuDispatcher": true,
-    "PxTempAllocatorChunk": true,
-    "PxQueryThreadContext": true,
-    "PxActorShape": true,
-    "PxObstacleContext": true,
-    "PxVirtualAllocator": true,
-    "PxConstraintInvMassScale": true,
-    "PxMaterial": true,
-    "PxTetrahedronMesh": true,
-    "PxRigidBody": true,
-    "PxParticleClothBuffer": false,
-    "PxSimulationStatistics": true,
-    "PxInsertionCallback": true,
-    "XmlWriter": false,
-    "PxContactPairPose": true,
+    "PxDefaultErrorCallback": true,
+    "PxDefaultFileInputData": true,
+    "PxDefaultFileOutputStream": true,
+    "PxDefaultMemoryInputData": true,
+    "PxDefaultMemoryOutputStream": true,
+    "PxDeletionListener": true,
+    "PxDeserializationContext": true,
+    "PxDiffuseParticleParams": true,
+    "PxDim3": true,
+    "PxDistanceJoint": true,
+    "PxDominanceGroupPair": true,
+    "PxErrorCallback": true,
+    "PxExtendedContact": true,
+    "PxExtendedVec3": true,
+    "PxFEMCloth": false,
+    "PxFEMClothMaterial": false,
+    "PxFEMMaterial": true,
+    "PxFEMParameters": true,
+    "PxFEMSoftBodyMaterial": false,
+    "PxFLIPMaterial": false,
+    "PxFLIPParticleSystem": false,
+    "PxFilterData": true,
+    "PxFixedJoint": true,
+    "PxFoundation": true,
+    "PxGearJoint": true,
+    "PxGeomIndexPair": true,
+    "PxGeomOverlapHit": true,
+    "PxGeomRaycastHit": true,
+    "PxGeomSweepHit": true,
+    "PxGeometry": true,
+    "PxGeometryHolder": true,
+    "PxGeometryQuery": true,
+    "PxGpuActorPair": true,
+    "PxGpuBodyData": true,
     "PxGpuContactPair": true,
-    "PxArticulationTendon": true,
-    "PxControllerStats": true,
+    "PxGpuParticleBufferIndexPair": true,
+    "PxGroupsMask": true,
+    "PxHairSystem": false,
+    "PxHairSystemGeometry": true,
+    "PxHash": false,
+    "PxHeightField": true,
+    "PxHeightFieldDesc": true,
+    "PxHeightFieldGeometry": true,
+    "PxHeightFieldSample": true,
+    "PxHullPolygon": true,
+    "PxIndexDataPair": true,
+    "PxInputData": true,
+    "PxInputStream": true,
+    "PxInsertionCallback": true,
+    "PxJacobianRow": true,
+    "PxJoint": true,
+    "PxJointAngularLimitPair": true,
+    "PxJointLimitCone": true,
+    "PxJointLimitParameters": true,
+    "PxJointLimitPyramid": true,
+    "PxJointLinearLimit": true,
+    "PxJointLinearLimitPair": true,
+    "PxLightCpuTask": true,
+    "PxLocationHit": true,
+    "PxLockedData": true,
+    "PxLogTwo": false,
+    "PxMPMMaterial": false,
+    "PxMPMParticleSystem": false,
+    "PxMassModificationProps": true,
+    "PxMassProperties": true,
+    "PxMat33": true,
+    "PxMat34": false,
+    "PxMat44": true,
+    "PxMaterial": true,
+    "PxMeshOverlapUtil": true,
+    "PxMeshQuery": true,
+    "PxMeshScale": true,
+    "PxMetaDataEntry": true,
+    "PxMidphaseDesc": true,
+    "PxModifiableContact": true,
+    "PxMutexImpl": true,
+    "PxNodeIndex": true,
+    "PxObstacle": true,
+    "PxObstacleContext": true,
+    "PxOmniPvd": false,
+    "PxOutputStream": true,
+    "PxOverlapBuffer": true,
+    "PxOverlapCallback": true,
+    "PxOverlapHit": true,
+    "PxPBDMaterial": false,
+    "PxPBDParticleSystem": false,
+    "PxParticleAndDiffuseBuffer": false,
+    "PxParticleBuffer": false,
+    "PxParticleClothBuffer": false,
+    "PxParticleMaterial": true,
+    "PxParticleRigidAttachment": false,
+    "PxParticleRigidBuffer": false,
+    "PxParticleRigidFilterPair": true,
+    "PxParticleSpring": true,
+    "PxParticleSystem": false,
+    "PxParticleSystemGeometry": true,
+    "PxParticleVolume": true,
+    "PxPhysics": true,
+    "PxPlane": true,
+    "PxPlaneGeometry": true,
+    "PxPoissonSampler": true,
+    "PxPrismaticJoint": true,
+    "PxProcessPxBaseCallback": true,
+    "PxProfileScoped": true,
+    "PxProfilerCallback": true,
+    "PxPruningStructure": true,
+    "PxPvd": true,
+    "PxPvdSceneClient": true,
+    "PxPvdTransport": true,
+    "PxQuat": true,
+    "PxQueryCache": true,
+    "PxQueryFilterCallback": true,
+    "PxQueryFilterData": true,
+    "PxQueryHit": true,
+    "PxQueryThreadContext": true,
+    "PxRackAndPinionJoint": true,
+    "PxRawAllocator": true,
+    "PxRaycastBuffer": true,
+    "PxRaycastCallback": true,
+    "PxRaycastHit": true,
+    "PxReadWriteLock": true,
+    "PxRefCounted": true,
+    "PxRenderBuffer": true,
+    "PxRenderOutput": false,
+    "PxRepXInstantiationArgs": true,
+    "PxRepXObject": true,
+    "PxRepXSerializer": true,
+    "PxRestitutionModifiers": true,
+    "PxRevoluteJoint": true,
+    "PxRigidActor": true,
+    "PxRigidActorExt": true,
+    "PxRigidBody": true,
+    "PxRigidBodyExt": true,
+    "PxRigidDynamic": true,
+    "PxRigidStatic": true,
+    "PxRunnable": true,
+    "PxSDFDesc": true,
+    "PxSListEntry": true,
+    "PxSListImpl": true,
+    "PxSamplingExt": true,
+    "PxScene": true,
+    "PxSceneDesc": true,
+    "PxSceneLimits": true,
+    "PxSceneQueryDesc": true,
+    "PxSceneQueryExt": true,
+    "PxSceneQuerySystem": true,
+    "PxSceneQuerySystemBase": true,
+    "PxSceneReadLock": true,
     "PxSceneSQSystem": true,
-    "PxBroadPhaseUpdateData": true
+    "PxSceneWriteLock": true,
+    "PxSerialization": true,
+    "PxSerializationContext": true,
+    "PxSerializationRegistry": true,
+    "PxSerializer": true,
+    "PxShape": true,
+    "PxShapeExt": true,
+    "PxSimpleTriangleMesh": true,
+    "PxSimulationEventCallback": true,
+    "PxSimulationFilterCallback": true,
+    "PxSimulationStatistics": true,
+    "PxSimulationTetrahedronMeshData": true,
+    "PxSoftBody": false,
+    "PxSoftBodyAuxData": true,
+    "PxSoftBodyCollisionData": true,
+    "PxSoftBodyMesh": true,
+    "PxSoftBodySimulationData": true,
+    "PxSoftBodySimulationDataDesc": true,
+    "PxSolverBody": true,
+    "PxSolverBodyData": true,
+    "PxSolverConstraintDesc": true,
+    "PxSolverConstraintPrepDesc": true,
+    "PxSolverConstraintPrepDescBase": true,
+    "PxSolverContactDesc": true,
+    "PxSpatialForce": true,
+    "PxSpatialVelocity": true,
+    "PxSphereGeometry": true,
+    "PxSphericalJoint": true,
+    "PxSpring": true,
+    "PxSpringModifiers": true,
+    "PxStridedData": true,
+    "PxStringTable": true,
+    "PxStringTableExt": true,
+    "PxSweepBuffer": true,
+    "PxSweepCallback": true,
+    "PxSweepHit": true,
+    "PxSyncImpl": true,
+    "PxTGSSolverBodyData": true,
+    "PxTGSSolverBodyTxInertia": true,
+    "PxTGSSolverBodyVel": true,
+    "PxTGSSolverConstraintPrepDesc": true,
+    "PxTGSSolverConstraintPrepDescBase": true,
+    "PxTGSSolverContactDesc": true,
+    "PxTask": true,
+    "PxTaskManager": true,
+    "PxTempAllocator": true,
+    "PxTempAllocatorChunk": true,
+    "PxTetrahedron": true,
+    "PxTetrahedronMesh": true,
+    "PxTetrahedronMeshData": true,
+    "PxTetrahedronMeshDesc": true,
+    "PxTetrahedronMeshExt": true,
+    "PxTetrahedronMeshGeometry": true,
+    "PxTime": true,
+    "PxTolerancesScale": true,
+    "PxTransform": true,
+    "PxTransformPadded": true,
+    "PxTriangle": true,
+    "PxTriangleMesh": true,
+    "PxTriangleMeshDesc": true,
+    "PxTriangleMeshGeometry": true,
+    "PxTriangleMeshPoissonSampler": true,
+    "PxTrianglePadded": true,
+    "PxTriggerPair": true,
+    "PxTypeInfo": false,
+    "PxUnConst": false,
+    "PxUserAllocated": true,
+    "PxUserControllerHitReport": true,
+    "PxVec2": true,
+    "PxVec3": true,
+    "PxVec3Padded": true,
+    "PxVec4": true,
+    "PxVehicleDrivableSurfaceToTireFrictionPairs": false,
+    "PxVehicleTelemetryData": false,
+    "PxVehicleTireForceCalculator": false,
+    "PxVehicleWheels4DynData": false,
+    "PxVehicleWheels4SimData": false,
+    "PxVirtualAllocator": true,
+    "PxVirtualAllocatorCallback": true,
+    "PxXmlMiscParameter": true,
+    "PxgDynamicsMemoryConfig": true,
+    "XmlMemoryAllocator": false,
+    "XmlReader": false,
+    "XmlWriter": false
   },
   "derived": {
-    "PxUserAllocated": [
-      "PxCollisionMeshMappingData",
-      "PxSoftBodyCollisionData",
-      "PxTetrahedronMeshData",
-      "PxSoftBodySimulationData",
-      "PxCollisionTetrahedronMeshData",
-      "PxSimulationTetrahedronMeshData",
-      "PxPoissonSampler"
-    ],
-    "PxSpring": [
-      "PxD6JointDrive"
-    ],
-    "PxPoissonSampler": [
-      "PxTriangleMeshPoissonSampler"
-    ],
-    "PxLocationHit": [
-      "PxGeomRaycastHit",
-      "PxGeomSweepHit"
-    ],
-    "PxSolverConstraintPrepDescBase": [
-      "PxSolverConstraintPrepDesc"
-    ],
-    "PxSceneQuerySystem": [
-      "PxCustomSceneQuerySystem"
-    ],
-    "PxInputData": [
-      "PxDefaultMemoryInputData",
-      "PxDefaultFileInputData"
-    ],
-    "PxSceneQuerySystemBase": [
-      "PxSceneSQSystem",
-      "PxSceneQuerySystem"
-    ],
-    "PxControllerDesc": [
-      "PxBoxControllerDesc",
-      "PxCapsuleControllerDesc"
-    ],
-    "PxRefCounted": [
-      "PxConvexMesh",
-      "PxHeightField",
-      "PxTriangleMesh",
-      "PxSoftBodyAuxData",
-      "PxTetrahedronMesh",
-      "PxSoftBodyMesh",
-      "PxShape",
-      "PxBaseMaterial"
-    ],
-    "PxSceneSQSystem": [
-      "PxScene"
+    "PxActor": [
+      "PxRigidActor"
     ],
     "PxActorShape": [
       "PxRaycastHit",
       "PxOverlapHit",
       "PxSweepHit"
     ],
-    "PxStridedData": [
-      "PxBoundedData"
-    ],
-    "PxController": [
-      "PxBoxController",
-      "PxCapsuleController"
-    ],
-    "PxOutputStream": [
-      "PxDefaultMemoryOutputStream",
-      "PxDefaultFileOutputStream"
-    ],
-    "PxArticulationTendon": [
-      "PxArticulationSpatialTendon",
-      "PxArticulationFixedTendon"
-    ],
-    "PxContact": [
-      "PxExtendedContact"
-    ],
-    "PxInputStream": [
-      "PxInputData"
-    ],
-    "PxGeomOverlapHit": [
-      "PxOverlapHit"
-    ],
-    "PxErrorCallback": [
-      "PxBroadcastingErrorCallback",
-      "PxDefaultErrorCallback"
-    ],
-    "PxCpuDispatcher": [
-      "PxDefaultCpuDispatcher"
-    ],
-    "PxJointLimitParameters": [
-      "PxJointLinearLimit",
-      "PxJointLinearLimitPair",
-      "PxJointAngularLimitPair",
-      "PxJointLimitCone",
-      "PxJointLimitPyramid"
-    ],
-    "PxBaseMaterial": [
-      "PxFEMMaterial",
-      "PxMaterial",
-      "PxParticleMaterial"
-    ],
-    "PxGeomSweepHit": [
-      "PxSweepHit"
-    ],
-    "PxGeomRaycastHit": [
-      "PxRaycastHit"
-    ],
-    "PxExtendedContact": [
-      "PxModifiableContact"
-    ],
-    "PxQueryHit": [
-      "PxLocationHit",
-      "PxGeomOverlapHit"
-    ],
-    "PxBaseTask": [
-      "PxTask",
-      "PxLightCpuTask"
-    ],
-    "PxSimpleTriangleMesh": [
-      "PxTriangleMeshDesc"
-    ],
     "PxAllocatorCallback": [
       "PxBroadcastingAllocator",
       "PxDefaultAllocator"
     ],
-    "PxContactPairExtraDataItem": [
-      "PxContactPairVelocity",
-      "PxContactPairPose",
-      "PxContactPairIndex"
-    ],
-    "PxTriangle": [
-      "PxTrianglePadded"
-    ],
-    "PxRigidBody": [
-      "PxArticulationLink",
-      "PxRigidDynamic"
-    ],
-    "PxObstacle": [
-      "PxBoxObstacle",
-      "PxCapsuleObstacle"
-    ],
-    "PxActor": [
-      "PxRigidActor"
-    ],
-    "PxSceneQueryDesc": [
-      "PxSceneDesc"
-    ],
-    "PxControllerHit": [
-      "PxControllerShapeHit",
-      "PxControllersHit",
-      "PxControllerObstacleHit"
-    ],
-    "PxProfilerCallback": [
-      "PxPvd"
-    ],
-    "PxTriangleMesh": [
-      "PxBVH34TriangleMesh"
-    ],
-    "PxRigidActor": [
-      "PxRigidBody",
-      "PxRigidStatic"
+    "PxArticulationTendon": [
+      "PxArticulationSpatialTendon",
+      "PxArticulationFixedTendon"
     ],
     "PxBase": [
       "PxRefCounted",
@@ -137433,6 +137290,55 @@
       "PxPruningStructure",
       "PxJoint"
     ],
+    "PxBaseMaterial": [
+      "PxFEMMaterial",
+      "PxMaterial",
+      "PxParticleMaterial"
+    ],
+    "PxBaseTask": [
+      "PxTask",
+      "PxLightCpuTask"
+    ],
+    "PxContact": [
+      "PxExtendedContact"
+    ],
+    "PxContactPairExtraDataItem": [
+      "PxContactPairVelocity",
+      "PxContactPairPose",
+      "PxContactPairIndex"
+    ],
+    "PxController": [
+      "PxBoxController",
+      "PxCapsuleController"
+    ],
+    "PxControllerDesc": [
+      "PxBoxControllerDesc",
+      "PxCapsuleControllerDesc"
+    ],
+    "PxControllerHit": [
+      "PxControllerShapeHit",
+      "PxControllersHit",
+      "PxControllerObstacleHit"
+    ],
+    "PxCpuDispatcher": [
+      "PxDefaultCpuDispatcher"
+    ],
+    "PxErrorCallback": [
+      "PxBroadcastingErrorCallback",
+      "PxDefaultErrorCallback"
+    ],
+    "PxExtendedContact": [
+      "PxModifiableContact"
+    ],
+    "PxGeomOverlapHit": [
+      "PxOverlapHit"
+    ],
+    "PxGeomRaycastHit": [
+      "PxRaycastHit"
+    ],
+    "PxGeomSweepHit": [
+      "PxSweepHit"
+    ],
     "PxGeometry": [
       "PxBoxGeometry",
       "PxCapsuleGeometry",
@@ -137446,8 +137352,12 @@
       "PxTetrahedronMeshGeometry",
       "PxCustomGeometry"
     ],
-    "PxVec3": [
-      "PxVec3Padded"
+    "PxInputData": [
+      "PxDefaultMemoryInputData",
+      "PxDefaultFileInputData"
+    ],
+    "PxInputStream": [
+      "PxInputData"
     ],
     "PxJoint": [
       "PxDistanceJoint",
@@ -137459,6 +137369,96 @@
       "PxD6Joint",
       "PxGearJoint",
       "PxRackAndPinionJoint"
+    ],
+    "PxJointLimitParameters": [
+      "PxJointLinearLimit",
+      "PxJointLinearLimitPair",
+      "PxJointAngularLimitPair",
+      "PxJointLimitCone",
+      "PxJointLimitPyramid"
+    ],
+    "PxLocationHit": [
+      "PxGeomRaycastHit",
+      "PxGeomSweepHit"
+    ],
+    "PxObstacle": [
+      "PxBoxObstacle",
+      "PxCapsuleObstacle"
+    ],
+    "PxOutputStream": [
+      "PxDefaultMemoryOutputStream",
+      "PxDefaultFileOutputStream"
+    ],
+    "PxPoissonSampler": [
+      "PxTriangleMeshPoissonSampler"
+    ],
+    "PxProfilerCallback": [
+      "PxPvd"
+    ],
+    "PxQueryHit": [
+      "PxLocationHit",
+      "PxGeomOverlapHit"
+    ],
+    "PxRefCounted": [
+      "PxConvexMesh",
+      "PxHeightField",
+      "PxTriangleMesh",
+      "PxSoftBodyAuxData",
+      "PxTetrahedronMesh",
+      "PxSoftBodyMesh",
+      "PxShape",
+      "PxBaseMaterial"
+    ],
+    "PxRigidActor": [
+      "PxRigidBody",
+      "PxRigidStatic"
+    ],
+    "PxRigidBody": [
+      "PxArticulationLink",
+      "PxRigidDynamic"
+    ],
+    "PxSceneQueryDesc": [
+      "PxSceneDesc"
+    ],
+    "PxSceneQuerySystem": [
+      "PxCustomSceneQuerySystem"
+    ],
+    "PxSceneQuerySystemBase": [
+      "PxSceneSQSystem",
+      "PxSceneQuerySystem"
+    ],
+    "PxSceneSQSystem": [
+      "PxScene"
+    ],
+    "PxSimpleTriangleMesh": [
+      "PxTriangleMeshDesc"
+    ],
+    "PxSolverConstraintPrepDescBase": [
+      "PxSolverConstraintPrepDesc"
+    ],
+    "PxSpring": [
+      "PxD6JointDrive"
+    ],
+    "PxStridedData": [
+      "PxBoundedData"
+    ],
+    "PxTriangle": [
+      "PxTrianglePadded"
+    ],
+    "PxTriangleMesh": [
+      "PxBVH34TriangleMesh"
+    ],
+    "PxUserAllocated": [
+      "PxCollisionMeshMappingData",
+      "PxSoftBodyCollisionData",
+      "PxTetrahedronMeshData",
+      "PxSoftBodySimulationData",
+      "PxCollisionTetrahedronMeshData",
+      "PxSimulationTetrahedronMeshData",
+      "PxPoissonSampler"
+    ],
+    "PxVec3": [
+      "PxVec3Padded"
     ]
   }
 }

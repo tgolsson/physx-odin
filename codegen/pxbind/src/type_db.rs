@@ -4,7 +4,7 @@ use crate::consumer::{
     PhysxInvoke, QualType, Tag,
 };
 
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct BlockValue {
@@ -331,14 +331,14 @@ impl<'ast> From<&Param<'ast>> for ParamValue {
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct TypeDB {
     pub enums: Vec<EnumBindingValue>,
-    pub enum_map: HashMap<String, (Builtin, String)>,
+    pub enum_map: BTreeMap<String, (Builtin, String)>,
     pub flags: Vec<FlagsBindingValue>,
-    pub flags_map: HashMap<String, Builtin>,
-    pub type_defs: HashMap<String, QualTypeValue>,
+    pub flags_map: BTreeMap<String, Builtin>,
+    pub type_defs: BTreeMap<String, QualTypeValue>,
     pub recs: Vec<RecBindingValue>,
     pub funcs: Vec<FuncBindingValue>,
-    pub classes: HashMap<String, bool>,
-    pub derived: HashMap<String, Vec<String>>,
+    pub classes: BTreeMap<String, bool>,
+    pub derived: BTreeMap<String, Vec<String>>,
 }
 
 impl<'ast> From<&crate::consumer::EnumBinding<'ast>> for EnumBindingValue {
