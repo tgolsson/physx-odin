@@ -3859,7 +3859,7 @@ ControllerFilters :: struct {
 }
 
 
-ControllerDesc :: struct #packed {
+ControllerDesc :: struct {
     _pad0: [8]u8,
     position: ExtendedVec3,
     upDirection: Vec3,
@@ -3881,7 +3881,7 @@ ControllerDesc :: struct #packed {
     clientID: _c.uint8_t,
     _pad19: [6]u8,
     userData: rawptr,
-    _pad21: [4]u8,
+    _pad21: [8]u8,
 }
 
 
