@@ -1,0 +1,22 @@
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: "${{ matrix.os }}"
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Odin
+      uses: laytan/setup-odin@v2.6.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Test
+      run: odin test tests
