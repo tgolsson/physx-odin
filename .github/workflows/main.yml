@@ -3,6 +3,41 @@ on:
   workflow_dispatch:
 
 jobs:
+  gentest:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: "${{ matrix.os }}"
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - uses: extractions/setup-just@v2
+    - uses: actions-rust-lang/setup-rust-toolchain@v1
+
+    - name: Setup Odin
+      uses: laytan/setup-odin@v2.6.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Delete type-db on Ubuntu
+      if: "${{ matrix.os == 'ubuntu-latest' }}"
+      run: |
+        rm codegen/pxbind/type-db.json
+
+    - name: Generate
+      run: |
+        just bindgen
+
+    - name: Verify Changed files
+      uses: tj-actions/verify-changed-files@v20
+      id: verify-changed-files
+
+    - name: Fail if any files changed
+      if: steps.verify-changed-files.outputs.files_changed != 'false'
+      run: exit 1
+
   test:
     strategy:
       matrix:
