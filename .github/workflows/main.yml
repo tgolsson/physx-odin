@@ -39,7 +39,10 @@ jobs:
 
     - name: Fail if any files changed
       if: steps.verify-changed-files.outputs.files_changed != 'false'
-      run: exit 1
+      run: |
+        echo "Changed files: $CHANGED_FILES"
+        git diff
+        exit 1
 
   test:
     strategy:
