@@ -13,10 +13,11 @@ jobs:
           - os: ubuntu-latest
             platform: linux
             arch: x86_64
+            lib_rex: *.a
           - os: windows-latest
             artifact_name: mything.exe
             platform: windows
-
+            lib_rex: *.lib
     runs-on: "${{ matrix.os }}"
 
     steps:
@@ -28,7 +29,7 @@ jobs:
     - uses: extractions/setup-just@v2
 
     - name: Build
-      run: just package
+      run: just package ${{matrix.platform}} ${{matrix.arch}} ${{matrix.lib_rex}} *.odin
 
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
