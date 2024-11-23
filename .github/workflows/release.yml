@@ -13,11 +13,11 @@ jobs:
           - os: ubuntu-latest
             platform: linux
             arch: x86_64
-            lib_rex: *.a
+            lib_rex: "*.so"
           - os: windows-latest
             artifact_name: mything.exe
             platform: windows
-            lib_rex: *.lib
+            lib_rex: "*.lib"
     runs-on: "${{ matrix.os }}"
 
     steps:
