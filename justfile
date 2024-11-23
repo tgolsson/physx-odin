@@ -13,6 +13,9 @@ bindgen: structgen
 build:  bindgen
     cd codegen && cargo run && cargo run --release
 
+build-dbg:  bindgen
+    cd codegen && cargo run && cargo run --release
+
 gen:
     cd codegen && clang++ -DNDEBUG -g structgen.cpp -Iphysx/physx/include/ -o structgen && ./structgen
     cd codegen/pxbind && cargo run -- --stage 1
@@ -22,3 +25,6 @@ test:
 
 gentest: gen test
     echo "DONE"
+
+package $platform $arch +infiles: build build-dbg
+    tar --zstd -cvf $platform-$arch.tar.zst {{infiles}} *.odin

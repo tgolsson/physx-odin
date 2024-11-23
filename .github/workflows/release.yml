@@ -1,0 +1,47 @@
+name: Publish
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+
+  publish:
+    needs: ["create_release"]
+    name: Publish for ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            arch: x86_64
+            lib_rex: "*.so"
+          - os: windows-latest
+            artifact_name: mything.exe
+            platform: windows
+            lib_rex: "*.lib"
+    runs-on: "${{ matrix.os }}"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: extractions/setup-just@v2
+
+    - name: Build
+      run: just package ${{matrix.platform}} ${{matrix.arch}} ${{matrix.lib_rex}} *.odin
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: "${{matrix.platform}}-${{matrix.arch}}.tar.zst"
+        tag: ${{ github.ref }}
