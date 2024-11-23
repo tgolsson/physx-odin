@@ -23,11 +23,11 @@ jobs:
             arch: x86_64
             lib_rex: "*.so"
           - os: windows-latest
-            artifact_name: mything.exe
+            arch: x86_64
             platform: windows
             lib_rex: "*.lib"
-    runs-on: "${{ matrix.os }}"
 
+    runs-on: "${{ matrix.os }}"
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
     - uses: extractions/setup-just@v2
 
     - name: Build
-      run: just package ${{matrix.platform}} ${{matrix.arch}} ${{matrix.lib_rex}} *.odin
+      run: just package ${{matrix.platform}} ${{matrix.arch}} ${{matrix.lib_rex}}
 
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
