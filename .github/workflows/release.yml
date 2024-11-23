@@ -1,0 +1,39 @@
+name: Publish
+
+on:
+  push:
+
+jobs:
+  publish:
+    depends_on: ["create_release"]
+
+    name: Publish for ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            arch: x86_64
+          - os: windows-latest
+            artifact_name: mything.exe
+            platform: windows
+
+    runs-on: "${{ matrix.os }}"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: extractions/setup-just@v2
+
+    - name: Build
+      run: just package
+
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: "${{matrix.platform}}-${{matrix.arch}}.tar.zst"
+        tag: ${{ github.ref }}
